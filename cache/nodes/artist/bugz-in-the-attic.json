@@ -58,14 +58,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:booty-la-la",
-      "type": "project",
-      "name": "Booty La La (Loefah remix)",
-      "mbid": "22be0f09-1111-4b8f-a603-3e3eb1346dd0",
-      "year": "2010",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:don-t-stop-the-music",
       "type": "project",
       "name": "Don't Stop the Music",
@@ -94,14 +86,6 @@
       "type": "project",
       "name": "Sounds Like / Once Twice",
       "mbid": "b5c5f9b5-801e-4ea5-af40-947d5136def7",
-      "year": "2005",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:booty-la-la",
-      "type": "project",
-      "name": "Booty La La",
-      "mbid": "d142a369-bfb3-3004-ae3f-36735e89b29c",
       "year": "2005",
       "releaseType": "single"
     },

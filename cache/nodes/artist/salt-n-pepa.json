@@ -66,22 +66,6 @@
   ],
   "discography": [
     {
-      "slug": "project:push-it",
-      "type": "project",
-      "name": "Push It! (rework)",
-      "mbid": "1d95ffde-53d0-4ef5-8197-872b4170c80c",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:push-it",
-      "type": "project",
-      "name": "Push It (Re-Recorded - Sped Up)",
-      "mbid": "e20fa76b-b805-4bea-865f-fc39e72bd90f",
-      "year": "2023",
-      "releaseType": "ep"
-    },
-    {
       "slug": "project:shoop-re-recorded",
       "type": "project",
       "name": "Shoop (Re‐Recorded) [Sped Up]",
@@ -96,14 +80,6 @@
       "mbid": "49f48f61-f391-4ca6-92b9-65d7dce94760",
       "year": "2021",
       "releaseType": "ep"
-    },
-    {
-      "slug": "project:push-it",
-      "type": "project",
-      "name": "Push It [Again]",
-      "mbid": "d6c3b7cc-477c-40ab-b166-b66abec85e7f",
-      "year": "1999",
-      "releaseType": "single"
     },
     {
       "slug": "project:the-brick-track-versus-gitty-up",
@@ -234,14 +210,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:let-s-talk-about-sex",
-      "type": "project",
-      "name": "Let’s Talk About Sex",
-      "mbid": "1a314175-74f6-34e6-a9ab-9721a11e0f29",
-      "year": "1991",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:you-showed-me",
       "type": "project",
       "name": "You Showed Me",
@@ -283,14 +251,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:push-it",
-      "type": "project",
-      "name": "Push It",
-      "mbid": "335bab00-edc1-44b6-8ac3-5c741b02a53f",
-      "year": "1988",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:shake-your-thang-spinderella-s-not-a-fella",
       "type": "project",
       "name": "Shake Your Thang / Spinderella’s Not a Fella (But a Girl DJ)",
@@ -304,14 +264,6 @@
       "name": "Twist And Shout",
       "mbid": "c19deddb-7fdd-4b68-857e-46adb7ef59fd",
       "year": "1988",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:push-it",
-      "type": "project",
-      "name": "Push It",
-      "mbid": "76ab9454-a57c-3694-baaa-43a20881241c",
-      "year": "1987",
       "releaseType": "single"
     },
     {

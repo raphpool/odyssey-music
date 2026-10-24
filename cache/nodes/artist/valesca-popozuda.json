@@ -230,14 +230,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:meu-ex",
-      "type": "project",
-      "name": "Meu Ex",
-      "mbid": "95fc83c7-2c44-49a5-a6c9-85ca70c07311",
-      "year": "2019",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:de-levin",
       "type": "project",
       "name": "De levin",
@@ -348,14 +340,6 @@
       "mbid": "a84888c6-3273-4c24-8bde-ae0b5aec9631",
       "year": "2014",
       "releaseType": "ep"
-    },
-    {
-      "slug": "project:valesca-popozuda",
-      "type": "project",
-      "name": "Valesca Popozuda",
-      "mbid": "6e51f423-b2c9-42d2-af66-7a2bde05cb77",
-      "year": "2014",
-      "releaseType": "single"
     },
     {
       "slug": "project:beijinho-no-ombro",

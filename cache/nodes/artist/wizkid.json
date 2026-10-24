@@ -112,14 +112,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:lighter",
-      "type": "project",
-      "name": "Lighter",
-      "mbid": "b0578e28-bc5b-44c9-aa02-b01426c7fc6a",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:gimme-dat",
       "type": "project",
       "name": "Gimme Dat",

@@ -114,14 +114,6 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:dying-for-a-light",
-      "type": "project",
-      "name": "Dying for a Light",
-      "mbid": "e3c2d877-52b6-4399-9fdd-367c65baa579",
-      "year": "2024",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:harmony-be-free-ep",
       "type": "project",
       "name": "Harmony / Be Free EP",
@@ -354,14 +346,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:see-the-light",
-      "type": "project",
-      "name": "See The Light",
-      "mbid": "f0b23739-bcf9-4723-9113-0eed601c4d62",
-      "year": "2016",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:chapter-one",
       "type": "project",
       "name": "Chapter One",
@@ -462,14 +446,6 @@
       "type": "project",
       "name": "Infinity",
       "mbid": "156ec854-1e9e-465f-8bce-6df19e379489",
-      "year": "2015",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:all-night-long",
-      "type": "project",
-      "name": "All Night Long",
-      "mbid": "27588cbe-b15e-419d-9599-e6046e6b50fd",
       "year": "2015",
       "releaseType": "single"
     },

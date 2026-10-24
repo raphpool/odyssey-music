@@ -85,14 +85,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:sacrifice",
-      "type": "project",
-      "name": "Sacrifice",
-      "mbid": "5e10f998-35ca-41da-801e-a14edf4fe963",
-      "year": "2014",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:please-be-good-mdma-vip-hide-seek-rock-this-joint",
       "type": "project",
       "name": "Please Be Good / MDMA (VIP) / Hide + Seek / Rock This Joint",
@@ -221,14 +213,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:toy-town",
-      "type": "project",
-      "name": "Toy Town (vocal mix)",
-      "mbid": "8208cfa5-5c82-4d59-8121-ccc80ccac853",
-      "year": "2001",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:one-splif-let-your-mind-be-free",
       "type": "project",
       "name": "One Splif / Let Your Mind Be Free",
@@ -290,13 +274,6 @@
       "name": "Toy Town",
       "mbid": "e030b0b8-59b7-47d8-aa4b-8f1bc0a72d00",
       "year": "1995",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:sacrifice",
-      "type": "project",
-      "name": "Sacrifice (Ben Defekt & Olly P Remix)",
-      "mbid": "65bf883d-2e3f-4ee7-af44-03c8907546a2",
       "releaseType": "single"
     }
   ],

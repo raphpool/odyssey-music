@@ -66,14 +66,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:sweetheart",
-      "type": "project",
-      "name": "Sweetheart",
-      "mbid": "531438b0-8599-4723-82ef-bfbd7e83e426",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:bassline-drop",
       "type": "project",
       "name": "Bassline Drop",
@@ -111,14 +103,6 @@
       "name": "High Up",
       "mbid": "fd3199ff-ae58-4c15-ab23-e77af515e4e8",
       "year": "2023",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:party-time",
-      "type": "project",
-      "name": "Party Time (Eufeion remix)",
-      "mbid": "1739f9a4-2e40-4e64-9765-dbbdbd280779",
-      "year": "2021",
       "releaseType": "single"
     },
     {

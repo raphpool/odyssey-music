@@ -1,5 +1,6 @@
+import { readFile } from "node:fs/promises";
 import { describe, expect, it } from "vitest";
-import { auditNodes, type RawNode } from "../scripts/audit-cache.js";
+import { auditNodes, compareWithThresholds, parseThresholds, type RawNode } from "../scripts/audit-cache.js";
 
 // TRA-557: the `duplicate-list-edges` metric, ceiling 0 once 2026-10-24-dedupe-list-edges has run.
 
@@ -55,5 +56,18 @@ describe("duplicate-list-edges", () => {
 		const label = node("label:y", { roster: [edge("artist:a")], genres: [edge("genre:g")] });
 
 		expect(count([artist, label])).toBe(0);
+	});
+
+	it("has a ceiling of 0 in the committed thresholds, so a regression turns the integrity job red", async () => {
+		const thresholds = parseThresholds(JSON.parse(await readFile("data/integrity-thresholds.json", "utf8")));
+		const regressed = node("artist:a", { discography: [edge("project:t--a"), edge("project:t--a")] });
+		const report = auditNodes(new Map([[regressed.slug as string, regressed]]));
+
+		expect(thresholds["duplicate-list-edges"]).toBe(0);
+		expect(compareWithThresholds(report, thresholds)).toContainEqual({
+			metric: "duplicate-list-edges",
+			measured: 1,
+			threshold: 0,
+		});
 	});
 });

@@ -100,14 +100,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:humpin-around",
-      "type": "project",
-      "name": "Humpin' Around (The K Klass mixes)",
-      "mbid": "a4cda205-b9d1-3d48-a22f-151c04a28a7f",
-      "year": "1995",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:two-can-play-that-game",
       "type": "project",
       "name": "Two Can Play That Game (The K Klass Mixes)",
@@ -212,26 +204,10 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:every-little-hit",
-      "type": "project",
-      "name": "Every Little Hit",
-      "mbid": "84303c99-566e-438a-ac22-8804b89c1112",
-      "year": "1989",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:my-prerogative",
       "type": "project",
       "name": "My Prerogative",
       "mbid": "ed63234c-9464-4baa-af1c-f05536574610",
-      "year": "1988",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:don-t-be-cruel",
-      "type": "project",
-      "name": "Don’t Be Cruel",
-      "mbid": "680d39dc-1142-4cc2-9f07-7b2e2f1b2656",
       "year": "1988",
       "releaseType": "single"
     },
