@@ -64,8 +64,9 @@ public enum ArticleSentences {
 	private static let lineMarker = #"^[ \t]*(?:#+|[-*]|[0-9]{1,3}\.)(?:[ \t]+|$)"#
 
 	/// `[1]`, `[12]`, with the spaces before it: `"See also [3]."` must become `"See also."`, never
-	/// `"See also ."`.
-	private static let noteCall = #"[ \t]*\[[0-9]+\]"#
+	/// `"See also ."`. Capped at two digits because a longer number is part of a title, not a note call:
+	/// `cache/nodes/project/syro--aphex-twin.json` names a track `XMAS_EVET10 [120]`, a tempo.
+	private static let noteCall = #"[ \t]*\[[0-9]{1,2}\]"#
 
 	/// The inline markup rules of `NodePageHeader.stripMarkdown` (the teaser), copied because that function is
 	/// private to its file and outside the scope of the ticket that introduced this one. TRA-751 merges the two.

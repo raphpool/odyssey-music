@@ -98,6 +98,11 @@ final class ArticleSentencesTests: XCTestCase {
 			])
 	}
 
+	func testABracketedTempoInATitleIsNotTakenForANoteCall() {
+		let sentence = "Some titles end with a bracketed tempo, as in XMAS EVET10 [120] and minipops 67 [120.2]."
+		XCTAssertEqual(ArticleSentences.split(sentence), [sentence])
+	}
+
 	func testALinkTargetNeverSurvivesInTheOutput() {
 		let article = "Read the [full history of grime music](https://example.com/grime) before the gig."
 		let sentences = ArticleSentences.split(article)
