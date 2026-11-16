@@ -15,12 +15,15 @@ public enum ProfileTenure {
 	public static func days(since createdAt: Date, now: Date, calendar: Calendar) -> Int {
 		let start = calendar.startOfDay(for: createdAt)
 		let today = calendar.startOfDay(for: now)
+		// `dateComponents` always fills the requested `.day`; the fallback only keeps the footer readable
+		// (1 day) instead of crashing a screen over a decorative line, should a calendar refuse the difference.
 		let elapsed = calendar.dateComponents([.day], from: start, to: today).day ?? 0
 		return max(elapsed, 0) + 1
 	}
 
-	/// Second line: "depuis 1 jour", "depuis 145 jours". French treats 0 and 1 as singular, so only 2 and more
-	/// take the plural, and a value below 1 reads as 1 (the tenure is never less than a day).
+	/// Second line: "depuis 1 jour", "depuis 145 jours". Only 2 and more take the plural. A value below 1 reads as
+	/// 1, never as "depuis 0 jour": the creation day counts for 1, so `days(since:now:calendar:)` cannot return
+	/// less, and a hand-built value is clamped to the same minimum.
 	public static func suffix(days: Int) -> String {
 		let shown = max(days, 1)
 		return "depuis \(shown) \(shown == 1 ? "jour" : "jours")"
