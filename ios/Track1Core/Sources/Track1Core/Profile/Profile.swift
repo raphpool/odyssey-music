@@ -28,7 +28,7 @@ public enum ProfileSelection {
 }
 
 public struct Profile: Codable, Equatable, Sendable {
-	public static let version = 2
+	public static let version = 3
 
 	public let version: Int
 	public let localID: UUID
@@ -36,8 +36,13 @@ public struct Profile: Codable, Equatable, Sendable {
 	public let revision: Int
 	public let onboardingCompleted: Bool
 	public let flowID: UUID
-	/// The editorial families and genres behind `genreIDs`. Nil for a profile written before the editorial
-	/// taxonomy, which keeps the key absent from the file.
+	/// Already normalized by `PseudoRules`: `isValid()` refuses a file that holds anything else.
+	public let displayName: String
+	public let disc: ProfileDisc
+	/// Set once, by the first commit, and kept by every later one.
+	public let createdAt: Date
+	/// The editorial families and genres behind `genreIDs`. Nil when the draft carried none, which keeps the
+	/// key absent from the file.
 	public let selection: GenreSelection?
 
 	enum CodingKeys: String, CodingKey {
@@ -47,13 +52,16 @@ public struct Profile: Codable, Equatable, Sendable {
 		case revision
 		case onboardingCompleted = "onboarding_completed"
 		case flowID = "flow_id"
+		case displayName = "display_name"
+		case disc
+		case createdAt = "created_at"
 		case selection
 	}
 
 	// Explicit because a `let` optional gets no default value in the memberwise initializer.
 	init(
 		version: Int, localID: UUID, genreIDs: [NodeIdentity], revision: Int, onboardingCompleted: Bool,
-		flowID: UUID, selection: GenreSelection? = nil
+		flowID: UUID, displayName: String, disc: ProfileDisc, createdAt: Date, selection: GenreSelection? = nil
 	) {
 		self.version = version
 		self.localID = localID
@@ -61,11 +69,15 @@ public struct Profile: Codable, Equatable, Sendable {
 		self.revision = revision
 		self.onboardingCompleted = onboardingCompleted
 		self.flowID = flowID
+		self.displayName = displayName
+		self.disc = disc
+		self.createdAt = createdAt
 		self.selection = selection
 	}
 
 	func isValid() -> Bool {
 		version == Self.version && revision > 0 && onboardingCompleted
+			&& PseudoRules.normalized(displayName) == displayName
 			&& genreIDs.allSatisfy { $0.type == .genre }
 			&& Set(genreIDs).count == genreIDs.count
 			&& (selection?.isValid() ?? true)
@@ -78,6 +90,9 @@ public struct ProfileDraft: Codable, Equatable, Sendable {
 	public let genreIDs: [NodeIdentity]
 	public let onboardingStartedRecorded: Bool
 	public let selection: GenreSelection?
+	/// Nil until the pseudo and disc screens have run; the commit then takes them from the saved profile.
+	public let displayName: String?
+	public let disc: ProfileDisc?
 
 	enum CodingKeys: String, CodingKey {
 		case version
@@ -85,17 +100,21 @@ public struct ProfileDraft: Codable, Equatable, Sendable {
 		case genreIDs = "genre_ids"
 		case onboardingStartedRecorded = "onboarding_started_recorded"
 		case selection
+		case displayName = "display_name"
+		case disc
 	}
 
 	public init(
 		version: Int, flowID: UUID, genreIDs: [NodeIdentity], onboardingStartedRecorded: Bool,
-		selection: GenreSelection? = nil
+		selection: GenreSelection? = nil, displayName: String? = nil, disc: ProfileDisc? = nil
 	) {
 		self.version = version
 		self.flowID = flowID
 		self.genreIDs = genreIDs
 		self.onboardingStartedRecorded = onboardingStartedRecorded
 		self.selection = selection
+		self.displayName = displayName
+		self.disc = disc
 	}
 
 	func isValid() -> Bool {
