@@ -55,7 +55,8 @@ public actor ProfileStore {
 	// goes through onboarding again. They are still named here because `clear()` removes them.
 	private static let legacyProfileFile = "profile.v1.json"
 	private static let legacyDraftFile = "profile-draft.v1.json"
-	// The v2 profile is removed last: a failed removal stops at the first error and the profile is left whole.
+	// The v2 profile is removed last: when the removal of an older file fails, `clear()` stops there and the
+	// profile is still readable, instead of half erased.
 	private static let removalOrder = [legacyDraftFile, legacyProfileFile, draftFile, profileFileName]
 
 	private let localStore: LocalStore

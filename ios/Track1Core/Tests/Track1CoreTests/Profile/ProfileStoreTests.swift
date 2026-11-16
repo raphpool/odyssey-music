@@ -286,6 +286,22 @@ final class ProfileStoreTests: XCTestCase {
 		XCTAssertEqual(read, .missing)
 	}
 
+	func testAFailedClearOfAnOlderFileLeavesTheVersion2ProfileReadable() async throws {
+		let choices = genres(3)
+		try await seedV1Profile(genres: choices)
+		let v2 = Profile(
+			version: Profile.version, localID: UUID(), genreIDs: [choices[0]], revision: 7,
+			onboardingCompleted: true, flowID: UUID())
+		try await seed(v2, named: "profile.v2.json")
+		let fileManager = FailingRemovalFileManager(failingOn: ["profile.v1.json"])
+		let store = ProfileStore(localStore: LocalStore(directoryURL: directoryURL, fileManager: fileManager))
+		let cleared = await store.clear()
+		XCTAssertEqual(cleared, .unavailable)
+		let read = await store.read()
+		XCTAssertEqual(read, .profile(v2))
+		XCTAssertTrue(fileExists("profile.v2.json"))
+	}
+
 	func testAFailedClearStopsAtTheFirstError() async throws {
 		let names = ["profile-draft.v1.json", "profile.v1.json", "profile-draft.v2.json", "profile.v2.json"]
 		let localStore = LocalStore(
@@ -308,7 +324,7 @@ final class ProfileStoreTests: XCTestCase {
 
 	func testAV1ProfileIsIgnoredAndReadingItCreatesNoFile() async throws {
 		// Decision Q12 (2026-11-16, TRA-757): a v1 profile is never read.
-		_ = try await seedV1Profile(genres: genres(3))
+		try await seedV1Profile(genres: genres(3))
 		let store = makeStore()
 		let profile = await store.read()
 		XCTAssertEqual(profile, .missing)
@@ -344,11 +360,10 @@ final class ProfileStoreTests: XCTestCase {
 		XCTAssertEqual(saved.selection, selection)
 	}
 
-	private func seedV1Profile(genres: [NodeIdentity]) async throws -> (profile: Profile, bytes: Data) {
+	private func seedV1Profile(genres: [NodeIdentity]) async throws {
 		let profile = Profile(
 			version: 1, localID: UUID(), genreIDs: genres, revision: 3, onboardingCompleted: true, flowID: UUID())
 		try await seed(profile, named: "profile.v1.json")
-		return (profile, try Data(contentsOf: directoryURL.appending(path: "profile.v1.json")))
 	}
 
 	private func seed(_ value: some Encodable, named name: String) async throws {

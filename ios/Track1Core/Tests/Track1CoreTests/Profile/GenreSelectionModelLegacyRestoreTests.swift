@@ -324,7 +324,10 @@ final class GenreSelectionModelLegacyRestoreTests: XCTestCase {
 
 		let read = await ProfileStore(localStore: localStore).read()
 		XCTAssertEqual(read, .missing)
-		let model = GenreSelectionModel(taxonomy: try taxonomy())
+		// What the app does with the read: a v1 read back as a profile would put the model in edit mode.
+		var editing: Profile?
+		if case .profile(let profile) = read { editing = profile }
+		let model = GenreSelectionModel(taxonomy: try taxonomy(), editing: editing)
 		XCTAssertFalse(model.isEditing)
 		XCTAssertEqual(model.selectedGenres, [])
 	}
