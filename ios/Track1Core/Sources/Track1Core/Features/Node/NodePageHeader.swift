@@ -61,7 +61,7 @@ public struct NodePageHeader: Equatable, Sendable {
 		return line.isEmpty ? nil : line
 	}
 
-	private static func names(of value: NodeEdgeValue?) -> String? {
+	static func names(of value: NodeEdgeValue?) -> String? {
 		let edges: [NodeEdge]
 		switch value {
 		case .one(let edge): edges = [edge]
@@ -105,7 +105,7 @@ public struct NodePageHeader: Equatable, Sendable {
 
 	/// Trims a network string and makes it fit one line: control characters (newlines, tabs) become a space, runs
 	/// of spaces collapse, and the bidirectional controls that could reorder the surrounding text are dropped. Empty means absent.
-	private static func clean(_ text: String) -> String? {
+	static func clean(_ text: String) -> String? {
 		let scalars = text.unicodeScalars.compactMap { scalar -> Unicode.Scalar? in
 			if bidiControls.contains(scalar) { return nil }
 			return scalar.properties.generalCategory == .control ? " " : scalar
