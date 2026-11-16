@@ -51,15 +51,11 @@ public actor ProfileStore {
 	/// Also read by the simulator-only `-track1-fail-next-profile-write` hook in `AppContainer`.
 	public static let profileFileName = "profile.v2.json"
 	private static let draftFile = "profile-draft.v2.json"
-	// 2026-10-15 (TRA-516): the v1 files are read, never written. A build installed before the editorial
-	// selection still reads its own `profile.v1.json`, and bumping its version would make that build
-	// answer `.unsupportedVersion` and offer to delete the profile. `clear()` removes them all.
+	// 2026-11-16 (TRA-757, decision Q12): the v1 files are never read, so a person who only has a v1 profile
+	// goes through onboarding again. They are still named here because `clear()` removes them.
 	private static let legacyProfileFile = "profile.v1.json"
 	private static let legacyDraftFile = "profile-draft.v1.json"
-	// 2026-10-15 (TRA-544): the v2 profile is removed last. Both profile files can coexist and `read()`
-	// prefers the v2, so a failed removal stops at the first error without ever exposing a stale v1: the v2
-	// is still there and wins, or the whole profile is gone. The reverse order let a failed v1 removal
-	// resurrect the stale v1 genres once the v2 was gone.
+	// The v2 profile is removed last: a failed removal stops at the first error and the profile is left whole.
 	private static let removalOrder = [legacyDraftFile, legacyProfileFile, draftFile, profileFileName]
 
 	private let localStore: LocalStore
@@ -81,7 +77,7 @@ public actor ProfileStore {
 		await resetIfNeeded()
 		switch await localStore.read(named: Self.profileFileName) {
 		case .failure: return .unavailable
-		case .success(nil): return await readLegacyProfile()
+		case .success(nil): return .missing
 		case .success(let data?):
 			guard let profile = try? JSONDecoder().decode(Profile.self, from: data) else {
 				return .corrupt
@@ -89,22 +85,6 @@ public actor ProfileStore {
 			guard profile.version == Profile.version else { return .unsupportedVersion }
 			guard profile.isValid() else { return .corrupt }
 			return .profile(profile)
-		}
-	}
-
-	/// Lifts a `profile.v1.json` into a version 2 profile in memory. Nothing is written: the selection is
-	/// rebuilt at the first edit (TRA-518), and the next commit is what creates `profile.v2.json`.
-	private func readLegacyProfile() async -> ProfileRead {
-		switch await localStore.read(named: Self.legacyProfileFile) {
-		case .failure: return .unavailable
-		case .success(nil): return .missing
-		case .success(let data?):
-			guard let legacy = try? JSONDecoder().decode(Profile.self, from: data) else { return .corrupt }
-			guard legacy.version == 1 else { return .unsupportedVersion }
-			let profile = Profile(
-				version: Profile.version, localID: legacy.localID, genreIDs: legacy.genreIDs,
-				revision: legacy.revision, onboardingCompleted: legacy.onboardingCompleted, flowID: legacy.flowID)
-			return profile.isValid() ? .profile(profile) : .corrupt
 		}
 	}
 
