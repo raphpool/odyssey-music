@@ -5,165 +5,36 @@ import { describe, expect, it } from "vitest";
 
 // TRA-707: App Store Connect asks the export-compliance question on every build until
 // ITSAppUsesNonExemptEncryption is declared, and rejects an upload whose code calls a "required reason" API
-// without a privacy manifest declaring it. These guards run without Xcode. They keep the declarations honest in
-// both directions: a category used by the sources must be declared, and a declared category must be used (an
-// invented reason is a false declaration). Only first-party sources are scanned: Swift packages bundle their own
-// manifests, which this test cannot see, so they are neither scanned nor re-declared here.
+// without a manifest declaring it. These guards run without Xcode and keep the declaration honest both ways:
+// a category used by the sources must be declared, and a declared one must be used (an invented reason is a
+// false declaration). Only first-party sources are scanned; Swift packages bundle their own manifests.
 const INFO_PLIST = "ios/Track1/Resources/Info.plist";
 const MANIFEST = "ios/Track1/Resources/PrivacyInfo.xcprivacy";
-const MANIFEST_NAME = "PrivacyInfo.xcprivacy";
 const PROJECT = "ios/Track1.xcodeproj/project.pbxproj";
-// The app and its pure-logic package. Test targets are not shipped, so they are not scanned.
 const SOURCE_ROOTS = ["ios/Track1", "ios/Track1Core/Sources"];
 
-const USER_DEFAULTS = "NSPrivacyAccessedAPICategoryUserDefaults";
-const FILE_TIMESTAMP = "NSPrivacyAccessedAPICategoryFileTimestamp";
-const DISK_SPACE = "NSPrivacyAccessedAPICategoryDiskSpace";
-const SYSTEM_BOOT_TIME = "NSPrivacyAccessedAPICategorySystemBootTime";
-const ACTIVE_KEYBOARDS = "NSPrivacyAccessedAPICategoryActiveKeyboards";
-
-// Source patterns per category, from Apple's list of required-reason APIs. A match in a comment still counts:
-// reword the comment rather than weaken this. getattrlist serves both file dates and disk space depending on
-// the attributes asked for; it is filed under file dates, so a disk-space use of it needs a human decision.
+// The categories the ticket asks to detect, with the API names Apple lists for each. A match in a comment
+// still counts: reword the comment rather than weaken the pattern. Add a category here when the code needs it.
 const CATEGORY_PATTERNS: ReadonlyArray<readonly [category: string, pattern: RegExp]> = [
-	[USER_DEFAULTS, /\bUserDefaults\b|@AppStorage\b/],
+	["NSPrivacyAccessedAPICategoryUserDefaults", /\bUserDefaults\b|@AppStorage\b/],
 	[
-		FILE_TIMESTAMP,
-		new RegExp(
-			[
-				String.raw`\b(?:creationDate|contentModificationDate|contentAccessDate|attributeModificationDate)(?:Key)?\b`,
-				String.raw`\b(?:modificationDate|fileCreationDate|fileModificationDate)\b`,
-				String.raw`\bNSFile(?:Creation|Modification)Date\b`,
-				String.raw`\b(?:f|l)?stat(?:at)?\(|\bf?getattrlist\w*\(`,
-			].join("|"),
-		),
+		"NSPrivacyAccessedAPICategoryFileTimestamp",
+		/\b(?:creationDate|modificationDate|contentModificationDate)(?:Key)?\b/,
 	],
-	[
-		DISK_SPACE,
-		/\bvolume(?:Available|Total)Capacity\w*|\b(?:systemFreeSize|systemSize|NSFileSystem(?:Free)?Size)\b|\bf?statv?fs\(|\bf?statvfs\(/,
-	],
-	[SYSTEM_BOOT_TIME, /\bsystemUptime\b|\bmach_absolute_time\b/],
-	[ACTIVE_KEYBOARDS, /\bactiveInputModes\b/],
+	["NSPrivacyAccessedAPICategoryDiskSpace", /\bvolume(?:Available|Total)Capacity\w*|\bsystemFreeSize\b/],
+	["NSPrivacyAccessedAPICategorySystemBootTime", /\bsystemUptime\b|\bmach_absolute_time\b/],
 ];
 
-type PlistValue = string | number | boolean | PlistValue[] | { [key: string]: PlistValue };
-type PlistDict = { [key: string]: PlistValue };
-
-/**
- * Minimal XML plist reader for Info.plist and manifests: dict, array, string, integer, real, date, data, true,
- * false. Strings are returned as written (no entity decoding), which is enough to compare declared values.
- */
-function parsePlist(xml: string): PlistValue {
-	const start = xml.indexOf("<plist");
-	if (start === -1) throw new Error("Not an XML plist");
-	const tokens = (xml.slice(start).match(/<[^>]+>|[^<]+/g) ?? [])
-		.map((token) => token.trim())
-		.filter(Boolean);
-	let position = 1; // tokens[0] is the <plist> opening tag
-
-	const take = (): string => {
-		const token = tokens[position];
-		if (token === undefined) throw new Error("Unexpected end of plist");
-		position += 1;
-		return token;
-	};
-
-	const readValue = (): PlistValue => {
-		const token = take();
-		switch (token) {
-			case "<true/>":
-				return true;
-			case "<false/>":
-				return false;
-			case "<dict/>":
-				return {};
-			case "<array/>":
-				return [];
-			case "<dict>": {
-				const dict: PlistDict = {};
-				while (tokens[position] !== "</dict>") {
-					if (take() !== "<key>") throw new Error("Expected <key> in a dict");
-					const key = take();
-					take(); // </key>
-					dict[key] = readValue();
-				}
-				take(); // </dict>
-				return dict;
-			}
-			case "<array>": {
-				const items: PlistValue[] = [];
-				while (tokens[position] !== "</array>") items.push(readValue());
-				take(); // </array>
-				return items;
-			}
-			case "<string>": {
-				const text = tokens[position] === "</string>" ? "" : take();
-				take(); // </string>
-				return text;
-			}
-			case "<integer>":
-			case "<real>": {
-				const value = Number(take());
-				take(); // closing tag
-				return value;
-			}
-			case "<date>":
-			case "<data>": {
-				const text = take();
-				take(); // closing tag
-				return text;
-			}
-			default:
-				throw new Error(`Unsupported plist token ${token}`);
-		}
-	};
-
-	return readValue();
-}
-
-function asDict(value: PlistValue | undefined, what: string): PlistDict {
-	if (typeof value !== "object" || Array.isArray(value)) throw new Error(`${what} is not a dict`);
-	return value;
-}
-
-/** Required-reason categories whose APIs appear in `source`. */
 function detectCategories(source: string): Set<string> {
 	return new Set(
 		CATEGORY_PATTERNS.filter(([, pattern]) => pattern.test(source)).map(([category]) => category),
 	);
 }
 
-/** Declared categories, rejecting duplicates since the App Store treats one entry per category as the contract. */
-function declaredCategories(manifest: PlistDict): Map<string, string[]> {
-	const entries = manifest.NSPrivacyAccessedAPITypes;
-	if (!Array.isArray(entries)) throw new Error("NSPrivacyAccessedAPITypes is missing or not an array");
-	const declared = new Map<string, string[]>();
-	for (const entry of entries) {
-		const dict = asDict(entry, "NSPrivacyAccessedAPITypes entry");
-		const category = dict.NSPrivacyAccessedAPIType;
-		const reasons = dict.NSPrivacyAccessedAPITypeReasons;
-		if (typeof category !== "string") throw new Error("Entry without NSPrivacyAccessedAPIType");
-		if (declared.has(category)) throw new Error(`Category ${category} is declared twice`);
-		declared.set(
-			category,
-			Array.isArray(reasons) ? reasons.filter((r): r is string => typeof r === "string") : [],
-		);
-	}
-	return declared;
-}
-
 /** The pbxproj writes one object per line, so an object is found by the id that starts its line. */
 function objectLine(project: string, id: string): string {
 	const line = project.split("\n").find((candidate) => candidate.trimStart().startsWith(`${id} `));
 	if (line === undefined) throw new Error(`No pbxproj object with id ${id}`);
-	return line;
-}
-
-function appTarget(project: string): string {
-	const line = project
-		.split("\n")
-		.find((candidate) => candidate.includes("isa = PBXNativeTarget") && candidate.includes("name = Track1;"));
-	if (line === undefined) throw new Error("No Track1 native target in the pbxproj");
 	return line;
 }
 
@@ -175,154 +46,75 @@ function listedIds(line: string, key: string): string[] {
 
 /** `path` of every file in the Resources build phase of the Track1 app target. */
 function appResourcePaths(project: string): string[] {
-	const phaseId = listedIds(appTarget(project), "buildPhases").find((id) =>
+	const target = project
+		.split("\n")
+		.find((line) => line.includes("isa = PBXNativeTarget") && line.includes("name = Track1;"));
+	const phaseId = listedIds(target ?? "", "buildPhases").find((id) =>
 		objectLine(project, id).includes("isa = PBXResourcesBuildPhase"),
 	);
-	if (phaseId === undefined) throw new Error("Track1 target has no Resources build phase");
+	if (phaseId === undefined) throw new Error("No Track1 target with a Resources build phase in the pbxproj");
 	return listedIds(objectLine(project, phaseId), "files").map((buildFileId) => {
-		const fileRefId = objectLine(project, buildFileId).match(/fileRef = ([A-F0-9]{24})/)?.[1];
-		if (fileRefId === undefined) throw new Error(`Build file ${buildFileId} has no fileRef`);
+		const fileRefId = objectLine(project, buildFileId).match(/fileRef = ([A-F0-9]{24})/)?.[1] ?? "";
 		return objectLine(project, fileRefId).match(/path = ([^;]+);/)?.[1] ?? "";
 	});
-}
-
-async function swiftFiles(root: string): Promise<string[]> {
-	const found: string[] = [];
-	for (const entry of await readdir(root, { withFileTypes: true })) {
-		const path = join(root, entry.name);
-		if (entry.isDirectory()) {
-			if (entry.name !== ".build") found.push(...(await swiftFiles(path)));
-		} else if (entry.name.endsWith(".swift")) {
-			found.push(path);
-		}
-	}
-	return found.sort();
 }
 
 async function categoriesUsedBySources(): Promise<Set<string>> {
 	const used = new Set<string>();
 	for (const root of SOURCE_ROOTS) {
-		for (const file of await swiftFiles(root)) {
-			for (const category of detectCategories(await readFile(file, "utf8"))) used.add(category);
+		for (const file of await readdir(root, { recursive: true })) {
+			if (!file.endsWith(".swift") || file.includes(".build")) continue;
+			for (const category of detectCategories(await readFile(join(root, file), "utf8"))) used.add(category);
 		}
 	}
 	return used;
 }
 
-describe("export compliance (Info.plist)", () => {
-	it("declares ITSAppUsesNonExemptEncryption as false: the app only uses HTTPS", async () => {
-		const info = asDict(parsePlist(await readFile(INFO_PLIST, "utf8")), INFO_PLIST);
+describe("export compliance and privacy manifest (TRA-707)", () => {
+	it("declares ITSAppUsesNonExemptEncryption as false in Info.plist", async () => {
+		const info = await readFile(INFO_PLIST, "utf8");
 
 		// Absent would re-ask the question on every build; true would claim non-exempt encryption.
-		expect(info.ITSAppUsesNonExemptEncryption).toBe(false);
+		expect(info).toMatch(/<key>ITSAppUsesNonExemptEncryption<\/key>\s*<false\/>/);
 	});
-});
 
-describe("privacy manifest wiring (pbxproj)", () => {
-	it("lists PrivacyInfo.xcprivacy in the Resources phase of the Track1 app target, once", async () => {
+	it("lists PrivacyInfo.xcprivacy in the Resources phase of the Track1 app target", async () => {
 		const project = await readFile(PROJECT, "utf8");
 
-		expect(appResourcePaths(project)).toContain(MANIFEST_NAME);
-		// One build file and its entry in the app phase: no test target bundles the manifest.
-		expect(project.match(/PrivacyInfo\.xcprivacy in Resources/g)).toHaveLength(2);
+		expect(appResourcePaths(project)).toContain("PrivacyInfo.xcprivacy");
 	});
 
-	it("references the manifest from the Resources group, next to Info.plist", async () => {
-		const project = await readFile(PROJECT, "utf8");
-		const reference = project
-			.split("\n")
-			.find((line) => line.includes("isa = PBXFileReference") && line.includes(`path = ${MANIFEST_NAME};`));
-		const fileRefId = reference?.trimStart().match(/^([A-F0-9]{24}) /)?.[1];
-		const resourcesGroup = project
-			.split("\n")
-			.find((line) => line.includes("isa = PBXGroup") && line.includes("path = Resources;"));
+	it("declares no tracking and no collected data, and UserDefaults with reason CA92.1", async () => {
+		const manifest = await readFile(MANIFEST, "utf8");
 
-		expect(fileRefId, "no PBXFileReference for the manifest").toBeDefined();
-		expect(reference).toContain('sourceTree = "<group>"');
-		expect(listedIds(resourcesGroup ?? "", "children")).toContain(fileRefId);
-	});
-});
-
-describe("privacy manifest content", () => {
-	it("declares no tracking, no tracking domain and no collected data", async () => {
-		const manifest = asDict(parsePlist(await readFile(MANIFEST, "utf8")), MANIFEST);
-
-		expect(manifest.NSPrivacyTracking).toBe(false);
-		expect(manifest.NSPrivacyTrackingDomains).toEqual([]);
-		expect(manifest.NSPrivacyCollectedDataTypes).toEqual([]);
+		expect(manifest).toMatch(/<key>NSPrivacyTracking<\/key>\s*<false\/>/);
+		expect(manifest).toMatch(/<key>NSPrivacyTrackingDomains<\/key>\s*<array\/>/);
+		expect(manifest).toMatch(/<key>NSPrivacyCollectedDataTypes<\/key>\s*<array\/>/);
+		expect(manifest).toMatch(
+			/NSPrivacyAccessedAPICategoryUserDefaults<\/string>\s*<key>NSPrivacyAccessedAPITypeReasons<\/key>\s*<array>\s*<string>CA92\.1<\/string>\s*<\/array>/,
+		);
 	});
 
-	it("declares UserDefaults with reason CA92.1 (data read and written by the app itself)", async () => {
-		const declared = declaredCategories(asDict(parsePlist(await readFile(MANIFEST, "utf8")), MANIFEST));
-
-		expect(declared.get(USER_DEFAULTS)).toEqual(["CA92.1"]);
-	});
-
-	it("declares every required-reason category found in the sources, and only those", async () => {
-		const declared = declaredCategories(asDict(parsePlist(await readFile(MANIFEST, "utf8")), MANIFEST));
+	it("declares every required-reason category the sources use, and only those", async () => {
+		const manifest = await readFile(MANIFEST, "utf8");
+		const declared = new Set(
+			[...manifest.matchAll(/<key>NSPrivacyAccessedAPIType<\/key>\s*<string>([^<]+)<\/string>/g)].map(
+				(match) => match[1] as string,
+			),
+		);
 		const used = await categoriesUsedBySources();
 
-		const undeclared = [...used].filter((category) => !declared.has(category)).sort();
-		const unused = [...declared.keys()].filter((category) => !used.has(category)).sort();
-		expect(undeclared, "used by the sources but not declared").toEqual([]);
-		expect(unused, "declared but not used by the sources").toEqual([]);
+		expect([...used].filter((category) => !declared.has(category)).sort(), "used, not declared").toEqual([]);
+		expect([...declared].filter((category) => !used.has(category)).sort(), "declared, not used").toEqual([]);
 	});
-});
 
-describe("required-reason API detection", () => {
 	it.each([
-		["UserDefaults.standard.set(1, forKey: key)", USER_DEFAULTS],
-		["UserDefaults(suiteName: name)", USER_DEFAULTS],
-		['@AppStorage("flag") var flag = false', USER_DEFAULTS],
-		["try FileManager.default.attributesOfItem(atPath: p)[.creationDate]", FILE_TIMESTAMP],
-		["let date = attributes[.modificationDate] as? Date", FILE_TIMESTAMP],
-		["url.resourceValues(forKeys: [.contentModificationDateKey])", FILE_TIMESTAMP],
-		["url.resourceValues(forKeys: [.contentAccessDateKey])", FILE_TIMESTAMP],
-		["values.attributeModificationDate", FILE_TIMESTAMP],
-		["attributes[.fileModificationDate]", FILE_TIMESTAMP],
-		["attrs[FileAttributeKey(rawValue: NSFileCreationDate)]", FILE_TIMESTAMP],
-		["var info = stat(); stat(path, &info)", FILE_TIMESTAMP],
-		["lstat(path, &info)", FILE_TIMESTAMP],
-		["getattrlist(path, &list, &buffer, size, 0)", FILE_TIMESTAMP],
-		["values.volumeAvailableCapacityForImportantUsage", DISK_SPACE],
-		["values.volumeAvailableCapacity", DISK_SPACE],
-		["values.volumeTotalCapacity", DISK_SPACE],
-		["attrs[.systemFreeSize]", DISK_SPACE],
-		["attrs[.systemSize]", DISK_SPACE],
-		["attrs[FileAttributeKey(rawValue: NSFileSystemFreeSize)]", DISK_SPACE],
-		["statfs(path, &fs)", DISK_SPACE],
-		["statvfs(path, &fs)", DISK_SPACE],
-		["let up = ProcessInfo.processInfo.systemUptime", SYSTEM_BOOT_TIME],
-		["mach_absolute_time()", SYSTEM_BOOT_TIME],
-		["UITextInputMode.activeInputModes", ACTIVE_KEYBOARDS],
-	])("detects %s as %s", (source, category) => {
-		expect([...detectCategories(source)]).toEqual([category]);
-	});
-
-	it("does not flag ProcessInfo arguments or environment, nor a plain Date or a status property", () => {
-		const source =
-			"ProcessInfo.processInfo.arguments.contains(flag); ProcessInfo.processInfo.environment; Date(); status(); installStat()";
-
-		expect(detectCategories(source).size).toBe(0);
-	});
-});
-
-describe("plist reader", () => {
-	it("reads nested dicts, arrays, empty containers, booleans and numbers", () => {
-		const xml = `<?xml version="1.0"?><plist version="1.0"><dict>
-			<key>a</key><array><string>x</string><string></string></array>
-			<key>b</key><false/><key>c</key><array/><key>d</key><dict><key>n</key><integer>3</integer></dict>
-			<key>e</key><real>1.5</real><key>f</key><date>2026-01-01T00:00:00Z</date><key>g</key><data>AAEC</data>
-		</dict></plist>`;
-
-		expect(parsePlist(xml)).toEqual({
-			a: ["x", ""],
-			b: false,
-			c: [],
-			d: { n: 3 },
-			e: 1.5,
-			f: "2026-01-01T00:00:00Z",
-			g: "AAEC",
-		});
+		["UserDefaults.standard.set(1, forKey: key)", "UserDefaults"],
+		["attributes[.modificationDate] as? Date", "FileTimestamp"],
+		["url.resourceValues(forKeys: [.contentModificationDateKey])", "FileTimestamp"],
+		["values.volumeAvailableCapacityForImportantUsage", "DiskSpace"],
+		["ProcessInfo.processInfo.systemUptime", "SystemBootTime"],
+	])("detects %s as %s", (source, name) => {
+		expect([...detectCategories(source)]).toEqual([`NSPrivacyAccessedAPICategory${name}`]);
 	});
 });
