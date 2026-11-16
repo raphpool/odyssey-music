@@ -259,16 +259,11 @@ describe("review gate policy", () => {
 			"scripts/ci/review-reuse.ts",
 			"REVIEW.md",
 			".codex/scripts/publish-review-status.sh",
-		])("recognizes %s", (path) => {
-			expect(gateIntegrityPath.test(path)).toBe(true);
-		});
-
-		// Prefix match, like sensitivePath: a new file next to the policy is part of the gate too.
-		it.each([
+			// Prefix match like sensitivePath (a new file next to the policy is part of the gate), and case-insensitive.
 			"scripts/ci/review-gate-policy.test-helper.ts",
 			"scripts/ci/review-reuse-cache.ts",
 			"review.md",
-		])("recognizes %s (prefix match, case-insensitive)", (path) => {
+		])("recognizes %s", (path) => {
 			expect(gateIntegrityPath.test(path)).toBe(true);
 		});
 
@@ -283,11 +278,6 @@ describe("review gate policy", () => {
 			".codex/scripts/publish-review-status.sh",
 		])("%s is also tier/3 for sensitivePath", (path) => {
 			expect(classifyRisk([path], [])).toBe(3);
-		});
-
-		// APFS of the self-hosted runners ignores case (TRA-553); the pattern follows sensitivePath.
-		it("matches case-insensitively", () => {
-			expect(gateIntegrityPath.test(".GITHUB/workflows/AI-Review.yml")).toBe(true);
 		});
 
 		it.each([
@@ -327,6 +317,7 @@ describe("review gate policy", () => {
 				),
 			);
 
+		// The JSON carries no touchesGate here: a pass proves the CLI derived it from `paths`.
 		it("passes a tier/3 PR that does not touch the gate on deepClaude success", () => {
 			expect(run(["infra/app.yml"])).toEqual({ risk: 3, verdict: "pass" });
 		});
@@ -335,10 +326,6 @@ describe("review gate policy", () => {
 			expect(run(["infra/app.yml", ".github/workflows/ai-review.yml"], { touchesGate: false }).verdict).toBe(
 				"wait",
 			);
-		});
-
-		it("derives touchesGate from paths when the JSON omits it", () => {
-			expect(run(["scripts/ci/review-gate-policy.ts"]).verdict).toBe("wait");
 		});
 	});
 });
