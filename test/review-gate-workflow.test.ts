@@ -26,9 +26,9 @@ const code = gate
 
 const expr = (inner: string): string => `\${{ ${inner} }}`;
 
-/** The `run: |` script of a step, unindented, from its `- name:` line. */
-function stepScript(name: string): string {
-	const lines = gate.split("\n");
+/** The `run: |` script of a step, unindented, from its `- name:` line (in review-gate.yml unless `source` is given). */
+function stepScript(name: string, source = gate): string {
+	const lines = source.split("\n");
 	const start = lines.findIndex((line) => line.trim() === `- name: ${name}`);
 	if (start === -1) throw new Error(`step "${name}" not found in review-gate.yml`);
 	const runAt = lines.findIndex((line, index) => index > start && line.trim() === "run: |");
@@ -1115,5 +1115,88 @@ if [ -f "$FIXTURES/$f.json" ]; then cat "$FIXTURES/$f.json"; fi`,
 		);
 		// Fail closed: a review that does not validate is `missing` with no id, never left as read.
 		expect(evaluateStep).toMatch(/claude=missing\s+claude_id=0/);
+	});
+});
+
+// TRA-754 (2026-11-16): the jobs that run the deep review (comment lines dropped, as elsewhere in this file).
+describe("ai-review.yml: the `deep-review` jobs (TRA-754)", () => {
+	const raw = readFileSync(AI_REVIEW, "utf8").replaceAll("\r\n", "\n");
+	const uncommented = raw
+		.split("\n")
+		.filter((line) => !/^\s*#/.test(line))
+		.join("\n");
+	const jobOf = (key: string): string =>
+		uncommented.split(/\n(?= {2}[a-z][a-z-]*:\n)/).find((part) => part.startsWith(`  ${key}:\n`)) ?? "";
+	const [reviewJob = "", tierJob = "", deepJob = ""] = ["review", "deep-review-tier", "deep-review"].map(
+		jobOf,
+	);
+	const steps = (job: string): string[] => job.split("\n      - ").slice(1);
+	const permissions = (job: string): string =>
+		job.slice(job.indexOf("    permissions:"), job.indexOf("    steps:"));
+
+	// Fail closed: a `deep-review` that succeeded without reviewing would be read `success` once a `tier/3` label appears.
+	it("is skipped, never run, below tier 3 or when the tier job fails, and has no step that can be skipped", () => {
+		expect(deepJob).toContain("\n    needs: deep-review-tier\n");
+		expect(deepJob).toContain("&& needs.deep-review-tier.outputs.tier == '3'\n");
+		expect(tierJob).toContain(`tier: ${expr("steps.tier.outputs.tier")}`);
+		// A status function or continue-on-error would run it anyway or hide a failure; a step `if` would skip a step.
+		expect(tierJob + deepJob).not.toMatch(/always\(|failure\(|cancelled\(|success\(|continue-on-error/);
+		expect(steps(deepJob).join("\n")).not.toMatch(/\bif:/);
+	});
+
+	it("computes the tier with the default branch's classifier on the gate's paths, the module path not in argv", () => {
+		expect(tierJob).toContain('git show "origin/$DEFAULT_BRANCH:scripts/ci/review-gate-policy.ts"');
+		expect(tierJob).toContain("git diff -z --name-only --no-renames");
+		// 2026-11-16: the policy runs its CLI when argv[1] ends with its own name; a path in argv made the import throw.
+		expect(tierJob).toContain("import(process.env.POLICY)");
+		expect(tierJob).not.toContain("process.argv");
+	});
+
+	it("runs on hosted runners, with the permissions of `review`, and writes its review-base record first", () => {
+		for (const job of [tierJob, deepJob]) expect(job).toContain("    runs-on: ubuntu-latest\n");
+		expect(permissions(deepJob)).toBe(permissions(reviewJob));
+		const record = steps(reviewJob).find((step) => step.startsWith("name: Record the pull request"));
+		expect(record).toContain("::notice::review-base v1 $PR_NUMBER $BASE_REF");
+		expect(steps(deepJob)[0]).toBe(record);
+	});
+
+	it("reviews with the default branch's rubric, never reuses a verdict, and keeps the hardening of `review`", () => {
+		expect(deepJob).toContain('git show "origin/$DEFAULT_BRANCH:REVIEW.md"');
+		expect(deepJob).toContain(`claude_code_oauth_token: ${expr("secrets.CLAUDE_CODE_OAUTH_TOKEN")}`);
+		// The whole `claude_args` block (model, tools, setting sources, MCP) is the one of `review`, which TRA-553 hardened.
+		const args = (job: string) => /claude_args: \|\n((?: {12}\S.*\n)+)/.exec(job)?.[1];
+		expect(args(deepJob)).toContain("--allowedTools");
+		expect(args(deepJob)).toBe(args(reviewJob));
+		expect(deepJob).not.toMatch(/reuse|patch-id|steps\.decide/i);
+	});
+
+	// The "Gate on the deep verdict" step, run as the job runs it: any doubt is a failed job.
+	const ok = { verdict: "pass", blocking: 0, nits: 0, summary: "ok", findings: [] };
+	const json = JSON.stringify;
+	it.each([
+		["passes a pass verdict with no blocking finding", json(ok), true],
+		["fails on no verdict file", undefined, false],
+		["fails on a verdict that is not JSON", "not json", false],
+		["fails on a block verdict", json({ ...ok, verdict: "block", blocking: 1 }), false],
+		["fails on a pass verdict that counts a blocking finding", json({ ...ok, blocking: 1 }), false],
+		[
+			"fails on a pass verdict that lists a block finding",
+			json({ ...ok, findings: [{ severity: "block" }] }),
+			false,
+		],
+		["fails on a verdict with no counts", json({ verdict: "pass" }), false],
+	])("%s", async (_label, content, succeeds) => {
+		fixture += 1;
+		const dir = join(scratch, `deep-verdict-${fixture}`);
+		mkdirSync(dir);
+		if (content !== undefined) writeFileSync(join(dir, "deep-review.json"), content);
+		const env = { PATH: process.env.PATH ?? "", RUNNER_TEMP: dir, GITHUB_STEP_SUMMARY: join(dir, "s.md") };
+		const script = stepScript("Gate on the deep verdict", raw);
+		expect(
+			await exec("bash", ["-e", "-c", script], { env }).then(
+				() => true,
+				() => false,
+			),
+		).toBe(succeeds);
 	});
 });
