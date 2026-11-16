@@ -55,8 +55,9 @@ jobs:
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     # TRA-705 (2026-11-16): macos-26 is the hosted image expected to ship the Xcode pinned in ios/.xcode-version
     # (26.4); "Select Xcode" fails with the installed list if it does not. Each job gets its own VM, so the Mac's
-    # one-at-a-time limit (2026-10-12, #335: load 274, simulator not booted in 600 s) no longer applies. check.sh
-    # creates an ephemeral simulator (no track1-ci-pool here) and DerivedData is cold on every run, hence 45 min.
+    # one-at-a-time limit (2026-10-12, #335: load 274, simulator not booted in 600 s) no longer applies. A fresh
+    # VM has no simulator and no warm DerivedData, so check.sh creates track1-ci-pool and compiles cold on every
+    # run, hence 45 min. Not measured on this runner yet: the first runs of TRA-705 record it in the PR.
     runs-on: macos-26
     timeout-minutes: 45
     steps:
@@ -70,19 +71,30 @@ jobs:
       - name: Select Xcode
         shell: bash
         run: |
-          read -r _ version _ < ios/.xcode-version
+          # `|| [[ -n ... ]]`: read returns 1 on a last line without newline, and bash -e would stop silently.
+          pin="$(<ios/.xcode-version)"
+          read -r _ version _ <<< "$pin" || [[ -n "$version" ]]
           if [[ ! "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
-            echo "::error::cannot read an Xcode version from ios/.xcode-version: $(cat ios/.xcode-version)"
+            echo "::error::cannot read an Xcode version from ios/.xcode-version: $pin"
             exit 1
           fi
           app="/Applications/Xcode_${version}.app"
           if [ ! -d "$app" ]; then
-            echo "::error::$app not found for the pin '$(cat ios/.xcode-version)'; installed:"
+            echo "::error::$app not found for the pin '$pin'; installed:"
             ls -d /Applications/Xcode*.app || true
             exit 1
           fi
           sudo xcode-select -s "$app/Contents/Developer"
-          xcodebuild -version
+          # Same normalisation as check.sh, which compares the whole pin (version and build) exactly.
+          actual="$(xcodebuild -version | awk 'NR == 1 { version = $2 } NR == 2 { build = $3 } END { printf "Xcode %s (%s)", version, build }')"
+          if [ "$actual" != "$pin" ]; then
+            echo "::error::the pin is '$pin' but $app is '$actual'; installed:"
+            for candidate in /Applications/Xcode*.app; do
+              echo "$candidate: $(DEVELOPER_DIR="$candidate/Contents/Developer" xcodebuild -version | tr '\n' ' ')"
+            done
+            exit 1
+          fi
+          echo "$actual selected from $app"
       - name: Run native Swift checks
         env:
           TRACK1_CI_OUTPUT_DIR: ${{ runner.temp }}/track1-ios

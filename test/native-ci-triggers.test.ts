@@ -91,6 +91,8 @@ describe("ios-check runner label (TRA-411, TRA-705)", () => {
 		const step = source.slice(select, source.indexOf("- name:", select + 1));
 		expect(step).toContain("ios/.xcode-version");
 		expect(step).toContain("xcode-select -s");
+		// check.sh compares the whole pin, build id included: the step must fail early on the same comparison.
+		expect(step).toContain('[ "$actual" != "$pin" ]');
 		expect(step).toContain("/Applications/Xcode*.app");
 		expect(step).toContain("exit 1");
 	});
