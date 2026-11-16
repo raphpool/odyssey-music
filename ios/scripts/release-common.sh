@@ -2,7 +2,8 @@
 #
 # Meant to be sourced, never executed: it only defines functions, so loading it has no side
 # effect. The caller sets `team_id`, `api_base_url`, `expected_xcode` and `repository_root`
-# first, and runs under `set -euo pipefail`.
+# first, and runs under `set -euo pipefail`. `prepare_output_base` hands its result back in the
+# global `output_base`.
 
 fail() {
 	echo "$1" >&2
