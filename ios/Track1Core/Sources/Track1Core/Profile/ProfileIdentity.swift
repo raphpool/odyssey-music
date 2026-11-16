@@ -9,31 +9,35 @@ public enum ProfileDisc: String, Codable, CaseIterable, Sendable {
 public enum PseudoRules {
 	public static let maxLength = 20
 
-	/// The stored form of a pseudo, or nil when nothing is left of it.
+	/// The stored form of a pseudo, or nil when nothing visible is left of it.
 	///
-	/// Control characters are removed rather than turned into spaces, so a pasted line break does not split a
-	/// pseudo in two. The zero width joiners are kept on purpose: a composed emoji is made of them, and
-	/// stripping every invisible format character would break it into several graphemes.
+	/// Works on scalars, not on characters: `Character.isWhitespace` only looks at the first scalar, so a space
+	/// followed by a combining mark would be judged as a separator and lose the mark. Tabs and line breaks are
+	/// separators like any other space (a pasted "Raph\nDoe" must not become "RaphDoe"); the other control
+	/// characters and the bidirectional controls are dropped. The zero width joiners stay on purpose: a composed
+	/// emoji is made of them.
 	public static func normalized(_ raw: String) -> String? {
-		var result = ""
+		var scalars = String.UnicodeScalarView()
 		var spacePending = false
-		for character in raw {
-			if character.unicodeScalars.allSatisfy(Self.isRemoved) { continue }
-			if character.isWhitespace {
-				spacePending = !result.isEmpty
-				continue
+		for scalar in raw.unicodeScalars {
+			if scalar.properties.isWhitespace {
+				spacePending = !scalars.isEmpty
+			} else if !isRemoved(scalar) {
+				if spacePending {
+					scalars.append(" ")
+					spacePending = false
+				}
+				scalars.append(scalar)
 			}
-			if spacePending {
-				result.append(" ")
-				spacePending = false
-			}
-			result.append(character)
 		}
 		// A run of spaces is already one and the edges are already trimmed, so cutting at 20 graphemes can only
 		// leave a single trailing space.
-		var kept = result.prefix(maxLength)
+		var kept = String(scalars).prefix(maxLength)
 		if kept.last == " " { kept = kept.dropLast() }
-		return kept.isEmpty ? nil : String(kept)
+		// 2026-11-16 (review of TRA-756): a zero width space alone is neither whitespace nor a control, so
+		// "\u{200B}" used to pass as a pseudo that shows as nothing. It needs one scalar a person can see.
+		guard kept.unicodeScalars.contains(where: isVisible) else { return nil }
+		return String(kept)
 	}
 
 	private static func isRemoved(_ scalar: Unicode.Scalar) -> Bool {
@@ -43,5 +47,10 @@ public enum PseudoRules {
 		case 0x061C, 0x200E, 0x200F, 0x202A...0x202E, 0x2066...0x2069: return true
 		default: return false
 		}
+	}
+
+	private static func isVisible(_ scalar: Unicode.Scalar) -> Bool {
+		!scalar.properties.isWhitespace && !scalar.properties.isDefaultIgnorableCodePoint
+			&& scalar.properties.generalCategory != .format
 	}
 }

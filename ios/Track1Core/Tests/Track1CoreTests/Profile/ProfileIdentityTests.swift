@@ -50,19 +50,44 @@ final class ProfileIdentityTests: XCTestCase {
 	}
 
 	func testControlCharactersAreRemoved() {
-		XCTAssertEqual(PseudoRules.normalized("Ra\u{0000}ph\u{0007}"), "Raph")
-		XCTAssertEqual(PseudoRules.normalized("Ra\nph\r\n"), "Raph")
-		XCTAssertEqual(PseudoRules.normalized("Ra\u{007F}ph\u{0085}"), "Raph")
-		XCTAssertNil(PseudoRules.normalized("\u{0000}\u{0007}\n"))
+		XCTAssertEqual(PseudoRules.normalized("Ra\u{0000}ph\u{0007}\u{007F}\u{001F}\u{0090}"), "Raph")
+		XCTAssertNil(PseudoRules.normalized("\u{0000}\u{0007}\u{001F}"))
 	}
 
-	func testBidirectionalControlsAreRemoved() {
-		let controls = ["\u{061C}", "\u{200E}", "\u{200F}", "\u{202A}", "\u{202E}", "\u{2066}", "\u{2069}"]
+	func testTabsAndLineBreaksSeparateWordsLikeASpace() {
+		for separator in ["\t", "\n", "\r\n", "\u{0085}", "\u{2028}", "\u{2029}"] {
+			let raw = "Raph\(separator)Doe"
+			XCTAssertEqual(PseudoRules.normalized(raw), "Raph Doe", "\(separator.unicodeScalars.map(\.value))")
+		}
+		XCTAssertEqual(PseudoRules.normalized("a \n b"), "a b")
+		XCTAssertEqual(PseudoRules.normalized("\n Raph \t"), "Raph")
+		XCTAssertNil(PseudoRules.normalized("\n\n\t"))
+	}
+
+	func testEveryBidirectionalControlIsRemoved() {
+		let values = [0x061C, 0x200E, 0x200F] + Array(0x202A...0x202E) + Array(0x2066...0x2069)
+		let controls = values.compactMap { Unicode.Scalar($0) }.map { String(Character($0)) }
+		XCTAssertEqual(controls.count, values.count)
 		for control in controls {
 			let raw = "\(control)Raph\(control)"
 			XCTAssertEqual(PseudoRules.normalized(raw), "Raph", "\(control.unicodeScalars.map(\.value))")
 		}
 		XCTAssertNil(PseudoRules.normalized(controls.joined()))
+	}
+
+	func testAPseudoWithNothingVisibleIsRefused() {
+		let invisibles = [
+			"\u{200B}", "\u{200C}", "\u{200D}", "\u{2060}", "\u{FEFF}", "\u{00AD}", "\u{3164}", "\u{E0020}",
+			"\u{200B} \u{200D}", " \u{200B}\n\u{FEFF} ",
+		]
+		for raw in invisibles {
+			XCTAssertNil(PseudoRules.normalized(raw), "\(raw.unicodeScalars.map(\.value))")
+		}
+	}
+
+	func testACombiningMarkAfterASpaceIsNotLost() {
+		let raw = "Raph \u{0301}Doe"
+		XCTAssertEqual(PseudoRules.normalized(raw)?.unicodeScalars.map(\.value), raw.unicodeScalars.map(\.value))
 	}
 
 	func testJoinersSurviveBecauseComposedEmojiNeedThem() {
@@ -73,7 +98,7 @@ final class ProfileIdentityTests: XCTestCase {
 	func testNormalizationIsIdempotent() throws {
 		let raws = [
 			"  Raph  ", "Raph   Doe", String(repeating: "a", count: 19) + " b", "\u{202E}Ra\nph\u{202C}",
-			String(repeating: family, count: 25), "e\u{0301}  e\u{0301}",
+			String(repeating: family, count: 25), "e\u{0301}  e\u{0301}", "a \n b", "\u{200B}Raph", "Raph \u{0301}Doe",
 		]
 		for raw in raws {
 			let once = try XCTUnwrap(PseudoRules.normalized(raw))
