@@ -1,7 +1,9 @@
 name: ios-ci
 
 # No push trigger (TRA-411, 2026-10-12): main is strict-protected, so the merge commit is the tree this
-# check already ran on the PR; a push run only held a self-hosted runner while the next PR waited.
+# check already ran on the PR; a push run only held the one Mac runner while the next PR waited.
+# Hosted runner (TRA-705, 2026-11-16): the Mac was presumed off, so ios-check ran nowhere. It now runs on the
+# GitHub-hosted macOS image; the push-trigger and path-filter notes below describe the Mac era and stay valid.
 # Path filter (TRA-415, TRA-417, 2026-10-12): #338 changed 3 lines under .claude/ and held the `ios` runner for
 # 19 min; after TRA-415 ignored .claude/, docs/ and *.md, #341 (only vitest.config.ts and a vitest setup file)
 # still started ios-check, 10 min on a saturated Mac. A deny-list is never complete, so `paths` lists the
@@ -51,10 +53,12 @@ concurrency:
 jobs:
   ios-check:
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
-    # `ios` is carried by one runner only (2026-10-12): two simulators of ~6 GB in parallel saturated the
-    # Mac (load 274, swap 11.4/12 GB) and the simulator did not boot within 600 s on #335.
-    runs-on: [self-hosted, macOS, ARM64, ios]
-    timeout-minutes: 30
+    # TRA-705 (2026-11-16): macos-26 is the hosted image expected to ship the Xcode pinned in ios/.xcode-version
+    # (26.4); "Select Xcode" fails with the installed list if it does not. Each job gets its own VM, so the Mac's
+    # one-at-a-time limit (2026-10-12, #335: load 274, simulator not booted in 600 s) no longer applies. check.sh
+    # creates an ephemeral simulator (no track1-ci-pool here) and DerivedData is cold on every run, hence 45 min.
+    runs-on: macos-26
+    timeout-minutes: 45
     steps:
       - name: Isolate HOME from the runner host account
         run: |
@@ -63,6 +67,22 @@ jobs:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
+      - name: Select Xcode
+        shell: bash
+        run: |
+          read -r _ version _ < ios/.xcode-version
+          if [[ ! "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
+            echo "::error::cannot read an Xcode version from ios/.xcode-version: $(cat ios/.xcode-version)"
+            exit 1
+          fi
+          app="/Applications/Xcode_${version}.app"
+          if [ ! -d "$app" ]; then
+            echo "::error::$app not found for the pin '$(cat ios/.xcode-version)'; installed:"
+            ls -d /Applications/Xcode*.app || true
+            exit 1
+          fi
+          sudo xcode-select -s "$app/Contents/Developer"
+          xcodebuild -version
       - name: Run native Swift checks
         env:
           TRACK1_CI_OUTPUT_DIR: ${{ runner.temp }}/track1-ios
