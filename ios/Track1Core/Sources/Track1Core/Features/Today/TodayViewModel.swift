@@ -63,8 +63,13 @@ public final class TodayViewModel {
 
 		let localDate = DailySelection.localDate(for: now(), timeZone: timeZone())
 		let stored = await store.history()
+		// An artist persisted before TRA-713 (2026-11-16) is no longer a valid pick: it is ignored here, which
+		// means the catalog is read again, so a failed read shows `.unavailable` instead of that artist. A new
+		// pick below drops it from the history because it replaces the entry of the current date; when no
+		// candidate remains, nothing is written and the artist stays on disk, unserved.
 		if let existing = stored.last(where: { $0.localDate == localDate }),
-			existing.profileRevision == profile.revision
+			existing.profileRevision == profile.revision,
+			Affinity.isRecommendable(existing.nodeType)
 		{
 			state = .recommendation(existing)
 			return
