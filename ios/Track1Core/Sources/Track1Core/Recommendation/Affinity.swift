@@ -10,8 +10,15 @@ public struct AffinityCandidate: Equatable, Sendable {
 	public let reasons: [String]
 }
 
-/// Swift port of `mobile/src/recommendation/affinity.ts`: scores must match the React Native client.
+/// Swift port of `mobile/src/recommendation/affinity.ts`: scores and reasons match the React Native client,
+/// but the set of candidates no longer does (see `rank`).
 public enum Affinity {
+	/// The only node types the home recommends. Shared with `TodayViewModel` so that what `rank` returns and
+	/// what a persisted recommendation may be served as cannot drift apart.
+	static func isRecommendable(_ type: NodeType) -> Bool {
+		type == .project || type == .track
+	}
+
 	/// The ranking is truncated so the daily pick draws from a bounded, deterministic pool.
 	static let candidateLimit = 60
 
@@ -40,8 +47,14 @@ public enum Affinity {
 
 	private static let frenchLocale = Locale(identifier: "fr")
 
-	/// Scores only artists, projects and tracks. Catalog edges are untrusted API data, so identities that
+	/// Scores only projects and tracks. Catalog edges are untrusted API data, so identities that
 	/// are missing from the catalog, or whose type is not recommendable, never become candidates.
+	///
+	/// Deliberate break of parity with the React Native client (2026-11-16, TRA-713, Figma node 362:5089): the
+	/// spec says artists are no longer recommended and the v1 home only has a pictogram for a project or a
+	/// track. `mobile/src/recommendation/affinity.ts` still ranks artists, so for the same catalog the
+	/// candidates, and therefore the daily pick that `DailySelection` draws from them, no longer match it.
+	/// Scores, reasons and relative order of the remaining candidates are unchanged.
 	public static func rank(catalog: Catalog, genreIDs: [NodeIdentity]) -> [AffinityCandidate] {
 		// The last node wins on duplicate identities, like the `Map` built by the TypeScript client.
 		let nodes = Dictionary(catalog.nodes.map { ($0.identity, $0) }, uniquingKeysWith: { _, last in last })
@@ -62,7 +75,7 @@ public enum Affinity {
 
 		var candidates: [NodeIdentity: Accumulator] = [:]
 		func add(_ identity: NodeIdentity, contribution: String, weight: Int, reason: String) {
-			guard let node = nodes[identity], [.artist, .project, .track].contains(node.type) else { return }
+			guard let node = nodes[identity], isRecommendable(node.type) else { return }
 			var current = candidates[identity] ?? Accumulator(node: node)
 			guard current.contributions.insert(contribution).inserted else { return }
 			current.score += weight
