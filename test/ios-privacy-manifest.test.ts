@@ -7,7 +7,8 @@ import { describe, expect, it } from "vitest";
 // ITSAppUsesNonExemptEncryption is declared, and rejects an upload whose code calls a "required reason" API
 // without a privacy manifest declaring it. These guards run without Xcode. They keep the declarations honest in
 // both directions: a category used by the sources must be declared, and a declared category must be used (an
-// invented reason is a false declaration). Segment ships its own manifest, so it is not declared here.
+// invented reason is a false declaration). Only first-party sources are scanned: Swift packages bundle their own
+// manifests, which this test cannot see, so they are neither scanned nor re-declared here.
 const INFO_PLIST = "ios/Track1/Resources/Info.plist";
 const MANIFEST = "ios/Track1/Resources/PrivacyInfo.xcprivacy";
 const MANIFEST_NAME = "PrivacyInfo.xcprivacy";
@@ -19,19 +20,39 @@ const USER_DEFAULTS = "NSPrivacyAccessedAPICategoryUserDefaults";
 const FILE_TIMESTAMP = "NSPrivacyAccessedAPICategoryFileTimestamp";
 const DISK_SPACE = "NSPrivacyAccessedAPICategoryDiskSpace";
 const SYSTEM_BOOT_TIME = "NSPrivacyAccessedAPICategorySystemBootTime";
+const ACTIVE_KEYBOARDS = "NSPrivacyAccessedAPICategoryActiveKeyboards";
 
-// Source patterns per category. A match in a comment still counts: reword the comment rather than weaken this.
+// Source patterns per category, from Apple's list of required-reason APIs. A match in a comment still counts:
+// reword the comment rather than weaken this. getattrlist serves both file dates and disk space depending on
+// the attributes asked for; it is filed under file dates, so a disk-space use of it needs a human decision.
 const CATEGORY_PATTERNS: ReadonlyArray<readonly [category: string, pattern: RegExp]> = [
 	[USER_DEFAULTS, /\bUserDefaults\b|@AppStorage\b/],
-	[FILE_TIMESTAMP, /\b(?:creationDate(?:Key)?|modificationDate|contentModificationDate(?:Key)?)\b/],
-	[DISK_SPACE, /\bvolume(?:Available|Total)Capacity\w*|\bsystemFreeSize\b/],
+	[
+		FILE_TIMESTAMP,
+		new RegExp(
+			[
+				String.raw`\b(?:creationDate|contentModificationDate|contentAccessDate|attributeModificationDate)(?:Key)?\b`,
+				String.raw`\b(?:modificationDate|fileCreationDate|fileModificationDate)\b`,
+				String.raw`\bNSFile(?:Creation|Modification)Date\b`,
+				String.raw`\b(?:f|l)?stat(?:at)?\(|\bf?getattrlist\w*\(`,
+			].join("|"),
+		),
+	],
+	[
+		DISK_SPACE,
+		/\bvolume(?:Available|Total)Capacity\w*|\b(?:systemFreeSize|systemSize|NSFileSystem(?:Free)?Size)\b|\bf?statv?fs\(|\bf?statvfs\(/,
+	],
 	[SYSTEM_BOOT_TIME, /\bsystemUptime\b|\bmach_absolute_time\b/],
+	[ACTIVE_KEYBOARDS, /\bactiveInputModes\b/],
 ];
 
 type PlistValue = string | number | boolean | PlistValue[] | { [key: string]: PlistValue };
 type PlistDict = { [key: string]: PlistValue };
 
-/** Minimal XML plist reader (dict, array, string, integer, true, false): enough for Info.plist and manifests. */
+/**
+ * Minimal XML plist reader for Info.plist and manifests: dict, array, string, integer, real, date, data, true,
+ * false. Strings are returned as written (no entity decoding), which is enough to compare declared values.
+ */
 function parsePlist(xml: string): PlistValue {
 	const start = xml.indexOf("<plist");
 	if (start === -1) throw new Error("Not an XML plist");
@@ -80,10 +101,17 @@ function parsePlist(xml: string): PlistValue {
 				take(); // </string>
 				return text;
 			}
-			case "<integer>": {
+			case "<integer>":
+			case "<real>": {
 				const value = Number(take());
-				take(); // </integer>
+				take(); // closing tag
 				return value;
+			}
+			case "<date>":
+			case "<data>": {
+				const text = take();
+				take(); // closing tag
+				return text;
 			}
 			default:
 				throw new Error(`Unsupported plist token ${token}`);
@@ -249,28 +277,52 @@ describe("required-reason API detection", () => {
 		["try FileManager.default.attributesOfItem(atPath: p)[.creationDate]", FILE_TIMESTAMP],
 		["let date = attributes[.modificationDate] as? Date", FILE_TIMESTAMP],
 		["url.resourceValues(forKeys: [.contentModificationDateKey])", FILE_TIMESTAMP],
+		["url.resourceValues(forKeys: [.contentAccessDateKey])", FILE_TIMESTAMP],
+		["values.attributeModificationDate", FILE_TIMESTAMP],
+		["attributes[.fileModificationDate]", FILE_TIMESTAMP],
+		["attrs[FileAttributeKey(rawValue: NSFileCreationDate)]", FILE_TIMESTAMP],
+		["var info = stat(); stat(path, &info)", FILE_TIMESTAMP],
+		["lstat(path, &info)", FILE_TIMESTAMP],
+		["getattrlist(path, &list, &buffer, size, 0)", FILE_TIMESTAMP],
 		["values.volumeAvailableCapacityForImportantUsage", DISK_SPACE],
 		["values.volumeAvailableCapacity", DISK_SPACE],
+		["values.volumeTotalCapacity", DISK_SPACE],
+		["attrs[.systemFreeSize]", DISK_SPACE],
+		["attrs[.systemSize]", DISK_SPACE],
+		["attrs[FileAttributeKey(rawValue: NSFileSystemFreeSize)]", DISK_SPACE],
+		["statfs(path, &fs)", DISK_SPACE],
+		["statvfs(path, &fs)", DISK_SPACE],
 		["let up = ProcessInfo.processInfo.systemUptime", SYSTEM_BOOT_TIME],
+		["mach_absolute_time()", SYSTEM_BOOT_TIME],
+		["UITextInputMode.activeInputModes", ACTIVE_KEYBOARDS],
 	])("detects %s as %s", (source, category) => {
 		expect([...detectCategories(source)]).toEqual([category]);
 	});
 
-	it("does not flag ProcessInfo arguments or environment, nor a plain Date", () => {
+	it("does not flag ProcessInfo arguments or environment, nor a plain Date or a status property", () => {
 		const source =
-			"ProcessInfo.processInfo.arguments.contains(flag); ProcessInfo.processInfo.environment; Date()";
+			"ProcessInfo.processInfo.arguments.contains(flag); ProcessInfo.processInfo.environment; Date(); status(); installStat()";
 
 		expect(detectCategories(source).size).toBe(0);
 	});
 });
 
 describe("plist reader", () => {
-	it("reads nested dicts, arrays, empty containers and booleans", () => {
+	it("reads nested dicts, arrays, empty containers, booleans and numbers", () => {
 		const xml = `<?xml version="1.0"?><plist version="1.0"><dict>
 			<key>a</key><array><string>x</string><string></string></array>
 			<key>b</key><false/><key>c</key><array/><key>d</key><dict><key>n</key><integer>3</integer></dict>
+			<key>e</key><real>1.5</real><key>f</key><date>2026-01-01T00:00:00Z</date><key>g</key><data>AAEC</data>
 		</dict></plist>`;
 
-		expect(parsePlist(xml)).toEqual({ a: ["x", ""], b: false, c: [], d: { n: 3 } });
+		expect(parsePlist(xml)).toEqual({
+			a: ["x", ""],
+			b: false,
+			c: [],
+			d: { n: 3 },
+			e: 1.5,
+			f: "2026-01-01T00:00:00Z",
+			g: "AAEC",
+		});
 	});
 });
