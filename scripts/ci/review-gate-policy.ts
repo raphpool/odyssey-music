@@ -48,8 +48,9 @@ export const sensitivePath =
 
 // TRA-704 (2026-11-16): a `pull_request` workflow runs the PR's own version, so a PR could empty the `deep-review`
 // job of ai-review.yml and then be passed by it. A PR that edits any file of the gate therefore cannot be
-// validated by `deepClaude`: it still needs the `codex-deep-review` status. Same writing constraints as
-// sensitivePath (one line, ASCII, flag `i` alone, no `(?`, no lazy quantifier). Do not loosen it.
+// validated by `deepClaude`: it still needs the `codex-deep-review` status. Written like sensitivePath (one line,
+// ASCII, flag `i` alone, no `(?`, no lazy quantifier) so it can be translated to an ERE later; no ci.yml check
+// consumes it yet. Do not loosen it.
 export const gateIntegrityPath =
 	/^\.github\/(workflows\/(ai-review|review-gate)\.yml|review-gate-authors\.txt)$|^scripts\/ci\/(review-gate-policy|review-reuse)|^REVIEW\.md$|^\.codex\/scripts\/publish-review-status\.sh$/i;
 
@@ -86,7 +87,7 @@ export const evaluateReviewGate = (input: GateInput): GateVerdict => {
 	if (input.risk < 3) return "pass";
 	if (input.deepClaude === "failure") return "block";
 	if (input.deep === "success") return "pass";
-	// Strict `=== false`: a missing `touchesGate` (JSON from an older caller) fails closed.
+	// Strict `=== false`: defensive only (main() always derives touchesGate), so a missing value fails closed.
 	return input.deepClaude === "success" && input.touchesGate === false ? "pass" : "wait";
 };
 
