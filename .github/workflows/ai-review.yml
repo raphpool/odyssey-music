@@ -11,8 +11,12 @@ concurrency:
 
 jobs:
   review:
-    if: github.event.pull_request.draft == false
-    runs-on: [self-hosted, linux]
+    # 2026-11-16 (TRA-703): a pull request from a fork gets no review. The repository is public and this job
+    # runs with write access to pull requests. This job is then skipped, which `review-gate` reads as a missing
+    # review: it waits for the full polling window, then fails closed. That blocks the merge, on purpose.
+    if: github.event.pull_request.draft == false && github.event.pull_request.head.repo.full_name == github.repository
+    # 2026-11-16 (TRA-703): hosted runner, the self-hosted ones have been off since 2026-10-24.
+    runs-on: ubuntu-latest
     timeout-minutes: 25
     permissions:
       contents: read
