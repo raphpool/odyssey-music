@@ -21,9 +21,9 @@ public enum ProfileTenure {
 		return max(elapsed, 0) + 1
 	}
 
-	/// Second line: "depuis 1 jour", "depuis 145 jours". Only 2 and more take the plural. A value below 1 reads as
-	/// 1, never as "depuis 0 jour": the creation day counts for 1, so `days(since:now:calendar:)` cannot return
-	/// less, and a hand-built value is clamped to the same minimum.
+	/// Second line: "depuis 1 jour", "depuis 145 jours". Only 2 and more take the plural. A value below 1
+	/// reads as 1, never as "depuis 0 jour": the creation day counts for 1, so
+	/// `days(since:now:calendar:)` cannot return less, and a hand-built value is clamped to the same minimum.
 	public static func suffix(days: Int) -> String {
 		let shown = max(days, 1)
 		return "depuis \(shown) \(shown == 1 ? "jour" : "jours")"
