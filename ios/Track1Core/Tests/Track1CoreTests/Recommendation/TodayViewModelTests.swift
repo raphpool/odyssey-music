@@ -290,10 +290,36 @@ final class TodayViewModelTests: XCTestCase {
 		await model.load(for: taste)
 
 		XCTAssertEqual(try recommendation(of: model).nodeID, expected)
-		// The stored plan of this revision is kept as it is, not picked again.
 		let history = await store.history()
-		XCTAssertEqual(Array(history.dropFirst().prefix(3)), plan)
 		XCTAssertEqual(history.map(\.localDate), [Self.parisDate] + Self.plannedDates)
+	}
+
+	/// Nine works are more than the eight days of the day and its plan, so no day has to repeat a work. The
+	/// stored plan here names today's work on the third day, as a clock that moved back can leave it.
+	func testAStoredPlanEntryNamingTodaysWorkIsPickedAgain() async throws {
+		let works = (1...9).map { "project:work\($0)" }
+		let nineWorks = try catalog(
+			nodes: [("genre:rock", "Rock")] + works.map { ($0, $0) },
+			edges: works.map { ($0, "genre:rock", "genres") })
+		let taste = try profile(revision: 1)
+		let candidates = Affinity.rank(catalog: nineWorks, genreIDs: taste.genreIDs)
+		let expected = try XCTUnwrap(
+			DailySelection.pick(
+				candidates: candidates, history: [], localID: Self.localID, localDate: Self.parisDate)
+		).identity
+		let store = makeStore()
+		let naming = try storedRecommendation(
+			date: Self.plannedDates[2], node: expected.rawValue, revision: 1)
+		_ = await store.save([naming])
+
+		let model = makeModel(probe: CatalogProbe(result: .success(nineWorks, etag: nil)), store: store)
+		await model.load(for: taste)
+
+		XCTAssertEqual(candidates.count, 9)
+		XCTAssertEqual(try recommendation(of: model).nodeID, expected)
+		let history = await store.history()
+		XCTAssertEqual(history.map(\.localDate), [Self.parisDate] + Self.plannedDates)
+		XCTAssertEqual(Set(history.map(\.nodeID)).count, 8)
 	}
 
 	func testAFullHistoryKeepsTodayAndTheSevenNextDays() async throws {

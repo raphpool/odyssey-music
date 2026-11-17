@@ -25,8 +25,9 @@ public enum TodayState: Equatable, Sendable {
 @Observable
 public final class TodayViewModel {
 	public private(set) var state: TodayState = .loading
-	/// The reminders planned by the last `load` that picked and saved a work; empty after any other outcome,
-	/// including a load that served the persisted entry of the day, which reads no catalog to plan from.
+	/// The reminders planned by the last `load` that picked and saved a work. Empty whenever `state` changes
+	/// without a plan: that includes a load that served the persisted entry of the day, which reads no catalog
+	/// to plan from, so empty means "nothing new to schedule", not "cancel what is scheduled".
 	public private(set) var upcoming: [PlannedReminder] = []
 
 	@ObservationIgnored private let readCatalog: @Sendable () async -> APIResult<Catalog>
@@ -67,8 +68,6 @@ public final class TodayViewModel {
 		// A newer request for other tastes was queued behind this one: computing and saving this pick would
 		// only write an entry that the next load replaces.
 		guard latestRequestedProfile == profile else { return }
-		// The plan belongs to the load that computed it: no outcome below may leave a previous one exposed.
-		upcoming = []
 
 		let localDate = DailySelection.localDate(for: now(), timeZone: timeZone())
 		let stored = await store.history()
@@ -80,34 +79,34 @@ public final class TodayViewModel {
 			existing.profileRevision == profile.revision,
 			Affinity.isRecommendable(existing.nodeType)
 		{
-			state = .recommendation(existing)
+			publish(.recommendation(existing))
 			return
 		}
 
 		// `.notModified` carries no body: this reader has nothing to rank, like a failure.
 		guard case .success(let catalog, _) = await readCatalog() else {
-			if !Task.isCancelled, latestRequestedProfile == profile { state = .unavailable }
+			if !Task.isCancelled, latestRequestedProfile == profile { publish(.unavailable) }
 			return
 		}
 		guard !Task.isCancelled, latestRequestedProfile == profile else { return }
 
 		let candidates = Affinity.rank(catalog: catalog, genreIDs: profile.genreIDs)
 		guard !candidates.isEmpty else {
-			state = .emptyCatalog
+			publish(.emptyCatalog)
 			return
 		}
 
 		// The catalog read can take seconds: re-read right before saving so a `markViewed` that landed in
 		// the meantime is kept instead of overwritten by the snapshot taken above.
-		let fresh = await store.history()
+		let others = await store.history().filter { $0.localDate != localDate }
 		// Entries dated after today are plans, not works the person has been given: `pick` counts every other
 		// date as seen, so they would change today's work depending on whether a plan happens to be on disk.
-		let past = fresh.filter { $0.localDate < localDate }.sorted { $0.localDate < $1.localDate }
+		let past = others.filter { $0.localDate < localDate }.sorted { $0.localDate < $1.localDate }
 		guard
 			let pick = DailySelection.pick(
 				candidates: candidates, history: past, localID: profile.localID, localDate: localDate)
 		else {
-			state = .emptyCatalog
+			publish(.emptyCatalog)
 			return
 		}
 		// Resolved here, with the catalog already in hand, because a persisted recommendation is served without
@@ -126,20 +125,22 @@ public final class TodayViewModel {
 			profileGenreNames: genreNames,
 			viewRecorded: false)
 
-		// Stored plans of the current revision are kept by the plan itself, the others are picked again.
+		// A stored plan of the current revision is kept by the plan itself, the others are picked again. One that
+		// names today's work (a clock or time zone that moved back) is left out too, so it is picked again and no
+		// work lands twice in the week.
+		let keptPlan = others.filter { $0.localDate > localDate && $0.nodeID != recommendation.nodeID }
 		let reminders = ReminderPlan.plan(
-			candidates: candidates, history: fresh.filter { $0.localDate != localDate } + [recommendation],
+			candidates: candidates, history: past + [recommendation] + keptPlan,
 			profile: profile, catalog: catalog, today: localDate, profileGenreNames: genreNames, makeID: makeID)
 
 		// The store neither deduplicates nor sorts, and keeps the last entries: past days in date order, then
 		// today, then the plan, so the oldest days are the ones to go. Rebuilding every date after today from the
-		// plan is what replaces the plan of an older revision.
+		// plan is what replaces the plan of an older revision, and what bounds the future dates a clock that went
+		// back could have left behind: they never push today's entry out of the last forty.
 		let updated = past + [recommendation] + reminders.map(\.recommendation)
 		switch await store.save(updated) {
-		case .success:
-			state = .recommendation(recommendation)
-			upcoming = reminders
-		case .failure: state = .unavailable
+		case .success: publish(.recommendation(recommendation), plan: reminders)
+		case .failure: publish(.unavailable)
 		}
 	}
 
@@ -193,6 +194,13 @@ public final class TodayViewModel {
 			],
 			source: .home,
 			occurredAt: date)
+	}
+
+	/// The plan always changes together with the state it was computed for, so a load that returns early
+	/// (cancelled or superseded) leaves both as they were, and one that ends without a plan shows none.
+	private func publish(_ newState: TodayState, plan: [PlannedReminder] = []) {
+		state = newState
+		upcoming = plan
 	}
 
 	/// First come, first served, and the lock is handed straight to the next waiter so a newcomer cannot
