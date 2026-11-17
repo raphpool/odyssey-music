@@ -66,8 +66,9 @@ final class SplashViewTests: XCTestCase {
 
 	// MARK: Launch screen
 
-	/// The system launch screen is flat `#1A110E` and ends on the splash without a jump: the colorset is the
-	/// `background/elevated` token.
+	/// The system launch screen is flat `#1A110E`: the colorset is the `background/elevated` token, the flat
+	/// color the splash gradient ends on. The hand-off is not seamless (the gradient above 30.746 %, the mark
+	/// at the Figma ratio instead of the center, the unclipped image); that is the ticket's contract.
 	func testLaunchBackgroundColorIsTheElevatedBackground() throws {
 		let color = try XCTUnwrap(UIColor(named: "LaunchBackground"))
 		XCTAssertEqual(rgbaHex(Color(color)), "1a110eff")

@@ -8,7 +8,8 @@ enum SplashMetrics {
 	/// Top of the app mark in the frame (`362:4944`, y 330). Its x is 104.34, which is centered.
 	static let markTop: CGFloat = 330
 	/// Height of the Figma frame: on a screen of another height the mark keeps the `markTop / frameHeight`
-	/// ratio from the top (it sits at the middle of the screen, 422.16 / 844 = 0.5002).
+	/// ratio from the top. In the frame it is centered to 0.16 pt (422.16 for 422); on another height it is
+	/// not exactly centered, and so not exactly where the system launch image is.
 	static let frameHeight: CGFloat = 844
 	/// Vertical gradient of the root node: `screen/gradient-top` at the top, `background/elevated` from
 	/// 30.746 % of the height down (`to-[30.746%]` on `318:6513`; Genres is at 33.099 %).
