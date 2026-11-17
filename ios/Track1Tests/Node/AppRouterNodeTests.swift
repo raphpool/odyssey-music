@@ -11,11 +11,16 @@ final class AppRouterNodeTests: XCTestCase {
 		let album = try XCTUnwrap(NodeIdentity(rawValue: "project:sample"))
 
 		router.openIndependentNode(artist, source: .home, in: .today)
-		router.openIndependentNode(album, source: .search, in: .search)
+		router.openIndependentNode(album, source: .onboarding, in: .genres)
 
 		XCTAssertEqual(router.path(for: .today), [.node(identity: artist, context: .independent(source: .home))])
-		XCTAssertEqual(router.path(for: .search), [.node(identity: album, context: .independent(source: .search))])
-		XCTAssertTrue(router.path(for: .genres).isEmpty)
+		XCTAssertEqual(
+			router.path(for: .genres), [.node(identity: album, context: .independent(source: .onboarding))])
+	}
+
+	/// TRA-771: there are two root tabs and no third destination.
+	func testTheRootTabsAreTodayAndGenres() {
+		XCTAssertEqual(AppTab.allCases, [.today, .genres])
 	}
 
 	func testRelationRoutePreservesAttributionUntilAnotherIndependentDeparture() throws {
@@ -40,43 +45,45 @@ final class AppRouterNodeTests: XCTestCase {
 				.node(identity: track, context: followed),
 			]
 		)
-		router.openIndependentNode(album, source: .search, in: .search)
+		router.openIndependentNode(album, source: .onboarding, in: .genres)
 		XCTAssertEqual(
-			router.path(for: .search).last, .node(identity: album, context: .independent(source: .search)))
+			router.path(for: .genres).last, .node(identity: album, context: .independent(source: .onboarding)))
 	}
 
-	func testSearchDepartureOnlyStacksInSearchPath() throws {
+	func testDepartureOnlyStacksInItsOwnTab() throws {
 		let router = AppRouter()
 		let genre = try XCTUnwrap(NodeIdentity(rawValue: "genre:trip-hop"))
 
-		router.openIndependentNode(genre, source: .search, in: .search)
+		router.openIndependentNode(genre, source: .onboarding, in: .genres)
 
-		XCTAssertEqual(router.path(for: .search), [.node(identity: genre, context: .independent(source: .search))])
+		XCTAssertEqual(
+			router.path(for: .genres), [.node(identity: genre, context: .independent(source: .onboarding))])
 		XCTAssertTrue(router.path(for: .today).isEmpty)
-		XCTAssertTrue(router.path(for: .genres).isEmpty)
 	}
 
-	func testSelectingSearchOpensTheSheetAndKeepsTheSelectedTab() {
-		let router = AppRouter()
-		router.select(.genres)
-
-		router.select(.search)
-
-		XCTAssertTrue(router.isSearchPresented)
-		XCTAssertEqual(router.selectedTab, .genres)
-	}
-
-	func testSelectingATabChangesItWithoutTouchingStacksOrTheSheet() throws {
+	func testSelectingATabChangesItWithoutTouchingStacks() throws {
 		let router = AppRouter()
 		let artist = try XCTUnwrap(NodeIdentity(rawValue: "artist:sample"))
 		router.openIndependentNode(artist, source: .home, in: .today)
 
 		router.select(.genres)
+		XCTAssertEqual(router.selectedTab, .genres)
 		router.select(.today)
 
 		XCTAssertEqual(router.selectedTab, .today)
-		XCTAssertFalse(router.isSearchPresented)
 		XCTAssertEqual(router.path(for: .today).count, 1)
+	}
+
+	func testSelectingGenresAgainKeepsItsStack() throws {
+		let router = AppRouter()
+		let genre = try XCTUnwrap(NodeIdentity(rawValue: "genre:idm"))
+		router.select(.genres)
+		router.openIndependentNode(genre, source: .home, in: .genres)
+
+		router.select(.genres)
+
+		XCTAssertEqual(router.selectedTab, .genres)
+		XCTAssertEqual(router.path(for: .genres).count, 1)
 	}
 
 	func testSelectingTodayAgainEmptiesOnlyItsStack() throws {
@@ -85,7 +92,7 @@ final class AppRouterNodeTests: XCTestCase {
 		let album = try XCTUnwrap(NodeIdentity(rawValue: "project:sample"))
 		router.openIndependentNode(artist, source: .home, in: .today)
 		router.openIndependentNode(album, source: .home, in: .today)
-		router.openIndependentNode(artist, source: .search, in: .genres)
+		router.openIndependentNode(artist, source: .onboarding, in: .genres)
 		XCTAssertEqual(router.path(for: .today).count, 2)
 
 		router.select(.today)
@@ -146,8 +153,8 @@ final class AppRouterNodeTests: XCTestCase {
 	/// The tab bar finds its icon and its UI identifier on the tab (TRA-671); the identifiers are the ones the
 	/// UI tests look the buttons up by.
 	func testEachTabNamesItsBarIconAndItsUIIdentifier() {
-		XCTAssertEqual(AppTab.allCases.map(\.icon), [.tabToday, .tabGenres, .tabSearch])
-		XCTAssertEqual(AppTab.allCases.map(\.accessibilityIdentifier), ["tab-today", "tab-genres", "tab-search"])
-		XCTAssertEqual(AppTab.allCases.map(\.title), ["Aujourd’hui", "Genres", "Recherche"])
+		XCTAssertEqual(AppTab.allCases.map(\.icon), [.tabToday, .tabGenres])
+		XCTAssertEqual(AppTab.allCases.map(\.accessibilityIdentifier), ["tab-today", "tab-genres"])
+		XCTAssertEqual(AppTab.allCases.map(\.title), ["Aujourd’hui", "Genres"])
 	}
 }

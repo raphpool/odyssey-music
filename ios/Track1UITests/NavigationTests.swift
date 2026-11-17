@@ -6,7 +6,7 @@ final class NavigationTests: XCTestCase {
 	}
 
 	// 2026-10-13 (TRA-398): the name is pinned by ios/scripts/check.sh and test/ios-check.test.ts (Preview pass),
-	// so it stays although the test now covers Today / Genres / Search and the search sheet.
+	// so it stays although the test now covers the two tabs, Today and Genres (TRA-771: Search left the bar).
 	@MainActor
 	func testThreeTabsKeepTheirIndependentNavigationStacks() throws {
 		// 2026-10-14 (J.4): there are no tabs before a profile, so the journey starts from the first launch.
@@ -20,26 +20,30 @@ final class NavigationTests: XCTestCase {
 		XCTAssertFalse(app.otherElements["invalid-configuration"].exists)
 
 		let today = UITestFlows.tabButton("Aujourd’hui", in: app)
+		let genres = UITestFlows.tabButton("Genres", in: app)
 		XCTAssertTrue(today.waitForExistence(timeout: 10))
-		XCTAssertTrue(UITestFlows.tabButton("Genres", in: app).exists)
-		XCTAssertTrue(UITestFlows.tabButton("Recherche", in: app).exists)
+		XCTAssertTrue(genres.exists)
+		// TRA-771: two tabs and nothing else, in particular no Search entry whatever its element type.
+		XCTAssertFalse(app.descendants(matching: .any)["tab-search"].exists)
 		XCTAssertFalse(UITestFlows.tabButton("Réglages", in: app).exists)
 		XCTAssertTrue(todayPage(in: app).waitForExistence(timeout: 15))
+		XCTAssertTrue(today.isSelected)
+		XCTAssertFalse(genres.isSelected)
 
-		UITestFlows.tabButton("Genres", in: app).tap()
+		genres.tap()
 		XCTAssertTrue(app.buttons["genres-edit"].waitForExistence(timeout: 5))
 		XCTAssertTrue(app.buttons["genres-settings"].exists)
+		XCTAssertTrue(genres.isSelected)
+		XCTAssertFalse(today.isSelected)
 
 		today.tap()
 		XCTAssertTrue(todayPage(in: app).waitForExistence(timeout: 15))
-
-		UITestFlows.tabButton("Recherche", in: app).tap()
-		let sheet = app.descendants(matching: .any)["search-sheet"]
-		XCTAssertTrue(sheet.waitForExistence(timeout: 2))
-		dismiss(sheet)
-		// The sheet did not take the selection: Today is still the tab under it.
 		XCTAssertTrue(today.isSelected)
-		XCTAssertTrue(todayPage(in: app).waitForExistence(timeout: 15))
+
+		// Both tabs still show their root when selected again. No page is pushed here: the independence of the
+		// stacks themselves is checked on the router, in `AppRouterNodeTests`.
+		genres.tap()
+		XCTAssertTrue(app.buttons["genres-edit"].waitForExistence(timeout: 5))
 	}
 
 	@MainActor
@@ -51,7 +55,7 @@ final class NavigationTests: XCTestCase {
 		UITestFlows.declineConsent(app)
 		UITestFlows.completeOnboarding(app)
 
-		for tab in ["Aujourd’hui", "Genres", "Recherche"] {
+		for tab in ["Aujourd’hui", "Genres"] {
 			let button = UITestFlows.tabButton(tab, in: app)
 			XCTAssertTrue(button.waitForExistence(timeout: 10))
 			XCTAssertGreaterThanOrEqual(button.frame.height, 44)
@@ -61,12 +65,6 @@ final class NavigationTests: XCTestCase {
 				XCTAssertTrue(todayPage(in: app).waitForExistence(timeout: 15))
 			case "Genres":
 				XCTAssertTrue(app.buttons["genres-settings"].waitForExistence(timeout: 5))
-			case "Recherche":
-				let sheet = app.descendants(matching: .any)["search-sheet"]
-				XCTAssertTrue(sheet.waitForExistence(timeout: 2))
-				// I.2: the field is the first thing of the sheet, and it stays reachable at the largest size.
-				XCTAssertTrue(app.descendants(matching: .any)["search-field"].waitForExistence(timeout: 5))
-				dismiss(sheet)
 			default:
 				XCTFail("Unexpected tab")
 			}
@@ -79,45 +77,9 @@ final class NavigationTests: XCTestCase {
 		add(attachment)
 	}
 
-	/// I.2: "Rechercher" on an empty field closes the sheet, the third way out with the swipe and the scrim.
-	@MainActor
-	func testSearchKeyOnAnEmptyFieldClosesTheSheet() throws {
-		let app = UITestFlows.launch()
-		UITestFlows.declineConsent(app)
-		UITestFlows.completeOnboarding(app)
-
-		XCTAssertTrue(UITestFlows.tabButton("Recherche", in: app).waitForExistence(timeout: 10))
-		UITestFlows.tabButton("Recherche", in: app).tap()
-		let sheet = app.descendants(matching: .any)["search-sheet"]
-		XCTAssertTrue(sheet.waitForExistence(timeout: 5))
-		let field = app.textFields["search-field"]
-		XCTAssertTrue(field.waitForExistence(timeout: 5))
-		// The return key of the field is the "Rechercher" key; a hardware keyboard has no on-screen one.
-		field.typeText("\n")
-
-		XCTAssertTrue(sheet.waitForNonExistence(timeout: 5))
-		XCTAssertTrue(UITestFlows.tabButton("Aujourd’hui", in: app).isSelected)
-	}
-
 	/// The page of the day: Today only has one once the first launch has written the profile.
 	@MainActor
 	private func todayPage(in app: XCUIApplication) -> XCUIElement {
 		app.descendants(matching: .any)["node-title"].firstMatch
-	}
-
-	/// Swipes the sheet down from its top edge; a tap outside does not exist on a full-height sheet.
-	// 2026-10-13 (TRA-398): a 0.1 s press then a drag at 500 px/s from 30 % of the sheet left it open on
-	// iOS 26.4 (ios-check #374): the start landed on the search field and the drag was too slow to cross the
-	// dismissal threshold. Start in the handle area, drag fast to the bottom of the screen, and fall back on a
-	// fast swipe.
-	@MainActor
-	private func dismiss(_ sheet: XCUIElement) {
-		let start = sheet.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.02))
-		let end = XCUIApplication().coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.98))
-		start.press(forDuration: 0.05, thenDragTo: end, withVelocity: .fast, thenHoldForDuration: 0)
-		if !sheet.waitForNonExistence(timeout: 3) {
-			sheet.swipeDown(velocity: .fast)
-		}
-		XCTAssertTrue(sheet.waitForNonExistence(timeout: 3))
 	}
 }

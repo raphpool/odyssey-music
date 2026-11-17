@@ -1,0 +1,124 @@
+name: ios-testflight
+
+# TRA-729 (2026-11-17, decision D5): manual TestFlight upload, started by the agent or by Raphael on main.
+# TRA-775 (2026-11-17): signing, archive, upload and cleanup, split off the skeleton of TRA-729 to stay under the
+# 200-line diff budget of a tier/3 PR.
+# The `testflight` Environment has no required reviewer and only accepts main, so its secrets are protected by
+# three things only: that deployment rule, this single `workflow_dispatch` trigger, and the deep review every PR
+# under .github/ gets. Remove none of them. Procedure and secret names: docs/track1-testflight.md.
+# Signing uses `security` and `xcodebuild` only, no third-party action. Never enable shell tracing: a decoded value
+# must not reach the log. A secret goes through `env:` of the step that needs it, never into `run:`.
+# test/ios-testflight-workflow.test.ts pins these guards.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-testflight
+  cancel-in-progress: false
+
+jobs:
+  testflight:
+    if: github.ref == 'refs/heads/main'
+    environment: testflight
+    # Same hosted image as ios-check (TRA-705, 2026-11-16): its Xcode is the one pinned in ios/.xcode-version.
+    # 60 minutes cover the cold compile of a fresh VM plus the upload; not measured yet, the first run records it.
+    runs-on: macos-26
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Select Xcode
+        shell: bash
+        run: |
+          pin="$(<ios/.xcode-version)"
+          read -r _ version _ <<< "$pin"
+          if [[ ! "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
+            echo "::error::cannot read an Xcode version from ios/.xcode-version: $pin"
+            exit 1
+          fi
+          app="/Applications/Xcode_${version}.app"
+          if [ ! -d "$app" ]; then
+            echo "::error::$app not found for the pin '$pin'; installed:"
+            ls -d /Applications/Xcode*.app || true
+            exit 1
+          fi
+          sudo xcode-select -s "$app/Contents/Developer"
+          # Same normalisation as check.sh, which compares the whole pin (version and build) exactly.
+          actual="$(xcodebuild -version | awk 'NR == 1 { version = $2 } NR == 2 { build = $3 } END { printf "Xcode %s (%s)", version, build }')"
+          if [ "$actual" != "$pin" ]; then
+            echo "::error::the pin is '$pin' but $app is '$actual'; installed:"
+            for candidate in /Applications/Xcode*.app; do
+              echo "$candidate: $(DEVELOPER_DIR="$candidate/Contents/Developer" xcodebuild -version | tr '\n' ' ')"
+            done
+            exit 1
+          fi
+          echo "$actual selected from $app"
+      - name: Install signing material
+        shell: bash
+        env:
+          IOS_DIST_CERT_P12_BASE64: ${{ secrets.IOS_DIST_CERT_P12_BASE64 }}
+          IOS_DIST_CERT_PASSWORD: ${{ secrets.IOS_DIST_CERT_PASSWORD }}
+          IOS_APPSTORE_PROFILE_BASE64: ${{ secrets.IOS_APPSTORE_PROFILE_BASE64 }}
+          ASC_API_KEY_P8_BASE64: ${{ secrets.ASC_API_KEY_P8_BASE64 }}
+        run: |
+          umask 077
+          keychain="$RUNNER_TEMP/track1-signing.keychain-db"
+          key="$RUNNER_TEMP/track1-asc-key.p8"
+          old_profiles="$HOME/Library/MobileDevice/Provisioning Profiles"
+          new_profiles="$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles"
+          # A throwaway password for a keychain that lives as long as this VM; it is never printed.
+          keychain_password="$(openssl rand -hex 24)"
+          printf '%s' "$IOS_DIST_CERT_P12_BASE64" | base64 --decode > "$RUNNER_TEMP/track1-dist.p12"
+          security create-keychain -p "$keychain_password" "$keychain"
+          security set-keychain-settings -lut 3600 "$keychain"
+          security unlock-keychain -p "$keychain_password" "$keychain"
+          security import "$RUNNER_TEMP/track1-dist.p12" -P "$IOS_DIST_CERT_PASSWORD" -A -t cert -f pkcs12 -k "$keychain"
+          security set-key-partition-list -S apple-tool:,apple: -k "$keychain_password" "$keychain" > /dev/null
+          security list-keychain -d user -s "$keychain"
+          # Xcode 16 moved the user's profiles to UserData and may still read the old folder: the profile goes into
+          # both, so the install does not rest on a guess. Not checkable without a Mac; the first run confirms it.
+          for folder in "$old_profiles" "$new_profiles"; do
+            mkdir -p "$folder"
+            printf '%s' "$IOS_APPSTORE_PROFILE_BASE64" | base64 --decode > "$folder/track1-appstore.mobileprovision"
+          done
+          printf '%s' "$ASC_API_KEY_P8_BASE64" | base64 --decode > "$key"
+          chmod 600 "$key"
+          # An empty or missing secret decodes to an empty file without an error: say so here, not at the archive.
+          if [ ! -s "$old_profiles/track1-appstore.mobileprovision" ] || [ ! -s "$key" ]; then
+            echo "::error::the profile or the API key decoded to an empty file: check the Environment secrets"
+            exit 1
+          fi
+      - name: Archive and upload
+        shell: bash
+        env:
+          TRACK1_UPLOAD: "1"
+          TRACK1_TEAM_ID: ${{ vars.TRACK1_TEAM_ID }}
+          TRACK1_API_BASE_URL: ${{ vars.TRACK1_API_BASE_URL }}
+          TRACK1_PROFILE_NAME: ${{ vars.TRACK1_APPSTORE_PROFILE_NAME }}
+          ASC_KEY_PATH: ${{ runner.temp }}/track1-asc-key.p8
+          ASC_KEY_ID: ${{ secrets.ASC_API_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_API_ISSUER_ID }}
+        # `shell: bash` sets pipefail, so a failing script still fails the step behind the tee.
+        run: ios/scripts/testflight.sh | tee "$RUNNER_TEMP/testflight-output.txt"
+      - name: Remove signing material
+        if: always()
+        shell: bash
+        run: |
+          security delete-keychain "$RUNNER_TEMP/track1-signing.keychain-db" || true
+          rm -f "$RUNNER_TEMP/track1-dist.p12" "$RUNNER_TEMP/track1-asc-key.p8" \
+            "$HOME/Library/MobileDevice/Provisioning Profiles/track1-appstore.mobileprovision" \
+            "$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles/track1-appstore.mobileprovision"
+      - name: Job summary
+        shell: bash
+        run: |
+          # testflight.sh ends with the lines "Git SHA:", "Version:", "Build:" and "API URL:".
+          {
+            echo "### TestFlight upload"
+            echo
+            tail -n 4 "$RUNNER_TEMP/testflight-output.txt" \
+              | awk -F': +' '/^(Git SHA|Version|Build):/ { printf "- **%s**: `%s`\n", $1, $2 }'
+          } >> "$GITHUB_STEP_SUMMARY"

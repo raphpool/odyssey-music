@@ -6,12 +6,10 @@ enum AppRoute: Hashable, Sendable {
 	case node(identity: NodeIdentity, context: NavigationContext)
 }
 
-/// The root tabs (D8). Search is not a destination: selecting it opens the search sheet, so it never
-/// becomes `AppRouter.selectedTab`.
+/// The root tabs (D8, v1: two tabs, search is no longer reachable from the bar).
 enum AppTab: String, CaseIterable, Hashable, Identifiable, Sendable {
 	case today
 	case genres
-	case search
 
 	var id: Self { self }
 
@@ -19,16 +17,14 @@ enum AppTab: String, CaseIterable, Hashable, Identifiable, Sendable {
 		switch self {
 		case .today: "Aujourd’hui"
 		case .genres: "Genres"
-		case .search: "Recherche"
 		}
 	}
 
-	/// The tab bar icon drawn in the Figma `Tab bar` (`282:889`), an image set of the asset catalog.
+	/// The tab bar icon drawn in the Figma `Tab bar`, an image set of the asset catalog.
 	var icon: Track1Icon.Asset {
 		switch self {
 		case .today: .tabToday
 		case .genres: .tabGenres
-		case .search: .tabSearch
 		}
 	}
 
@@ -37,7 +33,6 @@ enum AppTab: String, CaseIterable, Hashable, Identifiable, Sendable {
 		switch self {
 		case .today: "tab-today"
 		case .genres: "tab-genres"
-		case .search: "tab-search"
 		}
 	}
 }
@@ -46,7 +41,6 @@ enum AppTab: String, CaseIterable, Hashable, Identifiable, Sendable {
 @Observable
 final class AppRouter {
 	var selectedTab: AppTab = .today
-	var isSearchPresented = false
 	/// Node names seen on the way in, so the breadcrumb can name a path step without reloading the node.
 	private(set) var titles: [NodeIdentity: String] = [:]
 	private var paths: [AppTab: [AppRoute]] = Dictionary(uniqueKeysWithValues: AppTab.allCases.map { ($0, []) })
@@ -64,12 +58,10 @@ final class AppRouter {
 		paths[destination, default: []].append(route)
 	}
 
-	/// Every tab change goes through here (the `TabView` binding). Search opens its sheet and leaves the
-	/// current tab selected; selecting Today while it is already selected goes back to the node of the day.
+	/// Every tab change goes through here (the `TabView` binding). Selecting Today while it is already selected
+	/// goes back to the node of the day.
 	func select(_ tab: AppTab) {
 		switch tab {
-		case .search:
-			isSearchPresented = true
 		case .today where selectedTab == .today:
 			setPath([], for: .today)
 		case .today, .genres:
