@@ -167,8 +167,8 @@ public actor ProfileStore {
 		let profile: Profile
 		switch current {
 		case .profile(let existing):
-			// A draft without a pseudo or a disc is an edit of the genres only: the saved ones stay.
-			// Neither is required yet: onboarding only starts to collect them with TRA-735.
+			// A draft without a pseudo or a disc is an edit of the genres only: the saved ones stay, and a draft
+			// cannot clear them. Neither is required yet: onboarding only starts to collect them with TRA-735.
 			let displayName = draft.displayName ?? existing.displayName
 			let disc = draft.disc ?? existing.disc
 			let unchanged =

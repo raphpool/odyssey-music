@@ -377,6 +377,17 @@ final class ProfileStoreTests: XCTestCase {
 		XCTAssertEqual(try FileManager.default.contentsOfDirectory(atPath: directoryURL.path), [])
 	}
 
+	func testADraftWithAPseudoThatIsNotNormalizedIsNotSavedAndReadsCorrupt() async throws {
+		let store = makeStore()
+		let raw = draft(genres: genres(3), displayName: " Raph ", disc: .mint)
+		let saved = await store.saveDraft(raw)
+		XCTAssertEqual(saved, .failure(.unavailable))
+		XCTAssertFalse(fileExists("profile-draft.v3.json"))
+		try await seed(raw, named: "profile-draft.v3.json")
+		let read = await store.readDraft()
+		XCTAssertEqual(read, .corrupt)
+	}
+
 	func testAV3FileWithAnUnknownDiscOrARawPseudoIsCorruptButAPartialOneIsValid() async throws {
 		let file = directoryURL.appending(path: "profile.v3.json")
 		let corrupt: [[String: Any]] = [["disc": "pink"], ["display_name": " Raph "], ["display_name": ""]]

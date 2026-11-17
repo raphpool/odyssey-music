@@ -122,5 +122,6 @@ public struct ProfileDraft: Codable, Equatable, Sendable {
 	func isValid() -> Bool {
 		version == Profile.version && genreIDs.allSatisfy { $0.type == .genre }
 			&& Set(genreIDs).count == genreIDs.count && (selection?.isValid() ?? true)
+			&& (displayName.map { PseudoRules.normalized($0) == $0 } ?? true)
 	}
 }
