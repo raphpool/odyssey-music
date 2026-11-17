@@ -210,7 +210,7 @@ private struct ApplicationTabs: View {
 					switch route {
 					case .player(let identity, let context):
 						if let readers, let imageStore {
-							PlayerView(
+							PlayerDestination(
 								model: NodeViewModel(
 									identity: identity,
 									context: context,
@@ -340,6 +340,33 @@ private struct ProfileRecoveryView: View {
 		}
 		.multilineTextAlignment(.center)
 		.padding(Track1Tokens.spacing24)
+	}
+}
+
+/// The reader pushed by "Découvrir". `PlayerView` keeps its model in a `let`, so the model lives here, in
+/// `@State`.
+/// 2026-11-17 (TRA-736, ios-check run 44116321948): the destination closure of the stack runs again at every
+/// change of the router or of the window, and each run built a new `NodeViewModel` that nobody loaded (the
+/// `.task` of the reader does not restart), so the reader stayed on its splash and `player-paragraph-0` never
+/// appeared. `NodeView` holds its model in `@State` for the same reason.
+private struct PlayerDestination: View {
+	@State private var model: NodeViewModel
+	private let imageStore: NodeImageStore<UIImage>
+	private let safeAreaBottom: CGFloat
+	private let onBack: () -> Void
+
+	init(
+		model: NodeViewModel, imageStore: NodeImageStore<UIImage>, safeAreaBottom: CGFloat,
+		onBack: @escaping () -> Void
+	) {
+		_model = State(initialValue: model)
+		self.imageStore = imageStore
+		self.safeAreaBottom = safeAreaBottom
+		self.onBack = onBack
+	}
+
+	var body: some View {
+		PlayerView(model: model, imageStore: imageStore, safeAreaBottom: safeAreaBottom, onBack: onBack)
 	}
 }
 

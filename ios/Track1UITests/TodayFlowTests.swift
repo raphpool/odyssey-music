@@ -14,14 +14,14 @@ final class TodayFlowTests: XCTestCase {
 		// 3. The home of the day (TRA-736): a card with the date, the genres, the type, the title and "Découvrir".
 		let title = element(app, "today-title")
 		let discover = app.buttons["today-discover"]
-		XCTAssertTrue(title.waitForExistence(timeout: 15))
-		XCTAssertTrue(element(app, "today-home").exists)
-		XCTAssertTrue(element(app, "node-type-badge").exists)
-		XCTAssertTrue(discover.exists)
+		XCTAssertTrue(title.waitForExistence(timeout: 15), "today-title")
+		XCTAssertTrue(element(app, "today-home").exists, "today-home")
+		XCTAssertTrue(element(app, "node-type-badge").exists, "node-type-badge")
+		XCTAssertTrue(discover.exists, "today-discover")
 		let date = NSPredicate(format: "label MATCHES %@", "[0-9]{1,2} [A-ZÉÛ]{3}")
-		XCTAssertTrue(app.descendants(matching: .any).matching(date).firstMatch.exists)
+		XCTAssertTrue(app.descendants(matching: .any).matching(date).firstMatch.exists, "date badge")
 		// The genres of the recommended work, not those of the profile (the fixture links every work to `genre-0`).
-		XCTAssertTrue(app.staticTexts["Genre 0"].exists)
+		XCTAssertTrue(app.staticTexts["Genre 0"].exists, "genre pill")
 		let titleOfTheDay = title.label
 		XCTAssertFalse(titleOfTheDay.isEmpty)
 		// No edge, no fact, no page of the node, no streaming bar.
@@ -35,32 +35,32 @@ final class TodayFlowTests: XCTestCase {
 		// 4. "Découvrir" opens the reader of the same node.
 		UITestFlows.tapWhenReady(discover)
 		let player = element(app, "player")
-		XCTAssertTrue(player.waitForExistence(timeout: 10))
+		XCTAssertTrue(player.waitForExistence(timeout: 10), "player")
 		let paragraph = element(app, "player-paragraph-0")
-		XCTAssertTrue(paragraph.waitForExistence(timeout: 10))
+		XCTAssertTrue(paragraph.waitForExistence(timeout: 10), "player-paragraph-0")
 		XCTAssertTrue(paragraph.label.contains(titleOfTheDay), "\(paragraph.label) is not about \(titleOfTheDay)")
 		// R1: the drawn bar is the only one, the native bar must not come back on a pushed page.
 		XCTAssertEqual(app.tabBars.count, 0)
-		XCTAssertTrue(UITestFlows.tabBar(in: app).exists)
+		XCTAssertTrue(UITestFlows.tabBar(in: app).exists, "tab-bar")
 		UITestFlows.screenshot(named: "3.2", in: self)
 
 		// 5. The back button of the reader goes back to the home of the day.
 		UITestFlows.tapWhenReady(app.buttons["player-back"])
-		XCTAssertTrue(player.waitForNonExistence(timeout: 5))
-		XCTAssertTrue(title.waitForExistence(timeout: 5))
+		XCTAssertTrue(player.waitForNonExistence(timeout: 5), "player is gone")
+		XCTAssertTrue(title.waitForExistence(timeout: 5), "today-title is back")
 		XCTAssertEqual(title.label, titleOfTheDay)
 
 		// 6. Tapping Today again from the reader goes back to the home too.
 		UITestFlows.tapWhenReady(discover)
-		XCTAssertTrue(player.waitForExistence(timeout: 10))
+		XCTAssertTrue(player.waitForExistence(timeout: 10), "player")
 		UITestFlows.tabButton("Aujourd’hui", in: app).tap()
-		XCTAssertTrue(player.waitForNonExistence(timeout: 5))
-		XCTAssertTrue(title.waitForExistence(timeout: 5))
+		XCTAssertTrue(player.waitForNonExistence(timeout: 5), "player is gone")
+		XCTAssertTrue(title.waitForExistence(timeout: 5), "today-title is back")
 		XCTAssertEqual(title.label, titleOfTheDay)
 
 		// 7. Without a reset argument, the same node of the day comes back.
 		UITestFlows.relaunch(app)
-		XCTAssertTrue(title.waitForExistence(timeout: 15))
+		XCTAssertTrue(title.waitForExistence(timeout: 15), "today-title")
 		XCTAssertEqual(title.label, titleOfTheDay)
 	}
 
