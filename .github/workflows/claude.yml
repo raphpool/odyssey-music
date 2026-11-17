@@ -9,8 +9,11 @@ on:
 
 jobs:
   claude:
-    if: contains(github.event.comment.body, '@claude')
-    runs-on: [self-hosted, linux]
+    # 2026-11-16 (TRA-703): the repository is public and this job has write permissions, so only an owner, a
+    # member or a collaborator can summon it; any other commenter could otherwise drive the agent.
+    if: contains(github.event.comment.body, '@claude') && contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association)
+    # 2026-11-16 (TRA-703): hosted runner, the self-hosted ones have been off since 2026-10-24.
+    runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
       contents: write
