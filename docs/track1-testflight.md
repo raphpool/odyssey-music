@@ -1,0 +1,395 @@
+# Track1 — mode d'emploi TestFlight
+
+Ce document est la liste de ce que Raphael prépare côté Apple et côté GitHub, parce qu'aucun
+agent ne peut le créer (certificat, profil, clé d'API, Environment, secrets, groupes de
+testeurs). C'est aussi la référence de l'agent qui lance les envois. Il ne contient aucune
+valeur de secret et aucune URL d'API réelle : partout où une valeur est attendue, il écrit un
+nom ou un `<repère>`.
+
+Décisions (plan `track1-v1`, D5, arbitrage de Raphael du 2026-11-16) :
+
+- Signature **manuelle** : certificat Apple Distribution et profil App Store dans un trousseau
+  temporaire du runner, envoi par une clé d'API App Store Connect. Ni signature automatique, ni
+  `fastlane`.
+- L'Environment GitHub `testflight` **n'a pas de relecteur requis** et **n'accepte que des
+  déploiements depuis `main`**.
+- Deux groupes TestFlight : un groupe **interne** (Raphael, builds disponibles sans revue Apple)
+  et un groupe **externe** (amis, lien public, après la revue bêta d'Apple). Raphael teste
+  d'abord sur le groupe interne.
+
+Avant les sections 1 à 6, vérifier l'état des workflows : voir l'[annexe A](#annexe-a--état-des-workflows-au-2026-11-16).
+
+Les noms de menus Apple ci-dessous suivent l'interface en anglais. Apple les renomme parfois :
+si un libellé a changé, suivre l'intitulé le plus proche et corriger ce document.
+
+## 1. Côté Apple
+
+Prérequis : un compte du programme Apple Developer actif. Le rôle Account Holder ou Admin est
+nécessaire pour créer le certificat et la clé d'API.
+
+### 1.1 Team ID
+
+1. Ouvrir <https://developer.apple.com/account> et se connecter.
+2. Cliquer sur **Membership details** (ou **Membership**).
+3. Relever **Team ID** : 10 caractères, majuscules et chiffres. Il servira à la variable
+   `TRACK1_TEAM_ID` (section 3).
+
+### 1.2 Identifiant d'app et fiche App Store Connect
+
+1. Sur <https://developer.apple.com/account>, ouvrir **Certificates, Identifiers & Profiles**,
+   puis **Identifiers**.
+2. Cliquer sur **+**, choisir **App IDs**, puis **Continue**, puis **App**, puis **Continue**.
+3. Renseigner **Description** (par exemple `Track1`).
+4. Dans **Bundle ID**, choisir **Explicit** et saisir `com.dropcliffs.track1`.
+5. Ne cocher aucune capability, sauf si un ticket l'exige (les rappels de v1 sont des
+   notifications locales : aucune capability n'est requise). Cliquer sur **Continue**, puis
+   **Register**.
+6. Ouvrir <https://appstoreconnect.apple.com>, puis **Apps**.
+7. Cliquer sur **+**, puis **New App**.
+8. Renseigner : **Platforms** = iOS ; **Name** = le nom affiché dans l'App Store (unique sur
+   toute l'App Store : Apple peut le refuser, en choisir alors un autre) ; **Primary
+   Language** = French ; **Bundle ID** = `com.dropcliffs.track1` (liste déroulante, alimentée
+   par l'étape 5) ; **SKU** = une chaîne libre et unique (par exemple `track1-ios`) ; **User
+   Access** = Full Access.
+9. Cliquer sur **Create**.
+
+### 1.3 Certificat Apple Distribution (`.p12`)
+
+Ces étapes se font sur un Mac, dans l'application **Keychain Access**.
+
+1. Ouvrir **Keychain Access**, menu **Keychain Access**, puis **Certificate Assistant**, puis
+   **Request a Certificate From a Certificate Authority…**.
+2. Renseigner **User Email Address** et **Common Name**. Laisser **CA Email Address** vide.
+   Choisir **Saved to disk**, puis **Continue**, et enregistrer le fichier `.certSigningRequest`.
+3. Sur <https://developer.apple.com/account>, ouvrir **Certificates, Identifiers & Profiles**,
+   puis **Certificates**.
+4. Cliquer sur **+**, choisir **Apple Distribution** (pas **Apple Development**), puis
+   **Continue**.
+5. Cliquer sur **Choose File**, sélectionner le fichier `.certSigningRequest`, puis **Continue**.
+6. Cliquer sur **Download** : on obtient un fichier `.cer`.
+7. Double-cliquer sur le `.cer` pour l'installer dans le trousseau **login**.
+8. Dans **Keychain Access**, ouvrir **login**, puis la catégorie **My Certificates**.
+9. Repérer **Apple Distribution: <nom>** et le déplier : une clé privée doit apparaître en
+   dessous. Sans clé privée, l'export est inutilisable : refaire l'étape 1 sur ce Mac.
+10. Clic droit sur le certificat (la ligne du certificat, pas la clé), puis **Export…**.
+11. Choisir le format **Personal Information Exchange (.p12)** et enregistrer.
+12. Saisir un mot de passe d'export. Il servira au secret `IOS_DIST_CERT_PASSWORD` (section 3) :
+    le garder dans un gestionnaire de mots de passe, il n'est pas récupérable.
+
+Un certificat Apple Distribution expire après un an. Noter la date d'expiration : à cette date,
+les envois échoueront (section 6).
+
+### 1.4 Profil de provisionnement App Store
+
+1. Sur <https://developer.apple.com/account>, ouvrir **Certificates, Identifiers & Profiles**,
+   puis **Profiles**.
+2. Cliquer sur **+**.
+3. Sous **Distribution**, choisir **App Store Connect**, puis **Continue**.
+4. Dans **App ID**, choisir `com.dropcliffs.track1`, puis **Continue**.
+5. Cocher le certificat Apple Distribution créé en 1.3, puis **Continue**.
+6. Dans **Provisioning Profile Name**, saisir un nom sans ambiguïté, par exemple
+   `Track1 App Store`, puis **Generate**.
+7. Cliquer sur **Download** : on obtient un fichier `.mobileprovision`.
+8. **Relever le nom exact**, caractère pour caractère (casse, espaces). Il servira à la variable
+   `TRACK1_APPSTORE_PROFILE_NAME` (section 3) ; un nom légèrement différent fait échouer la
+   signature (section 6).
+
+Si le certificat est révoqué ou recréé, le profil devient invalide : le régénérer (ouvrir le
+profil, **Edit**, recocher le nouveau certificat, **Save**, retélécharger) et remettre à jour le
+secret `IOS_APPSTORE_PROFILE_BASE64`.
+
+### 1.5 Clé d'API App Store Connect (rôle App Manager)
+
+1. Ouvrir <https://appstoreconnect.apple.com>, puis **Users and Access**.
+2. Ouvrir l'onglet **Integrations**, puis **App Store Connect API**, puis **Team Keys**. Si la
+   page demande de **Request Access**, le faire (action réservée à l'Account Holder).
+3. Cliquer sur **+** (ou **Generate API Key**).
+4. Renseigner **Name** (par exemple `track1-github-actions`) et **Access** = **App Manager**,
+   puis **Generate**.
+5. Relever le **Key ID** de la nouvelle ligne : il servira au secret `ASC_API_KEY_ID`.
+6. Relever l'**Issuer ID**, affiché en haut de la page : il servira au secret
+   `ASC_API_ISSUER_ID`.
+7. Cliquer sur **Download API Key** : on obtient `AuthKey_<Key ID>.p8`. **Le téléchargement n'est
+   possible qu'une seule fois** ; sauvegarder le fichier dans un gestionnaire de mots de passe.
+
+## 2. Groupes TestFlight
+
+Dans <https://appstoreconnect.apple.com>, ouvrir **Apps**, puis l'app Track1, puis l'onglet
+**TestFlight**.
+
+### 2.1 Groupe interne, distribution automatique
+
+1. Dans la barre latérale, à côté de **Internal Testing**, cliquer sur **+**.
+2. Saisir le nom `Interne` (ou un nom équivalent).
+3. Cocher **Enable automatic distribution** (si la case n'est pas proposée à la création, ouvrir
+   le groupe, onglet **Builds**, et l'activer là). Chaque build traitée est alors disponible dans
+   ce groupe sans revue Apple.
+4. Ouvrir le groupe, section **Testers**, cliquer sur **+**, cocher Raphael et valider. Un testeur
+   interne doit être un utilisateur de l'équipe App Store Connect (**Users and Access**).
+5. Sur l'iPhone de Raphael, installer l'app **TestFlight** et se connecter avec le même Apple ID.
+
+### 2.2 Groupe externe, vide
+
+1. Dans la barre latérale, à côté de **External Testing**, cliquer sur **+**.
+2. Saisir le nom `Amis` (ou un nom équivalent) et valider.
+3. **Ne rien ajouter** : ni testeur, ni build. Ce groupe s'ouvre à la section 5.
+
+### 2.3 Informations de test
+
+1. Dans la barre latérale de l'onglet **TestFlight**, ouvrir **Test Information**.
+2. Renseigner **Beta App Description** : ce que fait Track1 et ce qu'on attend des testeurs.
+3. Renseigner **Feedback Email** : l'adresse où les testeurs écrivent.
+4. Renseigner les champs de contact demandés (prénom, nom, téléphone, e-mail) et, si Apple le
+   demande, les informations de connexion de test. Si l'app n'a pas de connexion (profil
+   local), l'indiquer : aucune connexion n'est requise.
+5. Cliquer sur **Save**. Ces informations sont exigées avant la revue bêta (section 5).
+
+## 3. Côté GitHub
+
+Dépôt : `raphpool/odyssey-music`.
+
+### 3.1 Environment `testflight`
+
+1. Ouvrir le dépôt sur GitHub, puis **Settings**, puis **Environments**.
+2. Cliquer sur **New environment**, saisir `testflight`, puis **Configure environment**.
+3. **Ne pas cocher** **Required reviewers**. Décision D5 : l'Environment n'a pas de relecteur
+   requis, pour que l'agent lance les envois lui-même.
+4. Laisser **Wait timer** désactivé.
+5. Dans **Deployment branches and tags**, ouvrir la liste et choisir **Selected branches and
+   tags**.
+6. Cliquer sur **Add deployment branch or tag rule**, choisir **Ref type** = **Branch**, saisir
+   le motif `main`, puis **Add rule**.
+7. Vérifier que `main` est la seule règle. Sans relecteur, les secrets ne sont protégés que par
+   trois choses : l'Environment n'accepte que `main`, le workflow n'a que `workflow_dispatch`, et
+   toute PR sous `.github/` passe la review profonde. Ne retirer aucune des trois.
+
+### 3.2 Les six secrets
+
+Dans l'Environment `testflight`, section **Environment secrets**, cliquer sur **Add environment
+secret** pour chacun des six noms ci-dessous. Les noms doivent être exacts.
+
+| Secret | Contenu |
+| --- | --- |
+| `IOS_DIST_CERT_P12_BASE64` | Le `.p12` de 1.3, encodé en base64 |
+| `IOS_DIST_CERT_PASSWORD` | Le mot de passe d'export choisi en 1.3 (étape 12) |
+| `IOS_APPSTORE_PROFILE_BASE64` | Le `.mobileprovision` de 1.4, encodé en base64 |
+| `ASC_API_KEY_P8_BASE64` | Le `.p8` de 1.5, encodé en base64 |
+| `ASC_API_KEY_ID` | Le Key ID de 1.5 |
+| `ASC_API_ISSUER_ID` | L'Issuer ID de 1.5 |
+
+Ne jamais mettre ces valeurs dans un fichier du dépôt, une issue, un ticket ou un message.
+
+### 3.3 Les trois variables
+
+Dans l'Environment `testflight`, section **Environment variables**, cliquer sur **Add environment
+variable** pour chacune.
+
+| Variable | Contenu |
+| --- | --- |
+| `TRACK1_TEAM_ID` | Le Team ID de 1.1 (10 caractères, majuscules et chiffres) |
+| `TRACK1_API_BASE_URL` | L'URL de base de l'API, en `https://`, **terminée par `/mobile/v1`** |
+| `TRACK1_APPSTORE_PROFILE_NAME` | Le nom exact du profil relevé en 1.4 (étape 8) |
+
+`TRACK1_API_BASE_URL` a la forme `https://<hôte-de-l-api>/mobile/v1` : sans port, sans
+identifiants, sans paramètre de requête, sans domaine en `.example`. L'application refuse au
+lancement tout autre chemin, après avoir été archivée et signée : le script d'envoi la refuse
+donc avant.
+
+### 3.4 Encoder les fichiers en base64
+
+Depuis un terminal macOS, dans le dossier qui contient les fichiers. Chaque commande copie le
+résultat dans le presse-papiers sans l'afficher, sur une seule ligne ; coller ensuite dans le
+champ **Value** du secret.
+
+```sh
+# IOS_DIST_CERT_P12_BASE64
+base64 -i <certificat>.p12 | tr -d '\n' | pbcopy
+
+# IOS_APPSTORE_PROFILE_BASE64
+base64 -i <profil>.mobileprovision | tr -d '\n' | pbcopy
+
+# ASC_API_KEY_P8_BASE64
+base64 -i AuthKey_<Key ID>.p8 | tr -d '\n' | pbcopy
+```
+
+Les secrets `IOS_DIST_CERT_PASSWORD`, `ASC_API_KEY_ID` et `ASC_API_ISSUER_ID` se collent tels
+quels, sans encodage. Une fois les trois secrets créés, supprimer le contenu du presse-papiers et
+ne pas laisser de copie des fichiers hors du gestionnaire de mots de passe.
+
+### 3.5 Réglage du dépôt : approbation des contributeurs externes
+
+1. Ouvrir **Settings**, puis **Actions**, puis **General**.
+2. Dans **Fork pull request workflows from outside collaborators**, choisir **Require approval
+   for all external contributors**, puis **Save**. Le dépôt est public : sans ce réglage, une PR
+   de fork peut lancer des workflows sans approbation. À faire avant l'annexe A.
+
+## 4. Lancer un envoi
+
+Le workflow `ios-testflight` (`.github/workflows/ios-testflight.yml`, ticket TRA-729) n'existe
+pas encore sur `main` : les sections 4 et 6 suivent son contrat (noms du job et des étapes,
+délai, résumé) ; si le workflow livré diffère, corriger ce document dans la même PR. Il n'a que le
+déclencheur `workflow_dispatch`, sans entrée, et son job ne s'exécute que sur `main`
+(`github.ref == 'refs/heads/main'`). Il n'attend aucune approbation : l'Environment n'a pas de
+relecteur requis.
+
+Préconditions : les sections 1 à 3 sont terminées ; le workflow est mergé sur `main` ; le code à
+envoyer est sur `main`.
+
+### 4.1 Par l'agent
+
+1. Appeler l'outil MCP GitHub `actions_run_trigger` avec `method` = `run_workflow`,
+   `owner` = `raphpool`, `repo` = `odyssey-music`, `workflow_id` = `ios-testflight.yml`,
+   `ref` = `main`. Ne passer aucune entrée.
+2. Suivre le run avec `actions_list` (`list_workflow_runs`, puis `list_workflow_jobs`).
+
+### 4.2 Par Raphael
+
+1. Ouvrir le dépôt sur GitHub, puis **Actions**.
+2. Choisir **ios-testflight** dans la liste de gauche.
+3. Cliquer sur **Run workflow**, laisser **Branch: main**, puis **Run workflow**.
+
+### 4.3 Lire le résultat
+
+1. Ouvrir le run, puis le job `testflight`. Il dure au plus 60 minutes (délai du job).
+2. Ouvrir le **Summary** du run. Le résumé du job affiche : le **SHA** envoyé, la **version** de
+   l'app et le **numéro de build**. Le numéro de build est un horodatage UTC `YYYYMMDDHHMM` : deux
+   envois dans la même minute auraient le même numéro et le second serait refusé.
+3. Un run vert signifie que l'envoi à App Store Connect est accepté, pas que la build est
+   installable. Apple traite ensuite la build : compter quelques minutes, parfois plus.
+4. Si la build reste en **Missing Compliance**, elle n'est pas proposée aux testeurs : la
+   conformité à l'export est déclarée par l'`Info.plist` (ticket TRA-707) ; tant qu'il n'est pas
+   mergé, répondre à la question à la main sur la build, dans App Store Connect.
+5. Dans App Store Connect, onglet **TestFlight**, la build apparaît sous **Builds**, puis dans le
+   groupe interne (distribution automatique). Elle est alors installable depuis l'app **TestFlight**
+   de Raphael, sans revue Apple.
+
+## 5. Ouvrir le groupe externe
+
+À faire seulement après que Raphael a installé et testé la build sur le groupe interne.
+
+1. Dans App Store Connect, ouvrir l'app Track1, onglet **TestFlight**.
+2. Ouvrir le groupe externe (`Amis`, section 2.2).
+3. Ouvrir l'onglet **Builds**, cliquer sur **+**, choisir **la build testée** (même numéro que sur
+   le groupe interne), puis **Next**.
+4. Renseigner **What to Test** : ce que les amis doivent essayer.
+5. Vérifier que **Test Information** (section 2.3) est complet, puis cliquer sur **Submit for
+   Review** (revue bêta d'Apple). Le statut passe à **Waiting for Review**, puis **In Review**,
+   puis **Approved**.
+6. Attendre **Approved**. Tant que la revue n'est pas terminée, les testeurs externes ne reçoivent
+   pas la build.
+7. Quand la build est approuvée, ouvrir le groupe externe, section **Public Link**, cliquer sur
+   **Enable Public Link**.
+8. Fixer le nombre maximal de testeurs (**Tester Limit**) et valider.
+9. Copier le lien public (de la forme `https://testflight.apple.com/join/<code>`) et le partager.
+   Ne pas le publier dans le dépôt.
+10. Pour couper l'accès : ouvrir le groupe externe, **Public Link**, puis **Disable Public Link**.
+
+## 6. Lire un échec
+
+Ouvrir le run en échec, puis le job `testflight`, puis l'étape en rouge. Les messages exacts
+varient selon la version de Xcode : les formulations ci-dessous sont indicatives.
+
+### 6.1 Le job ne démarre pas
+
+| Symptôme | À vérifier |
+| --- | --- |
+| Le job est ignoré (`skipped`) | Le run a été lancé depuis une autre branche que `main` : la garde du job le saute. |
+| Le job est rejeté avec un message sur la branche ou l'Environment | La règle de déploiement de l'Environment `testflight` (3.1, étapes 5 à 7) : elle doit autoriser `main`. |
+| Le job attend une approbation | Quelqu'un a coché **Required reviewers** sur l'Environment : le décocher (décision D5). |
+| Un secret est vide dans les journaux | Le secret a été créé au niveau du dépôt et non de l'Environment, ou son nom est écrit différemment : 3.2. |
+
+### 6.2 Refus du script avant la compilation
+
+Le script d'envoi (`ios/scripts/testflight.sh`, TRA-718) refuse un lancement mal configuré, en
+nommant la variable fautive. Les lignes ci-dessous suivent le contrat de TRA-718 : si le script
+livré diffère, corriger ce tableau dans la même PR.
+
+| Message | À vérifier |
+| --- | --- |
+| `TRACK1_API_BASE_URL` ne finit pas par `/mobile/v1` | La variable de l'Environment (3.3). |
+| `TRACK1_API_BASE_URL` en `.example` | La variable porte encore une valeur de substitution. |
+| `TRACK1_TEAM_ID` invalide | Exactement 10 caractères A-Z et 0-9 (1.1). |
+| Profil vide | `TRACK1_APPSTORE_PROFILE_NAME` est absent ou vide (3.3). |
+| Clé absente | `ASC_API_KEY_P8_BASE64` est vide ou mal encodé (3.4). |
+| Arbre git non propre | Un fichier a été modifié par une étape précédente : ouvrir un ticket. |
+| Xcode différent de `ios/.xcode-version` | L'image du runner n'a plus le Xcode épinglé : ouvrir un ticket. |
+
+### 6.3 Erreurs de signature
+
+À l'étape « Install signing material » ou à l'archive.
+
+| Message | À vérifier |
+| --- | --- |
+| Import du `.p12` refusé, `MAC verification failed` ou mot de passe incorrect | `IOS_DIST_CERT_PASSWORD` correspond au mot de passe saisi à l'export (1.3, étape 12) ; le secret base64 n'est pas tronqué (une seule ligne, sans espace). |
+| `No signing certificate "Apple Distribution" found` | Le `.p12` contient bien un certificat **Apple Distribution** (pas **Apple Development**) **et sa clé privée** : l'export doit partir de **My Certificates** (1.3, étapes 8 à 11). |
+| Certificat expiré ou révoqué | Date d'expiration du certificat (1.3). En créer un nouveau, régénérer le profil (1.4), remplacer les secrets. |
+| `Code signing is required for product type 'Application'` | Le `.p12` n'a pas été importé : voir les deux lignes précédentes. |
+
+### 6.4 Erreurs de profil
+
+| Message | À vérifier |
+| --- | --- |
+| `No profile for team '<Team ID>' matching '<nom>' found` | `TRACK1_APPSTORE_PROFILE_NAME` est identique, caractère pour caractère, au nom du profil (1.4, étape 8) ; `IOS_APPSTORE_PROFILE_BASE64` est le profil à jour. |
+| `Provisioning profile "<nom>" doesn't include signing certificate` | Le profil n'a pas été généré avec le certificat présent dans le `.p12` : régénérer le profil avec le bon certificat (1.4). |
+| `doesn't match the bundle identifier` | Le profil a été créé pour un autre identifiant que `com.dropcliffs.track1` (1.2, 1.4). |
+| Profil expiré ou `Invalid` | Ouvrir le profil dans le portail Apple, **Edit**, **Save**, retélécharger, remplacer `IOS_APPSTORE_PROFILE_BASE64`. |
+| `Team ID` du profil différent | `TRACK1_TEAM_ID` ne correspond pas à l'équipe qui possède le profil (1.1). |
+
+### 6.5 Erreurs de validation ou d'envoi App Store Connect
+
+À l'étape « Archive and upload », après l'export.
+
+| Message | À vérifier |
+| --- | --- |
+| `401`, `Authentication credentials are missing or invalid` | `ASC_API_KEY_ID` et `ASC_API_ISSUER_ID` ne sont pas inversés ; la clé n'est pas révoquée (**Users and Access**, **Integrations**) ; son rôle est **App Manager** ; le `.p8` est celui de ce Key ID. |
+| `No app found with the specified bundle identifier` | La fiche App Store Connect existe pour `com.dropcliffs.track1` (1.2, étapes 6 à 9). |
+| `The bundle version must be higher than the previously uploaded version` | Deux envois dans la même minute, ou un numéro de build déjà pris : relancer une minute plus tard. |
+| `ITMS-90xxx` ou `ITMS-91xxx` (`Missing ...`, `Invalid ...`) | Le code `ITMS` désigne la règle d'Apple ; lire le texte qui suit. Les causes courantes : clé manquante dans l'`Info.plist`, manifeste de confidentialité absent ou incomplet (ticket TRA-707), icône manquante ou invalide. C'est un défaut de l'app, pas de la configuration : ouvrir un ticket avec le code. |
+| L'envoi réussit mais la build n'apparaît pas | Attendre le traitement d'Apple ; chercher un e-mail d'Apple dans la boîte de l'Account Holder (rejet après traitement). |
+| La build apparaît mais pas dans le groupe interne | La distribution automatique est cochée sur le groupe interne (2.1, étape 3) et Raphael y est testeur (2.1, étape 4). |
+
+### 6.6 Après un échec
+
+1. Corriger la cause dans la configuration (sections 1 à 3) quand c'est une configuration, ou
+   ouvrir un ticket quand c'est le code ou le workflow.
+2. Relancer l'envoi (section 4). Ne pas contourner : ni relecteur ou branche ajoutés à
+   l'Environment, ni lancement depuis une autre branche, ni secret collé hors de l'Environment.
+
+## Annexe A — État des workflows au 2026-11-16
+
+Instantané daté : le supprimer une fois TRA-703, TRA-705 et TRA-729 mergés et les workflows
+réactivés. Les dix workflows du dépôt sont `disabled_manually` depuis le 2026-11-01. Un workflow désactivé
+ne se déclenche pas, même quand une PR le modifie. Vérifier l'état courant dans **Actions** (les
+workflows désactivés sont marqués), ou avec `gh workflow list --all`.
+
+À réactiver, par **Actions**, puis le workflow, puis **Enable workflow** (ou
+`gh workflow enable <fichier>`) :
+
+| Workflow | Fichier | Décision |
+| --- | --- | --- |
+| `ci` | `ci.yml` | Réactiver. |
+| `ai-review` | `ai-review.yml` | Réactiver. |
+| `review-gate` | `review-gate.yml` | Réactiver. |
+| `mobile-ci` | `mobile-ci.yml` | Réactiver. |
+| `ios-ci` | `ios-ci.yml` | Réactiver. |
+| `claude` | `claude.yml` | Réactiver **après le merge de TRA-703**. |
+
+À laisser désactivés : `deploy`, `pull-cache`, `sync-genre-cache`, `top-up-genres`. Ils tournent
+encore sur des runners auto-hébergés (`[self-hosted, linux]`) et n'ont aucun rôle dans l'envoi
+TestFlight.
+
+Pourquoi cet ordre :
+
+- Au 2026-11-16, les fichiers sur `main` ciblent tous des runners auto-hébergés, présumés éteints.
+  TRA-703 bascule `ci`, `mobile-ci`, `review-gate`, `ai-review` et `claude` sur `ubuntu-latest` ;
+  TRA-705 fait de même pour `ios-ci` sur un runner macOS hébergé. Tant qu'un workflow n'est pas
+  basculé, ses jobs restent en file sur un runner qui ne répond pas. Réactiver les cinq
+  premiers permet à la PR de TRA-703 de valider sa propre CI sur runners hébergés. Tant que
+  TRA-703 n'est pas mergé, ces fichiers n'ont pas sa garde `head.repo.full_name` sur `ai-review` :
+  appliquer d'abord le réglage 3.5.
+- `claude` attend le merge de TRA-703 : cette PR ajoute la condition qui réserve le workflow aux
+  auteurs `OWNER`, `MEMBER` et `COLLABORATOR`. Le dépôt est public : sans cette condition, tout
+  commentaire contenant `@claude` pourrait le déclencher.
+- Le workflow `ios-testflight` n'est pas dans cette liste : il n'existe pas encore sur `main`
+  (TRA-729). Un nouveau fichier de workflow est actif dès sa création ; vérifier son état dans
+  **Actions** après le merge.
