@@ -2,20 +2,50 @@ import AudioToolbox
 import SwiftUI
 import Track1Core
 
-/// Geometry of the genre screen. The accordion list (Figma `243:1671`) is 16 pt from the screen edges with
-/// 4 pt between two cards; the header keeps the 24 pt content column. `columnCount`, `gutter` and
-/// `contentInset` are also the grid of the Genres tab (`GenresTabView`).
+/// Geometry of the genre screen, read on Figma `316:5066` (TRA-767, 393 x 852 frame). The accordion list
+/// (`316:5077`) is 16 pt from the screen edges with 12 pt between two cards; the header (`316:5074`) keeps
+/// the 24 pt content column. `columnCount`, `gutter` and `contentInset` are also the grid of the Genres tab
+/// (`GenresTabView`).
 enum GenresStepLayout {
 	static let columnCount = 2
 	static let gutter = Track1Tokens.spacing16
 	/// "Content column = width - 2 x 24 pt" (Flow 1 principles, `176:51`).
 	static let contentInset = Track1Tokens.spacing24
-	/// Horizontal margin of the cards (Figma `243:1671`: 16).
+	/// Horizontal margin of the cards (Figma `316:5077`: 16).
 	static let listInset = Track1Tokens.spacing16
-	/// Between two cards (Figma: 4).
-	static let cardSpacing = Track1Tokens.spacing4
+	/// Between two cards (Figma: 12; it was 4 before `316:5066`).
+	static let cardSpacing = Track1Tokens.spacing12
 	/// Above and below the list (Figma: 12).
 	static let listVerticalInset = Track1Tokens.spacing12
+	/// Inside an open card, between the "Tous" row and the chips (Figma `316:5084`: 4), before the row's own
+	/// bottom inset.
+	static let cardBodySpacing = Track1Tokens.spacing4
+	/// Under the "Tous" chip (Figma `316:5085`: 8), so 12 pt in all between it and the first chip.
+	static let selectAllRowBottomInset = Track1Tokens.spacing8
+	/// Between two chips of a card, in a row and between rows (Figma `316:5087`: 8).
+	static let chipSpacing = Track1Tokens.spacing8
+
+	/// Figma places the header at y 78 of the 393 x 852 frame, whose status bar takes 59 pt (the safe area of
+	/// the iPhone with that frame). The scroll view starts under the safe area, so the header is pushed down
+	/// by the difference, 19 pt: the title is at y 78 on that device, and keeps that gap on the others.
+	static let headerTop: CGFloat = 78
+	static let referenceTopInset: CGFloat = 59
+	static var headerTopPadding: CGFloat { headerTop - referenceTopInset }
+	/// Between the title and the subtitle.
+	static let headerTextSpacing = Track1Tokens.spacing8
+	/// Between the subtitle and the list, which adds its own `listVerticalInset`.
+	static let headerBottomInset = Track1Tokens.spacing16
+	static let titleRole: Track1TextRole = .title1
+	static let subtitleRole: Track1TextRole = .bodyMedium
+	static let titleColor = Track1Tokens.colorTextPrimary
+	static let subtitleColor = Track1Tokens.colorTextSecondary
+
+	/// Vertical gradient of the screen: `screen/gradient-top` at the top, `background/elevated` from 33.099 %
+	/// of the height down, as on the root node.
+	static let backgroundStops: [Gradient.Stop] = [
+		.init(color: Track1Tokens.colorScreenGradientTop, location: 0),
+		.init(color: Track1Tokens.colorBackgroundElevated, location: 0.33099),
+	]
 }
 
 /// Figma `1.2a Genres · empty` (`243:1585`, spec `257:416`): one accordion card per family of the editorial
@@ -25,6 +55,10 @@ enum GenresStepLayout {
 struct GenresStepView: View {
 	/// Set on the bar's button (`BottomActionBar.identifier`).
 	static let continueIdentifier = "onboarding-genres-continue"
+
+	static let title = "Sélectionne tes genres"
+	/// Figma `316:5076`. It read "... par jour pour les explorer" before TRA-767.
+	static let subtitle = "Tu recevras une recommandation par jour"
 
 	/// `select-all-<key>`, the family key: two cards can be open at once, so "Tous" needs an identifier per
 	/// card.
@@ -74,7 +108,7 @@ struct GenresStepView: View {
 
 	var body: some View {
 		ScrollView {
-			VStack(alignment: .leading, spacing: Track1Tokens.spacing16) {
+			VStack(alignment: .leading, spacing: 0) {
 				header
 				list
 			}
@@ -96,29 +130,26 @@ struct GenresStepView: View {
 			AudioServicesPlaySystemSound(OnboardingScrollTick.sound)
 		}
 		.sensoryFeedback(.impact(weight: .light, intensity: 0.5), trigger: tickCount)
-		// Order matters: each `.background` sits behind the previous one, so the glow goes first and the
-		// opaque base color last. The other way round, the base color hides the glow (TRA-403 review).
-		.background(alignment: .top) {
-			AmbientGlow(tone: .ember).ignoresSafeArea(edges: .top)
-		}
+		// Figma `316:5066` draws one gradient and no ambient glow. It is opaque, so no base color is needed
+		// behind it (the glow and the base color were stacked here until TRA-767).
 		.background {
-			Track1Tokens.colorBackgroundBase.ignoresSafeArea()
+			LinearGradient(stops: GenresStepLayout.backgroundStops, startPoint: .top, endPoint: .bottom)
+				.ignoresSafeArea()
 		}
 	}
 
 	private var header: some View {
-		VStack(alignment: .leading, spacing: Track1Tokens.spacing16) {
-			Track1Text("Sélectionne tes genres", role: .title1)
-				.foregroundStyle(Track1Tokens.colorTextPrimary)
+		VStack(alignment: .leading, spacing: GenresStepLayout.headerTextSpacing) {
+			Track1Text(Self.title, role: GenresStepLayout.titleRole)
+				.foregroundStyle(GenresStepLayout.titleColor)
 				.accessibilityAddTraits(.isHeader)
-			Track1Text("Tu recevras une recommandation par jour pour les explorer", role: .bodyMedium)
-				.foregroundStyle(Track1Tokens.colorTextSecondary)
+			Track1Text(Self.subtitle, role: GenresStepLayout.subtitleRole)
+				.foregroundStyle(GenresStepLayout.subtitleColor)
 		}
 		.frame(maxWidth: .infinity, alignment: .leading)
 		.padding(.horizontal, GenresStepLayout.contentInset)
-		// Figma starts the title 72 pt from the screen edge, which is below the status bar on every
-		// device; the scroll view already sits under it, so a token gap is enough.
-		.padding(.top, Track1Tokens.spacing16)
+		.padding(.top, GenresStepLayout.headerTopPadding)
+		.padding(.bottom, GenresStepLayout.headerBottomInset)
 	}
 
 	/// 20 cards at most, and a card builds its chips only while open: a plain `VStack` is enough (plan R3).
@@ -154,12 +185,14 @@ struct GenresStepView: View {
 	}
 
 	private func chips(of family: FamilyChoice) -> some View {
-		VStack(alignment: .leading, spacing: Track1Tokens.spacing8) {
+		VStack(alignment: .leading, spacing: GenresStepLayout.cardBodySpacing) {
 			SubgenreChip(title: "Tous", glyph: .arrowDownRight, isSelected: model.isAllSelected(of: family.id)) {
 				model.toggleAll(of: family.id)
 			}
 			.accessibilityIdentifier(Self.selectAllIdentifier(for: family.id))
-			ChipFlowLayout(spacing: Track1Tokens.spacing8, rowAlignment: .top) {
+			// The "Tous" row of Figma (`316:5085`) ends 8 pt under the chip, then the card body adds its 4 pt gap.
+			.padding(.bottom, GenresStepLayout.selectAllRowBottomInset)
+			ChipFlowLayout(spacing: GenresStepLayout.chipSpacing, rowAlignment: .top) {
 				ForEach(model.subgenres(of: family.id)) { choice in
 					SubgenreChip(title: choice.name, isSelected: model.isSubgenreSelected(choice.id)) {
 						model.toggleSubgenre(choice.id)
