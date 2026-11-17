@@ -68,6 +68,15 @@ final class OnboardingStepsTests: XCTestCase {
 		XCTAssertTrue(OnboardingSteps.canLeave(.pseudo, pseudo: "  Raph  ", disc: nil, selectedGenres: 0))
 	}
 
+	func testThePseudoLockFollowsPseudoRulesOnLineBreaksAndLength() {
+		// Line breaks and tabs are separators: alone they leave nothing, inside a name they are one space.
+		XCTAssertFalse(OnboardingSteps.canLeave(.pseudo, pseudo: "\n\t\r\n", disc: .blue, selectedGenres: 3))
+		XCTAssertTrue(OnboardingSteps.canLeave(.pseudo, pseudo: "Raph\nDoe", disc: nil, selectedGenres: 0))
+		// Longer than the limit is truncated by `PseudoRules`, not refused.
+		let tooLong = String(repeating: "a", count: PseudoRules.maxLength + 5)
+		XCTAssertTrue(OnboardingSteps.canLeave(.pseudo, pseudo: tooLong, disc: nil, selectedGenres: 0))
+	}
+
 	func testTheDiscStepIsLockedUntilADiscIsPicked() {
 		XCTAssertFalse(OnboardingSteps.canLeave(.disc, pseudo: "Raph", disc: nil, selectedGenres: 3))
 		for disc in ProfileDisc.allCases {
