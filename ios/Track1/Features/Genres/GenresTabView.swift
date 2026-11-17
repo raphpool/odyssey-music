@@ -152,8 +152,7 @@ struct GenresTabView: View {
 	}
 
 	/// The header, centred, with the settings button at the trailing edge. Both are in one row, so that without
-	/// a header (an unreadable profile, a catalog that failed) the button keeps a row of its own and covers
-	/// nothing under it.
+	/// a header (an unreadable profile) the button keeps a row of its own and covers nothing under it.
 	private var top: some View {
 		ZStack(alignment: .topTrailing) {
 			header
@@ -166,12 +165,12 @@ struct GenresTabView: View {
 		}
 	}
 
-	/// A profile saved before the pseudo and the disc existed (TRA-758) has neither: there is nothing to draw,
-	/// and the tab goes on without the header rather than invent them.
+	/// The pseudo and the disc are required by the profile since TRA-758, so a readable profile always has
+	/// both. Without a profile (unreadable, being deleted) there is nothing to draw.
 	@ViewBuilder
 	private var header: some View {
-		if let profile = profileState.profile, let name = profile.displayName, let disc = profile.disc {
-			ProfileHeader(disc: disc, name: name)
+		if let profile = profileState.profile {
+			ProfileHeader(disc: profile.disc, name: profile.displayName)
 		}
 	}
 
