@@ -197,7 +197,6 @@ final class AppRouterNodeTests: XCTestCase {
 
 		XCTAssertEqual(router.selectedTab, .today)
 		XCTAssertTrue(router.path(for: .today).isEmpty)
-		// Only the stack of Today is emptied.
 		XCTAssertEqual(router.path(for: .genres).count, 1)
 	}
 

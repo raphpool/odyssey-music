@@ -42,7 +42,6 @@ enum AppTab: String, CaseIterable, Hashable, Identifiable, Sendable {
 	}
 }
 
-/// Which notifications open the app on Today.
 enum ReminderRouting {
 	/// The daily reminders only, the identifiers the scheduler gives them (`daily-` and a date): any other
 	/// notification is not one of ours to route.

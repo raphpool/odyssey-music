@@ -26,9 +26,10 @@ struct Track1App: App {
 }
 
 /// Opens the app on Today when a daily reminder is tapped; shows nothing while the app is in the foreground.
-@MainActor
-final class ReminderNotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
-	/// The person is already in the app: no banner and no sound for the reminder of the day.
+/// Not main-actor isolated: the system calls it from anywhere and its parameters cannot be sent to the main
+/// actor. Its only state is an immutable reference to the router.
+final class ReminderNotificationDelegate: NSObject, UNUserNotificationCenterDelegate, @unchecked Sendable {
+	/// No banner and no sound: the person is already in the app.
 	static let foregroundPresentation: UNNotificationPresentationOptions = []
 
 	private let router: AppRouter
@@ -38,6 +39,7 @@ final class ReminderNotificationDelegate: NSObject, UNUserNotificationCenterDele
 	}
 
 	/// Without a profile the onboarding stands in for the tabs, so the tap then only opens the app.
+	@MainActor
 	func open(identifier: String) {
 		guard ReminderRouting.opensToday(identifier: identifier) else { return }
 		router.showToday()
@@ -52,6 +54,6 @@ final class ReminderNotificationDelegate: NSObject, UNUserNotificationCenterDele
 	func userNotificationCenter(
 		_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse
 	) async {
-		open(identifier: response.notification.request.identifier)
+		await open(identifier: response.notification.request.identifier)
 	}
 }

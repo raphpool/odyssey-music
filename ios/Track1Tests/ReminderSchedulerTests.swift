@@ -244,7 +244,6 @@ final class ReminderSyncTests: XCTestCase {
 		XCTAssertNotEqual(model.upcoming.map(\.body), rockBodies)
 		let pending = await center.pendingIdentifiers()
 		XCTAssertEqual(pending, Self.identifiers)
-		// What is pending under an identifier is the last notification added under it.
 		let added = await center.added
 		let current = Dictionary(added.map { ($0.identifier, $0.body) }, uniquingKeysWith: { _, last in last })
 		XCTAssertEqual(pending.compactMap { current[$0] }, model.upcoming.map(\.body))
