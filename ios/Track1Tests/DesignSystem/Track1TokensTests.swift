@@ -60,11 +60,29 @@ final class Track1TokensTests: XCTestCase {
 		("theme.color.selection.surface", Track1Tokens.colorSelectionSurface, "302019"),
 		("theme.color.progress.track", Track1Tokens.colorProgressTrack, "8d7a6d"),
 		("theme.color.progress.indicator", Track1Tokens.colorProgressIndicator, "8d7a6d"),
+		// The v1 screens (TRA-710). Not bound Figma variables: values read on 2026-11-16 in the mockup nodes
+		// named in `Track1Tokens`, under theme names that follow the variables' pattern. The alphas are the
+		// percentages of the mockup in bytes (10 % is 25.5, so 0x1A: the half rounds up).
+		("theme.color.surface.card", Track1Tokens.colorSurfaceCard, "2a241d"),
+		("theme.color.border.subtle", Track1Tokens.colorBorderSubtle, "f6e9d81a"),
+		("theme.color.border.hairline", Track1Tokens.colorBorderHairline, "f6e9d814"),
+		("theme.color.tint.warm", Track1Tokens.colorTintWarm, "f6e9d81a"),
+		("theme.color.screen.gradientTop", Track1Tokens.colorScreenGradientTop, "3d3429"),
+		("theme.color.glass.pill", Track1Tokens.colorGlassPill, "ffffff26"),
+		("theme.color.glass.pillSelected", Track1Tokens.colorGlassPillSelected, "00000033"),
+		("theme.color.disc.empty", Track1Tokens.colorDiscEmpty, "6f6f6f"),
+		("theme.color.cover.shadow", Track1Tokens.colorCoverShadow, "12121240"),
+		("theme.color.disc.tintIridescent", Track1Tokens.colorDiscTintIridescent, "f6e9d8"),
+		("theme.color.disc.tintBlue", Track1Tokens.colorDiscTintBlue, "d6dbf8"),
+		("theme.color.disc.tintMint", Track1Tokens.colorDiscTintMint, "d6f8ed"),
+		("theme.color.disc.tintCoral", Track1Tokens.colorDiscTintCoral, "f8e6d6"),
+		("theme.color.disc.tintViolet", Track1Tokens.colorDiscTintViolet, "f3d6f8"),
+		("theme.color.disc.tintTeal", Track1Tokens.colorDiscTintTeal, "d6f0f8"),
 	]
 
-	func testThereAre48ColorsWithUniqueNames() {
-		XCTAssertEqual(colors.count, 48)
-		XCTAssertEqual(Set(colors.map(\.name)).count, 48)
+	func testThereAre63ColorsWithUniqueNames() {
+		XCTAssertEqual(colors.count, 63)
+		XCTAssertEqual(Set(colors.map(\.name)).count, 63)
 	}
 
 	func testColorsMatchFigmaToOneOver255() throws {
