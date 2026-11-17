@@ -32,7 +32,9 @@ public struct TodayHome: Equatable, Sendable {
 	static let maxGenres = 3
 
 	/// A fixed table: `DateFormatter` would follow the device's language and would not give these abbreviations.
-	private static let months = ["JAN", "FÉV", "MAR", "AVR", "MAI", "JUN", "JUL", "AOÛ", "SEP", "OCT", "NOV", "DÉC"]
+	private static let months = [
+		"JAN", "FÉV", "MAR", "AVR", "MAI", "JUN", "JUL", "AOÛ", "SEP", "OCT", "NOV", "DÉC",
+	]
 
 	/// Duplicates are removed after cleaning (two spellings that differ only by a control character are one
 	/// genre) and before the cut, so that a repeated genre never takes the place of a third distinct one.
