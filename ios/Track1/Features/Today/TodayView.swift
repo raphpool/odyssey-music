@@ -117,7 +117,10 @@ struct TodayView: View {
 			readingRecommendationID != recommendation.recommendationID
 		else { return }
 		readingRecommendationID = recommendation.recommendationID
-		defer { readingRecommendationID = nil }
+		// Only its own marker: a newer read of other tastes may have taken the place by the time this one ends.
+		defer {
+			if readingRecommendationID == recommendation.recommendationID { readingRecommendationID = nil }
+		}
 		page = nil
 		failedRecommendationID = nil
 		// Unstructured: the cover of a read that the view's task abandons would stay `loading` for good, so a
@@ -126,21 +129,39 @@ struct TodayView: View {
 	}
 
 	private func read(_ recommendation: DailyRecommendation) async {
-		guard case .success(let response, _) = await readers.node(recommendation.nodeID) else {
+		let result = await readers.node(recommendation.nodeID)
+		// A read that another recommendation has superseded publishes nothing: its page or its failure would
+		// stand in for the current one, which never re-runs (same task id) and would stay on the loading screen.
+		guard isCurrent(recommendation) else { return }
+		guard case .success(let response, _) = result else {
 			failedRecommendationID = recommendation.recommendationID
 			return
 		}
 		let hero = NodeHeroModel(node: response.node, store: imageStore)
 		await hero.load()
+		guard isCurrent(recommendation) else { return }
 		var cover: Image?
 		if case .loaded(let image, _, _) = hero.state { cover = Image(uiImage: image) }
 		page = Page(
 			recommendationID: recommendation.recommendationID,
-			home: TodayHome(node: response.node, date: .now, timeZone: .current),
+			// The day of the recommendation, not the clock: a read after midnight must not relabel yesterday's node.
+			home: TodayHome(node: response.node, date: Self.date(of: recommendation), timeZone: .current),
 			tint: NodePageView.coverTint(for: hero.state), cover: cover)
-		// Another recommendation may have replaced this one while the cover was loading: its home is not drawn yet.
-		guard TodayPresentation.recommendationID(of: model.state) == recommendation.recommendationID else { return }
 		await model.recordImpressionIfNeeded()
+	}
+
+	private func isCurrent(_ recommendation: DailyRecommendation) -> Bool {
+		TodayPresentation.recommendationID(of: model.state) == recommendation.recommendationID
+	}
+
+	/// `localDate` is "yyyy-MM-dd" in the device's time zone (`DailySelection.localDate`); `TodayHome` reads the
+	/// day back in that same zone. The clock only stands in for a value that does not parse.
+	private static func date(of recommendation: DailyRecommendation) -> Date {
+		let formatter = DateFormatter()
+		formatter.locale = Locale(identifier: "en_US_POSIX")
+		formatter.timeZone = .current
+		formatter.dateFormat = "yyyy-MM-dd"
+		return formatter.date(from: recommendation.localDate) ?? .now
 	}
 
 	/// One tap, one `discover()`: the button is disabled while it runs, and a second tap that gets in anyway
