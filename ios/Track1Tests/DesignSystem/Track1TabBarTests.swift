@@ -12,7 +12,6 @@ final class Track1TabBarTests: XCTestCase {
 
 	private let today = Item(id: "today", icon: .tabToday, label: "Today", identifier: "tab-today")
 	private let genres = Item(id: "genres", icon: .tabGenres, label: "Genres", identifier: "tab-genres")
-	private let search = Item(id: "search", icon: .tabSearch, label: "Search", identifier: "tab-search")
 
 	// MARK: Metrics and style
 
@@ -20,7 +19,7 @@ final class Track1TabBarTests: XCTestCase {
 		XCTAssertEqual(Track1TabBarMetrics.tabWidth, 96)
 		XCTAssertEqual(Track1TabBarMetrics.tabHeight, 54)
 		XCTAssertEqual(Track1TabBarMetrics.pillPadding, 4)
-		XCTAssertEqual(Track1TabBarMetrics.searchDiameter, 62)
+		XCTAssertEqual(Track1TabBarMetrics.pillHeight, 62)
 		XCTAssertEqual(Track1TabBarMetrics.topPadding, 12)
 		XCTAssertEqual(Track1TabBarMetrics.horizontalInset, 25)
 		XCTAssertEqual(Track1TabBarMetrics.iconSize, 20)
@@ -38,13 +37,11 @@ final class Track1TabBarTests: XCTestCase {
 		XCTAssertEqual(rgbaHex(Track1TabBarStyle.selectedFill), "ffffff42")
 	}
 
-	func testTonesAreActionSecondaryAndPrimary() {
+	func testTonesAreActionWhenActiveAndSecondaryWhenInactive() {
 		XCTAssertEqual(Track1TabBarStyle.activeTone, .action)
 		XCTAssertEqual(Track1TabBarStyle.inactiveTone, .secondary)
-		XCTAssertEqual(Track1TabBarStyle.searchTone, .primary)
 		XCTAssertEqual(rgbaHex(Track1TabBarStyle.activeTone.color), "f0642dff")
 		XCTAssertEqual(rgbaHex(Track1TabBarStyle.inactiveTone.color), "c8b6a3ff")
-		XCTAssertEqual(rgbaHex(Track1TabBarStyle.searchTone.color), "f6e9d8ff")
 	}
 
 	func testIdentifierIsTabBar() {
@@ -64,10 +61,9 @@ final class Track1TabBarTests: XCTestCase {
 		XCTAssertEqual(Track1TabBarMetrics.bottomPadding(safeAreaBottom: 0), 12)
 	}
 
-	func testEveryButtonHasATouchTargetOfAtLeast44Points() {
+	func testEveryTabHasATouchTargetOfAtLeast44Points() {
 		XCTAssertGreaterThanOrEqual(Track1TabBarMetrics.tabWidth, 44)
 		XCTAssertGreaterThanOrEqual(Track1TabBarMetrics.tabHeight, 44)
-		XCTAssertGreaterThanOrEqual(Track1TabBarMetrics.searchDiameter, 44)
 	}
 
 	// MARK: Selection
@@ -81,42 +77,27 @@ final class Track1TabBarTests: XCTestCase {
 		XCTAssertEqual(Track1TabBar.tone(for: genres, selected: "genres"), .action)
 	}
 
-	func testSearchIsNeverSelectedEvenWhenItsIdIsTheSelectedOne() {
-		XCTAssertTrue(Track1TabBar.isSelected(search, selected: "search"))
-		XCTAssertFalse(Track1TabBar.isSelected(search, selected: "search", isSearch: true))
-		XCTAssertFalse(Track1TabBar.isSelected(search, selected: "today", isSearch: true))
-	}
-
 	func testOnlyTheSelectedTabCarriesTheSelectedTrait() {
 		XCTAssertEqual(Track1TabBar.accessibilityTraits(for: genres, selected: "genres"), .isSelected)
 		XCTAssertEqual(Track1TabBar.accessibilityTraits(for: today, selected: "genres"), [])
 	}
 
-	func testSearchNeverCarriesTheSelectedTrait() {
-		XCTAssertEqual(Track1TabBar.accessibilityTraits(for: search, selected: "search", isSearch: true), [])
-		XCTAssertEqual(Track1TabBar.accessibilityTraits(for: search, selected: "today", isSearch: true), [])
-	}
-
-	// MARK: Taps
-
-	func testATapOnATabSendsItsId() {
-		XCTAssertEqual(Track1TabBar.action(for: today, search: search), .select("today"))
-		XCTAssertEqual(Track1TabBar.action(for: genres, search: search), .select("genres"))
-	}
-
-	func testATapOnTheRoundButtonIsASearchAndSelectsNothing() {
-		XCTAssertEqual(Track1TabBar.action(for: search, search: search), .search)
-	}
-
 	// MARK: Rendered bar
 
-	func testHeightIsTopPaddingPlusTheRoundButtonPlusTheBottomPadding() {
+	func testHeightIsTopPaddingPlusThePillPlusTheBottomPadding() {
 		let host = UIHostingController(
-			rootView: Track1TabBar(
-				items: [today, genres], selected: "today", search: search, onSelect: { _ in }, onSearch: {}))
+			rootView: Track1TabBar(items: [today, genres], selected: "today", onSelect: { _ in }))
 		let size = host.sizeThatFits(in: CGSize(width: 393, height: 1000))
 		// No safe area in a bare hosting controller: 12 + 62 + 12.
 		XCTAssertEqual(size.height, 12 + 62 + 12, accuracy: 0.5)
+	}
+
+	/// The bar spans the width it is offered, so that its fade runs edge to edge, and centers the pill in it.
+	func testTheBarSpansTheWidthItIsOffered() {
+		let host = UIHostingController(
+			rootView: Track1TabBar(items: [today, genres], selected: "today", onSelect: { _ in }))
+		let size = host.sizeThatFits(in: CGSize(width: 393, height: 1000))
+		XCTAssertEqual(size.width, 393, accuracy: 0.5)
 	}
 
 	/// TRA-671: a screen reserves the bar above the window's safe area, 12 + 62 + the bottom padding.
@@ -131,8 +112,7 @@ final class Track1TabBarTests: XCTestCase {
 	func testTheInjectedSafeAreaDecidesTheRoomUnderThePill() {
 		func height(safeAreaBottom: CGFloat) -> CGFloat {
 			let bar = Track1TabBar(
-				items: [today, genres], selected: "today", search: search, safeAreaBottom: safeAreaBottom,
-				onSelect: { _ in }, onSearch: {})
+				items: [today, genres], selected: "today", safeAreaBottom: safeAreaBottom, onSelect: { _ in })
 			return UIHostingController(rootView: bar)
 				.sizeThatFits(in: CGSize(width: 393, height: 852)).height
 		}
@@ -142,7 +122,7 @@ final class Track1TabBarTests: XCTestCase {
 
 		XCTAssertEqual(withoutIndicator - withIndicator, 12, accuracy: 0.5)
 		XCTAssertEqual(
-			withIndicator, Track1TabBarMetrics.topPadding + Track1TabBarMetrics.searchDiameter, accuracy: 0.5)
+			withIndicator, Track1TabBarMetrics.topPadding + Track1TabBarMetrics.pillHeight, accuracy: 0.5)
 	}
 
 	// MARK: Helpers

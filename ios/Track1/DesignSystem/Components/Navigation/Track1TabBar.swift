@@ -5,7 +5,8 @@ enum Track1TabBarMetrics {
 	static let tabWidth: CGFloat = 96
 	static let tabHeight: CGFloat = 54
 	static let pillPadding = Track1Tokens.spacing4
-	static let searchDiameter: CGFloat = 62
+	/// One tab and the padding above and below it: 54 + 2 x 4 = 62.
+	static let pillHeight: CGFloat = tabHeight + 2 * pillPadding
 	static let topPadding = Track1Tokens.spacing12
 	static let horizontalInset: CGFloat = 25
 	static let iconSize = Track1Tokens.sizeIconMedium
@@ -22,7 +23,7 @@ enum Track1TabBarMetrics {
 	/// content, and the buttons it places in its own safe area, end where the bar starts (TRA-671). 74 pt with
 	/// a home indicator, 86 pt without.
 	static func reservedHeight(safeAreaBottom: CGFloat) -> CGFloat {
-		topPadding + searchDiameter + bottomPadding(safeAreaBottom: safeAreaBottom)
+		topPadding + pillHeight + bottomPadding(safeAreaBottom: safeAreaBottom)
 	}
 }
 
@@ -34,7 +35,6 @@ enum Track1TabBarStyle {
 	static let selectedFill = Track1Tokens.colorGlassSelected
 	static let activeTone: Track1Icon.Tone = .action
 	static let inactiveTone: Track1Icon.Tone = .secondary
-	static let searchTone: Track1Icon.Tone = .primary
 
 	/// Transparent at the top, opaque at the bottom: the content that scrolls under the bar fades into the
 	/// background (`from-[rgba(18,12,10,0)] to-[#120c0a]` in Figma).
@@ -46,15 +46,13 @@ enum Track1TabBarStyle {
 	}
 }
 
-/// Figma `Tab bar` (`173:108`, instance `282:889`): two tabs in a pill on the left and an isolated round
-/// Search button on the right, icons only. The glass is deliberately quieter than the native Liquid Glass:
-/// a thin material under `colorGlassSurface` and a 1 pt border, no `glassEffect`, no refraction.
+/// Figma `Tab bar` (`173:108`, instance `282:889`): two tabs in a centered pill, icons only (TRA-771: the
+/// round Search button is gone). The glass is deliberately quieter than the native Liquid Glass: a thin
+/// material under `colorGlassSurface` and a 1 pt border, no `glassEffect`, no refraction.
 ///
 /// The bar has no state of its own and does not know `AppTab`: the screen owns the selection and passes it
 /// down. Place it with `safeAreaInset(edge: .bottom, spacing: 0)` on the `TabView`, so that the content scrolls
 /// under the fade. The selection haptic stays with the screen (on `router.selectedTab`), not here.
-///
-/// `search` is an action, not a tab: it never carries the selected trait.
 struct Track1TabBar: View {
 	struct Item: Identifiable, Equatable {
 		let id: String
@@ -65,9 +63,7 @@ struct Track1TabBar: View {
 
 	private let items: [Item]
 	private let selected: String
-	private let search: Item
 	private let onSelect: (String) -> Void
-	private let onSearch: () -> Void
 
 	/// Bottom safe area handed in by the screen that mounts the bar (the window's, see `RootView`). Inside a
 	/// `safeAreaInset` the bar is already placed above the home indicator, so what it measures itself can read
@@ -81,26 +77,16 @@ struct Track1TabBar: View {
 	private var safeAreaBottom: CGFloat { injectedSafeAreaBottom ?? measuredSafeAreaBottom }
 
 	init(
-		items: [Item], selected: String, search: Item, safeAreaBottom: CGFloat? = nil,
-		onSelect: @escaping (String) -> Void, onSearch: @escaping () -> Void
+		items: [Item], selected: String, safeAreaBottom: CGFloat? = nil, onSelect: @escaping (String) -> Void
 	) {
 		self.injectedSafeAreaBottom = safeAreaBottom
 		self.items = items
 		self.selected = selected
-		self.search = search
 		self.onSelect = onSelect
-		self.onSearch = onSearch
 	}
 
-	/// What a tap on a button does. Decided by a pure function so that it is tested without rendering.
-	enum Action: Equatable {
-		case select(String)
-		case search
-	}
-
-	/// The search button is never selected, whatever `selected` holds.
-	nonisolated static func isSelected(_ item: Item, selected: String, isSearch: Bool = false) -> Bool {
-		!isSearch && item.id == selected
+	nonisolated static func isSelected(_ item: Item, selected: String) -> Bool {
+		item.id == selected
 	}
 
 	nonisolated static func tone(for item: Item, selected: String) -> Track1Icon.Tone {
@@ -108,44 +94,29 @@ struct Track1TabBar: View {
 	}
 
 	/// Only the selected tab carries the selected trait.
-	nonisolated static func accessibilityTraits(
-		for item: Item, selected: String, isSearch: Bool = false
-	) -> AccessibilityTraits {
-		isSelected(item, selected: selected, isSearch: isSearch) ? .isSelected : []
-	}
-
-	nonisolated static func action(for item: Item, search: Item) -> Action {
-		item == search ? .search : .select(item.id)
-	}
-
-	private func perform(_ action: Action) {
-		switch action {
-		case .select(let id): onSelect(id)
-		case .search: onSearch()
-		}
+	nonisolated static func accessibilityTraits(for item: Item, selected: String) -> AccessibilityTraits {
+		isSelected(item, selected: selected) ? .isSelected : []
 	}
 
 	var body: some View {
-		HStack(spacing: 0) {
-			pill
-			Spacer()
-			searchButton
-		}
-		.padding(.top, Track1TabBarMetrics.topPadding)
-		.padding(.horizontal, Track1TabBarMetrics.horizontalInset)
-		.padding(.bottom, Track1TabBarMetrics.bottomPadding(safeAreaBottom: safeAreaBottom))
-		.background {
-			GeometryReader { proxy in
-				Color.clear.preference(key: SafeAreaBottomKey.self, value: proxy.safeAreaInsets.bottom)
+		pill
+			.padding(.top, Track1TabBarMetrics.topPadding)
+			.padding(.horizontal, Track1TabBarMetrics.horizontalInset)
+			.padding(.bottom, Track1TabBarMetrics.bottomPadding(safeAreaBottom: safeAreaBottom))
+			// The bar takes the width it is offered so that the fade runs edge to edge; the pill sits in the middle.
+			.frame(maxWidth: .infinity)
+			.background {
+				GeometryReader { proxy in
+					Color.clear.preference(key: SafeAreaBottomKey.self, value: proxy.safeAreaInsets.bottom)
+				}
 			}
-		}
-		.onPreferenceChange(SafeAreaBottomKey.self) { measuredSafeAreaBottom = $0 }
-		.background {
-			LinearGradient(stops: Track1TabBarStyle.fadeStops(), startPoint: .top, endPoint: .bottom)
-				.ignoresSafeArea(edges: .bottom)
-		}
-		.accessibilityElement(children: .contain)
-		.accessibilityIdentifier(Track1TabBarStyle.identifier)
+			.onPreferenceChange(SafeAreaBottomKey.self) { measuredSafeAreaBottom = $0 }
+			.background {
+				LinearGradient(stops: Track1TabBarStyle.fadeStops(), startPoint: .top, endPoint: .bottom)
+					.ignoresSafeArea(edges: .bottom)
+			}
+			.accessibilityElement(children: .contain)
+			.accessibilityIdentifier(Track1TabBarStyle.identifier)
 	}
 
 	private var pill: some View {
@@ -162,7 +133,7 @@ struct Track1TabBar: View {
 		let isSelected = Self.isSelected(item, selected: selected)
 		let tone = Self.tone(for: item, selected: selected)
 		return Button {
-			perform(Self.action(for: item, search: search))
+			onSelect(item.id)
 		} label: {
 			Track1Icon(asset: item.icon, tone: tone, size: Track1TabBarMetrics.iconSize)
 				.frame(width: Track1TabBarMetrics.tabWidth, height: Track1TabBarMetrics.tabHeight)
@@ -177,21 +148,6 @@ struct Track1TabBar: View {
 		.accessibilityLabel(item.label)
 		.accessibilityIdentifier(item.identifier)
 		.accessibilityAddTraits(Self.accessibilityTraits(for: item, selected: selected))
-	}
-
-	private var searchButton: some View {
-		Button {
-			perform(Self.action(for: search, search: search))
-		} label: {
-			Track1Icon(asset: search.icon, tone: Track1TabBarStyle.searchTone, size: Track1TabBarMetrics.iconSize)
-				.frame(width: Track1TabBarMetrics.searchDiameter, height: Track1TabBarMetrics.searchDiameter)
-				.glass(in: Circle())
-				.contentShape(Circle())
-		}
-		.buttonStyle(.plain)
-		.accessibilityLabel(search.label)
-		.accessibilityIdentifier(search.identifier)
-		.accessibilityAddTraits(Self.accessibilityTraits(for: search, selected: selected, isSearch: true))
 	}
 }
 
