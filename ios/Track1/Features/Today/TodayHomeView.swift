@@ -150,13 +150,15 @@ struct TodayHomeView: View {
 			.padding(.top, Metrics.topBlockTop)
 			.padding(.bottom, Metrics.bottomPadding)
 			.frame(maxWidth: .infinity)
+			// `.contain`: an identifier on a container would overwrite those of its children (TRA-659). On the
+			// column and not on the `ScrollView`, as `NodeContentCard` does: a scroll view is a platform
+			// container of its own.
+			.accessibilityElement(children: .contain)
+			.accessibilityIdentifier(Metrics.identifier)
 		}
 		.scrollBounceBehavior(.basedOnSize)
 		.background(alignment: .top) { backdrop }
 		.ignoresSafeArea(.container, edges: .top)
-		// `.contain`: an identifier on a container would overwrite those of its children (TRA-659).
-		.accessibilityElement(children: .contain)
-		.accessibilityIdentifier(Metrics.identifier)
 	}
 
 	/// `background.elevated` under everything, and the tint of the cover over its first 15 %.
