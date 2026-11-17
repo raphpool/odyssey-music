@@ -6,8 +6,9 @@ import XCTest
 
 /// The 20 roles of the Figma Typography frame `180:376` (read 2026-10-13) are spelled out again here: the
 /// caption under each sample gives the font, the size and the line height. `monoHeadline` is the 21st, read
-/// on the Top bar date instance `I282:838;173:15` (2026-10-23, TRA-660), which the frame does not list. A
-/// value changed in `Track1TextRole` alone fails here.
+/// on the Top bar date instance `I282:838;173:15` (2026-10-23, TRA-660), which the frame does not list. The
+/// 22nd to the 28th are the v1 roles (2026-11-16, TRA-710), read on the mockup nodes. A value changed in
+/// `Track1TextRole` alone fails here.
 final class Track1TypographyTests: XCTestCase {
 	private typealias Row = (
 		role: Track1TextRole, face: String, size: CGFloat, lineHeight: CGFloat,
@@ -36,6 +37,14 @@ final class Track1TypographyTests: XCTestCase {
 		(.labelTab, "Roboto-SemiBold", 10, 12, .caption2, .caption2),
 		(.eyebrow, "RobotoCondensed-Medium", 16, 20, .callout, .callout),
 		(.caption, "Roboto-Regular", 12, 16, .caption, .caption1),
+		// The seven v1 roles (TRA-710, read 2026-11-16 in the mockup nodes named in `Track1TextRole`).
+		(.inputLarge, "Roboto-Regular", 34, 41, .largeTitle, .largeTitle),
+		(.reader, "Roboto-Regular", 22, 34, .title2, .title2),
+		(.readerDim, "Roboto-Regular", 20, 34, .title3, .title3),
+		(.monoBadge, "JetBrainsMono-Bold", 14, 25, .footnote, .footnote),
+		(.monoCounter, "JetBrainsMono-Medium", 16, 20, .callout, .callout),
+		(.monoBarTitle, "JetBrainsMono-Bold", 16, 24, .callout, .callout),
+		(.monoButton, "JetBrainsMono-Medium", 15, 20, .subheadline, .subheadline),
 	]
 
 	private let defaultSize = UITraitCollection(preferredContentSizeCategory: .large)
@@ -48,8 +57,8 @@ final class Track1TypographyTests: XCTestCase {
 	}
 
 	func testEveryRoleIsDocumentedOnceAndMatchesFigma() {
-		XCTAssertEqual(Track1TextRole.allCases.count, 21)
-		XCTAssertEqual(figma.count, 21)
+		XCTAssertEqual(Track1TextRole.allCases.count, 28)
+		XCTAssertEqual(figma.count, 28)
 		for row in figma {
 			XCTAssertEqual(row.role.face.rawValue, row.face, "\(row.role) face")
 			XCTAssertEqual(row.role.size, row.size, "\(row.role) size")
@@ -57,7 +66,13 @@ final class Track1TypographyTests: XCTestCase {
 			XCTAssertEqual(row.role.textStyle, row.textStyle, "\(row.role) text style")
 			XCTAssertEqual(row.role.uiTextStyle, row.uiTextStyle, "\(row.role) UIKit text style")
 		}
-		XCTAssertEqual(Set(figma.map { "\($0.role)" }).count, 21)
+		XCTAssertEqual(Set(figma.map { "\($0.role)" }).count, 28)
+	}
+
+	/// Edge case of the v1 roles: `reader` sets a 34 pt line on a 22 pt Roboto, whose natural line is about
+	/// 26 pt, so the spacing between lines is positive and the line height holds on wrapped text.
+	func testReaderLineIsTallerThanTheNaturalOneSoItsSpacingIsPositive() {
+		XCTAssertGreaterThan(Track1TextRole.reader.lineSpacing(compatibleWith: defaultSize), 0)
 	}
 
 	func testBodyLargeGrowsAtAccessibilityExtraExtraExtraLarge() {

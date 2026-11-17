@@ -3,7 +3,8 @@ import Track1Core
 
 /// Semantic design tokens of the Nocturne theme (dark only, D4bis). Names follow the Figma variables:
 /// `theme.color.text.primary` becomes `colorTextPrimary`. Colors were read from the Foundations frames
-/// (`4:3`) of the Figma file with `get_variable_defs` on 2026-10-13 (TRA-383).
+/// (`4:3`) of the Figma file with `get_variable_defs` on 2026-10-13 (TRA-383). The colors added for the v1
+/// screens (TRA-710, 2026-11-16) are not bound variables: each one cites the mockup node it was read from.
 ///
 /// Screens outside `DesignSystem/` use these constants and never raw values. Spacing, radius, size and
 /// motion values are not bound Figma variables (`get_variable_defs` returns none for them): they are the
@@ -49,6 +50,8 @@ enum Track1Tokens {
 	static let colorSurfaceDefault = rgb(0x241713)
 	static let colorSurfacePressed = rgb(0x302019)
 	static let colorSurfaceSelected = rgb(0x3F432D)
+	/// Genre card background (v1 mockup `316:5078`).
+	static let colorSurfaceCard = rgb(0x2A241D)
 
 	// Icon
 
@@ -66,6 +69,11 @@ enum Track1Tokens {
 	static let colorBorderContrast = rgba(0xFFFF_FF85)
 	/// Border of the relation chips, `rgba(125, 100, 89, 0.2)` in the "UI Refresh" revision (TRA-657).
 	static let colorBorderChip = rgba(0x7D64_5933)
+	/// `#F6E9D8` at 10 %: border of the unchecked chips (v1 mockup `318:6931`). The alpha byte is 0x1A: 25.5
+	/// rounded up, as the Figma hex export does.
+	static let colorBorderSubtle = rgba(0xF6E9_D81A)
+	/// `#F6E9D8` at 8 %: border of the date tile and of the pills (v1 mockup `324:1818`).
+	static let colorBorderHairline = rgba(0xF6E9_D814)
 
 	// Action
 
@@ -93,6 +101,10 @@ enum Track1Tokens {
 	static let colorGlassSurface = rgba(0x090A_0EAD)
 	static let colorGlassBorder = rgba(0xFFFF_FF42)
 	static let colorGlassSelected = rgba(0xFFFF_FF42)
+	/// `#FFFFFF` at 15 %: tab bar pill and player bar (v1 mockups `324:1793`, `338:2493`).
+	static let colorGlassPill = rgba(0xFFFF_FF26)
+	/// `#000000` at 20 %: active tab (v1 mockup `338:2543`).
+	static let colorGlassPillSelected = rgba(0x0000_0033)
 
 	// Node
 
@@ -112,6 +124,34 @@ enum Track1Tokens {
 
 	static let colorProgressTrack = rgb(0x8D7A6D)
 	static let colorProgressIndicator = rgb(0x8D7A6D)
+
+	// Tint
+
+	/// `#F6E9D8` at 10 %: top of the tile gradients (v1 mockups `324:1818`, `318:6972`).
+	static let colorTintWarm = rgba(0xF6E9_D81A)
+
+	// Screen
+
+	/// Top of the screen background gradient (v1 mockup `362:1766`).
+	static let colorScreenGradientTop = rgb(0x3D3429)
+
+	// Disc
+
+	/// Empty profile disc (v1 mockup `362:3129`).
+	static let colorDiscEmpty = rgb(0x6F6F6F)
+	// Raw tints of the six profile discs (v1 mockup `362:3119`). The tint of a given `ProfileDisc` is picked
+	// by the screen that knows the disc, not here.
+	static let colorDiscTintIridescent = rgb(0xF6E9D8)
+	static let colorDiscTintBlue = rgb(0xD6DBF8)
+	static let colorDiscTintMint = rgb(0xD6F8ED)
+	static let colorDiscTintCoral = rgb(0xF8E6D6)
+	static let colorDiscTintViolet = rgb(0xF3D6F8)
+	static let colorDiscTintTeal = rgb(0xD6F0F8)
+
+	// Cover
+
+	/// `#121212` at 25 %: cover shadow (v1 mockup `324:1808`).
+	static let colorCoverShadow = rgba(0x1212_1240)
 
 	// MARK: Spacing (4 pt grid)
 
