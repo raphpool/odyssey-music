@@ -28,7 +28,7 @@ public enum ProfileSelection {
 }
 
 public struct Profile: Codable, Equatable, Sendable {
-	public static let version = 2
+	public static let version = 3
 
 	public let version: Int
 	public let localID: UUID
@@ -36,8 +36,10 @@ public struct Profile: Codable, Equatable, Sendable {
 	public let revision: Int
 	public let onboardingCompleted: Bool
 	public let flowID: UUID
-	/// The editorial families and genres behind `genreIDs`. Nil for a profile written before the editorial
-	/// taxonomy, which keeps the key absent from the file.
+	/// Set once, by the first commit, and kept by every later one.
+	public let createdAt: Date
+	/// The editorial families and genres behind `genreIDs`. Nil when the draft carried none, which keeps the
+	/// key absent from the file.
 	public let selection: GenreSelection?
 
 	enum CodingKeys: String, CodingKey {
@@ -47,13 +49,14 @@ public struct Profile: Codable, Equatable, Sendable {
 		case revision
 		case onboardingCompleted = "onboarding_completed"
 		case flowID = "flow_id"
+		case createdAt = "created_at"
 		case selection
 	}
 
 	// Explicit because a `let` optional gets no default value in the memberwise initializer.
 	init(
 		version: Int, localID: UUID, genreIDs: [NodeIdentity], revision: Int, onboardingCompleted: Bool,
-		flowID: UUID, selection: GenreSelection? = nil
+		flowID: UUID, createdAt: Date, selection: GenreSelection? = nil
 	) {
 		self.version = version
 		self.localID = localID
@@ -61,6 +64,7 @@ public struct Profile: Codable, Equatable, Sendable {
 		self.revision = revision
 		self.onboardingCompleted = onboardingCompleted
 		self.flowID = flowID
+		self.createdAt = createdAt
 		self.selection = selection
 	}
 

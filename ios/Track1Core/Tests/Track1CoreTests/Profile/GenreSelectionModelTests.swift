@@ -68,6 +68,7 @@ final class GenreSelectionModelTests: XCTestCase {
 			revision: 3,
 			onboardingCompleted: true,
 			flowID: flowID,
+			createdAt: Date(timeIntervalSince1970: 0),
 			selection: selection
 		)
 	}
