@@ -16,7 +16,7 @@ final class ReminderPlanTests: XCTestCase {
 	private func profile(revision: Int = 1) -> Profile {
 		Profile(
 			version: Profile.version, localID: localID, genreIDs: [], revision: revision, onboardingCompleted: true,
-			flowID: UUID(), createdAt: Date(timeIntervalSince1970: 0))
+			flowID: UUID(), createdAt: Date(timeIntervalSince1970: 0), displayName: "Raph", disc: .mint)
 	}
 
 	/// Sequential, so two calls that make the same decisions also get the same identifiers.

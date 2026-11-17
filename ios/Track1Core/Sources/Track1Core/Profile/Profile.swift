@@ -38,10 +38,10 @@ public struct Profile: Codable, Equatable, Sendable {
 	public let flowID: UUID
 	/// Set once, by the first commit, and kept by every later one.
 	public let createdAt: Date
-	/// Nil until the pseudo and disc screens are wired into onboarding. When present, already normalized by
-	/// `PseudoRules`: `isValid()` refuses a file that holds anything else.
-	public let displayName: String?
-	public let disc: ProfileDisc?
+	/// Already normalized by `PseudoRules`: `isValid()` refuses a file that holds anything else. Both this and
+	/// `disc` are required since TRA-758, so a file without either reads as corrupt.
+	public let displayName: String
+	public let disc: ProfileDisc
 	/// The editorial families and genres behind `genreIDs`. Nil when the draft carried none, which keeps the
 	/// key absent from the file.
 	public let selection: GenreSelection?
@@ -62,8 +62,7 @@ public struct Profile: Codable, Equatable, Sendable {
 	// Explicit because a `let` optional gets no default value in the memberwise initializer.
 	init(
 		version: Int, localID: UUID, genreIDs: [NodeIdentity], revision: Int, onboardingCompleted: Bool,
-		flowID: UUID, createdAt: Date, displayName: String? = nil, disc: ProfileDisc? = nil,
-		selection: GenreSelection? = nil
+		flowID: UUID, createdAt: Date, displayName: String, disc: ProfileDisc, selection: GenreSelection? = nil
 	) {
 		self.version = version
 		self.localID = localID
@@ -79,7 +78,7 @@ public struct Profile: Codable, Equatable, Sendable {
 
 	func isValid() -> Bool {
 		version == Self.version && revision > 0 && onboardingCompleted
-			&& (displayName.map { PseudoRules.normalized($0) == $0 } ?? true)
+			&& PseudoRules.normalized(displayName) == displayName
 			&& genreIDs.allSatisfy { $0.type == .genre }
 			&& Set(genreIDs).count == genreIDs.count
 			&& (selection?.isValid() ?? true)
@@ -92,7 +91,8 @@ public struct ProfileDraft: Codable, Equatable, Sendable {
 	public let genreIDs: [NodeIdentity]
 	public let onboardingStartedRecorded: Bool
 	public let selection: GenreSelection?
-	/// Nil until the pseudo and disc screens have run; the commit then takes them from the saved profile.
+	/// Nil on a draft that only edits the genres: the commit then takes them from the saved profile. A first
+	/// commit needs both.
 	public let displayName: String?
 	public let disc: ProfileDisc?
 
