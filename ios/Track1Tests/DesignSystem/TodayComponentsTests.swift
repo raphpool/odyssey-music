@@ -4,9 +4,9 @@ import XCTest
 
 @testable import Track1
 
-/// The values are spelled out again from the Figma nodes `324:1818` (date tile) and `324:1820` (pills), read
-/// on 2026-11-17 (TRA-727): a measure changed in the metrics alone fails here. Each row of a table is one
-/// value, named in the failure message.
+/// The values are spelled out again from the Figma nodes `324:1818` (date tile), `324:1820` (pills) and
+/// `324:1813` ("Découvrir"), read on 2026-11-17 (TRA-727, TRA-765): a measure changed in the metrics alone
+/// fails here. Each row of a table is one value, named in the failure message.
 final class TodayComponentsTests: XCTestCase {
 	private typealias Row = (name: String, actual: CGFloat, figma: CGFloat)
 
@@ -127,6 +127,54 @@ final class TodayComponentsTests: XCTestCase {
 		XCTAssertLessThanOrEqual(size.width, 320)
 		// At least two rows: two pill heights and the gap between them.
 		XCTAssertGreaterThanOrEqual(size.height, 2 * oneRow + GenrePillMetrics.spacing - 0.5)
+	}
+
+	// MARK: DiscoverButton (324:1813)
+
+	func testDiscoverButtonMetricsMatchFigma() {
+		assertMatchesFigma([
+			("leading padding", DiscoverButtonMetrics.leadingPadding, 12),
+			("trailing padding", DiscoverButtonMetrics.trailingPadding, 16),
+			("vertical padding", DiscoverButtonMetrics.verticalPadding, 12),
+			("height", DiscoverButtonMetrics.height, 44),
+			("corner radius", DiscoverButtonMetrics.cornerRadius, 999),
+			("icon size", DiscoverButtonMetrics.iconSize, 20),
+			("icon to label", DiscoverButtonMetrics.iconSpacing, 4),
+		])
+		XCTAssertEqual(DiscoverButtonMetrics.title, "Découvrir")
+		XCTAssertEqual(DiscoverButtonMetrics.identifier, "today-discover")
+		XCTAssertEqual(DiscoverButtonMetrics.labelRole, .monoButton)
+		assertText(.monoButton, .jetBrainsMonoMedium, 15, 20)
+	}
+
+	/// What the button applies, through the metrics the view reads: bone fill, espresso label and icon.
+	func testDiscoverColorsMatchFigma() {
+		XCTAssertEqual(rgbaHex(DiscoverButtonMetrics.fill), "f6e9d8ff")
+		XCTAssertEqual(rgbaHex(DiscoverButtonMetrics.labelColor), "0b0706ff")
+		XCTAssertEqual(DiscoverButtonMetrics.iconTone, .inverse)
+		XCTAssertEqual(rgbaHex(DiscoverButtonMetrics.pressedFill), "c8b6a3ff")
+	}
+
+	func testEachTapCallsTheActionOnce() {
+		var calls = 0
+		XCTAssertTrue(DiscoverButtonTap.isEnabled(isLoading: false))
+		for tap in 1...3 {
+			XCTAssertTrue(DiscoverButtonTap.handle(isLoading: false) { calls += 1 })
+			XCTAssertEqual(calls, tap)
+		}
+	}
+
+	func testNoTapCallsTheActionWhileLoading() {
+		var calls = 0
+		XCTAssertFalse(DiscoverButtonTap.isEnabled(isLoading: true))
+		XCTAssertFalse(DiscoverButtonTap.handle(isLoading: true) { calls += 1 })
+		XCTAssertEqual(calls, 0)
+	}
+
+	@MainActor
+	func testDiscoverButtonMeasures44PointsAtTheDefaultTextSize() {
+		let host = UIHostingController(rootView: DiscoverButton {})
+		XCTAssertEqual(host.sizeThatFits(in: CGSize(width: 390, height: 1000)).height, 44, accuracy: 0.5)
 	}
 
 	// MARK: Helpers
