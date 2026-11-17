@@ -111,7 +111,14 @@ describe("ios-check runner label (TRA-411, TRA-705)", () => {
 // stayed queued and no PR could merge. The workflows a PR triggers moved to GitHub-hosted runners; the
 // ones below stay self-hosted until their own ticket (ios-ci.yml: 1.3). Both tables are explicit on purpose:
 // a new workflow file must be filed in one of them, or the "known workflows" test fails.
-const HOSTED = ["ci.yml", "mobile-ci.yml", "review-gate.yml", "ai-review.yml", "claude.yml"];
+const HOSTED = [
+	"ci.yml",
+	"mobile-ci.yml",
+	"review-gate.yml",
+	"ai-review.yml",
+	"claude.yml",
+	"enable-workflows.yml",
+];
 const SELF_HOSTED = ["deploy.yml", "pull-cache.yml", "sync-genre-cache.yml", "top-up-genres.yml"];
 // TRA-729 (2026-11-17): ios-testflight.yml signs and uploads, so it needs the same hosted macOS image as ios-ci.yml.
 const MACOS = ["ios-ci.yml", "ios-testflight.yml"];
@@ -185,6 +192,42 @@ describe("hosted job conditions (TRA-703)", () => {
 		expect(jobIfOf("claude.yml", "claude")).toBe(
 			'contains(github.event.comment.body, \'@claude\') && contains(fromJSON(\'["OWNER","MEMBER","COLLABORATOR"]\'), github.event.comment.author_association)',
 		);
+	});
+});
+
+// TRA-784 (2026-11-17): enable-workflows.yml turns the PR workflows back on with a write token, so it must stay
+// narrow: never run on a pull request, check out no code, hold no permission beyond `actions: write`, and enable
+// only the hosted PR workflows, never one that targets the self-hosted runners that are off.
+describe("enable-workflows.yml (TRA-784)", () => {
+	const source = withoutComments(readFileSync(".github/workflows/enable-workflows.yml", "utf8"));
+
+	it("runs only on a manual dispatch or a push of its own file to main", () => {
+		expect(source).toMatch(
+			/^on:\n {2}workflow_dispatch:\n {2}push:\n {4}branches: \[main\]\n {4}paths:\n {6}- "\.github\/workflows\/enable-workflows\.yml"\n/m,
+		);
+		expect(source).not.toMatch(/pull_request/);
+	});
+
+	it("holds `actions: write` only and checks out no code", () => {
+		expect(source.match(/^permissions:\n((?: {2}.*\n)+)/m)?.[1]).toBe("  actions: write\n");
+		expect(source).not.toMatch(/actions\/checkout/);
+	});
+
+	it("enables exactly the six hosted pull-request workflows", () => {
+		const listed =
+			source
+				.match(/for workflow in ([^;]+);/)?.[1]
+				?.trim()
+				.split(/\s+/) ?? [];
+		expect([...listed].sort()).toEqual([
+			"ai-review.yml",
+			"ci.yml",
+			"claude.yml",
+			"ios-ci.yml",
+			"mobile-ci.yml",
+			"review-gate.yml",
+		]);
+		for (const file of listed) expect([...SELF_HOSTED, "ios-testflight.yml"]).not.toContain(file);
 	});
 });
 
