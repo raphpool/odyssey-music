@@ -790,6 +790,7 @@ final class TodayViewModelTests: XCTestCase {
 			"version": Profile.version, "local_id": Self.localID.uuidString, "genre_ids": [genre.rawValue],
 			"revision": revision, "onboarding_completed": true,
 			"flow_id": "5B1D3F0A-0000-4000-8000-0000000000BB", "created_at": 0,
+			"display_name": "Raph", "disc": "mint",
 		]
 		json["selection"] = selection
 		return try JSONDecoder().decode(Profile.self, from: JSONSerialization.data(withJSONObject: json))

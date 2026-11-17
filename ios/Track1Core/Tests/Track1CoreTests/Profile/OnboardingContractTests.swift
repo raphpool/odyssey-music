@@ -44,7 +44,9 @@ final class OnboardingContractTests: XCTestCase {
 			version: Profile.version,
 			flowID: initialDraft.flowID,
 			genreIDs: choices,
-			onboardingStartedRecorded: true
+			onboardingStartedRecorded: true,
+			displayName: "Raph",
+			disc: .mint
 		)
 		guard case .saved(let original) = await store.commit(completedDraft, availableGenreIDs: choices) else {
 			return XCTFail("Expected an initial profile.")
@@ -82,7 +84,9 @@ final class OnboardingContractTests: XCTestCase {
 			version: Profile.version,
 			flowID: draft.flowID,
 			genreIDs: [jazz],
-			onboardingStartedRecorded: true
+			onboardingStartedRecorded: true,
+			displayName: "Raph",
+			disc: .mint
 		)
 		guard case .saved(let profile) = await store.commit(single, availableGenreIDs: [jazz]) else {
 			return XCTFail("Expected a one-genre profile to be saved.")

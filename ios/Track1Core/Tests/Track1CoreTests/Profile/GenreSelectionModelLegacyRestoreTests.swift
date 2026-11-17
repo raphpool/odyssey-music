@@ -78,6 +78,8 @@ final class GenreSelectionModelLegacyRestoreTests: XCTestCase {
 			onboardingCompleted: true,
 			flowID: UUID(),
 			createdAt: Date(timeIntervalSince1970: 0),
+			displayName: "Raph",
+			disc: .mint,
 			selection: nil
 		)
 	}
@@ -251,6 +253,8 @@ final class GenreSelectionModelLegacyRestoreTests: XCTestCase {
 			onboardingCompleted: true,
 			flowID: UUID(),
 			createdAt: Date(timeIntervalSince1970: 0),
+			displayName: "Raph",
+			disc: .mint,
 			selection: GenreSelection(families: [jazz], genres: [bebop])
 		)
 		let model = GenreSelectionModel(taxonomy: try taxonomy(), editing: v2)
@@ -303,6 +307,8 @@ final class GenreSelectionModelLegacyRestoreTests: XCTestCase {
 			onboardingCompleted: true,
 			flowID: UUID(),
 			createdAt: Date(timeIntervalSince1970: 0),
+			displayName: "Raph",
+			disc: .mint,
 			selection: draft.selection
 		)
 		let reloaded = GenreSelectionModel(taxonomy: try taxonomy(), editing: saved)

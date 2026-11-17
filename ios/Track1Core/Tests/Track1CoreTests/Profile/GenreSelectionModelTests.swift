@@ -69,6 +69,8 @@ final class GenreSelectionModelTests: XCTestCase {
 			onboardingCompleted: true,
 			flowID: flowID,
 			createdAt: Date(timeIntervalSince1970: 0),
+			displayName: "Raph",
+			disc: .mint,
 			selection: selection
 		)
 	}

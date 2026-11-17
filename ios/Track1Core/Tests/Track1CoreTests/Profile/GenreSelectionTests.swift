@@ -130,7 +130,7 @@ final class GenreSelectionTests: XCTestCase {
 		Profile(
 			version: Profile.version, localID: localID, genreIDs: [], revision: 1,
 			onboardingCompleted: true, flowID: flowID, createdAt: Date(timeIntervalSince1970: 0),
-			selection: selection)
+			displayName: "Raph", disc: .mint, selection: selection)
 	}
 
 	private func draft(selection: GenreSelection? = nil) -> ProfileDraft {
@@ -164,7 +164,8 @@ final class GenreSelectionTests: XCTestCase {
 	func testAProfileWrittenBeforeSelectionExistedStillDecodes() throws {
 		let legacy = """
 			{"version":\(Profile.version),"local_id":"\(localID.uuidString)","genre_ids":["genre:house"],\
-			"revision":2,"onboarding_completed":true,"flow_id":"\(flowID.uuidString)","created_at":0}
+			"revision":2,"onboarding_completed":true,"flow_id":"\(flowID.uuidString)","created_at":0,\
+			"display_name":"Raph","disc":"mint"}
 			"""
 		let decoded = try JSONDecoder().decode(Profile.self, from: Data(legacy.utf8))
 		XCTAssertNil(decoded.selection)

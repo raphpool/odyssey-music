@@ -29,7 +29,9 @@ final class ProfileStoreTests: XCTestCase {
 			version: Profile.version,
 			flowID: initial.flowID,
 			genreIDs: [],
-			onboardingStartedRecorded: false
+			onboardingStartedRecorded: false,
+			displayName: "Raph",
+			disc: .mint
 		)
 		let emptyResult = await store.commit(empty, availableGenreIDs: threeGenres)
 		XCTAssertEqual(emptyResult, .invalid)
@@ -38,7 +40,9 @@ final class ProfileStoreTests: XCTestCase {
 			version: Profile.version,
 			flowID: initial.flowID,
 			genreIDs: Array(threeGenres.prefix(1)),
-			onboardingStartedRecorded: false
+			onboardingStartedRecorded: false,
+			displayName: "Raph",
+			disc: .mint
 		)
 		guard case .saved(let profile) = await store.commit(single, availableGenreIDs: threeGenres) else {
 			return XCTFail("Expected a one-genre profile to be saved.")
@@ -74,7 +78,9 @@ final class ProfileStoreTests: XCTestCase {
 			version: Profile.version,
 			flowID: draft.flowID,
 			genreIDs: choices,
-			onboardingStartedRecorded: true
+			onboardingStartedRecorded: true,
+			displayName: "Raph",
+			disc: .mint
 		)
 		let saveResult = await store.saveDraft(selected)
 		XCTAssertEqual(saveResult, .success(selected))
@@ -103,7 +109,9 @@ final class ProfileStoreTests: XCTestCase {
 				version: Profile.version,
 				flowID: initial.flowID,
 				genreIDs: originalChoices,
-				onboardingStartedRecorded: false
+				onboardingStartedRecorded: false,
+				displayName: "Raph",
+				disc: .mint
 			)
 			let saveResult = await store.saveDraft(savedDraft)
 			XCTAssertEqual(saveResult, .success(savedDraft))
@@ -130,7 +138,7 @@ final class ProfileStoreTests: XCTestCase {
 		let corruptRead = await store.read()
 		XCTAssertEqual(corruptRead, .corrupt)
 		let futureVersionJSON = """
-			{"version":4,"local_id":"00000000-0000-0000-0000-000000000000","genre_ids":[],"revision":1,"onboarding_completed":true,"flow_id":"00000000-0000-0000-0000-000000000000","created_at":"2027-01-15T08:00:00Z"}
+			{"version":4,"local_id":"00000000-0000-0000-0000-000000000000","genre_ids":[],"revision":1,"onboarding_completed":true,"flow_id":"00000000-0000-0000-0000-000000000000","created_at":"2027-01-15T08:00:00Z","display_name":"Raph","disc":"mint"}
 			"""
 		if case .failure = await localStore.write(Data(futureVersionJSON.utf8), named: "profile.v3.json") {
 			XCTFail("Expected the version fixture to be written.")
@@ -146,7 +154,9 @@ final class ProfileStoreTests: XCTestCase {
 			version: Profile.version,
 			flowID: recoveredDraft.flowID,
 			genreIDs: recoveredGenres,
-			onboardingStartedRecorded: false
+			onboardingStartedRecorded: false,
+			displayName: "Raph",
+			disc: .mint
 		)
 		guard case .saved = await store.commit(completedRecovery, availableGenreIDs: recoveredGenres) else {
 			return XCTFail("Expected onboarding to complete after an explicit purge.")
@@ -169,7 +179,9 @@ final class ProfileStoreTests: XCTestCase {
 			version: Profile.version,
 			flowID: draft.flowID,
 			genreIDs: choices,
-			onboardingStartedRecorded: false
+			onboardingStartedRecorded: false,
+			displayName: "Raph",
+			disc: .mint
 		)
 		let savedDraft = await store.saveDraft(selectedDraft)
 		XCTAssertEqual(savedDraft, .success(selectedDraft))
@@ -207,7 +219,9 @@ final class ProfileStoreTests: XCTestCase {
 				version: Profile.version,
 				flowID: draft.flowID,
 				genreIDs: choices,
-				onboardingStartedRecorded: false
+				onboardingStartedRecorded: false,
+				displayName: "Raph",
+				disc: .mint
 			)
 			let write = Task { await store.commit(selected, availableGenreIDs: choices) }
 			guard await gate.waitUntilReached(timeout: Self.gateTimeout) else {
@@ -237,7 +251,9 @@ final class ProfileStoreTests: XCTestCase {
 			version: Profile.version,
 			flowID: draft.flowID,
 			genreIDs: choices,
-			onboardingStartedRecorded: false
+			onboardingStartedRecorded: false,
+			displayName: "Raph",
+			disc: .mint
 		)
 		guard case .saved(let first) = await store.commit(selected, availableGenreIDs: choices) else {
 			return XCTFail("Expected the first profile to be saved.")
@@ -350,7 +366,7 @@ final class ProfileStoreTests: XCTestCase {
 		guard case .saved(let original) = await store.commit(named, availableGenreIDs: choices) else {
 			return XCTFail("Expected the first commit to save.")
 		}
-		let edit = draft(genres: Array(choices.prefix(2)))
+		let edit = draft(genres: Array(choices.prefix(2)), displayName: nil, disc: nil)
 		guard case .saved(let edited) = await store.commit(edit, availableGenreIDs: choices) else {
 			return XCTFail("Expected the edit to save.")
 		}
@@ -359,7 +375,7 @@ final class ProfileStoreTests: XCTestCase {
 		XCTAssertEqual(edited.createdAt, original.createdAt)
 		XCTAssertEqual(edited.revision, original.revision + 1)
 
-		let recolored = draft(genres: Array(choices.prefix(2)), disc: .coral)
+		let recolored = draft(genres: Array(choices.prefix(2)), displayName: nil, disc: .coral)
 		guard case .saved(let changed) = await store.commit(recolored, availableGenreIDs: choices) else {
 			return XCTFail("Expected the new disc to save.")
 		}
@@ -389,19 +405,30 @@ final class ProfileStoreTests: XCTestCase {
 		XCTAssertEqual(read, .corrupt)
 	}
 
-	func testAV3FileWithAnUnknownDiscOrARawPseudoIsCorruptButAPartialOneIsValid() async throws {
+	func testAV3FileWithoutPseudoOrDiscOrWithAnUnknownDiscOrARawPseudoIsCorrupt() async throws {
 		let file = directoryURL.appending(path: "profile.v3.json")
-		let corrupt: [[String: Any]] = [["disc": "pink"], ["display_name": " Raph "], ["display_name": ""]]
-		for extra in corrupt {
-			try v3JSON(extra).write(to: file)
+		try v3JSON().write(to: file)
+		guard case .profile = await makeStore().read() else { return XCTFail("The fixture itself must be valid.") }
+		let corrupt: [(extra: [String: Any], omitting: [String])] = [
+			([:], ["display_name"]), ([:], ["disc"]), (["disc": "pink"], []),
+			(["display_name": " Raph "], []), (["display_name": ""], []),
+		]
+		for (extra, omitting) in corrupt {
+			try v3JSON(extra, omitting: omitting).write(to: file)
 			let read = await makeStore().read()
-			XCTAssertEqual(read, .corrupt, "\(extra)")
+			XCTAssertEqual(read, .corrupt, "\(extra) without \(omitting)")
 		}
-		let valid: [[String: Any]] = [[:], ["disc": "mint"], ["display_name": "Raph"]]
-		for extra in valid {
-			try v3JSON(extra).write(to: file)
-			guard case .profile = await makeStore().read() else { return XCTFail("\(extra) must read.") }
+	}
+
+	func testACommitWithoutPseudoOrDiscOnAMissingProfileIsRefusedAndNothingIsWritten() async throws {
+		let choices = genres(3)
+		let incomplete: [(String?, ProfileDisc?)] = [(nil, nil), ("Raph", nil), (nil, .mint)]
+		for (displayName, disc) in incomplete {
+			let candidate = draft(genres: choices, displayName: displayName, disc: disc)
+			let result = await makeStore().commit(candidate, availableGenreIDs: choices)
+			XCTAssertEqual(result, .invalid, "\(String(describing: displayName)) \(String(describing: disc))")
 		}
+		XCTAssertEqual(try FileManager.default.contentsOfDirectory(atPath: directoryURL.path), [])
 	}
 
 	func testMarkingOnboardingStartedKeepsThePseudoAndTheDisc() async throws {
@@ -514,7 +541,7 @@ final class ProfileStoreTests: XCTestCase {
 	private func seedV1Profile(genres: [NodeIdentity]) async throws {
 		let profile = Profile(
 			version: 1, localID: UUID(), genreIDs: genres, revision: 3, onboardingCompleted: true, flowID: UUID(),
-			createdAt: Date(timeIntervalSince1970: 0))
+			createdAt: Date(timeIntervalSince1970: 0), displayName: "Raph", disc: .mint)
 		try await seed(profile, named: "profile.v1.json")
 	}
 
@@ -533,7 +560,7 @@ final class ProfileStoreTests: XCTestCase {
 
 	private func draft(
 		genres: [NodeIdentity], selection: GenreSelection? = nil, started: Bool = false,
-		displayName: String? = nil, disc: ProfileDisc? = nil
+		displayName: String? = "Raph", disc: ProfileDisc? = .mint
 	) -> ProfileDraft {
 		ProfileDraft(
 			version: Profile.version, flowID: UUID(uuidString: "11111111-1111-1111-1111-111111111111")!,
@@ -542,14 +569,15 @@ final class ProfileStoreTests: XCTestCase {
 	}
 
 	private func v3JSON(
-		_ extra: [String: Any] = [:], createdAt: String? = "2027-01-15T08:00:00Z"
+		_ extra: [String: Any] = [:], omitting: [String] = [], createdAt: String? = "2027-01-15T08:00:00Z"
 	) throws -> Data {
 		var object: [String: Any] = [
 			"version": 3, "local_id": UUID().uuidString, "genre_ids": [], "revision": 1,
-			"onboarding_completed": true, "flow_id": UUID().uuidString,
+			"onboarding_completed": true, "flow_id": UUID().uuidString, "display_name": "Raph", "disc": "mint",
 		]
 		object["created_at"] = createdAt
 		object.merge(extra) { _, new in new }
+		for key in omitting { object[key] = nil }
 		return try JSONSerialization.data(withJSONObject: object)
 	}
 

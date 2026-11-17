@@ -168,7 +168,7 @@ public actor ProfileStore {
 		switch current {
 		case .profile(let existing):
 			// A draft without a pseudo or a disc is an edit of the genres only: the saved ones stay, and a draft
-			// cannot clear them. Neither is required yet: onboarding only starts to collect them with TRA-735.
+			// cannot clear them.
 			let displayName = draft.displayName ?? existing.displayName
 			let disc = draft.disc ?? existing.disc
 			let unchanged =
@@ -187,6 +187,9 @@ public actor ProfileStore {
 				selection: draft.selection
 			)
 		case .missing:
+			// Onboarding collects both (TRA-735), so a first commit without them is refused before anything is
+			// written, rather than saving a file that `read()` would then call corrupt.
+			guard let displayName = draft.displayName, let disc = draft.disc else { return .invalid }
 			profile = Profile(
 				version: Profile.version,
 				localID: UUID(),
@@ -196,8 +199,8 @@ public actor ProfileStore {
 				flowID: draft.flowID,
 				// Whole seconds, like the file: the saved profile must equal what `read()` returns.
 				createdAt: Date(timeIntervalSince1970: now().timeIntervalSince1970.rounded(.down)),
-				displayName: draft.displayName,
-				disc: draft.disc,
+				displayName: displayName,
+				disc: disc,
 				selection: draft.selection
 			)
 		case .corrupt, .unsupportedVersion, .unavailable:
