@@ -249,3 +249,113 @@ jobs:
         env:
           PATCH_ID: ${{ steps.patch.outputs.id }}
         run: echo "::notice::review-patch-id v1 $PATCH_ID"
+
+  # TRA-754 (2026-11-16): the deep review of a tier/3 PR, run here rather than published from a Mac; review-gate.yml reads
+  # the `deep-review` job like `review` and hands its conclusion to the policy as `deepClaude`. Fail closed: below tier 3
+  # that job is SKIPPED (read `missing`), never a success that reviewed nothing, which a `tier/3` label added later (no
+  # `labeled` trigger here) would inherit. A PR that edits this file runs its own copy: the policy refuses it for gate files.
+  deep-review-tier:
+    if: github.event.pull_request.draft == false && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      tier: ${{ steps.tier.outputs.tier }}
+    steps:
+      - uses: actions/checkout@v6
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22.13.0 }
+      - name: Compute the tier of the PR
+        id: tier
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          # The classifier comes from the default branch, never from the PR; an unreadable copy fails the job.
+          trusted="$RUNNER_TEMP/review-gate-policy"
+          mkdir -p "$trusted"
+          git show "origin/$DEFAULT_BRANCH:scripts/ci/review-gate-policy.ts" > "$trusted/review-gate-policy.ts"
+          echo '{"type":"module"}' > "$trusted/package.json"
+          # Same paths as the gate (--no-renames, -z).
+          paths=$(git diff -z --name-only --no-renames "$BASE_SHA"..."$HEAD_SHA" | tr '\0' '\n' | jq -R . | jq -s .)
+          labels=$(gh pr view "$PR_NUMBER" --json labels --jq '[.labels[].name]')
+          # The module path goes through env, not argv: the policy runs its CLI when argv[1] ends with its own name.
+          tier=$(POLICY="file://$trusted/review-gate-policy.ts" PATHS="$paths" LABELS="$labels" \
+            node --experimental-strip-types --no-warnings --input-type=module \
+            -e 'const { classifyRisk } = await import(process.env.POLICY); console.log(classifyRisk(JSON.parse(process.env.PATHS), JSON.parse(process.env.LABELS)))')
+          [[ "$tier" =~ ^[123]$ ]]
+          echo "tier=$tier" >> "$GITHUB_OUTPUT"
+
+  # No status function in the `if`: when the tier job is skipped or fails, this one is skipped.
+  deep-review:
+    needs: deep-review-tier
+    if: github.event.pull_request.draft == false && github.event.pull_request.head.repo.full_name == github.repository && needs.deep-review-tier.outputs.tier == '3'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: read
+      id-token: write
+      actions: read
+      checks: read
+    steps:
+      # TRA-529: the same record as `review`, first, so that every conclusion of this job carries it.
+      - name: Record the pull request and the base of this review
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          export LC_ALL=C
+          if [[ "$PR_NUMBER" =~ ^[1-9][0-9]*$ && "$BASE_REF" =~ ^[A-Za-z0-9._/-]+$ ]]; then
+            echo "::notice::review-base v1 $PR_NUMBER $BASE_REF"
+          else
+            echo "::warning::review-base non enregistré (numéro de PR ou nom de base inattendu) : le gate ne comptera pas cette review."
+          fi
+      - uses: actions/checkout@v6
+        with: { fetch-depth: 0 }
+      - name: Load the review rubric from the default branch
+        # Not the PR's own REVIEW.md (it would calibrate its own review); an unreadable copy fails the job.
+        shell: bash
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: git show "origin/$DEFAULT_BRANCH:REVIEW.md" > "$RUNNER_TEMP/REVIEW.default.md"
+      - name: Deep review Claude
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            Review profonde (tier 3) de la PR #${{ github.event.pull_request.number }} de ${{ github.repository }}, 60 tours au plus.
+            1. Lis ${{ runner.temp }}/REVIEW.default.md (le REVIEW.md de la branche par défaut, jamais
+               celui de la PR) et applique-le à la lettre : plafond de nits, barre de preuve.
+            2. `git diff origin/${{ github.event.pull_request.base.ref }}...HEAD`, puis lis le code réel avant tout finding "block".
+               Axes : exactitude ; sécurité et secrets ; intégrité de la CI et du gate ; perte de données ; contrats publics.
+            3. Écris ${{ runner.temp }}/deep-review.json en premier, et rien d'autre dans ce fichier :
+               {"verdict":"pass"|"block","blocking":<n>,"nits":<n>,"summary":"<une ligne>",
+                "findings":[{"file":"","line":0,"severity":"block"|"nit"|"pre-existing","message":""}]}
+            4. Ensuite seulement, un commentaire inline en français par finding "block", et eux seuls.
+          # TRA-553: the hardening of `review`. `Write` is for the verdict file in runner.temp.
+          claude_args: |
+            --setting-sources user
+            --strict-mcp-config
+            --model claude-opus-5
+            --effort xhigh
+            --max-turns 60
+            --allowedTools "Read,Grep,Glob,Bash(git diff:*),Bash(git log:*),Write,mcp__github_inline_comment__create_inline_comment"
+      - name: Gate on the deep verdict
+        run: |
+          verdict="$RUNNER_TEMP/deep-review.json"
+          [ -f "$verdict" ] || { echo "::error::La review profonde n'a pas produit de verdict."; exit 1; }
+          cat "$verdict"
+          jq -r '"\(.blocking) bloquant(s), \(.nits) nit(s) — \(.summary)"' "$verdict" >> "$GITHUB_STEP_SUMMARY"
+          jq -e '.verdict == "pass" and .blocking == 0 and all(.findings[]?; .severity != "block")' "$verdict" > /dev/null \
+            || { echo "::error::Findings bloquants de la review profonde — voir les commentaires inline."; exit 1; }
