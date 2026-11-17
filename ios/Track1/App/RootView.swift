@@ -27,6 +27,8 @@ struct RootView: View {
 							onboardingCatalog: container.onboardingCatalog,
 							analytics: analytics,
 							profileStore: container.profileStore,
+							reminderCenter: container.reminderCenter,
+							reminderPrompt: container.reminderPrompt,
 							recentNodes: container.recentNodes,
 							dailyRecommendationStore: container.dailyRecommendationStore
 						)
@@ -51,15 +53,20 @@ private struct ApplicationTabs: View {
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
 	let analytics: AnalyticsClient
 	let profileStore: ProfileStore
+	let reminderCenter: any ReminderCenter
+	let reminderPrompt: ReminderPromptFlag
 	let recentNodes: RecentNodesStore
 	let dailyRecommendationStore: DailyRecommendationStore
 	@Environment(\.accessibilityReduceMotion) private var reduceMotion
+	@Environment(\.reminderSync) private var reminders
 	@State private var profileState = ProfileRead.missing
 	/// False until the profile has been read once: `.missing` before that is not a first launch, and the
 	/// onboarding must not flash for a person who has a profile.
 	@State private var profileLoaded = false
 	/// The window's bottom safe area, handed to the tab bar (see `tabs`).
 	@State private var windowSafeAreaBottom: CGFloat = 0
+	/// The opt-in screen over the tabs, for a profile made before it existed (TRA-746).
+	@State private var showsReminderPrompt = false
 
 	/// What the app shows for the state of the profile (J.4): no profile is the full-screen onboarding, without
 	/// the tabs, and the saved profile fades into them.
@@ -89,6 +96,7 @@ private struct ApplicationTabs: View {
 				FirstLaunchOnboardingView(
 					profileStore: profileStore,
 					analytics: analytics,
+					reminderCenter: reminderCenter,
 					loadCatalog: onboardingCatalog ?? readers?.catalog,
 					finished: profileWasCreated
 				)
@@ -103,7 +111,14 @@ private struct ApplicationTabs: View {
 		}
 		// The fade from the onboarding to the tabs; immediate under Reduce Motion.
 		.animation(Track1Motion.animation(.slow, reduceMotion: reduceMotion), value: gate)
-		.task { await reloadProfile() }
+		.task {
+			await reloadProfile()
+			await presentReminderPromptIfNeeded()
+		}
+		// Over the tabs, which stay mounted under it: the screen is the one of the onboarding, full height.
+		.fullScreenCover(isPresented: $showsReminderPrompt) {
+			NotificationOptInView(center: reminderCenter, onContinue: reminderPromptAnswered)
+		}
 	}
 
 	// 2026-10-13 (TRA-383): no tint here; the Nocturne action tint set at the app root must reach the tabs.
@@ -123,6 +138,8 @@ private struct ApplicationTabs: View {
 	/// still leave that entry behind, as can a stop of the app between the profile write and this one. The
 	/// durable fix is to empty the history where the profile is erased, which is not in this ticket's scope.
 	private func profileWasCreated(_ profile: Profile) {
+		// The opt-in was the last step of the flow: it is not offered again at a later launch.
+		reminderPrompt.markSeen()
 		Task {
 			_ = await dailyRecommendationStore.save([])
 			profileState = .profile(profile)
@@ -288,6 +305,28 @@ private struct ApplicationTabs: View {
 	private func reloadProfile() async {
 		profileState = await profileStore.read()
 		profileLoaded = true
+	}
+
+	/// A profile made before the opt-in existed sees it once, at launch, over the tabs: only when the system has
+	/// not been asked and the screen was never shown. A new profile went through it in the onboarding. The flag
+	/// is raised by the claim, as the screen is about to show.
+	private func presentReminderPromptIfNeeded() async {
+		guard case .profile = profileState, await reminderPrompt.claimPresentation(center: reminderCenter)
+		else { return }
+		showsReminderPrompt = true
+	}
+
+	/// "Continuer" was touched and the system answered. A yes plans the reminders now: Today may be served from
+	/// the cache, which would leave the plan on disk unscheduled until the next day (TRA-747, TRA-746). A second
+	/// call, from a double touch, finds the screen already closed.
+	private func reminderPromptAnswered(granted: Bool) {
+		guard showsReminderPrompt else { return }
+		showsReminderPrompt = false
+		guard granted, case .profile(let profile) = profileState, let reminders, let readers else { return }
+		let store = dailyRecommendationStore
+		Task {
+			await reminders.scheduleStoredPlan(for: profile, readCatalog: readers.catalog, store: store)
+		}
 	}
 }
 

@@ -47,28 +47,27 @@ final class OnboardingAnswers {
 	}
 }
 
-/// The onboarding flow of Flow 1: Welcome, then the pseudo, the disc and the one genre screen, an accordion
-/// of the editorial families whose genres are ticked as chips. The order is `OnboardingSteps.order`: Welcome
-/// is the root of the stack and the other steps are pushed on it. A model built from a profile (`isEditing`)
-/// is the edit flow of the Genres tab (K.1): it opens on the genre screen with no Welcome, pseudo nor disc,
-/// and ends on "Enregistrer". `FirstLaunchOnboardingView` hosts the first launch.
+/// The onboarding flow of Flow 1: Welcome, then the pseudo, the disc, the one genre screen, an accordion
+/// of the editorial families whose genres are ticked as chips, and the notification opt-in (TRA-746). The
+/// order is `OnboardingSteps.order`: Welcome is the root of the stack and the other steps are pushed on it. A
+/// model built from a profile (`isEditing`) is the edit flow of the Genres tab (K.1): it opens on the genre
+/// screen with no Welcome, pseudo, disc nor opt-in, and ends on "Enregistrer". `FirstLaunchOnboardingView`
+/// hosts the first launch.
 ///
 /// The caller owns `model` and `answers` (`@State` in its host): one created inside a parent's `body` would
 /// be rebuilt on every render and drop what was chosen with it.
 struct OnboardingFlowView: View {
-	/// The notification opt-in is not part of the flow until it ships.
-	private static let includesNotifications = false
-
 	/// The screens pushed on Welcome, named as in `OnboardingStepID`. Welcome is the root, so it has no case.
 	enum Step: Hashable {
-		case pseudo, disc, genres
+		case pseudo, disc, genres, notifications
 
 		init?(_ id: OnboardingStepID) {
 			switch id {
 			case .pseudo: self = .pseudo
 			case .disc: self = .disc
 			case .genres: self = .genres
-			case .welcome, .notifications: return nil
+			case .notifications: self = .notifications
+			case .welcome: return nil
 			}
 		}
 
@@ -77,18 +76,19 @@ struct OnboardingFlowView: View {
 			case .pseudo: .pseudo
 			case .disc: .disc
 			case .genres: .genres
+			case .notifications: .notifications
 			}
 		}
 	}
 
 	/// What a flow reopens on after the app was stopped: Welcome while the draft holds no answer, otherwise the
 	/// first step whose answer is missing. The steps before it are pushed too, so that the back gesture goes
-	/// through them as it did the first time. The genre step is never validated by the draft: the profile is
-	/// what ends it.
+	/// through them as it did the first time. The genre step is never validated by the draft, so the flow never
+	/// reopens on the opt-in: the profile is written when that step ends.
 	static func resumePath(displayName: String?, disc: ProfileDisc?) -> [Step] {
 		guard displayName != nil || disc != nil else { return [] }
 		var path = [Step]()
-		for id in OnboardingSteps.order(includesNotifications: includesNotifications) {
+		for id in OnboardingSteps.order(includesNotifications: true) {
 			guard let step = Step(id) else { continue }
 			path.append(step)
 			if !OnboardingSteps.canLeave(id, pseudo: displayName, disc: disc, selectedGenres: 0) { break }
@@ -98,6 +98,8 @@ struct OnboardingFlowView: View {
 
 	let model: GenreSelectionModel
 	private let answers: OnboardingAnswers?
+	/// Nil in the edit flow, which has no opt-in step: it ends on the genre screen.
+	private let reminderCenter: (any ReminderCenter)?
 	private let onStepValidated: ((ProfileDraft) -> Void)?
 	private let onFinish: (ProfileDraft) -> Void
 	@State private var path: [Step]
@@ -106,21 +108,24 @@ struct OnboardingFlowView: View {
 	init(model: GenreSelectionModel, onFinish: @escaping (ProfileDraft) -> Void) {
 		self.model = model
 		answers = nil
+		reminderCenter = nil
 		onStepValidated = nil
 		self.onFinish = onFinish
 		_path = State(initialValue: [])
 	}
 
 	/// The first launch. `onStepValidated` receives the draft each time a step is left, with every answer given
-	/// so far, to be saved: it is what a relaunch resumes from.
+	/// so far, to be saved: it is what a relaunch resumes from. `reminderCenter` is what the last step asks.
 	init(
 		model: GenreSelectionModel,
 		answers: OnboardingAnswers,
+		reminderCenter: any ReminderCenter,
 		onStepValidated: @escaping (ProfileDraft) -> Void,
 		onFinish: @escaping (ProfileDraft) -> Void
 	) {
 		self.model = model
 		self.answers = answers
+		self.reminderCenter = reminderCenter
 		self.onStepValidated = onStepValidated
 		self.onFinish = onFinish
 		_path = State(initialValue: Self.resumePath(displayName: answers.displayName, disc: answers.disc))
@@ -169,12 +174,21 @@ struct OnboardingFlowView: View {
 			}
 		case .genres:
 			genresStep
+		case .notifications:
+			if let reminderCenter {
+				// The answer is not the flow's business: the profile is written either way, and Today plans
+				// the reminders once it loads.
+				NotificationOptInView(center: reminderCenter) { _ in leave(.notifications) }
+			}
 		}
 	}
 
 	private var genresStep: some View {
 		GenresStepView(model: model) { leave(.genres) }
 	}
+
+	/// Only the first launch asks, and ends on the opt-in; the edit flow has no center and ends on the genres.
+	private var includesNotifications: Bool { reminderCenter != nil }
 
 	/// The step on screen: the root until something is pushed, which is the genre step in the edit flow.
 	private var current: OnboardingStepID {
@@ -188,7 +202,7 @@ struct OnboardingFlowView: View {
 	private func leave(_ step: OnboardingStepID) {
 		guard current == step, canLeave(step) else { return }
 		let draft = model.makeDraft(displayName: answers?.displayName, disc: answers?.disc)
-		let next = OnboardingSteps.next(after: step, includesNotifications: Self.includesNotifications)
+		let next = OnboardingSteps.next(after: step, includesNotifications: includesNotifications)
 		guard let nextStep = next.flatMap({ Step($0) }) else {
 			onFinish(draft)
 			return
@@ -238,6 +252,7 @@ struct FirstLaunchOnboardingView: View {
 
 	let profileStore: ProfileStore
 	let analytics: AnalyticsClient
+	let reminderCenter: any ReminderCenter
 	let loadCatalog: (@Sendable () async -> APIResult<Catalog>)?
 	let finished: (Profile) -> Void
 
@@ -258,6 +273,7 @@ struct FirstLaunchOnboardingView: View {
 				OnboardingFlowView(
 					model: loaded.model,
 					answers: loaded.answers,
+					reminderCenter: reminderCenter,
 					onStepValidated: { draft in saveDraft(draft) },
 					onFinish: { draft in save(draft, available: loaded.genreIDs) }
 				)
