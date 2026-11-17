@@ -1,20 +1,21 @@
 import SwiftUI
 
-/// Measures of the tab bar, from the Figma frame `282:889` (393 x 95, doc plan annex A.1).
+/// Measures of the tab bar, from the Figma frame `324:1792` (v1, 393 x 95, doc plan annex A).
 enum Track1TabBarMetrics {
 	static let tabWidth: CGFloat = 96
 	static let tabHeight: CGFloat = 54
 	static let pillPadding = Track1Tokens.spacing4
+	/// The pill hugs its two tabs: 2 x 96 + 2 x 4 = 200 (Figma `324:1793`).
+	static let pillWidth: CGFloat = 2 * tabWidth + 2 * pillPadding
 	/// One tab and the padding above and below it: 54 + 2 x 4 = 62.
 	static let pillHeight: CGFloat = tabHeight + 2 * pillPadding
 	static let topPadding = Track1Tokens.spacing12
 	static let horizontalInset: CGFloat = 25
 	static let iconSize = Track1Tokens.sizeIconMedium
-	static let borderWidth: CGFloat = 1
 	static let bottomPaddingWithoutHomeIndicator = Track1Tokens.spacing12
 
-	/// Figma draws 21 pt under the buttons on a 393 x 95 frame; on a device the home indicator already
-	/// provides that room, so the bar adds nothing there and keeps 12 pt on a screen without one (Q8).
+	/// Figma draws 21 pt under the pill on a 393 x 95 frame; on a device the home indicator already provides
+	/// that room, so the bar adds nothing there and keeps 12 pt on a screen without one (Q8).
 	static func bottomPadding(safeAreaBottom: CGFloat) -> CGFloat {
 		safeAreaBottom > 0 ? 0 : bottomPaddingWithoutHomeIndicator
 	}
@@ -30,10 +31,9 @@ enum Track1TabBarMetrics {
 /// Colors and tones of the tab bar, named so that tests compare them to the tokens.
 enum Track1TabBarStyle {
 	static let identifier = "tab-bar"
-	static let pillFill = Track1Tokens.colorGlassSurface
-	static let pillBorder = Track1Tokens.colorGlassBorder
-	static let selectedFill = Track1Tokens.colorGlassSelected
-	static let activeTone: Track1Icon.Tone = .action
+	static let pillFill = Track1Tokens.colorGlassPill
+	static let selectedFill = Track1Tokens.colorGlassPillSelected
+	static let activeTone: Track1Icon.Tone = .primary
 	static let inactiveTone: Track1Icon.Tone = .secondary
 
 	/// Transparent at the top, opaque at the bottom: the content that scrolls under the bar fades into the
@@ -46,9 +46,9 @@ enum Track1TabBarStyle {
 	}
 }
 
-/// Figma `Tab bar` (`173:108`, instance `282:889`): two tabs in a centered pill, icons only (TRA-771: the
-/// round Search button is gone). The glass is deliberately quieter than the native Liquid Glass: a thin
-/// material under `colorGlassSurface` and a 1 pt border, no `glassEffect`, no refraction.
+/// Figma `Tab bar` (`324:1792`, v1): two tabs in a centered pill, icons only. The pill is a flat translucent
+/// fill (`colorGlassPill`) with no border and no material, and the selected tab sits on a darker capsule
+/// (`colorGlassPillSelected`). The labels are not drawn; they stay as accessibility labels.
 ///
 /// The bar has no state of its own and does not know `AppTab`: the screen owns the selection and passes it
 /// down. Place it with `safeAreaInset(edge: .bottom, spacing: 0)` on the `TabView`, so that the content scrolls
@@ -119,14 +119,15 @@ struct Track1TabBar: View {
 			.accessibilityIdentifier(Track1TabBarStyle.identifier)
 	}
 
-	private var pill: some View {
+	/// Internal, not private, so that a test measures the pill alone against `pillWidth` and `pillHeight`.
+	var pill: some View {
 		HStack(spacing: 0) {
 			ForEach(items) { item in
 				tabButton(item)
 			}
 		}
 		.padding(Track1TabBarMetrics.pillPadding)
-		.glass(in: Capsule())
+		.background(Track1TabBarStyle.pillFill, in: Capsule())
 	}
 
 	private func tabButton(_ item: Item) -> some View {
@@ -156,18 +157,5 @@ private struct SafeAreaBottomKey: PreferenceKey {
 
 	static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
 		value = nextValue()
-	}
-}
-
-extension View {
-	/// The tab bar glass: thin material, `colorGlassSurface` over it and a 1 pt border.
-	fileprivate func glass<S: InsettableShape>(in shape: S) -> some View {
-		background {
-			shape.fill(.ultraThinMaterial)
-			shape.fill(Track1TabBarStyle.pillFill)
-		}
-		.overlay {
-			shape.strokeBorder(Track1TabBarStyle.pillBorder, lineWidth: Track1TabBarMetrics.borderWidth)
-		}
 	}
 }
