@@ -110,6 +110,13 @@ public enum ReminderPlan {
 		return [artists, work].compactMap { $0 }.joined(separator: ", ")
 	}
 
+	/// The last date `plan` covers, `horizonDays` after `today`: what a caller checks, before reading the catalog,
+	/// to know whether a stored plan already reaches it (2026-11-17, TRA-783). `nil` for a `today` that is not a
+	/// real date, like `plan`, which then plans nothing.
+	static func horizonDate(after today: String) -> String? {
+		upcomingDates(after: today)?.last
+	}
+
 	/// UTC carries the calendar arithmetic only: it has no daylight saving jump that could skip or repeat a
 	/// day, and the result is formatted back in the same zone. The round trip rejects `2026-02-30`, which
 	/// `Calendar` would otherwise read as March 2nd.

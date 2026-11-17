@@ -25,9 +25,10 @@ public enum TodayState: Equatable, Sendable {
 @Observable
 public final class TodayViewModel {
 	public private(set) var state: TodayState = .loading
-	/// The reminders planned by the last `load` that picked and saved a work. Empty whenever `state` changes
-	/// without a plan: that includes a load that served the persisted entry of the day, which reads no catalog
-	/// to plan from, so empty means "nothing new to schedule", not "cancel what is scheduled".
+	/// The reminders planned by the last `load` that picked and saved a work, or by an `extendPlanIfNeeded` that
+	/// saved its plan: always the whole plan, today excluded, never only its new days. Empty whenever `state`
+	/// changes without a plan: that includes a load that served the persisted entry of the day, which reads no
+	/// catalog to plan from, so empty means "nothing new to schedule", not "cancel what is scheduled".
 	public private(set) var upcoming: [PlannedReminder] = []
 
 	@ObservationIgnored private let readCatalog: @Sendable () async -> APIResult<Catalog>
@@ -142,6 +143,58 @@ public final class TodayViewModel {
 		case .success: publish(.recommendation(recommendation), plan: reminders)
 		case .failure: publish(.unavailable)
 		}
+	}
+
+	/// Completes the plan of the next days when the day was served from disk (2026-11-17, TRA-783). `load` reads
+	/// no catalog on that path, so a person who opens the app every day would never move the plan's horizon and
+	/// the reminders would stop on the eighth day; the same goes for an app update, where today's entry exists
+	/// and no plan is on disk. To be called after `load` has shown today's work: it does not change `state`.
+	///
+	/// It acts only when the plan does not reach today + `ReminderPlan.horizonDays`, so a day with a complete
+	/// plan reads nothing. A catalog that cannot be read or ranked has no effect at all: no write, `state` and
+	/// `upcoming` as they were. The days already planned keep their entries, and the whole plan is saved
+	/// together with the history of `load`, so the file holds one entry per date.
+	public func extendPlanIfNeeded(for profile: Profile) async {
+		await acquire()
+		defer { release() }
+		guard !Task.isCancelled, latestRequestedProfile == profile else { return }
+		// Read only once the lock is held: a `load` queued before this call may have replaced the state. A shown
+		// work from another day or another taste is not an anchor to plan from.
+		let localDate = DailySelection.localDate(for: now(), timeZone: timeZone())
+		guard case .recommendation(let shown) = state, shown.localDate == localDate,
+			shown.profileRevision == profile.revision,
+			let horizon = ReminderPlan.horizonDate(after: localDate)
+		else { return }
+		let isCurrentPlan = { (entry: DailyRecommendation) in
+			entry.profileRevision == profile.revision && Affinity.isRecommendable(entry.nodeType)
+		}
+		let planned = await store.history()
+		guard !planned.contains(where: { $0.localDate == horizon && isCurrentPlan($0) }) else { return }
+
+		// `.notModified` carries no body: this reader has nothing to rank, like a failure.
+		guard case .success(let catalog, _) = await readCatalog() else { return }
+		guard !Task.isCancelled, latestRequestedProfile == profile else { return }
+		let candidates = Affinity.rank(catalog: catalog, genreIDs: profile.genreIDs)
+		guard !candidates.isEmpty else { return }
+
+		// Re-read right before saving, like `load`: the entry of the day is taken from the disk, not from `state`,
+		// so a marker written since is kept.
+		let stored = await store.history()
+		guard let today = stored.last(where: { $0.localDate == localDate && isCurrentPlan($0) }) else { return }
+		let past = stored.filter { $0.localDate < localDate }.sorted { $0.localDate < $1.localDate }
+		let keptPlan = stored.filter { $0.localDate > localDate && $0.nodeID != today.nodeID }
+		let genreNames = TodayReason.genreNames(
+			selection: profile.selection, taxonomy: EditorialGenreTaxonomy(catalog: catalog))
+		let reminders = ReminderPlan.plan(
+			candidates: candidates, history: past + [today] + keptPlan,
+			profile: profile, catalog: catalog, today: localDate, profileGenreNames: genreNames, makeID: makeID)
+		guard !reminders.isEmpty, !Task.isCancelled, latestRequestedProfile == profile else { return }
+
+		guard case .success = await store.save(past + [today] + reminders.map(\.recommendation)) else { return }
+		// Other tastes may have been requested during the save: their `load` publishes its own plan.
+		guard !Task.isCancelled, latestRequestedProfile == profile else { return }
+		// Not assigned when unchanged: an observer of `upcoming` must not run again for the same plan.
+		if upcoming != reminders { upcoming = reminders }
 	}
 
 	/// Emits `daily_recommendation_viewed` once per recommendation, then persists the marker. The marker is set
