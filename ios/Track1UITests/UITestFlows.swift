@@ -102,26 +102,46 @@ enum UITestFlows {
 	}
 
 	/// 2026-10-24 (TRA-683, ios-check of #578, run 40042347277): the tap on `onboarding-start` was synthesized
-	/// 1.5 s after the decline and nothing followed, the app stayed on Welcome for the 10 s wait on the genre
+	/// 1.5 s after the decline and nothing followed, the app stayed on Welcome for the 10 s wait on the next
 	/// screen. Welcome is reached through the `.loading` to `.onboarding` gate (a 0.35 s opacity fade) and
-	/// `FirstLaunchOnboardingView` then goes `.ready`, so the button can exist, enabled, before it takes touches.
-	/// The tap is therefore checked by its effect (the genre screen), and sent again at most twice while
-	/// Welcome is still there. A retap is safe: `OnboardingFlowView` only pushes the genre screen when its
-	/// `path` is empty, so a tap during a push that is already requested does nothing.
-	/// A green run does not prove the race is gone: it is intermittent, and this only narrows it.
+	/// `FirstLaunchOnboardingView` then goes `.ready`, so the button can exist, enabled, before it takes
+	/// touches. The tap is therefore checked by its effect (the pseudo screen, since TRA-735), and sent again at
+	/// most twice while Welcome is still there. A retap is safe: `OnboardingFlowView` only leaves a step that is
+	/// on screen, so a tap during a push that is already requested does nothing. A green run does not prove the
+	/// race is gone: it is intermittent, and this only narrows it.
 	@MainActor
 	static func startOnboarding(_ app: XCUIApplication) {
 		let start = app.buttons["onboarding-start"]
-		let genres = app.buttons["onboarding-genres-continue"]
+		let pseudo = app.textFields[pseudoFieldIdentifier]
 		tapWhenReady(start)
 		var retries = 0
-		while !genres.waitForExistence(timeout: 3), start.exists, retries < 2 {
+		while !pseudo.waitForExistence(timeout: 3), start.exists, retries < 2 {
 			retries += 1
 			start.tap()
 		}
 		XCTAssertTrue(
-			genres.waitForExistence(timeout: 10),
-			"onboarding-start tapped \(retries + 1)x, no genre screen")
+			pseudo.waitForExistence(timeout: 10),
+			"onboarding-start tapped \(retries + 1)x, no pseudo screen")
+	}
+
+	static let pseudoFieldIdentifier = "onboarding-pseudo-field"
+	static let discContinueIdentifier = "onboarding-disc-continue"
+	static let genresContinueIdentifier = "onboarding-genres-continue"
+
+	/// The pseudo and the disc, from the pseudo screen to the genre screen: the pseudo is typed and sent with
+	/// the return key (the bar of the screen is under the software keyboard, as in the mock-up), the disc is a
+	/// tile of the grid, then "Continuer". Every journey that goes through the onboarding and cares about the
+	/// genres uses it. `disc` is the raw value of a `ProfileDisc`.
+	@MainActor
+	static func passPseudoAndDisc(_ app: XCUIApplication, pseudo: String = "Raph", disc: String = "blue") {
+		let field = app.textFields[pseudoFieldIdentifier]
+		XCTAssertTrue(field.waitForExistence(timeout: 10), "\(pseudoFieldIdentifier) did not appear")
+		field.tap()
+		field.typeText(pseudo + "\n")
+		tapWhenReady(app.buttons["onboarding-disc-\(disc)"])
+		tapWhenReady(app.buttons[discContinueIdentifier])
+		XCTAssertTrue(
+			app.buttons[genresContinueIdentifier].waitForExistence(timeout: 10), "no genre screen after the disc")
 	}
 
 	/// The tab bar and its buttons: the only place the tests ask for them, so a change of bar touches these two
@@ -146,12 +166,13 @@ enum UITestFlows {
 		app.buttons[tabIdentifiers[title] ?? title].firstMatch
 	}
 
-	/// The first launch up to the end of the flow: Welcome, the first family opened, one of its genres ticked.
-	/// Every step waits for the next one: the push and unfold animations are not instant.
+	/// The first launch up to the end of the flow: Welcome, the pseudo, the disc, the first family opened, one
+	/// of its genres ticked. Every step waits for the next one: the push and unfold animations are not instant.
 	@MainActor
 	static func completeOnboarding(_ app: XCUIApplication) {
 		startOnboarding(app)
-		let bar = app.buttons["onboarding-genres-continue"]
+		passPseudoAndDisc(app)
+		let bar = app.buttons[genresContinueIdentifier]
 		tapAboveBar(app.buttons["genre-card-family-0"], bar: bar, in: app)
 		tapAboveBar(app.buttons["subgenre-chip-local:genre-0a"], bar: bar, in: app)
 		tapWhenReady(bar)

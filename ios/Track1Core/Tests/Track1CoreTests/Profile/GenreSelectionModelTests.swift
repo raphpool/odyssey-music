@@ -253,6 +253,51 @@ final class GenreSelectionModelTests: XCTestCase {
 		XCTAssertTrue(result.isValid())
 	}
 
+	func testMakeDraftCarriesThePseudoAndTheDiscWithTheSelection() throws {
+		let model = try makeModel()
+		model.toggleSubgenre(trap)
+
+		let result = model.makeDraft(displayName: "Slim Shady", disc: .coral)
+
+		XCTAssertEqual(result.displayName, "Slim Shady")
+		XCTAssertEqual(result.disc, .coral)
+		XCTAssertEqual(result.selection, GenreSelection(families: [hipHop], genres: [trap]))
+		XCTAssertTrue(result.isValid())
+	}
+
+	/// The draft saved after the pseudo and the disc steps has no genre yet, and must still hold both answers.
+	func testMakeDraftWithNothingTickedStillCarriesThePseudoAndTheDisc() throws {
+		let flowID = UUID()
+		let model = try makeModel(draft: draft(nil, flowID: flowID, started: true))
+
+		let result = model.makeDraft(displayName: "Slim Shady", disc: .mint)
+
+		XCTAssertEqual(result.displayName, "Slim Shady")
+		XCTAssertEqual(result.disc, .mint)
+		XCTAssertEqual(result.genreIDs, [])
+		XCTAssertNil(result.selection)
+		XCTAssertEqual(result.flowID, flowID)
+		XCTAssertTrue(result.onboardingStartedRecorded)
+	}
+
+	func testMakeDraftWithoutPseudoNorDiscLeavesThemEmptyForTheEditFlow() throws {
+		let model = try makeModel()
+		model.toggleSubgenre(trap)
+
+		XCTAssertNil(model.makeDraft().displayName)
+		XCTAssertNil(model.makeDraft().disc)
+		XCTAssertNil(model.makeDraft(displayName: nil, disc: nil).displayName)
+	}
+
+	func testMakeDraftKeepsOnlyOneAnswerWhenTheOtherIsNotGivenYet() throws {
+		let model = try makeModel()
+
+		let pseudoOnly = model.makeDraft(displayName: "Slim Shady", disc: nil)
+
+		XCTAssertEqual(pseudoOnly.displayName, "Slim Shady")
+		XCTAssertNil(pseudoOnly.disc)
+	}
+
 	func testAFamilyAloneIsRestoredWithAllItsVisibleGenres() throws {
 		let stored = profile(GenreSelection(families: [rock], genres: []))
 		let model = try makeModel(editing: stored)

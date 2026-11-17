@@ -6,8 +6,9 @@ final class ProfileFlowTests: XCTestCase {
 	}
 
 	/// 2026-10-14 (J.4): the first launch chains Welcome (1.1), the genre accordion (1.2) and Today, which shows
-	/// the loading screen (1.6) until the recommendation is there. It replaces the flat screen of the old flow,
-	/// which the first launch no longer reaches. TRA-639: the accordion is the only genre screen.
+	/// the loading screen (1.6) until the recommendation is there. TRA-639: the accordion is the only genre
+	/// screen. TRA-735: the pseudo (1.3) and the disc (1.4) come between Welcome and the genres, in that order,
+	/// and each screen is checked before the next one exists.
 	@MainActor
 	func testFirstLaunchChainsTheOnboardingToTodayAndIsNotShownAgain() {
 		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
@@ -20,8 +21,31 @@ final class ProfileFlowTests: XCTestCase {
 		UITestFlows.screenshot(named: "1.1", in: self)
 		UITestFlows.startOnboarding(app)
 
+		// 1.3: the pseudo. Nothing typed, nothing to continue with, and no later screen yet.
+		let pseudoField = app.textFields[UITestFlows.pseudoFieldIdentifier]
+		XCTAssertTrue(pseudoField.waitForExistence(timeout: 10))
+		XCTAssertTrue(element(app, "onboarding-pseudo-title").exists)
+		XCTAssertFalse(app.buttons["onboarding-pseudo-continue"].isEnabled)
+		XCTAssertFalse(element(app, "onboarding-disc-slot").exists)
+		XCTAssertFalse(app.buttons[UITestFlows.genresContinueIdentifier].exists)
+		UITestFlows.screenshot(named: "1.3", in: self)
+		pseudoField.tap()
+		pseudoField.typeText("Raph\n")
+
+		// 1.4: the disc. None chosen, nothing to continue with; a tile fills the slot and opens the button.
+		let slot = element(app, "onboarding-disc-slot")
+		let continueDisc = app.buttons[UITestFlows.discContinueIdentifier]
+		XCTAssertTrue(slot.waitForExistence(timeout: 10))
+		XCTAssertFalse(continueDisc.isEnabled)
+		XCTAssertFalse(app.buttons[UITestFlows.genresContinueIdentifier].exists)
+		UITestFlows.screenshot(named: "1.4", in: self)
+		UITestFlows.tapWhenReady(app.buttons["onboarding-disc-coral"])
+		XCTAssertTrue(app.buttons["onboarding-disc-coral"].isSelected)
+		XCTAssertTrue(continueDisc.isEnabled)
+		continueDisc.tap()
+
 		// 1.2: every card is closed, nothing chosen, nothing to continue with.
-		let continueGenres = app.buttons["onboarding-genres-continue"]
+		let continueGenres = app.buttons[UITestFlows.genresContinueIdentifier]
 		XCTAssertTrue(continueGenres.waitForExistence(timeout: 10))
 		XCTAssertFalse(continueGenres.isEnabled)
 		XCTAssertEqual(continueGenres.label, "Continuer")
@@ -57,34 +81,56 @@ final class ProfileFlowTests: XCTestCase {
 		UITestFlows.relaunch(app, catalog: Self.taxonomyCatalog)
 		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
 		XCTAssertFalse(app.buttons["onboarding-start"].exists)
+		XCTAssertFalse(pseudoField.exists)
 
 		// The settings count what the saved selection holds: it was written, and read back after the relaunch.
 		UITestFlows.tabButton("Genres", in: app).tap()
 		XCTAssertEqual(openSettings(in: app).value as? String, "2 familles · 3 sous-genres")
 	}
 
-	/// The unfolded state does not survive a return to Welcome (the screen is built again, closed), the
-	/// selection does: it lives in the model of the flow.
+	/// TRA-735: the stack goes back one step at a time, and keeps what was chosen. The unfolded state of the
+	/// cards does not survive a return to the genres (the screen is built again, closed), the selection does: it
+	/// lives in the model of the flow. The disc stays chosen and the pseudo stays in the field: they live in the
+	/// answers of the flow, which the screens only read. The pseudo is not "Slim Shady", the placeholder of the
+	/// field, which an empty field would also report as its value.
 	@MainActor
 	func testTheBackGestureToWelcomeKeepsTheSelection() {
 		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
 		UITestFlows.declineConsent(app)
 		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app, pseudo: "Raph", disc: "mint")
 		tapCard("family-0", in: app)
 		let chip = element(app, "subgenre-chip-local:genre-0a")
 		UITestFlows.tapWhenReady(app.buttons["subgenre-chip-local:genre-0a"])
 
-		// The edge swipe is the way back: the bar is hidden and Figma draws no back control.
-		// A short press at x = 0 and a fast drag: a slow one is read as a scroll, not as the edge gesture.
-		let edge = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0.5))
-		edge.press(
-			forDuration: 0.01, thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)),
-			withVelocity: .fast, thenHoldForDuration: 0)
+		// The edge swipe is the way back: the bar is hidden and Figma draws no back control. From the genres it
+		// goes to the disc, which is still chosen.
+		swipeBack(in: app)
 		XCTAssertTrue(chip.waitForNonExistence(timeout: 10))
+		let mint = app.buttons["onboarding-disc-mint"]
+		XCTAssertTrue(mint.waitForExistence(timeout: 10))
+		XCTAssertTrue(mint.isSelected)
+		XCTAssertTrue(app.buttons[UITestFlows.discContinueIdentifier].isEnabled)
 
+		// From the disc it goes to the pseudo, with the text that was typed.
+		swipeBack(in: app)
+		let pseudoField = app.textFields[UITestFlows.pseudoFieldIdentifier]
+		XCTAssertTrue(pseudoField.waitForExistence(timeout: 10))
+		XCTAssertEqual(pseudoField.value as? String, "Raph")
+
+		// From the pseudo it goes to Welcome.
+		swipeBack(in: app)
 		let start = app.buttons["onboarding-start"]
 		XCTAssertTrue(start.waitForExistence(timeout: 10))
+
+		// Forward again: the pseudo and the disc are as they were, and so is the genre that was ticked.
 		UITestFlows.startOnboarding(app)
+		XCTAssertEqual(pseudoField.value as? String, "Raph")
+		pseudoField.tap()
+		pseudoField.typeText("\n")
+		XCTAssertTrue(app.buttons["onboarding-disc-mint"].waitForExistence(timeout: 10))
+		XCTAssertTrue(app.buttons["onboarding-disc-mint"].isSelected)
+		UITestFlows.tapWhenReady(app.buttons[UITestFlows.discContinueIdentifier])
 		// The card is closed again, and still counts the genre that was ticked.
 		let family0 = card("family-0", in: app)
 		XCTAssertTrue(family0.waitForExistence(timeout: 10))
@@ -94,6 +140,81 @@ final class ProfileFlowTests: XCTestCase {
 		let counter = element(app, "bottom-counter")
 		XCTAssertTrue(counter.waitForExistence(timeout: 5))
 		XCTAssertEqual(counter.label, "Total : 1 genre")
+	}
+
+	/// TRA-735: each validated step is written as a draft, so a relaunch reopens on the first step that was not
+	/// validated, with the answers already given. The app is stopped on the disc screen: the pseudo was validated.
+	/// Every assertion carries a message: the CI log only names the test, and two steps share a kind of assertion.
+	@MainActor
+	func testRelaunchingAfterThePseudoReopensOnTheDiscWithThePseudoKept() {
+		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
+		UITestFlows.declineConsent(app)
+		UITestFlows.startOnboarding(app)
+		let pseudoField = app.textFields[UITestFlows.pseudoFieldIdentifier]
+		pseudoField.tap()
+		pseudoField.typeText("Raph\n")
+		XCTAssertTrue(element(app, "onboarding-disc-slot").waitForExistence(timeout: 10), "disc before relaunch")
+
+		UITestFlows.relaunch(app, catalog: Self.taxonomyCatalog)
+		XCTAssertTrue(element(app, "onboarding-disc-slot").waitForExistence(timeout: 15), "disc after relaunch")
+		XCTAssertFalse(app.buttons["onboarding-start"].exists, "Welcome after relaunch")
+		XCTAssertFalse(app.buttons[UITestFlows.discContinueIdentifier].isEnabled, "disc already chosen")
+
+		// The pseudo is behind the disc, in the stack, as it was the first time.
+		swipeBack(in: app)
+		XCTAssertTrue(pseudoField.waitForExistence(timeout: 10), "pseudo after the back gesture")
+		XCTAssertEqual(pseudoField.value as? String, "Raph")
+	}
+
+	/// TRA-735: the disc was validated too, so the flow reopens on the genres, with the disc behind them.
+	@MainActor
+	func testRelaunchingAfterTheDiscReopensOnTheGenresWithTheDiscKept() {
+		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
+		UITestFlows.declineConsent(app)
+		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app, pseudo: "Raph", disc: "violet")
+
+		UITestFlows.relaunch(app, catalog: Self.taxonomyCatalog)
+		let genres = app.buttons[UITestFlows.genresContinueIdentifier]
+		XCTAssertTrue(genres.waitForExistence(timeout: 15), "genres after relaunch")
+		XCTAssertFalse(app.buttons["onboarding-start"].exists, "Welcome after relaunch")
+
+		swipeBack(in: app)
+		XCTAssertTrue(
+			app.buttons["onboarding-disc-violet"].waitForExistence(timeout: 10), "disc after the back gesture")
+		XCTAssertTrue(app.buttons["onboarding-disc-violet"].isSelected, "disc kept")
+	}
+
+	/// TRA-735: erasing the profile from the settings leaves the history of recommendations on disk. The profile
+	/// that replaces it must not be served the work picked for the first one: with a catalog that has no work to
+	/// recommend, its Today is empty, where the history of the first profile would have shown its work.
+	@MainActor
+	func testANewProfileStartsWithAnEmptyHistoryOfRecommendations() {
+		let app = UITestFlows.launch()
+		UITestFlows.declineConsent(app)
+		UITestFlows.completeOnboarding(app)
+		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
+
+		UITestFlows.tabButton("Genres", in: app).tap()
+		app.buttons["genres-settings"].tap()
+		UITestFlows.tapWhenReady(app.buttons["profile-clear"])
+		app.alerts.buttons["Effacer"].tap()
+		XCTAssertTrue(app.buttons["onboarding-start"].waitForExistence(timeout: 10))
+
+		UITestFlows.relaunch(app, catalog: UITestFlows.catalogWithoutLinkedWorksJSON)
+		UITestFlows.completeOnboarding(app)
+		XCTAssertTrue(element(app, "today-empty").waitForExistence(timeout: 15))
+		XCTAssertFalse(element(app, "today-title").exists)
+	}
+
+	/// The edge swipe: a short press at x = 0 and a fast drag, a slow one is read as a scroll, not as the
+	/// gesture.
+	@MainActor
+	private func swipeBack(in app: XCUIApplication) {
+		let edge = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0.5))
+		edge.press(
+			forDuration: 0.01, thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)),
+			withVelocity: .fast, thenHoldForDuration: 0)
 	}
 
 	/// 2026-10-20 (TRA-640): "Tous" ticks every genre of its card, ticks them off again when they are all
@@ -107,6 +228,7 @@ final class ProfileFlowTests: XCTestCase {
 		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
 		UITestFlows.declineConsent(app)
 		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app)
 		let bar = app.buttons["onboarding-genres-continue"]
 		let family0 = card("family-0", in: app)
 		let all = app.buttons["select-all-family-0"]
@@ -159,6 +281,7 @@ final class ProfileFlowTests: XCTestCase {
 		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
 		UITestFlows.declineConsent(app)
 		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app)
 		let bar = app.buttons["onboarding-genres-continue"]
 		let family0 = card("family-0", in: app)
 		let family1 = card("family-1", in: app)
@@ -204,6 +327,7 @@ final class ProfileFlowTests: XCTestCase {
 		let app = UITestFlows.launch(catalog: Self.longLabelsCatalog)
 		UITestFlows.declineConsent(app)
 		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app)
 		let bar = app.buttons["onboarding-genres-continue"]
 		let family0 = card("family-0", in: app)
 		let chip = app.buttons["subgenre-chip-local:genre-0a"]
@@ -239,6 +363,7 @@ final class ProfileFlowTests: XCTestCase {
 		let app = UITestFlows.launch(catalog: Self.longLabelsCatalog)
 		UITestFlows.declineConsent(app)
 		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app)
 		let bar = app.buttons["onboarding-genres-continue"]
 		let shortName = card("family-0", in: app)
 		let longName = card("family-1", in: app)
@@ -279,6 +404,7 @@ final class ProfileFlowTests: XCTestCase {
 			extraArguments: ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"])
 		UITestFlows.declineConsent(app)
 		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app)
 		let bar = app.buttons["onboarding-genres-continue"]
 		let family0 = card("family-0", in: app)
 		let chipA = app.buttons["subgenre-chip-local:genre-0a"]
@@ -317,6 +443,7 @@ final class ProfileFlowTests: XCTestCase {
 			extraArguments: ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityL"])
 		UITestFlows.declineConsent(app)
 		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app)
 		let bar = app.buttons["onboarding-genres-continue"]
 		let family0 = card("family-0", in: app)
 		let chipA = app.buttons["subgenre-chip-local:genre-0a"]
@@ -347,6 +474,7 @@ final class ProfileFlowTests: XCTestCase {
 		let app = UITestFlows.launch(catalog: Self.longLabelsCatalog)
 		UITestFlows.declineConsent(app)
 		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app)
 		let bar = app.buttons["onboarding-genres-continue"]
 		let family0 = card("family-0", in: app)
 		let family1 = card("family-1", in: app)
@@ -391,6 +519,7 @@ final class ProfileFlowTests: XCTestCase {
 		app.launch()
 		UITestFlows.declineConsent(app)
 		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app)
 		tapCard("family-0", in: app)
 		UITestFlows.tapWhenReady(app.buttons["subgenre-chip-local:genre-3"])
 		UITestFlows.tapWhenReady(app.buttons["onboarding-genres-continue"])
@@ -432,6 +561,7 @@ final class ProfileFlowTests: XCTestCase {
 		XCTAssertTrue(app.buttons["onboarding-start"].waitForExistence(timeout: 10))
 		XCTAssertFalse(UITestFlows.tabBar(in: app).exists)
 		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app)
 		tapCard("family-0", in: app)
 		UITestFlows.tapWhenReady(app.buttons["subgenre-chip-local:genre-3"])
 		UITestFlows.tapWhenReady(app.buttons["onboarding-genres-continue"])

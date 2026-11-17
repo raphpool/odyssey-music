@@ -113,10 +113,21 @@ private struct ApplicationTabs: View {
 			.sensoryFeedback(.selection, trigger: router.selectedTab)
 	}
 
-	/// The profile of the first launch is saved: Today loads its first recommendation (screen 1.6) under the fade.
+	/// The profile of the first launch is saved: Today loads its first recommendation (screen 1.6) under the
+	/// fade.
+	///
+	/// 2026-11-17 (TRA-735): the history of recommendations is emptied first, and the tabs only appear once it
+	/// is. Erasing a profile from the settings leaves the history on disk, and Today serves the entry of the
+	/// current date as it is when its profile revision matches: the first revision of the new profile got the
+	/// work picked for the previous one. A failed write does not hold the person on the onboarding, so it can
+	/// still leave that entry behind, as can a stop of the app between the profile write and this one. The
+	/// durable fix is to empty the history where the profile is erased, which is not in this ticket's scope.
 	private func profileWasCreated(_ profile: Profile) {
-		profileState = .profile(profile)
-		router.select(.today)
+		Task {
+			_ = await dailyRecommendationStore.save([])
+			profileState = .profile(profile)
+			router.select(.today)
+		}
 	}
 
 	/// Selecting a tab goes through the router, which also handles a second tap on Today (D8).
