@@ -2,9 +2,9 @@ import XCTest
 
 @testable import Track1Core
 
-/// 2026-11-16 (TRA-757, decision Q12): `ProfileStore` no longer reads `profile.v1.json`, so a v1 profile
-/// never reaches the model. The restore below is kept, and still tested, until TRA-759 removes it after
-/// TestFlight; the last test pins that an old file does not get to it.
+/// 2026-11-16 (TRA-757 and TRA-712, decision Q12): `ProfileStore` reads neither `profile.v1.json` nor
+/// `profile.v2.json`, so an old profile never reaches the model. The restore below is kept, and still tested,
+/// until TRA-759 removes it after TestFlight; the last test pins that an old file does not get to it.
 /// A profile with no selection has only the `genre:*` slugs chosen in the old tree.
 /// `GenreSelectionModel` rebuilds the ticked genres from them through the served `legacySelectionBySlug`
 /// table. Ported from `GenreOnboardingLegacyRestoreTests`: the two rules the single-level model no longer
@@ -77,6 +77,7 @@ final class GenreSelectionModelLegacyRestoreTests: XCTestCase {
 			revision: 3,
 			onboardingCompleted: true,
 			flowID: UUID(),
+			createdAt: Date(timeIntervalSince1970: 0),
 			selection: nil
 		)
 	}
@@ -249,6 +250,7 @@ final class GenreSelectionModelLegacyRestoreTests: XCTestCase {
 			revision: 3,
 			onboardingCompleted: true,
 			flowID: UUID(),
+			createdAt: Date(timeIntervalSince1970: 0),
 			selection: GenreSelection(families: [jazz], genres: [bebop])
 		)
 		let model = GenreSelectionModel(taxonomy: try taxonomy(), editing: v2)
@@ -300,6 +302,7 @@ final class GenreSelectionModelLegacyRestoreTests: XCTestCase {
 			revision: 4,
 			onboardingCompleted: true,
 			flowID: UUID(),
+			createdAt: Date(timeIntervalSince1970: 0),
 			selection: draft.selection
 		)
 		let reloaded = GenreSelectionModel(taxonomy: try taxonomy(), editing: saved)
@@ -313,14 +316,16 @@ final class GenreSelectionModelLegacyRestoreTests: XCTestCase {
 
 	// MARK: - An old profile file never reaches the model
 
-	func testAV1ProfileFileNeverReachesTheModel() async throws {
+	func testAnOldProfileFileNeverReachesTheModel() async throws {
 		let directory = FileManager.default.temporaryDirectory.appending(
 			path: UUID().uuidString, directoryHint: .isDirectory)
 		defer { try? FileManager.default.removeItem(at: directory) }
 		let localStore = LocalStore(directoryURL: directory)
-		let v1 = #"{"version":1,"local_id":"\#(UUID())","genre_ids":[],"revision":3,"#
+		let old = #"{"version":2,"local_id":"\#(UUID())","genre_ids":[],"revision":3,"#
 			+ #""onboarding_completed":true,"flow_id":"\#(UUID())"}"#
-		_ = await localStore.write(Data(v1.utf8), named: "profile.v1.json")
+		for name in ["profile.v1.json", "profile.v2.json"] {
+			_ = await localStore.write(Data(old.utf8), named: name)
+		}
 
 		let read = await ProfileStore(localStore: localStore).read()
 		XCTAssertEqual(read, .missing)

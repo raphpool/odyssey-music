@@ -129,7 +129,8 @@ final class GenreSelectionTests: XCTestCase {
 	private func profile(selection: GenreSelection? = nil) -> Profile {
 		Profile(
 			version: Profile.version, localID: localID, genreIDs: [], revision: 1,
-			onboardingCompleted: true, flowID: flowID, selection: selection)
+			onboardingCompleted: true, flowID: flowID, createdAt: Date(timeIntervalSince1970: 0),
+			selection: selection)
 	}
 
 	private func draft(selection: GenreSelection? = nil) -> ProfileDraft {

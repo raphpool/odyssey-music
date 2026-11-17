@@ -123,16 +123,16 @@ final class ProfileStoreTests: XCTestCase {
 
 	func testCorruptionAndWriteFailureDoNotCompleteOnboarding() async throws {
 		let localStore = LocalStore(directoryURL: directoryURL)
-		if case .failure = await localStore.write(Data("not json".utf8), named: "profile.v2.json") {
+		if case .failure = await localStore.write(Data("not json".utf8), named: "profile.v3.json") {
 			XCTFail("Expected the corrupt fixture to be written.")
 		}
 		let store = ProfileStore(localStore: localStore)
 		let corruptRead = await store.read()
 		XCTAssertEqual(corruptRead, .corrupt)
 		let futureVersionJSON = """
-			{"version":3,"local_id":"00000000-0000-0000-0000-000000000000","genre_ids":[],"revision":1,"onboarding_completed":true,"flow_id":"00000000-0000-0000-0000-000000000000"}
+			{"version":4,"local_id":"00000000-0000-0000-0000-000000000000","genre_ids":[],"revision":1,"onboarding_completed":true,"flow_id":"00000000-0000-0000-0000-000000000000","created_at":"2027-01-15T08:00:00Z"}
 			"""
-		if case .failure = await localStore.write(Data(futureVersionJSON.utf8), named: "profile.v2.json") {
+		if case .failure = await localStore.write(Data(futureVersionJSON.utf8), named: "profile.v3.json") {
 			XCTFail("Expected the version fixture to be written.")
 		}
 		let unsupportedVersion = await store.read()
@@ -161,7 +161,7 @@ final class ProfileStoreTests: XCTestCase {
 
 	func testFailedProfileWriteLeavesTheDraftRetryable() async throws {
 		let store = ProfileStore(
-			localStore: LocalStore(directoryURL: directoryURL, failNextWriteNamed: "profile.v2.json")
+			localStore: LocalStore(directoryURL: directoryURL, failNextWriteNamed: "profile.v3.json")
 		)
 		let draft = try await initialDraft(from: store)
 		let choices = genres(3)
@@ -193,7 +193,7 @@ final class ProfileStoreTests: XCTestCase {
 		// "commit in flight, then clear" is forced rather than hoped for. Both generation guards that
 		// matter are covered: the one after the profile read and the one after the profile write.
 		for held in [LocalStoreOperation.read, .write] {
-			let gate = ResponseGate(holding: held, named: "profile.v2.json")
+			let gate = ResponseGate(holding: held, named: "profile.v3.json")
 			defer { gate.release() }
 			let directory = directoryURL.appending(path: "held-\(held)", directoryHint: .isDirectory)
 			let store = ProfileStore(
@@ -259,7 +259,72 @@ final class ProfileStoreTests: XCTestCase {
 		XCTAssertEqual(draftState, .missing)
 	}
 
-	// MARK: Version 2 (TRA-516)
+	// MARK: Version 3 (TRA-712)
+
+	func testOldProfilesAndDraftsAreIgnored() async throws {
+		let old = #"{"version":2,"local_id":"\#(UUID())","genre_ids":[],"revision":3,"#
+			+ #""onboarding_completed":true,"flow_id":"\#(UUID())"}"#
+		let localStore = LocalStore(directoryURL: directoryURL)
+		let store = ProfileStore(localStore: localStore)
+		for name in ["profile.v2.json"] + allNames.dropLast(2) {
+			_ = await localStore.write(Data(old.utf8), named: name)
+			let profile = await store.read()
+			XCTAssertEqual(profile, .missing, name)
+		}
+		let draft = await store.readDraft()
+		XCTAssertEqual(draft, .missing)
+	}
+
+	func testTheFirstCommitStampsTheClockInWholeSecondsAndDeletesTheOldFiles() async throws {
+		let localStore = LocalStore(directoryURL: directoryURL)
+		for name in allNames.dropLast(2) { _ = await localStore.write(Data("{}".utf8), named: name) }
+		let store = ProfileStore(
+			localStore: localStore, now: { Date(timeIntervalSince1970: 1_800_000_000.75) })
+		let choices = genres(3)
+		guard case .saved(let saved) = await store.commit(draft(genres: choices), availableGenreIDs: choices) else {
+			return XCTFail("Expected the first commit to save.")
+		}
+		// Whole seconds, like the file: the saved profile must equal the one `read()` returns.
+		XCTAssertEqual(saved.createdAt, Date(timeIntervalSince1970: 1_800_000_000))
+		XCTAssertEqual(allNames.dropLast(2).filter(fileExists), [])
+		let reread = await store.read()
+		XCTAssertEqual(reread, .profile(saved))
+		let data = try Data(contentsOf: directoryURL.appending(path: "profile.v3.json"))
+		let object = try XCTUnwrap(try JSONSerialization.jsonObject(with: data) as? [String: Any])
+		XCTAssertEqual(object["created_at"] as? String, "2027-01-15T08:00:00Z")
+		XCTAssertEqual(object["version"] as? Int, 3)
+	}
+
+	func testALaterCommitKeepsTheCreationDate() async throws {
+		let choices = genres(3)
+		let first = ProfileStore(
+			localStore: LocalStore(directoryURL: directoryURL), now: { Date(timeIntervalSince1970: 1_800_000_000) })
+		guard case .saved(let original) = await first.commit(draft(genres: choices), availableGenreIDs: choices)
+		else {
+			return XCTFail("Expected the first commit to save.")
+		}
+		let later = ProfileStore(
+			localStore: LocalStore(directoryURL: directoryURL), now: { Date(timeIntervalSince1970: 1_900_000_000) })
+		let edit = draft(genres: Array(choices.prefix(2)))
+		guard case .saved(let edited) = await later.commit(edit, availableGenreIDs: choices) else {
+			return XCTFail("Expected the edit to save.")
+		}
+		XCTAssertEqual(edited.createdAt, original.createdAt)
+		XCTAssertEqual(edited.revision, original.revision + 1)
+	}
+
+	func testAV3FileWithoutACreationDateIsCorrupt() async throws {
+		let file = directoryURL.appending(path: "profile.v3.json")
+		try v3JSON().write(to: file)
+		guard case .profile = await makeStore().read() else { return XCTFail("The fixture itself must be valid.") }
+		for createdAt in [nil, "not a date"] {
+			try v3JSON(createdAt: createdAt).write(to: file)
+			let read = await makeStore().read()
+			XCTAssertEqual(read, .corrupt, "\(String(describing: createdAt))")
+		}
+	}
+
+	// MARK: Selection and clear (TRA-516)
 
 	func testRevisionFollowsTheGenreIDsAndTheSelection() async throws {
 		let choices = genres(3)
@@ -275,8 +340,8 @@ final class ProfileStoreTests: XCTestCase {
 		XCTAssertEqual(revisions, [1, 2, 2])
 	}
 
-	func testClearRemovesTheVersion1AndVersion2Files() async throws {
-		let names = ["profile.v1.json", "profile-draft.v1.json", "profile.v2.json", "profile-draft.v2.json"]
+	func testClearRemovesEveryVersionOfTheFiles() async throws {
+		let names = allNames
 		let localStore = LocalStore(directoryURL: directoryURL)
 		for name in names { _ = await localStore.write(Data("{}".utf8), named: name) }
 		let cleared = await ProfileStore(localStore: localStore).clear()
@@ -286,40 +351,40 @@ final class ProfileStoreTests: XCTestCase {
 		XCTAssertEqual(read, .missing)
 	}
 
-	func testAFailedClearOfAnOlderFileLeavesTheVersion2ProfileReadable() async throws {
+	func testAFailedClearOfAnOlderFileLeavesTheVersion3ProfileReadable() async throws {
 		let choices = genres(3)
+		guard case .saved(let saved) = await makeStore().commit(draft(genres: choices), availableGenreIDs: choices)
+		else {
+			return XCTFail("Expected the profile to be saved.")
+		}
 		try await seedV1Profile(genres: choices)
-		let v2 = Profile(
-			version: Profile.version, localID: UUID(), genreIDs: [choices[0]], revision: 7,
-			onboardingCompleted: true, flowID: UUID())
-		try await seed(v2, named: "profile.v2.json")
 		let fileManager = FailingRemovalFileManager(failingOn: ["profile.v1.json"])
 		let store = ProfileStore(localStore: LocalStore(directoryURL: directoryURL, fileManager: fileManager))
 		let cleared = await store.clear()
 		XCTAssertEqual(cleared, .unavailable)
 		let read = await store.read()
-		XCTAssertEqual(read, .profile(v2))
-		XCTAssertTrue(fileExists("profile.v2.json"))
+		XCTAssertEqual(read, .profile(saved))
+		XCTAssertTrue(fileExists("profile.v3.json"))
 	}
 
 	func testAFailedClearStopsAtTheFirstError() async throws {
-		let names = ["profile-draft.v1.json", "profile.v1.json", "profile-draft.v2.json", "profile.v2.json"]
+		let names = allNames
 		let localStore = LocalStore(
 			directoryURL: directoryURL, fileManager: FailingRemovalFileManager(failingOn: ["profile.v1.json"]))
 		for name in names { _ = await localStore.write(Data("{}".utf8), named: name) }
 		let cleared = await ProfileStore(localStore: localStore).clear()
 		XCTAssertEqual(cleared, .unavailable)
-		XCTAssertEqual(names.filter(fileExists), ["profile.v1.json", "profile-draft.v2.json", "profile.v2.json"])
+		XCTAssertEqual(names.filter(fileExists), Array(allNames.dropFirst()))
 	}
 
-	func testAFailedClearOfTheVersion2ProfileStillRemovesEverythingBeforeIt() async throws {
-		let names = ["profile-draft.v1.json", "profile.v1.json", "profile-draft.v2.json", "profile.v2.json"]
+	func testAFailedClearOfTheVersion3ProfileStillRemovesEverythingBeforeIt() async throws {
+		let names = allNames
 		let localStore = LocalStore(
-			directoryURL: directoryURL, fileManager: FailingRemovalFileManager(failingOn: ["profile.v2.json"]))
+			directoryURL: directoryURL, fileManager: FailingRemovalFileManager(failingOn: ["profile.v3.json"]))
 		for name in names { _ = await localStore.write(Data("{}".utf8), named: name) }
 		let cleared = await ProfileStore(localStore: localStore).clear()
 		XCTAssertEqual(cleared, .unavailable)
-		XCTAssertEqual(names.filter(fileExists), ["profile.v2.json"])
+		XCTAssertEqual(names.filter(fileExists), ["profile.v3.json"])
 	}
 
 	func testAV1ProfileIsIgnoredAndReadingItCreatesNoFile() async throws {
@@ -341,7 +406,7 @@ final class ProfileStoreTests: XCTestCase {
 		XCTAssertEqual(read, .missing)
 		let fresh = try await initialDraft(from: store)
 		XCTAssertNotEqual(fresh.flowID, v1Draft.flowID)
-		XCTAssertTrue(fileExists("profile-draft.v2.json"))
+		XCTAssertTrue(fileExists("profile-draft.v3.json"))
 	}
 
 	func testMarkingOnboardingStartedKeepsTheSelection() async throws {
@@ -362,7 +427,8 @@ final class ProfileStoreTests: XCTestCase {
 
 	private func seedV1Profile(genres: [NodeIdentity]) async throws {
 		let profile = Profile(
-			version: 1, localID: UUID(), genreIDs: genres, revision: 3, onboardingCompleted: true, flowID: UUID())
+			version: 1, localID: UUID(), genreIDs: genres, revision: 3, onboardingCompleted: true, flowID: UUID(),
+			createdAt: Date(timeIntervalSince1970: 0))
 		try await seed(profile, named: "profile.v1.json")
 	}
 
@@ -374,12 +440,26 @@ final class ProfileStoreTests: XCTestCase {
 		FileManager.default.fileExists(atPath: directoryURL.appending(path: name).path)
 	}
 
+	private let allNames = [
+		"profile-draft.v1.json", "profile.v1.json", "profile-draft.v2.json", "profile.v2.json",
+		"profile-draft.v3.json", "profile.v3.json",
+	]
+
 	private func draft(
 		genres: [NodeIdentity], selection: GenreSelection? = nil, started: Bool = false
 	) -> ProfileDraft {
 		ProfileDraft(
 			version: Profile.version, flowID: UUID(uuidString: "11111111-1111-1111-1111-111111111111")!,
 			genreIDs: genres, onboardingStartedRecorded: started, selection: selection)
+	}
+
+	private func v3JSON(createdAt: String? = "2027-01-15T08:00:00Z") throws -> Data {
+		var object: [String: Any] = [
+			"version": 3, "local_id": UUID().uuidString, "genre_ids": [], "revision": 1,
+			"onboarding_completed": true, "flow_id": UUID().uuidString,
+		]
+		object["created_at"] = createdAt
+		return try JSONSerialization.data(withJSONObject: object)
 	}
 
 	private static let gateTimeout = Duration.seconds(10)

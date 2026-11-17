@@ -49,17 +49,24 @@ public enum ProfileClear: Equatable, Sendable {
 
 public actor ProfileStore {
 	/// Also read by the simulator-only `-track1-fail-next-profile-write` hook in `AppContainer`.
-	public static let profileFileName = "profile.v2.json"
-	private static let draftFile = "profile-draft.v2.json"
-	// 2026-11-16 (TRA-757, decision Q12): the v1 files are never read, so a person who only has a v1 profile
-	// goes through onboarding again. They are still named here because `clear()` removes them.
-	private static let legacyProfileFile = "profile.v1.json"
-	private static let legacyDraftFile = "profile-draft.v1.json"
-	// The v2 profile is removed last: when the removal of an older file fails, `clear()` stops there and the
-	// profile is still readable, instead of half erased.
-	private static let removalOrder = [legacyDraftFile, legacyProfileFile, draftFile, profileFileName]
+	public static let profileFileName = "profile.v3.json"
+	private static let draftFile = "profile-draft.v3.json"
+	// 2026-11-16 (TRA-712, decision Q12): the v1 and v2 files are never read, so everyone goes through
+	// onboarding again and a leftover cannot come back. The first commit and `clear()` only delete them.
+	private static let legacyFiles = [
+		"profile-draft.v1.json", "profile.v1.json", "profile-draft.v2.json", "profile.v2.json",
+	]
+	// The profile goes last: a failed removal of an older file stops `clear()` with the profile still readable.
+	private static let removalOrder = legacyFiles + [draftFile, profileFileName]
+
+	private static var decoder: JSONDecoder {
+		let decoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .iso8601
+		return decoder
+	}
 
 	private let localStore: LocalStore
+	private let now: @Sendable () -> Date
 	private var operationGeneration = 0
 	private var shouldResetBeforeUse: Bool
 	private var shouldSeedCorruptProfileBeforeUse: Bool
@@ -67,9 +74,11 @@ public actor ProfileStore {
 	public init(
 		localStore: LocalStore = LocalStore(),
 		resetBeforeUse: Bool = false,
-		seedCorruptProfileBeforeUse: Bool = false
+		seedCorruptProfileBeforeUse: Bool = false,
+		now: @escaping @Sendable () -> Date = Date.init
 	) {
 		self.localStore = localStore
+		self.now = now
 		shouldResetBeforeUse = resetBeforeUse
 		shouldSeedCorruptProfileBeforeUse = seedCorruptProfileBeforeUse
 	}
@@ -80,7 +89,7 @@ public actor ProfileStore {
 		case .failure: return .unavailable
 		case .success(nil): return .missing
 		case .success(let data?):
-			guard let profile = try? JSONDecoder().decode(Profile.self, from: data) else {
+			guard let profile = try? Self.decoder.decode(Profile.self, from: data) else {
 				return .corrupt
 			}
 			guard profile.version == Profile.version else { return .unsupportedVersion }
@@ -162,6 +171,7 @@ public actor ProfileStore {
 				revision: unchanged ? existing.revision : existing.revision + 1,
 				onboardingCompleted: true,
 				flowID: existing.flowID,
+				createdAt: existing.createdAt,
 				selection: draft.selection
 			)
 		case .missing:
@@ -172,12 +182,19 @@ public actor ProfileStore {
 				revision: 1,
 				onboardingCompleted: true,
 				flowID: draft.flowID,
+				// Whole seconds, like the file: the saved profile must equal what `read()` returns.
+				createdAt: Date(timeIntervalSince1970: now().timeIntervalSince1970.rounded(.down)),
 				selection: draft.selection
 			)
 		case .corrupt, .unsupportedVersion, .unavailable:
 			return .unavailable
 		}
 		guard expectedGeneration == operationGeneration else { return .invalidated }
+		if case .missing = current {
+			for name in Self.legacyFiles {
+				guard case .success = await localStore.remove(named: name) else { return .unavailable }
+			}
+		}
 		guard case .success = await write(profile, named: Self.profileFileName) else { return .unavailable }
 		guard expectedGeneration == operationGeneration else { return .invalidated }
 		guard case .success = await localStore.remove(named: Self.draftFile) else {
@@ -211,6 +228,7 @@ public actor ProfileStore {
 		do {
 			let encoder = JSONEncoder()
 			encoder.outputFormatting = [.sortedKeys]
+			encoder.dateEncodingStrategy = .iso8601
 			return await localStore.write(try encoder.encode(value), named: name)
 		} catch {
 			return .failure(.unavailable)
