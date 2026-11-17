@@ -56,8 +56,13 @@ function violations(source: string): string[] {
 		if (!PROFILE_FOLDERS.every((folder) => stepNamed(name).includes(folder)))
 			found.push(`profile folders: ${name}`);
 	}
-	const checkout = steps.find((step) => step.includes("uses: actions/checkout@"));
-	if (!checkout || !/^ {10}persist-credentials: false\s*$/m.test(checkout)) found.push("persist-credentials");
+	// Every checkout, not the first: a later one with a persisted token would leave the secrets' job with a token.
+	const checkouts = steps.filter((step) => step.includes("uses: actions/checkout@"));
+	const persists = (step: string) => !/^ {10}persist-credentials: false\s*$/m.test(step);
+	if (checkouts.length === 0 || checkouts.some(persists)) found.push("persist-credentials");
+	// One job, so the `if:` and the `environment:` above cannot be satisfied by two different jobs.
+	const jobs = [...(source.split(/^jobs:\n/m)[1] ?? "").matchAll(/^ {2}([\w-]+):\s*$/gm)].map((m) => m[1]);
+	if (jobs.join() !== "testflight") found.push("jobs");
 	return found;
 }
 
@@ -92,6 +97,15 @@ describe("ios-testflight workflow guards (TRA-729, TRA-775)", () => {
 			swap("persist-credentials: false", "persist-credentials: true"),
 			"persist-credentials",
 		],
+		[
+			"a second checkout that keeps the token",
+			swap(
+				"      - name: Select Xcode",
+				"      - uses: actions/checkout@v6\n        with:\n          persist-credentials: true\n      - name: Select Xcode",
+			),
+			"persist-credentials",
+		],
+		["a second job", (text: string) => `${text}  other:\n    runs-on: ubuntu-latest\n`, "jobs"],
 		["a profile missing from a folder", otherFolder, "profile folders: Install signing material"],
 		[
 			"a profile left in a folder",
