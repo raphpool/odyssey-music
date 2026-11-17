@@ -57,6 +57,16 @@ final class ReminderSchedulerTests: XCTestCase {
 		XCTAssertEqual(pending, ["other-1", "weekly-2026-11-18", "dailyish", "daily-2026-11-18"])
 	}
 
+	func testEmptyPlanStillClearsTheDailyNotifications() async throws {
+		let center = FakeReminderCenter(status: .authorized, pending: ["daily-2026-11-18", "other-1"])
+		let scheduler = try makeScheduler(center)
+
+		await scheduler.replace(with: [])
+
+		let pending = await center.pendingIdentifiers()
+		XCTAssertEqual(pending, ["other-1"])
+	}
+
 	// MARK: Authorization
 
 	func testReplaceDoesNothingWithoutAuthorization() async throws {
@@ -88,7 +98,12 @@ final class ReminderSchedulerTests: XCTestCase {
 		let all = await center.added
 		let added = try XCTUnwrap(all.first)
 		XCTAssertEqual(added.identifier, "daily-2026-12-31")
-		XCTAssertEqual(added.date, DateComponents(year: 2026, month: 12, day: 31, hour: 9, minute: 0))
+		XCTAssertEqual(added.date.year, 2026)
+		XCTAssertEqual(added.date.month, 12)
+		XCTAssertEqual(added.date.day, 31)
+		XCTAssertEqual(added.date.hour, 9)
+		XCTAssertEqual(added.date.minute, 0)
+		XCTAssertEqual(added.date.calendar, calendar)
 		let fireDate = try XCTUnwrap(calendar.date(from: added.date))
 		let expected = try date("2026-12-31T09:00:00Z")
 		XCTAssertEqual(fireDate, expected)
@@ -103,7 +118,8 @@ final class ReminderSchedulerTests: XCTestCase {
 
 		let all = await center.added
 		let added = try XCTUnwrap(all.first)
-		XCTAssertEqual(added.date, DateComponents(year: 2026, month: 11, day: 18, hour: 18, minute: 0))
+		XCTAssertEqual(added.date.hour, 18)
+		XCTAssertEqual(added.date.minute, 0)
 	}
 
 	func testReminderAlreadyPastIsNotAdded() async throws {
@@ -123,7 +139,7 @@ final class ReminderSchedulerTests: XCTestCase {
 		let scheduler = try makeScheduler(center)
 		let plan = [
 			try reminder("2026-02-30"), try reminder("tomorrow"), try reminder("2026-11-18", hour: 25),
-			try reminder("2026-11-19"),
+			try reminder("2026-1-+01"), try reminder("2026-11-19"),
 		]
 
 		await scheduler.replace(with: plan)

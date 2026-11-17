@@ -17,7 +17,8 @@ protocol ReminderCenter: Sendable {
 	func requestAuthorization() async -> Bool
 	func pendingIdentifiers() async -> [String]
 	func remove(identifiers: [String]) async
-	/// `date` carries calendar fields only, read in the device's current calendar and time zone when it fires.
+	/// `date` carries the calendar it was validated in, so its fields are read in that calendar and time zone
+	/// when it fires, not in the device's.
 	func add(identifier: String, title: String, body: String, date: DateComponents) async
 }
 
@@ -68,6 +69,7 @@ struct ReminderScheduler: Sendable {
 	private let calendar: Calendar
 	private let now: @Sendable () -> Date
 
+	/// `calendar` is the Gregorian one `localDate` is written in, in the time zone the reminders are read in.
 	/// `now` is the clock the past-date check reads; tests pass a fixed one.
 	init(center: any ReminderCenter, calendar: Calendar, now: @escaping @Sendable () -> Date = { Date() }) {
 		self.center = center
@@ -98,11 +100,16 @@ struct ReminderScheduler: Sendable {
 	/// calendar rejects `2026-02-30` and an hour of 25, which the calendar would otherwise roll over to
 	/// another day.
 	private func dateComponents(for reminder: PlannedReminder) -> DateComponents? {
+		// Digits only, 4-2-2: `Int` alone would accept "2026-1-+01" and the identifier would not be canonical.
 		let parts = reminder.localDate.split(separator: "-", omittingEmptySubsequences: false)
-		guard parts.count == 3, reminder.localDate.utf8.count == 10,
+		guard parts.map(\.utf8.count) == [4, 2, 2],
+			parts.allSatisfy({ part in part.utf8.allSatisfy { (48...57).contains($0) } }),
 			let year = Int(parts[0]), let month = Int(parts[1]), let day = Int(parts[2])
 		else { return nil }
-		let components = DateComponents(year: year, month: month, day: day, hour: reminder.hour, minute: 0)
+		// The calendar travels with the fields: a trigger reads a bare year in the device's calendar, where
+		// 2026 can be another year (Buddhist, Japanese) than the Gregorian one `localDate` is written in.
+		var components = DateComponents(year: year, month: month, day: day, hour: reminder.hour, minute: 0)
+		components.calendar = calendar
 		guard let date = calendar.date(from: components) else { return nil }
 		let back = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
 		// Field by field: the components the calendar returns may carry a calendar or a zone that ours do not.
