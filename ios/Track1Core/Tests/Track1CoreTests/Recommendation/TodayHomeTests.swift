@@ -18,7 +18,8 @@ final class TodayHomeTests: XCTestCase {
 	func testTheSameInstantKeepsItsDayInUTC() throws {
 		let date = try XCTUnwrap(ISO8601DateFormatter().date(from: "2026-10-31T23:30:00Z"))
 
-		let home = TodayHome(node: try Self.node(), date: date, timeZone: try XCTUnwrap(TimeZone(identifier: "UTC")))
+		let utc = try XCTUnwrap(TimeZone(identifier: "UTC"))
+		let home = TodayHome(node: try Self.node(), date: date, timeZone: utc)
 
 		XCTAssertEqual(home.day, "31")
 		XCTAssertEqual(home.month, "OCT")
@@ -27,7 +28,8 @@ final class TodayHomeTests: XCTestCase {
 	func testTheDayHasNoLeadingZero() throws {
 		let date = try XCTUnwrap(ISO8601DateFormatter().date(from: "2026-03-03T12:00:00Z"))
 
-		let home = TodayHome(node: try Self.node(), date: date, timeZone: try XCTUnwrap(TimeZone(identifier: "UTC")))
+		let utc = try XCTUnwrap(TimeZone(identifier: "UTC"))
+		let home = TodayHome(node: try Self.node(), date: date, timeZone: utc)
 
 		XCTAssertEqual(home.day, "3")
 	}
@@ -141,7 +143,8 @@ final class TodayHomeTests: XCTestCase {
 	// MARK: - Fixtures
 
 	private static func home(_ node: NodeDetail) -> TodayHome {
-		TodayHome(node: node, date: Date(timeIntervalSince1970: 0), timeZone: TimeZone(identifier: "UTC") ?? .current)
+		let utc = TimeZone(identifier: "UTC") ?? .current
+		return TodayHome(node: node, date: Date(timeIntervalSince1970: 0), timeZone: utc)
 	}
 
 	private static func object(_ type: NodeType, _ name: String) -> String {

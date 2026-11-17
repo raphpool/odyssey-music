@@ -262,7 +262,8 @@ final class ProfileStoreTests: XCTestCase {
 	// MARK: Version 3 (TRA-712)
 
 	func testOldProfilesAndDraftsAreIgnored() async throws {
-		let old = #"{"version":2,"local_id":"\#(UUID())","genre_ids":[],"revision":3,"#
+		let old =
+			#"{"version":2,"local_id":"\#(UUID())","genre_ids":[],"revision":3,"#
 			+ #""onboarding_completed":true,"flow_id":"\#(UUID())"}"#
 		let localStore = LocalStore(directoryURL: directoryURL)
 		let store = ProfileStore(localStore: localStore)
