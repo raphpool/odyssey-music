@@ -225,6 +225,35 @@ run_build_for_testing() {
 		build-for-testing
 }
 
+# 2026-11-17 (TRA-788): `-quiet` hides which test failed, the log only says TEST EXECUTE FAILED, and the .xcresult
+# is published to a storage that the cloud agent cannot reach. The failures are read back from the bundle of the
+# failed pass (Xcode 16+) and printed as Actions annotations. Printing them must never hide the failure: every
+# problem here ends in a warning and a return 0, and the caller keeps its own exit status. The newlines and
+# percent signs of a failure text are escaped, as Actions expects, so a multi-line text stays one annotation and
+# cannot start a workflow command of its own.
+print_test_failures() {
+	local xcresult_path="$1"
+	local summary failures
+	if ! summary="$(xcrun xcresulttool get test-results summary --path "$xcresult_path" --compact)"; then
+		echo "::warning::Could not read the test failures from $xcresult_path (xcresulttool failed); the XCTest failure is unchanged."
+		return 0
+	fi
+	if ! failures="$(printf '%s' "$summary" | jq -r '
+		def escaped: tostring | gsub("%"; "%25") | gsub("\r"; "%0D") | gsub("\n"; "%0A");
+		.testFailures[]? | "::error::\(.testIdentifierString // "unknown test" | escaped): \(.failureText // "no message" | escaped)"
+	')"; then
+		echo "::warning::Could not parse the test failures of $xcresult_path; the XCTest failure is unchanged."
+		return 0
+	fi
+	if [[ -n "$failures" ]]; then
+		printf '%s\n' "$failures"
+	else
+		# The failure is not a test failure (a crash before the first test, a selection that matches nothing).
+		echo "::warning::The summary of $xcresult_path lists no test failure; the XCTest failure is unexplained."
+	fi
+	return 0
+}
+
 # A build on top of an existing DerivedData that fails is retried once from an empty folder: a stale
 # or corrupted cache must never turn into a red check. A build that already started cold is not retried.
 build_for_testing() {
@@ -768,18 +797,20 @@ for scheme in Track1 Track1Preview; do
 			only_testing_arguments+=("-only-testing:$only_testing")
 		done
 	fi
+	xcresult_path="$output_dir/$scheme-$$.xcresult"
 	if ! xcodebuild \
 		test-without-building \
 		-xctestrun "$xctestrun_path" \
 		-test-timeouts-enabled YES \
 		-default-test-execution-time-allowance "$test_execution_time_allowance_seconds" \
 		-destination "platform=iOS Simulator,id=$simulator_id" \
-		-resultBundlePath "$output_dir/$scheme-$$.xcresult" \
+		-resultBundlePath "$xcresult_path" \
 		${only_testing_arguments[@]+"${only_testing_arguments[@]}"} \
 		CODE_SIGNING_ALLOWED=NO \
 		ONLY_ACTIVE_ARCH=NO \
 		-quiet
 	then
+		print_test_failures "$xcresult_path" || true
 		echo "XCTest failed before contract verification; observed proxy requests:" >&2
 		curl --fail --silent --show-error "${contract_base_url%/mobile/v1/}/__track1_contract_report" >&2 || true
 		exit 1
