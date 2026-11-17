@@ -447,6 +447,52 @@ final class OnboardingComponentsTests: XCTestCase {
 		// TRA-767: no counter, so nothing is laid out before the button.
 		XCTAssertEqual(bar.parts, [.button])
 	}
+
+	// MARK: Welcome (TRA-724)
+
+	/// Values read on 2026-11-17 in the Figma `1.1 Welcome` (`316:4853`): the gaps of `362:4932` and
+	/// `316:4855`, the app mark `362:4910` and the wordmark `318:6607`. They are spelled out again here, so a
+	/// metric changed in `WelcomeMetrics` alone fails.
+	func testWelcomeMetricsAreTheFigmaValues() {
+		XCTAssertEqual(WelcomeMetrics.markTextSpacing, 24)
+		XCTAssertEqual(WelcomeMetrics.wordmarkTaglineSpacing, 16)
+		XCTAssertEqual(WelcomeMetrics.markSize, 122.88, accuracy: 1e-9)
+		XCTAssertEqual(WelcomeMetrics.wordmarkSize.width, 136.032, accuracy: 1e-9)
+		XCTAssertEqual(WelcomeMetrics.wordmarkSize.height, 29.6, accuracy: 1e-9)
+		XCTAssertEqual(WelcomeMetrics.textSideMargin, 24)
+	}
+
+	func testWelcomeMarkIsTheSizeOfTheMarkInTheMockUp() {
+		XCTAssertEqual(WelcomeMetrics.markSize, AppMarkMetrics.welcomeSize, accuracy: 1e-9)
+		// 26.88 / 122.88, the radius of `362:4910`.
+		XCTAssertEqual(WelcomeMetrics.markSize * AppMarkMetrics.cornerRatio, 26.88, accuracy: 1e-9)
+	}
+
+	/// The wordmark is an image of the catalog (`Brand/Wordmark`, node `318:6607`), not text: a missing or
+	/// misnamed asset would draw nothing, so the name the screen uses must resolve.
+	@MainActor
+	func testWelcomeWordmarkIsAnImageOfTheCatalog() {
+		XCTAssertEqual(WelcomeView.wordmarkImageName, "Brand/Wordmark")
+		XCTAssertNotNil(UIImage(named: WelcomeView.wordmarkImageName), WelcomeView.wordmarkImageName)
+	}
+
+	/// The drawn wordmark is the heading and VoiceOver reads it as "track1". The reading order itself
+	/// (mark hidden, wordmark, tagline, button) follows the view hierarchy and is not a value a unit test
+	/// can read: it is left to a check by hand with VoiceOver (TRA-724).
+	@MainActor
+	func testWelcomeWordmarkIsTheHeadingAndIsReadAsTheProductName() {
+		XCTAssertEqual(WelcomeView.wordmarkLabel, "track1")
+		XCTAssertEqual(WelcomeView.wordmarkTraits, .isHeader)
+		XCTAssertEqual(WelcomeView.wordmarkLabel, WelcomeView.productName)
+	}
+
+	/// TRA-724 keeps the French copy and the identifier that the UI tests look for.
+	@MainActor
+	func testWelcomeKeepsItsStartIdentifierItsLabelAndItsTagline() {
+		XCTAssertEqual(WelcomeView.startIdentifier, "onboarding-start")
+		XCTAssertEqual(WelcomeView.tagline, "Explorations musicales quotidiennes")
+		XCTAssertEqual(WelcomeView.productName, "track1")
+	}
 }
 
 /// The frames the header probe reads, by identifier.

@@ -3,13 +3,14 @@ import Track1Core
 
 /// Figma `Welcome backdrop` (`175:66`, Doc `175:68`, motion spec `176:69`): the full-screen color field
 /// behind screen 1.1. It is a slowly morphing gradient (amber, rose, violet, "like a James Turrell
-/// installation") that loops every 45 s without a cut. Under Reduce Motion it stays on the Figma frame.
+/// installation") that loops every 30 s without a cut. Under Reduce Motion it stays on the Figma frame.
 /// A dark veil keeps `colorTextPrimary` at 4.5:1 or more over the lightest color of the field.
 /// It is decorative and absolute: put it behind the content, never in the layout flow. It draws only
 /// gradients, so it loads no image and has no URL to validate.
 struct WelcomeBackdrop: View {
-	/// Doc `175:68`: "Loop 30-60s, no hard cuts". The ticket picks 45 s.
-	static let loopDuration: TimeInterval = 45
+	/// Doc `175:68`: "Loop 30-60s, no hard cuts". 45 s until TRA-724 (2026-11-17): the note `362:4993` of the
+	/// v1 mock-up asks to speed the background up slightly, and 30 s is the floor of the Doc's range.
+	static let loopDuration: TimeInterval = 30
 	/// The gradient is an ellipse as in the Figma frame: wide, so the side edges stay mid-tone while the top
 	/// and bottom edges light up. It is drawn on a canvas this many times as wide as the screen, centered.
 	private static let canvasWidthRatio: CGFloat = 2.4
@@ -18,8 +19,8 @@ struct WelcomeBackdrop: View {
 	/// Vertical radius, as a share of the height: the farthest vertical edge (bottom, 447 pt) is 0.52 high.
 	private static let radiusFraction: CGFloat = 0.52
 
-	/// A 45 s morph needs no more than 15 images a second: the color moves by far less than a level of
-	/// 8-bit between two of them, and the gradient is costly to draw.
+	/// A 30 s morph needs no more than 15 images a second: the color moves by at most about 1.7 levels of
+	/// 8-bit between two of them (3 / 450 of the range), and the gradient is costly to draw.
 	private static let frameInterval: TimeInterval = 1.0 / 15
 
 	@Environment(\.accessibilityReduceMotion) private var reduceMotion

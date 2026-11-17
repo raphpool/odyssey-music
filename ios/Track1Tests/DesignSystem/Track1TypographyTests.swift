@@ -7,7 +7,8 @@ import XCTest
 /// The 20 roles of the Figma Typography frame `180:376` (read 2026-10-13) are spelled out again here: the
 /// caption under each sample gives the font, the size and the line height. `monoHeadline` is the 21st, read
 /// on the Top bar date instance `I282:838;173:15` (2026-10-23, TRA-660), which the frame does not list. The
-/// 22nd to the 28th are the v1 roles (2026-11-16, TRA-710), read on the mockup nodes. A value changed in
+/// 22nd to the 28th are the v1 roles (2026-11-16, TRA-710), read on the mockup nodes, and the 29th is the
+/// Welcome `tagline` (2026-11-17, TRA-724). A value changed in
 /// `Track1TextRole` alone fails here.
 final class Track1TypographyTests: XCTestCase {
 	private typealias Row = (
@@ -45,20 +46,22 @@ final class Track1TypographyTests: XCTestCase {
 		(.monoCounter, "JetBrainsMono-Medium", 16, 20, .callout, .callout),
 		(.monoBarTitle, "JetBrainsMono-Bold", 16, 24, .callout, .callout),
 		(.monoButton, "JetBrainsMono-Medium", 15, 20, .subheadline, .subheadline),
+		// TRA-724, Welcome node `316:4857`.
+		(.tagline, "Roboto-Medium", 20, 24, .title3, .title3),
 	]
 
 	private let defaultSize = UITraitCollection(preferredContentSizeCategory: .large)
 
-	func testTheSixFontFacesLoadInTheApp() {
-		XCTAssertEqual(Track1FontFace.allCases.count, 6)
+	func testTheSevenFontFacesLoadInTheApp() {
+		XCTAssertEqual(Track1FontFace.allCases.count, 7)
 		for face in Track1FontFace.allCases {
 			XCTAssertEqual(UIFont(name: face.rawValue, size: 17)?.fontName, face.rawValue, face.rawValue)
 		}
 	}
 
 	func testEveryRoleIsDocumentedOnceAndMatchesFigma() {
-		XCTAssertEqual(Track1TextRole.allCases.count, 28)
-		XCTAssertEqual(figma.count, 28)
+		XCTAssertEqual(Track1TextRole.allCases.count, 29)
+		XCTAssertEqual(figma.count, 29)
 		for row in figma {
 			XCTAssertEqual(row.role.face.rawValue, row.face, "\(row.role) face")
 			XCTAssertEqual(row.role.size, row.size, "\(row.role) size")
@@ -66,7 +69,7 @@ final class Track1TypographyTests: XCTestCase {
 			XCTAssertEqual(row.role.textStyle, row.textStyle, "\(row.role) text style")
 			XCTAssertEqual(row.role.uiTextStyle, row.uiTextStyle, "\(row.role) UIKit text style")
 		}
-		XCTAssertEqual(Set(figma.map { "\($0.role)" }).count, 28)
+		XCTAssertEqual(Set(figma.map { "\($0.role)" }).count, 29)
 	}
 
 	/// Edge case of the v1 roles: `reader` sets a 34 pt line on a 22 pt Roboto, whose natural line is about
@@ -95,6 +98,23 @@ final class Track1TypographyTests: XCTestCase {
 		for (role, spacing) in expected {
 			XCTAssertEqual(role.lineSpacing(compatibleWith: defaultSize), spacing, accuracy: tolerance, "\(role)")
 		}
+	}
+
+	/// TRA-724: the Welcome tagline has a natural line height in the Figma (24 pt a line, 48 for two). Roboto
+	/// Medium 20 is 23.44 pt tall by itself (hhea 1900 + 500 over 2048, 23.33 to 24 once UIKit rounds to the
+	/// pixel), so the spacing between lines is positive and under one point: a wrapped tagline keeps the
+	/// Figma rhythm without a visible gap.
+	func testTaglineLineSpacingIsUnderOnePointSoTheLineIsTheNaturalOne() {
+		let spacing = Track1TextRole.tagline.lineSpacing(compatibleWith: defaultSize)
+		XCTAssertGreaterThanOrEqual(spacing, 0)
+		XCTAssertLessThan(spacing, 1)
+	}
+
+	func testTaglineIsRobotoMediumAtTheTitle3Style() {
+		XCTAssertEqual(Track1TextRole.tagline.face, .robotoMedium)
+		XCTAssertEqual(Track1FontFace.robotoMedium.rawValue, "Roboto-Medium")
+		XCTAssertEqual(Track1TextRole.tagline.textStyle, .title3)
+		XCTAssertEqual(UIFont(name: "Roboto-Medium", size: 20)?.fontName, "Roboto-Medium")
 	}
 
 	func testLineSpacingGrowsWithDynamicType() {
