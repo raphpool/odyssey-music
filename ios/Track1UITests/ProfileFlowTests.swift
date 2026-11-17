@@ -94,9 +94,14 @@ final class ProfileFlowTests: XCTestCase {
 		// The fake center starts undecided at every launch: only the flag keeps the opt-in from coming back.
 		XCTAssertFalse(element(app, UITestFlows.notificationsIdentifier).exists)
 
-		// The settings count what the saved selection holds: it was written, and read back after the relaunch.
+		// The Genres tab counts what the saved selection holds: it was written, and read back after the relaunch.
+		// 2026-11-17 (TRA-737): the settings no longer carry this count, the cards of the tab do.
 		UITestFlows.tabButton("Genres", in: app).tap()
-		XCTAssertEqual(openSettings(in: app).value as? String, "2 familles · 3 sous-genres")
+		let family0 = card("family-0", in: app)
+		let family1 = card("family-1", in: app)
+		XCTAssertTrue(family0.waitForExistence(timeout: 10))
+		XCTAssertTrue(family0.label.hasSuffix(", 2 sélectionnés"), family0.label)
+		XCTAssertTrue(family1.label.hasSuffix(", 1 sélectionné"), family1.label)
 	}
 
 	/// TRA-735: the stack goes back one step at a time, and keeps what was chosen. The unfolded state of the
@@ -532,12 +537,13 @@ final class ProfileFlowTests: XCTestCase {
 		UITestFlows.screenshot(named: "1.2-chips-shared-row", in: self)
 	}
 
-	/// 2026-10-24 (TRA-666, plan D4): the edit sheet of the Genres tab draws the same `GenresStepView`, so a
-	/// collapsed card has the size it has in the onboarding, for a name that fits on one line (ticked genre,
-	/// badge) and for one that folds. The sizes are measured on the first launch, before "Continuer", then in the
-	/// sheet. A gap in height is a defect of the sheet to report, not a tolerance to widen.
+	/// 2026-10-24 (TRA-666, plan D4): the Genres tab draws the same cards as the onboarding, so a collapsed card
+	/// has the size it has there, for a name that fits on one line (ticked genre, badge) and for one that folds.
+	/// The sizes are measured on the first launch, before "Continuer", then in the tab. A gap in height is a
+	/// defect of the tab to report, not a tolerance to widen. 2026-11-17 (TRA-737): the cards are in the tab
+	/// itself, since the edit sheet is gone.
 	@MainActor
-	func testTheEditSheetDrawsTheSameCardHeaderAsTheOnboarding() {
+	func testTheGenresTabDrawsTheSameCardHeaderAsTheOnboarding() {
 		let app = UITestFlows.launch(catalog: Self.longLabelsCatalog)
 		UITestFlows.declineConsent(app)
 		UITestFlows.startOnboarding(app)
@@ -559,25 +565,57 @@ final class ProfileFlowTests: XCTestCase {
 		UITestFlows.passNotifications(app)
 		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
 		UITestFlows.tabButton("Genres", in: app).tap()
-		UITestFlows.tapWhenReady(app.buttons["genres-edit"])
 
-		// The sheet opens on the same cards, closed, and the first still counts the genre that is ticked.
+		// The tab opens on the same cards, closed, and the first still counts the genre that is ticked.
 		XCTAssertTrue(family0.waitForExistence(timeout: 10))
 		XCTAssertEqual(family0.value as? String, "replié")
 		XCTAssertTrue(family0.label.contains("1 sélectionné"), family0.label)
 		XCTAssertEqual(family1.value as? String, "replié")
 		XCTAssertFalse(family1.label.contains("sélectionné"), family1.label)
-		let sheet0 = UITestFlows.settledFrame(of: family0, timeout: 10)
-		let sheet1 = UITestFlows.settledFrame(of: family1, timeout: 10)
-		XCTAssertEqual(sheet0.width, onboarding0.width, accuracy: 1)
-		XCTAssertEqual(sheet0.height, onboarding0.height, accuracy: 1)
-		XCTAssertEqual(sheet1.width, onboarding1.width, accuracy: 1)
-		XCTAssertEqual(sheet1.height, onboarding1.height, accuracy: 1)
-		UITestFlows.screenshot(named: "3.3-edit-long-family", in: self)
+		let tab0 = UITestFlows.settledFrame(of: family0, timeout: 10)
+		let tab1 = UITestFlows.settledFrame(of: family1, timeout: 10)
+		XCTAssertEqual(tab0.width, onboarding0.width, accuracy: 1)
+		XCTAssertEqual(tab0.height, onboarding0.height, accuracy: 1)
+		XCTAssertEqual(tab1.width, onboarding1.width, accuracy: 1)
+		XCTAssertEqual(tab1.height, onboarding1.height, accuracy: 1)
+		UITestFlows.screenshot(named: "3.3-genres-long-family", in: self)
 	}
 
+	/// 2026-11-17 (TRA-737): the write that fails is the one of "Sauvegarder", on a saved profile. The first
+	/// launch writes the profile normally; the app is then started again with the hook that fails the next
+	/// write of the profile file, which nothing has touched yet. The ticks are kept, the alert is the existing
+	/// one, and the same button writes again.
 	@MainActor
 	func testFailedProfileWriteShowsAnErrorAndCanBeRetried() {
+		let app = firstProfile()
+		app.terminate()
+		app.launchArguments = ["-AppleLanguages", "(fr)", "-track1-fail-next-profile-write"]
+		app.launch()
+		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
+		UITestFlows.tabButton("Genres", in: app).tap()
+		let save = app.buttons[Self.saveIdentifier]
+		tapCard("family-1", in: app)
+		UITestFlows.tapAboveBar(app.buttons["subgenre-chip-local:genre-1a"], bar: save, in: app)
+		UITestFlows.tapWhenReady(save)
+
+		// The write failed: the page stays where it is with its ticks, and the same button writes again.
+		let alert = app.alerts["Enregistrement indisponible"]
+		XCTAssertTrue(alert.waitForExistence(timeout: 10))
+		XCTAssertTrue(UITestFlows.tabBar(in: app).exists)
+		alert.buttons["OK"].tap()
+		XCTAssertTrue(alert.waitForNonExistence(timeout: 5))
+		XCTAssertTrue(app.buttons["subgenre-chip-local:genre-1a"].isSelected)
+		XCTAssertTrue(save.isEnabled)
+		UITestFlows.tapWhenReady(save)
+		XCTAssertTrue(waitUntil { !save.isEnabled }, "saved on the second try")
+		XCTAssertFalse(alert.exists)
+		XCTAssertTrue(card("family-1", in: app).label.hasSuffix(", 1 sélectionné"), card("family-1", in: app).label)
+	}
+
+	/// 2026-11-17 (TRA-746): on the first launch the profile is written when the opt-in step ends, so a failed
+	/// write shows the existing alert on that screen and the same "Continuer" writes again.
+	@MainActor
+	func testFailedFirstProfileWriteAtTheEndOfTheOnboardingCanBeRetried() {
 		let app = XCUIApplication()
 		app.launchArguments = [
 			"-AppleLanguages", "(fr)", "-track1-reset-analytics-consent", "-track1-reset-profile",
@@ -596,10 +634,10 @@ final class ProfileFlowTests: XCTestCase {
 		// TRA-746: the profile is written when the opt-in ends, so that is where the write fails.
 		UITestFlows.passNotifications(app)
 
-		// The write failed: the flow stays where it is, and the same button writes again.
+		// The write failed: the page stays where it is with its ticks, and the same button writes again.
 		let alert = app.alerts["Enregistrement indisponible"]
 		XCTAssertTrue(alert.waitForExistence(timeout: 10))
-		XCTAssertFalse(UITestFlows.tabBar(in: app).exists)
+		XCTAssertTrue(UITestFlows.tabBar(in: app).exists)
 		alert.buttons["OK"].tap()
 		XCTAssertTrue(alert.waitForNonExistence(timeout: 5))
 		UITestFlows.tapWhenReady(app.buttons[UITestFlows.notificationsContinueIdentifier])
@@ -642,53 +680,119 @@ final class ProfileFlowTests: XCTestCase {
 		UITestFlows.passNotifications(app)
 		XCTAssertTrue(UITestFlows.tabButton("Genres", in: app).waitForExistence(timeout: 10))
 		UITestFlows.tabButton("Genres", in: app).tap()
-		_ = openSettings(in: app)
-		XCTAssertEqual(app.buttons["profile-settings-edit"].value as? String, "1 famille · 1 sous-genre")
+		XCTAssertTrue(card("family-0", in: app).waitForExistence(timeout: 10))
+		XCTAssertTrue(card("family-0", in: app).label.hasSuffix(", 1 sélectionné"), card("family-0", in: app).label)
 	}
 
+	/// TRA-737: the tab is the profile page: the disc and the pseudo, "Tes genres" with every card, and the
+	/// tenure at the foot. Nothing is saved yet, so "Sauvegarder" is off. The settings are the sheet of the icon
+	/// button, and no longer hold a row that edits the genres.
 	@MainActor
 	func testTheGenresTabShowsTheFamiliesOfTheProfileAndOpensTheSettings() {
 		let app = firstProfile()
 		UITestFlows.tabButton("Genres", in: app).tap()
 
-		XCTAssertTrue(app.staticTexts["Mes genres"].waitForExistence(timeout: 5))
-		XCTAssertTrue(tile("family-0", in: app).waitForExistence(timeout: 5))
-		XCTAssertFalse(tile("family-1", in: app).exists)
-		XCTAssertTrue(app.buttons["genres-edit"].exists)
+		let header = element(app, "profile-header")
+		XCTAssertTrue(header.waitForExistence(timeout: 5), "profile-header")
+		XCTAssertTrue(header.label.hasPrefix("Raph, "), header.label)
+		XCTAssertTrue(app.staticTexts["Tes genres"].exists, "section title")
+		XCTAssertFalse(app.staticTexts["Mes genres"].exists, "the old title is gone")
+		// Every card of the taxonomy is there, not only the ones of the profile; the first counts its genre.
+		XCTAssertTrue(card("family-0", in: app).exists)
+		XCTAssertTrue(card("family-1", in: app).exists)
+		XCTAssertTrue(card("family-0", in: app).label.contains("1 sélectionné"), card("family-0", in: app).label)
+		XCTAssertFalse(card("family-1", in: app).label.contains("sélectionné"), card("family-1", in: app).label)
+		XCTAssertFalse(element(app, "genre-tile-family-0").exists, "no read-only tile")
+		// The tenure, as one sentence: the profile was created during this run, so it is the first day.
+		let tenure = element(app, "profile-tenure")
+		XCTAssertTrue(tenure.waitForExistence(timeout: 5), "profile-tenure")
+		XCTAssertEqual(tenure.label, "Tu explores track1 depuis 1 jour")
+		let save = app.buttons[Self.saveIdentifier]
+		XCTAssertTrue(save.exists)
+		XCTAssertEqual(save.label, "Sauvegarder")
+		XCTAssertFalse(save.isEnabled)
 		UITestFlows.screenshot(named: "3.3-genres", in: self)
 
 		// The settings are the sheet of the icon button, and the analytics row is one of them.
 		app.buttons["genres-settings"].tap()
 		XCTAssertTrue(app.buttons["analytics-settings"].waitForExistence(timeout: 5))
+		XCTAssertFalse(app.buttons["profile-settings-edit"].exists, "the genres are edited on the tab")
 		app.buttons["Fermer"].tap()
-		XCTAssertTrue(app.buttons["genres-edit"].waitForExistence(timeout: 5))
+		XCTAssertTrue(header.waitForExistence(timeout: 5))
 	}
 
+	/// TRA-737: a tick on the tab writes nothing; "Sauvegarder" does. After it the page stays where it is, the
+	/// button goes off, and Today, which reads the new revision of the profile, computes the pick again.
 	@MainActor
 	func testEditingTheGenresAddsAFamilyThenTodayIsComputedAgain() {
 		let app = firstProfile()
 		UITestFlows.tabButton("Genres", in: app).tap()
-		app.buttons["genres-edit"].tap()
+		let save = app.buttons[Self.saveIdentifier]
 
-		// The edit flow opens on the accordion, with no Welcome: the card of the current family is closed
-		// and counts the genre that is already ticked.
+		// The cards are closed and the first counts the genre that is already ticked.
 		let family0 = card("family-0", in: app)
+		let family1 = card("family-1", in: app)
 		XCTAssertTrue(family0.waitForExistence(timeout: 5))
 		XCTAssertTrue(family0.label.contains("1 sélectionné"))
 		XCTAssertFalse(element(app, "subgenre-chip-local:genre-0a").exists)
-		tapCard("family-1", in: app)
-		UITestFlows.tapWhenReady(app.buttons["subgenre-chip-local:genre-1a"])
+		XCTAssertFalse(save.isEnabled)
+		UITestFlows.tapAboveBar(family1, bar: save, in: app)
+		UITestFlows.tapAboveBar(app.buttons["subgenre-chip-local:genre-1a"], bar: save, in: app)
+		XCTAssertTrue(waitUntil { save.isEnabled }, "a new genre opens the button")
 		UITestFlows.screenshot(named: "3.3-edit-genres", in: self)
-		// The edit flow ends on "Enregistrer", the button the first launch labels "Continuer".
-		let save = app.buttons["onboarding-genres-continue"]
-		XCTAssertEqual(save.label, "Enregistrer")
 		save.tap()
 
-		// The flow ends on Today, which loads the recommendation again for the new revision of the profile.
+		// Saved in place: no jump to Today, the button is off again, and the card counts the new genre.
+		XCTAssertTrue(waitUntil { !save.isEnabled }, "the button goes off once saved")
+		XCTAssertTrue(save.exists, "still on the Genres tab")
+		XCTAssertFalse(app.alerts.firstMatch.exists)
+		XCTAssertTrue(family1.label.hasSuffix(", 1 sélectionné"), family1.label)
+
+		// Today loads the recommendation again for the new revision of the profile.
+		UITestFlows.tabButton("Aujourd’hui", in: app).tap()
 		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
 		UITestFlows.tabButton("Genres", in: app).tap()
-		XCTAssertTrue(tile("family-1", in: app).waitForExistence(timeout: 5))
-		XCTAssertTrue(tile("family-0", in: app).exists)
+		XCTAssertTrue(family0.label.hasSuffix(", 1 sélectionné"), family0.label)
+		XCTAssertTrue(family1.label.hasSuffix(", 1 sélectionné"), family1.label)
+		XCTAssertFalse(save.isEnabled)
+	}
+
+	/// TRA-737: "Sauvegarder" is on only when the selection differs from the saved one and holds a genre. A tick
+	/// then the same tick again is back to the saved selection; unticking the only genre leaves nothing to save.
+	/// A selection that is not saved stays when the tab is left, as long as the app lives.
+	@MainActor
+	func testTheSaveButtonFollowsTheDifferenceWithTheSavedSelection() {
+		let app = firstProfile()
+		UITestFlows.tabButton("Genres", in: app).tap()
+		let save = app.buttons[Self.saveIdentifier]
+		let chip1a = app.buttons["subgenre-chip-local:genre-1a"]
+		let chip0a = app.buttons["subgenre-chip-local:genre-0a"]
+		XCTAssertTrue(save.waitForExistence(timeout: 5))
+		XCTAssertFalse(save.isEnabled, "nothing changed")
+
+		// A tick opens the button, and the same tick again closes it.
+		UITestFlows.tapAboveBar(card("family-1", in: app), bar: save, in: app)
+		UITestFlows.tapAboveBar(chip1a, bar: save, in: app)
+		XCTAssertTrue(waitUntil { save.isEnabled }, "genre ticked")
+		UITestFlows.tapAboveBar(chip1a, bar: save, in: app)
+		XCTAssertTrue(waitUntil { !save.isEnabled }, "back to the saved selection")
+
+		// Unticking the only saved genre leaves nothing: there is nothing to save.
+		UITestFlows.tapAboveBar(card("family-0", in: app), bar: save, in: app)
+		UITestFlows.tapAboveBar(chip0a, bar: save, in: app)
+		XCTAssertFalse(chip0a.isSelected)
+		XCTAssertFalse(save.isEnabled, "nothing ticked")
+
+		// A new tick on top of the empty selection opens it, and leaving the tab keeps it.
+		UITestFlows.tapAboveBar(chip1a, bar: save, in: app)
+		XCTAssertTrue(waitUntil { save.isEnabled }, "one genre, another than the saved one")
+		UITestFlows.tabButton("Aujourd’hui", in: app).tap()
+		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
+		UITestFlows.tabButton("Genres", in: app).tap()
+		XCTAssertTrue(card("family-1", in: app).waitForExistence(timeout: 5))
+		XCTAssertTrue(card("family-1", in: app).label.hasSuffix(", 1 sélectionné"), card("family-1", in: app).label)
+		XCTAssertFalse(card("family-0", in: app).label.contains("sélectionné"), card("family-0", in: app).label)
+		XCTAssertTrue(save.isEnabled, "the selection in progress is kept")
 	}
 
 	/// 2026-10-15 (TRA-519, plan D4): a catalog whose taxonomy is degraded has no families to offer. The first
@@ -706,7 +810,7 @@ final class ProfileFlowTests: XCTestCase {
 	}
 
 	/// Same degradation once a profile exists: Today keeps working off the stored `genre_ids`, and the Genres
-	/// tab reads as unavailable, with its edit button off, until the taxonomy is back.
+	/// tab reads as unavailable, with "Sauvegarder" off, until the taxonomy is back.
 	@MainActor
 	func testADegradedCatalogKeepsTodayAndMakesTheGenresTabUnavailable() {
 		let app = firstProfile()
@@ -715,7 +819,7 @@ final class ProfileFlowTests: XCTestCase {
 		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
 		UITestFlows.tabButton("Genres", in: app).tap()
 		XCTAssertTrue(app.buttons["genres-retry"].waitForExistence(timeout: 5))
-		XCTAssertFalse(app.buttons["genres-edit"].isEnabled)
+		XCTAssertFalse(app.buttons[Self.saveIdentifier].isEnabled)
 	}
 
 	/// A profile of the first parent of the taxonomy catalog, made by the first-launch flow.
@@ -728,19 +832,19 @@ final class ProfileFlowTests: XCTestCase {
 		return app
 	}
 
-	/// The settings sheet of the Genres tab; returns its "Goûts musicaux" row.
-	@MainActor
-	private func openSettings(in app: XCUIApplication) -> XCUIElement {
-		app.buttons["genres-settings"].tap()
-		let edit = app.buttons["profile-settings-edit"]
-		XCTAssertTrue(edit.waitForExistence(timeout: 5))
-		return edit
-	}
+	/// "Sauvegarder", the bar of the Genres tab. The identifier is the one of the "Modifier mes genres" button
+	/// it replaces (`GenresTabView.saveIdentifier`): `NavigationTests` and `TodayFlowTests` read it too.
+	private static let saveIdentifier = "genres-edit"
 
-	/// A tile of the Genres tab, plain content rather than a button: any element type will do.
+	/// Polls `condition` until it holds, up to `timeout`: a button goes off or on a frame after the tap.
 	@MainActor
-	private func tile(_ key: String, in app: XCUIApplication) -> XCUIElement {
-		element(app, "genre-tile-\(key)")
+	private func waitUntil(timeout: TimeInterval = 10, _ condition: () -> Bool) -> Bool {
+		let deadline = Date().addingTimeInterval(timeout)
+		while Date() < deadline {
+			if condition() { return true }
+			Thread.sleep(forTimeInterval: 0.1)
+		}
+		return condition()
 	}
 
 	/// The header of an accordion card on the genre screen: its label reads "<name>, <N> sous-genres", then

@@ -223,11 +223,10 @@ private struct ApplicationTabs: View {
 						recentNodes: recentNodes,
 						analytics: analytics,
 						loadCatalog: onboardingCatalog ?? readers?.catalog,
-						// The recommendation of the day follows the new revision: Today reads the profile it is given.
-						profileWasSaved: { profile in
-							profileState = .profile(profile)
-							router.select(.today)
-						},
+						// The recommendation of the day follows the new revision: Today reads the profile it is given,
+						// and its load is keyed on the revision. 2026-11-17 (TRA-737): the tab stays on screen, as the
+						// genres are saved in place from it; it used to jump to Today when its edit sheet closed.
+						profileWasSaved: { profile in profileState = .profile(profile) },
 						profileWasCleared: { profileState = .missing }
 					)
 				}
