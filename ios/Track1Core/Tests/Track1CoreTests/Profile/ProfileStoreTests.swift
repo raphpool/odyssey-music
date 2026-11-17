@@ -324,6 +324,91 @@ final class ProfileStoreTests: XCTestCase {
 		}
 	}
 
+	// MARK: Pseudo and disc (TRA-762)
+
+	func testTheFirstCommitKeepsThePseudoAndTheDiscAndWritesTheirKeys() async throws {
+		let choices = genres(3)
+		let named = draft(genres: choices, displayName: "Raph", disc: .mint)
+		guard case .saved(let saved) = await makeStore().commit(named, availableGenreIDs: choices) else {
+			return XCTFail("Expected the commit to save.")
+		}
+		XCTAssertEqual(saved.displayName, "Raph")
+		XCTAssertEqual(saved.disc, .mint)
+		let data = try Data(contentsOf: directoryURL.appending(path: "profile.v3.json"))
+		let object = try XCTUnwrap(try JSONSerialization.jsonObject(with: data) as? [String: Any])
+		XCTAssertEqual(object["display_name"] as? String, "Raph")
+		XCTAssertEqual(object["disc"] as? String, "mint")
+		let reread = await makeStore().read()
+		XCTAssertEqual(reread, .profile(saved))
+	}
+
+	func testALaterCommitWithoutPseudoOrDiscKeepsThemAndAChangedDiscBumpsTheRevision() async throws {
+		let choices = genres(3)
+		let store = makeStore()
+		let named = draft(genres: choices, displayName: "Raph", disc: .mint)
+		guard case .saved(let original) = await store.commit(named, availableGenreIDs: choices) else {
+			return XCTFail("Expected the first commit to save.")
+		}
+		let edit = draft(genres: Array(choices.prefix(2)))
+		guard case .saved(let edited) = await store.commit(edit, availableGenreIDs: choices) else {
+			return XCTFail("Expected the edit to save.")
+		}
+		XCTAssertEqual(edited.displayName, "Raph")
+		XCTAssertEqual(edited.disc, .mint)
+		XCTAssertEqual(edited.createdAt, original.createdAt)
+		XCTAssertEqual(edited.revision, original.revision + 1)
+
+		let recolored = draft(genres: Array(choices.prefix(2)), disc: .coral)
+		guard case .saved(let changed) = await store.commit(recolored, availableGenreIDs: choices) else {
+			return XCTFail("Expected the new disc to save.")
+		}
+		XCTAssertEqual(changed.disc, .coral)
+		XCTAssertEqual(changed.displayName, "Raph")
+		XCTAssertEqual(changed.revision, edited.revision + 1)
+	}
+
+	func testAPseudoThatIsNotNormalizedIsRefusedAndNothingIsWritten() async throws {
+		let choices = genres(3)
+		for raw in [" Raph ", "", "Ra\nph"] {
+			let candidate = draft(genres: choices, displayName: raw, disc: .mint)
+			let result = await makeStore().commit(candidate, availableGenreIDs: choices)
+			XCTAssertEqual(result, .invalid, raw)
+		}
+		XCTAssertEqual(try FileManager.default.contentsOfDirectory(atPath: directoryURL.path), [])
+	}
+
+	func testADraftWithAPseudoThatIsNotNormalizedIsNotSavedAndReadsCorrupt() async throws {
+		let store = makeStore()
+		let raw = draft(genres: genres(3), displayName: " Raph ", disc: .mint)
+		let saved = await store.saveDraft(raw)
+		XCTAssertEqual(saved, .failure(.unavailable))
+		XCTAssertFalse(fileExists("profile-draft.v3.json"))
+		try await seed(raw, named: "profile-draft.v3.json")
+		let read = await store.readDraft()
+		XCTAssertEqual(read, .corrupt)
+	}
+
+	func testAV3FileWithAnUnknownDiscOrARawPseudoIsCorruptButAPartialOneIsValid() async throws {
+		let file = directoryURL.appending(path: "profile.v3.json")
+		let corrupt: [[String: Any]] = [["disc": "pink"], ["display_name": " Raph "], ["display_name": ""]]
+		for extra in corrupt {
+			try v3JSON(extra).write(to: file)
+			let read = await makeStore().read()
+			XCTAssertEqual(read, .corrupt, "\(extra)")
+		}
+		let valid: [[String: Any]] = [[:], ["disc": "mint"], ["display_name": "Raph"]]
+		for extra in valid {
+			try v3JSON(extra).write(to: file)
+			guard case .profile = await makeStore().read() else { return XCTFail("\(extra) must read.") }
+		}
+	}
+
+	func testMarkingOnboardingStartedKeepsThePseudoAndTheDisc() async throws {
+		let named = draft(genres: [], displayName: "Raph", disc: .mint)
+		let started = await makeStore().markOnboardingStarted(named)
+		XCTAssertEqual(started, .success(draft(genres: [], started: true, displayName: "Raph", disc: .mint)))
+	}
+
 	// MARK: Selection and clear (TRA-516)
 
 	func testRevisionFollowsTheGenreIDsAndTheSelection() async throws {
@@ -446,19 +531,24 @@ final class ProfileStoreTests: XCTestCase {
 	private var allNames: [String] { oldNames + ["profile-draft.v3.json", "profile.v3.json"] }
 
 	private func draft(
-		genres: [NodeIdentity], selection: GenreSelection? = nil, started: Bool = false
+		genres: [NodeIdentity], selection: GenreSelection? = nil, started: Bool = false,
+		displayName: String? = nil, disc: ProfileDisc? = nil
 	) -> ProfileDraft {
 		ProfileDraft(
 			version: Profile.version, flowID: UUID(uuidString: "11111111-1111-1111-1111-111111111111")!,
-			genreIDs: genres, onboardingStartedRecorded: started, selection: selection)
+			genreIDs: genres, onboardingStartedRecorded: started, selection: selection,
+			displayName: displayName, disc: disc)
 	}
 
-	private func v3JSON(createdAt: String? = "2027-01-15T08:00:00Z") throws -> Data {
+	private func v3JSON(
+		_ extra: [String: Any] = [:], createdAt: String? = "2027-01-15T08:00:00Z"
+	) throws -> Data {
 		var object: [String: Any] = [
 			"version": 3, "local_id": UUID().uuidString, "genre_ids": [], "revision": 1,
 			"onboarding_completed": true, "flow_id": UUID().uuidString,
 		]
 		object["created_at"] = createdAt
+		object.merge(extra) { _, new in new }
 		return try JSONSerialization.data(withJSONObject: object)
 	}
 

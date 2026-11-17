@@ -140,7 +140,9 @@ public actor ProfileStore {
 				flowID: draft.flowID,
 				genreIDs: draft.genreIDs,
 				onboardingStartedRecorded: true,
-				selection: draft.selection
+				selection: draft.selection,
+				displayName: draft.displayName,
+				disc: draft.disc
 			)
 		)
 	}
@@ -165,7 +167,13 @@ public actor ProfileStore {
 		let profile: Profile
 		switch current {
 		case .profile(let existing):
-			let unchanged = existing.genreIDs == orderedGenreIDs && existing.selection == draft.selection
+			// A draft without a pseudo or a disc is an edit of the genres only: the saved ones stay, and a draft
+			// cannot clear them. Neither is required yet: onboarding only starts to collect them with TRA-735.
+			let displayName = draft.displayName ?? existing.displayName
+			let disc = draft.disc ?? existing.disc
+			let unchanged =
+				existing.genreIDs == orderedGenreIDs && existing.selection == draft.selection
+				&& existing.displayName == displayName && existing.disc == disc
 			profile = Profile(
 				version: Profile.version,
 				localID: existing.localID,
@@ -174,6 +182,8 @@ public actor ProfileStore {
 				onboardingCompleted: true,
 				flowID: existing.flowID,
 				createdAt: existing.createdAt,
+				displayName: displayName,
+				disc: disc,
 				selection: draft.selection
 			)
 		case .missing:
@@ -186,11 +196,14 @@ public actor ProfileStore {
 				flowID: draft.flowID,
 				// Whole seconds, like the file: the saved profile must equal what `read()` returns.
 				createdAt: Date(timeIntervalSince1970: now().timeIntervalSince1970.rounded(.down)),
+				displayName: draft.displayName,
+				disc: draft.disc,
 				selection: draft.selection
 			)
 		case .corrupt, .unsupportedVersion, .unavailable:
 			return .unavailable
 		}
+		guard profile.isValid() else { return .invalid }
 		if case .missing = current {
 			for name in Self.legacyFiles { _ = await localStore.remove(named: name) }
 		}
