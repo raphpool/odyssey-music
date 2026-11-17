@@ -138,7 +138,7 @@ final class ProfileStoreTests: XCTestCase {
 		let corruptRead = await store.read()
 		XCTAssertEqual(corruptRead, .corrupt)
 		let futureVersionJSON = """
-			{"version":4,"local_id":"00000000-0000-0000-0000-000000000000","genre_ids":[],"revision":1,"onboarding_completed":true,"flow_id":"00000000-0000-0000-0000-000000000000","created_at":"2027-01-15T08:00:00Z","display_name":"Raph","disc":"mint"}
+			{"version":4,"local_id":"00000000-0000-0000-0000-000000000000","genre_ids":[],"revision":1,"onboarding_completed":true,"flow_id":"00000000-0000-0000-0000-000000000000","created_at":"2027-01-15T08:00:00Z"}
 			"""
 		if case .failure = await localStore.write(Data(futureVersionJSON.utf8), named: "profile.v3.json") {
 			XCTFail("Expected the version fixture to be written.")

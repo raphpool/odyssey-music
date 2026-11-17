@@ -47,6 +47,10 @@ public enum ProfileClear: Equatable, Sendable {
 	case unavailable
 }
 
+private struct VersionProbe: Decodable {
+	let version: Int
+}
+
 public actor ProfileStore {
 	/// Also read by the simulator-only `-track1-fail-next-profile-write` hook in `AppContainer`.
 	public static let profileFileName = "profile.v3.json"
@@ -91,11 +95,14 @@ public actor ProfileStore {
 		case .failure: return .unavailable
 		case .success(nil): return .missing
 		case .success(let data?):
-			guard let profile = try? Self.decoder.decode(Profile.self, from: data) else {
+			// 2026-11-17 (TRA-758): the version is read on its own first. With the pseudo and the disc required,
+			// a file of another version that lacks them failed to decode and read as corrupt instead of
+			// unsupported, which offers a purge for a profile that a newer build could still read.
+			let version = (try? Self.decoder.decode(VersionProbe.self, from: data))?.version
+			if let version, version != Profile.version { return .unsupportedVersion }
+			guard let profile = try? Self.decoder.decode(Profile.self, from: data), profile.isValid() else {
 				return .corrupt
 			}
-			guard profile.version == Profile.version else { return .unsupportedVersion }
-			guard profile.isValid() else { return .corrupt }
 			return .profile(profile)
 		}
 	}
@@ -187,8 +194,8 @@ public actor ProfileStore {
 				selection: draft.selection
 			)
 		case .missing:
-			// Onboarding collects both (TRA-735), so a first commit without them is refused before anything is
-			// written, rather than saving a file that `read()` would then call corrupt.
+			// 2026-11-17 (TRA-758): onboarding collects both since TRA-735, so a first commit without them is
+			// refused before anything is written, rather than saving a file that `read()` would call corrupt.
 			guard let displayName = draft.displayName, let disc = draft.disc else { return .invalid }
 			profile = Profile(
 				version: Profile.version,
