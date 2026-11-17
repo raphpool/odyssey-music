@@ -102,29 +102,33 @@ final class OnboardingComponentsTests: XCTestCase {
 
 	// MARK: Chip colors
 
-	func testSelectedChoiceResolvesToTheSelectionTokens() {
-		let style = OnboardingChoiceColors.resolve(isSelected: true)
-		XCTAssertEqual(rgbaHex(style.fill), "1a110eff", "background/elevated")
-		XCTAssertEqual(rgbaHex(style.border), "bc7722ff", "selection/border")
-		XCTAssertEqual(rgbaHex(style.title), "bc7722ff", "selection/content")
-		XCTAssertEqual(rgbaHex(style.detail), "bc7722ff", "selection/content")
-		assertSameColor(style.fill, Track1Tokens.colorBackgroundElevated)
-		assertSameColor(style.border, Track1Tokens.colorSelectionBorder)
-		assertSameColor(style.title, Track1Tokens.colorSelectionContent)
-		assertSameColor(style.detail, Track1Tokens.colorSelectionContent)
-	}
-
-	func testDefaultChoiceHasNoFillAndTheContrastBorder() {
-		let style = OnboardingChoiceColors.resolve(isSelected: false)
-		XCTAssertEqual(components(style.fill)[3], 0, accuracy: 0.001, "no fill")
-		XCTAssertEqual(rgbaHex(style.border), "ffffff85", "border/contrast")
-		assertSameColor(style.border, Track1Tokens.colorBorderContrast)
+	/// Figma `316:5084` (read 2026-11-17, TRA-725): the chip has no fill in either state.
+	func testDefaultChipHasTheSubtleBorderAndThePrimaryText() {
+		let style = SubgenreChipStyle.resolve(isSelected: false)
+		// `#F6E9D8` at 10 % in Figma, `0x1A` = 10.2 % in the token.
+		XCTAssertEqual(rgbaHex(style.border), "f6e9d81a", "border/subtle")
+		assertSameColor(style.border, Track1Tokens.colorBorderSubtle)
+		XCTAssertEqual(rgbaHex(style.title), "f6e9d8ff", "text/primary")
 		assertSameColor(style.title, Track1Tokens.colorTextPrimary)
-		assertSameColor(style.detail, Track1Tokens.colorTextSecondary)
 	}
 
-	func testChoiceBorderIs2Points() {
-		XCTAssertEqual(OnboardingChoiceColors.borderWidth, 2)
+	func testSelectedChipHasTheIconPrimaryBorderAndTheSamePrimaryText() {
+		let style = SubgenreChipStyle.resolve(isSelected: true)
+		XCTAssertEqual(rgbaHex(style.border), "f6e9d8ff", "icon/primary")
+		assertSameColor(style.border, Track1Tokens.colorIconPrimary)
+		assertSameColor(style.title, Track1Tokens.colorTextPrimary)
+	}
+
+	func testChipMeasuresAreTheFigmaValues() {
+		XCTAssertEqual(SubgenreChipStyle.borderWidth, 2)
+		XCTAssertEqual(SubgenreChipStyle.horizontalPadding, 12)
+		XCTAssertEqual(SubgenreChipStyle.verticalPadding, 8)
+		XCTAssertEqual(SubgenreChipStyle.glyphSpacing, 8)
+		XCTAssertEqual(SubgenreChipStyle.glyphSize, 16)
+		XCTAssertEqual(SubgenreChipStyle.flowSpacing, 8)
+		XCTAssertEqual(SubgenreChipStyle.titleRole, .monoTag)
+		XCTAssertEqual(SubgenreChipStyle.titleRole.size, 13)
+		XCTAssertEqual(SubgenreChipStyle.titleRole.lineHeight, 16)
 	}
 
 	// MARK: Subgenre chip
@@ -147,34 +151,68 @@ final class OnboardingComponentsTests: XCTestCase {
 		XCTAssertEqual(GenreAccordionCard<EmptyView>.chevronSize, 20)
 	}
 
-	func testGenreCardCornerRadiusIs20() {
-		XCTAssertEqual(GenreAccordionCardStyle.cornerRadius, 20)
+	// MARK: Genre accordion card, Figma `316:5078` and `316:5095` (TRA-725)
+
+	func testGenreCardMeasuresAreTheFigmaValues() {
+		XCTAssertEqual(GenreAccordionCardMetrics.cornerRadius, 20)
+		XCTAssertEqual(GenreAccordionCardMetrics.leadingInset, 24)
+		XCTAssertEqual(GenreAccordionCardMetrics.trailingInset, 16)
+		XCTAssertEqual(GenreAccordionCardMetrics.verticalInset, 11)
+		XCTAssertEqual(GenreAccordionCardMetrics.chevronSize, 20)
+		XCTAssertEqual(GenreAccordionCardMetrics.titleSpacing, 8)
+		XCTAssertEqual(GenreAccordionCardMetrics.countLineSpacing, 8)
+		XCTAssertEqual(GenreAccordionCardMetrics.bodyVerticalInset, 12)
+		XCTAssertEqual(GenreAccordionCardMetrics.bodySpacing, 4)
+		XCTAssertEqual(GenreAccordionCardMetrics.selectAllRowBottomInset, 8)
 	}
 
-	func testExpandedGenreCardIsOnTheDefaultSurface() {
-		let background = GenreAccordionCardStyle.background(isExpanded: true)
-		XCTAssertEqual(rgbaHex(background), "241713ff", "surface/default")
-		assertSameColor(background, Track1Tokens.colorSurfaceDefault)
+	func testGenreCardTextRolesAreTheFigmaOnes() {
+		XCTAssertEqual(GenreAccordionCardMetrics.titleRole, .monoItem)
+		XCTAssertEqual(GenreAccordionCardMetrics.titleRole.size, 18)
+		XCTAssertEqual(GenreAccordionCardMetrics.titleRole.lineHeight, 22)
+		XCTAssertEqual(GenreAccordionCardMetrics.badgeRole, .monoTag)
+		XCTAssertEqual(GenreAccordionCardMetrics.badgeRole.size, 13)
+		XCTAssertEqual(GenreAccordionCardMetrics.badgeRole.lineHeight, 16)
+		XCTAssertEqual(GenreAccordionCardMetrics.countRole, .bodySmall)
+		XCTAssertEqual(GenreAccordionCardMetrics.countRole.size, 13)
+		XCTAssertEqual(GenreAccordionCardMetrics.countRole.lineHeight, 18)
 	}
 
-	func testCollapsedGenreCardIsOnTheElevatedBackground() {
-		let background = GenreAccordionCardStyle.background(isExpanded: false)
-		XCTAssertEqual(rgbaHex(background), "1a110eff", "background/elevated")
-		assertSameColor(background, Track1Tokens.colorBackgroundElevated)
+	func testCollapsedGenreCardIsSeventyPointsHighByTheMetrics() {
+		XCTAssertEqual(GenreAccordionCardMetrics.collapsedHeight, 70, accuracy: 0.0001)
 	}
 
-	func testGenreCardAccentIsThePrimaryTextUntilASubgenreIsTicked() {
-		let accent = GenreAccordionCardStyle.accent(selectedCount: 0)
-		XCTAssertEqual(rgbaHex(accent), "f6e9d8ff", "text/primary")
-		assertSameColor(accent, Track1Tokens.colorTextPrimary)
+	/// The same number read off a real layout, at the 361 pt a card has on a 393 pt screen (393 - 2 x 16).
+	@MainActor
+	func testACollapsedGenreCardIsSeventyPointsHighAtThe361PointCardWidth() {
+		let card = GenreAccordionCard(
+			title: "Jazz", subgenreCount: 13, selectedCount: 4, isExpanded: false, identifier: "genre-card-jazz",
+			onToggle: {}
+		) { EmptyView() }
+		let size = UIHostingController(rootView: card).sizeThatFits(in: CGSize(width: 361, height: 1000))
+		XCTAssertEqual(size.width, 361, accuracy: 0.5)
+		XCTAssertEqual(size.height, 70, accuracy: 0.5)
 	}
 
-	func testGenreCardAccentIsTheSelectionColorOnceASubgenreIsTicked() {
-		for count in [1, 4] {
-			let accent = GenreAccordionCardStyle.accent(selectedCount: count)
-			XCTAssertEqual(rgbaHex(accent), "bc7722ff", "selection/content, \(count) ticked")
-			assertSameColor(accent, Track1Tokens.colorSelectionContent)
-		}
+	func testGenreCardIsOnTheCardSurfaceWhateverItsState() {
+		let background = GenreAccordionCardStyle.background
+		XCTAssertEqual(rgbaHex(background), "2a241dff", "surface/card")
+		assertSameColor(background, Track1Tokens.colorSurfaceCard)
+	}
+
+	func testGenreCardTitleAndBadgeAreThePrimaryTextWhateverTheSelection() {
+		XCTAssertEqual(rgbaHex(GenreAccordionCardStyle.title), "f6e9d8ff", "text/primary")
+		assertSameColor(GenreAccordionCardStyle.title, Track1Tokens.colorTextPrimary)
+	}
+
+	func testGenreCardCountLineIsTheSecondaryText() {
+		XCTAssertEqual(rgbaHex(GenreAccordionCardStyle.count), "c8b6a3ff", "text/secondary")
+		assertSameColor(GenreAccordionCardStyle.count, Track1Tokens.colorTextSecondary)
+	}
+
+	func testGenreCardChevronIsTheIconPrimary() {
+		XCTAssertEqual(rgbaHex(GenreAccordionCardStyle.chevron), "f6e9d8ff", "icon/primary")
+		assertSameColor(GenreAccordionCardStyle.chevron, Track1Tokens.colorIconPrimary)
 	}
 
 	func testGenreCardSpokenLabelStopsAtTheCountWhenNothingIsTicked() {
@@ -478,7 +516,7 @@ private struct HeaderLayoutProbe: View {
 								.readHeaderFrame("badge")
 						}
 					}
-					Track1Text("1 sous-genre", role: .monoLabel).readHeaderFrame("count")
+					Track1Text("1 sous-genre", role: GenreAccordionCardMetrics.countRole).readHeaderFrame("count")
 				}
 				Spacer(minLength: 0)
 				Track1Icon(
