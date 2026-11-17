@@ -1,0 +1,36 @@
+name: enable-workflows
+
+# TRA-784 (2026-11-17): the pull-request workflows were disabled by hand on 2026-11-01, when their self-hosted
+# runners went off. TRA-703 and TRA-705 moved them to hosted runners, but nothing turned them back on, so no
+# Swift had been compiled for the whole v1. The agent's GitHub tools cannot enable a workflow, and Raphael asked
+# for it to go through Actions: a new workflow file is active as soon as it lands on main, and a GITHUB_TOKEN
+# with `actions: write` may call the enable endpoint. Merging this file is enough to run it once.
+# Only the six workflows a PR triggers are listed. deploy, pull-cache, sync-genre-cache and top-up-genres still
+# target the self-hosted runners that are off, so enabling them would only queue jobs forever.
+# test/native-ci-triggers.test.ts pins the list, the trigger and the permission.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/enable-workflows.yml"
+
+permissions:
+  actions: write
+
+jobs:
+  enable:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Enable the pull-request workflows
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          for workflow in ci.yml ai-review.yml review-gate.yml ios-ci.yml mobile-ci.yml claude.yml; do
+            gh workflow enable "$workflow"
+            echo "enabled $workflow"
+          done
+          gh workflow list --all
