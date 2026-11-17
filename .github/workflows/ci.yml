@@ -35,7 +35,9 @@ jobs:
     # 2026-10-20 (TRA-650): Node jobs left the Mac for the dedicated Linux runners. Jobs waited ~3.7x longer for
     # a runner than they ran (lint: 0.5 min run, 4 min median wait), 74% of runner minutes were Node jobs, and
     # the three Mac runners shared one CPU. Only ios-check needs macOS (ios-ci.yml).
-    runs-on: [self-hosted, linux]
+    # 2026-11-16 (TRA-703): every job of this file runs on a GitHub-hosted runner. The self-hosted ones have been
+    # off since 2026-10-24, so the required checks of main stayed queued and no PR could merge.
+    runs-on: ubuntu-latest
     steps:
       - name: Isolate HOME from the runner host account
         # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
@@ -52,7 +54,7 @@ jobs:
 
   lint:
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-latest
     steps:
       - name: Isolate HOME from the runner host account
         # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
@@ -69,7 +71,7 @@ jobs:
 
   test:
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-latest
     steps:
       - name: Isolate HOME from the runner host account
         # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
@@ -90,7 +92,7 @@ jobs:
     # Size is a review signal, never the reason CI fails on its own. The policy script
     # reports hand-written, generated, and binary paths separately with provenance.
     if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-latest
     steps:
       - name: Isolate HOME from the runner host account
         # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
@@ -118,7 +120,7 @@ jobs:
     # Escalade automatique en tier/3 sur les chemins sensibles.
     # `deploy/` et `scripts/deploy-web.sh` sont ajoutés : ils poussent en prod.
     if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-latest
     permissions: { contents: read, pull-requests: write }
     steps:
       - name: Isolate HOME from the runner host account
@@ -227,7 +229,7 @@ jobs:
     # Not a required check: adding it to the branch protection is up to the owner.
     # No timeout-minutes, like the other jobs: the audit takes under 15 s.
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
-    runs-on: [self-hosted, linux]
+    runs-on: ubuntu-latest
     steps:
       - name: Isolate HOME from the runner host account
         # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
