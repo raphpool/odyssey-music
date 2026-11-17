@@ -1,0 +1,58 @@
+name: ios-testflight
+
+# TRA-729 (2026-11-17, decision D5): manual TestFlight upload, started by the agent or by Raphael on main.
+# This file is the skeleton and holds no secret: the signing, archive and upload steps arrive with TRA-775, split
+# off because the whole exceeded the 200-line diff budget of a tier/3 PR.
+# The `testflight` Environment has no required reviewer and only accepts main, so its secrets are protected by
+# three things only: that deployment rule, this single `workflow_dispatch` trigger, and the deep review every PR
+# under .github/ gets. Remove none of them. Procedure and secret names: docs/track1-testflight.md.
+# test/ios-testflight-workflow.test.ts pins these guards.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-testflight
+  cancel-in-progress: false
+
+jobs:
+  testflight:
+    if: github.ref == 'refs/heads/main'
+    environment: testflight
+    # Same hosted image as ios-check (TRA-705, 2026-11-16): its Xcode is the one pinned in ios/.xcode-version.
+    # 60 minutes cover the cold compile of a fresh VM plus the upload; not measured yet, the first run records it.
+    runs-on: macos-26
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Select Xcode
+        shell: bash
+        run: |
+          # `|| [[ -n ... ]]`: read returns 1 on a last line without newline, and bash -e would stop silently.
+          pin="$(<ios/.xcode-version)"
+          read -r _ version _ <<< "$pin" || [[ -n "$version" ]]
+          if [[ ! "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
+            echo "::error::cannot read an Xcode version from ios/.xcode-version: $pin"
+            exit 1
+          fi
+          app="/Applications/Xcode_${version}.app"
+          if [ ! -d "$app" ]; then
+            echo "::error::$app not found for the pin '$pin'; installed:"
+            ls -d /Applications/Xcode*.app || true
+            exit 1
+          fi
+          sudo xcode-select -s "$app/Contents/Developer"
+          # Same normalisation as check.sh, which compares the whole pin (version and build) exactly.
+          actual="$(xcodebuild -version | awk 'NR == 1 { version = $2 } NR == 2 { build = $3 } END { printf "Xcode %s (%s)", version, build }')"
+          if [ "$actual" != "$pin" ]; then
+            echo "::error::the pin is '$pin' but $app is '$actual'; installed:"
+            for candidate in /Applications/Xcode*.app; do
+              echo "$candidate: $(DEVELOPER_DIR="$candidate/Contents/Developer" xcodebuild -version | tr '\n' ' ')"
+            done
+            exit 1
+          fi
+          echo "$actual selected from $app"
