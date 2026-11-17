@@ -65,26 +65,33 @@ enum UITestFlows {
 		return json(["nodes": nodes, "links": links])
 	}()
 
-	/// A first launch: consent, profile and daily recommendation are all reset.
+	/// A first launch: consent, profile and daily recommendation are all reset. `reminders` is what the fake
+	/// notification center answers to the opt-in screen, `grant` or `deny` (TRA-746): the system prompt cannot be
+	/// driven reliably by XCUITest, so no journey ever meets it.
 	@MainActor
-	static func launch(catalog: String = catalogJSON, extraArguments: [String] = []) -> XCUIApplication {
+	static func launch(
+		catalog: String = catalogJSON, extraArguments: [String] = [], reminders: String = "grant"
+	) -> XCUIApplication {
 		let app = XCUIApplication()
 		app.launchArguments =
 			[
 				"-AppleLanguages", "(fr)", "-track1-reset-analytics-consent", "-track1-reset-profile",
 				"-track1-reset-daily-recommendation",
 			] + extraArguments
-		app.launchEnvironment = environment(catalog: catalog)
+		app.launchEnvironment = environment(catalog: catalog, reminders: reminders)
 		app.launch()
 		return app
 	}
 
-	/// Starts the app again on what the first launch stored: no reset argument.
+	/// Starts the app again on what the first launch stored: no reset argument, unless `extraArguments` has one.
 	@MainActor
-	static func relaunch(_ app: XCUIApplication, catalog: String = catalogJSON) {
+	static func relaunch(
+		_ app: XCUIApplication, catalog: String = catalogJSON, extraArguments: [String] = [],
+		reminders: String = "grant"
+	) {
 		app.terminate()
-		app.launchArguments = ["-AppleLanguages", "(fr)"]
-		app.launchEnvironment = environment(catalog: catalog)
+		app.launchArguments = ["-AppleLanguages", "(fr)"] + extraArguments
+		app.launchEnvironment = environment(catalog: catalog, reminders: reminders)
 		app.launch()
 	}
 
@@ -127,6 +134,10 @@ enum UITestFlows {
 	static let pseudoFieldIdentifier = "onboarding-pseudo-field"
 	static let discContinueIdentifier = "onboarding-disc-continue"
 	static let genresContinueIdentifier = "onboarding-genres-continue"
+	static let notificationsIdentifier = "onboarding-notifications"
+	static let notificationsContinueIdentifier = "onboarding-notifications-continue"
+	/// The variable the app reads to swap the system notification center for a fake (TRA-746).
+	static let reminderCenterKey = "TRACK1_FAKE_REMINDER_CENTER"
 
 	/// The pseudo and the disc, from the pseudo screen to the genre screen: the pseudo is typed and sent with
 	/// the return key (the bar of the screen is under the software keyboard, as in the mock-up), the disc is a
@@ -176,6 +187,14 @@ enum UITestFlows {
 		tapAboveBar(app.buttons["genre-card-family-0"], bar: bar, in: app)
 		tapAboveBar(app.buttons["subgenre-chip-local:genre-0a"], bar: bar, in: app)
 		tapWhenReady(bar)
+		passNotifications(app)
+	}
+
+	/// The opt-in screen that ends the first launch (TRA-746): "Continuer" asks the fake center, and the answer
+	/// leads to the tabs either way. The profile is written when this step ends, not the genre one.
+	@MainActor
+	static func passNotifications(_ app: XCUIApplication) {
+		tapWhenReady(app.buttons[notificationsContinueIdentifier])
 	}
 
 	/// 2026-10-20 (TRA-639, ios-check): at the largest text size the header of the genre screen fills the
@@ -228,8 +247,11 @@ enum UITestFlows {
 
 	// MARK: - Fixtures
 
-	private static func environment(catalog: String) -> [String: String] {
-		["TRACK1_PROFILE_CATALOG_JSON": catalog, "TRACK1_UI_TEST_FIXTURES_JSON": fixturesJSON]
+	private static func environment(catalog: String, reminders: String) -> [String: String] {
+		[
+			"TRACK1_PROFILE_CATALOG_JSON": catalog, "TRACK1_UI_TEST_FIXTURES_JSON": fixturesJSON,
+			reminderCenterKey: reminders,
+		]
 	}
 
 	/// "artist:artist-a" is "Artist A": the name is read off the slug, so a fixture needs no second list.
