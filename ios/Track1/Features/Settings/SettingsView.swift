@@ -6,7 +6,6 @@ struct SettingsView: View {
 	let profileStore: ProfileStore
 	let recentNodes: RecentNodesStore
 	let analytics: AnalyticsClient
-	let editProfile: () -> Void
 	let profileWasCleared: () -> Void
 	@State private var showingAnalyticsChoice = false
 	@State private var showingClearConfirmation = false
@@ -19,16 +18,11 @@ struct SettingsView: View {
 				Track1Text("Votre profil musical reste sur ce téléphone.", role: .bodyMedium)
 					.foregroundStyle(Track1Tokens.colorTextSecondary)
 					.padding(.horizontal, Track1Tokens.spacing16)
-				SettingsSection(title: "Découverte") {
-					if profileState.requiresExplicitRecovery {
+				// 2026-11-17 (TRA-737): the genres are edited on the Genres tab itself, so the row that opened the
+				// editor is gone. An unreadable profile has nothing to edit and keeps its description here.
+				if profileState.requiresExplicitRecovery {
+					SettingsSection(title: "Découverte") {
 						SettingsInfoRow(title: "Goûts musicaux", detail: profileState.recoveryDescription)
-					} else {
-						Track1ListItem(
-							title: "Goûts musicaux", subtitle: profileDescription, accessory: .chevron, action: editProfile
-						)
-						.accessibilityIdentifier("profile-settings-edit")
-						// Read by ProfileFlowTests (`.value`): the list item only exposes a combined label.
-						.accessibilityValue(profileDescription)
 					}
 				}
 				SettingsSection(title: "Confidentialité") {
@@ -100,15 +94,6 @@ struct SettingsView: View {
 	private var profile: Profile? {
 		guard case .profile(let profile) = profileState else { return nil }
 		return profile
-	}
-
-	private var profileDescription: String {
-		guard let profile else { return "Aucun profil" }
-		// A v1 profile has no selection until it is edited: its slugs are all there is to count.
-		if let selection = profile.selection {
-			return OnboardingCopy.selectionSummary(families: selection.families.count, genres: selection.genres.count)
-		}
-		return profile.genreIDs.count == 1 ? "1 genre sélectionné" : "\(profile.genreIDs.count) genres sélectionnés"
 	}
 
 	private func clearProfile() async {
