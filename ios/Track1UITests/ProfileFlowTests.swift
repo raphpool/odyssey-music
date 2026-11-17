@@ -143,39 +143,46 @@ final class ProfileFlowTests: XCTestCase {
 	}
 
 	/// TRA-735: each validated step is written as a draft, so a relaunch reopens on the first step that was not
-	/// validated, with the answers already given. The app is stopped on the disc screen, then on the genre
-	/// screen.
+	/// validated, with the answers already given. The app is stopped on the disc screen: the pseudo was validated.
+	/// Every assertion carries a message: the CI log only names the test, and two steps share a kind of assertion.
 	@MainActor
-	func testRelaunchingAfterTheSteppedFlowReopensOnTheFirstStepNotValidated() {
+	func testRelaunchingAfterThePseudoReopensOnTheDiscWithThePseudoKept() {
 		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
 		UITestFlows.declineConsent(app)
 		UITestFlows.startOnboarding(app)
 		let pseudoField = app.textFields[UITestFlows.pseudoFieldIdentifier]
 		pseudoField.tap()
 		pseudoField.typeText("Raph\n")
-		XCTAssertTrue(element(app, "onboarding-disc-slot").waitForExistence(timeout: 10))
+		XCTAssertTrue(element(app, "onboarding-disc-slot").waitForExistence(timeout: 10), "disc before relaunch")
 
-		// The pseudo was validated: the flow reopens on the disc, and the pseudo is behind it.
 		UITestFlows.relaunch(app, catalog: Self.taxonomyCatalog)
-		XCTAssertTrue(element(app, "onboarding-disc-slot").waitForExistence(timeout: 15))
-		XCTAssertFalse(app.buttons["onboarding-start"].exists)
-		XCTAssertFalse(app.buttons[UITestFlows.discContinueIdentifier].isEnabled)
+		XCTAssertTrue(element(app, "onboarding-disc-slot").waitForExistence(timeout: 15), "disc after relaunch")
+		XCTAssertFalse(app.buttons["onboarding-start"].exists, "Welcome after relaunch")
+		XCTAssertFalse(app.buttons[UITestFlows.discContinueIdentifier].isEnabled, "disc already chosen")
+
+		// The pseudo is behind the disc, in the stack, as it was the first time.
 		swipeBack(in: app)
-		XCTAssertTrue(pseudoField.waitForExistence(timeout: 10))
+		XCTAssertTrue(pseudoField.waitForExistence(timeout: 10), "pseudo after the back gesture")
 		XCTAssertEqual(pseudoField.value as? String, "Raph")
-		pseudoField.tap()
-		pseudoField.typeText("\n")
+	}
 
-		// The disc was validated too: the flow reopens on the genres, with the disc behind it.
-		UITestFlows.tapWhenReady(app.buttons["onboarding-disc-violet"])
-		UITestFlows.tapWhenReady(app.buttons[UITestFlows.discContinueIdentifier])
-		XCTAssertTrue(app.buttons[UITestFlows.genresContinueIdentifier].waitForExistence(timeout: 10))
+	/// TRA-735: the disc was validated too, so the flow reopens on the genres, with the disc behind them.
+	@MainActor
+	func testRelaunchingAfterTheDiscReopensOnTheGenresWithTheDiscKept() {
+		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
+		UITestFlows.declineConsent(app)
+		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app, pseudo: "Raph", disc: "violet")
+
 		UITestFlows.relaunch(app, catalog: Self.taxonomyCatalog)
-		XCTAssertTrue(app.buttons[UITestFlows.genresContinueIdentifier].waitForExistence(timeout: 15))
-		XCTAssertFalse(app.buttons["onboarding-start"].exists)
+		let genres = app.buttons[UITestFlows.genresContinueIdentifier]
+		XCTAssertTrue(genres.waitForExistence(timeout: 15), "genres after relaunch")
+		XCTAssertFalse(app.buttons["onboarding-start"].exists, "Welcome after relaunch")
+
 		swipeBack(in: app)
-		XCTAssertTrue(app.buttons["onboarding-disc-violet"].waitForExistence(timeout: 10))
-		XCTAssertTrue(app.buttons["onboarding-disc-violet"].isSelected)
+		XCTAssertTrue(
+			app.buttons["onboarding-disc-violet"].waitForExistence(timeout: 10), "disc after the back gesture")
+		XCTAssertTrue(app.buttons["onboarding-disc-violet"].isSelected, "disc kept")
 	}
 
 	/// TRA-735: erasing the profile from the settings leaves the history of recommendations on disk. The profile
