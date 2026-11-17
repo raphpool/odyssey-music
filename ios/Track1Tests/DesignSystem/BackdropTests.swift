@@ -42,14 +42,18 @@ final class BackdropTests: XCTestCase {
 	}
 
 	func testTheColorsMorphWithoutJump() {
+		// One step is one image of the loop, drawn 15 times a second (`WelcomeBackdrop.frameInterval`): 450
+		// steps at 30 s. Derived from `loopDuration`, so that a shorter loop tightens the guard.
+		let steps = Int(WelcomeBackdrop.loopDuration * 15)
+		let bound = 3 / Double(steps) * 1.005
 		var previous = WelcomeBackdropPalette.rgbStops(at: 0)
-		for step in 1...450 {
-			let stops = WelcomeBackdropPalette.rgbStops(at: Double(step) / 450)
+		for step in 1...steps {
+			let stops = WelcomeBackdropPalette.rgbStops(at: Double(step) / Double(steps))
 			for (now, before) in zip(stops, previous) {
-				// A 450th of the loop moves a component by at most 3 / 450 on a 3-color ring.
-				XCTAssertLessThan(abs(now.red - before.red), 0.0067)
-				XCTAssertLessThan(abs(now.green - before.green), 0.0067)
-				XCTAssertLessThan(abs(now.blue - before.blue), 0.0067)
+				// An image moves a component by at most 3 / steps on a 3-color ring.
+				XCTAssertLessThan(abs(now.red - before.red), bound)
+				XCTAssertLessThan(abs(now.green - before.green), bound)
+				XCTAssertLessThan(abs(now.blue - before.blue), bound)
 			}
 			previous = stops
 		}

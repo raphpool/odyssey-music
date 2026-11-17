@@ -39,11 +39,18 @@ de ce fichier fait échouer `npm run check`.
   - nom PostScript `Roboto-Medium`, version interne `Version 3.015; 2026`.
 
   Cette variante n'est pas octet pour octet celle des autres fichiers : aucun des `Roboto-Regular.ttf` de la
-  release (`android`, `chromeos`, `web`, `hinted`, `unhinted`) n'a le SHA-256 de celui du dépôt. Les métriques
-  verticales ont donc été comparées (fontTools 4.68, 2026-11-17) entre le `Roboto-Regular.ttf` du dépôt et
-  celui de `web/static` : identiques, de même que celles du `Roboto-SemiBold.ttf` du dépôt et du
-  `Roboto-Medium.ttf` retenu. Interligne et hauteur de ligne de `Roboto-Medium` sont donc ceux des autres
-  graisses.
+  release (`android`, `chromeos`, `web`, `hinted`, `unhinted`) n'a le SHA-256 de celui du dépôt. On a donc
+  comparé (fontTools 4.68, 2026-11-17) le `Roboto-Regular.ttf` du dépôt et celui de `web/static`, la seule
+  graisse que les deux sources ont en commun (la release n'a pas de SemiBold) :
+  - métriques verticales identiques, tableau ci-dessous, de même que celles du `Roboto-SemiBold.ttf` du dépôt
+    et du `Roboto-Medium.ttf` retenu ;
+  - même table `cmap` (927 points de code) et même nombre de glyphes (1326) ;
+  - mêmes largeurs d'avance et mêmes coordonnées de contours pour les 927 points de code ;
+  - tables `GPOS` (crénage) et `GSUB` identiques (même empreinte de leur export XML).
+
+  Parmi les tables comparées (`head`, `maxp`, `cmap`, `hmtx`, `glyf`, `GPOS`, `GSUB`), seule `head` diffère ;
+  le hinting et les noms n'ont pas été comparés. Les sauts de ligne, les largeurs de mots et le crénage de
+  `Roboto-Medium` sont donc ceux de la famille du dépôt, au poids près.
 
   | Métrique | Valeur (les quatre fichiers) |
   | --- | --- |

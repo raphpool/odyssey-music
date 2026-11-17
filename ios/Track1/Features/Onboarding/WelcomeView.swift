@@ -28,18 +28,12 @@ struct WelcomeView: View {
 	static let tagline = "Explorations musicales quotidiennes"
 
 	/// The wordmark is drawn (the `Brand/Wordmark` asset, node `318:6607`), so it has no text for VoiceOver:
-	/// its label is the product name, and it is the screen's heading.
+	/// its label is the product name, and it is the screen's heading. VoiceOver reads the mark (hidden by
+	/// `AppMark`), then the wordmark, the tagline and the bar: `body` stacks them in that order, and
+	/// `safeAreaInset` places the bar after the content.
 	static let wordmarkImageName = "Brand/Wordmark"
 	static let wordmarkLabel = productName
 	static var wordmarkTraits: AccessibilityTraits { .isHeader }
-
-	/// What VoiceOver reads, top to bottom. The app mark is hidden (`AppMark`); `body` stacks the others in
-	/// this order, with the bar last because `safeAreaInset` places it after the content.
-	enum ReadingStop: Equatable {
-		case wordmark, tagline, start
-	}
-
-	static let readingOrder: [ReadingStop] = [.wordmark, .tagline, .start]
 
 	/// The bar as the screen builds it, so a test reads the parameters the screen really passes. The Figma
 	/// Welcome has no fade under the button: the backdrop owns the contrast (TRA-440).
