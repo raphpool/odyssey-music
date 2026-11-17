@@ -266,7 +266,7 @@ final class ProfileStoreTests: XCTestCase {
 			+ #""onboarding_completed":true,"flow_id":"\#(UUID())"}"#
 		let localStore = LocalStore(directoryURL: directoryURL)
 		let store = ProfileStore(localStore: localStore)
-		for name in ["profile.v2.json"] + allNames.dropLast(2) {
+		for name in oldNames.reversed() {
 			_ = await localStore.write(Data(old.utf8), named: name)
 			let profile = await store.read()
 			XCTAssertEqual(profile, .missing, name)
@@ -277,7 +277,7 @@ final class ProfileStoreTests: XCTestCase {
 
 	func testTheFirstCommitStampsTheClockInWholeSecondsAndDeletesTheOldFiles() async throws {
 		let localStore = LocalStore(directoryURL: directoryURL)
-		for name in allNames.dropLast(2) { _ = await localStore.write(Data("{}".utf8), named: name) }
+		for name in oldNames { _ = await localStore.write(Data("{}".utf8), named: name) }
 		let store = ProfileStore(
 			localStore: localStore, now: { Date(timeIntervalSince1970: 1_800_000_000.75) })
 		let choices = genres(3)
@@ -286,7 +286,7 @@ final class ProfileStoreTests: XCTestCase {
 		}
 		// Whole seconds, like the file: the saved profile must equal the one `read()` returns.
 		XCTAssertEqual(saved.createdAt, Date(timeIntervalSince1970: 1_800_000_000))
-		XCTAssertEqual(allNames.dropLast(2).filter(fileExists), [])
+		XCTAssertEqual(oldNames.filter(fileExists), [])
 		let reread = await store.read()
 		XCTAssertEqual(reread, .profile(saved))
 		let data = try Data(contentsOf: directoryURL.appending(path: "profile.v3.json"))
@@ -440,10 +440,10 @@ final class ProfileStoreTests: XCTestCase {
 		FileManager.default.fileExists(atPath: directoryURL.appending(path: name).path)
 	}
 
-	private let allNames = [
+	private let oldNames = [
 		"profile-draft.v1.json", "profile.v1.json", "profile-draft.v2.json", "profile.v2.json",
-		"profile-draft.v3.json", "profile.v3.json",
 	]
+	private var allNames: [String] { oldNames + ["profile-draft.v3.json", "profile.v3.json"] }
 
 	private func draft(
 		genres: [NodeIdentity], selection: GenreSelection? = nil, started: Bool = false

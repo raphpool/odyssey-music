@@ -52,13 +52,15 @@ public actor ProfileStore {
 	public static let profileFileName = "profile.v3.json"
 	private static let draftFile = "profile-draft.v3.json"
 	// 2026-11-16 (TRA-712, decision Q12): the v1 and v2 files are never read, so everyone goes through
-	// onboarding again and a leftover cannot come back. The first commit and `clear()` only delete them.
+	// onboarding again and a leftover cannot come back. The first commit deletes them best effort, before
+	// the generation check that guards the write, and `clear()` deletes them for good.
 	private static let legacyFiles = [
 		"profile-draft.v1.json", "profile.v1.json", "profile-draft.v2.json", "profile.v2.json",
 	]
 	// The profile goes last: a failed removal of an older file stops `clear()` with the profile still readable.
 	private static let removalOrder = legacyFiles + [draftFile, profileFileName]
 
+	// Computed: `JSONDecoder` is not `Sendable`, so Swift 6 refuses it as a `static let`.
 	private static var decoder: JSONDecoder {
 		let decoder = JSONDecoder()
 		decoder.dateDecodingStrategy = .iso8601
@@ -189,12 +191,10 @@ public actor ProfileStore {
 		case .corrupt, .unsupportedVersion, .unavailable:
 			return .unavailable
 		}
-		guard expectedGeneration == operationGeneration else { return .invalidated }
 		if case .missing = current {
-			for name in Self.legacyFiles {
-				guard case .success = await localStore.remove(named: name) else { return .unavailable }
-			}
+			for name in Self.legacyFiles { _ = await localStore.remove(named: name) }
 		}
+		guard expectedGeneration == operationGeneration else { return .invalidated }
 		guard case .success = await write(profile, named: Self.profileFileName) else { return .unavailable }
 		guard expectedGeneration == operationGeneration else { return .invalidated }
 		guard case .success = await localStore.remove(named: Self.draftFile) else {
