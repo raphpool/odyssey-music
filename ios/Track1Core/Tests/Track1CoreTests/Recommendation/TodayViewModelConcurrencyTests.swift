@@ -105,6 +105,37 @@ final class TodayViewModelConcurrencyTests: XCTestCase {
 		XCTAssertTrue(history.allSatisfy { $0.profileRevision == 2 })
 	}
 
+	/// TRA-783: a plan extension for old tastes, superseded while it reads the catalog, writes and exposes nothing.
+	func testAnExtensionSupersededByNewTastesSavesAndPublishesNothing() async throws {
+		let catalog = ControlledCatalog(try catalog())
+		let store = makeStore()
+		let stored = try storedRecommendation(date: Self.parisDate, node: "project:beta", revision: 1)
+		_ = await store.save([stored])
+		let model = makeModel(catalog, store: store)
+		let oldTaste = try profile(revision: 1)
+		let newTaste = try profile(revision: 2)
+		await model.load(for: oldTaste)
+		XCTAssertEqual(model.state, .recommendation(stored))
+		await catalog.hold()
+
+		let stale = Task { await model.extendPlanIfNeeded(for: oldTaste) }
+		await catalog.waitForReads(1)
+		let current = Task { await model.load(for: newTaste) }
+		await queuedTasksReachTheirFirstSuspension()
+		await catalog.releaseNext()
+		await stale.value
+
+		// The newer load now holds the section on its own catalog read: what is visible comes from the extension.
+		await catalog.waitForReads(2)
+		XCTAssertEqual(model.state, .recommendation(stored))
+		XCTAssertEqual(model.upcoming, [])
+		let beforeCurrent = await store.history()
+		XCTAssertEqual(beforeCurrent, [stored])
+
+		await catalog.releaseAll()
+		await current.value
+	}
+
 	func testAnImpressionRequestedDuringALoadWaitsForItAndMarksWhatIsExposed() async throws {
 		let catalog = ControlledCatalog(try catalog())
 		let store = makeStore()

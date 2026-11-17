@@ -120,6 +120,14 @@ final class ReminderPlanTests: XCTestCase {
 		XCTAssertEqual(try plan(candidates: pool, today: ""), [])
 	}
 
+	func testTheHorizonDateIsTheLastDateOfThePlanAndNilForAnInvalidToday() throws {
+		XCTAssertEqual(ReminderPlan.horizonDate(after: "2026-11-17"), "2026-11-24")
+		XCTAssertEqual(ReminderPlan.horizonDate(after: "2028-02-27"), "2028-03-05")
+		XCTAssertEqual(ReminderPlan.horizonDate(after: "2026-12-29"), "2027-01-05")
+		XCTAssertNil(ReminderPlan.horizonDate(after: "2026-02-30"))
+		XCTAssertNil(ReminderPlan.horizonDate(after: ""))
+	}
+
 	func testNoWorkAppearsTwiceWhileUnseenCandidatesRemain() throws {
 		let pool = try candidates(10)
 		let history = [try stored(0, on: "2026-11-16"), try stored(1, on: "2026-11-17")]
