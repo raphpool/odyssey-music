@@ -17,7 +17,9 @@ enum ProfileDiscMetrics {
 
 	/// `0 1.385 2.423 -0.346 rgba(19,33,42,0.28)` on a disc of `referenceSize`.
 	static let referenceShadow = Shadow(y: 1.385, blur: 2.423, spread: -0.346)
-	static let shadowColor = Color(.sRGB, red: 19.0 / 255, green: 33.0 / 255, blue: 42.0 / 255, opacity: 0.28)
+	/// The opaque tone of the shadow, which also fills the disc that casts it, and the shadow itself at 28 %.
+	static let shadowTone = Color(.sRGB, red: 19.0 / 255, green: 33.0 / 255, blue: 42.0 / 255, opacity: 1)
+	static let shadowColor = shadowTone.opacity(0.28)
 
 	/// The empty disc, `362:3129`, is built like the six images: a plain circle with an opaque white ellipse
 	/// in the middle (the `Center opening` layer of the Figma, a fill and not a hole). 2026-11-17 (decision
@@ -112,12 +114,13 @@ struct ProfileDiscImage: View {
 
 	/// SwiftUI has no shadow spread, and its radius is half the Figma blur (as in `DeviceOutline`). The shadow
 	/// is cast by the disc grown by `spread` on every side: with the negative spread of the mock-up that is a
-	/// slightly smaller disc, hidden under the real one.
+	/// slightly smaller disc, hidden under the real one. It is filled with the tone of the shadow, not black,
+	/// so that the anti-aliased rim of an image, which is a little transparent, never shows a darker line.
 	private var shadowCaster: some View {
 		let shadow = ProfileDiscMetrics.shadow(size: size)
 		return Circle()
 			.inset(by: -shadow.spread)
-			.fill(Color.black)
+			.fill(ProfileDiscMetrics.shadowTone)
 			.shadow(color: ProfileDiscMetrics.shadowColor, radius: shadow.blur / 2, x: 0, y: shadow.y)
 	}
 }

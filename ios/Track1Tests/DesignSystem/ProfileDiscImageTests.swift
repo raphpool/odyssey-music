@@ -153,6 +153,7 @@ final class ProfileDiscImageTests: XCTestCase {
 	func testTheShadowColourIs13212AAt28Percent() throws {
 		// 0.28 * 255 = 71.4, which the byte rounds to 71.
 		XCTAssertEqual(try rgbaBytes(of: ProfileDiscMetrics.shadowColor), [0x13, 0x21, 0x2A, 71])
+		XCTAssertEqual(try rgbaBytes(of: ProfileDiscMetrics.shadowTone), [0x13, 0x21, 0x2A, 255])
 	}
 
 	// MARK: Accessibility
