@@ -5,7 +5,7 @@ import XCTest
 
 @testable import Track1
 
-/// The reading part of Figma `338:2461` (TRA-731); the header, the Now bar and the states are TRA-782's.
+/// The reader of Figma `338:2461`: its reading (TRA-731), then its header, Now bar and states (TRA-782).
 @MainActor
 final class PlayerViewTests: XCTestCase {
 	private typealias Metrics = PlayerMetrics
@@ -21,10 +21,14 @@ final class PlayerViewTests: XCTestCase {
 		PlayerItemFrame(minY: 749, height: 100),
 	]
 
-	private func node(article: String, teaser: String?) throws -> NodeDetail {
+	private static func edge(_ name: String) -> String {
+		#"{"slug":"artist:a","type":"artist","name":"\#(name)"}"#
+	}
+
+	private func node(article: String = "", teaser: String? = nil, edges: String = "") throws -> NodeDetail {
 		let teaserJSON = teaser.map { #""\#($0)""# } ?? "null"
 		let source = """
-			{"id":"project:sample","type":"project","name":"Sample","teaser":\(teaserJSON),"article":"\(article)","citations":[],"facts":{},"edges":{},"materialized_at":"2026-10-08T00:00:00Z","image_url":null}
+			{"id":"project:sample","type":"project","name":"Sample","teaser":\(teaserJSON),"article":"\(article)","citations":[],"facts":{},"edges":{\(edges)},"materialized_at":"2026-10-08T00:00:00Z","image_url":null}
 			"""
 		let decoder = JSONDecoder()
 		decoder.dateDecodingStrategy = .iso8601
@@ -143,5 +147,77 @@ final class PlayerViewTests: XCTestCase {
 		XCTAssertEqual(settled(1000), 412, "Never past the end of the content.")
 		XCTAssertEqual(settled(-50), 0, "Never before its start.")
 		XCTAssertEqual(settled(-50, []), 0)
+	}
+
+	// MARK: - Header and Now bar
+
+	func testTheHeaderStartsAt24() { XCTAssertEqual(Metrics.headerLeading, 24) }
+
+	func testTheHeaderStartsAt56FromTheTop() { XCTAssertEqual(Metrics.headerTop, 56) }
+
+	func testTheHeaderAndItsBackButtonAre40PointsHigh() {
+		XCTAssertEqual(Metrics.headerHeight, 40)
+		XCTAssertEqual(Metrics.backSize, 40)
+	}
+
+	func testTheNowBarEnds5PointsAboveTheTabBar() { XCTAssertEqual(Metrics.nowBarGap, 5) }
+
+	func testTheNowBarTopIs694InTheMockupFrame() {
+		// 393 x 844 with the 21 pt under the tab bar that Figma draws: the tab bar frame starts at 749.
+		XCTAssertEqual(844 - 21 - Track1TabBarMetrics.reservedHeight(safeAreaBottom: 21), 749)
+		XCTAssertEqual(844 - Metrics.nowBarBottomInset(safeAreaBottom: 21) - PlayerNowBarMetrics.height, 694)
+		XCTAssertEqual(Metrics.nowBarBottomInset(safeAreaBottom: 0), 91, "86 for the tab bar, 5 for the gap.")
+	}
+
+	func testTheArtistLineJoinsTheNamesOfTheArtistsEdge() throws {
+		let (one, two) = (Self.edge("Band A"), Self.edge(" Band B "))
+		let many = try node(edges: #""artists":[\#(one),\#(two)]"#)
+
+		XCTAssertEqual(PlayerView.artistNames(of: many), "Band A, Band B")
+		XCTAssertEqual(PlayerView.artistNames(of: try node(edges: #""artists":\#(one)"#)), "Band A")
+		XCTAssertNil(PlayerView.artistNames(of: try node()))
+	}
+
+	func testNetworkNamesAreDrawnOnOneLineWithoutBidiControls() {
+		XCTAssertEqual(PlayerView.oneLine("A\u{202E}B\nC  D\t"), "AB C D")
+	}
+
+	// MARK: - States and back
+
+	func testEachStateGetsItsScreenAndAFailedNodeCanBeRetried() throws {
+		func name(_ state: NodeViewState) -> String {
+			switch PlayerView.screen(for: state) {
+			case .reader: "reader"
+			case .loading: "loading"
+			case .missing: "missing"
+			case .failed: "failed"
+			}
+		}
+		let identity = try XCTUnwrap(NodeIdentity(rawValue: "project:sample"))
+		let states: [NodeViewState] = [.loading, .loaded(try node()), .missing(identity), .failed]
+
+		XCTAssertEqual(states.map(name), ["loading", "reader", "missing", "failed"])
+		XCTAssertEqual(Track1StatusView.visibleActionTitle(for: .nodeFailed, hasAction: true), "Réessayer")
+	}
+
+	func testTheBackActionIsTheOneTheCallerGaveAndTheBackButtonHasItsIdentifier() throws {
+		var calls = 0
+		let identity = try XCTUnwrap(NodeIdentity(rawValue: "project:sample"))
+		let model = NodeViewModel(
+			identity: identity, context: .independent(source: .home), readNode: { _ in .notModified(etag: "x") })
+		let store = NodeImageStore<UIImage>(readImage: { _ in .notModified(etag: "x") }, load: { _ in nil })
+
+		PlayerView(model: model, imageStore: store, safeAreaBottom: 34, onBack: { calls += 1 }).onBack()
+
+		XCTAssertEqual(calls, 1)
+		XCTAssertEqual(Metrics.backIdentifier, "player-back")
+	}
+
+	func testThePlayerSourceDrawsNoShareControl() throws {
+		let source = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
+			.deletingLastPathComponent().appendingPathComponent("Track1/Features/Node/PlayerView.swift")
+		let text = try String(contentsOf: source, encoding: .utf8)
+
+		XCTAssertFalse(text.contains("player-share"))
 	}
 }
