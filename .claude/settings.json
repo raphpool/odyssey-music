@@ -12,7 +12,8 @@
       "Bash(gh issue *)",
       "Read",
       "Grep",
-      "Glob"
+      "Glob",
+      "mcp__Figma"
     ],
     "deny": [
       "Read(./.env*)",
