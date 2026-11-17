@@ -77,9 +77,9 @@ final class NavigationTests: XCTestCase {
 		add(attachment)
 	}
 
-	/// The page of the day: Today only has one once the first launch has written the profile.
+	/// The home of the day (TRA-736): Today only has one once the first launch has written the profile.
 	@MainActor
 	private func todayPage(in app: XCUIApplication) -> XCUIElement {
-		app.descendants(matching: .any)["node-title"].firstMatch
+		app.descendants(matching: .any)["today-title"].firstMatch
 	}
 }

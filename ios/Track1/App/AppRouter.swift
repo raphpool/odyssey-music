@@ -3,6 +3,11 @@ import SwiftUI
 import Track1Core
 
 enum AppRoute: Hashable, Sendable {
+	/// The reader of a node (TRA-736): the only page Today pushes. It carries the attribution of the home.
+	case player(identity: NodeIdentity, context: NavigationContext)
+	/// The old node page. 2026-11-17 (TRA-736): nothing pushes it any more, but it stays with `openNode` and the
+	/// breadcrumb until the ticket that deletes the node pages: `NodePageViewTests`, out of the scope of
+	/// TRA-736, still build it, and removing it here would stop the test target from compiling.
 	case node(identity: NodeIdentity, context: NavigationContext)
 }
 
@@ -67,6 +72,11 @@ final class AppRouter {
 		case .today, .genres:
 			selectedTab = tab
 		}
+	}
+
+	/// Opens the reader of `identity`; Today's "Découvrir" is the caller.
+	func openPlayer(_ identity: NodeIdentity, context: NavigationContext, in tab: AppTab? = nil) {
+		push(.player(identity: identity, context: context), in: tab)
 	}
 
 	/// `title` is the name shown for this node in the breadcrumb; callers that do not know it yet omit it.

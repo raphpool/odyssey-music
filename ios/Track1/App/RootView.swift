@@ -58,8 +58,6 @@ private struct ApplicationTabs: View {
 	/// False until the profile has been read once: `.missing` before that is not a first launch, and the
 	/// onboarding must not flash for a person who has a profile.
 	@State private var profileLoaded = false
-	/// The name of the node of the day: the root crumb of every page pushed from Today.
-	@State private var todayRootTitle: String?
 	/// The window's bottom safe area, handed to the tab bar (see `tabs`).
 	@State private var windowSafeAreaBottom: CGFloat = 0
 
@@ -210,6 +208,26 @@ private struct ApplicationTabs: View {
 			.navigationDestination(for: AppRoute.self) { route in
 				Group {
 					switch route {
+					case .player(let identity, let context):
+						if let readers, let imageStore {
+							PlayerView(
+								model: NodeViewModel(
+									identity: identity,
+									context: context,
+									readNode: readers.node,
+									readLinks: readers.links,
+									recordEvent: { analytics.record($0) }
+								),
+								imageStore: imageStore,
+								safeAreaBottom: windowSafeAreaBottom,
+								onBack: { router.pop(in: .today) }
+							)
+							// The reader draws its own back button: no system bar over it.
+							.toolbar(.hidden, for: .navigationBar)
+						} else {
+							InvalidConfigurationView(error: .missingEnvironment)
+						}
+					// No caller since TRA-736 (see `AppRoute.node`); the node page stays compiled until it is deleted.
 					case .node(let identity, let context):
 						if let readers, let imageStore {
 							NodeView(
@@ -221,8 +239,7 @@ private struct ApplicationTabs: View {
 									recordEvent: { analytics.record($0) }
 								),
 								imageStore: imageStore,
-								topBar: .breadcrumb(
-									router.breadcrumb(for: tab, rootTitle: tab == .today ? todayRootTitle ?? tab.title : tab.title)),
+								topBar: .breadcrumb(router.breadcrumb(for: tab, rootTitle: tab.title)),
 								// Same tab; the name is the crumb the Top bar shows for the relation.
 								openRelation: { relation, relationContext in
 									router.openNode(relation.slug, context: relationContext, title: relation.name, in: tab)
@@ -250,8 +267,7 @@ private struct ApplicationTabs: View {
 				readers: readers,
 				imageStore: imageStore,
 				store: dailyRecommendationStore,
-				analytics: analytics,
-				rootTitle: $todayRootTitle
+				analytics: analytics
 			)
 		} else {
 			InvalidConfigurationView(error: .missingEnvironment)

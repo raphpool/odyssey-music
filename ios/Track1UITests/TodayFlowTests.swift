@@ -11,49 +11,57 @@ final class TodayFlowTests: XCTestCase {
 		UITestFlows.declineConsent(app)
 		UITestFlows.completeOnboarding(app)
 
-		// 3. The date and the page of the day.
-		let date = element(app, "top-bar-date")
-		let title = element(app, "node-title")
+		// 3. The home of the day (TRA-736): a card with the date, the genres, the type, the title and "Découvrir".
+		let title = element(app, "today-title")
+		let discover = app.buttons["today-discover"]
 		XCTAssertTrue(title.waitForExistence(timeout: 15))
-		XCTAssertTrue(date.exists)
-		// 2026-10-24 (TRA-699): the fixture profile genre (`local:genre-0a`) is worded under the date.
-		let reason = element(app, "top-bar-reason")
-		XCTAssertTrue(reason.exists)
-		XCTAssertEqual(reason.label, "parce que tu explores Genre 0a")
+		XCTAssertTrue(element(app, "today-home").exists)
+		XCTAssertTrue(element(app, "node-type-badge").exists)
+		XCTAssertTrue(discover.exists)
+		let date = NSPredicate(format: "label MATCHES %@", "[0-9]{1,2} [A-ZÉÛ]{3}")
+		XCTAssertTrue(app.descendants(matching: .any).matching(date).firstMatch.exists)
+		// The genres of the recommended work, not those of the profile (the fixture links every work to `genre-0`).
+		XCTAssertTrue(app.staticTexts["Genre 0"].exists)
 		let titleOfTheDay = title.label
 		XCTAssertFalse(titleOfTheDay.isEmpty)
+		// No edge, no fact, no page of the node, no streaming bar.
+		let chips = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'edge-chip-'"))
+		XCTAssertEqual(chips.count, 0)
+		for absent in ["node-title", "facts", "streaming-bar"] {
+			XCTAssertFalse(element(app, absent).exists, absent)
+		}
 		UITestFlows.screenshot(named: "2.x-today", in: self)
 
-		// 4. A chip pushes the linked page, under a breadcrumb.
-		tapFirstChip(in: app)
-		let breadcrumb = element(app, "top-bar-breadcrumb")
-		XCTAssertTrue(breadcrumb.waitForExistence(timeout: 5))
+		// 4. "Découvrir" opens the reader of the same node.
+		UITestFlows.tapWhenReady(discover)
+		let player = element(app, "player")
+		XCTAssertTrue(player.waitForExistence(timeout: 10))
+		let paragraph = element(app, "player-paragraph-0")
+		XCTAssertTrue(paragraph.waitForExistence(timeout: 10))
+		XCTAssertTrue(paragraph.label.contains(titleOfTheDay), "\(paragraph.label) is not about \(titleOfTheDay)")
 		// R1: the drawn bar is the only one, the native bar must not come back on a pushed page.
 		XCTAssertEqual(app.tabBars.count, 0)
 		XCTAssertTrue(UITestFlows.tabBar(in: app).exists)
 		UITestFlows.screenshot(named: "3.2", in: self)
 
-		// 5. The root crumb goes back to the page of the day.
-		app.buttons["top-bar-crumb--1"].tap()
-		XCTAssertTrue(breadcrumb.waitForNonExistence(timeout: 5))
-		XCTAssertTrue(date.waitForExistence(timeout: 5))
+		// 5. The back button of the reader goes back to the home of the day.
+		UITestFlows.tapWhenReady(app.buttons["player-back"])
+		XCTAssertTrue(player.waitForNonExistence(timeout: 5))
+		XCTAssertTrue(title.waitForExistence(timeout: 5))
 		XCTAssertEqual(title.label, titleOfTheDay)
 
-		// 6. Tapping Today again from a pushed page goes back to the root too.
-		tapFirstChip(in: app)
-		XCTAssertTrue(breadcrumb.waitForExistence(timeout: 5))
+		// 6. Tapping Today again from the reader goes back to the home too.
+		UITestFlows.tapWhenReady(discover)
+		XCTAssertTrue(player.waitForExistence(timeout: 10))
 		UITestFlows.tabButton("Aujourd’hui", in: app).tap()
-		XCTAssertTrue(breadcrumb.waitForNonExistence(timeout: 5))
-		XCTAssertTrue(date.waitForExistence(timeout: 5))
+		XCTAssertTrue(player.waitForNonExistence(timeout: 5))
+		XCTAssertTrue(title.waitForExistence(timeout: 5))
 		XCTAssertEqual(title.label, titleOfTheDay)
 
-		// 7. Without a reset argument, the same page of the day comes back.
+		// 7. Without a reset argument, the same node of the day comes back.
 		UITestFlows.relaunch(app)
 		XCTAssertTrue(title.waitForExistence(timeout: 15))
 		XCTAssertEqual(title.label, titleOfTheDay)
-		// The reason comes back with the persisted recommendation.
-		XCTAssertTrue(reason.waitForExistence(timeout: 5))
-		XCTAssertEqual(reason.label, "parce que tu explores Genre 0a")
 	}
 
 	@MainActor
@@ -71,15 +79,5 @@ final class TodayFlowTests: XCTestCase {
 	@MainActor
 	private func element(_ app: XCUIApplication, _ identifier: String) -> XCUIElement {
 		app.descendants(matching: .any)[identifier].firstMatch
-	}
-
-	/// The first relation chip of the page, scrolled into view (the hero takes most of the first screen).
-	@MainActor
-	private func tapFirstChip(in app: XCUIApplication) {
-		let chip = app.buttons.matching(NSPredicate(format: "identifier BEGINSWITH 'edge-chip-'")).firstMatch
-		XCTAssertTrue(chip.waitForExistence(timeout: 5))
-		for _ in 0..<6 where !chip.isHittable { app.swipeUp() }
-		XCTAssertTrue(chip.isHittable)
-		chip.tap()
 	}
 }

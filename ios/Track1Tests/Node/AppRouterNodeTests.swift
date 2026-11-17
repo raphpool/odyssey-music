@@ -5,17 +5,42 @@ import XCTest
 
 @MainActor
 final class AppRouterNodeTests: XCTestCase {
-	func testNodeRouteKeepsEachTabPathIndependent() throws {
+	func testPlayerRouteKeepsEachTabPathIndependent() throws {
 		let router = AppRouter()
 		let artist = try XCTUnwrap(NodeIdentity(rawValue: "artist:sample"))
 		let album = try XCTUnwrap(NodeIdentity(rawValue: "project:sample"))
 
-		router.openIndependentNode(artist, source: .home, in: .today)
-		router.openIndependentNode(album, source: .onboarding, in: .genres)
+		router.openPlayer(artist, context: .independent(source: .home), in: .today)
+		router.openPlayer(album, context: .independent(source: .onboarding), in: .genres)
 
-		XCTAssertEqual(router.path(for: .today), [.node(identity: artist, context: .independent(source: .home))])
+		XCTAssertEqual(router.path(for: .today), [.player(identity: artist, context: .independent(source: .home))])
 		XCTAssertEqual(
-			router.path(for: .genres), [.node(identity: album, context: .independent(source: .onboarding))])
+			router.path(for: .genres), [.player(identity: album, context: .independent(source: .onboarding))])
+	}
+
+	/// TRA-736: "Découvrir" pushes the reader of the recommended node, attributed to the recommendation, and the
+	/// back button of the reader (`router.pop(in: .today)`) returns to the home.
+	func testThePlayerRouteCarriesTheRecommendationAndBackReturnsToTheHome() throws {
+		let router = AppRouter()
+		let track = try XCTUnwrap(NodeIdentity(rawValue: "track:sample"))
+		let recommendationID = try XCTUnwrap(UUID(uuidString: "22222222-2222-4222-8222-222222222222"))
+		let context = NavigationContext(source: .home, recommendationID: recommendationID)
+
+		router.openPlayer(track, context: context, in: .today)
+
+		XCTAssertEqual(router.path(for: .today), [.player(identity: track, context: context)])
+		router.pop(in: .today)
+		XCTAssertTrue(router.path(for: .today).isEmpty)
+	}
+
+	func testOpeningThePlayerWithoutATabUsesTheSelectedOne() throws {
+		let router = AppRouter()
+		let track = try XCTUnwrap(NodeIdentity(rawValue: "track:sample"))
+
+		router.openPlayer(track, context: .independent(source: .home))
+
+		XCTAssertEqual(router.path(for: .today).count, 1)
+		XCTAssertTrue(router.path(for: .genres).isEmpty)
 	}
 
 	/// TRA-771: there are two root tabs and no third destination.
@@ -54,17 +79,17 @@ final class AppRouterNodeTests: XCTestCase {
 		let router = AppRouter()
 		let genre = try XCTUnwrap(NodeIdentity(rawValue: "genre:trip-hop"))
 
-		router.openIndependentNode(genre, source: .onboarding, in: .genres)
+		router.openPlayer(genre, context: .independent(source: .onboarding), in: .genres)
 
 		XCTAssertEqual(
-			router.path(for: .genres), [.node(identity: genre, context: .independent(source: .onboarding))])
+			router.path(for: .genres), [.player(identity: genre, context: .independent(source: .onboarding))])
 		XCTAssertTrue(router.path(for: .today).isEmpty)
 	}
 
 	func testSelectingATabChangesItWithoutTouchingStacks() throws {
 		let router = AppRouter()
 		let artist = try XCTUnwrap(NodeIdentity(rawValue: "artist:sample"))
-		router.openIndependentNode(artist, source: .home, in: .today)
+		router.openPlayer(artist, context: .independent(source: .home), in: .today)
 
 		router.select(.genres)
 		XCTAssertEqual(router.selectedTab, .genres)
@@ -78,7 +103,7 @@ final class AppRouterNodeTests: XCTestCase {
 		let router = AppRouter()
 		let genre = try XCTUnwrap(NodeIdentity(rawValue: "genre:idm"))
 		router.select(.genres)
-		router.openIndependentNode(genre, source: .home, in: .genres)
+		router.openPlayer(genre, context: .independent(source: .home), in: .genres)
 
 		router.select(.genres)
 
@@ -90,9 +115,9 @@ final class AppRouterNodeTests: XCTestCase {
 		let router = AppRouter()
 		let artist = try XCTUnwrap(NodeIdentity(rawValue: "artist:sample"))
 		let album = try XCTUnwrap(NodeIdentity(rawValue: "project:sample"))
-		router.openIndependentNode(artist, source: .home, in: .today)
-		router.openIndependentNode(album, source: .home, in: .today)
-		router.openIndependentNode(artist, source: .onboarding, in: .genres)
+		router.openPlayer(artist, context: .independent(source: .home), in: .today)
+		router.openPlayer(album, context: .independent(source: .home), in: .today)
+		router.openPlayer(artist, context: .independent(source: .onboarding), in: .genres)
 		XCTAssertEqual(router.path(for: .today).count, 2)
 
 		router.select(.today)
