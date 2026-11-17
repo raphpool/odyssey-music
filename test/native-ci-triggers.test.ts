@@ -107,7 +107,14 @@ describe("ios-check runner label (TRA-411, TRA-705)", () => {
 
 // TRA-650 (2026-10-20): jobs waited ~3.7x longer for a runner than they ran, and 74% of runner minutes were
 // Node jobs that do not need macOS. Only ios-check does, so every other workflow targets the Linux runners.
-describe("runner labels by workflow (TRA-650)", () => {
+// TRA-703 (2026-11-16): the self-hosted runners have been off since 2026-10-24, so every required check of main
+// stayed queued and no PR could merge. The workflows a PR triggers moved to GitHub-hosted runners; the
+// ones below stay self-hosted until their own ticket (ios-ci.yml: 1.3). Both tables are explicit on purpose:
+// a new workflow file must be filed in one of them, or the "known workflows" test fails.
+const HOSTED = ["ci.yml", "mobile-ci.yml", "review-gate.yml", "ai-review.yml", "claude.yml"];
+const SELF_HOSTED = ["deploy.yml", "pull-cache.yml", "sync-genre-cache.yml", "top-up-genres.yml"];
+
+describe("runner labels by workflow (TRA-650, TRA-703)", () => {
 	const workflowFiles = readdirSync(".github/workflows").filter((file) => /\.ya?ml$/.test(file));
 	const runsOnLinesOf = (file: string): string[] =>
 		withoutComments(readFileSync(join(".github/workflows", file), "utf8")).match(/^\s*runs-on:.*$/gm) ?? [];
@@ -117,22 +124,65 @@ describe("runner labels by workflow (TRA-650)", () => {
 		for (const file of workflowFiles) expect(runsOnLinesOf(file).length).toBeGreaterThan(0);
 	});
 
+	it("files every workflow in exactly one table, ios-ci.yml aside", () => {
+		expect(HOSTED.filter((file) => SELF_HOSTED.includes(file))).toEqual([]);
+		expect([...HOSTED, ...SELF_HOSTED, "ios-ci.yml"].sort()).toEqual([...workflowFiles].sort());
+	});
+
+	it("runs the hosted workflows on ubuntu-latest in every job", () => {
+		for (const file of HOSTED) {
+			for (const line of runsOnLinesOf(file))
+				expect(`${file}: ${line}`).toMatch(/runs-on: ubuntu-latest\s*$/);
+		}
+	});
+
+	it("keeps the other workflows on the self-hosted Linux runners, so a typo cannot queue forever", () => {
+		for (const file of SELF_HOSTED) {
+			for (const line of runsOnLinesOf(file))
+				expect(`${file}: ${line}`).toMatch(/runs-on: \[self-hosted, linux\]\s*$/);
+		}
+	});
+
 	it("requests the macOS label in no workflow except ios-ci.yml", () => {
 		for (const file of workflowFiles.filter((name) => name !== "ios-ci.yml")) {
 			for (const line of runsOnLinesOf(file)) expect(`${file}: ${line}`).not.toMatch(/macOS/i);
 		}
 	});
 
-	it("targets the Linux runners explicitly in every other workflow, so a typo cannot queue forever", () => {
-		for (const file of workflowFiles.filter((name) => name !== "ios-ci.yml")) {
-			for (const line of runsOnLinesOf(file))
-				expect(`${file}: ${line}`).toMatch(/runs-on: \[self-hosted, linux\]\s*$/);
-		}
-	});
-
 	// TRA-705 (2026-11-16): was "keeps the ios label"; ios-ci.yml now targets the hosted macOS image.
 	it("keeps every runs-on of ios-ci.yml on the hosted macOS image", () => {
 		for (const line of runsOnLinesOf("ios-ci.yml")) expect(line).toMatch(/runs-on: macos-26\s*$/);
+	});
+});
+
+// TRA-703 (2026-11-16): the repository is public. A hosted runner executes whatever a pull request carries, and
+// `@claude` runs with write permissions, so both jobs are gated: the review skips fork PRs (they cannot reach
+// the secrets anyway, and a fork author must not drive the agent), and `@claude` answers members only.
+describe("hosted job conditions (TRA-703)", () => {
+	/** The job-level `if:` (four-space indent), so a step-level `if:` is never read instead. */
+	const jobIfOf = (file: string, job: string): string => {
+		const source = withoutComments(readFileSync(join(".github/workflows", file), "utf8"));
+		const start = source.indexOf(`\n  ${job}:`);
+		if (start === -1) throw new Error(`job ${job} not found in ${file}`);
+		// Cut at the next job header so a later job's `if:` is never read for this one.
+		const rest = source.slice(start + 1);
+		const next = rest.slice(1).search(/^ {2}[\w-]+:/m);
+		const jobBlock = next === -1 ? rest : rest.slice(0, next + 1);
+		const match = jobBlock.match(/^ {4}if: (.*)$/m);
+		if (!match?.[1]) throw new Error(`job-level if not found for ${job}`);
+		return match[1].trim();
+	};
+
+	it("reviews only non-draft pull requests that come from this repository, not from a fork", () => {
+		expect(jobIfOf("ai-review.yml", "review")).toBe(
+			"github.event.pull_request.draft == false && github.event.pull_request.head.repo.full_name == github.repository",
+		);
+	});
+
+	it("answers @claude only to an owner, a member or a collaborator", () => {
+		expect(jobIfOf("claude.yml", "claude")).toBe(
+			'contains(github.event.comment.body, \'@claude\') && contains(fromJSON(\'["OWNER","MEMBER","COLLABORATOR"]\'), github.event.comment.author_association)',
+		);
 	});
 });
 
