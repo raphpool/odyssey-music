@@ -291,6 +291,16 @@ while :; do sleep 1; done
 	}
 }
 
+// 2026-11-17 (TRA-788): check.sh now also reads the `xcresulttool` summary with jq. The runtime lookup stays a
+// canned answer; the failures filter (the only one that mentions `testFailures`) goes to the real jq, so the tests
+// check the filter itself. Both macOS and the Linux runners have jq, which check.sh needs anyway.
+const realJq = spawnSync("sh", ["-c", "command -v jq"], { encoding: "utf8" }).stdout.trim();
+const fakeJq = `#!/usr/bin/env bash
+case "$*" in *testFailures*) exec "${realJq}" "$@" ;; esac
+cat >/dev/null
+printf 'runtime-id\\n'
+`;
+
 type CheckScriptPaths = {
 	cacheDirectory: string;
 	outputDirectory: string;
@@ -358,6 +368,7 @@ async function runCheckScript(
 	const swiftFormatCallsPath = join(directory, "swift-format-calls");
 	const curlCallsPath = join(directory, "curl-calls");
 	const plistBuddyCallsPath = join(directory, "plistbuddy-calls");
+	const xcresulttoolCallsPath = join(directory, "xcresulttool-calls");
 	const outputDirectory = join(directory, "output");
 	const cacheDirectory = join(directory, "derived-data-cache");
 	const simulatorLockDirectory = join(directory, "simulator.lock");
@@ -427,6 +438,12 @@ case "$*" in
   "swift-format lint"*) printf '%s\\n' "$@" >> "$TRACK1_TEST_SWIFT_FORMAT_CALLS" ;;
   "simctl shutdown"*) [[ -z "\${TRACK1_TEST_FAIL_SHUTDOWN:-}" ]] || exit 164 ;;
   "simctl bootstatus"*) [[ " \${TRACK1_TEST_FAIL_BOOT_UDIDS:-} " != *" $3 "* ]] || exit 166 ;;
+  "xcresulttool get test-results summary"*)
+    printf '%s\\n' "$*" >> "$TRACK1_TEST_XCRESULTTOOL_CALLS"
+    [[ -z "\${TRACK1_TEST_FAIL_XCRESULTTOOL:-}" ]] || { echo "xcresulttool: cannot open the bundle" >&2; exit 64; }
+    summary="\${TRACK1_TEST_XCRESULTTOOL_OUTPUT:-}"
+    [[ -n "$summary" ]] || summary='{}'
+    printf '%s' "$summary" ;;
   "simctl delete"*)
     [[ " \${TRACK1_TEST_FAIL_DELETE_UDIDS:-} " != *" $3 "* ]] || exit 167
     mkdir -p "$TRACK1_TEST_DELETED_DIR" && touch "$TRACK1_TEST_DELETED_DIR/$3" ;;
@@ -435,7 +452,7 @@ esac
 `,
 		);
 		await writeTool(directory, "swift", fakeSwift);
-		await writeTool(directory, "jq", "#!/usr/bin/env bash\ncat >/dev/null\nprintf 'runtime-id\\n'\n");
+		await writeTool(directory, "jq", fakeJq);
 		await writePlistTools(directory);
 		await writeTool(
 			directory,
@@ -475,6 +492,7 @@ exec "${process.execPath}" "$@"
 				TRACK1_DERIVED_DATA_CACHE_DIR: cacheDirectory,
 				TRACK1_TEST_CURL_CALLS: curlCallsPath,
 				TRACK1_TEST_PLISTBUDDY_CALLS: plistBuddyCallsPath,
+				TRACK1_TEST_XCRESULTTOOL_CALLS: xcresulttoolCallsPath,
 				TRACK1_TEST_FAIL_ACTION: failingAction ?? "",
 				TRACK1_TEST_XCODEBUILD_CALLS: callsPath,
 				TRACK1_TEST_SWIFT_FORMAT_CALLS: swiftFormatCallsPath,
@@ -507,6 +525,7 @@ exec "${process.execPath}" "$@"
 			.filter(Boolean);
 		const curlCalls = (await readFile(curlCallsPath, "utf8").catch(() => "")).split("\n").filter(Boolean);
 		const plistBuddyCalls = await lines(plistBuddyCallsPath);
+		const xcresulttoolCalls = await lines(xcresulttoolCallsPath);
 		const cacheEntries = await readdir(cacheDirectory).catch(() => [] as string[]);
 		const cacheFiles = await readdir(cacheDirectory, { recursive: true }).catch(() => [] as string[]);
 		const simulatorLockLeft = await pathExists(simulatorLockDirectory);
@@ -526,6 +545,7 @@ exec "${process.execPath}" "$@"
 			swiftFormatArguments,
 			swiftSurvivors,
 			timeline,
+			xcresulttoolCalls,
 		};
 	} finally {
 		// A fake swift that hung must not outlive the test, whatever check.sh did.
@@ -1511,6 +1531,168 @@ describe.sequential("Track1 package tests before the simulator", () => {
 		expect(swiftSources.some((file) => file.startsWith(join(coreRoot, "Sources") + "/"))).toBe(true);
 		expect(swiftSources.some((file) => file.startsWith(join(coreRoot, "Tests") + "/"))).toBe(true);
 		expect(swiftSources.filter((file) => file.includes("/.build/"))).toEqual([]);
+	});
+});
+
+// 2026-11-17 (TRA-788): with `-quiet`, a failed test pass only logged `TEST EXECUTE FAILED` and the .xcresult sits in
+// a storage that the cloud agent cannot reach, so nobody could tell which test failed (PR #697, run 44098308112).
+describe.sequential("Track1 failed tests in the log", () => {
+	const summary = (...failures: { testIdentifierString: string; failureText: string }[]) =>
+		JSON.stringify({ result: "Failed", testFailures: failures });
+	const twoFailures = summary(
+		{
+			testIdentifierString: "Track1UITests/NavigationTests/testThreeTabs",
+			failureText: "XCTAssertTrue failed - the Library tab is missing",
+		},
+		{
+			testIdentifierString: "Track1Tests/AppConfigurationTests/testLaunchScreen",
+			failureText: 'XCTAssertEqual failed: ("a") is not equal to ("b")',
+		},
+	);
+	// The bundle that the failed pass wrote, as logged for its xcodebuild call.
+	const resultBundle = (calls: string, scheme: string) =>
+		testActions(calls)
+			.find((call) => call.includes(`${scheme}.xctestrun`))
+			?.match(/-resultBundlePath (\S+)/)?.[1];
+	const outputLines = (run: { result: { stdout: string; stderr: string } }) =>
+		`${run.result.stdout}\n${run.result.stderr}`.split("\n");
+
+	it("prints each failure of the failed pass as an Actions error, then still fails", async () => {
+		const run = await runCheckScript("test-without-building", {
+			env: { TRACK1_TEST_XCRESULTTOOL_OUTPUT: twoFailures },
+		});
+
+		expect(run.result.status).toBe(1);
+		const lines = outputLines(run);
+		expect(lines).toContain(
+			"::error::Track1UITests/NavigationTests/testThreeTabs: XCTAssertTrue failed - the Library tab is missing",
+		);
+		expect(lines).toContain(
+			'::error::Track1Tests/AppConfigurationTests/testLaunchScreen: XCTAssertEqual failed: ("a") is not equal to ("b")',
+		);
+		expect(lines.filter((line) => line.startsWith("::error::"))).toHaveLength(2);
+		// Same exit path as before: the proxy report is still printed and the Preview pass never starts.
+		expect(run.result.stderr).toContain("XCTest failed before contract verification");
+		expect(testActions(run.calls)).toHaveLength(1);
+	});
+
+	it("reads the xcresult that the failed pass wrote, with the compact summary", async () => {
+		const run = await runCheckScript("test-without-building", {
+			env: { TRACK1_TEST_XCRESULTTOOL_OUTPUT: twoFailures },
+		});
+
+		const bundle = resultBundle(run.calls, "Track1");
+		expect(bundle).toMatch(new RegExp(`^${run.outputDirectory}/Track1-\\d+\\.xcresult$`));
+		expect(run.xcresulttoolCalls).toEqual([
+			`xcresulttool get test-results summary --path ${bundle} --compact`,
+		]);
+	});
+
+	it("reads the xcresult of the Preview pass when only that pass fails", async () => {
+		const run = await runCheckScript("test-without-building", {
+			env: {
+				TRACK1_TEST_FAIL_XCTESTRUN: "Track1Preview.xctestrun",
+				TRACK1_TEST_XCRESULTTOOL_OUTPUT: twoFailures,
+			},
+		});
+
+		expect(run.result.status).toBe(1);
+		const bundle = resultBundle(run.calls, "Track1Preview");
+		expect(bundle).toMatch(new RegExp(`^${run.outputDirectory}/Track1Preview-\\d+\\.xcresult$`));
+		expect(run.xcresulttoolCalls).toEqual([
+			`xcresulttool get test-results summary --path ${bundle} --compact`,
+		]);
+	});
+
+	it("keeps the original failure and warns when xcresulttool fails", async () => {
+		const run = await runCheckScript("test-without-building", {
+			env: { TRACK1_TEST_FAIL_XCRESULTTOOL: "1" },
+		});
+
+		expect(run.result.status).toBe(1);
+		expect(run.xcresulttoolCalls).toHaveLength(1);
+		const lines = outputLines(run);
+		expect(lines.filter((line) => line.startsWith("::warning::"))).toHaveLength(1);
+		expect(lines.filter((line) => line.startsWith("::error::"))).toEqual([]);
+		expect(run.result.stderr).toContain("XCTest failed before contract verification");
+		expect(testActions(run.calls)).toHaveLength(1);
+	});
+
+	it("keeps the original failure and warns when the summary is not JSON", async () => {
+		const run = await runCheckScript("test-without-building", {
+			env: { TRACK1_TEST_XCRESULTTOOL_OUTPUT: "Error: this is not JSON" },
+		});
+
+		expect(run.result.status).toBe(1);
+		const lines = outputLines(run);
+		expect(lines.filter((line) => line.startsWith("::warning::"))).toHaveLength(1);
+		expect(lines.filter((line) => line.startsWith("::error::"))).toEqual([]);
+		expect(run.result.stderr).toContain("XCTest failed before contract verification");
+	});
+
+	it("keeps each failure on one annotation when its text spans several lines", async () => {
+		const run = await runCheckScript("test-without-building", {
+			env: {
+				TRACK1_TEST_XCRESULTTOOL_OUTPUT: summary({
+					testIdentifierString: "Track1Tests/NetworkTests/testRetry",
+					failureText: "first line\n::error::forged\nsecond 100% line",
+				}),
+			},
+		});
+
+		expect(run.result.status).toBe(1);
+		const errors = outputLines(run).filter((line) => line.startsWith("::error::"));
+		expect(errors).toEqual([
+			"::error::Track1Tests/NetworkTests/testRetry: first line%0A::error::forged%0Asecond 100%25 line",
+		]);
+	});
+
+	it("warns when the summary is readable but lists no failure, instead of staying silent", async () => {
+		// The default fake summary is `{}`: a crash before any test, a selection that matches nothing.
+		const run = await runCheckScript("test-without-building");
+
+		expect(run.result.status).toBe(1);
+		expect(run.xcresulttoolCalls).toHaveLength(1);
+		const lines = outputLines(run);
+		expect(lines.filter((line) => line.startsWith("::warning::"))).toHaveLength(1);
+		expect(lines.filter((line) => line.startsWith("::error::"))).toEqual([]);
+	});
+
+	it("keeps the other failures when one entry has a field that is not text", async () => {
+		const run = await runCheckScript("test-without-building", {
+			env: {
+				TRACK1_TEST_XCRESULTTOOL_OUTPUT: JSON.stringify({
+					testFailures: [
+						{ testIdentifierString: 42, failureText: { reason: "odd" } },
+						{ testIdentifierString: "Track1Tests/A/testB", failureText: "boom" },
+					],
+				}),
+			},
+		});
+
+		expect(run.result.status).toBe(1);
+		const errors = outputLines(run).filter((line) => line.startsWith("::error::"));
+		expect(errors).toHaveLength(2);
+		expect(errors).toContain("::error::Track1Tests/A/testB: boom");
+	});
+
+	it("does not call xcresulttool when the tests pass", async () => {
+		const run = await runCheckScript(undefined, {
+			env: { TRACK1_TEST_XCRESULTTOOL_OUTPUT: twoFailures },
+		});
+
+		expect(run.result.status, `${run.result.stdout}\n${run.result.stderr}`).toBe(0);
+		expect(run.xcresulttoolCalls).toEqual([]);
+		expect(outputLines(run).filter((line) => line.startsWith("::error::"))).toEqual([]);
+	});
+
+	it("does not call xcresulttool when the build fails, since no test ran", async () => {
+		const run = await runCheckScript("build-for-testing", {
+			env: { TRACK1_TEST_XCRESULTTOOL_OUTPUT: twoFailures },
+		});
+
+		expect(run.result.status).not.toBe(0);
+		expect(run.xcresulttoolCalls).toEqual([]);
 	});
 });
 
