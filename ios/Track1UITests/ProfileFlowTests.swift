@@ -49,13 +49,13 @@ final class ProfileFlowTests: XCTestCase {
 
 		// 1.6, then Today: the onboarding is gone and the tabs are there.
 		UITestFlows.screenshot(named: "1.6", in: self)
-		XCTAssertTrue(element(app, "node-title").waitForExistence(timeout: 15))
+		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
 		XCTAssertTrue(UITestFlows.tabButton("Aujourd’hui", in: app).exists)
 		XCTAssertFalse(app.buttons["onboarding-start"].exists)
 
 		// A launch without reset finds the profile: no onboarding, Today again.
 		UITestFlows.relaunch(app, catalog: Self.taxonomyCatalog)
-		XCTAssertTrue(element(app, "node-title").waitForExistence(timeout: 15))
+		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
 		XCTAssertFalse(app.buttons["onboarding-start"].exists)
 
 		// The settings count what the saved selection holds: it was written, and read back after the relaunch.
@@ -361,7 +361,7 @@ final class ProfileFlowTests: XCTestCase {
 		let onboarding1 = UITestFlows.settledFrame(of: family1, timeout: 10)
 
 		UITestFlows.tapWhenReady(bar)
-		XCTAssertTrue(element(app, "node-title").waitForExistence(timeout: 15))
+		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
 		UITestFlows.tabButton("Genres", in: app).tap()
 		UITestFlows.tapWhenReady(app.buttons["genres-edit"])
 
@@ -480,7 +480,7 @@ final class ProfileFlowTests: XCTestCase {
 		save.tap()
 
 		// The flow ends on Today, which loads the recommendation again for the new revision of the profile.
-		XCTAssertTrue(element(app, "node-title").waitForExistence(timeout: 15))
+		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
 		UITestFlows.tabButton("Genres", in: app).tap()
 		XCTAssertTrue(tile("family-1", in: app).waitForExistence(timeout: 5))
 		XCTAssertTrue(tile("family-0", in: app).exists)
@@ -507,7 +507,7 @@ final class ProfileFlowTests: XCTestCase {
 		let app = firstProfile()
 		UITestFlows.relaunch(app, catalog: Self.degradedCatalog)
 
-		XCTAssertTrue(element(app, "node-title").waitForExistence(timeout: 15))
+		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
 		UITestFlows.tabButton("Genres", in: app).tap()
 		XCTAssertTrue(app.buttons["genres-retry"].waitForExistence(timeout: 5))
 		XCTAssertFalse(app.buttons["genres-edit"].isEnabled)
@@ -519,7 +519,7 @@ final class ProfileFlowTests: XCTestCase {
 		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
 		UITestFlows.declineConsent(app)
 		UITestFlows.completeOnboarding(app)
-		XCTAssertTrue(element(app, "node-title").waitForExistence(timeout: 15))
+		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
 		return app
 	}
 
