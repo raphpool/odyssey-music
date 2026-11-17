@@ -101,7 +101,7 @@ struct GenreAccordionCard<Content: View>: View {
 				}
 				Spacer(minLength: 0)
 				Track1Icon(.chevronDown, color: GenreAccordionCardStyle.chevron, size: Self.chevronSize)
-					.rotationEffect(.degrees(isExpanded ? 180 : 0))
+					.rotationEffect(.degrees(GenreAccordionCardMetrics.chevronRotationDegrees))
 			}
 			.frame(maxWidth: .infinity, alignment: .leading)
 			.contentShape(Rectangle())
@@ -125,6 +125,11 @@ enum GenreAccordionCardMetrics {
 	/// Figma pads the card 11 pt vertically; 11 is not a spacing token.
 	static let verticalInset: CGFloat = 11
 	static let chevronSize: CGFloat = 20
+	/// Turn of the chevron, in degrees, the same in both states. 2026-11-17 (TRA-725, arbitration Q6: follow the
+	/// Figma): the chevrons of the expanded card (`316:5083`, Hip-hop) and of the collapsed ones (`316:5101`,
+	/// Jazz; `316:5106`, Électronique) render the same pixels, a chevron pointing down. The card used to turn
+	/// it 180 degrees when expanded, which the mock-up does not draw.
+	static let chevronRotationDegrees: Double = 0
 	/// Between the title and the "(1)" badge.
 	static let titleSpacing: CGFloat = Track1Tokens.spacing8
 	/// Between the title line and the "13 sous-genres" line of a collapsed card.

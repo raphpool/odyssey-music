@@ -178,6 +178,12 @@ final class OnboardingComponentsTests: XCTestCase {
 		XCTAssertEqual(GenreAccordionCardMetrics.countRole.lineHeight, 18)
 	}
 
+	/// Figma `316:5083` (expanded) and `316:5101`, `316:5106` (collapsed), read 2026-11-17: the same chevron
+	/// pointing down in both states. One constant serves both, so the card cannot turn it by state.
+	func testGenreCardChevronPointsTheSameWayExpandedAndCollapsed() {
+		XCTAssertEqual(GenreAccordionCardMetrics.chevronRotationDegrees, 0)
+	}
+
 	func testCollapsedGenreCardIsSeventyPointsHighByTheMetrics() {
 		XCTAssertEqual(GenreAccordionCardMetrics.collapsedHeight, 70, accuracy: 0.0001)
 	}
