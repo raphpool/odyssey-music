@@ -77,7 +77,7 @@ describe("ci.yml integrity job (TRA-461, TRA-498)", () => {
 	});
 
 	it("uses the same runner labels and HOME isolation as the other jobs", () => {
-		expect(block).toMatch(/^ {4}runs-on: \[self-hosted, linux\]\s*$/m);
+		expect(block).toMatch(/^ {4}runs-on: ubuntu-latest\s*$/m);
 		expect(block).toContain('echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"');
 	});
 

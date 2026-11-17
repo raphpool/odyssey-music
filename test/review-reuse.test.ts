@@ -1115,7 +1115,9 @@ describe("ai-review.yml reuse wiring (TRA-510)", () => {
 	it("leaves the check-run the gate reads untouched: the job's own `review` check-run, no second one", () => {
 		const gate = readFileSync(".github/workflows/review-gate.yml", "utf8");
 		expect(gate).toContain("check_name=review");
-		expect(gate).toContain('select(.name == "review")');
+		// TRA-749: the job name is an argument of the selection, and the gate's first call names `review`.
+		expect(gate).toContain("select(.name == $job)");
+		expect(gate).toContain("--arg job review");
 		// The check-run is the job itself: it keeps the key `review`, is not renamed, and no API call publishes another.
 		expect(workflowCode).toMatch(/^jobs:\n {2}review:\n/m);
 		expect(workflowCode).not.toMatch(/^ {4}name:|gh api|check-runs/m);

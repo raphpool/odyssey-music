@@ -2,8 +2,8 @@ import SwiftUI
 
 /// Figma `Select-all chip` (`175:47`, states `243:1746` and `I243:1687;175:22`) and the subgenre chips of the
 /// accordion card (`243:1609`): a pill with a short label and, optionally, a glyph on its right. The "Tous"
-/// chip passes `arrowDownRight` in both states; only the colors change with the selection, like the other
-/// chips. Names come from the catalog, so the label is shown verbatim.
+/// chip passes `arrowDownRight` in both states; only the color of the border changes with the selection.
+/// Names come from the catalog, so the label is shown verbatim.
 struct SubgenreChip: View {
 	/// `subgenre-chip-<id>`, the taxonomy genre id: the chip does not know its id, the screen sets this on it.
 	static func identifier(for id: String) -> String {
@@ -11,7 +11,7 @@ struct SubgenreChip: View {
 	}
 
 	/// The glyph fits in the line height of the label (16 pt), so the pill stays at 36 pt.
-	static let glyphSize: CGFloat = 16
+	static let glyphSize: CGFloat = SubgenreChipStyle.glyphSize
 
 	/// Half the height of a one-line pill: 18 pt at the default size (2 + 8 + 16 + 8 + 2 = 36 pt), and it
 	/// follows the line height as the text size grows. 2026-10-24 (TRA-679, macOS probe): with `radiusFull` a
@@ -19,7 +19,7 @@ struct SubgenreChip: View {
 	/// corners of a one-line one instead and becomes a rounded rectangle. `lineHeight` is that of the tallest
 	/// content of the line: with a glyph, the 16 pt glyph does not scale down with the text.
 	static func cornerRadius(lineHeight: CGFloat) -> CGFloat {
-		(lineHeight + 2 * Track1Tokens.spacing8 + 2 * OnboardingChoiceColors.borderWidth) / 2
+		(lineHeight + 2 * SubgenreChipStyle.verticalPadding + 2 * SubgenreChipStyle.borderWidth) / 2
 	}
 
 	private let title: String
@@ -40,26 +40,26 @@ struct SubgenreChip: View {
 	}
 
 	var body: some View {
-		let colors = OnboardingChoiceColors.resolve(isSelected: isSelected)
+		let colors = SubgenreChipStyle.resolve(isSelected: isSelected)
 		let contentHeight = glyph == nil ? lineHeight : max(lineHeight, Self.glyphSize)
 		let shape = RoundedRectangle(cornerRadius: Self.cornerRadius(lineHeight: contentHeight), style: .continuous)
 		Button {
 			taps += 1
 			action()
 		} label: {
-			HStack(spacing: Track1Tokens.spacing8) {
-				Track1Text(title, role: .monoTag, verbatim: true).foregroundStyle(colors.title)
+			HStack(spacing: SubgenreChipStyle.glyphSpacing) {
+				Track1Text(title, role: SubgenreChipStyle.titleRole, verbatim: true).foregroundStyle(colors.title)
 				if let glyph {
 					Track1Icon(glyph, color: colors.title, size: Self.glyphSize)
 				}
 			}
-			.padding(.horizontal, Track1Tokens.spacing12)
-			.padding(.vertical, Track1Tokens.spacing8)
+			.padding(.horizontal, SubgenreChipStyle.horizontalPadding)
+			.padding(.vertical, SubgenreChipStyle.verticalPadding)
 			// Figma lays the 2 pt border out inside the pill (2 + 8 + 16 + 8 + 2 = 36 pt); `strokeBorder` draws
 			// inside the shape without taking room, so the room is added here.
-			.padding(OnboardingChoiceColors.borderWidth)
-			.background(colors.fill, in: shape)
-			.overlay { shape.strokeBorder(colors.border, lineWidth: OnboardingChoiceColors.borderWidth) }
+			.padding(SubgenreChipStyle.borderWidth)
+			// No fill in either state (Figma `316:5084`): the card shows through, the border carries the selection.
+			.overlay { shape.strokeBorder(colors.border, lineWidth: SubgenreChipStyle.borderWidth) }
 			.contentShape(shape)
 		}
 		.buttonStyle(.plain)
@@ -68,27 +68,25 @@ struct SubgenreChip: View {
 	}
 }
 
-/// The Default and Selected variants of the chips (`SubgenreChip` draws both the subgenre chips and the
-/// "Tous" chip). Figma named them `Subgenre row` (`175:21`, `175:24`) and `Select-all chip` (`175:39`,
-/// `175:43`), which share them: a 2 pt border, no fill by default, and the selection tokens when selected.
-enum OnboardingChoiceColors {
-	/// `title` is the chip label, `detail` the secondary text color (no chip draws a description since the rows
-	/// went away). Selected draws both in the same selection color.
-	typealias Resolved = (fill: Color, border: Color, title: Color, detail: Color)
-
+/// Measures and colors of the chips (`SubgenreChip` draws both the subgenre chips and the "Tous" chip), read
+/// on Figma `316:5084` and the following chips of `316:5066` (TRA-725). Both states share the same shape and
+/// text: a 2 pt border, no fill, the primary text color. Only the border tells them apart.
+enum SubgenreChipStyle {
 	static let borderWidth: CGFloat = 2
+	static let horizontalPadding: CGFloat = Track1Tokens.spacing12
+	static let verticalPadding: CGFloat = Track1Tokens.spacing8
+	/// Between the label and the glyph of the "Tous" chip.
+	static let glyphSpacing: CGFloat = Track1Tokens.spacing8
+	static let glyphSize: CGFloat = 16
+	static let titleRole: Track1TextRole = .monoTag
 
+	typealias Resolved = (border: Color, title: Color)
+
+	/// Default: `border/subtle` (`#F6E9D8` at 10 %). Selected: `icon/primary` (`#F6E9D8`).
 	static func resolve(isSelected: Bool) -> Resolved {
-		if isSelected {
-			(
-				Track1Tokens.colorBackgroundElevated, Track1Tokens.colorSelectionBorder,
-				Track1Tokens.colorSelectionContent, Track1Tokens.colorSelectionContent
-			)
-		} else {
-			(
-				Color.clear, Track1Tokens.colorBorderContrast, Track1Tokens.colorTextPrimary,
-				Track1Tokens.colorTextSecondary
-			)
-		}
+		(
+			border: isSelected ? Track1Tokens.colorIconPrimary : Track1Tokens.colorBorderSubtle,
+			title: Track1Tokens.colorTextPrimary
+		)
 	}
 }
