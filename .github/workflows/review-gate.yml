@@ -11,7 +11,9 @@ concurrency:
 jobs:
   review-gate:
     if: github.event.pull_request.draft == false
-    runs-on: [self-hosted, linux]
+    # 2026-11-16 (TRA-703): hosted runner, the self-hosted ones have been off since 2026-10-24; the gate stayed
+    # queued ("Expected") on every PR until then.
+    runs-on: ubuntu-latest
     # TRA-520 (2026-10-15): the 24 polling attempts took 7 min 59 s with the previous version of this job and the
     # API calls added here cost about 8 s more; 8 minutes would have turned a legitimate wait into a timeout.
     timeout-minutes: 9
@@ -101,12 +103,16 @@ jobs:
           # this sha and does not count. Every doubt is `missing`. This is the same shape as `belongsToPullRequest` in
           # scripts/ci/review-reuse.ts, not the same rule: reuse is stricter on purpose (it also counts the PRs on the
           # PR's current head), so it never reuses a verdict that this gate would refuse.
+          # TRA-749 (2026-11-16): the job name is the `job` argument, and the program runs twice: for `review` and for the
+          # `deep-review` job of the same workflow, with the same proofs. Without the argument it stays `review` (the
+          # selection tests of review-reuse.ts run it that way); both call sites below name the job.
           # TRA-529 (2026-10-24): `pull_requests[]` and `$pulls` are recomputed at every read, so the base they show is
           # the CURRENT one, not the one the run was made against, and `$pulls` ignores a PR B closed on another sha
           # that produced a genuine run on this one. Neither can carry that. That is the job of `validate_base` below,
           # applied to the selected check-run: a run counts only if it recorded THIS PR against the default branch.
           select_review=$(cat <<'JQ'
-          [$pulls[] | select(.number == $pr.number or .head_sha == $sha)] as $heads
+          ($ARGS.named.job // "review") as $job
+          | [$pulls[] | select(.number == $pr.number or .head_sha == $sha)] as $heads
           | ($heads | any(.[]; .number == $pr.number) and all(.[]; .base_ref == $pr.baseRef)) as $unambiguous
           | [$runs[]
             | select($unambiguous
@@ -115,12 +121,12 @@ jobs:
               and (.pull_requests | length == 0
                 or (any(.[]; .number == $pr.number) and all(.[]; .base_ref == $pr.baseRef))))] as $trusted
           | [$checks[]
-            | select(.name == "review")
+            | select(.name == $job)
             | select(.head_sha == $sha and .app.slug == "github-actions")
             | . as $check
             | select(any($trusted[]; . as $run
                 | $run.check_suite_id == $check.check_suite.id
-                and any($jobs[]; .run_id == $run.id and .id == $check.id and .name == "review")))]
+                and any($jobs[]; .run_id == $run.id and .id == $check.id and .name == $job)))]
           | sort_by(.started_at) | last // {}
           | (.conclusion // "missing") as $conclusion
           | [(.id // 0), (if $conclusion | IN("success", "failure", "neutral") then $conclusion else "missing" end)] | @tsv
@@ -168,6 +174,10 @@ jobs:
             gh api --paginate "repos/$REPOSITORY/commits/$SHA/check-runs?check_name=review&filter=all&per_page=100" \
               --jq '.check_runs[] | {id, name, head_sha, conclusion, started_at, app: {slug: .app.slug}, check_suite: {id: .check_suite.id}}' \
               > "$api/checks.json"
+            # TRA-749: the `deep-review` check-runs, listed apart so that neither list can push the other's off a page.
+            gh api --paginate "repos/$REPOSITORY/commits/$SHA/check-runs?check_name=deep-review&filter=all&per_page=100" \
+              --jq '.check_runs[] | {id, name, head_sha, conclusion, started_at, app: {slug: .app.slug}, check_suite: {id: .check_suite.id}}' \
+              > "$api/deep-checks.json"
             gh api --paginate "repos/$REPOSITORY/actions/runs?head_sha=$SHA&event=pull_request&per_page=100" \
               --jq '.workflow_runs[] | {id, path, event, head_sha, check_suite_id, head_branch, head_repository: .head_repository.full_name, pull_requests: [.pull_requests[] | {number, base_ref: .base.ref}]}' > "$api/runs.json"
             # TRA-526: the pull requests, open or not, whose head branch is this one. `head` is `<owner>:<branch>` and
@@ -190,7 +200,7 @@ jobs:
               '{number: $number, baseRef: $baseRef, headRef: $headRef, headRepo: $headRepo, defaultBranch: $defaultBranch}')
             claude_info=$(jq -nr --slurpfile checks "$api/checks.json" --slurpfile runs "$api/runs.json" \
               --slurpfile jobs "$api/jobs.json" --slurpfile pulls "$api/pulls.json" --argjson pr "$pr" \
-              --arg sha "$SHA" --arg path "$ai_review_path" "$select_review")
+              --arg sha "$SHA" --arg path "$ai_review_path" --arg job review "$select_review")
             IFS=$'\t' read -r claude_id claude <<< "$claude_info"
             # TRA-529: the annotations of the selected check-run, all pages, through a file like the other lists. They
             # say which pull request and which base the review ran against (`validate_base`) and, for a failure,
@@ -206,6 +216,22 @@ jobs:
                 echo "::warning::La review (check-run $claude_id) n'a pas enregistré cette PR contre la branche par défaut (review-base v1 $PR_NUMBER $BASE_REF) : elle ne compte pas. Pousser un commit, ou fermer puis rouvrir la PR, relance ai-review."
                 claude=missing
                 claude_id=0
+              fi
+            fi
+            # TRA-749: same selection and same base check for the `deep-review` job; the policy reads the conclusion as
+            # `deepClaude`. Unproven, absent or empty is `missing`, which never passes (touchesGate is the policy's to derive).
+            deep_info=$(jq -nr --slurpfile checks "$api/deep-checks.json" --slurpfile runs "$api/runs.json" \
+              --slurpfile jobs "$api/jobs.json" --slurpfile pulls "$api/pulls.json" --argjson pr "$pr" \
+              --arg sha "$SHA" --arg path "$ai_review_path" --arg job deep-review "$select_review")
+            IFS=$'\t' read -r deep_claude_id deep_claude <<< "$deep_info"
+            : > "$api/deep-annotations.json"
+            if [ "${deep_claude_id:-0}" != "0" ] && [ "${deep_claude:-missing}" != "missing" ]; then
+              gh api --paginate "repos/$REPOSITORY/check-runs/$deep_claude_id/annotations?per_page=100" \
+                --jq '.[] | {message}' > "$api/deep-annotations.json"
+              deep_base_ok=$(jq -nr --slurpfile notes "$api/deep-annotations.json" --argjson pr "$pr" "$validate_base")
+              if [ "$deep_base_ok" != "true" ]; then
+                echo "::warning::La review profonde (check-run $deep_claude_id) n'a pas enregistré cette PR contre la branche par défaut : elle ne compte pas."
+                deep_claude=missing
               fi
             fi
             claude_blocking=false
@@ -231,7 +257,7 @@ jobs:
             if [ -n "$ignored" ]; then
               echo "::warning::Statuts codex ignorés (auteur hors de .github/review-gate-authors.txt) : $ignored"
             fi
-            input=$(jq -nc --argjson paths "$paths" --argjson labels "$labels" --arg claude "$claude" --arg codex "$codex" --arg deep "$deep" --argjson claudeBlocking "$claude_blocking" '{paths:$paths,labels:$labels,ordinary:{claude:$claude,codex:$codex,claudeBlocking:$claudeBlocking},deep:$deep,risk:1}')
+            input=$(jq -nc --argjson paths "$paths" --argjson labels "$labels" --arg claude "$claude" --arg codex "$codex" --arg deep "$deep" --arg deepClaude "${deep_claude:-missing}" --argjson claudeBlocking "$claude_blocking" '{paths:$paths,labels:$labels,ordinary:{claude:$claude,codex:$codex,claudeBlocking:$claudeBlocking},deep:$deep,deepClaude:$deepClaude,risk:1}')
             result=$(node --experimental-strip-types --no-warnings "$RUNNER_TEMP/review-gate-policy/review-gate-policy.ts" "$input")
             decision=$(jq -r .verdict <<< "$result")
             echo "attempt=$attempt $result"
