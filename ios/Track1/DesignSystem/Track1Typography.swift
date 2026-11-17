@@ -14,14 +14,19 @@ enum Track1FontFace: String, CaseIterable {
 }
 
 /// The 20 text styles of the Figma Typography frame (`180:376`, read 2026-10-13, TRA-384), plus
-/// `monoHeadline`, which only the Top bar date uses (`I282:838;173:15`, read 2026-10-23, TRA-660). Sizes and
-/// line heights are in points at the default content size; `textStyle` is the system style that Dynamic Type
-/// scales each role against (D4bis).
+/// `monoHeadline`, which only the Top bar date uses (`I282:838;173:15`, read 2026-10-23, TRA-660), plus the
+/// seven roles of the v1 screens, read on the mockup nodes on 2026-11-16 (TRA-710). Sizes and line heights
+/// are in points at the default content size; `textStyle` is the system style that Dynamic Type scales each
+/// role against (D4bis).
 enum Track1TextRole: CaseIterable {
 	case displayHero, display, title1, title2, title3, headline
 	case bodyLarge, bodyMedium, bodySmall
 	case labelLarge, labelMedium, labelSmall, labelTab, eyebrow, caption
 	case monoHeadline, monoSection, monoItem, monoTag, monoLabel, monoMicro
+	// v1 roles. `inputLarge`, `reader` and `readerDim` are "Inter" in the Figma and Roboto in the app: the
+	// mapping already in place, since only the six embedded fonts exist (`Track1FontFace`).
+	case inputLarge, reader, readerDim
+	case monoBadge, monoCounter, monoBarTitle, monoButton
 
 	private typealias Spec = (
 		face: Track1FontFace, size: CGFloat, lineHeight: CGFloat, textStyle: Font.TextStyle
@@ -50,6 +55,13 @@ enum Track1TextRole: CaseIterable {
 		case .labelTab: (.robotoSemiBold, 10, 12, .caption2)
 		case .eyebrow: (.robotoCondensedMedium, 16, 20, .callout)
 		case .caption: (.robotoRegular, 12, 16, .caption)
+		case .inputLarge: (.robotoRegular, 34, 41, .largeTitle)  // 362:2906
+		case .reader: (.robotoRegular, 22, 34, .title2)  // 338:2480
+		case .readerDim: (.robotoRegular, 20, 34, .title3)  // 338:2479
+		case .monoBadge: (.jetBrainsMonoBold, 14, 25, .footnote)  // 324:1807
+		case .monoCounter: (.jetBrainsMonoMedium, 16, 20, .callout)  // 362:5075
+		case .monoBarTitle: (.jetBrainsMonoBold, 16, 24, .callout)  // 338:2519
+		case .monoButton: (.jetBrainsMonoMedium, 15, 20, .subheadline)  // 324:1816
 		}
 	}
 
