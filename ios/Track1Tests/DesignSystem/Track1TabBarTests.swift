@@ -4,8 +4,8 @@ import XCTest
 
 @testable import Track1
 
-/// The numbers are spelled out again from the Figma frame `282:889` (read 2026-10-23, plan annex A.1): a
-/// metric or a color changed in `Track1TabBarMetrics` / `Track1TabBarStyle` alone fails here.
+/// The numbers are spelled out again from the Figma frame `324:1792` (v1, TRA-720, plan annex A): a metric or a
+/// color changed in `Track1TabBarMetrics` / `Track1TabBarStyle` alone fails here.
 @MainActor
 final class Track1TabBarTests: XCTestCase {
 	private typealias Item = Track1TabBar.Item
@@ -19,28 +19,26 @@ final class Track1TabBarTests: XCTestCase {
 		XCTAssertEqual(Track1TabBarMetrics.tabWidth, 96)
 		XCTAssertEqual(Track1TabBarMetrics.tabHeight, 54)
 		XCTAssertEqual(Track1TabBarMetrics.pillPadding, 4)
+		XCTAssertEqual(Track1TabBarMetrics.pillWidth, 200)
 		XCTAssertEqual(Track1TabBarMetrics.pillHeight, 62)
 		XCTAssertEqual(Track1TabBarMetrics.topPadding, 12)
 		XCTAssertEqual(Track1TabBarMetrics.horizontalInset, 25)
 		XCTAssertEqual(Track1TabBarMetrics.iconSize, 20)
-		XCTAssertEqual(Track1TabBarMetrics.borderWidth, 1)
 		XCTAssertEqual(Track1TabBarMetrics.bottomPaddingWithoutHomeIndicator, 12)
 	}
 
-	func testColorsAreTheGlassTokensAtTheirFigmaValues() {
-		XCTAssertEqual(rgbaHex(Track1TabBarStyle.pillFill), rgbaHex(Track1Tokens.colorGlassSurface))
-		XCTAssertEqual(rgbaHex(Track1TabBarStyle.pillBorder), rgbaHex(Track1Tokens.colorGlassBorder))
-		XCTAssertEqual(rgbaHex(Track1TabBarStyle.selectedFill), rgbaHex(Track1Tokens.colorGlassSelected))
-		// rgba(9,10,14,0.68), then white at 0.26 for the border and for the selected tab.
-		XCTAssertEqual(rgbaHex(Track1TabBarStyle.pillFill), "090a0ead")
-		XCTAssertEqual(rgbaHex(Track1TabBarStyle.pillBorder), "ffffff42")
-		XCTAssertEqual(rgbaHex(Track1TabBarStyle.selectedFill), "ffffff42")
+	func testColorsAreTheGlassPillTokensAtTheirFigmaValues() {
+		XCTAssertEqual(rgbaHex(Track1TabBarStyle.pillFill), rgbaHex(Track1Tokens.colorGlassPill))
+		XCTAssertEqual(rgbaHex(Track1TabBarStyle.selectedFill), rgbaHex(Track1Tokens.colorGlassPillSelected))
+		// White at 15 % for the pill, black at 20 % under the selected tab.
+		XCTAssertEqual(rgbaHex(Track1TabBarStyle.pillFill), "ffffff26")
+		XCTAssertEqual(rgbaHex(Track1TabBarStyle.selectedFill), "00000033")
 	}
 
-	func testTonesAreActionWhenActiveAndSecondaryWhenInactive() {
-		XCTAssertEqual(Track1TabBarStyle.activeTone, .action)
+	func testTonesArePrimaryWhenActiveAndSecondaryWhenInactive() {
+		XCTAssertEqual(Track1TabBarStyle.activeTone, .primary)
 		XCTAssertEqual(Track1TabBarStyle.inactiveTone, .secondary)
-		XCTAssertEqual(rgbaHex(Track1TabBarStyle.activeTone.color), "f0642dff")
+		XCTAssertEqual(rgbaHex(Track1TabBarStyle.activeTone.color), "f6e9d8ff")
 		XCTAssertEqual(rgbaHex(Track1TabBarStyle.inactiveTone.color), "c8b6a3ff")
 	}
 
@@ -71,10 +69,10 @@ final class Track1TabBarTests: XCTestCase {
 	func testOnlyTheSelectedItemIsSelectedAndToned() {
 		XCTAssertTrue(Track1TabBar.isSelected(today, selected: "today"))
 		XCTAssertFalse(Track1TabBar.isSelected(genres, selected: "today"))
-		XCTAssertEqual(Track1TabBar.tone(for: today, selected: "today"), .action)
+		XCTAssertEqual(Track1TabBar.tone(for: today, selected: "today"), .primary)
 		XCTAssertEqual(Track1TabBar.tone(for: genres, selected: "today"), .secondary)
 		XCTAssertEqual(Track1TabBar.tone(for: today, selected: "genres"), .secondary)
-		XCTAssertEqual(Track1TabBar.tone(for: genres, selected: "genres"), .action)
+		XCTAssertEqual(Track1TabBar.tone(for: genres, selected: "genres"), .primary)
 	}
 
 	func testOnlyTheSelectedTabCarriesTheSelectedTrait() {
@@ -90,6 +88,14 @@ final class Track1TabBarTests: XCTestCase {
 		let size = host.sizeThatFits(in: CGSize(width: 393, height: 1000))
 		// No safe area in a bare hosting controller: 12 + 62 + 12.
 		XCTAssertEqual(size.height, 12 + 62 + 12, accuracy: 0.5)
+	}
+
+	/// The pill hugs its two tabs: the metrics `pillWidth` and `pillHeight` are what the layout really draws.
+	func testThePillMeasuresItsFigmaSize() {
+		let bar = Track1TabBar(items: [today, genres], selected: "today", onSelect: { _ in })
+		let size = UIHostingController(rootView: bar.pill).sizeThatFits(in: CGSize(width: 393, height: 1000))
+		XCTAssertEqual(size.width, Track1TabBarMetrics.pillWidth, accuracy: 0.5)
+		XCTAssertEqual(size.height, Track1TabBarMetrics.pillHeight, accuracy: 0.5)
 	}
 
 	/// The bar spans the width it is offered, so that its fade runs edge to edge, and centers the pill in it.
