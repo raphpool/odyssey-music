@@ -24,12 +24,20 @@ fi
 `,
 	plutil: `#!/usr/bin/env bash
 [[ "$1" == "-replace" ]] && printf '%s=%s\\n' "$2" "$4" >> "$5"
-[[ "$1" == "-extract" ]] && printf '1.0.0\\n'
+[[ "$1" == "-extract" && "$2" == Track1APIBaseURL ]] && printf '%s\\n' "\${TRACK1_TEST_PLIST_API_URL-$TRACK1_API_BASE_URL}"
+[[ "$1" == "-extract" && "$2" != Track1APIBaseURL ]] && printf '1.0.0\\n'
 exit 0
 `,
 	git: `#!/usr/bin/env bash
+[[ "$*" == *"status --porcelain"* ]] && printf '%s' "$TRACK1_TEST_GIT_STATUS"
 [[ "$*" == *"rev-parse HEAD"* ]] && printf '0123456789abcdef0123456789abcdef01234567\\n'
 exit 0
+`,
+	unzip: `#!/usr/bin/env bash
+mkdir -p "$4/Payload/Track1.app"
+`,
+	codesign: `#!/usr/bin/env bash
+printf 'Identifier=%s\\nTeamIdentifier=%s\\n' "\${TRACK1_TEST_SIGNED_IDENTIFIER-com.dropcliffs.track1}" "\${TRACK1_TEST_SIGNED_TEAM-ABCDE12345}" >&2
 `,
 };
 
@@ -37,6 +45,7 @@ async function run(overrides: Record<string, string | undefined> = {}) {
 	const directory = await realpath(await mkdtemp(join(tmpdir(), "track1-ios-testflight-")));
 	try {
 		await writeFile(join(directory, "AuthKey.p8"), keyBody);
+		await writeFile(join(directory, "other-xcode"), "Xcode 1.0 (1A1)");
 		for (const [name, body] of Object.entries(fakeTools))
 			await writeFile(join(directory, name), body, { mode: 0o755 });
 		const result = spawnSync("bash", [script, join(directory, "output")], {
@@ -103,4 +112,56 @@ describe.sequential("Track1 TestFlight archive script", () => {
 		expect(result.stdout.includes("IPA:")).toBe(!uploads);
 		expect(result.stdout + result.stderr).not.toContain(keyBody);
 	});
+
+	it.each([
+		[
+			"an API path other than /mobile/v1",
+			{ TRACK1_API_BASE_URL: "https://a.example.org/v1" },
+			"TRACK1_API_BASE_URL must end with /mobile/v1",
+		],
+		[
+			"a placeholder .example host",
+			{ TRACK1_API_BASE_URL: "https://a.track1.example/mobile/v1" },
+			"TRACK1_API_BASE_URL must not end with .example",
+		],
+		["an invalid Team ID", { TRACK1_TEAM_ID: "abc" }, "TRACK1_TEAM_ID is required"],
+		["a dirty git tree", { TRACK1_TEST_GIT_STATUS: "?? notes.txt\n" }, "uncommitted changes"],
+		["another Xcode version", { TRACK1_TEST_XCODE_FILE: "other-xcode" }, "Expected Xcode"],
+		["a missing key file", { ASC_KEY_PATH: "/nonexistent/AuthKey.p8" }, "ASC_KEY_PATH must be a readable"],
+		["an unset key path", { ASC_KEY_PATH: undefined }, "ASC_KEY_PATH must be a readable"],
+		["an empty profile name", { TRACK1_PROFILE_NAME: "" }, "TRACK1_PROFILE_NAME is required"],
+		["a profile name with a $", { TRACK1_PROFILE_NAME: "$(HOME)" }, "TRACK1_PROFILE_NAME must not contain"],
+		["a missing key ID", { ASC_KEY_ID: "" }, "ASC_KEY_ID is required"],
+		["a missing issuer ID", { ASC_ISSUER_ID: "" }, "ASC_ISSUER_ID is required"],
+		["an unknown upload value", { TRACK1_UPLOAD: "yes" }, "TRACK1_UPLOAD must be 0 or 1"],
+	])("stops before any xcodebuild archive for %s", async (_label, overrides, expectedError) => {
+		const { calls, result } = await run(overrides);
+
+		expect(result.status, `${result.stdout}\n${result.stderr}`).not.toBe(0);
+		expect(result.stderr).toContain(expectedError);
+		expect(result.stdout + result.stderr).not.toContain(keyBody);
+		expect(calls).toEqual([]);
+	});
+
+	it.each([
+		["another team", { TRACK1_TEST_SIGNED_TEAM: "ZZZZZ99999" }, "signed by team 'ZZZZZ99999'"],
+		["another identifier", { TRACK1_TEST_SIGNED_IDENTIFIER: "com.x.y" }, "signed as 'com.x.y'"],
+		[
+			"another API URL",
+			{ TRACK1_TEST_PLIST_API_URL: "https://b.example.org/mobile/v1" },
+			"embeds API URL 'https://b.example.org",
+		],
+	])(
+		"without upload, fails when the exported app has %s; with an upload nothing is checked",
+		async (_label, overrides, expectedError) => {
+			const exported = await run(overrides);
+			const uploaded = await run({ ...overrides, TRACK1_UPLOAD: "1" });
+
+			expect(exported.result.status).not.toBe(0);
+			expect(exported.result.stderr).toContain(expectedError);
+			expect(exported.result.stdout).not.toContain("IPA:");
+			expect(uploaded.result.status, uploaded.result.stderr).toBe(0);
+			expect(uploaded.result.stdout).not.toContain("IPA:");
+		},
+	);
 });
