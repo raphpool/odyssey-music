@@ -26,9 +26,9 @@ const code = gate
 
 const expr = (inner: string): string => `\${{ ${inner} }}`;
 
-/** The `run: |` script of a step, unindented, from its `- name:` line. */
-function stepScript(name: string): string {
-	const lines = gate.split("\n");
+/** The `run: |` script of a step, unindented, from its `- name:` line (in review-gate.yml unless `source` is given). */
+function stepScript(name: string, source = gate): string {
+	const lines = source.split("\n");
 	const start = lines.findIndex((line) => line.trim() === `- name: ${name}`);
 	if (start === -1) throw new Error(`step "${name}" not found in review-gate.yml`);
 	const runAt = lines.findIndex((line, index) => index > start && line.trim() === "run: |");
@@ -126,7 +126,7 @@ const stream = (path: string, items: unknown[]): void =>
 	writeFileSync(path, items.map((item) => JSON.stringify(item)).join("\n"));
 
 /** What the "Evaluate" step reads: `<check-run id>\t<conclusion or missing>`. */
-async function select(api: Api): Promise<string> {
+async function select(api: Api, jobName = "review"): Promise<string> {
 	fixture += 1;
 	const files = (["checks", "runs", "jobs", "pulls"] as const).map((kind) => {
 		const path = join(scratch, `${kind}-${fixture}.json`);
@@ -158,6 +158,9 @@ async function select(api: Api): Promise<string> {
 		"--arg",
 		"path",
 		AI_REVIEW,
+		"--arg",
+		"job",
+		jobName,
 		selectReviewProgram(),
 	]);
 	return stdout.trimEnd();
@@ -251,6 +254,57 @@ describe("review-gate.yml: which check-run counts as the AI review (TRA-520)", (
 		expect(await select(merge(rerun, first))).toBe("12\tsuccess");
 		// A newer review still running: that is the one judged, and it has no conclusion yet.
 		expect(await select(merge(first, rerun, newerRun))).toBe("13\tmissing");
+	});
+});
+
+// TRA-749 (2026-11-16): the `deep-review` job of ai-review.yml goes through the same program with the same proofs, so
+// each forgery below must read as `missing` for the job it targets and for the other one alike.
+describe("review-gate.yml: `deep-review` is selected like `review` (TRA-749)", () => {
+	const JOBS = ["review", "deep-review"];
+	const named = (name: string, api: Api): Api => ({
+		...api,
+		checks: api.checks.map((check) => ({ ...(check as object), name })),
+		jobs: api.jobs.map((entry) => ({ ...(entry as object), name })),
+	});
+	const run = (overrides: Record<string, unknown>) => (name: string) =>
+		named(name, { ...genuine(11, 100), runs: [workflowRun(5100, 100, overrides)] });
+	const forgeries: [string, (name: string) => Api][] = [
+		[
+			"created by the API",
+			(name) => ({
+				checks: [checkRun(98, 200, { name, started_at: "2099-01-01T00:00:00Z" })],
+				runs: [],
+				jobs: [],
+			}),
+		],
+		["a job of another workflow", run({ path: ".github/workflows/forged.yml" })],
+		["another sha", (name) => named(name, genuine(11, 100, { head_sha: OTHER_HEAD }))],
+		["a run of another sha", run({ head_sha: OTHER_HEAD })],
+		["another PR", run({ pull_requests: [{ number: 43, base_ref: PR.baseRef }] })],
+		["another base", run({ pull_requests: [{ number: PR.number, base_ref: "feature/x" }] })],
+	];
+
+	it.each(JOBS)("reads an authentic %s job with its conclusion", async (name) => {
+		expect(await select(named(name, genuine(11, 100, { conclusion: "failure" })), name)).toBe("11\tfailure");
+	});
+
+	it.each(forgeries.flatMap(([label, build]) => JOBS.map((name) => [label, name, build] as const)))(
+		"reads a check-run %s as missing for %s",
+		async (_label, name, build) => {
+			expect(await select(build(name), name)).toBe("0\tmissing");
+		},
+	);
+
+	// A deep-review that did not run (skipped below tier 3, cancelled, timed out) is no verdict, whatever the job.
+	it.each(["skipped", "cancelled", "timed_out"])("reads a %s job as missing", async (conclusion) => {
+		for (const name of JOBS) {
+			expect(await select(named(name, genuine(11, 100, { conclusion })), name)).toBe("11\tmissing");
+		}
+	});
+
+	it("never takes the job of one name for the other", async () => {
+		expect(await select(named("review", genuine(11, 100)), "deep-review")).toBe("0\tmissing");
+		expect(await select(named("deep-review", genuine(11, 100)), "review")).toBe("0\tmissing");
 	});
 });
 
@@ -878,6 +932,7 @@ echo "$url" >> "$FIXTURES/calls.log"
 case "$url" in
   */annotations*) id="\${url#*check-runs/}"; f="annotations-\${id%%/*}" ;;
   */issues/*/labels*) f=labels ;;
+  *check_name=deep-review*) f=deep-checks ;;
   */commits/*/check-runs*) f=checks ;;
   */commits/*/statuses*) f=statuses ;;
   */actions/runs/*/jobs*) id="\${url#*actions/runs/}"; f="jobs-\${id%%/*}" ;;
@@ -898,6 +953,8 @@ if [ -f "$FIXTURES/$f.json" ]; then cat "$FIXTURES/$f.json"; fi`,
 
 	interface Scenario {
 		api: Api;
+		/** The check-runs named `deep-review` (TRA-749); the fake `gh` serves them apart from `api.checks`. */
+		deepChecks?: unknown[];
 		/** Annotations (messages) of each check-run, by check-run id. */
 		notes?: Record<number, string[]>;
 		/** The facts of the event; the PR of the other tests by default. */
@@ -906,7 +963,7 @@ if [ -f "$FIXTURES/$f.json" ]; then cat "$FIXTURES/$f.json"; fi`,
 	}
 
 	/** The "Evaluate" step on simulated API answers: its exit code, its output, and the API paths it requested. */
-	async function evaluate({ api, notes = {}, pr = PR, defaultBranch = "main" }: Scenario) {
+	async function evaluate({ api, deepChecks = [], notes = {}, pr = PR, defaultBranch = "main" }: Scenario) {
 		fixture += 1;
 		const dir = join(scratch, `tra529-${fixture}`);
 		const fx = join(dir, "fixtures");
@@ -919,6 +976,7 @@ if [ -f "$FIXTURES/$f.json" ]; then cat "$FIXTURES/$f.json"; fi`,
 		);
 		writeFileSync(join(runnerTemp, "review-gate-policy", "authors.json"), JSON.stringify(["raphpool"]));
 		stream(join(fx, "checks.json"), api.checks);
+		stream(join(fx, "deep-checks.json"), deepChecks);
 		stream(join(fx, "runs.json"), api.runs);
 		stream(join(fx, "pulls.json"), api.pulls ?? [{ ...ownPull, number: pr.number, base_ref: pr.baseRef }]);
 		stream(join(fx, "statuses.json"), [
@@ -1115,5 +1173,126 @@ if [ -f "$FIXTURES/$f.json" ]; then cat "$FIXTURES/$f.json"; fi`,
 		);
 		// Fail closed: a review that does not validate is `missing` with no id, never left as read.
 		expect(evaluateStep).toMatch(/claude=missing\s+claude_id=0/);
+	});
+
+	// TRA-749: the `deep-review` job gets the same selection and the same base record before it reaches the policy.
+	describe("the `deep-review` job (TRA-749)", () => {
+		const deepJob = { name: "deep-review" };
+		const deepReview: Api = {
+			checks: [checkRun(21, 101, deepJob)],
+			runs: [workflowRun(5101, 101)],
+			jobs: [job(21, 5101, deepJob)],
+		};
+		const both = (): Scenario => ({
+			api: merge(genuine(11, 100), { runs: deepReview.runs, jobs: deepReview.jobs }),
+			deepChecks: deepReview.checks,
+		});
+
+		it("reads its annotations, and keeps it, when it recorded this PR against the default branch", async () => {
+			const outcome = await evaluate({ ...both(), notes: { 11: [OWN_RECORD], 21: [OWN_RECORD] } });
+			expect(passes(outcome), outcome.stdout).toBe(true);
+			expect(outcome.stdout).not.toContain("La review profonde");
+			expect(outcome.calls).toContain(`repos/${REPO}/check-runs/21/annotations?per_page=100`);
+		}, 30_000);
+
+		it("drops it, and says so, when it recorded another base or nothing", async () => {
+			for (const record of [base(PR.number, "feature/x"), PATCH_RECORD]) {
+				const outcome = await evaluate({ ...both(), notes: { 11: [OWN_RECORD], 21: [record] } });
+				expect(outcome.stdout).toContain("La review profonde (check-run 21) n'a pas enregistré cette PR");
+			}
+		}, 60_000);
+
+		it("hands its conclusion to the policy as deepClaude, `missing` by default, and does not send touchesGate", () => {
+			expect(code).toMatch(/--arg deepClaude "\$\{deep_claude:-missing\}"/);
+			expect(code).toContain("deepClaude:$deepClaude");
+			expect(code).not.toContain("touchesGate");
+			// Each call of the selection names its job, and the two lists are fetched apart.
+			for (const part of ["--arg job review", "--arg job deep-review", "check_name=deep-review"]) {
+				expect(code).toContain(part);
+			}
+		});
+	});
+});
+
+// TRA-754 (2026-11-16): the jobs that run the deep review (comment lines dropped, as elsewhere in this file).
+describe("ai-review.yml: the `deep-review` jobs (TRA-754)", () => {
+	const raw = readFileSync(AI_REVIEW, "utf8").replaceAll("\r\n", "\n");
+	const uncommented = raw
+		.split("\n")
+		.filter((line) => !/^\s*#/.test(line))
+		.join("\n");
+	const jobOf = (key: string): string =>
+		uncommented.split(/\n(?= {2}[a-z][a-z-]*:\n)/).find((part) => part.startsWith(`  ${key}:\n`)) ?? "";
+	const [reviewJob = "", tierJob = "", deepJob = ""] = ["review", "deep-review-tier", "deep-review"].map(
+		jobOf,
+	);
+	const steps = (job: string): string[] => job.split("\n      - ").slice(1);
+	const permissions = (job: string): string =>
+		job.slice(job.indexOf("    permissions:"), job.indexOf("    steps:"));
+
+	// Fail closed: a `deep-review` that succeeded without reviewing would be read `success` once a `tier/3` label appears.
+	it("is skipped, never run, below tier 3 or when the tier job fails, and has no step that can be skipped", () => {
+		expect(deepJob).toContain("\n    needs: deep-review-tier\n");
+		expect(deepJob).toContain("&& needs.deep-review-tier.outputs.tier == '3'\n");
+		expect(tierJob).toContain(`tier: ${expr("steps.tier.outputs.tier")}`);
+		// A status function or continue-on-error would run it anyway or hide a failure; a step `if` would skip a step.
+		expect(tierJob + deepJob).not.toMatch(/always\(|failure\(|cancelled\(|success\(|continue-on-error/);
+		expect(steps(deepJob).join("\n")).not.toMatch(/\bif:/);
+	});
+
+	it("computes the tier with the default branch's classifier on the gate's paths, the module path not in argv", () => {
+		expect(tierJob).toContain('git show "origin/$DEFAULT_BRANCH:scripts/ci/review-gate-policy.ts"');
+		expect(tierJob).toContain("git diff -z --name-only --no-renames");
+		// 2026-11-16: the policy runs its CLI when argv[1] ends with its own name; a path in argv made the import throw.
+		expect(tierJob).toContain("import(process.env.POLICY)");
+		expect(tierJob).not.toContain("process.argv");
+	});
+
+	it("runs on hosted runners, with the permissions of `review`, and writes its review-base record first", () => {
+		for (const job of [tierJob, deepJob]) expect(job).toContain("    runs-on: ubuntu-latest\n");
+		expect(permissions(deepJob)).toBe(permissions(reviewJob));
+		const record = steps(reviewJob).find((step) => step.startsWith("name: Record the pull request"));
+		expect(record).toContain("::notice::review-base v1 $PR_NUMBER $BASE_REF");
+		expect(steps(deepJob)[0]).toBe(record);
+	});
+
+	it("reviews with the default branch's rubric, never reuses a verdict, and keeps the hardening of `review`", () => {
+		expect(deepJob).toContain('git show "origin/$DEFAULT_BRANCH:REVIEW.md"');
+		expect(deepJob).toContain(`claude_code_oauth_token: ${expr("secrets.CLAUDE_CODE_OAUTH_TOKEN")}`);
+		// The whole `claude_args` block (model, tools, setting sources, MCP) is the one of `review`, which TRA-553 hardened.
+		const args = (job: string) => /claude_args: \|\n((?: {12}\S.*\n)+)/.exec(job)?.[1];
+		expect(args(deepJob)).toContain("--allowedTools");
+		expect(args(deepJob)).toBe(args(reviewJob));
+		expect(deepJob).not.toMatch(/reuse|patch-id|steps\.decide/i);
+	});
+
+	// The "Gate on the deep verdict" step, run as the job runs it: any doubt is a failed job.
+	const ok = { verdict: "pass", blocking: 0, nits: 0, summary: "ok", findings: [] };
+	const json = JSON.stringify;
+	it.each([
+		["passes a pass verdict with no blocking finding", json(ok), true],
+		["fails on no verdict file", undefined, false],
+		["fails on a verdict that is not JSON", "not json", false],
+		["fails on a block verdict", json({ ...ok, verdict: "block", blocking: 1 }), false],
+		["fails on a pass verdict that counts a blocking finding", json({ ...ok, blocking: 1 }), false],
+		[
+			"fails on a pass verdict that lists a block finding",
+			json({ ...ok, findings: [{ severity: "block" }] }),
+			false,
+		],
+		["fails on a verdict with no counts", json({ verdict: "pass" }), false],
+	])("%s", async (_label, content, succeeds) => {
+		fixture += 1;
+		const dir = join(scratch, `deep-verdict-${fixture}`);
+		mkdirSync(dir);
+		if (content !== undefined) writeFileSync(join(dir, "deep-review.json"), content);
+		const env = { PATH: process.env.PATH ?? "", RUNNER_TEMP: dir, GITHUB_STEP_SUMMARY: join(dir, "s.md") };
+		const script = stepScript("Gate on the deep verdict", raw);
+		expect(
+			await exec("bash", ["-e", "-c", script], { env }).then(
+				() => true,
+				() => false,
+			),
+		).toBe(succeeds);
 	});
 });
