@@ -321,7 +321,8 @@ final class GenreSelectionModelLegacyRestoreTests: XCTestCase {
 			path: UUID().uuidString, directoryHint: .isDirectory)
 		defer { try? FileManager.default.removeItem(at: directory) }
 		let localStore = LocalStore(directoryURL: directory)
-		let old = #"{"version":2,"local_id":"\#(UUID())","genre_ids":[],"revision":3,"#
+		let old =
+			#"{"version":2,"local_id":"\#(UUID())","genre_ids":[],"revision":3,"#
 			+ #""onboarding_completed":true,"flow_id":"\#(UUID())"}"#
 		for name in ["profile.v1.json", "profile.v2.json"] {
 			_ = await localStore.write(Data(old.utf8), named: name)
