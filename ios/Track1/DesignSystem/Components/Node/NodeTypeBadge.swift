@@ -14,7 +14,20 @@ enum NodeTypeBadgeMetrics {
 	static let squareSize = CGSize(width: 11.368, height: 12)
 	/// Figma `362:5107`: the polygon is 14 x 14 and its frame is the slot that the spacing is measured from.
 	static let hexagonSize: CGFloat = 14
+	/// How far below the centre of the 25 high line the hexagon sits. Figma `362:5107` is at y = 2.5 in its
+	/// 14 x 17 frame `362:5106`, which is at y = 4 in the line `362:5105`: its centre is at 13.5 for a line
+	/// centre of 12.5 (read on 2026-11-17). The square `362:5099` is centred. Kept on purpose, the screens
+	/// are matched to the pixel (arbitration Q6).
+	static let hexagonOffsetY: CGFloat = 1
 	static let identifier = "node-type-badge"
+
+	/// Vertical shift of the shape from the centre of the line: `hexagonOffsetY` for a track, 0 for a square.
+	static func offsetY(for type: NodeType) -> CGFloat {
+		switch NodeTypeBadge.shape(for: type) {
+		case .hexagon: hexagonOffsetY
+		case .square: 0
+		}
+	}
 
 	/// Gap between the shape and the tag: 4 after the hexagon (`362:5105`), `theme.spacing.8` after the
 	/// square (`362:5098`). It follows the shape, so a type cannot get one shape and the other's gap.
@@ -89,6 +102,7 @@ struct NodeTypeBadge: View {
 	var body: some View {
 		HStack(spacing: NodeTypeBadgeMetrics.spacing(for: type)) {
 			mark
+				.offset(y: NodeTypeBadgeMetrics.offsetY(for: type))
 			Track1Text(Self.tag(for: type), role: Self.tagRole, verbatim: true)
 				.foregroundStyle(Self.color(for: type))
 		}

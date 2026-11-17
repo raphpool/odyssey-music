@@ -76,6 +76,15 @@ final class NodeContentCardTests: XCTestCase {
 		}
 	}
 
+	func testHexagonSitsOnePointBelowTheCentreOfTheLineAndTheSquareIsCentred() {
+		// Figma `362:5107`: centre at 13.5 in a line of 25 whose centre is 12.5 (read on 2026-11-17).
+		XCTAssertEqual(NodeTypeBadgeMetrics.hexagonOffsetY, 1)
+		XCTAssertEqual(NodeTypeBadgeMetrics.offsetY(for: .track), 1)
+		for type in [NodeType.artist, .project, .genre, .label] {
+			XCTAssertEqual(NodeTypeBadgeMetrics.offsetY(for: type), 0, "\(type)")
+		}
+	}
+
 	func testBadgeTagUsesTheMonoBadgeRole() {
 		XCTAssertEqual(NodeTypeBadge.tagRole, .monoBadge)
 	}
