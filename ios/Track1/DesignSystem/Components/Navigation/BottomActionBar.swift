@@ -7,9 +7,9 @@ import SwiftUI
 /// colors).
 ///
 /// Place it with `safeAreaInset(edge: .bottom, spacing: 0)` on the screen so that the content scrolls under
-/// the fade; the fade extends under the home indicator. The Figma bar sits on a full-screen frame, where its
-/// 32 pt bottom padding is measured from the physical edge: next to the safe area inset, the button ends up
-/// higher than in the capture.
+/// the fade; the fade rises above the bar and its end color fills the home-indicator inset under it. The
+/// Figma bar sits on a full-screen frame, where its 32 pt bottom padding is measured from the physical edge:
+/// next to the safe area inset, the button ends up higher than in the capture, and the fade with it.
 ///
 /// `identifier` is set on the button itself: an identifier set from outside on the bar would not replace the
 /// one the button carries, so a screen that needs its own (`onboarding-start`) passes it here. `showsFade`
@@ -27,7 +27,8 @@ struct BottomActionBar: View {
 	static let contentOrder: [Part] = [.counter, .button]
 
 	/// Height of the Figma bar (`362:5074`), the one the fade stops are measured on. The bar is shorter than
-	/// that (24 + 20 + 8 + 52 + 32 = 136 pt): the fade rises above it, over the scrolled content.
+	/// that (24 + 20 + 8 + 52 + 32 = 136 pt): the fade rises above it, over the scrolled content. It stays
+	/// 195 pt at larger text sizes, where the bar grows into the ramp.
 	static let fadeHeight: CGFloat = 195
 
 	/// Transparent from 22.821 % of `fadeHeight`, opaque from 44.103 %, as drawn in Figma. Outside the two
@@ -95,15 +96,22 @@ struct BottomActionBar: View {
 		.padding(.bottom, Self.bottomInset)
 		.background(alignment: .bottom) {
 			if showsFade {
-				// The clear base takes the bar and the home-indicator inset under it; the fade hangs on its bottom
-				// edge at its Figma height, and so rises above the bar. It must not catch the taps of the cards it
+				// Hung on the bottom edge of the bar, which stands for the bottom of the Figma frame: the stops then
+				// fall on the counter and the button as in Figma, whatever the home-indicator inset under the bar.
+				// It rises above the bar, over the scrolled content, and must not catch the taps of the cards it
 				// covers.
+				LinearGradient(stops: Self.fadeStops, startPoint: .top, endPoint: .bottom)
+					.frame(height: Self.fadeHeight)
+					.allowsHitTesting(false)
+			}
+		}
+		.background(alignment: .bottom) {
+			if showsFade {
+				// The fade has ended at the bar's bottom edge: the home-indicator inset under it takes the end color
+				// so that no card shows there. A thin strip on that edge, whose background ignores the safe area.
 				Color.clear
-					.overlay(alignment: .bottom) {
-						LinearGradient(stops: Self.fadeStops, startPoint: .top, endPoint: .bottom)
-							.frame(height: Self.fadeHeight)
-					}
-					.ignoresSafeArea(edges: .bottom)
+					.frame(height: 1)
+					.background(Track1Tokens.colorBackgroundElevated, ignoresSafeAreaEdges: .bottom)
 					.allowsHitTesting(false)
 			}
 		}
