@@ -39,6 +39,7 @@ public enum ReminderPlan {
 		today: String, profileGenreNames: [String], makeID: () -> UUID
 	) -> [PlannedReminder] {
 		guard !candidates.isEmpty, let dates = upcomingDates(after: today) else { return [] }
+		let nodes = nodeIndex(of: catalog)
 		var seen = history
 		var reminders: [PlannedReminder] = []
 		for localDate in dates {
@@ -62,40 +63,51 @@ public enum ReminderPlan {
 			reminders.append(
 				PlannedReminder(
 					localDate: localDate, hour: hour, title: title,
-					body: body(for: recommendation, catalog: catalog), recommendation: recommendation))
+					body: body(for: recommendation, edges: catalog.edges, nodes: nodes), recommendation: recommendation))
 		}
 		return reminders
 	}
 
 	/// "Artist, album Name" or "Artist, morceau Name"; with no credited artist, "Album Name" or "Morceau Name".
-	/// Artists are the targets of the node's `artists` edges, in edge order, once each. Every string comes from
-	/// the network, so it is cleaned like the headers of the node page and never interpreted. A name that is
-	/// blank once cleaned leaves the artists alone, or the bare kind when there is none.
+	/// Artists are the targets of the node's `artists` edges, once each, in the order of `catalog.edges`. That
+	/// order is the catalog's (edges are sorted by source then target identity, so artists come out
+	/// alphabetically by identity), not the order of the credits, which the catalog does not carry. Every
+	/// string comes from the network, so it is cleaned like the headers of the node page and never
+	/// interpreted. A name that is blank once cleaned leaves the artists alone, or the bare kind when there is
+	/// none. Only projects and tracks are recommended: any other type gets its cleaned name alone, with no
+	/// kind and no artists.
 	public static func body(for recommendation: DailyRecommendation, catalog: Catalog) -> String {
+		body(for: recommendation, edges: catalog.edges, nodes: nodeIndex(of: catalog))
+	}
+
+	/// The last node wins on duplicate identities, like `Affinity.rank`. Built once per plan, not once per day.
+	private static func nodeIndex(of catalog: Catalog) -> [NodeIdentity: CatalogNode] {
+		Dictionary(catalog.nodes.map { ($0.identity, $0) }, uniquingKeysWith: { _, last in last })
+	}
+
+	private static func body(
+		for recommendation: DailyRecommendation, edges: [CatalogEdge], nodes: [NodeIdentity: CatalogNode]
+	) -> String {
 		let name = NodePageHeader.clean(recommendation.name)
-		let artists = artistNames(of: recommendation.nodeID, in: catalog)
 		let kind: String
 		switch recommendation.nodeType {
 		case .project: kind = "album"
 		case .track: kind = "morceau"
 		case .artist, .genre, .label: return name ?? ""
 		}
-		if artists.isEmpty { return [kind.capitalized, name].compactMap { $0 }.joined(separator: " ") }
-		let work = name.map { "\(kind) \($0)" }
-		return [artists, work].compactMap { $0 }.joined(separator: ", ")
-	}
-
-	private static func artistNames(of identity: NodeIdentity, in catalog: Catalog) -> String {
 		// Edge targets are untrusted: a target missing from the catalog, or that is not an artist, is ignored.
-		let nodes = Dictionary(catalog.nodes.map { ($0.identity, $0) }, uniquingKeysWith: { _, last in last })
 		var seen = Set<String>()
-		return catalog.edges
-			.filter { $0.type == "artists" && $0.source == identity }
+		let artists =
+			edges
+			.filter { $0.type == "artists" && $0.source == recommendation.nodeID }
 			.compactMap { nodes[$0.target] }
 			.filter { $0.type == .artist }
 			.compactMap { NodePageHeader.clean($0.name) }
 			.filter { seen.insert($0).inserted }
 			.joined(separator: ", ")
+		if artists.isEmpty { return [kind.capitalized, name].compactMap { $0 }.joined(separator: " ") }
+		let work = name.map { "\(kind) \($0)" }
+		return [artists, work].compactMap { $0 }.joined(separator: ", ")
 	}
 
 	/// UTC carries the calendar arithmetic only: it has no daylight saving jump that could skip or repeat a

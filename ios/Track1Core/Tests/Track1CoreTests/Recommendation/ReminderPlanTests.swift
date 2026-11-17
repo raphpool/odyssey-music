@@ -249,6 +249,11 @@ final class ReminderPlanTests: XCTestCase {
 		XCTAssertEqual(ReminderPlan.body(for: work, catalog: catalog), "Album Saw")
 	}
 
+	func testBodyOfATypeThatIsNotRecommendedIsItsCleanedNameAlone() throws {
+		let legacy = try recommendation(.artist, name: " Aphex\nTwin ", id: "artist:aphex-twin")
+		XCTAssertEqual(ReminderPlan.body(for: legacy, catalog: try bodyCatalog()), "Aphex Twin")
+	}
+
 	func testBodyOfAWorkWhoseNameIsBlankFallsBackToTheKind() throws {
 		let work = try recommendation(.project, name: " \n ", id: "project:saw")
 		XCTAssertEqual(ReminderPlan.body(for: work, catalog: try bodyCatalog()), "Aphex Twin")
