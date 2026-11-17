@@ -126,8 +126,8 @@ public final class TodayViewModel {
 			viewRecorded: false)
 
 		// A stored plan of the current revision is kept by the plan itself, the others are picked again. One that
-		// names today's work (a clock or time zone that moved back) is left out too, so it is picked again and no
-		// work lands twice in the week.
+		// names today's work (a clock or time zone that moved back) is left out too, so it is picked again and
+		// today's work is not announced a second time.
 		let keptPlan = others.filter { $0.localDate > localDate && $0.nodeID != recommendation.nodeID }
 		let reminders = ReminderPlan.plan(
 			candidates: candidates, history: past + [recommendation] + keptPlan,
@@ -200,7 +200,8 @@ public final class TodayViewModel {
 	/// (cancelled or superseded) leaves both as they were, and one that ends without a plan shows none.
 	private func publish(_ newState: TodayState, plan: [PlannedReminder] = []) {
 		state = newState
-		upcoming = plan
+		// Not assigned when unchanged: an observer of `upcoming` must not run again for the same plan.
+		if upcoming != plan { upcoming = plan }
 	}
 
 	/// First come, first served, and the lock is handed straight to the next waiter so a newcomer cannot
