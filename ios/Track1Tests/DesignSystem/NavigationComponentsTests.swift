@@ -132,6 +132,58 @@ final class NavigationComponentsTests: XCTestCase {
 		XCTAssertEqual(TopBar.reasonSpacing, 4, accuracy: 0.0001)
 	}
 
+	// MARK: Bottom action bar, Figma `362:5074` (TRA-767)
+
+	private func rgbaHex(_ color: Color) -> String {
+		components(color).map { String(format: "%02x", Int(($0 * 255).rounded())) }.joined()
+	}
+
+	/// `rgba(26,17,14,0)` at 22.821 % then `#1A110E` at 44.103 %: `background/elevated`, not `background/base`.
+	func testBottomBarFadeIsTheTwoStopsOfTheNode() {
+		let stops = BottomActionBar.fadeStops
+		XCTAssertEqual(stops.count, 2)
+		XCTAssertEqual(stops[0].location, 0.22821, accuracy: 0.000001)
+		XCTAssertEqual(stops[1].location, 0.44103, accuracy: 0.000001)
+		XCTAssertEqual(stops.map { rgbaHex($0.color) }, ["1a110e00", "1a110eff"])
+		XCTAssertEqual(rgbaHex(Track1Tokens.colorBackgroundElevated), "1a110eff")
+	}
+
+	func testBottomBarFadeIsMeasuredOnTheHundredAndNinetyFivePointsOfTheNode() {
+		XCTAssertEqual(BottomActionBar.fadeHeight, 195)
+	}
+
+	func testBottomBarMeasuresAreTheFigmaValues() {
+		XCTAssertEqual(BottomActionBar.topInset, 24)
+		XCTAssertEqual(BottomActionBar.bottomInset, 32)
+		XCTAssertEqual(BottomActionBar.horizontalInset, 16)
+		XCTAssertEqual(BottomActionBar.spacing, 8)
+	}
+
+	/// The 52 pt of "Continuer" belong to `Track1Button` (`.large`, tested with it), not to the bar.
+	func testBottomBarCounterIsMonoCounterInTheSecondaryText() {
+		XCTAssertEqual(BottomActionBar.counterRole, .monoCounter)
+		XCTAssertEqual(BottomActionBar.counterRole.face, .jetBrainsMonoMedium)
+		XCTAssertEqual(BottomActionBar.counterRole.size, 16)
+		XCTAssertEqual(BottomActionBar.counterRole.lineHeight, 20)
+		XCTAssertEqual(rgbaHex(BottomActionBar.counterColor), "c8b6a3ff", "text/secondary")
+		XCTAssertEqual(rgbaHex(BottomActionBar.counterColor), rgbaHex(Track1Tokens.colorTextSecondary))
+	}
+
+	/// The counter is laid out, so read, before the button.
+	@MainActor
+	func testBottomBarReadsTheCounterBeforeTheButton() {
+		XCTAssertEqual(BottomActionBar.contentOrder, [.counter, .button])
+		let bar = BottomActionBar(title: "Continuer", isEnabled: true, counter: "Total : 1 genre") {}
+		XCTAssertEqual(bar.parts, [.counter, .button])
+	}
+
+	/// Welcome passes no counter: only the button is left, with no gap in front of it.
+	@MainActor
+	func testBottomBarWithoutCounterDrawsTheButtonAlone() {
+		let bar = BottomActionBar(title: "Commencer", isEnabled: true, counter: nil) {}
+		XCTAssertEqual(bar.parts, [.button])
+	}
+
 	func testTopBarClearanceAddsOnlyWhatTheLayoutLacksAndNeverGoesNegative() {
 		XCTAssertEqual(TopBarFormat.clearance(windowInset: 59, layoutInset: 0), 59, accuracy: 0.0001)
 		XCTAssertEqual(TopBarFormat.clearance(windowInset: 59, layoutInset: 20), 39, accuracy: 0.0001)
