@@ -125,7 +125,6 @@ final class OnboardingComponentsTests: XCTestCase {
 		XCTAssertEqual(SubgenreChipStyle.verticalPadding, 8)
 		XCTAssertEqual(SubgenreChipStyle.glyphSpacing, 8)
 		XCTAssertEqual(SubgenreChipStyle.glyphSize, 16)
-		XCTAssertEqual(SubgenreChipStyle.flowSpacing, 8)
 		XCTAssertEqual(SubgenreChipStyle.titleRole, .monoTag)
 		XCTAssertEqual(SubgenreChipStyle.titleRole.size, 13)
 		XCTAssertEqual(SubgenreChipStyle.titleRole.lineHeight, 16)
@@ -162,8 +161,7 @@ final class OnboardingComponentsTests: XCTestCase {
 		XCTAssertEqual(GenreAccordionCardMetrics.titleSpacing, 8)
 		XCTAssertEqual(GenreAccordionCardMetrics.countLineSpacing, 8)
 		XCTAssertEqual(GenreAccordionCardMetrics.bodyVerticalInset, 12)
-		XCTAssertEqual(GenreAccordionCardMetrics.bodySpacing, 4)
-		XCTAssertEqual(GenreAccordionCardMetrics.selectAllRowBottomInset, 8)
+		XCTAssertEqual(GenreAccordionCardMetrics.chevronGap, 8)
 	}
 
 	func testGenreCardTextRolesAreTheFigmaOnes() {
@@ -512,12 +510,13 @@ private struct HeaderLayoutProbe: View {
 	var body: some View {
 		Button {
 		} label: {
-			HStack(spacing: Track1Tokens.spacing8) {
-				VStack(alignment: .leading, spacing: Track1Tokens.spacing8) {
-					HStack(alignment: .firstTextBaseline, spacing: Track1Tokens.spacing8) {
-						Track1Text(title, role: .monoItem, verbatim: true).readHeaderFrame("title")
+			HStack(spacing: GenreAccordionCardMetrics.chevronGap) {
+				VStack(alignment: .leading, spacing: GenreAccordionCardMetrics.countLineSpacing) {
+					HStack(alignment: .firstTextBaseline, spacing: GenreAccordionCardMetrics.titleSpacing) {
+						Track1Text(title, role: GenreAccordionCardMetrics.titleRole, verbatim: true)
+							.readHeaderFrame("title")
 						if let badge {
-							Track1Text(badge, role: .monoTag, verbatim: true)
+							Track1Text(badge, role: GenreAccordionCardMetrics.badgeRole, verbatim: true)
 								.fixedSize(horizontal: true, vertical: false)
 								.readHeaderFrame("badge")
 						}

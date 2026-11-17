@@ -26,7 +26,7 @@ struct GenreAccordionCard<Content: View>: View {
 		return parts.joined(separator: ", ")
 	}
 
-	/// The accent badge after the title: nil below 1 (nothing is drawn), else "(4)".
+	/// The badge after the title, drawn like it: nil below 1 (nothing is drawn), else "(4)".
 	static func badge(selectedCount: Int) -> String? {
 		selectedCount >= 1 ? OnboardingCopy.selectedCount(selectedCount) : nil
 	}
@@ -78,9 +78,10 @@ struct GenreAccordionCard<Content: View>: View {
 			taps += 1
 			onToggle()
 		} label: {
-			// Figma: the chevron is centered on the two lines of a collapsed header (`316:5095`) and sits at the
-			// top of the one line of an expanded one (`316:5079`), a 1 pt difference.
-			HStack(alignment: isExpanded ? .top : .center, spacing: GenreAccordionCardMetrics.chevronGap) {
+			// Centered in both states. Figma puts the chevron at the top of the one line of an expanded header
+			// (`316:5079`), 1 pt above the centered one; switching the alignment with `isExpanded` would flip it
+			// inside the spring that opens the card, so that 1 pt is left to a check on a device.
+			HStack(spacing: GenreAccordionCardMetrics.chevronGap) {
 				VStack(alignment: .leading, spacing: GenreAccordionCardMetrics.countLineSpacing) {
 					// 2026-10-23: "(4 sélectionnés)" was squeezed next to the title and both folded in the middle of
 					// their strings. The title folds freely; the badge, a bare number, is never compressed and sits on
@@ -139,14 +140,12 @@ enum GenreAccordionCardMetrics {
 	static let chevronGap: CGFloat = Track1Tokens.spacing8
 	/// Above and below the chips of an expanded card.
 	static let bodyVerticalInset: CGFloat = Track1Tokens.spacing12
-	/// Between the "Tous" row and the chips, before the row's own bottom inset.
-	static let bodySpacing: CGFloat = Track1Tokens.spacing4
-	static let selectAllRowBottomInset: CGFloat = Track1Tokens.spacing8
 	static let titleRole: Track1TextRole = .monoItem
 	static let badgeRole: Track1TextRole = .monoTag
 	static let countRole: Track1TextRole = .bodySmall
 
-	/// 11 + 22 + 8 + 18 + 11 = 70 pt, as drawn.
+	/// 11 + 22 + 8 + 18 + 11 = 70 pt, as drawn, at the default text size: the lines scale with Dynamic Type, so
+	/// this is the Figma measure, not the height of a card on screen.
 	static var collapsedHeight: CGFloat {
 		2 * verticalInset + titleRole.lineHeight + countLineSpacing + countRole.lineHeight
 	}

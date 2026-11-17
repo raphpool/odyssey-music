@@ -2,8 +2,8 @@ import SwiftUI
 
 /// Figma `Select-all chip` (`175:47`, states `243:1746` and `I243:1687;175:22`) and the subgenre chips of the
 /// accordion card (`243:1609`): a pill with a short label and, optionally, a glyph on its right. The "Tous"
-/// chip passes `arrowDownRight` in both states; only the colors change with the selection, like the other
-/// chips. Names come from the catalog, so the label is shown verbatim.
+/// chip passes `arrowDownRight` in both states; only the color of the border changes with the selection.
+/// Names come from the catalog, so the label is shown verbatim.
 struct SubgenreChip: View {
 	/// `subgenre-chip-<id>`, the taxonomy genre id: the chip does not know its id, the screen sets this on it.
 	static func identifier(for id: String) -> String {
@@ -78,8 +78,6 @@ enum SubgenreChipStyle {
 	/// Between the label and the glyph of the "Tous" chip.
 	static let glyphSpacing: CGFloat = Track1Tokens.spacing8
 	static let glyphSize: CGFloat = 16
-	/// Between two chips of a card, in a row and between rows.
-	static let flowSpacing: CGFloat = Track1Tokens.spacing8
 	static let titleRole: Track1TextRole = .monoTag
 
 	typealias Resolved = (border: Color, title: Color)
