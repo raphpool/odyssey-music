@@ -173,6 +173,57 @@ final class TodayViewModelTests: XCTestCase {
 		XCTAssertEqual(history.last, try recommendation(of: model))
 	}
 
+	// MARK: Works only, no artist (TRA-713)
+
+	func testAStoredArtistForTodayIsReplacedByAProjectOrATrackAndLeavesTheHistory() async throws {
+		let store = makeStore()
+		let storedArtist = try storedRecommendation(date: Self.parisDate, node: "artist:alpha", revision: 1)
+		_ = await store.save([storedArtist])
+		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
+		let model = makeModel(probe: probe, store: store)
+
+		await model.load(for: try profile(revision: 1))
+
+		let replacement = try recommendation(of: model)
+		XCTAssertTrue([NodeType.project, .track].contains(replacement.nodeType))
+		XCTAssertNotEqual(replacement.recommendationID, storedArtist.recommendationID)
+		let history = await store.history()
+		XCTAssertEqual(history, [replacement])
+		XCTAssertFalse(history.contains { $0.nodeType == .artist })
+		let reads = await probe.calls
+		XCTAssertEqual(reads, 1)
+	}
+
+	func testAStoredProjectForTodayIsServedAsIsWithoutANewPick() async throws {
+		let store = makeStore()
+		let storedProject = try storedRecommendation(date: Self.parisDate, node: "project:beta", revision: 1)
+		_ = await store.save([storedProject])
+		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
+		let model = makeModel(probe: probe, store: store)
+
+		await model.load(for: try profile(revision: 1))
+
+		XCTAssertEqual(model.state, .recommendation(storedProject))
+		let history = await store.history()
+		XCTAssertEqual(history, [storedProject])
+		let reads = await probe.calls
+		XCTAssertEqual(reads, 0)
+	}
+
+	func testACatalogLinkingTheGenreOnlyToArtistsIsEmptyCatalogAndWritesNothing() async throws {
+		let artistsOnly = try catalog(
+			nodes: [("genre:rock", "Rock"), ("artist:alpha", "Alpha"), ("artist:delta", "Delta")],
+			edges: [("artist:alpha", "genre:rock", "genres"), ("genre:rock", "artist:delta", "key_artists")])
+		let store = makeStore()
+		let model = makeModel(probe: CatalogProbe(result: .success(artistsOnly, etag: nil)), store: store)
+
+		await model.load(for: try profile(revision: 1))
+
+		XCTAssertEqual(model.state, .emptyCatalog)
+		let history = await store.history()
+		XCTAssertEqual(history, [])
+	}
+
 	// MARK: Empty catalog and write failure
 
 	func testNoCandidateIsEmptyCatalogAndWritesNothing() async throws {
