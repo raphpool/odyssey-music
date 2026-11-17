@@ -12,7 +12,7 @@ struct RootView: View {
 			case .success:
 				if let analytics = container.analytics {
 					if !analytics.hasLoadedConsent {
-						ProgressView()
+						SplashView()
 					} else if analytics.consent.status == .unknown {
 						PrivacyChoiceView(
 							consent: analytics.consent,
@@ -44,12 +44,6 @@ struct RootView: View {
 	}
 }
 
-private struct ChosenResult {
-	let identity: NodeIdentity
-	let context: NavigationContext
-	let title: String
-}
-
 private struct ApplicationTabs: View {
 	@Bindable var router: AppRouter
 	let readers: ContentReaders?
@@ -66,8 +60,6 @@ private struct ApplicationTabs: View {
 	@State private var profileLoaded = false
 	/// The name of the node of the day: the root crumb of every page pushed from Today.
 	@State private var todayRootTitle: String?
-	/// The result chosen in the search sheet. The page is pushed once the sheet is gone, not under it.
-	@State private var chosenResult: ChosenResult?
 	/// The window's bottom safe area, handed to the tab bar (see `tabs`).
 	@State private var windowSafeAreaBottom: CGFloat = 0
 
@@ -94,7 +86,7 @@ private struct ApplicationTabs: View {
 		ZStack {
 			switch gate {
 			case .loading:
-				Track1Tokens.colorBackgroundBase.ignoresSafeArea()
+				SplashView()
 			case .onboarding:
 				FirstLaunchOnboardingView(
 					profileStore: profileStore,
@@ -108,7 +100,7 @@ private struct ApplicationTabs: View {
 					.todayBackdrop()
 					.transition(.opacity)
 			case .tabs:
-				tabsWithSheets.transition(.opacity)
+				tabsWithFeedback.transition(.opacity)
 			}
 		}
 		// The fade from the onboarding to the tabs; immediate under Reduce Motion.
@@ -116,14 +108,11 @@ private struct ApplicationTabs: View {
 		.task { await reloadProfile() }
 	}
 
-	private var tabsWithSheets: some View {
+	// 2026-10-13 (TRA-383): no tint here; the Nocturne action tint set at the app root must reach the tabs.
+	private var tabsWithFeedback: some View {
 		tabs
 			.environment(\.recentNodes, recentNodes)
 			.sensoryFeedback(.selection, trigger: router.selectedTab)
-			// Search does not change the selected tab, but tapping it is still a tab change for the hand.
-			.sensoryFeedback(.selection, trigger: router.isSearchPresented) { _, isPresented in isPresented }
-			// 2026-10-13 (TRA-383): no tint here; the Nocturne action tint set at the app root must reach the tabs.
-			.sheet(isPresented: $router.isSearchPresented, onDismiss: openChosenResult) { searchSheet }
 	}
 
 	/// The profile of the first launch is saved: Today loads its first recommendation (screen 1.6) under the fade.
@@ -132,7 +121,7 @@ private struct ApplicationTabs: View {
 		router.select(.today)
 	}
 
-	/// Selecting a tab goes through the router: Search opens its sheet instead of changing the tab (D8).
+	/// Selecting a tab goes through the router, which also handles a second tap on Today (D8).
 	private var tabSelection: Binding<AppTab> {
 		Binding(get: { router.selectedTab }, set: { router.select($0) })
 	}
@@ -175,12 +164,10 @@ private struct ApplicationTabs: View {
 		Track1TabBar(
 			items: [item(.today), item(.genres)],
 			selected: router.selectedTab.rawValue,
-			search: item(.search),
 			safeAreaBottom: windowSafeAreaBottom,
 			onSelect: { id in
 				if let tab = AppTab(rawValue: id) { router.select(tab) }
-			},
-			onSearch: { router.select(.search) }
+			}
 		)
 		// Without this the field of the Genres tab would lift the bar with the keyboard (R5).
 		.ignoresSafeArea(.keyboard, edges: .bottom)
@@ -200,12 +187,9 @@ private struct ApplicationTabs: View {
 					TodayEntryView(
 						profileState: profileState,
 						today: { profile in todayView(for: profile) },
-						exploreSearch: { router.select(.search) },
+						exploreSearch: { router.select(.genres) },
 						recoverProfile: { router.select(.genres) }
 					)
-				case .search:
-					// Search has no stack: its sheet is presented by the router and its results open on the selected tab.
-					EmptyView()
 				case .genres:
 					GenresTabView(
 						profileState: profileState,
@@ -272,31 +256,6 @@ private struct ApplicationTabs: View {
 		} else {
 			InvalidConfigurationView(error: .missingEnvironment)
 		}
-	}
-
-	@ViewBuilder
-	private var searchSheet: some View {
-		if let readers {
-			SearchSheetView(
-				search: readers.search,
-				recents: recentNodes,
-				recordEvent: { analytics.record($0) },
-				open: { identity, context, title in
-					chosenResult = ChosenResult(identity: identity, context: context, title: title)
-					router.isSearchPresented = false
-				}
-			)
-		} else {
-			InvalidConfigurationView(error: .missingEnvironment)
-		}
-	}
-
-	/// The current tab keeps its stack: the page goes on top of it, and the breadcrumb starts from there (G.1).
-	/// A sheet closed by a swipe leaves nothing chosen.
-	private func openChosenResult() {
-		guard let result = chosenResult else { return }
-		chosenResult = nil
-		router.openNode(result.identity, context: result.context, title: result.title, in: router.selectedTab)
 	}
 
 	private func reloadProfile() async {

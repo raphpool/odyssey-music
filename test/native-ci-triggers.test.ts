@@ -113,6 +113,8 @@ describe("ios-check runner label (TRA-411, TRA-705)", () => {
 // a new workflow file must be filed in one of them, or the "known workflows" test fails.
 const HOSTED = ["ci.yml", "mobile-ci.yml", "review-gate.yml", "ai-review.yml", "claude.yml"];
 const SELF_HOSTED = ["deploy.yml", "pull-cache.yml", "sync-genre-cache.yml", "top-up-genres.yml"];
+// TRA-729 (2026-11-17): ios-testflight.yml signs and uploads, so it needs the same hosted macOS image as ios-ci.yml.
+const MACOS = ["ios-ci.yml", "ios-testflight.yml"];
 
 describe("runner labels by workflow (TRA-650, TRA-703)", () => {
 	const workflowFiles = readdirSync(".github/workflows").filter((file) => /\.ya?ml$/.test(file));
@@ -124,9 +126,9 @@ describe("runner labels by workflow (TRA-650, TRA-703)", () => {
 		for (const file of workflowFiles) expect(runsOnLinesOf(file).length).toBeGreaterThan(0);
 	});
 
-	it("files every workflow in exactly one table, ios-ci.yml aside", () => {
+	it("files every workflow in exactly one table", () => {
 		expect(HOSTED.filter((file) => SELF_HOSTED.includes(file))).toEqual([]);
-		expect([...HOSTED, ...SELF_HOSTED, "ios-ci.yml"].sort()).toEqual([...workflowFiles].sort());
+		expect([...HOSTED, ...SELF_HOSTED, ...MACOS].sort()).toEqual([...workflowFiles].sort());
 	});
 
 	it("runs the hosted workflows on ubuntu-latest in every job", () => {
@@ -143,15 +145,15 @@ describe("runner labels by workflow (TRA-650, TRA-703)", () => {
 		}
 	});
 
-	it("requests the macOS label in no workflow except ios-ci.yml", () => {
-		for (const file of workflowFiles.filter((name) => name !== "ios-ci.yml")) {
+	it("requests the macOS label in no workflow outside the macOS table", () => {
+		for (const file of workflowFiles.filter((name) => !MACOS.includes(name))) {
 			for (const line of runsOnLinesOf(file)) expect(`${file}: ${line}`).not.toMatch(/macOS/i);
 		}
 	});
 
 	// TRA-705 (2026-11-16): was "keeps the ios label"; ios-ci.yml now targets the hosted macOS image.
-	it("keeps every runs-on of ios-ci.yml on the hosted macOS image", () => {
-		for (const line of runsOnLinesOf("ios-ci.yml")) expect(line).toMatch(/runs-on: macos-26\s*$/);
+	it("keeps every runs-on of the macOS workflows on the hosted macOS image", () => {
+		for (const line of MACOS.flatMap(runsOnLinesOf)) expect(line).toMatch(/runs-on: macos-26\s*$/);
 	});
 });
 
