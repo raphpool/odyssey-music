@@ -54,20 +54,47 @@ describe.each(workflows)("$name triggers (TRA-411)", ({ path, job }) => {
 	});
 });
 
-// Two ios-check runs in parallel on the one Mac saturated it (2026-10-12, #335: load 274, simulator
-// did not boot in 600 s), so ios-check is pinned to the single runner carrying the `ios` label.
-describe("ios-check runner label (TRA-411)", () => {
+// TRA-411 pinned ios-check to the single Mac carrying the `ios` label (2026-10-12, #335: two parallel runs
+// saturated it, load 274, simulator not booted in 600 s). TRA-705 (2026-11-16): that Mac is presumed off, so
+// ios-check runs on the GitHub-hosted macOS image whose Xcode is the one pinned in ios/.xcode-version.
+describe("ios-check runner label (TRA-411, TRA-705)", () => {
+	const iosCi = readFileSync(".github/workflows/ios-ci.yml", "utf8").replaceAll("\r\n", "\n");
 	const runsOnOf = (source: string, job: string): string[] => {
 		const start = source.indexOf(`\n  ${job}:`);
 		if (start === -1) throw new Error(`job ${job} not found`);
-		const match = source.slice(start + 1).match(/^ {4}runs-on: \[(.*)\]\s*$/m);
-		if (!match?.[1]) throw new Error(`runs-on list not found for ${job}`);
-		return match[1].split(",").map((label) => label.trim());
+		const match = source.slice(start + 1).match(/^ {4}runs-on: (.*?)\s*$/m);
+		if (!match?.[1]) throw new Error(`runs-on not found for ${job}`);
+		return match[1]
+			.replace(/^\[(.*)\]$/, "$1")
+			.split(",")
+			.map((label) => label.trim());
 	};
 
-	it("requires the ios label on ios-check", () => {
-		const source = withoutComments(readFileSync(".github/workflows/ios-ci.yml", "utf8"));
-		expect(runsOnOf(source, "ios-check")).toEqual(["self-hosted", "macOS", "ARM64", "ios"]);
+	it("runs ios-check on the hosted macos-26 image", () => {
+		expect(runsOnOf(withoutComments(iosCi), "ios-check")).toEqual(["macos-26"]);
+	});
+
+	// Raw source on purpose: a comment must not keep describing a self-hosted runner either.
+	it("no longer mentions self-hosted anywhere in ios-ci.yml", () => {
+		expect(iosCi).not.toContain("self-hosted");
+	});
+
+	it("gives ios-check 45 minutes, for the cold DerivedData of a hosted runner", () => {
+		expect(withoutComments(iosCi)).toMatch(/^ {4}timeout-minutes: 45\s*$/m);
+	});
+
+	it("selects the pinned Xcode before check.sh and lists the installed ones when it is missing", () => {
+		const source = withoutComments(iosCi);
+		const select = source.indexOf("- name: Select Xcode");
+		expect(select).toBeGreaterThan(-1);
+		expect(select).toBeLessThan(source.indexOf("ios/scripts/check.sh"));
+		const step = source.slice(select, source.indexOf("- name:", select + 1));
+		expect(step).toContain("ios/.xcode-version");
+		expect(step).toContain("xcode-select -s");
+		// check.sh compares the whole pin, build id included: the step must fail early on the same comparison.
+		expect(step).toContain('[ "$actual" != "$pin" ]');
+		expect(step).toContain("/Applications/Xcode*.app");
+		expect(step).toContain("exit 1");
 	});
 
 	it("does not require the ios label in any ci.yml job", () => {
@@ -122,8 +149,9 @@ describe("runner labels by workflow (TRA-650, TRA-703)", () => {
 		}
 	});
 
-	it("keeps the ios label in every runs-on of ios-ci.yml", () => {
-		for (const line of runsOnLinesOf("ios-ci.yml")) expect(line).toMatch(/\bios\b/);
+	// TRA-705 (2026-11-16): was "keeps the ios label"; ios-ci.yml now targets the hosted macOS image.
+	it("keeps every runs-on of ios-ci.yml on the hosted macOS image", () => {
+		for (const line of runsOnLinesOf("ios-ci.yml")) expect(line).toMatch(/runs-on: macos-26\s*$/);
 	});
 });
 
