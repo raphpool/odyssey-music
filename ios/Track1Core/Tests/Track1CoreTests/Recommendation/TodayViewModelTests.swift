@@ -39,7 +39,7 @@ final class TodayViewModelTests: XCTestCase {
 		XCTAssertEqual(reads, 1)
 	}
 
-	func testTheSameInstanceLoadedTwiceKeepsTheRecommendationAndOneEntry() async throws {
+	func testTheSameInstanceLoadedTwiceKeepsTheRecommendationAndOneEntryPerDate() async throws {
 		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
 		let store = makeStore()
 		let model = makeModel(probe: probe, store: store)
@@ -49,7 +49,8 @@ final class TodayViewModelTests: XCTestCase {
 
 		XCTAssertEqual(try recommendation(of: model), created)
 		let history = await store.history()
-		XCTAssertEqual(history, [created])
+		XCTAssertEqual(history.filter { $0.localDate == Self.parisDate }, [created])
+		XCTAssertEqual(history.map(\.localDate), [Self.parisDate] + Self.plannedDates)
 	}
 
 	// MARK: Catalog failure
@@ -103,7 +104,8 @@ final class TodayViewModelTests: XCTestCase {
 		await model.load(for: try profile(revision: 1, selection: Self.selection))
 
 		let history = await store.history()
-		XCTAssertEqual(history.map(\.profileGenreNames), [["IDM", "Ambient", "Glitch"]])
+		// The day and its seven planned days: a planned entry is served later without the catalog too.
+		XCTAssertEqual(history.map(\.profileGenreNames), Array(repeating: ["IDM", "Ambient", "Glitch"], count: 8))
 	}
 
 	func testADegradedTaxonomyStoresNoGenreName() async throws {
@@ -153,8 +155,9 @@ final class TodayViewModelTests: XCTestCase {
 		XCTAssertNotEqual(second.recommendationID, first.recommendationID)
 		XCTAssertEqual(second.profileRevision, 2)
 		let history = await store.history()
-		XCTAssertEqual(history, [second])
-		XCTAssertEqual(history.filter { $0.localDate == Self.parisDate }.count, 1)
+		XCTAssertEqual(history.filter { $0.localDate == Self.parisDate }, [second])
+		XCTAssertEqual(history.map(\.localDate), [Self.parisDate] + Self.plannedDates)
+		XCTAssertTrue(history.allSatisfy { $0.profileRevision == 2 })
 	}
 
 	func testRevisionChangeKeepsOtherDaysAndMovesTheDayToTheEnd() async throws {
@@ -168,9 +171,148 @@ final class TodayViewModelTests: XCTestCase {
 		await model.load(for: try profile(revision: 2))
 
 		let history = await store.history()
-		XCTAssertEqual(history.map(\.localDate), ["2026-10-09", Self.parisDate])
+		XCTAssertEqual(history.map(\.localDate), ["2026-10-09", Self.parisDate] + Self.plannedDates)
 		XCTAssertEqual(history.first, earlier)
-		XCTAssertEqual(history.last, try recommendation(of: model))
+		XCTAssertEqual(history.first { $0.localDate == Self.parisDate }, try recommendation(of: model))
+	}
+
+	// MARK: Planned days (TRA-743)
+
+	func testALoadSavesTheDayAndSevenPlannedDaysAndExposesThem() async throws {
+		let store = makeStore()
+		let model = makeModel(probe: CatalogProbe(result: .success(try catalog(), etag: nil)), store: store)
+		XCTAssertEqual(model.upcoming, [])
+		await model.load(for: try profile(revision: 1))
+
+		let history = await store.history()
+		XCTAssertEqual(history.map(\.localDate), [Self.parisDate] + Self.plannedDates)
+		XCTAssertEqual(model.upcoming.count, 7)
+		XCTAssertEqual(model.upcoming.map(\.localDate), Self.plannedDates)
+		XCTAssertEqual(model.upcoming.map(\.recommendation), Array(history.dropFirst()))
+		XCTAssertTrue(history.allSatisfy { !$0.viewRecorded })
+	}
+
+	func testAFailedLoadLeavesNoPlanAndWritesNothing() async throws {
+		let store = makeStore()
+		let model = makeModel(probe: CatalogProbe(result: .failure(.network)), store: store)
+		await model.load(for: try profile(revision: 1))
+
+		XCTAssertEqual(model.upcoming, [])
+		let history = await store.history()
+		XCTAssertEqual(history, [])
+	}
+
+	func testAFailedSaveClearsThePlanOfAnEarlierLoadAndKeepsTheStoredEntries() async throws {
+		let store = makeStore()
+		let model = makeModel(probe: CatalogProbe(result: .success(try catalog(), etag: nil)), store: store)
+		await model.load(for: try profile(revision: 1))
+		let planned = await store.history()
+		XCTAssertEqual(model.upcoming.count, 7)
+
+		// A revision of 0 cannot be stored, so this load picks, fails to save and must not expose a plan.
+		await model.load(for: try profile(revision: 0))
+
+		XCTAssertEqual(model.state, .unavailable)
+		XCTAssertEqual(model.upcoming, [])
+		let history = await store.history()
+		XCTAssertEqual(history, planned)
+	}
+
+	func testTheNextDayServesTheWorkPlannedTheDayBeforeEvenWithAnotherCatalog() async throws {
+		let store = makeStore()
+		let today = makeModel(probe: CatalogProbe(result: .success(try catalog(), etag: nil)), store: store)
+		await today.load(for: try profile(revision: 1))
+		let planned = try XCTUnwrap(today.upcoming.first)
+
+		let other = try catalog(
+			nodes: [("genre:rock", "Rock"), ("project:zeta", "Zeta"), ("track:eta", "Eta")],
+			edges: [("project:zeta", "genre:rock", "genres"), ("track:eta", "genre:rock", "genres")])
+		let probe = CatalogProbe(result: .success(other, etag: nil))
+		let tomorrow = makeModel(probe: probe, store: store, now: Self.clock.addingTimeInterval(86_400))
+		await tomorrow.load(for: try profile(revision: 1))
+
+		XCTAssertEqual(planned.localDate, "2026-10-12")
+		XCTAssertEqual(tomorrow.state, .recommendation(planned.recommendation))
+		let reads = await probe.calls
+		XCTAssertEqual(reads, 0)
+		XCTAssertEqual(tomorrow.upcoming, [])
+	}
+
+	func testAChangedRevisionDoesNotServeThePlannedEntryAndReplacesThePlan() async throws {
+		let store = makeStore()
+		let today = makeModel(probe: CatalogProbe(result: .success(try catalog(), etag: nil)), store: store)
+		await today.load(for: try profile(revision: 1))
+		let oldPlan = today.upcoming.map(\.recommendation.recommendationID)
+
+		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
+		let tomorrow = makeModel(probe: probe, store: store, now: Self.clock.addingTimeInterval(86_400))
+		await tomorrow.load(for: try profile(revision: 2))
+
+		let served = try recommendation(of: tomorrow)
+		XCTAssertEqual(served.localDate, "2026-10-12")
+		XCTAssertEqual(served.profileRevision, 2)
+		XCTAssertFalse(oldPlan.contains(served.recommendationID))
+		let reads = await probe.calls
+		XCTAssertEqual(reads, 1)
+
+		let history = await store.history()
+		let planned = Array(Self.plannedDates.dropFirst()) + ["2026-10-19"]
+		XCTAssertEqual(history.map(\.localDate), [Self.parisDate, "2026-10-12"] + planned)
+		XCTAssertEqual(history.first?.profileRevision, 1)
+		XCTAssertTrue(history.dropFirst().allSatisfy { $0.profileRevision == 2 })
+		XCTAssertEqual(tomorrow.upcoming.map(\.recommendation), Array(history.suffix(7)))
+		XCTAssertTrue(Set(history.map(\.recommendationID)).isDisjoint(with: oldPlan))
+	}
+
+	/// With four works, the plan on disk marks three of them as seen. If those future entries counted for the
+	/// pick of today, the only unseen work would be chosen instead of the one a history without a plan gives.
+	func testTodaysWorkIsTheSameWithAPlanOnDiskAsWithout() async throws {
+		let works = ["project:beta", "track:gamma", "project:delta", "track:epsilon"]
+		let withFourWorks = try catalog(
+			nodes: [("genre:rock", "Rock")] + works.map { ($0, $0) },
+			edges: works.map { ($0, "genre:rock", "genres") })
+		let taste = try profile(revision: 1)
+		let candidates = Affinity.rank(catalog: withFourWorks, genreIDs: taste.genreIDs)
+		let expected = try XCTUnwrap(
+			DailySelection.pick(
+				candidates: candidates, history: [], localID: Self.localID, localDate: Self.parisDate)
+		).identity
+		let unseen = try XCTUnwrap(candidates.first { $0.identity != expected })
+		let plan = try candidates.filter { $0.identity != unseen.identity }.enumerated().map { index, candidate in
+			try storedRecommendation(
+				date: Self.plannedDates[index], node: candidate.identity.rawValue, revision: 1)
+		}
+		XCTAssertEqual(candidates.count, 4)
+		let store = makeStore()
+		_ = await store.save(plan)
+
+		let model = makeModel(probe: CatalogProbe(result: .success(withFourWorks, etag: nil)), store: store)
+		await model.load(for: taste)
+
+		XCTAssertEqual(try recommendation(of: model).nodeID, expected)
+		// The stored plan of this revision is kept as it is, not picked again.
+		let history = await store.history()
+		XCTAssertEqual(Array(history.dropFirst().prefix(3)), plan)
+		XCTAssertEqual(history.map(\.localDate), [Self.parisDate] + Self.plannedDates)
+	}
+
+	func testAFullHistoryKeepsTodayAndTheSevenNextDays() async throws {
+		let store = makeStore()
+		let pastDates = Self.fortyPastDates
+		let past = try pastDates.map { try storedRecommendation(date: $0, node: "project:beta", revision: 1) }
+		_ = await store.save(past)
+		let model = makeModel(probe: CatalogProbe(result: .success(try catalog(), etag: nil)), store: store)
+
+		await model.load(for: try profile(revision: 1))
+
+		let history = await store.history()
+		XCTAssertEqual(pastDates.count, 40)
+		XCTAssertEqual(history.count, 40)
+		XCTAssertEqual(history.suffix(8).map(\.localDate), [Self.parisDate] + Self.plannedDates)
+		let kept = Array(pastDates.dropFirst(8))
+		XCTAssertEqual(history.map(\.localDate), kept + [Self.parisDate] + Self.plannedDates)
+		XCTAssertEqual(history.map(\.localDate), history.map(\.localDate).sorted())
+		XCTAssertEqual(model.upcoming.count, 7)
 	}
 
 	// MARK: Works only, no artist (TRA-713)
@@ -188,7 +330,7 @@ final class TodayViewModelTests: XCTestCase {
 		XCTAssertTrue([NodeType.project, .track].contains(replacement.nodeType))
 		XCTAssertNotEqual(replacement.recommendationID, storedArtist.recommendationID)
 		let history = await store.history()
-		XCTAssertEqual(history, [replacement])
+		XCTAssertEqual(history.filter { $0.localDate == Self.parisDate }, [replacement])
 		XCTAssertFalse(history.contains { $0.nodeType == .artist })
 		let reads = await probe.calls
 		XCTAssertEqual(reads, 1)
@@ -206,6 +348,7 @@ final class TodayViewModelTests: XCTestCase {
 		XCTAssertEqual(model.state, .recommendation(storedProject))
 		let history = await store.history()
 		XCTAssertEqual(history, [storedProject])
+		XCTAssertEqual(model.upcoming, [])
 		let reads = await probe.calls
 		XCTAssertEqual(reads, 0)
 	}
@@ -262,7 +405,9 @@ final class TodayViewModelTests: XCTestCase {
 
 		XCTAssertEqual(model.state, .unavailable)
 		let history = await failing.history()
-		XCTAssertEqual(history, [previous])
+		XCTAssertEqual(history.first, previous)
+		XCTAssertEqual(history.map(\.localDate), [Self.parisDate] + Self.plannedDates)
+		XCTAssertTrue(history.allSatisfy { $0.profileRevision == 1 })
 	}
 
 	func testAProfileWhoseRevisionCannotBeStoredIsUnavailable() async throws {
@@ -292,7 +437,8 @@ final class TodayViewModelTests: XCTestCase {
 		XCTAssertEqual(events.map(\.name), [.dailyRecommendationViewed])
 		XCTAssertEqual(try recommendation(of: restarted), viewed)
 		let history = await makeStore().history()
-		XCTAssertEqual(history, [viewed])
+		XCTAssertEqual(history.first, viewed)
+		XCTAssertEqual(history.dropFirst().filter(\.viewRecorded), [])
 	}
 
 	func testImpressionMarkerIsPersistedEvenWithoutAnAnalyticsRecorder() async throws {
@@ -393,6 +539,12 @@ final class TodayViewModelTests: XCTestCase {
 	private static let clock = Date(timeIntervalSince1970: 1_791_675_000)  // 2026-10-10T23:30:00Z
 	private static let paris = TimeZone(identifier: "Europe/Paris")!
 	private static let parisDate = "2026-10-11"
+	private static let plannedDates = [
+		"2026-10-12", "2026-10-13", "2026-10-14", "2026-10-15", "2026-10-16", "2026-10-17", "2026-10-18",
+	]
+	/// The forty days before `parisDate`, September 1st to October 10th.
+	private static let fortyPastDates =
+		(1...30).map { String(format: "2026-09-%02d", $0) } + (1...10).map { String(format: "2026-10-%02d", $0) }
 
 	private func makeStore() -> DailyRecommendationStore {
 		DailyRecommendationStore(localStore: LocalStore(directoryURL: directoryURL))
@@ -403,11 +555,14 @@ final class TodayViewModelTests: XCTestCase {
 		return UUID(uuidString: String(format: "AAAAAAAA-0000-4000-8000-%012X", nextID))!
 	}
 
-	private func makeModel(probe: CatalogProbe, store: DailyRecommendationStore) -> TodayViewModel {
-		TodayViewModel(
+	private func makeModel(
+		probe: CatalogProbe, store: DailyRecommendationStore, now: Date? = nil
+	) -> TodayViewModel {
+		let instant = now ?? Self.clock
+		return TodayViewModel(
 			readCatalog: { await probe.read() },
 			store: store,
-			now: { Self.clock },
+			now: { instant },
 			timeZone: { Self.paris },
 			makeID: { [unowned self] in makeID() },
 			recordEvent: { [unowned self] in events.append($0) })

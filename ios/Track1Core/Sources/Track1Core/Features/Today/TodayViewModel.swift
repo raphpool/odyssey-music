@@ -17,10 +17,17 @@ public enum TodayState: Equatable, Sendable {
 /// `DailyRecommendationStore` serializes each of its own calls but not a caller's read-then-write sequence.
 /// Every sequence that writes (`load`, the marker in `recordImpressionIfNeeded`) therefore runs inside one
 /// FIFO section of this view model, and `load` re-reads the history right before saving it.
+///
+/// A new pick also plans the next days (2026-11-17, TRA-743, plan D4): those picks are saved in the same
+/// history, as ordinary entries with a future date, so the day that comes serves the very work its reminder
+/// named even if the catalog changed meanwhile.
 @MainActor
 @Observable
 public final class TodayViewModel {
 	public private(set) var state: TodayState = .loading
+	/// The reminders planned by the last `load` that picked and saved a work; empty after any other outcome,
+	/// including a load that served the persisted entry of the day, which reads no catalog to plan from.
+	public private(set) var upcoming: [PlannedReminder] = []
 
 	@ObservationIgnored private let readCatalog: @Sendable () async -> APIResult<Catalog>
 	@ObservationIgnored private let store: DailyRecommendationStore
@@ -60,6 +67,8 @@ public final class TodayViewModel {
 		// A newer request for other tastes was queued behind this one: computing and saving this pick would
 		// only write an entry that the next load replaces.
 		guard latestRequestedProfile == profile else { return }
+		// The plan belongs to the load that computed it: no outcome below may leave a previous one exposed.
+		upcoming = []
 
 		let localDate = DailySelection.localDate(for: now(), timeZone: timeZone())
 		let stored = await store.history()
@@ -91,9 +100,12 @@ public final class TodayViewModel {
 		// The catalog read can take seconds: re-read right before saving so a `markViewed` that landed in
 		// the meantime is kept instead of overwritten by the snapshot taken above.
 		let fresh = await store.history()
+		// Entries dated after today are plans, not works the person has been given: `pick` counts every other
+		// date as seen, so they would change today's work depending on whether a plan happens to be on disk.
+		let past = fresh.filter { $0.localDate < localDate }.sorted { $0.localDate < $1.localDate }
 		guard
 			let pick = DailySelection.pick(
-				candidates: candidates, history: fresh, localID: profile.localID, localDate: localDate)
+				candidates: candidates, history: past, localID: profile.localID, localDate: localDate)
 		else {
 			state = .emptyCatalog
 			return
@@ -114,10 +126,19 @@ public final class TodayViewModel {
 			profileGenreNames: genreNames,
 			viewRecorded: false)
 
-		// The store does not deduplicate: dropping the current date here is what keeps one entry per date.
-		let updated = fresh.filter { $0.localDate != localDate } + [recommendation]
+		// Stored plans of the current revision are kept by the plan itself, the others are picked again.
+		let reminders = ReminderPlan.plan(
+			candidates: candidates, history: fresh.filter { $0.localDate != localDate } + [recommendation],
+			profile: profile, catalog: catalog, today: localDate, profileGenreNames: genreNames, makeID: makeID)
+
+		// The store neither deduplicates nor sorts, and keeps the last entries: past days in date order, then
+		// today, then the plan, so the oldest days are the ones to go. Rebuilding every date after today from the
+		// plan is what replaces the plan of an older revision.
+		let updated = past + [recommendation] + reminders.map(\.recommendation)
 		switch await store.save(updated) {
-		case .success: state = .recommendation(recommendation)
+		case .success:
+			state = .recommendation(recommendation)
+			upcoming = reminders
 		case .failure: state = .unavailable
 		}
 	}
