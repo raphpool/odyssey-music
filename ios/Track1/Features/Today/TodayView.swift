@@ -29,6 +29,7 @@ struct TodayView: View {
 	private let router: AppRouter
 	private let readers: ContentReaders
 	private let imageStore: NodeImageStore<UIImage>
+	@Environment(\.reminderSync) private var reminders
 	@State private var model: TodayViewModel
 	@State private var page: Page?
 	/// The recommendation whose node could not be read: the retry status, never an empty card.
@@ -66,6 +67,8 @@ struct TodayView: View {
 				await model.load(for: profile)
 				// A cancelled load belongs to a newer one, which will clear the flag itself.
 				if !Task.isCancelled { isRetrying = false }
+				// After the home is on screen: the reminders of the next days follow what this load planned.
+				await reminders?.sync(model, for: profile)
 			}
 			.task(id: pageKey) { await readPage() }
 	}
@@ -172,5 +175,16 @@ struct TodayView: View {
 		defer { isOpening = false }
 		guard let opening = await model.discover() else { return }
 		router.openPlayer(opening.identity, context: opening.context, in: .today)
+	}
+}
+
+private struct ReminderSyncKey: EnvironmentKey {
+	static let defaultValue: ReminderSync? = nil
+}
+
+extension EnvironmentValues {
+	var reminderSync: ReminderSync? {
+		get { self[ReminderSyncKey.self] }
+		set { self[ReminderSyncKey.self] = newValue }
 	}
 }
