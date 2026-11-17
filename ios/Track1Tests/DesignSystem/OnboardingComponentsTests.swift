@@ -191,8 +191,8 @@ final class OnboardingComponentsTests: XCTestCase {
 	func testACollapsedGenreCardIsSeventyPointsHighAtThe361PointCardWidth() {
 		let card = GenreAccordionCard(
 			title: "Jazz", subgenreCount: 13, selectedCount: 4, isExpanded: false, identifier: "genre-card-jazz",
-			onToggle: {}
-		) { EmptyView() }
+			onToggle: {}, content: { EmptyView() }
+		)
 		let size = UIHostingController(rootView: card).sizeThatFits(in: CGSize(width: 361, height: 1000))
 		XCTAssertEqual(size.width, 361, accuracy: 0.5)
 		XCTAssertEqual(size.height, 70, accuracy: 0.5)

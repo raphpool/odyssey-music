@@ -94,7 +94,8 @@ final class TodayComponentsTests: XCTestCase {
 	/// Rows are centered, and a pill that does not fit starts a new row, 8 pt below.
 	func testFlowWrapsAndCentersEachRow() {
 		let wide = CGSize(width: 150, height: 28)
-		let flow = GenrePillFlow.frames(sizes: [wide, wide, CGSize(width: 100, height: 28)], width: 345, spacing: 8)
+		let narrow = CGSize(width: 100, height: 28)
+		let flow = GenrePillFlow.frames(sizes: [wide, wide, narrow], width: 345, spacing: 8)
 		XCTAssertEqual(flow.frames[0], CGRect(x: 18.5, y: 0, width: 150, height: 28))
 		XCTAssertEqual(flow.frames[1], CGRect(x: 176.5, y: 0, width: 150, height: 28))
 		XCTAssertEqual(flow.frames[2], CGRect(x: 122.5, y: 36, width: 100, height: 28))
