@@ -8,8 +8,9 @@ import UIKit
 /// begin, so the edge swipe left step 1.4 in place (`testTheBackGestureToWelcomeKeepsTheSelection`, named
 /// `testTheBackGestureOfTheSecondStepKeepsTheSelection` until TRA-639) and,
 /// as Figma draws no back control, the person was stuck there. The gesture's delegate is replaced by one that
-/// allows it whenever there is a screen to go back to. It sits on the root of the stack, which stays in it for
-/// the whole flow, and is scoped to this flow rather than to every `UINavigationController` of the app.
+/// allows it whenever there is a screen to go back to. It is scoped to this flow rather than to every
+/// `UINavigationController` of the app. It sits on the root and on every pushed screen: a flow that reopens on
+/// a later step (TRA-735) starts with the root already behind it, and a root that never appears sets nothing.
 private struct SwipeBackEnabler: UIViewControllerRepresentable {
 	func makeUIViewController(context: Context) -> Host { Host() }
 
@@ -29,25 +30,100 @@ private struct SwipeBackEnabler: UIViewControllerRepresentable {
 	}
 }
 
-/// The onboarding flow of Flow 1: Welcome, then the one genre screen, an accordion of the editorial families
-/// whose genres are ticked as chips. A model built from a profile (`isEditing`) is the edit flow of the
-/// Genres tab (K.1): it opens on that screen with no Welcome and ends on "Enregistrer".
-/// `FirstLaunchOnboardingView` hosts the first launch.
+/// The answers of the first launch that the genre model does not hold: the pseudo and the disc. Like the
+/// model, the host owns them, in the `@State` of its phase, and never in a parent's `body`: an object built
+/// there would be rebuilt on every render and drop what the person typed with it. Nothing is persisted here:
+/// the host saves the draft (`ProfileDraft`) the flow hands it.
+@MainActor
+@Observable
+final class OnboardingAnswers {
+	/// Already in its stored form (`PseudoRules.normalized`), as the pseudo screen hands it over.
+	var displayName: String?
+	var disc: ProfileDisc?
+
+	init(displayName: String? = nil, disc: ProfileDisc? = nil) {
+		self.displayName = displayName
+		self.disc = disc
+	}
+}
+
+/// The onboarding flow of Flow 1: Welcome, then the pseudo, the disc and the one genre screen, an accordion
+/// of the editorial families whose genres are ticked as chips. The order is `OnboardingSteps.order`: Welcome
+/// is the root of the stack and the other steps are pushed on it. A model built from a profile (`isEditing`)
+/// is the edit flow of the Genres tab (K.1): it opens on the genre screen with no Welcome, pseudo nor disc,
+/// and ends on "Enregistrer". `FirstLaunchOnboardingView` hosts the first launch.
 ///
-/// The caller owns `model` (a `@State` in its host): a model created inside a parent's `body` would be
-/// rebuilt on every render and drop the selection with it.
+/// The caller owns `model` and `answers` (`@State` in its host): one created inside a parent's `body` would
+/// be rebuilt on every render and drop what was chosen with it.
 struct OnboardingFlowView: View {
+	/// The notification opt-in is not part of the flow until it ships.
+	private static let includesNotifications = false
+
+	/// The screens pushed on Welcome, named as in `OnboardingStepID`. Welcome is the root, so it has no case.
 	enum Step: Hashable {
-		case genres
+		case pseudo, disc, genres
+
+		init?(_ id: OnboardingStepID) {
+			switch id {
+			case .pseudo: self = .pseudo
+			case .disc: self = .disc
+			case .genres: self = .genres
+			case .welcome, .notifications: return nil
+			}
+		}
+
+		var id: OnboardingStepID {
+			switch self {
+			case .pseudo: .pseudo
+			case .disc: .disc
+			case .genres: .genres
+			}
+		}
+	}
+
+	/// What a flow reopens on after the app was stopped: Welcome while the draft holds no answer, otherwise the
+	/// first step whose answer is missing. The steps before it are pushed too, so that the back gesture goes
+	/// through them as it did the first time. The genre step is never validated by the draft: the profile is
+	/// what ends it.
+	static func resumePath(displayName: String?, disc: ProfileDisc?) -> [Step] {
+		guard displayName != nil || disc != nil else { return [] }
+		var path = [Step]()
+		for id in OnboardingSteps.order(includesNotifications: includesNotifications) {
+			guard let step = Step(id) else { continue }
+			path.append(step)
+			if !OnboardingSteps.canLeave(id, pseudo: displayName, disc: disc, selectedGenres: 0) { break }
+		}
+		return path
 	}
 
 	let model: GenreSelectionModel
-	let onFinish: (ProfileDraft) -> Void
-	@State private var path = [Step]()
+	private let answers: OnboardingAnswers?
+	private let onStepValidated: ((ProfileDraft) -> Void)?
+	private let onFinish: (ProfileDraft) -> Void
+	@State private var path: [Step]
 
+	/// The edit flow: no pseudo, no disc, and nothing to save before the end.
 	init(model: GenreSelectionModel, onFinish: @escaping (ProfileDraft) -> Void) {
 		self.model = model
+		answers = nil
+		onStepValidated = nil
 		self.onFinish = onFinish
+		_path = State(initialValue: [])
+	}
+
+	/// The first launch. `onStepValidated` receives the draft each time a step is left, with every answer given
+	/// so far, to be saved: it is what a relaunch resumes from.
+	init(
+		model: GenreSelectionModel,
+		answers: OnboardingAnswers,
+		onStepValidated: @escaping (ProfileDraft) -> Void,
+		onFinish: @escaping (ProfileDraft) -> Void
+	) {
+		self.model = model
+		self.answers = answers
+		self.onStepValidated = onStepValidated
+		self.onFinish = onFinish
+		_path = State(initialValue: Self.resumePath(displayName: answers.displayName, disc: answers.disc))
 	}
 
 	var body: some View {
@@ -55,11 +131,13 @@ struct OnboardingFlowView: View {
 			root
 				.background(SwipeBackEnabler())
 				.toolbar(.hidden, for: .navigationBar)
-				.navigationDestination(for: Step.self) { _ in
-					genresStep
+				.navigationDestination(for: Step.self) { step in
+					destination(for: step)
+						.background(SwipeBackEnabler())
 						.toolbar(.hidden, for: .navigationBar)
 						// The bar is hidden and Figma draws no back control: VoiceOver's two-finger scrub and
-						// the edge swipe are the ways back, to Welcome.
+						// the edge swipe are the ways back, one step at a time. What was chosen stays in the
+						// model and in `answers`.
 						.accessibilityAction(.escape) {
 							if !path.isEmpty { path.removeLast() }
 						}
@@ -73,36 +151,79 @@ struct OnboardingFlowView: View {
 		if model.isEditing {
 			genresStep
 		} else {
-			WelcomeView {
-				// A second tap before the push animation ends must not stack a second Genres screen.
-				if path.isEmpty { path.append(.genres) }
-			}
+			WelcomeView { leave(.welcome) }
 		}
 	}
 
-	/// The genre step is the root of the edit flow, and the first pushed screen of the first launch.
-	private var isOnGenresStep: Bool {
-		model.isEditing ? path.isEmpty : path.last == .genres
+	@ViewBuilder
+	private func destination(for step: Step) -> some View {
+		switch step {
+		case .pseudo:
+			PseudoStepView(initial: answers?.displayName) { pseudo in
+				answers?.displayName = pseudo
+				leave(.pseudo)
+			}
+		case .disc:
+			if let answers {
+				DiscStep(answers: answers) { leave(.disc) }
+			}
+		case .genres:
+			genresStep
+		}
 	}
 
 	private var genresStep: some View {
-		GenresStepView(model: model) {
-			// The flow ends here. Only the genre step may finish, so a tap that lands once the screen has left
-			// the path is ignored. The host must ignore a second `onFinish`: a double tap on the CTA sends two.
-			if isOnGenresStep { onFinish(model.makeDraft()) }
+		GenresStepView(model: model) { leave(.genres) }
+	}
+
+	/// The step on screen: the root until something is pushed, which is the genre step in the edit flow.
+	private var current: OnboardingStepID {
+		path.last?.id ?? (model.isEditing ? .genres : .welcome)
+	}
+
+	/// Leaves `step` for the next one, or ends the flow after the last. Nothing happens unless `step` is the one
+	/// on screen and `OnboardingSteps.canLeave` allows it: a second tap on a button before the push animation
+	/// ends would otherwise stack a screen twice, and a tap that lands once its screen left the path would end
+	/// the flow. The host must still ignore a second `onFinish`: a double tap on the last button sends two.
+	private func leave(_ step: OnboardingStepID) {
+		guard current == step, canLeave(step) else { return }
+		let draft = model.makeDraft(displayName: answers?.displayName, disc: answers?.disc)
+		let next = OnboardingSteps.next(after: step, includesNotifications: Self.includesNotifications)
+		guard let nextStep = next.flatMap({ Step($0) }) else {
+			onFinish(draft)
+			return
 		}
+		if step != .welcome { onStepValidated?(draft) }
+		path.append(nextStep)
+	}
+
+	private func canLeave(_ step: OnboardingStepID) -> Bool {
+		OnboardingSteps.canLeave(
+			step, pseudo: answers?.displayName, disc: answers?.disc, selectedGenres: model.selectedSubgenreCount)
 	}
 }
 
-/// The first launch (Flow 1, J.4): reads the editorial taxonomy from the catalog, opens the flow on the saved draft
-/// and writes the profile when it ends. The host (`RootView`) shows it instead of the tabs while there is no
-/// profile.
+/// The disc step. It reads the choice in its own `body`, so that the screen follows `answers`: a read made in
+/// the destination closure of the stack would not be tracked by the screen.
+private struct DiscStep: View {
+	let answers: OnboardingAnswers
+	let onContinue: () -> Void
+
+	var body: some View {
+		DiscStepView(selected: answers.disc, onSelect: { answers.disc = $0 }, onContinue: onContinue)
+	}
+}
+
+/// The first launch (Flow 1, J.4): reads the editorial taxonomy from the catalog, opens the flow on the saved
+/// draft and writes the profile when it ends. The host (`RootView`) shows it instead of the tabs while there
+/// is no profile.
 ///
-/// The model lives in the `@State` of the phase, not in a parent's `body`: a model built there would be
-/// rebuilt on every render and drop the selection with it.
+/// The model and the answers live in the `@State` of the phase, not in a parent's `body`: ones built there
+/// would be rebuilt on every render and drop what was chosen with them.
 struct FirstLaunchOnboardingView: View {
 	private struct Loaded {
 		let model: GenreSelectionModel
+		let answers: OnboardingAnswers
 		/// Every genre of the catalog: the profile keeps the ones that are still there.
 		let genreIDs: [NodeIdentity]
 	}
@@ -124,6 +245,9 @@ struct FirstLaunchOnboardingView: View {
 	@State private var attempt = 0
 	@State private var isSaving = false
 	@State private var saveFailed = false
+	/// The last write of a draft. Each one waits for the one before it, so that an older draft never lands after
+	/// a newer one, and the commit waits for the last, so that none lands after the draft file was removed.
+	@State private var draftSave: Task<Void, Never>?
 
 	var body: some View {
 		Group {
@@ -131,9 +255,12 @@ struct FirstLaunchOnboardingView: View {
 			case .loading:
 				Track1Tokens.colorBackgroundBase.ignoresSafeArea()
 			case .ready(let loaded):
-				OnboardingFlowView(model: loaded.model) { draft in
-					save(draft, available: loaded.genreIDs)
-				}
+				OnboardingFlowView(
+					model: loaded.model,
+					answers: loaded.answers,
+					onStepValidated: { draft in saveDraft(draft) },
+					onFinish: { draft in save(draft, available: loaded.genreIDs) }
+				)
 			case .unavailable:
 				Track1StatusView(.todayUnavailable) {
 					phase = .loading
@@ -153,7 +280,7 @@ struct FirstLaunchOnboardingView: View {
 	private func load() async {
 		// The view can appear again (a fade, a scene change): the flow in progress is not read again.
 		if case .ready = phase { return }
-		guard let loadCatalog, case .success(let draft) = await profileStore.beginInitialDraft(),
+		guard let loadCatalog, case .success(let saved) = await profileStore.beginInitialDraft(),
 			case .success(let catalog, _) = await loadCatalog()
 		else {
 			phase = .unavailable
@@ -163,18 +290,23 @@ struct FirstLaunchOnboardingView: View {
 			phase = .unavailable
 			return
 		}
+		// Before the model is built, not after: the model hands its draft back whole, flag included, and every
+		// step now saves that draft. A model built on the draft without the flag would write it back unset, and a
+		// resumed flow would send `onboarding_started` twice.
+		let draft = await recordStartIfNeeded(saved)
 		phase = .ready(
 			Loaded(
 				model: GenreSelectionModel(taxonomy: taxonomy, draft: draft),
+				answers: OnboardingAnswers(displayName: draft.displayName, disc: draft.disc),
 				genreIDs: catalog.nodes.filter { $0.type == .genre }.map(\.identity)))
-		await recordStartIfNeeded(draft)
 	}
 
-	/// Same event as the flat onboarding sent, once per flow and only with consent.
-	private func recordStartIfNeeded(_ draft: ProfileDraft) async {
+	/// Same event as the flat onboarding sent, once per flow and only with consent. Returns the draft the flow
+	/// goes on with: the one that holds the "sent" flag once the event was recorded.
+	private func recordStartIfNeeded(_ draft: ProfileDraft) async -> ProfileDraft {
 		guard !draft.onboardingStartedRecorded, analytics.consent.status == .granted,
 			case .success(let recorded) = await profileStore.markOnboardingStarted(draft)
-		else { return }
+		else { return draft }
 		analytics.record(
 			AnalyticsEvent(
 				name: .onboardingStarted,
@@ -182,14 +314,29 @@ struct FirstLaunchOnboardingView: View {
 				source: .onboarding
 			)
 		)
+		return recorded
 	}
 
-	/// A double tap on the CTA sends two `onFinish`: the second is ignored while the first one writes.
+	/// A step was validated: the draft is written so that a relaunch resumes on the next one. A write that fails
+	/// only costs that resume, the answers are still in the flow, and the profile is written from them at the
+	/// end.
+	private func saveDraft(_ draft: ProfileDraft) {
+		let previous = draftSave
+		draftSave = Task {
+			await previous?.value
+			_ = await profileStore.saveDraft(draft)
+		}
+	}
+
+	/// A double tap on the CTA sends two `onFinish`: the second is ignored from the first until the write fails.
+	/// After a write that succeeds the flag stays up, so that a tap during the fade to the tabs cannot finish
+	/// the flow a second time.
 	private func save(_ draft: ProfileDraft, available: [NodeIdentity]) {
 		guard !isSaving else { return }
 		isSaving = true
+		let lastDraftSave = draftSave
 		Task {
-			defer { isSaving = false }
+			await lastDraftSave?.value
 			switch await profileStore.commit(draft, availableGenreIDs: available) {
 			case .saved(let profile):
 				// Same event, name and properties as the flat onboarding sent (J.4): nothing new.
@@ -207,6 +354,7 @@ struct FirstLaunchOnboardingView: View {
 				}
 				finished(profile)
 			case .invalid, .invalidated, .unavailable:
+				isSaving = false
 				saveFailed = true
 			}
 		}
