@@ -4,8 +4,9 @@ import { join } from "node:path";
 
 import { describe, expect, it } from "vitest";
 
-// TRA-384: the six embedded fonts are the only ones the app ships, and each one is the exact file that the
-// README documents (source, version, SHA-256). A swapped or added font fails here, not in a review.
+// TRA-384 / TRA-724: the seven embedded fonts are the only ones the app ships, and each one is the exact
+// file that the README documents (source, version, SHA-256). A swapped or added font fails here, not in a
+// review.
 const fontsDirectory = "ios/Track1/Resources/Fonts";
 const infoPlist = "ios/Track1/Resources/Info.plist";
 const typography = "ios/Track1/DesignSystem/Track1Typography.swift";
@@ -49,13 +50,13 @@ function postScriptName(font: Buffer): string | undefined {
 	return undefined;
 }
 
-describe("embedded fonts (TRA-384)", () => {
-	it("ships exactly the six documented TTF files and no other font", async () => {
+describe("embedded fonts (TRA-384, TRA-724)", () => {
+	it("ships exactly the seven documented TTF files and no other font", async () => {
 		const documented = (await documentedFonts()).map((font) => font.file).sort();
 		const shipped = (await readdir(fontsDirectory))
 			.filter((name) => /\.(ttf|otf|ttc|woff2?)$/i.test(name))
 			.sort();
-		expect(documented).toHaveLength(6);
+		expect(documented).toHaveLength(7);
 		expect(shipped).toEqual(documented);
 	});
 
@@ -73,7 +74,7 @@ describe("embedded fonts (TRA-384)", () => {
 		}
 	});
 
-	it("registers the six files in UIAppFonts", async () => {
+	it("registers the seven files in UIAppFonts", async () => {
 		const plist = await readFile(infoPlist, "utf8");
 		const block = /<key>UIAppFonts<\/key>\s*<array>([\s\S]*?)<\/array>/.exec(plist)?.[1] ?? "";
 		const registered = [...block.matchAll(/<string>([^<]+)<\/string>/g)].map((match) => match[1]).sort();

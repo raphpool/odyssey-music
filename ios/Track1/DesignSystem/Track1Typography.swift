@@ -1,7 +1,7 @@
 import SwiftUI
 import UIKit
 
-/// The six embedded font files (`Resources/Fonts`, registered in `Info.plist`). The raw value is the
+/// The seven embedded font files (`Resources/Fonts`, registered in `Info.plist`). The raw value is the
 /// PostScript name that `Font.custom` and `UIFont(name:size:)` look up, not the file name:
 /// `test/ios-fonts.test.ts` keeps both in line with the files.
 enum Track1FontFace: String, CaseIterable {
@@ -9,13 +9,15 @@ enum Track1FontFace: String, CaseIterable {
 	case jetBrainsMonoMedium = "JetBrainsMono-Medium"
 	case jetBrainsMonoBold = "JetBrainsMono-Bold"
 	case robotoRegular = "Roboto-Regular"
+	case robotoMedium = "Roboto-Medium"
 	case robotoSemiBold = "Roboto-SemiBold"
 	case robotoCondensedMedium = "RobotoCondensed-Medium"
 }
 
 /// The 20 text styles of the Figma Typography frame (`180:376`, read 2026-10-13, TRA-384), plus
 /// `monoHeadline`, which only the Top bar date uses (`I282:838;173:15`, read 2026-10-23, TRA-660), plus the
-/// seven roles of the v1 screens, read on the mockup nodes on 2026-11-16 (TRA-710). Sizes and line heights
+/// seven roles of the v1 screens, read on the mockup nodes on 2026-11-16 (TRA-710), plus `tagline`, read on
+/// the Welcome node on 2026-11-17 (TRA-724). Sizes and line heights
 /// are in points at the default content size; `textStyle` is the system style that Dynamic Type scales each
 /// role against (D4bis).
 enum Track1TextRole: CaseIterable {
@@ -27,6 +29,8 @@ enum Track1TextRole: CaseIterable {
 	// mapping already in place, since only the six embedded fonts exist (`Track1FontFace`).
 	case inputLarge, reader, readerDim
 	case monoBadge, monoCounter, monoBarTitle, monoButton
+	// Welcome tagline: "Inter" Medium in the Figma, Roboto Medium in the app, same mapping as above.
+	case tagline
 
 	private typealias Spec = (
 		face: Track1FontFace, size: CGFloat, lineHeight: CGFloat, textStyle: Font.TextStyle
@@ -62,6 +66,8 @@ enum Track1TextRole: CaseIterable {
 		case .monoCounter: (.jetBrainsMonoMedium, 16, 20, .callout)  // 362:5075
 		case .monoBarTitle: (.jetBrainsMonoBold, 16, 24, .callout)  // 338:2519
 		case .monoButton: (.jetBrainsMonoMedium, 15, 20, .subheadline)  // 324:1816
+		// 316:4857 has a natural line height: Figma measures 48 pt for two lines, so 24 pt a line.
+		case .tagline: (.robotoMedium, 20, 24, .title3)
 		}
 	}
 
