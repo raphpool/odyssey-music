@@ -122,39 +122,41 @@ final class ProfileFlowTests: XCTestCase {
 		// The edge swipe is the way back: the bar is hidden and Figma draws no back control. From the genres it
 		// goes to the disc, which is still chosen.
 		swipeBack(in: app)
-		XCTAssertTrue(chip.waitForNonExistence(timeout: 10))
+		XCTAssertTrue(chip.waitForNonExistence(timeout: 10), "back from the genres")
 		let mint = app.buttons["onboarding-disc-mint"]
-		XCTAssertTrue(mint.waitForExistence(timeout: 10))
-		XCTAssertTrue(mint.isSelected)
-		XCTAssertTrue(app.buttons[UITestFlows.discContinueIdentifier].isEnabled)
+		XCTAssertTrue(mint.waitForExistence(timeout: 10), "the disc step is shown")
+		XCTAssertTrue(mint.isSelected, "the disc is still chosen")
+		XCTAssertTrue(
+			app.buttons[UITestFlows.discContinueIdentifier].isEnabled, "the disc step can be left")
 
 		// From the disc it goes to the pseudo, with the text that was typed.
 		swipeBack(in: app)
 		let pseudoField = app.textFields[UITestFlows.pseudoFieldIdentifier]
-		XCTAssertTrue(pseudoField.waitForExistence(timeout: 10))
+		XCTAssertTrue(pseudoField.waitForExistence(timeout: 10), "back to the pseudo")
 		XCTAssertEqual(pseudoField.value as? String, "Raph")
 
 		// From the pseudo it goes to Welcome.
 		swipeBack(in: app)
 		let start = app.buttons["onboarding-start"]
-		XCTAssertTrue(start.waitForExistence(timeout: 10))
+		XCTAssertTrue(start.waitForExistence(timeout: 10), "back to Welcome")
 
 		// Forward again: the pseudo and the disc are as they were, and so is the genre that was ticked.
 		UITestFlows.startOnboarding(app)
 		XCTAssertEqual(pseudoField.value as? String, "Raph")
 		pseudoField.tap()
 		pseudoField.typeText("\n")
-		XCTAssertTrue(app.buttons["onboarding-disc-mint"].waitForExistence(timeout: 10))
-		XCTAssertTrue(app.buttons["onboarding-disc-mint"].isSelected)
+		XCTAssertTrue(
+			app.buttons["onboarding-disc-mint"].waitForExistence(timeout: 10), "forward to the disc again")
+		XCTAssertTrue(app.buttons["onboarding-disc-mint"].isSelected, "the disc is kept")
 		UITestFlows.tapWhenReady(app.buttons[UITestFlows.discContinueIdentifier])
 		// The card is closed again, and still counts the genre that was ticked.
 		let family0 = card("family-0", in: app)
-		XCTAssertTrue(family0.waitForExistence(timeout: 10))
+		XCTAssertTrue(family0.waitForExistence(timeout: 10), "forward to the genres again")
 		XCTAssertFalse(chip.exists)
-		XCTAssertTrue(family0.label.contains("1 sélectionné"))
+		XCTAssertTrue(family0.label.contains("1 sélectionné"), family0.label)
 		XCTAssertEqual(family0.value as? String, "replié")
 		let counter = element(app, "bottom-counter")
-		XCTAssertTrue(counter.waitForExistence(timeout: 5))
+		XCTAssertTrue(counter.waitForExistence(timeout: 5), "the counter is shown")
 		XCTAssertEqual(counter.label, "Total : 1 genre")
 	}
 
@@ -634,10 +636,11 @@ final class ProfileFlowTests: XCTestCase {
 		// TRA-746: the profile is written when the opt-in ends, so that is where the write fails.
 		UITestFlows.passNotifications(app)
 
-		// The write failed: the page stays where it is with its ticks, and the same button writes again.
+		// The write failed: the opt-in stays on screen, before any tab, and its button writes again.
 		let alert = app.alerts["Enregistrement indisponible"]
-		XCTAssertTrue(alert.waitForExistence(timeout: 10))
-		XCTAssertTrue(UITestFlows.tabBar(in: app).exists)
+		XCTAssertTrue(alert.waitForExistence(timeout: 10), "the failed write shows the alert")
+		XCTAssertTrue(
+			app.buttons[UITestFlows.notificationsContinueIdentifier].exists, "the opt-in is still on screen")
 		alert.buttons["OK"].tap()
 		XCTAssertTrue(alert.waitForNonExistence(timeout: 5))
 		UITestFlows.tapWhenReady(app.buttons[UITestFlows.notificationsContinueIdentifier])
