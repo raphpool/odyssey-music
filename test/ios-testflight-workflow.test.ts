@@ -52,7 +52,7 @@ describe("ios-testflight workflow guards (TRA-729)", () => {
 
 	it("runs the steps in the contract order", () => {
 		const names = [...source.matchAll(/^ {6}- (?:name: (.*)|uses: (\S+))$/gm)].map((m) => m[1] ?? m[2]);
-		expect(names).toEqual(["actions/checkout@v6", "Select Xcode"]);
+		expect(names).toEqual(["actions/checkout@v6", "Select Xcode", "Stop until signing lands"]);
 	});
 
 	it("runs on the runner of ios-check, within the contract limits", () => {
@@ -61,10 +61,11 @@ describe("ios-testflight workflow guards (TRA-729)", () => {
 		expect(runner(source)).toBe(runner(read(".github/workflows/ios-ci.yml")));
 		expect(source).toMatch(/^ {4}timeout-minutes: 60\s*$/m);
 		expect(source).toMatch(/^permissions:\n {2}contents: read\n/m);
+		expect(source.match(/^\s*permissions:/gm)).toHaveLength(1); // no job-level block can widen the token
 		expect(source).toMatch(/^concurrency:\n {2}group: ios-testflight\n {2}cancel-in-progress: false\n/m);
 	});
 
 	it("never traces the shell, which would print what a later step decodes", () => {
-		expect(source).not.toMatch(/set -\w*x|bash -\w*x/);
+		expect(source).not.toMatch(/\bxtrace\b|\bset\s+-\w*x|\bbash\s+-\w*x/);
 	});
 });

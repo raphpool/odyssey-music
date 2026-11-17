@@ -32,9 +32,8 @@ jobs:
       - name: Select Xcode
         shell: bash
         run: |
-          # `|| [[ -n ... ]]`: read returns 1 on a last line without newline, and bash -e would stop silently.
           pin="$(<ios/.xcode-version)"
-          read -r _ version _ <<< "$pin" || [[ -n "$version" ]]
+          read -r _ version _ <<< "$pin"
           if [[ ! "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
             echo "::error::cannot read an Xcode version from ios/.xcode-version: $pin"
             exit 1
@@ -56,3 +55,9 @@ jobs:
             exit 1
           fi
           echo "$actual selected from $app"
+      # Fail closed (review of the skeleton, 2026-11-17): without this step a dispatch ends green although nothing
+      # was archived or sent. TRA-775 replaces it with the signing, archive and upload steps.
+      - name: Stop until signing lands
+        run: |
+          echo "::error::ios-testflight is a skeleton: signing and upload arrive with TRA-775, nothing was sent."
+          exit 1
