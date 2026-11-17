@@ -1,4 +1,5 @@
 import Track1Core
+import UserNotifications
 import XCTest
 
 @testable import Track1
@@ -181,5 +182,46 @@ final class AppRouterNodeTests: XCTestCase {
 		XCTAssertEqual(AppTab.allCases.map(\.icon), [.tabToday, .tabGenres])
 		XCTAssertEqual(AppTab.allCases.map(\.accessibilityIdentifier), ["tab-today", "tab-genres"])
 		XCTAssertEqual(AppTab.allCases.map(\.title), ["Aujourd’hui", "Genres"])
+	}
+
+	/// TRA-747, from Genres with the reader open on Today: the tab is Today and its stack is empty.
+	func testShowTodayFromGenresClosesTheReaderOpenOnToday() throws {
+		let router = AppRouter()
+		let track = try XCTUnwrap(NodeIdentity(rawValue: "track:sample"))
+		let genre = try XCTUnwrap(NodeIdentity(rawValue: "genre:trip-hop"))
+		router.openPlayer(track, context: .independent(source: .home), in: .today)
+		router.openNode(genre, context: .independent(source: .home), in: .genres)
+		router.select(.genres)
+
+		router.showToday()
+
+		XCTAssertEqual(router.selectedTab, .today)
+		XCTAssertTrue(router.path(for: .today).isEmpty)
+		// Only the stack of Today is emptied.
+		XCTAssertEqual(router.path(for: .genres).count, 1)
+	}
+
+	func testOnlyADailyIdentifierOpensToday() {
+		XCTAssertTrue(ReminderRouting.opensToday(identifier: "daily-2026-12-01"))
+		XCTAssertFalse(ReminderRouting.opensToday(identifier: "other-1"))
+		XCTAssertFalse(ReminderRouting.opensToday(identifier: "weekly-2026-12-01"))
+		XCTAssertFalse(ReminderRouting.opensToday(identifier: "dailyish"))
+		XCTAssertFalse(ReminderRouting.opensToday(identifier: "daily-"))
+		XCTAssertFalse(ReminderRouting.opensToday(identifier: ""))
+	}
+
+	func testTappingADailyReminderShowsTodayAndAnyOtherNotificationIsIgnored() {
+		let router = AppRouter()
+		router.select(.genres)
+		let delegate = ReminderNotificationDelegate(router: router)
+
+		delegate.open(identifier: "other-1")
+		XCTAssertEqual(router.selectedTab, .genres)
+		delegate.open(identifier: "daily-2026-12-01")
+		XCTAssertEqual(router.selectedTab, .today)
+	}
+
+	func testAReminderInTheForegroundPresentsNothing() {
+		XCTAssertTrue(ReminderNotificationDelegate.foregroundPresentation.isEmpty)
 	}
 }

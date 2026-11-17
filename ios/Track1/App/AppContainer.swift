@@ -15,11 +15,14 @@ final class AppContainer {
 	let profileStore: ProfileStore
 	let recentNodes: RecentNodesStore
 	let dailyRecommendationStore: DailyRecommendationStore
+	let reminders: ReminderSync
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
 
 	init(configurationResult: Result<AppConfiguration, AppConfigurationError> = AppConfiguration.load()) {
 		self.configurationResult = configurationResult
 		router = AppRouter()
+		reminders = ReminderSync(
+			scheduler: ReminderScheduler(center: SystemReminderCenter(), calendar: Self.reminderCalendar))
 		#if targetEnvironment(simulator)
 			let processInfo = ProcessInfo.processInfo
 			let localStore = LocalStore(
@@ -84,5 +87,46 @@ final class AppContainer {
 			analytics = nil
 		}
 		Task { await analytics?.initialize() }
+	}
+
+	/// The Gregorian calendar `PlannedReminder.localDate` is written in, in the device's time zone (`load` writes
+	/// the day in `TimeZone.current`). It follows the zone, so the 09:00 stays the person's local 09:00.
+	private static var reminderCalendar: Calendar {
+		var calendar = Calendar(identifier: .gregorian)
+		calendar.timeZone = .autoupdatingCurrent
+		return calendar
+	}
+}
+
+/// Keeps the daily reminders in step with the plan Today has just loaded (TRA-747).
+@MainActor
+final class ReminderSync {
+	private let scheduler: ReminderScheduler
+	/// The last `replace`. It suspends between its removal and its additions, so two started together would
+	/// interleave and leave the notifications of both plans: each call starts when the previous one has ended.
+	/// Unstructured, so a view task cancelled halfway (a tab change) does not leave a replacement half done.
+	private var last: Task<Void, Never>?
+
+	init(scheduler: ReminderScheduler) {
+		self.scheduler = scheduler
+	}
+
+	/// To be called once `model.load` has returned. Only a load that ended on a recommendation reaches the
+	/// scheduler, and never with an empty plan: that means "nothing new to schedule", not "cancel" (a `load`
+	/// served from disk plans nothing, TRA-783). The plan is then completed first, and scheduled if not empty.
+	func sync(_ model: TodayViewModel, for profile: Profile) async {
+		guard !Task.isCancelled, case .recommendation = model.state else { return }
+		if model.upcoming.isEmpty { await model.extendPlanIfNeeded(for: profile) }
+		// Read after the extension: a task superseded by other tastes leaves the replacement to its successor.
+		let plan = model.upcoming
+		guard !Task.isCancelled, !plan.isEmpty else { return }
+		let previous = last
+		let scheduler = scheduler
+		let next = Task {
+			await previous?.value
+			await scheduler.replace(with: plan)
+		}
+		last = next
+		await next.value
 	}
 }

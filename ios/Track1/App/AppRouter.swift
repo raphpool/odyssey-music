@@ -42,6 +42,16 @@ enum AppTab: String, CaseIterable, Hashable, Identifiable, Sendable {
 	}
 }
 
+/// Which notifications open the app on Today.
+enum ReminderRouting {
+	/// The daily reminders only, the identifiers the scheduler gives them (`daily-` and a date): any other
+	/// notification is not one of ours to route.
+	static func opensToday(identifier: String) -> Bool {
+		identifier.hasPrefix(ReminderScheduler.identifierPrefix)
+			&& identifier.count > ReminderScheduler.identifierPrefix.count
+	}
+}
+
 @MainActor
 @Observable
 final class AppRouter {
@@ -72,6 +82,13 @@ final class AppRouter {
 		case .today, .genres:
 			selectedTab = tab
 		}
+	}
+
+	/// A tapped daily reminder (TRA-747): the Today tab, back at its root, the home of the day. The reader that
+	/// was open on it is closed, and the other tabs keep their own paths.
+	func showToday() {
+		selectedTab = .today
+		setPath([], for: .today)
 	}
 
 	/// Opens the reader of `identity`; Today's "Découvrir" is the caller.
