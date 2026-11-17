@@ -56,22 +56,24 @@ final class AffinityTests: XCTestCase {
 		Affinity.rank(catalog: catalog, genreIDs: try genres.map(identity))
 	}
 
+	// A `key_artists` edge toward a project does not occur in real data: it only pins that the weights and
+	// the reasons of the candidates that remain are unchanged by TRA-713.
 	func testScoresDirectNearbyAndCuratedContributionsOnceAndExcludesGenresAndLabels() throws {
 		let catalog = try catalog(
 			[
 				Node("genre:electronic", "Électronique"),
 				Node("genre:ambient", "Ambient"),
-				Node("artist:one", "One", teaser: "Un teaser"),
+				Node("project:one", "One", teaser: "Un teaser"),
 				Node("project:two", "Two"),
 				Node("label:three", "Three"),
 			],
 			[
 				Edge("genre:electronic", "genre:ambient", "related_genres"),
-				Edge("artist:one", "genre:electronic", "genres"),
-				Edge("artist:one", "genre:electronic", "genres"),
-				Edge("artist:one", "genre:ambient", "genres"),
-				Edge("genre:electronic", "artist:one", "key_artists"),
-				Edge("genre:electronic", "artist:one", "key_artists"),
+				Edge("project:one", "genre:electronic", "genres"),
+				Edge("project:one", "genre:electronic", "genres"),
+				Edge("project:one", "genre:ambient", "genres"),
+				Edge("genre:electronic", "project:one", "key_artists"),
+				Edge("genre:electronic", "project:one", "key_artists"),
 				Edge("genre:electronic", "project:two", "landmark_projects"),
 				Edge("genre:electronic", "label:three", "landmark_projects"),
 			])
@@ -82,12 +84,49 @@ final class AffinityTests: XCTestCase {
 			result,
 			[
 				AffinityCandidate(
-					identity: try identity("artist:one"), type: .artist, name: "One", teaser: "Un teaser", score: 7,
+					identity: try identity("project:one"), type: .project, name: "One",
+					teaser: "Un teaser", score: 7,
 					reasons: ["Artiste clé d’Électronique", "Lié à Électronique", "Proche de Électronique"]),
 				AffinityCandidate(
 					identity: try identity("project:two"), type: .project, name: "Two", teaser: nil, score: 4,
 					reasons: ["Projet repère d’Électronique"]),
 			])
+	}
+
+	// TRA-713: the best-scoring node is an artist, yet it must not appear in the ranking.
+	func testNeverRanksAnArtistEvenWhenItHasTheBestScore() throws {
+		let catalog = try catalog(
+			[
+				Node("genre:ambient", "Ambient"),
+				Node("artist:star", "Star"),
+				Node("project:work", "Work"),
+				Node("track:song", "Song"),
+			],
+			[
+				Edge("genre:ambient", "artist:star", "key_artists"),
+				Edge("artist:star", "genre:ambient", "genres"),
+				Edge("genre:ambient", "project:work", "landmark_projects"),
+				Edge("track:song", "genre:ambient", "genres"),
+			])
+
+		let result = try rank(catalog, ["genre:ambient"])
+
+		// The artist would have scored 6, ahead of the project (4) and the track (3).
+		XCTAssertEqual(result.map(\.score), [4, 3])
+		XCTAssertEqual(result.map(\.type), [.project, .track])
+		XCTAssertEqual(result.map(\.identity.rawValue), ["project:work", "track:song"])
+		XCTAssertFalse(result.contains { $0.type == .artist })
+	}
+
+	func testGenresLinkedOnlyToArtistsRankNothing() throws {
+		let catalog = try catalog(
+			[Node("genre:ambient", "Ambient"), Node("artist:one", "One"), Node("artist:two", "Two")],
+			[
+				Edge("artist:one", "genre:ambient", "genres"),
+				Edge("genre:ambient", "artist:two", "key_artists"),
+			])
+
+		XCTAssertEqual(try rank(catalog, ["genre:ambient"]), [])
 	}
 
 	func testLandmarkTracksWeighFourAndDuplicateSelectionsCountOnce() throws {
@@ -108,14 +147,14 @@ final class AffinityTests: XCTestCase {
 				Node("genre:electronic", "Électronique"),
 				Node("genre:funk", "Funk"),
 				Node("genre:house", "House"),
-				Node("artist:one", "One"),
+				Node("project:one", "One"),
 			],
 			[
 				Edge("genre:electronic", "genre:house", "related_genres"),
 				Edge("genre:electronic", "genre:house", "related_genres"),
 				Edge("genre:electronic", "genre:house", "subgenres"),
 				Edge("genre:funk", "genre:house", "related_genres"),
-				Edge("artist:one", "genre:house", "genres"),
+				Edge("project:one", "genre:house", "genres"),
 			])
 
 		let result = try rank(catalog, ["genre:electronic", "genre:funk"])
@@ -131,14 +170,14 @@ final class AffinityTests: XCTestCase {
 				Node("genre:ambient", "Ambient"),
 				Node("genre:drone", "Drone"),
 				Node("genre:house", "House"),
-				Node("artist:one", "One"),
-				Node("artist:two", "Two"),
+				Node("project:one", "One"),
+				Node("project:two", "Two"),
 			],
 			[
 				Edge("genre:house", "genre:ambient", "related_genres"),
 				Edge("genre:ambient", "genre:drone", "genres"),
-				Edge("artist:one", "genre:ambient", "related_genres"),
-				Edge("artist:two", "genre:house", "genres"),
+				Edge("project:one", "genre:ambient", "related_genres"),
+				Edge("project:two", "genre:house", "genres"),
 			])
 
 		XCTAssertEqual(try rank(catalog, ["genre:ambient"]), [])
@@ -149,41 +188,41 @@ final class AffinityTests: XCTestCase {
 			[
 				Node("genre:ambient", "Ambient"),
 				Node("genre:drone", "Drone"),
-				Node("artist:one", "One"),
-				Node("artist:other", "Other"),
+				Node("project:one", "One"),
+				Node("project:other", "Other"),
 				Node("label:ghostly", "Ghostly"),
 			],
 			[
-				Edge("artist:ghost", "genre:ambient", "genres"),
-				Edge("genre:ambient", "artist:ghost", "key_artists"),
+				Edge("project:ghost", "genre:ambient", "genres"),
+				Edge("genre:ambient", "project:ghost", "key_artists"),
 				Edge("genre:ambient", "genre:drone", "landmark_projects"),
 				Edge("genre:ambient", "genre:unknown", "related_genres"),
-				Edge("genre:ambient", "artist:other", "subgenres"),
-				Edge("artist:one", "artist:other", "genres"),
-				Edge("artist:one", "genre:missing", "genres"),
+				Edge("genre:ambient", "project:other", "subgenres"),
+				Edge("project:one", "project:other", "genres"),
+				Edge("project:one", "genre:missing", "genres"),
 				Edge("label:ghostly", "genre:ambient", "genres"),
 				Edge("genre:ambient", "label:ghostly", "key_artists"),
-				Edge("genre:ambient", "artist:one", "unrelated_edge"),
+				Edge("genre:ambient", "project:one", "unrelated_edge"),
 			])
 
 		// Unknown and non-genre selections are dropped, so only "genre:ambient" contributes.
-		let result = try rank(catalog, ["genre:unknown", "artist:one", "label:ghostly", "genre:ambient"])
+		let result = try rank(catalog, ["genre:unknown", "project:one", "label:ghostly", "genre:ambient"])
 
 		XCTAssertEqual(result, [])
 	}
 
 	func testEmptySelectionReturnsNoCandidate() throws {
 		let catalog = try catalog(
-			[Node("genre:ambient", "Ambient"), Node("artist:one", "One")],
-			[Edge("artist:one", "genre:ambient", "genres")])
+			[Node("genre:ambient", "Ambient"), Node("project:one", "One")],
+			[Edge("project:one", "genre:ambient", "genres")])
 
 		XCTAssertEqual(try rank(catalog, []), [])
-		XCTAssertEqual(try rank(catalog, ["artist:one", "genre:unknown"]), [])
+		XCTAssertEqual(try rank(catalog, ["project:one", "genre:unknown"]), [])
 	}
 
 	func testOrdersTiesByIdentityAndKeepsTheTopSixty() throws {
 		let works = (0..<61).map { index in
-			Node("artist:\(String(format: "%02d", 61 - index))", "A \(index)")
+			Node("project:\(String(format: "%02d", 61 - index))", "A \(index)")
 		}
 		let catalog = try catalog(
 			[Node("genre:ambient", "Ambient")] + works,
@@ -192,13 +231,13 @@ final class AffinityTests: XCTestCase {
 		let ranked = try rank(catalog, ["genre:ambient"])
 
 		XCTAssertEqual(ranked.count, 60)
-		XCTAssertEqual(ranked.first?.identity.rawValue, "artist:01")
-		XCTAssertEqual(ranked.last?.identity.rawValue, "artist:60")
+		XCTAssertEqual(ranked.first?.identity.rawValue, "project:01")
+		XCTAssertEqual(ranked.last?.identity.rawValue, "project:60")
 	}
 
 	func testHigherScoresPrecedeIdentityOrderBeforeTruncation() throws {
-		let works = (1...60).map { Node("artist:a\(String(format: "%02d", $0))", "A \($0)") }
-		let strong = Node("artist:z-strong", "Strong")
+		let works = (1...60).map { Node("project:a\(String(format: "%02d", $0))", "A \($0)") }
+		let strong = Node("project:z-strong", "Strong")
 		let catalog = try catalog(
 			[Node("genre:ambient", "Ambient"), strong] + works,
 			(works + [strong]).map { Edge($0.identity, "genre:ambient", "genres") }
@@ -207,8 +246,8 @@ final class AffinityTests: XCTestCase {
 		let ranked = try rank(catalog, ["genre:ambient"])
 
 		XCTAssertEqual(ranked.count, 60)
-		XCTAssertEqual(ranked.first?.identity.rawValue, "artist:z-strong")
+		XCTAssertEqual(ranked.first?.identity.rawValue, "project:z-strong")
 		XCTAssertEqual(ranked.first?.score, 6)
-		XCTAssertEqual(ranked.last?.identity.rawValue, "artist:a59")
+		XCTAssertEqual(ranked.last?.identity.rawValue, "project:a59")
 	}
 }

@@ -130,6 +130,11 @@ Pour vérifier qu'un changement de l'app compile sans lancer `xcodebuild` :
 Limite : comme app et tests sont typecheckés comme un seul module, les erreurs d'isolation
 Swift 6 entre cibles (« sending value of non-Sendable type ») n'apparaissent que dans `ios-check`.
 
+## Envoi TestFlight (TRA-709)
+
+Les prérequis Apple et GitHub, le lancement du workflow `ios-testflight`, l'ouverture du groupe
+externe et la lecture des échecs sont décrits dans [`docs/track1-testflight.md`](track1-testflight.md).
+
 ## Artefacts Expo historiques de TRA-290
 
 Source de configuration et de preuves : branche
