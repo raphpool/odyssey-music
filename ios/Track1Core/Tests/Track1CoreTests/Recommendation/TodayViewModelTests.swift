@@ -341,6 +341,188 @@ final class TodayViewModelTests: XCTestCase {
 		XCTAssertEqual(model.upcoming.count, 7)
 	}
 
+	// MARK: Extending the plan on the cached path (TRA-783)
+
+	/// The day after the first load: `load` serves the planned entry without a read, so the plan still ends on
+	/// 2026-10-18 and today + 7 is 2026-10-19. Nine works are as many as the nine dates, so no work repeats and
+	/// every planned entry is kept as it is (one that names the work of the day would be picked again).
+	func testExtendPlanAddsTheMissingDayAndKeepsThePlannedOnes() async throws {
+		let works = (1...9).map { "project:work\($0)" }
+		let nineWorks = try catalog(
+			nodes: [("genre:rock", "Rock")] + works.map { ($0, $0) },
+			edges: works.map { ($0, "genre:rock", "genres") })
+		let taste = try profile(revision: 1)
+		let store = makeStore()
+		let first = makeModel(probe: CatalogProbe(result: .success(nineWorks, etag: nil)), store: store)
+		await first.load(for: taste)
+		let firstHistory = await store.history()
+
+		let probe = CatalogProbe(result: .success(nineWorks, etag: nil))
+		let tomorrow = makeModel(probe: probe, store: store, now: Self.clock.addingTimeInterval(86_400))
+		await tomorrow.load(for: taste)
+		let served = try recommendation(of: tomorrow)
+		let readsAfterLoad = await probe.calls
+		XCTAssertEqual(readsAfterLoad, 0)
+		XCTAssertEqual(tomorrow.upcoming, [])
+
+		await tomorrow.extendPlanIfNeeded(for: taste)
+
+		let readsAfterExtend = await probe.calls
+		XCTAssertEqual(readsAfterExtend, 1)
+		XCTAssertEqual(tomorrow.state, .recommendation(served))
+		let history = await store.history()
+		XCTAssertEqual(history.map(\.localDate), [Self.parisDate] + Self.plannedDates + ["2026-10-19"])
+		XCTAssertEqual(Array(history.prefix(8)), firstHistory)
+		XCTAssertEqual(Set(history.map(\.nodeID)).count, 9)
+		XCTAssertEqual(tomorrow.upcoming.map(\.localDate), Array(Self.plannedDates.dropFirst()) + ["2026-10-19"])
+		XCTAssertEqual(tomorrow.upcoming.map(\.recommendation), Array(history.suffix(7)))
+	}
+
+	/// An app update: today's entry is on disk, no plan is, and `load` plans nothing.
+	func testExtendPlanPlansTheSevenNextDaysWhenOnlyTodaysEntryIsOnDisk() async throws {
+		let taste = try profile(revision: 1)
+		let store = makeStore()
+		let stored = try storedRecommendation(date: Self.parisDate, node: "project:beta", revision: 1)
+		_ = await store.save([stored])
+		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
+		let model = makeModel(probe: probe, store: store)
+		await model.load(for: taste)
+		XCTAssertEqual(model.state, .recommendation(stored))
+		XCTAssertEqual(model.upcoming, [])
+
+		await model.extendPlanIfNeeded(for: taste)
+
+		let reads = await probe.calls
+		XCTAssertEqual(reads, 1)
+		XCTAssertEqual(model.state, .recommendation(stored))
+		let history = await store.history()
+		XCTAssertEqual(history.map(\.localDate), [Self.parisDate] + Self.plannedDates)
+		XCTAssertEqual(history.first, stored)
+		XCTAssertEqual(model.upcoming.map(\.localDate), Self.plannedDates)
+		XCTAssertEqual(model.upcoming.map(\.recommendation), Array(history.dropFirst()))
+	}
+
+	func testExtendPlanReadsNothingWhenThePlanAlreadyReachesTheHorizon() async throws {
+		let taste = try profile(revision: 1)
+		let store = makeStore()
+		let first = makeModel(probe: CatalogProbe(result: .success(try catalog(), etag: nil)), store: store)
+		await first.load(for: taste)
+		let planned = await store.history()
+
+		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
+		let model = makeModel(probe: probe, store: store)
+		await model.load(for: taste)
+		await model.extendPlanIfNeeded(for: taste)
+
+		let reads = await probe.calls
+		XCTAssertEqual(reads, 0)
+		let history = await store.history()
+		XCTAssertEqual(history, planned)
+		XCTAssertEqual(model.upcoming, [])
+	}
+
+	func testExtendPlanWithACatalogThatCannotBeUsedHasNoEffect() async throws {
+		let taste = try profile(revision: 1)
+		let bare = try catalog(nodes: [("genre:rock", "Rock")], edges: [])
+		let unusable: [APIResult<Catalog>] = [
+			.failure(.network), .notModified(etag: "x"), .success(bare, etag: nil),
+		]
+		for result in unusable {
+			let store = makeStore()
+			let stored = try storedRecommendation(date: Self.parisDate, node: "project:beta", revision: 1)
+			_ = await store.save([stored])
+			let probe = CatalogProbe(result: result)
+			let model = makeModel(probe: probe, store: store)
+			await model.load(for: taste)
+
+			await model.extendPlanIfNeeded(for: taste)
+
+			let reads = await probe.calls
+			XCTAssertEqual(reads, 1)
+			XCTAssertEqual(model.state, .recommendation(stored))
+			XCTAssertEqual(model.upcoming, [])
+			let history = await store.history()
+			XCTAssertEqual(history, [stored])
+		}
+	}
+
+	/// An entry of another revision on the horizon date is not a plan of these tastes: it is picked again.
+	func testExtendPlanReplacesAnEntryOfAnotherRevisionOnTheHorizonDate() async throws {
+		let taste = try profile(revision: 1)
+		let store = makeStore()
+		let stored = try storedRecommendation(date: Self.parisDate, node: "project:beta", revision: 1)
+		let stale = try storedRecommendation(date: "2026-10-18", node: "track:gamma", revision: 2)
+		_ = await store.save([stored, stale])
+		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
+		let model = makeModel(probe: probe, store: store)
+		await model.load(for: taste)
+
+		await model.extendPlanIfNeeded(for: taste)
+
+		let reads = await probe.calls
+		XCTAssertEqual(reads, 1)
+		let history = await store.history()
+		XCTAssertEqual(history.map(\.localDate), [Self.parisDate] + Self.plannedDates)
+		XCTAssertTrue(history.allSatisfy { $0.profileRevision == 1 })
+		XCTAssertFalse(history.map(\.recommendationID).contains(stale.recommendationID))
+	}
+
+	func testExtendPlanKeepsTheViewMarkerOfTodaysEntry() async throws {
+		let taste = try profile(revision: 1)
+		let store = makeStore()
+		let stored = try storedRecommendation(date: Self.parisDate, node: "project:beta", revision: 1)
+		_ = await store.save([stored])
+		let model = makeModel(probe: CatalogProbe(result: .success(try catalog(), etag: nil)), store: store)
+		await model.load(for: taste)
+		await model.recordImpressionIfNeeded()
+
+		await model.extendPlanIfNeeded(for: taste)
+
+		let history = await store.history()
+		XCTAssertEqual(history.map(\.localDate), [Self.parisDate] + Self.plannedDates)
+		XCTAssertEqual(history.first?.recommendationID, stored.recommendationID)
+		XCTAssertEqual(history.first?.viewRecorded, true)
+		XCTAssertTrue(history.dropFirst().allSatisfy { !$0.viewRecorded })
+	}
+
+	func testExtendPlanDoesNothingWithoutAShownRecommendation() async throws {
+		let taste = try profile(revision: 1)
+		let store = makeStore()
+		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
+		let neverLoaded = makeModel(probe: probe, store: store)
+		await neverLoaded.extendPlanIfNeeded(for: taste)
+
+		let failing = CatalogProbe(result: .failure(.network))
+		let unavailable = makeModel(probe: failing, store: store)
+		await unavailable.load(for: taste)
+		await unavailable.extendPlanIfNeeded(for: taste)
+
+		XCTAssertEqual(unavailable.state, .unavailable)
+		let neverLoadedReads = await probe.calls
+		let unavailableReads = await failing.calls
+		XCTAssertEqual(neverLoadedReads, 0)
+		XCTAssertEqual(unavailableReads, 1)
+		let history = await store.history()
+		XCTAssertEqual(history, [])
+	}
+
+	func testExtendPlanIgnoresTastesOtherThanTheLastLoadedOnes() async throws {
+		let store = makeStore()
+		let stored = try storedRecommendation(date: Self.parisDate, node: "project:beta", revision: 1)
+		_ = await store.save([stored])
+		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
+		let model = makeModel(probe: probe, store: store)
+		await model.load(for: try profile(revision: 1))
+
+		await model.extendPlanIfNeeded(for: try profile(revision: 2))
+
+		let reads = await probe.calls
+		XCTAssertEqual(reads, 0)
+		let history = await store.history()
+		XCTAssertEqual(history, [stored])
+		XCTAssertEqual(model.upcoming, [])
+	}
+
 	// MARK: Works only, no artist (TRA-713)
 
 	func testAStoredArtistForTodayIsReplacedByAProjectOrATrackAndLeavesTheHistory() async throws {
