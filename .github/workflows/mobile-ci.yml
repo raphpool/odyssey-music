@@ -35,7 +35,8 @@ jobs:
   mobile-check:
     # Draft PRs are excluded until GitHub emits ready_for_review for this workflow.
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
-    runs-on: [self-hosted, linux]
+    # 2026-11-16 (TRA-703): hosted runner, the self-hosted ones have been off since 2026-10-24.
+    runs-on: ubuntu-latest
     steps:
       - name: Isolate HOME from the runner host account
         # The self-hosted runner uses a personal macOS account. Keep npm and git configuration
