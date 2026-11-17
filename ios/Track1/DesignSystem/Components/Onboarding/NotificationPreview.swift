@@ -74,7 +74,8 @@ struct NotificationPreview: View {
 }
 
 #Preview("Notification preview") {
-	NotificationPreview(title: "Ta recommandation du jour", body: "Aphex Twin, Selected Ambient Works 85-92")
+	let body = "Aphex Twin, album Selected Ambient Works 85-92"
+	NotificationPreview(title: "Ta recommandation du jour", body: body)
 		.padding()
 		.background(Track1Tokens.colorBackgroundBase)
 }
