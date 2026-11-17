@@ -12,7 +12,7 @@ struct RootView: View {
 			case .success:
 				if let analytics = container.analytics {
 					if !analytics.hasLoadedConsent {
-						ProgressView()
+						SplashView()
 					} else if analytics.consent.status == .unknown {
 						PrivacyChoiceView(
 							consent: analytics.consent,
@@ -94,7 +94,7 @@ private struct ApplicationTabs: View {
 		ZStack {
 			switch gate {
 			case .loading:
-				Track1Tokens.colorBackgroundBase.ignoresSafeArea()
+				SplashView()
 			case .onboarding:
 				FirstLaunchOnboardingView(
 					profileStore: profileStore,
