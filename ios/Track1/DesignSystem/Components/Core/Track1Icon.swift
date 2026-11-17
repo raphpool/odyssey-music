@@ -25,17 +25,16 @@ struct Track1Icon: View {
 		}
 	}
 
-	/// Icons drawn for the Figma tab bar (`282:889`), which no SF Symbol matches. Each case is the name of an
-	/// image set in `Assets.xcassets/Tab` (namespaced folder, hence the slash); the images are templates, so
-	/// their color comes from a `Tone`.
+	/// Icons drawn for the Figma tab bar, which no SF Symbol matches. Each case is the name of an image set in
+	/// `Assets.xcassets/Tab` (namespaced folder, hence the slash); the images are templates, so their color
+	/// comes from a `Tone`.
 	enum Asset: String, CaseIterable {
 		case tabToday = "Tab/Today"
 		case tabGenres = "Tab/Genres"
-		case tabSearch = "Tab/Search"
 	}
 
-	/// Maps to the `theme.color.icon.*` tokens: primary, secondary (inactive tab), inverse (on bone buttons),
-	/// action (active tab).
+	/// Maps to the `theme.color.icon.*` tokens: primary, secondary, inverse (on bone buttons), action. The tab
+	/// bar picks its active and inactive tones in `Track1TabBarStyle`.
 	enum Tone: CaseIterable {
 		case primary, secondary, inverse, action
 

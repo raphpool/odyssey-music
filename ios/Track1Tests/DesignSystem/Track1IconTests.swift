@@ -70,7 +70,7 @@ final class Track1IconTests: XCTestCase {
 
 	@MainActor
 	func testAnAssetIconFollowsTheRequestedSize() {
-		let size = UIHostingController(rootView: Track1Icon(asset: .tabSearch, size: 32))
+		let size = UIHostingController(rootView: Track1Icon(asset: .tabGenres, size: 32))
 			.sizeThatFits(in: CGSize(width: 200, height: 200))
 		XCTAssertEqual(size, CGSize(width: 32, height: 32))
 	}
@@ -80,7 +80,12 @@ final class Track1IconTests: XCTestCase {
 	func testTheTabAssetsAreThoseOfTheFigmaTabBar() {
 		XCTAssertEqual(
 			Track1Icon.Asset.allCases.map(\.rawValue),
-			["Tab/Today", "Tab/Genres", "Tab/Search"])
+			["Tab/Today", "Tab/Genres"])
+	}
+
+	/// TRA-771: the tab bar has two tabs, so the Search image set left the catalog with its `Asset` case.
+	func testTheSearchTabAssetIsGone() {
+		XCTAssertNil(UIImage(named: "Tab/Search", in: .main, compatibleWith: nil))
 	}
 
 	/// The host app is the bundle that carries the catalog: the host app's main bundle in an app-hosted test run.
