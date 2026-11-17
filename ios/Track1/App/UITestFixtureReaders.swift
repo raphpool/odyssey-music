@@ -14,6 +14,19 @@
 	enum UITestFixtureReaders {
 		static let fixturesKey = "TRACK1_UI_TEST_FIXTURES_JSON"
 		static let catalogKey = "TRACK1_PROFILE_CATALOG_JSON"
+		/// `grant` or `deny`: the answer of the fake notification center (TRA-746). Absent, the app keeps the
+		/// system center, whose prompt XCUITest cannot drive reliably.
+		static let reminderCenterKey = "TRACK1_FAKE_REMINDER_CENTER"
+
+		/// Nil when the variable is absent or says neither `grant` nor `deny`, so the caller keeps the system
+		/// center.
+		static func reminderCenter(environment: [String: String]) -> (any ReminderCenter)? {
+			switch environment[reminderCenterKey] {
+			case "grant": return UITestReminderCenter(answer: true)
+			case "deny": return UITestReminderCenter(answer: false)
+			default: return nil
+			}
+		}
 
 		/// Returns nil when neither variable is present, so the caller keeps the live readers.
 		static func make(environment: [String: String]) -> ContentReaders? {
@@ -101,6 +114,36 @@
 			} catch {
 				return .failure(.invalidResponse)
 			}
+		}
+	}
+
+	/// A notification center that has not been asked yet, as on a first install, and answers `answer` to the
+	/// first request, like the system prompt does. It holds what it is given, so that the scheduler can run.
+	private actor UITestReminderCenter: ReminderCenter {
+		private let answer: Bool
+		private var status = ReminderAuthorization.notDetermined
+		private var pending: [String] = []
+
+		init(answer: Bool) {
+			self.answer = answer
+		}
+
+		func authorization() async -> ReminderAuthorization { status }
+
+		func requestAuthorization() async -> Bool {
+			if status == .notDetermined { status = answer ? .authorized : .denied }
+			return status == .authorized
+		}
+
+		func pendingIdentifiers() async -> [String] { pending }
+
+		func remove(identifiers: [String]) async {
+			pending.removeAll { identifiers.contains($0) }
+		}
+
+		func add(identifier: String, title: String, body: String, date: DateComponents) async {
+			pending.removeAll { $0 == identifier }
+			pending.append(identifier)
 		}
 	}
 

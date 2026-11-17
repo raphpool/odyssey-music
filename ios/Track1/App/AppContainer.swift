@@ -16,15 +16,21 @@ final class AppContainer {
 	let recentNodes: RecentNodesStore
 	let dailyRecommendationStore: DailyRecommendationStore
 	let reminders: ReminderSync
+	/// The boundary the scheduler and the opt-in screen share: the system center, or a fake under UI tests.
+	let reminderCenter: any ReminderCenter
+	let reminderPrompt: ReminderPromptFlag
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
 
 	init(configurationResult: Result<AppConfiguration, AppConfigurationError> = AppConfiguration.load()) {
 		self.configurationResult = configurationResult
 		router = AppRouter()
-		reminders = ReminderSync(
-			scheduler: ReminderScheduler(center: SystemReminderCenter(), calendar: Self.reminderCalendar))
+		let center: any ReminderCenter
 		#if targetEnvironment(simulator)
 			let processInfo = ProcessInfo.processInfo
+			let fakeCenter = UITestFixtureReaders.reminderCenter(environment: processInfo.environment)
+			center = fakeCenter ?? SystemReminderCenter()
+			reminderPrompt = ReminderPromptFlag(
+				resetBeforeUse: processInfo.arguments.contains("-track1-reset-reminder-prompt"))
 			let localStore = LocalStore(
 				failNextWriteNamed: processInfo.arguments.contains("-track1-fail-next-profile-write")
 					? ProfileStore.profileFileName : nil
@@ -44,12 +50,16 @@ final class AppContainer {
 				onboardingCatalog = nil
 			}
 		#else
+			center = SystemReminderCenter()
+			reminderPrompt = ReminderPromptFlag()
 			let localStore = LocalStore()
 			let resetProfile = false
 			let seedCorruptProfile = false
 			let resetDailyRecommendation = false
 			onboardingCatalog = nil
 		#endif
+		reminderCenter = center
+		reminders = ReminderSync(scheduler: ReminderScheduler(center: center, calendar: Self.reminderCalendar))
 		profileStore = ProfileStore(
 			localStore: localStore,
 			resetBeforeUse: resetProfile,
@@ -120,6 +130,52 @@ final class ReminderSync {
 		// Read after the extension: a task superseded by other tastes leaves the replacement to its successor.
 		let plan = model.upcoming
 		guard !Task.isCancelled, !plan.isEmpty else { return }
+		await replace(with: plan)
+	}
+
+	/// The person has just said yes on a profile that already exists (TRA-746). Today may have been served from
+	/// the cache for days, so the plan on disk would only be scheduled again at the change of day.
+	///
+	/// A load that serves the entry of the day, then `extendPlanIfNeeded`, go through `sync` like Today's:
+	/// that covers a plan to complete or a work to pick. When the plan on disk already reaches the horizon,
+	/// neither plans anything (`upcoming` stays empty: "nothing new"), yet that is the plan to schedule: it is
+	/// then read back from the history, with the bodies of the current catalog. An empty plan is never sent.
+	func scheduleStoredPlan(
+		for profile: Profile, readCatalog: @escaping @Sendable () async -> APIResult<Catalog>,
+		store: DailyRecommendationStore, now: @escaping () -> Date = { .now },
+		timeZone: @escaping () -> TimeZone = { .current }
+	) async {
+		let model = TodayViewModel(readCatalog: readCatalog, store: store, now: now, timeZone: timeZone)
+		await model.load(for: profile)
+		await sync(model, for: profile)
+		guard !Task.isCancelled, case .recommendation = model.state, model.upcoming.isEmpty else { return }
+		let today = DailySelection.localDate(for: now(), timeZone: timeZone())
+		let plan = await storedPlan(for: profile, readCatalog: readCatalog, store: store, today: today)
+		guard !Task.isCancelled, !plan.isEmpty else { return }
+		await replace(with: plan)
+	}
+
+	/// The days after `today` that the history holds for the tastes of `profile`, one per date, in date order.
+	/// Projects and tracks only, the types `Affinity` recommends. Nothing without a catalog to write the bodies.
+	private func storedPlan(
+		for profile: Profile, readCatalog: @Sendable () async -> APIResult<Catalog>,
+		store: DailyRecommendationStore, today: String
+	) async -> [PlannedReminder] {
+		let stored = await store.history().filter {
+			$0.localDate > today && $0.profileRevision == profile.revision
+				&& ($0.nodeType == .project || $0.nodeType == .track)
+		}
+		guard !stored.isEmpty, case .success(let catalog, _) = await readCatalog() else { return [] }
+		// The last entry of a date wins, as the store keeps the history in the order it was written.
+		let byDate = Dictionary(stored.map { ($0.localDate, $0) }, uniquingKeysWith: { _, later in later })
+		return byDate.values.sorted { $0.localDate < $1.localDate }.map { entry in
+			PlannedReminder(
+				localDate: entry.localDate, hour: ReminderPlan.hour, title: ReminderPlan.title,
+				body: ReminderPlan.body(for: entry, catalog: catalog), recommendation: entry)
+		}
+	}
+
+	private func replace(with plan: [PlannedReminder]) async {
 		let previous = last
 		let scheduler = scheduler
 		let next = Task {
@@ -128,5 +184,39 @@ final class ReminderSync {
 		}
 		last = next
 		await next.value
+	}
+}
+
+/// Whether the opt-in screen was already shown to this install (TRA-746). The onboarding shows it to a new
+/// profile; a profile made before it existed sees it once, at a launch where the system was not asked yet.
+/// The flag is raised as the screen is claimed, not once it is answered: a person who leaves the app on it is
+/// not shown it at every launch.
+@MainActor
+struct ReminderPromptFlag {
+	static let key = "track1.reminder-prompt-seen"
+
+	private let defaults: UserDefaults
+
+	/// `resetBeforeUse` is for the UI tests, which reproduce a profile made before the screen existed.
+	init(defaults: UserDefaults = .standard, resetBeforeUse: Bool = false) {
+		if resetBeforeUse { defaults.removeObject(forKey: Self.key) }
+		self.defaults = defaults
+	}
+
+	var hasBeenSeen: Bool { defaults.bool(forKey: Self.key) }
+
+	func markSeen() {
+		defaults.set(true, forKey: Self.key)
+	}
+
+	/// True once, when the screen has never been shown and the system has not been asked: the flag is raised
+	/// before this returns, so that the screen is claimed by one caller only. An authorization already granted
+	/// or refused is never asked again, so the screen stays out of the way.
+	func claimPresentation(center: any ReminderCenter) async -> Bool {
+		guard !hasBeenSeen, await center.authorization() == .notDetermined else { return false }
+		// Read again: another launch task may have claimed it while the center answered.
+		guard !hasBeenSeen else { return false }
+		markSeen()
+		return true
 	}
 }
