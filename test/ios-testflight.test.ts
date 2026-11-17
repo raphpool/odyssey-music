@@ -24,7 +24,9 @@ fi
 `,
 	plutil: `#!/usr/bin/env bash
 [[ "$1" == "-replace" ]] && printf '%s=%s\\n' "$2" "$4" >> "$5"
-[[ "$1" == "-extract" && "$2" == Track1APIBaseURL ]] && printf '%s\\n' "\${TRACK1_TEST_PLIST_API_URL-$TRACK1_API_BASE_URL}"
+url="\${TRACK1_TEST_PLIST_API_URL-$TRACK1_API_BASE_URL}"
+[[ "$*" == *.xcarchive* ]] || url="\${TRACK1_TEST_EXPORTED_URL-$url}"
+[[ "$1" == "-extract" && "$2" == Track1APIBaseURL ]] && printf '%s\\n' "$url"
 [[ "$1" == "-extract" && "$2" != Track1APIBaseURL ]] && printf '1.0.0\\n'
 exit 0
 `,
@@ -37,7 +39,10 @@ exit 0
 mkdir -p "$4/Payload/Track1.app"
 `,
 	codesign: `#!/usr/bin/env bash
-printf 'Identifier=%s\\nTeamIdentifier=%s\\n' "\${TRACK1_TEST_SIGNED_IDENTIFIER-com.dropcliffs.track1}" "\${TRACK1_TEST_SIGNED_TEAM-ABCDE12345}" >&2
+team="\${TRACK1_TEST_SIGNED_TEAM-ABCDE12345}"; identifier="\${TRACK1_TEST_SIGNED_IDENTIFIER-com.dropcliffs.track1}"
+# Only the app inside the .xcarchive is the archived one; any other path is the exported IPA.
+[[ "$*" == *.xcarchive* ]] || { team="\${TRACK1_TEST_EXPORTED_TEAM-$team}"; identifier="\${TRACK1_TEST_EXPORTED_IDENTIFIER-$identifier}"; }
+printf 'Identifier=%s\\nTeamIdentifier=%s\\n' "$identifier" "$team" >&2
 `,
 };
 
@@ -152,16 +157,35 @@ describe.sequential("Track1 TestFlight archive script", () => {
 			"embeds API URL 'https://b.example.org",
 		],
 	])(
-		"without upload, fails when the exported app has %s; with an upload nothing is checked",
+		"stops before the export when the archived app has %s, with or without an upload",
 		async (_label, overrides, expectedError) => {
-			const exported = await run(overrides);
-			const uploaded = await run({ ...overrides, TRACK1_UPLOAD: "1" });
+			for (const TRACK1_UPLOAD of [undefined, "1"]) {
+				const { calls, result } = await run({ ...overrides, TRACK1_UPLOAD });
 
-			expect(exported.result.status).not.toBe(0);
-			expect(exported.result.stderr).toContain(expectedError);
-			expect(exported.result.stdout).not.toContain("IPA:");
-			expect(uploaded.result.status, uploaded.result.stderr).toBe(0);
-			expect(uploaded.result.stdout).not.toContain("IPA:");
+				expect(result.status, result.stdout).not.toBe(0);
+				expect(result.stderr).toContain("The archived app");
+				expect(result.stderr).toContain(expectedError);
+				expect(calls.some((call) => call.startsWith("-exportArchive"))).toBe(false);
+			}
 		},
 	);
+
+	it.each([
+		["team", { TRACK1_TEST_EXPORTED_TEAM: "ZZZZZ99999" }, "signed by team 'ZZZZZ99999'"],
+		["identifier", { TRACK1_TEST_EXPORTED_IDENTIFIER: "com.x.y" }, "signed as 'com.x.y'"],
+		[
+			"API URL",
+			{ TRACK1_TEST_EXPORTED_URL: "https://b.example.org/mobile/v1" },
+			"embeds API URL 'https://b.example.org",
+		],
+	])("without an upload, also checks the exported IPA: %s", async (_label, overrides, expectedError) => {
+		const exported = await run(overrides);
+		const uploaded = await run({ ...overrides, TRACK1_UPLOAD: "1" });
+
+		expect(exported.result.status).not.toBe(0);
+		expect(exported.result.stderr).toContain("The exported app");
+		expect(exported.result.stderr).toContain(expectedError);
+		// With an upload there is no IPA to read: only the archive was checked, and it is fine.
+		expect(uploaded.result.status, uploaded.result.stderr).toBe(0);
+	});
 });

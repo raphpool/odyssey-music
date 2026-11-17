@@ -64,9 +64,26 @@ xcodebuild archive \
 	"TRACK1_API_BASE_URL=$api_base_url" \
 	"CURRENT_PROJECT_VERSION=$build_number"
 
-# Checked before the export: with TRACK1_UPLOAD=1 the export already sends the build.
+# $1 is an .app and $2 says which one ("archived" or "exported"): its signature must name the expected bundle
+# and team, and it must embed the API URL that was asked for.
+verify_app() {
+	local signature signed_identifier signed_team embedded_url
+	signature="$(codesign -d --verbose=2 "$1" 2>&1)" || fail "codesign could not read the signature of the $2 app."
+	signed_identifier="$(printf '%s\n' "$signature" | sed -n 's/^Identifier=//p')"
+	signed_team="$(printf '%s\n' "$signature" | sed -n 's/^TeamIdentifier=//p')"
+	[[ "$signed_identifier" == "$bundle_identifier" ]] \
+		|| fail "The $2 app is signed as '$signed_identifier', expected '$bundle_identifier'."
+	[[ "$signed_team" == "$team_id" ]] || fail "The $2 app is signed by team '$signed_team', expected '$team_id'."
+	embedded_url="$(plutil -extract Track1APIBaseURL raw -o - "$1/Info.plist")" \
+		|| fail "Could not read Track1APIBaseURL from the $2 app."
+	[[ "$embedded_url" == "$api_base_url" ]] \
+		|| fail "The $2 app embeds API URL '$embedded_url', expected '$api_base_url'."
+}
+
+# Checked before the export, in both modes: with TRACK1_UPLOAD=1 the export already sends the build.
 archived_apps=("$archive_path"/Products/Applications/*.app)
 [[ ${#archived_apps[@]} -eq 1 && -d "${archived_apps[0]}" ]] || fail "Expected exactly one .app in $archive_path."
+verify_app "${archived_apps[0]}" archived
 marketing_version="$(plutil -extract CFBundleShortVersionString raw -o - "${archived_apps[0]}/Info.plist")"
 # plutil key paths split on dots, so the profile map goes in as XML, with the name escaped for it.
 xml_profile_name="$(printf '%s' "$profile_name" | sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g')"
@@ -87,20 +104,13 @@ xcodebuild -exportArchive \
 ipas=("$export_dir"/*.ipa)
 [[ "$upload" == 1 || (${#ipas[@]} -eq 1 && -f "${ipas[0]}") ]] || fail "Expected exactly one IPA in $export_dir."
 
+# The export re-signs the app with the distribution profile. Only without an upload does an IPA exist to
+# read that final signature: with TRACK1_UPLOAD=1 the script has verified the archive, not the sent binary.
 if [[ "$upload" != 1 ]]; then
 	unzip -q "${ipas[0]}" -d "$work_dir/unpacked" || fail "Could not unpack ${ipas[0]}."
 	apps=("$work_dir/unpacked"/Payload/*.app)
 	[[ ${#apps[@]} -eq 1 && -d "${apps[0]}" ]] || fail "Expected exactly one .app in ${ipas[0]}."
-	signature="$(codesign -d --verbose=2 "${apps[0]}" 2>&1)" || fail "codesign could not read the signature of ${apps[0]}."
-	signed_identifier="$(printf '%s\n' "$signature" | sed -n 's/^Identifier=//p')"
-	signed_team="$(printf '%s\n' "$signature" | sed -n 's/^TeamIdentifier=//p')"
-	[[ "$signed_identifier" == "$bundle_identifier" ]] \
-		|| fail "The exported app is signed as '$signed_identifier', expected '$bundle_identifier'."
-	[[ "$signed_team" == "$team_id" ]] || fail "The exported app is signed by team '$signed_team', expected '$team_id'."
-	embedded_url="$(plutil -extract Track1APIBaseURL raw -o - "${apps[0]}/Info.plist")" \
-		|| fail "Could not read Track1APIBaseURL from the exported app."
-	[[ "$embedded_url" == "$api_base_url" ]] \
-		|| fail "The exported app embeds API URL '$embedded_url', expected '$api_base_url'."
+	verify_app "${apps[0]}" exported
 fi
 
 echo "Git SHA:  $git_sha"
