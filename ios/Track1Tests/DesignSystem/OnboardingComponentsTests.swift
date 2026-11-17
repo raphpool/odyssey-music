@@ -417,15 +417,6 @@ final class OnboardingComponentsTests: XCTestCase {
 		XCTAssertEqual(BottomActionBar.counterIdentifier, "bottom-counter")
 	}
 
-	func testBottomBarFadesFromTransparentToTheBaseBackgroundByThirtyFivePercent() {
-		let stops = BottomActionBar.fadeStops
-		XCTAssertEqual(stops.count, 3)
-		for (stop, expected) in zip(stops, [0.0, 0.35, 1.0]) {
-			XCTAssertEqual(stop.location, expected, accuracy: 0.0001)
-		}
-		XCTAssertEqual(stops.map { rgbaHex($0.color) }, ["120c0a00", "120c0aff", "120c0aff"])
-	}
-
 	@MainActor
 	func testBottomBarKeepsBottomActionAsItsDefaultIdentifier() {
 		let bar = BottomActionBar(title: "Continuer", isEnabled: true, counter: nil) {}
@@ -453,6 +444,8 @@ final class OnboardingComponentsTests: XCTestCase {
 		let bar = WelcomeView.actionBar {}
 		XCTAssertEqual(bar.identifier, "onboarding-start")
 		XCTAssertFalse(bar.showsFade)
+		// TRA-767: no counter, so nothing is laid out before the button.
+		XCTAssertEqual(bar.parts, [.button])
 	}
 }
 

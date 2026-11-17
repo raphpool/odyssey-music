@@ -1,9 +1,10 @@
 import SwiftUI
 
-/// Figma `Bottom action bar` (`173:137`, doc `173:139`; variants `173:123` Default and `173:130` Disabled):
-/// the pinned call to action of an onboarding step. A fade from transparent to `colorBackgroundBase`, a
-/// Large Primary button and an optional selection counter. Disabled is the button's own state, read from
-/// `isEnabled` by `Track1Button` (42 % opacity, disabled colors).
+/// Figma `Bottom action bar` (`173:137`, doc `173:139`; variants `173:123` Default and `173:130` Disabled;
+/// on the genre screen `362:5074`): the pinned call to action of an onboarding step. A fade from transparent
+/// to `colorBackgroundElevated`, an optional selection counter and, under it, a Large Primary button.
+/// Disabled is the button's own state, read from `isEnabled` by `Track1Button` (42 % opacity, disabled
+/// colors).
 ///
 /// Place it with `safeAreaInset(edge: .bottom, spacing: 0)` on the screen so that the content scrolls under
 /// the fade; the fade extends under the home indicator. The Figma bar sits on a full-screen frame, where its
@@ -17,13 +18,33 @@ struct BottomActionBar: View {
 	static let actionIdentifier = "bottom-action"
 	static let counterIdentifier = "bottom-counter"
 
-	/// Transparent at the top, opaque from 35 % of the height, as drawn in Figma (`via 35%`). The top of the
-	/// button therefore overlaps the end of the fade, exactly as in the Figma bar.
+	/// What the bar is made of. `contentOrder` is the order they are laid out in, and so the reading order.
+	enum Part: Hashable {
+		case counter, button
+	}
+
+	/// The counter reads before the button (Figma `362:5074`: "Total : 1 genre" above "Continuer").
+	static let contentOrder: [Part] = [.counter, .button]
+
+	/// Height of the Figma bar (`362:5074`), the one the fade stops are measured on. The bar is shorter than
+	/// that (24 + 20 + 8 + 52 + 32 = 136 pt): the fade rises above it, over the scrolled content.
+	static let fadeHeight: CGFloat = 195
+
+	/// Transparent from 22.821 % of `fadeHeight`, opaque from 44.103 %, as drawn in Figma. Outside the two
+	/// stops the gradient keeps the nearest color. 2026-11-17 (TRA-767): the end color is
+	/// `colorBackgroundElevated` (`#1A110E`), no longer `colorBackgroundBase` (`#120C0A`).
 	static let fadeStops: [Gradient.Stop] = [
-		.init(color: Track1Tokens.colorBackgroundBase.opacity(0), location: 0),
-		.init(color: Track1Tokens.colorBackgroundBase, location: 0.35),
-		.init(color: Track1Tokens.colorBackgroundBase, location: 1),
+		.init(color: Track1Tokens.colorBackgroundElevated.opacity(0), location: 0.22821),
+		.init(color: Track1Tokens.colorBackgroundElevated, location: 0.44103),
 	]
+
+	static let horizontalInset: CGFloat = Track1Tokens.spacing16
+	static let topInset: CGFloat = Track1Tokens.spacing24
+	static let bottomInset: CGFloat = Track1Tokens.spacing32
+	/// Between the counter and the button.
+	static let spacing: CGFloat = Track1Tokens.spacing8
+	static let counterRole: Track1TextRole = .monoCounter
+	static let counterColor = Track1Tokens.colorTextSecondary
 
 	let identifier: String
 	let showsFade: Bool
@@ -44,26 +65,46 @@ struct BottomActionBar: View {
 		self.action = action
 	}
 
+	/// The parts this bar draws, in order: without a counter (Welcome) only the button is left, so nothing is
+	/// laid out in its place.
+	var parts: [Part] {
+		Self.contentOrder.filter { $0 != .counter || counter != nil }
+	}
+
 	var body: some View {
-		VStack(spacing: Track1Tokens.spacing8) {
-			Track1Button(title, kind: .primary, size: .large, haptic: true, fullWidth: true, action: action)
-				.disabled(!isEnabled)
-				.accessibilityIdentifier(identifier)
-			if let counter {
-				Track1Text(counter, role: .caption, verbatim: true)
-					.foregroundStyle(Track1Tokens.colorTextSecondary)
-					.multilineTextAlignment(.center)
-					.accessibilityIdentifier(Self.counterIdentifier)
+		VStack(spacing: Self.spacing) {
+			ForEach(parts, id: \.self) { part in
+				switch part {
+				case .counter:
+					if let counter {
+						Track1Text(counter, role: Self.counterRole, verbatim: true)
+							.foregroundStyle(Self.counterColor)
+							.multilineTextAlignment(.center)
+							.accessibilityIdentifier(Self.counterIdentifier)
+					}
+				case .button:
+					Track1Button(title, kind: .primary, size: .large, haptic: true, fullWidth: true, action: action)
+						.disabled(!isEnabled)
+						.accessibilityIdentifier(identifier)
+				}
 			}
 		}
 		.frame(maxWidth: .infinity)
-		.padding(.horizontal, Track1Tokens.spacing16)
-		.padding(.top, Track1Tokens.spacing24)
-		.padding(.bottom, Track1Tokens.spacing32)
-		.background {
+		.padding(.horizontal, Self.horizontalInset)
+		.padding(.top, Self.topInset)
+		.padding(.bottom, Self.bottomInset)
+		.background(alignment: .bottom) {
 			if showsFade {
-				LinearGradient(stops: Self.fadeStops, startPoint: .top, endPoint: .bottom)
+				// The clear base takes the bar and the home-indicator inset under it; the fade hangs on its bottom
+				// edge at its Figma height, and so rises above the bar. It must not catch the taps of the cards it
+				// covers.
+				Color.clear
+					.overlay(alignment: .bottom) {
+						LinearGradient(stops: Self.fadeStops, startPoint: .top, endPoint: .bottom)
+							.frame(height: Self.fadeHeight)
+					}
 					.ignoresSafeArea(edges: .bottom)
+					.allowsHitTesting(false)
 			}
 		}
 	}
