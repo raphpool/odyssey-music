@@ -346,22 +346,43 @@ final class NotificationOptInViewTests: XCTestCase {
 		XCTAssertEqual(added.map(\.title), planned.map(\.title))
 	}
 
-	/// An app update: today's entry is on disk and no plan is. The plan is completed, then scheduled whole.
-	func testAYesCompletesAMissingPlanThenSchedulesIt() async throws {
+	/// An app update: today's entry is on disk and no plan is. Nothing is written and nothing is scheduled:
+	/// Today's next load completes the plan.
+	func testAYesWithAMissingPlanSchedulesNothingAndWritesNothing() async throws {
 		let store = makeStore()
 		let taste = try profile(revision: 1, genre: "rock")
 		await makeModelAndLoad(store: store, taste: taste)
 		let history = await store.history()
 		let today = try XCTUnwrap(history.first { $0.localDate == "2026-11-17" })
 		_ = await store.save([today])
+		let center = OptInFakeCenter(status: .authorized, pending: ["other-1"])
+
+		await scheduleStoredPlan(makeSync(center), for: taste, store: store)
+
+		let added = await center.added
+		let removals = await center.removals
+		XCTAssertEqual(added, [])
+		XCTAssertEqual(removals, [])
+		let after = await store.history()
+		XCTAssertEqual(after, [today], "the history is only read")
+	}
+
+	/// A plan that stops short of the horizon is scheduled as it is, and left as it is on disk.
+	func testAYesWithAShortPlanSchedulesWhatIsOnDiskAndWritesNothing() async throws {
+		let store = makeStore()
+		let taste = try profile(revision: 1, genre: "rock")
+		await makeModelAndLoad(store: store, taste: taste)
+		let history = await store.history()
+		let kept = history.filter { $0.localDate <= "2026-11-19" }
+		_ = await store.save(kept)
 		let center = OptInFakeCenter(status: .authorized)
 
 		await scheduleStoredPlan(makeSync(center), for: taste, store: store)
 
 		let pending = await center.pendingIdentifiers()
-		XCTAssertEqual(pending, Self.identifiers)
-		let stored = await store.history().filter { $0.localDate > "2026-11-17" }
-		XCTAssertEqual(stored.map(\.localDate), Self.days, "the completed plan is saved")
+		XCTAssertEqual(pending, ["daily-2026-11-18", "daily-2026-11-19"])
+		let after = await store.history()
+		XCTAssertEqual(after, kept)
 	}
 
 	/// No work for the days to come, nothing to schedule: an empty plan never cancels what is pending.
@@ -393,21 +414,23 @@ final class NotificationOptInViewTests: XCTestCase {
 		XCTAssertEqual(added, [])
 	}
 
-	/// New tastes since the plan on disk was made: what is scheduled is the plan of the new revision, once
-	/// Today's load has replaced the old one.
-	func testAYesAfterNewTastesSchedulesThePlanOfTheNewTastes() async throws {
+	/// New tastes since the plan on disk was made: the old plan is not announced for them. Today's load
+	/// replaces it and schedules the new one.
+	func testAYesDoesNotScheduleThePlanOfOtherTastes() async throws {
 		let store = makeStore()
 		await makeModelAndLoad(store: store, taste: try profile(revision: 1, genre: "rock"))
-		let center = OptInFakeCenter(status: .authorized)
+		let before = await store.history()
+		let center = OptInFakeCenter(status: .authorized, pending: ["daily-2026-11-18"])
 		let jazz = try profile(revision: 2, genre: "jazz")
 
 		await scheduleStoredPlan(makeSync(center), for: jazz, store: store)
 
 		let added = await center.added
-		let history = await store.history()
-		let jazzDays = history.filter { $0.profileRevision == 2 && $0.localDate > "2026-11-17" }
-		XCTAssertEqual(added.map(\.identifier), jazzDays.map { "daily-\($0.localDate)" })
-		XCTAssertEqual(added.count, 7)
+		let removals = await center.removals
+		XCTAssertEqual(added, [])
+		XCTAssertEqual(removals, [])
+		let after = await store.history()
+		XCTAssertEqual(after, before)
 	}
 
 	// MARK: Helpers

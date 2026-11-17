@@ -136,19 +136,14 @@ final class ReminderSync {
 	/// The person has just said yes on a profile that already exists (TRA-746). Today may have been served from
 	/// the cache for days, so the plan on disk would only be scheduled again at the change of day.
 	///
-	/// A load that serves the entry of the day, then `extendPlanIfNeeded`, go through `sync` like Today's:
-	/// that covers a plan to complete or a work to pick. When the plan on disk already reaches the horizon,
-	/// neither plans anything (`upcoming` stays empty: "nothing new"), yet that is the plan to schedule: it is
-	/// then read back from the history, with the bodies of the current catalog. An empty plan is never sent.
+	/// Nothing is written: the plan is read back from the history, with the bodies of the current catalog, and
+	/// no `TodayViewModel` is built, so that nothing can cross the writes of the one Today owns. A plan that is
+	/// missing or too short is accepted: Today's next load completes it (`sync`, then `extendPlanIfNeeded`). An
+	/// empty plan is never sent.
 	func scheduleStoredPlan(
-		for profile: Profile, readCatalog: @escaping @Sendable () async -> APIResult<Catalog>,
-		store: DailyRecommendationStore, now: @escaping () -> Date = { .now },
-		timeZone: @escaping () -> TimeZone = { .current }
+		for profile: Profile, readCatalog: @Sendable () async -> APIResult<Catalog>,
+		store: DailyRecommendationStore, now: () -> Date = { .now }, timeZone: () -> TimeZone = { .current }
 	) async {
-		let model = TodayViewModel(readCatalog: readCatalog, store: store, now: now, timeZone: timeZone)
-		await model.load(for: profile)
-		await sync(model, for: profile)
-		guard !Task.isCancelled, case .recommendation = model.state, model.upcoming.isEmpty else { return }
 		let today = DailySelection.localDate(for: now(), timeZone: timeZone())
 		let plan = await storedPlan(for: profile, readCatalog: readCatalog, store: store, today: today)
 		guard !Task.isCancelled, !plan.isEmpty else { return }
