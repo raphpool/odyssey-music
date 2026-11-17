@@ -23,7 +23,7 @@ public final class GenreSelectionModel {
 	public let droppedGenreIDs: [NodeIdentity]
 
 	/// `draft` is the one the `ProfileStore` already holds for this flow. It carries the `flow_id` shared with
-	/// analytics and the "start event already sent" flag, and `makeDraft()` must hand both back unchanged:
+	/// analytics and the "start event already sent" flag, and `makeDraft` must hand both back unchanged:
 	/// a fresh draft would reset the flag and a resumed flow would send `onboarding_started` twice.
 	///
 	/// This is also the path that rebuilds the state from an existing profile (`editing`, used by the edit
@@ -159,11 +159,16 @@ public final class GenreSelectionModel {
 
 	/// With no genre there is no valid `GenreSelection` (it needs at least one family), so the draft then
 	/// carries none and an empty `genreIDs`: the same "nothing chosen yet" the profile store already refuses.
-	public func makeDraft() -> ProfileDraft {
+	///
+	/// The pseudo and the disc are not this model's state: the flow owns them and hands them in, so that the
+	/// draft it saves after each step carries every answer given so far, genres or not. Nil keeps the edit flow
+	/// of the Genres tab as it was: a draft without them edits the genres only, and the store keeps the saved
+	/// ones.
+	public func makeDraft(displayName: String? = nil, disc: ProfileDisc? = nil) -> ProfileDraft {
 		guard !selectedGenres.isEmpty else {
 			return ProfileDraft(
 				version: Profile.version, flowID: flowID, genreIDs: [],
-				onboardingStartedRecorded: onboardingStartedRecorded)
+				onboardingStartedRecorded: onboardingStartedRecorded, displayName: displayName, disc: disc)
 		}
 		let selection = GenreSelection(families: selectedFamilies, genres: selectedGenres)
 		return ProfileDraft(
@@ -171,7 +176,9 @@ public final class GenreSelectionModel {
 			flowID: flowID,
 			genreIDs: selection.derivedGenreIDs(in: taxonomy),
 			onboardingStartedRecorded: onboardingStartedRecorded,
-			selection: selection
+			selection: selection,
+			displayName: displayName,
+			disc: disc
 		)
 	}
 }
