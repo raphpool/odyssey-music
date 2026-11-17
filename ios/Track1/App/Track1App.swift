@@ -11,3 +11,4 @@ struct Track1App: App {
 		}
 	}
 }
+// TRA-785 probe: makes ios-check compile main; removed before merge.
