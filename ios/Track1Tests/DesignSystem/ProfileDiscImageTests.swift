@@ -26,9 +26,9 @@ final class ProfileDiscImageTests: XCTestCase {
 		.teal: "Disque sarcelle",
 	]
 
-	/// The alpha byte of one pixel (`y` counted from the top), read by drawing the image into a 1 x 1 context.
-	private func alpha(of image: CGImage, x: Int, y: Int) throws -> UInt8 {
-		let space = CGColorSpaceCreateDeviceRGB()
+	/// The RGBA bytes of one pixel (`y` counted from the top), read by drawing the image into a 1 x 1 context.
+	private func pixel(of image: CGImage, x: Int, y: Int) throws -> [UInt8] {
+		let space = try XCTUnwrap(CGColorSpace(name: CGColorSpace.sRGB))
 		let info = CGImageAlphaInfo.premultipliedLast.rawValue
 		let made = CGContext(
 			data: nil, width: 1, height: 1, bitsPerComponent: 8, bytesPerRow: 4, space: space, bitmapInfo: info)
@@ -36,7 +36,11 @@ final class ProfileDiscImageTests: XCTestCase {
 		let frame = CGRect(x: -x, y: y - image.height + 1, width: image.width, height: image.height)
 		context.draw(image, in: frame)
 		let data = try XCTUnwrap(context.data, "the 1 x 1 context has no pixel data")
-		return data.load(fromByteOffset: 3, as: UInt8.self)
+		return (0..<4).map { data.load(fromByteOffset: $0, as: UInt8.self) }
+	}
+
+	private func alpha(of image: CGImage, x: Int, y: Int) throws -> UInt8 {
+		try pixel(of: image, x: x, y: y)[3]
 	}
 
 	private func rgbaBytes(of color: Color) throws -> [UInt8] {
@@ -97,24 +101,33 @@ final class ProfileDiscImageTests: XCTestCase {
 		XCTAssertEqual(ProfileDiscMetrics.emptyOpeningDiameter(size: 72.7), 5.685, accuracy: 0.001)
 	}
 
-	func testTheShapeOfTheEmptyDiscHasAHoleOfTheOpeningDiameter() {
-		let size: CGFloat = 200
-		let opening = ProfileDiscMetrics.emptyOpeningDiameter(size: size)
-		let frame = CGRect(x: 0, y: 0, width: size, height: size)
-		let path = ProfileDiscShape(openingDiameter: opening).path(in: frame)
-		let middle = size / 2
-		let radius = opening / 2
-		XCTAssertFalse(path.contains(CGPoint(x: middle, y: middle), eoFill: true), "centre")
-		XCTAssertFalse(path.contains(CGPoint(x: middle + radius * 0.9, y: middle), eoFill: true), "inside the hole")
-		XCTAssertTrue(path.contains(CGPoint(x: middle + radius * 1.1, y: middle), eoFill: true), "outside the hole")
-		XCTAssertTrue(path.contains(CGPoint(x: middle, y: middle - size * 0.45), eoFill: true), "on the disc")
-		XCTAssertFalse(path.contains(CGPoint(x: 1, y: 1), eoFill: true), "outside the circle")
+	func testTheCentreOfTheEmptyDiscIsOpaqueWhite() throws {
+		XCTAssertEqual(try rgbaBytes(of: ProfileDiscMetrics.openingColor), [255, 255, 255, 255])
 	}
 
-	func testTheShapeWithoutOpeningIsAFullCircle() {
-		let path = ProfileDiscShape(openingDiameter: 0).path(in: CGRect(x: 0, y: 0, width: 100, height: 100))
-		XCTAssertTrue(path.contains(CGPoint(x: 50, y: 50), eoFill: true), "centre")
-		XCTAssertFalse(path.contains(CGPoint(x: 1, y: 1), eoFill: true), "outside the circle")
+	/// The empty disc, drawn at 1 pixel per point: an opaque white centre, the token colour around it, and
+	/// nothing outside the circle (the shadow reaches a few pixels from it at most).
+	@MainActor
+	func testTheEmptyDiscIsDrawnLikeTheMockUp() throws {
+		let renderer = ImageRenderer(content: ProfileDiscImage(disc: nil, size: 100))
+		renderer.scale = 1
+		let image = try XCTUnwrap(renderer.cgImage)
+		XCTAssertEqual(image.width, 100)
+		XCTAssertEqual(image.height, 100)
+		assertPixel(try pixel(of: image, x: 50, y: 50), [255, 255, 255, 255], "centre")
+		// The opening is 7.82 wide: pixel 56 is wholly outside it, pixel 52 wholly inside.
+		assertPixel(try pixel(of: image, x: 56, y: 50), [0x6F, 0x6F, 0x6F, 255], "just outside the opening")
+		assertPixel(try pixel(of: image, x: 52, y: 50), [255, 255, 255, 255], "just inside the opening")
+		assertPixel(try pixel(of: image, x: 20, y: 50), [0x6F, 0x6F, 0x6F, 255], "on the disc")
+		XCTAssertEqual(try alpha(of: image, x: 0, y: 0), 0, "top left corner")
+		XCTAssertEqual(try alpha(of: image, x: 99, y: 99), 0, "bottom right corner")
+	}
+
+	private func assertPixel(_ actual: [UInt8], _ expected: [UInt8], _ name: String) {
+		XCTAssertEqual(actual.count, 4, name)
+		for (got, want) in zip(actual, expected) {
+			XCTAssertEqual(Int(got), Int(want), accuracy: 2, name)
+		}
 	}
 
 	// MARK: Shadow

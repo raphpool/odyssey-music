@@ -19,8 +19,11 @@ enum ProfileDiscMetrics {
 	static let referenceShadow = Shadow(y: 1.385, blur: 2.423, spread: -0.346)
 	static let shadowColor = Color(.sRGB, red: 19.0 / 255, green: 33.0 / 255, blue: 42.0 / 255, opacity: 0.28)
 
-	/// The empty disc is a plain circle with a small opening in the middle, `362:3129`.
+	/// The empty disc, `362:3129`, is built like the six images: a plain circle with an opaque white ellipse
+	/// in the middle (the `Center opening` layer of the Figma, a fill and not a hole). 2026-11-17 (decision
+	/// on TRA-721): a hole would show the background and make the empty slot differ from the filled ones.
 	static let emptyColor = Track1Tokens.colorDiscEmpty
+	static let openingColor = Color.white
 	static let emptyOpeningRatio: CGFloat = 0.0782
 
 	static func emptyOpeningDiameter(size: CGFloat) -> CGFloat {
@@ -33,32 +36,6 @@ enum ProfileDiscMetrics {
 		return Shadow(
 			y: referenceShadow.y * scale, blur: referenceShadow.blur * scale,
 			spread: referenceShadow.spread * scale)
-	}
-}
-
-/// A circle, centred in its rect, with an optional round opening cut out of the middle (even-odd fill).
-/// `outerInset` shrinks the circle on every side, which is how a negative shadow spread is drawn.
-struct ProfileDiscShape: Shape {
-	let openingDiameter: CGFloat
-	let outerInset: CGFloat
-
-	init(openingDiameter: CGFloat, outerInset: CGFloat = 0) {
-		self.openingDiameter = openingDiameter
-		self.outerInset = outerInset
-	}
-
-	func path(in rect: CGRect) -> Path {
-		var path = Path()
-		path.addEllipse(in: centredSquare(in: rect, side: min(rect.width, rect.height) - 2 * outerInset))
-		if openingDiameter > 0 {
-			path.addEllipse(in: centredSquare(in: rect, side: openingDiameter))
-		}
-		return path
-	}
-
-	private func centredSquare(in rect: CGRect, side: CGFloat) -> CGRect {
-		let clamped = max(side, 0)
-		return CGRect(x: rect.midX - clamped / 2, y: rect.midY - clamped / 2, width: clamped, height: clamped)
 	}
 }
 
@@ -115,10 +92,6 @@ struct ProfileDiscImage: View {
 		.accessibilityAddTraits(.isImage)
 	}
 
-	private var openingDiameter: CGFloat {
-		disc == nil ? ProfileDiscMetrics.emptyOpeningDiameter(size: size) : 0
-	}
-
 	@ViewBuilder private var face: some View {
 		if let name = Self.imageName(for: disc) {
 			Image(name)
@@ -126,21 +99,25 @@ struct ProfileDiscImage: View {
 				.scaledToFit()
 				.frame(width: size, height: size)
 		} else {
-			ProfileDiscShape(openingDiameter: openingDiameter)
-				.fill(ProfileDiscMetrics.emptyColor, style: FillStyle(eoFill: true))
+			let opening = ProfileDiscMetrics.emptyOpeningDiameter(size: size)
+			Circle()
+				.fill(ProfileDiscMetrics.emptyColor)
+				.overlay {
+					Circle()
+						.fill(ProfileDiscMetrics.openingColor)
+						.frame(width: opening, height: opening)
+				}
 		}
 	}
 
 	/// SwiftUI has no shadow spread, and its radius is half the Figma blur (as in `DeviceOutline`). The shadow
 	/// is cast by the disc grown by `spread` on every side: with the negative spread of the mock-up that is a
-	/// slightly smaller disc, hidden under the real one. Its opening grows the other way, so that it never
-	/// shows through the opening of the empty disc.
+	/// slightly smaller disc, hidden under the real one.
 	private var shadowCaster: some View {
 		let shadow = ProfileDiscMetrics.shadow(size: size)
-		let shrink = -shadow.spread
-		let opening = disc == nil ? openingDiameter + 2 * shrink : 0
-		return ProfileDiscShape(openingDiameter: opening, outerInset: shrink)
-			.fill(Color.black, style: FillStyle(eoFill: true))
+		return Circle()
+			.inset(by: -shadow.spread)
+			.fill(Color.black)
 			.shadow(color: ProfileDiscMetrics.shadowColor, radius: shadow.blur / 2, x: 0, y: shadow.y)
 	}
 }
