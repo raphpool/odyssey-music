@@ -134,7 +134,7 @@ async function runSwiftFixtureCheck(options: SwiftFixtureOptions = {}) {
 		await mkdir(join(iosDirectory, "Track1.xcodeproj"), { recursive: true });
 		await writeFile(join(iosDirectory, "scripts/check.sh"), await readFile(checkScript), { mode: 0o755 });
 		await chmod(join(iosDirectory, "scripts/check.sh"), 0o755);
-		await writeFile(join(iosDirectory, ".xcode-version"), "Xcode 26.4 (17E192)\n");
+		await writeFile(join(iosDirectory, ".xcode-version"), "Xcode 26.4.1 (17E202)\n");
 		await writeFile(join(iosDirectory, ".swift-format"), "{}\n");
 		await writeFile(join(iosDirectory, "Track1.xcodeproj/project.pbxproj"), "");
 		await writeFile(join(fixtureRoot, "package-lock.json"), "{}\n");
@@ -182,7 +182,7 @@ async function runSwiftFixtureCheck(options: SwiftFixtureOptions = {}) {
 			"xcodebuild",
 			`#!/usr/bin/env bash
 if [[ "$1" == "-version" ]]; then
-  printf 'Xcode 26.4\\nBuild version 17E192\\n'
+  printf 'Xcode 26.4.1\\nBuild version 17E202\\n'
   exit 0
 fi
 printf '%s\\n' "$*" >> "$TRACK1_TEST_XCODEBUILD_CALLS"
@@ -327,7 +327,7 @@ async function expectedCacheKey() {
 		resolve("ios/Track1.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"),
 	);
 	const hash = createHash("sha256").update(resolved).digest("hex").slice(0, 12);
-	return `Xcode-26.4-17E192-${hash}-${isoWeek(new Date())}`;
+	return `Xcode-26.4.1-17E202-${hash}-${isoWeek(new Date())}`;
 }
 
 // The `-derivedDataPath` argument of every logged `build-for-testing` call of a scheme.
@@ -368,7 +368,7 @@ async function runCheckScript(
 			"xcodebuild",
 			`#!/usr/bin/env bash
 if [[ "$1" == "-version" ]]; then
-	  printf 'Xcode 26.4\\nBuild version 17E192\\n'
+	  printf 'Xcode 26.4.1\\nBuild version 17E202\\n'
 	  exit 0
 fi
 printf '%s\\n' "$*" >> "$TRACK1_TEST_XCODEBUILD_CALLS"
