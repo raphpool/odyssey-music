@@ -12,6 +12,7 @@ final class TodayViewModelConcurrencyTests: XCTestCase {
 	private static let revisionHash = "sha256:" + String(repeating: "0123456789abcdef", count: 4)
 	private static let clock = Date(timeIntervalSince1970: 1_791_675_000)  // 2026-10-10T23:30:00Z
 	private static let paris = TimeZone(identifier: "Europe/Paris")!
+	private static let parisDate = "2026-10-11"
 
 	// One instance per test method, so these start fresh (same approach as `TodayViewModelTests`).
 	private nonisolated let directoryURL = FileManager.default.temporaryDirectory.appending(
@@ -41,10 +42,11 @@ final class TodayViewModelConcurrencyTests: XCTestCase {
 		await loading.value
 
 		let history = await store.history()
-		XCTAssertEqual(history.count, 2)
+		// The viewed entry, today and the seven planned days (TRA-743).
+		XCTAssertEqual(history.count, 9)
 		XCTAssertEqual(history.first?.recommendationID, yesterday.recommendationID)
 		XCTAssertEqual(history.first?.viewRecorded, true)
-		XCTAssertEqual(history.last, try recommendation(of: model))
+		XCTAssertEqual(history.first { $0.localDate == Self.parisDate }, try recommendation(of: model))
 	}
 
 	func testTwoParallelLoadsForTheSameProfileReadTheCatalogOnceAndAgree() async throws {
@@ -65,7 +67,9 @@ final class TodayViewModelConcurrencyTests: XCTestCase {
 		let reads = await catalog.reads
 		XCTAssertEqual(reads, 1)
 		let history = await store.history()
-		XCTAssertEqual(history, [try recommendation(of: model)])
+		// One load saved one plan: today and the seven planned days.
+		XCTAssertEqual(history.count, 8)
+		XCTAssertEqual(history.filter { $0.localDate == Self.parisDate }, [try recommendation(of: model)])
 	}
 
 	func testALoadSupersededByNewTastesPublishesAndSavesNothing() async throws {
@@ -96,7 +100,9 @@ final class TodayViewModelConcurrencyTests: XCTestCase {
 		let published = try recommendation(of: model)
 		XCTAssertEqual(published.profileRevision, 2)
 		let history = await store.history()
-		XCTAssertEqual(history, [published])
+		XCTAssertEqual(history.count, 8)
+		XCTAssertEqual(history.filter { $0.localDate == Self.parisDate }, [published])
+		XCTAssertTrue(history.allSatisfy { $0.profileRevision == 2 })
 	}
 
 	func testAnImpressionRequestedDuringALoadWaitsForItAndMarksWhatIsExposed() async throws {
@@ -120,7 +126,9 @@ final class TodayViewModelConcurrencyTests: XCTestCase {
 		XCTAssertNotEqual(exposed.recommendationID, previous.recommendationID)
 		XCTAssertTrue(exposed.viewRecorded)
 		let history = await store.history()
-		XCTAssertEqual(history, [exposed])
+		XCTAssertEqual(history.count, 8)
+		XCTAssertEqual(history.filter { $0.localDate == Self.parisDate }, [exposed])
+		XCTAssertEqual(history.filter(\.viewRecorded), [exposed])
 		XCTAssertEqual(events.count, 1)
 		XCTAssertEqual(
 			events.first?.properties["recommendation_id"],
