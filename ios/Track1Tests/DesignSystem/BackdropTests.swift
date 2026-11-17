@@ -46,7 +46,7 @@ final class BackdropTests: XCTestCase {
 		for step in 1...450 {
 			let stops = WelcomeBackdropPalette.rgbStops(at: Double(step) / 450)
 			for (now, before) in zip(stops, previous) {
-				// A 450th of the loop (0.1 s) moves a component by at most 3 / 450 on a 3-color ring.
+				// A 450th of the loop moves a component by at most 3 / 450 on a 3-color ring.
 				XCTAssertLessThan(abs(now.red - before.red), 0.0067)
 				XCTAssertLessThan(abs(now.green - before.green), 0.0067)
 				XCTAssertLessThan(abs(now.blue - before.blue), 0.0067)
@@ -55,12 +55,13 @@ final class BackdropTests: XCTestCase {
 		}
 	}
 
-	func testPhaseFollowsTheClockOverFortyFiveSeconds() {
-		XCTAssertEqual(WelcomeBackdrop.loopDuration, 45, accuracy: 1e-12)
+	/// TRA-724: the loop went from 45 to 30 s (note `362:4993`: "speed the background up slightly").
+	func testPhaseFollowsTheClockOverThirtySeconds() {
+		XCTAssertEqual(WelcomeBackdrop.loopDuration, 30, accuracy: 1e-12)
 		XCTAssertEqual(WelcomeBackdropPalette.phase(elapsed: 0), 0, accuracy: 1e-12)
-		XCTAssertEqual(WelcomeBackdropPalette.phase(elapsed: 11.25), 0.25, accuracy: 1e-12)
-		XCTAssertEqual(WelcomeBackdropPalette.phase(elapsed: 45), 0, accuracy: 1e-12)
-		XCTAssertEqual(WelcomeBackdropPalette.phase(elapsed: 56.25), 0.25, accuracy: 1e-12)
+		XCTAssertEqual(WelcomeBackdropPalette.phase(elapsed: 7.5), 0.25, accuracy: 1e-12)
+		XCTAssertEqual(WelcomeBackdropPalette.phase(elapsed: 30), 0, accuracy: 1e-12)
+		XCTAssertEqual(WelcomeBackdropPalette.phase(elapsed: 37.5), 0.25, accuracy: 1e-12)
 	}
 
 	func testTextPrimaryKeepsAContrastOf4Point5OnTheLightestColorUnderTheVeil() {
