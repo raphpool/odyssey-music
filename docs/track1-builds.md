@@ -33,9 +33,37 @@ donc présent et versionné à
 `ios/Track1.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved` ; il est utilisé
 par la résolution et son absence échoue explicitement.
 
-Le workflow `ios-ci` exécute exactement ce script sur le runner macOS ARM64 avec un HOME isolé,
-sans secret de signature. Les contrôles backend, review, tier et Expo restent exécutés par leurs
-workflows existants.
+Le workflow `ios-ci` exécute exactement ce script sur le runner hébergé `macos-26`, avec un HOME
+isolé et sans secret de signature. Son job s'appelle `ios-check`. Il ne tourne pas sur une PR en
+draft. Les contrôles backend, review, tier et Expo restent exécutés par leurs workflows existants.
+
+### Où tournent les checks (TRA-703, TRA-705, TRA-729)
+
+Depuis le 2026-11-16, le Mac de Raphael n'héberge plus aucun runner de PR. Les workflows qui
+tournent sur des runners hébergés GitHub :
+
+| Workflow | Runner | Ticket |
+| --- | --- | --- |
+| `ci`, `mobile-ci`, `review-gate`, `ai-review`, `claude` | `ubuntu-latest` | TRA-703 |
+| `enable-workflows` | `ubuntu-latest` | TRA-784 |
+| `ios-ci` | `macos-26` | TRA-705 |
+| `ios-testflight` | `macos-26` | TRA-729 |
+
+Les workflows `deploy`, `pull-cache`, `sync-genre-cache` et `top-up-genres` restent auto-hébergés.
+Ils sont désactivés. Aucun ne se déclenche sur une PR. Comme `deploy` est désactivé, un merge sur
+`main` ne déploie rien.
+
+Les six workflows de PR avaient été désactivés à la main le 2026-11-01. Aucun check ne tournait
+donc sur les PR. Le workflow `enable-workflows` les a réactivés le 2026-11-17 (TRA-784).
+
+Xcode est épinglé dans `ios/.xcode-version` à `Xcode 26.4.1 (17E202)` (TRA-787). C'est la seule
+version 26.4 disponible sur l'image hébergée. Si l'image change, l'étape `Select Xcode` de `ios-ci`
+échoue et liste les versions installées.
+
+Quand des tests échouent, `ios/scripts/check.sh` imprime chaque échec du `.xcresult` en annotation
+`::error::<test>: <message>` (TRA-788). Le `.xcresult` reste en artefact. Un agent cloud ne peut pas
+le télécharger : le proxy refuse le stockage blob. Il lit donc les annotations du run. GitHub n'affiche que les 10 premières annotations d'erreur
+par étape : avec plus de 10 échecs, la liste est tronquée.
 
 ### Architectures simulateur (TRA-355)
 
@@ -103,7 +131,8 @@ swift test --package-path ios/Track1Core
 ```
 
 Cette commande est la seule exécution Swift autorisée en local. `xcodebuild`, le simulateur et
-`ios/scripts/check.sh` complet restent interdits : ce Mac héberge les deux runners CI.
+`ios/scripts/check.sh` complet restent interdits en local. Ils tournent dans `ios-check`, sur le
+runner hébergé `macos-26`. Pour savoir si l'app compile, pousser la PR et lire ce check.
 
 ### Place dans `check.sh`
 
@@ -129,6 +158,30 @@ Pour vérifier qu'un changement de l'app compile sans lancer `xcodebuild` :
 
 Limite : comme app et tests sont typecheckés comme un seul module, les erreurs d'isolation
 Swift 6 entre cibles (« sending value of non-Sendable type ») n'apparaissent que dans `ios-check`.
+
+## Circuit de review
+
+La source de vérité est `scripts/ci/review-gate-policy.ts`. Elle définit `sensitivePath` et
+`gateIntegrityPath`. Ce document ne recopie pas leurs motifs : les lire dans le fichier.
+
+`sensitivePath` classe une PR en tier 3, comme le label `tier/3`. `gateIntegrityPath` désigne les
+fichiers de la machinerie du gate elle-même (TRA-704). Une PR qui en modifie un ne peut pas être validée par le `deep-review`
+d'Actions. Elle a toujours besoin d'un `codex-deep-review`.
+
+| Tier de la PR | Review exigée | Qui merge |
+| --- | --- | --- |
+| 1 et 2 | `review` Claude | Process de livraison habituel (`/delivery-process`) |
+| 3, hors `gateIntegrityPath` | `review` et `deep-review` dans Actions | L'agent, après `/code-review ultra` |
+| 3, touchant `gateIntegrityPath` | `codex-deep-review` d'un compte de `.github/review-gate-authors.txt` | Raphael |
+
+Le 2026-11-16, Raphael a délégué à l'agent le merge des PR tier 3 hors `gateIntegrityPath`.
+Cette délégation vaut pour ce projet, jusqu'à la build TestFlight v1.
+
+Le 2026-11-17, Raphael a demandé que l'agent merge toutes les PR sans attendre son autorisation.
+Cela a conduit à des merges administrateur. Ils ont d'abord eu lieu sans CI, tant que les
+workflows étaient désactivés. Ils ont ensuite eu lieu sur `ios-check` vert.
+
+Cette décision est consignée ici comme historique. Le tableau ci-dessus reste la règle du circuit.
 
 ## Envoi TestFlight (TRA-709)
 
