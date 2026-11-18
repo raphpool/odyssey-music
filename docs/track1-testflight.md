@@ -225,8 +225,9 @@ ne pas laisser de copie des fichiers hors du gestionnaire de mots de passe.
 1. Ouvrir **Settings**, puis **Actions**, puis **General**.
 2. Dans **Fork pull request workflows from outside collaborators**, choisir **Require approval
    for all external contributors**, puis **Save**. Le dépôt est public : sans ce réglage, une PR
-   de fork peut lancer des workflows sans approbation. Les workflows de PR sont actifs : faire ce
-   réglage maintenant, s'il ne l'est pas déjà.
+   de fork peut lancer des workflows sans approbation. Les workflows de PR ont été réactivés par
+   `enable-workflows.yml` (TRA-784) : faire ce réglage maintenant, s'il ne l'est pas déjà. L'état
+   courant des workflows se lit dans **Actions** ou avec `gh workflow list --all`.
 
 ## 4. Lancer un envoi
 
@@ -234,7 +235,8 @@ Le workflow `ios-testflight` (`.github/workflows/ios-testflight.yml`, tickets TR
 TRA-775) est sur `main`. Il n'a que le déclencheur `workflow_dispatch`, sans entrée. Son job
 `testflight` ne s'exécute que sur `main` (`github.ref == 'refs/heads/main'`). Il utilise
 l'Environment `testflight` et tourne sur `macos-26`. Il n'attend aucune approbation : l'Environment
-n'a pas de relecteur requis. Un seul run à la fois : un second lancement attend la fin du premier.
+n'a pas de relecteur requis. Un seul run à la fois : un second lancement attend la fin du
+premier. Ne pas en lancer un troisième pendant ce temps : GitHub annule le run en attente.
 
 Préconditions :
 
@@ -275,7 +277,8 @@ Le job enchaîne cinq étapes :
 2. Ouvrir le **Summary** du run, titre « TestFlight upload ». Il liste trois valeurs : **Git SHA**
    (le commit envoyé), **Version** (la version de l'app) et **Build** (le numéro de build). Le
    numéro de build est un horodatage UTC `YYYYMMDDHHMM` : deux envois dans la même minute auraient
-   le même numéro et le second serait refusé.
+   le même numéro et le second serait refusé. Si une valeur manque dans le résumé, la lire dans le
+   journal de l'étape « Archive and upload » (lignes `Git SHA:`, `Version:`, `Build:`).
 3. Un run vert signifie que l'envoi à App Store Connect est accepté, pas que la build est
    installable. Apple traite ensuite la build : compter quelques minutes, parfois plus.
 4. Si la build reste en **Missing Compliance**, elle n'est pas proposée aux testeurs. L'`Info.plist`
@@ -318,7 +321,7 @@ varient selon la version de Xcode : les formulations ci-dessous sont indicatives
 | Le job est ignoré (`skipped`) | Le run a été lancé depuis une autre branche que `main` : la garde du job le saute. |
 | Le job est rejeté avec un message sur la branche ou l'Environment | La règle de déploiement de l'Environment `testflight` (3.1, étapes 5 à 7) : elle doit autoriser `main`. |
 | Le job attend une approbation | Quelqu'un a coché **Required reviewers** sur l'Environment : le décocher (décision D5). |
-| Le run échoue à « Install signing material » sur un secret vide, ou l'Environment n'a pas la règle `main` | L'Environment a été créé par GitHub au premier run, avant le vôtre. Ouvrir **Settings**, **Environments**, `testflight` : ajouter la règle `main` (3.1, étapes 5 à 7), créer les secrets et les variables (3.2, 3.3), puis relancer. |
+| Le run échoue sur des valeurs vides (import du `.p12`, `decoded to an empty file`, `... is required`) | L'Environment a peut-être été créé par GitHub au premier run : il n'a alors ni secrets, ni variables, ni règle `main`. Ouvrir **Settings**, **Environments**, `testflight` : ajouter la règle `main` (3.1, étapes 5 à 7), créer les secrets et les variables (3.2, 3.3), puis relancer. |
 | Un secret est vide dans les journaux | Le secret a été créé au niveau du dépôt et non de l'Environment, ou son nom est écrit différemment : 3.2. |
 
 ### 6.2 Refus avant la compilation
@@ -331,13 +334,15 @@ configuré en nommant la variable fautive, avant de compiler.
 | --- | --- |
 | `TRACK1_API_BASE_URL must end with /mobile/v1` | La variable `TRACK1_API_BASE_URL` de l'Environment (3.3). |
 | `TRACK1_API_BASE_URL must not end with .example` | La variable porte encore une valeur de substitution. |
-| Autre message `TRACK1_API_BASE_URL must ...` | L'URL doit être en `https://`, sans identifiants, sans port, sans paramètre de requête (3.3). |
+| `TRACK1_API_BASE_URL is required.` | La variable est absente ou vide dans l'Environment (3.3). |
+| Autre message `TRACK1_API_BASE_URL must ...` | L'URL doit être en `https://`, avec un hôte à points, sans identifiants, sans port, sans paramètre de requête, sans fragment, avec un chemin simple (3.3). |
 | `TRACK1_TEAM_ID is required and must be a 10-character Apple Team ID` | Exactement 10 caractères A-Z et 0-9 (1.1). |
 | `TRACK1_PROFILE_NAME is required` | La variable `TRACK1_APPSTORE_PROFILE_NAME` est absente ou vide (3.3). Le script l'appelle `TRACK1_PROFILE_NAME`. |
 | `TRACK1_PROFILE_NAME must not contain a dollar sign` | Le nom du profil contient un `$` : renommer le profil (1.4) et corriger la variable. |
 | `ASC_KEY_ID is required` ou `ASC_ISSUER_ID is required` | Le secret `ASC_API_KEY_ID` ou `ASC_API_ISSUER_ID` est absent ou vide (3.2). |
 | `The git working tree has uncommitted changes` | Une étape précédente a modifié un fichier : ouvrir un ticket. |
 | `<app> not found for the pin` ou `the pin is '...' but ...` (« Select Xcode »), ou `Expected Xcode ... but xcodebuild selected ...` | L'image `macos-26` n'a plus le Xcode épinglé : ouvrir un ticket pour déplacer le pin. Le pin est dans `ios/.xcode-version`, actuellement `Xcode 26.4.1 (17E202)` (TRA-787). |
+| `cannot read an Xcode version from ios/.xcode-version` (« Select Xcode ») | Le fichier `ios/.xcode-version` est mal formé : ouvrir un ticket. |
 
 Après l'archive et avant l'export, le script contrôle l'`.app` de l'archive. Il vérifie
 l'identifiant signé, l'équipe signataire et l'URL d'API embarquée. Un échec arrête le run avant
@@ -357,7 +362,7 @@ tout envoi.
 | Message | À vérifier |
 | --- | --- |
 | `the profile or the API key decoded to an empty file` | Le secret `IOS_APPSTORE_PROFILE_BASE64` ou `ASC_API_KEY_P8_BASE64` est vide, ou n'est pas dans l'Environment (3.2, 3.4). |
-| Import du `.p12` refusé, `MAC verification failed` ou mot de passe incorrect | `IOS_DIST_CERT_PASSWORD` correspond au mot de passe saisi à l'export (1.3, étape 12) ; le secret base64 n'est pas tronqué (une seule ligne, sans espace). |
+| Import du `.p12` refusé, `MAC verification failed`, mot de passe incorrect ou secret vide | `IOS_DIST_CERT_PASSWORD` correspond au mot de passe saisi à l'export (1.3, étape 12) ; le secret base64 n'est pas tronqué (une seule ligne, sans espace). |
 | `No signing certificate "Apple Distribution" found` | Le `.p12` contient bien un certificat **Apple Distribution** (pas **Apple Development**) **et sa clé privée** : l'export doit partir de **My Certificates** (1.3, étapes 8 à 11). |
 | Certificat expiré ou révoqué | Date d'expiration du certificat (1.3). En créer un nouveau, régénérer le profil (1.4), remplacer les secrets. |
 | `Code signing is required for product type 'Application'` | Le `.p12` n'a pas été importé : voir les deux lignes précédentes. |
