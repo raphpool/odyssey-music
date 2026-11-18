@@ -8,7 +8,8 @@ final class ProfileFlowTests: XCTestCase {
 	/// 2026-10-14 (J.4): the first launch chains Welcome (1.1), the genre accordion (1.2) and Today, which shows
 	/// the loading screen (1.6) until the recommendation is there. TRA-639: the accordion is the only genre
 	/// screen. TRA-735: the pseudo (1.3) and the disc (1.4) come between Welcome and the genres, in that order,
-	/// and each screen is checked before the next one exists.
+	/// and each screen is checked before the next one exists. TRA-746: the notification opt-in follows the
+	/// genres, the fake center grants it, and it is not shown again at the next launch.
 	@MainActor
 	func testFirstLaunchChainsTheOnboardingToTodayAndIsNotShownAgain() {
 		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
@@ -71,6 +72,14 @@ final class ProfileFlowTests: XCTestCase {
 		UITestFlows.screenshot(named: "1.2b", in: self)
 		continueGenres.tap()
 
+		// The opt-in follows the genres, before any tab: the profile is written when this step ends.
+		let continueNotifications = app.buttons[UITestFlows.notificationsContinueIdentifier]
+		XCTAssertTrue(continueNotifications.waitForExistence(timeout: 10))
+		XCTAssertTrue(element(app, UITestFlows.notificationsIdentifier).exists)
+		XCTAssertFalse(UITestFlows.tabBar(in: app).exists)
+		UITestFlows.screenshot(named: "1.7", in: self)
+		continueNotifications.tap()
+
 		// 1.6, then Today: the onboarding is gone and the tabs are there.
 		UITestFlows.screenshot(named: "1.6", in: self)
 		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
@@ -82,6 +91,8 @@ final class ProfileFlowTests: XCTestCase {
 		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
 		XCTAssertFalse(app.buttons["onboarding-start"].exists)
 		XCTAssertFalse(pseudoField.exists)
+		// The fake center starts undecided at every launch: only the flag keeps the opt-in from coming back.
+		XCTAssertFalse(element(app, UITestFlows.notificationsIdentifier).exists)
 
 		// The Genres tab counts what the saved selection holds: it was written, and read back after the relaunch.
 		// 2026-11-17 (TRA-737): the settings no longer carry this count, the cards of the tab do.
@@ -111,39 +122,41 @@ final class ProfileFlowTests: XCTestCase {
 		// The edge swipe is the way back: the bar is hidden and Figma draws no back control. From the genres it
 		// goes to the disc, which is still chosen.
 		swipeBack(in: app)
-		XCTAssertTrue(chip.waitForNonExistence(timeout: 10))
+		XCTAssertTrue(chip.waitForNonExistence(timeout: 10), "back from the genres")
 		let mint = app.buttons["onboarding-disc-mint"]
-		XCTAssertTrue(mint.waitForExistence(timeout: 10))
-		XCTAssertTrue(mint.isSelected)
-		XCTAssertTrue(app.buttons[UITestFlows.discContinueIdentifier].isEnabled)
+		XCTAssertTrue(mint.waitForExistence(timeout: 10), "the disc step is shown")
+		XCTAssertTrue(mint.isSelected, "the disc is still chosen")
+		XCTAssertTrue(
+			app.buttons[UITestFlows.discContinueIdentifier].isEnabled, "the disc step can be left")
 
 		// From the disc it goes to the pseudo, with the text that was typed.
 		swipeBack(in: app)
 		let pseudoField = app.textFields[UITestFlows.pseudoFieldIdentifier]
-		XCTAssertTrue(pseudoField.waitForExistence(timeout: 10))
+		XCTAssertTrue(pseudoField.waitForExistence(timeout: 10), "back to the pseudo")
 		XCTAssertEqual(pseudoField.value as? String, "Raph")
 
 		// From the pseudo it goes to Welcome.
 		swipeBack(in: app)
 		let start = app.buttons["onboarding-start"]
-		XCTAssertTrue(start.waitForExistence(timeout: 10))
+		XCTAssertTrue(start.waitForExistence(timeout: 10), "back to Welcome")
 
 		// Forward again: the pseudo and the disc are as they were, and so is the genre that was ticked.
 		UITestFlows.startOnboarding(app)
 		XCTAssertEqual(pseudoField.value as? String, "Raph")
 		pseudoField.tap()
 		pseudoField.typeText("\n")
-		XCTAssertTrue(app.buttons["onboarding-disc-mint"].waitForExistence(timeout: 10))
-		XCTAssertTrue(app.buttons["onboarding-disc-mint"].isSelected)
+		XCTAssertTrue(
+			app.buttons["onboarding-disc-mint"].waitForExistence(timeout: 10), "forward to the disc again")
+		XCTAssertTrue(app.buttons["onboarding-disc-mint"].isSelected, "the disc is kept")
 		UITestFlows.tapWhenReady(app.buttons[UITestFlows.discContinueIdentifier])
 		// The card is closed again, and still counts the genre that was ticked.
 		let family0 = card("family-0", in: app)
-		XCTAssertTrue(family0.waitForExistence(timeout: 10))
+		XCTAssertTrue(family0.waitForExistence(timeout: 10), "forward to the genres again")
 		XCTAssertFalse(chip.exists)
-		XCTAssertTrue(family0.label.contains("1 sélectionné"))
+		XCTAssertTrue(family0.label.contains("1 sélectionné"), family0.label)
 		XCTAssertEqual(family0.value as? String, "replié")
 		let counter = element(app, "bottom-counter")
-		XCTAssertTrue(counter.waitForExistence(timeout: 5))
+		XCTAssertTrue(counter.waitForExistence(timeout: 5), "the counter is shown")
 		XCTAssertEqual(counter.label, "Total : 1 genre")
 	}
 
@@ -210,6 +223,62 @@ final class ProfileFlowTests: XCTestCase {
 		UITestFlows.completeOnboarding(app)
 		XCTAssertTrue(element(app, "today-empty").waitForExistence(timeout: 15))
 		XCTAssertFalse(element(app, "today-title").exists)
+	}
+
+	/// TRA-746: a refusal leads to Today as a yes does. The screen reads in the order of the ticket: the title,
+	/// the subtitle, the preview of the notification, then the button.
+	@MainActor
+	func testRefusingTheNotificationsOpensTodayAsWell() {
+		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog, reminders: "deny")
+		UITestFlows.declineConsent(app)
+		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app)
+		tapCard("family-0", in: app)
+		UITestFlows.tapWhenReady(app.buttons["subgenre-chip-local:genre-0a"])
+		UITestFlows.tapWhenReady(app.buttons[UITestFlows.genresContinueIdentifier])
+
+		let continueNotifications = app.buttons[UITestFlows.notificationsContinueIdentifier]
+		XCTAssertTrue(continueNotifications.waitForExistence(timeout: 10))
+		let title = app.staticTexts["Obtiens ta recommandation quotidienne"]
+		let subtitle = app.staticTexts["Chaque jour, un track ou album de tes genres sélectionnés"]
+		let preview = app.descendants(matching: .any).matching(
+			NSPredicate(format: "label BEGINSWITH %@", "Exemple de notification")
+		).firstMatch
+		XCTAssertTrue(title.exists)
+		XCTAssertTrue(subtitle.exists)
+		XCTAssertTrue(preview.exists)
+		XCTAssertLessThan(title.frame.maxY, subtitle.frame.minY)
+		XCTAssertLessThan(subtitle.frame.maxY, preview.frame.minY)
+		XCTAssertLessThan(preview.frame.maxY, continueNotifications.frame.minY)
+		UITestFlows.screenshot(named: "1.7-refused", in: self)
+		continueNotifications.tap()
+
+		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
+		XCTAssertTrue(UITestFlows.tabButton("Aujourd’hui", in: app).exists)
+		XCTAssertFalse(element(app, UITestFlows.notificationsIdentifier).exists)
+	}
+
+	/// TRA-746: a profile made before the screen existed has no flag. It sees the screen once, over the tabs,
+	/// and its answer leads back to Today; the launch after, it is not shown again. The profile here is made by
+	/// the first-launch flow, then the flag is lowered by the launch argument that stands for the older build.
+	@MainActor
+	func testAProfileMadeBeforeTheOptInSeesItOnceThenNeverAgain() {
+		let app = firstProfile()
+		UITestFlows.relaunch(
+			app, catalog: Self.taxonomyCatalog, extraArguments: ["-track1-reset-reminder-prompt"])
+
+		let continueNotifications = app.buttons[UITestFlows.notificationsContinueIdentifier]
+		XCTAssertTrue(continueNotifications.waitForExistence(timeout: 15), "the opt-in over the tabs")
+		XCTAssertFalse(app.buttons["onboarding-start"].exists)
+		UITestFlows.screenshot(named: "1.7-existing-profile", in: self)
+		continueNotifications.tap()
+		XCTAssertTrue(continueNotifications.waitForNonExistence(timeout: 10))
+		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
+
+		UITestFlows.relaunch(app, catalog: Self.taxonomyCatalog)
+		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
+		XCTAssertFalse(element(app, UITestFlows.notificationsIdentifier).exists)
+		XCTAssertFalse(continueNotifications.exists)
 	}
 
 	/// The edge swipe: a short press at x = 0 and a fast drag, a slow one is read as a scroll, not as the
@@ -495,6 +564,7 @@ final class ProfileFlowTests: XCTestCase {
 		let onboarding1 = UITestFlows.settledFrame(of: family1, timeout: 10)
 
 		UITestFlows.tapWhenReady(bar)
+		UITestFlows.passNotifications(app)
 		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
 		UITestFlows.tabButton("Genres", in: app).tap()
 
@@ -544,13 +614,48 @@ final class ProfileFlowTests: XCTestCase {
 		XCTAssertTrue(card("family-1", in: app).label.hasSuffix(", 1 sélectionné"), card("family-1", in: app).label)
 	}
 
+	/// 2026-11-17 (TRA-746): on the first launch the profile is written when the opt-in step ends, so a failed
+	/// write shows the existing alert on that screen and the same "Continuer" writes again.
+	@MainActor
+	func testFailedFirstProfileWriteAtTheEndOfTheOnboardingCanBeRetried() {
+		let app = XCUIApplication()
+		app.launchArguments = [
+			"-AppleLanguages", "(fr)", "-track1-reset-analytics-consent", "-track1-reset-profile",
+			"-track1-fail-next-profile-write",
+		]
+		app.launchEnvironment = [
+			"TRACK1_PROFILE_CATALOG_JSON": catalogFixture, UITestFlows.reminderCenterKey: "grant",
+		]
+		app.launch()
+		UITestFlows.declineConsent(app)
+		UITestFlows.startOnboarding(app)
+		UITestFlows.passPseudoAndDisc(app)
+		tapCard("family-0", in: app)
+		UITestFlows.tapWhenReady(app.buttons["subgenre-chip-local:genre-3"])
+		UITestFlows.tapWhenReady(app.buttons["onboarding-genres-continue"])
+		// TRA-746: the profile is written when the opt-in ends, so that is where the write fails.
+		UITestFlows.passNotifications(app)
+
+		// The write failed: the opt-in stays on screen, before any tab, and its button writes again.
+		let alert = app.alerts["Enregistrement indisponible"]
+		XCTAssertTrue(alert.waitForExistence(timeout: 10), "the failed write shows the alert")
+		XCTAssertTrue(
+			app.buttons[UITestFlows.notificationsContinueIdentifier].exists, "the opt-in is still on screen")
+		alert.buttons["OK"].tap()
+		XCTAssertTrue(alert.waitForNonExistence(timeout: 5))
+		UITestFlows.tapWhenReady(app.buttons[UITestFlows.notificationsContinueIdentifier])
+		XCTAssertTrue(UITestFlows.tabButton("Genres", in: app).waitForExistence(timeout: 10))
+	}
+
 	@MainActor
 	func testCorruptProfileCanBeExplicitlyPurgedThenRecreated() {
 		let app = XCUIApplication()
 		app.launchArguments = [
 			"-AppleLanguages", "(fr)", "-track1-reset-analytics-consent", "-track1-seed-corrupt-profile",
 		]
-		app.launchEnvironment = ["TRACK1_PROFILE_CATALOG_JSON": catalogFixture]
+		app.launchEnvironment = [
+			"TRACK1_PROFILE_CATALOG_JSON": catalogFixture, UITestFlows.reminderCenterKey: "grant",
+		]
 		app.launch()
 		UITestFlows.declineConsent(app)
 
@@ -575,6 +680,7 @@ final class ProfileFlowTests: XCTestCase {
 		tapCard("family-0", in: app)
 		UITestFlows.tapWhenReady(app.buttons["subgenre-chip-local:genre-3"])
 		UITestFlows.tapWhenReady(app.buttons["onboarding-genres-continue"])
+		UITestFlows.passNotifications(app)
 		XCTAssertTrue(UITestFlows.tabButton("Genres", in: app).waitForExistence(timeout: 10))
 		UITestFlows.tabButton("Genres", in: app).tap()
 		XCTAssertTrue(card("family-0", in: app).waitForExistence(timeout: 10))
