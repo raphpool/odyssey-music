@@ -17,7 +17,8 @@ Décisions (plan `track1-v1`, D5, arbitrage de Raphael du 2026-11-16) :
   et un groupe **externe** (amis, lien public, après la revue bêta d'Apple). Raphael teste
   d'abord sur le groupe interne.
 
-Avant les sections 1 à 6, vérifier l'état des workflows : voir l'[annexe A](#annexe-a--état-des-workflows-au-2026-11-16).
+Ordre à suivre : sections 1 à 3, **puis** section 4. En particulier, créer l'Environment
+`testflight` (3.1) avant le premier lancement du workflow.
 
 Les noms de menus Apple ci-dessous suivent l'interface en anglais. Apple les renomme parfois :
 si un libellé a changé, suivre l'intitulé le plus proche et corriger ce document.
@@ -150,6 +151,9 @@ Dépôt : `raphpool/odyssey-music`.
 
 ### 3.1 Environment `testflight`
 
+À créer **avant** le premier lancement du workflow. Si le workflow tourne d'abord, GitHub crée
+l'Environment tout seul, sans la règle « `main` seulement ».
+
 1. Ouvrir le dépôt sur GitHub, puis **Settings**, puis **Environments**.
 2. Cliquer sur **New environment**, saisir `testflight`, puis **Configure environment**.
 3. **Ne pas cocher** **Required reviewers**. Décision D5 : l'Environment n'a pas de relecteur
@@ -221,19 +225,37 @@ ne pas laisser de copie des fichiers hors du gestionnaire de mots de passe.
 1. Ouvrir **Settings**, puis **Actions**, puis **General**.
 2. Dans **Fork pull request workflows from outside collaborators**, choisir **Require approval
    for all external contributors**, puis **Save**. Le dépôt est public : sans ce réglage, une PR
-   de fork peut lancer des workflows sans approbation. À faire avant l'annexe A.
+   de fork peut lancer des workflows sans approbation. Les workflows de PR ont été réactivés par
+   `enable-workflows.yml` (TRA-784) : faire ce réglage maintenant, s'il ne l'est pas déjà. L'état
+   courant des workflows se lit dans **Actions** ou avec `gh workflow list --all`.
 
 ## 4. Lancer un envoi
 
-Le workflow `ios-testflight` (`.github/workflows/ios-testflight.yml`, ticket TRA-729) n'existe
-pas encore sur `main` : les sections 4 et 6 suivent son contrat (noms du job et des étapes,
-délai, résumé) ; si le workflow livré diffère, corriger ce document dans la même PR. Il n'a que le
-déclencheur `workflow_dispatch`, sans entrée, et son job ne s'exécute que sur `main`
-(`github.ref == 'refs/heads/main'`). Il n'attend aucune approbation : l'Environment n'a pas de
-relecteur requis.
+Le workflow `ios-testflight` (`.github/workflows/ios-testflight.yml`, tickets TRA-729 et
+TRA-775) est sur `main`. Il n'a que le déclencheur `workflow_dispatch`, sans entrée. Son job
+`testflight` ne s'exécute que sur `main` (`github.ref == 'refs/heads/main'`). Il utilise
+l'Environment `testflight` et tourne sur `macos-26`. Il n'attend aucune approbation : l'Environment
+n'a pas de relecteur requis. Un seul run à la fois : un second lancement attend la fin du
+premier. Ne pas en lancer un troisième pendant ce temps : GitHub annule le run en attente.
 
-Préconditions : les sections 1 à 3 sont terminées ; le workflow est mergé sur `main` ; le code à
-envoyer est sur `main`.
+Préconditions :
+
+- les sections 1 à 3 sont terminées ;
+- l'Environment `testflight` existe, avec la règle `main` seulement, ses six secrets et ses trois
+  variables (3.1 à 3.3) : il doit être créé **avant** le premier lancement ;
+- le code à envoyer est sur `main`.
+
+Le job enchaîne cinq étapes :
+
+1. **Select Xcode** : sélectionne le Xcode épinglé dans `ios/.xcode-version` et refuse un autre.
+2. **Install signing material** : crée un trousseau temporaire, importe le certificat, installe le
+   profil et la clé d'API.
+3. **Archive and upload** : lance `ios/scripts/testflight.sh` avec `TRACK1_UPLOAD=1`. Le script
+   archive l'app en Production, contrôle l'`.app` de l'archive, puis exporte et envoie la build à
+   App Store Connect.
+4. **Remove signing material** : supprime le trousseau, le `.p12`, la clé et le profil. Cette
+   étape s'exécute même si une étape précédente a échoué.
+5. **Job summary** : écrit le résumé du run.
 
 ### 4.1 Par l'agent
 
@@ -250,15 +272,18 @@ envoyer est sur `main`.
 
 ### 4.3 Lire le résultat
 
-1. Ouvrir le run, puis le job `testflight`. Il dure au plus 60 minutes (délai du job).
-2. Ouvrir le **Summary** du run. Le résumé du job affiche : le **SHA** envoyé, la **version** de
-   l'app et le **numéro de build**. Le numéro de build est un horodatage UTC `YYYYMMDDHHMM` : deux
-   envois dans la même minute auraient le même numéro et le second serait refusé.
+1. Ouvrir le run, puis le job `testflight`. Il est coupé au bout de 60 minutes (`timeout-minutes`).
+   La durée réelle n'est pas encore mesurée : le premier run la donne.
+2. Ouvrir le **Summary** du run, titre « TestFlight upload ». Il liste trois valeurs : **Git SHA**
+   (le commit envoyé), **Version** (la version de l'app) et **Build** (le numéro de build). Le
+   numéro de build est un horodatage UTC `YYYYMMDDHHMM` : deux envois dans la même minute auraient
+   le même numéro et le second serait refusé. Si une valeur manque dans le résumé, la lire dans le
+   journal de l'étape « Archive and upload » (lignes `Git SHA:`, `Version:`, `Build:`).
 3. Un run vert signifie que l'envoi à App Store Connect est accepté, pas que la build est
    installable. Apple traite ensuite la build : compter quelques minutes, parfois plus.
-4. Si la build reste en **Missing Compliance**, elle n'est pas proposée aux testeurs : la
-   conformité à l'export est déclarée par l'`Info.plist` (ticket TRA-707) ; tant qu'il n'est pas
-   mergé, répondre à la question à la main sur la build, dans App Store Connect.
+4. Si la build reste en **Missing Compliance**, elle n'est pas proposée aux testeurs. L'`Info.plist`
+   déclare pourtant `ITSAppUsesNonExemptEncryption` à `false` (TRA-707). Ouvrir un ticket. En
+   attendant, répondre à la question à la main sur la build, dans App Store Connect.
 5. Dans App Store Connect, onglet **TestFlight**, la build apparaît sous **Builds**, puis dans le
    groupe interne (distribution automatique). Elle est alors installable depuis l'app **TestFlight**
    de Raphael, sans revue Apple.
@@ -296,40 +321,69 @@ varient selon la version de Xcode : les formulations ci-dessous sont indicatives
 | Le job est ignoré (`skipped`) | Le run a été lancé depuis une autre branche que `main` : la garde du job le saute. |
 | Le job est rejeté avec un message sur la branche ou l'Environment | La règle de déploiement de l'Environment `testflight` (3.1, étapes 5 à 7) : elle doit autoriser `main`. |
 | Le job attend une approbation | Quelqu'un a coché **Required reviewers** sur l'Environment : le décocher (décision D5). |
+| Le run échoue sur des valeurs vides (import du `.p12`, `decoded to an empty file`, `... is required`) | L'Environment a peut-être été créé par GitHub au premier run : il n'a alors ni secrets, ni variables, ni règle `main`. Ouvrir **Settings**, **Environments**, `testflight` : ajouter la règle `main` (3.1, étapes 5 à 7), créer les secrets et les variables (3.2, 3.3), puis relancer. |
 | Un secret est vide dans les journaux | Le secret a été créé au niveau du dépôt et non de l'Environment, ou son nom est écrit différemment : 3.2. |
 
-### 6.2 Refus du script avant la compilation
+### 6.2 Refus avant la compilation
 
-Le script d'envoi (`ios/scripts/testflight.sh`, TRA-718) refuse un lancement mal configuré, en
-nommant la variable fautive. Les lignes ci-dessous suivent le contrat de TRA-718 : si le script
-livré diffère, corriger ce tableau dans la même PR.
+Les messages ci-dessous sortent de l'étape « Select Xcode » ou du script d'envoi
+(`ios/scripts/testflight.sh`, tickets TRA-718 et TRA-764). Le script refuse un lancement mal
+configuré en nommant la variable fautive, avant de compiler.
 
 | Message | À vérifier |
 | --- | --- |
-| `TRACK1_API_BASE_URL` ne finit pas par `/mobile/v1` | La variable de l'Environment (3.3). |
-| `TRACK1_API_BASE_URL` en `.example` | La variable porte encore une valeur de substitution. |
-| `TRACK1_TEAM_ID` invalide | Exactement 10 caractères A-Z et 0-9 (1.1). |
-| Profil vide | `TRACK1_APPSTORE_PROFILE_NAME` est absent ou vide (3.3). |
-| Clé absente | `ASC_API_KEY_P8_BASE64` est vide ou mal encodé (3.4). |
-| Arbre git non propre | Un fichier a été modifié par une étape précédente : ouvrir un ticket. |
-| Xcode différent de `ios/.xcode-version` | L'image du runner n'a plus le Xcode épinglé : ouvrir un ticket. |
+| `TRACK1_API_BASE_URL must end with /mobile/v1` | La variable `TRACK1_API_BASE_URL` de l'Environment (3.3). |
+| `TRACK1_API_BASE_URL must not end with .example` | La variable porte encore une valeur de substitution. |
+| `TRACK1_API_BASE_URL is required.` | La variable est absente ou vide dans l'Environment (3.3). |
+| Autre message `TRACK1_API_BASE_URL must ...` | L'URL doit être en `https://`, avec un hôte à points, sans identifiants, sans port, sans paramètre de requête, sans fragment, avec un chemin simple (3.3). |
+| `TRACK1_TEAM_ID is required and must be a 10-character Apple Team ID` | Exactement 10 caractères A-Z et 0-9 (1.1). |
+| `TRACK1_PROFILE_NAME is required` | La variable `TRACK1_APPSTORE_PROFILE_NAME` est absente ou vide (3.3). Le script l'appelle `TRACK1_PROFILE_NAME`. |
+| `TRACK1_PROFILE_NAME must not contain a dollar sign` | Le nom du profil contient un `$` : renommer le profil (1.4) et corriger la variable. |
+| `ASC_KEY_ID is required` ou `ASC_ISSUER_ID is required` | Le secret `ASC_API_KEY_ID` ou `ASC_API_ISSUER_ID` est absent ou vide (3.2). |
+| `The git working tree has uncommitted changes` | Une étape précédente a modifié un fichier : ouvrir un ticket. |
+| `<app> not found for the pin` ou `the pin is '...' but ...` (« Select Xcode »), ou `Expected Xcode ... but xcodebuild selected ...` | L'image `macos-26` n'a plus le Xcode épinglé : ouvrir un ticket pour déplacer le pin. Le pin est dans `ios/.xcode-version`, actuellement `Xcode 26.4.1 (17E202)` (TRA-787). |
+| `cannot read an Xcode version from ios/.xcode-version` (« Select Xcode ») | Le fichier `ios/.xcode-version` est mal formé : ouvrir un ticket. |
+
+Après l'archive et avant l'export, le script contrôle l'`.app` de l'archive. Il vérifie
+l'identifiant signé, l'équipe signataire et l'URL d'API embarquée. Un échec arrête le run avant
+tout envoi.
+
+| Message | À vérifier |
+| --- | --- |
+| `The archived app is signed as '<id>', expected 'com.dropcliffs.track1'` | Le profil et l'identifiant d'app (1.2, 1.4). |
+| `The archived app is signed by team '<équipe>', expected '<Team ID>'` | `TRACK1_TEAM_ID` est l'équipe qui possède le certificat et le profil (1.1). |
+| `The archived app embeds API URL '<url>', expected '<url>'` | Défaut de l'app ou du script : ouvrir un ticket. |
+| `Expected exactly one .app in <archive>` | L'archive est vide ou inattendue : ouvrir un ticket. |
 
 ### 6.3 Erreurs de signature
 
-À l'étape « Install signing material » ou à l'archive.
+À l'étape « Install signing material » ou à l'étape « Archive and upload ».
 
 | Message | À vérifier |
 | --- | --- |
-| Import du `.p12` refusé, `MAC verification failed` ou mot de passe incorrect | `IOS_DIST_CERT_PASSWORD` correspond au mot de passe saisi à l'export (1.3, étape 12) ; le secret base64 n'est pas tronqué (une seule ligne, sans espace). |
+| `the profile or the API key decoded to an empty file` | Le secret `IOS_APPSTORE_PROFILE_BASE64` ou `ASC_API_KEY_P8_BASE64` est vide, ou n'est pas dans l'Environment (3.2, 3.4). |
+| Import du `.p12` refusé, `MAC verification failed`, mot de passe incorrect ou secret vide | `IOS_DIST_CERT_PASSWORD` correspond au mot de passe saisi à l'export (1.3, étape 12) ; le secret base64 n'est pas tronqué (une seule ligne, sans espace). |
 | `No signing certificate "Apple Distribution" found` | Le `.p12` contient bien un certificat **Apple Distribution** (pas **Apple Development**) **et sa clé privée** : l'export doit partir de **My Certificates** (1.3, étapes 8 à 11). |
 | Certificat expiré ou révoqué | Date d'expiration du certificat (1.3). En créer un nouveau, régénérer le profil (1.4), remplacer les secrets. |
 | `Code signing is required for product type 'Application'` | Le `.p12` n'a pas été importé : voir les deux lignes précédentes. |
 
 ### 6.4 Erreurs de profil
 
+L'étape « Install signing material » écrit le profil sous le nom `track1-appstore.mobileprovision`
+dans les deux dossiers :
+
+- `~/Library/MobileDevice/Provisioning Profiles` ;
+- `~/Library/Developer/Xcode/UserData/Provisioning Profiles`.
+
+Xcode 16 a déplacé les profils vers `UserData` et peut encore lire l'ancien dossier : le workflow
+installe donc les deux. L'étape « Remove signing material » supprime le profil des deux dossiers.
+Le nom du fichier est sans effet : `TRACK1_APPSTORE_PROFILE_NAME` désigne le nom du profil dans le
+portail Apple (1.4, étape 6).
+
 | Message | À vérifier |
 | --- | --- |
 | `No profile for team '<Team ID>' matching '<nom>' found` | `TRACK1_APPSTORE_PROFILE_NAME` est identique, caractère pour caractère, au nom du profil (1.4, étape 8) ; `IOS_APPSTORE_PROFILE_BASE64` est le profil à jour. |
+| `No profile for team '<Team ID>' matching '<nom>' found`, alors que le nom est exact | Vérifier que « Install signing material » est vert. L'installation dans les deux dossiers n'a pas encore tourné sur un Mac hébergé : le premier run la confirme. Si l'erreur reste, ouvrir un ticket avec le message. |
 | `Provisioning profile "<nom>" doesn't include signing certificate` | Le profil n'a pas été généré avec le certificat présent dans le `.p12` : régénérer le profil avec le bon certificat (1.4). |
 | `doesn't match the bundle identifier` | Le profil a été créé pour un autre identifiant que `com.dropcliffs.track1` (1.2, 1.4). |
 | Profil expiré ou `Invalid` | Ouvrir le profil dans le portail Apple, **Edit**, **Save**, retélécharger, remplacer `IOS_APPSTORE_PROFILE_BASE64`. |
@@ -337,14 +391,16 @@ livré diffère, corriger ce tableau dans la même PR.
 
 ### 6.5 Erreurs de validation ou d'envoi App Store Connect
 
-À l'étape « Archive and upload », après l'export.
+À l'étape « Archive and upload », pendant l'export : avec l'envoi, la même commande exporte et
+envoie la build. Le script a contrôlé l'`.app` de l'archive, pas le binaire envoyé : l'export
+re-signe l'app.
 
 | Message | À vérifier |
 | --- | --- |
 | `401`, `Authentication credentials are missing or invalid` | `ASC_API_KEY_ID` et `ASC_API_ISSUER_ID` ne sont pas inversés ; la clé n'est pas révoquée (**Users and Access**, **Integrations**) ; son rôle est **App Manager** ; le `.p8` est celui de ce Key ID. |
 | `No app found with the specified bundle identifier` | La fiche App Store Connect existe pour `com.dropcliffs.track1` (1.2, étapes 6 à 9). |
 | `The bundle version must be higher than the previously uploaded version` | Deux envois dans la même minute, ou un numéro de build déjà pris : relancer une minute plus tard. |
-| `ITMS-90xxx` ou `ITMS-91xxx` (`Missing ...`, `Invalid ...`) | Le code `ITMS` désigne la règle d'Apple ; lire le texte qui suit. Les causes courantes : clé manquante dans l'`Info.plist`, manifeste de confidentialité absent ou incomplet (ticket TRA-707), icône manquante ou invalide. C'est un défaut de l'app, pas de la configuration : ouvrir un ticket avec le code. |
+| `ITMS-90xxx` ou `ITMS-91xxx` (`Missing ...`, `Invalid ...`) | Le code `ITMS` désigne la règle d'Apple ; lire le texte qui suit. Les causes courantes : clé manquante dans l'`Info.plist`, manifeste de confidentialité incomplet (TRA-707 en a ajouté un), icône manquante ou invalide. C'est un défaut de l'app, pas de la configuration : ouvrir un ticket avec le code. |
 | L'envoi réussit mais la build n'apparaît pas | Attendre le traitement d'Apple ; chercher un e-mail d'Apple dans la boîte de l'Account Holder (rejet après traitement). |
 | La build apparaît mais pas dans le groupe interne | La distribution automatique est cochée sur le groupe interne (2.1, étape 3) et Raphael y est testeur (2.1, étape 4). |
 
@@ -354,42 +410,3 @@ livré diffère, corriger ce tableau dans la même PR.
    ouvrir un ticket quand c'est le code ou le workflow.
 2. Relancer l'envoi (section 4). Ne pas contourner : ni relecteur ou branche ajoutés à
    l'Environment, ni lancement depuis une autre branche, ni secret collé hors de l'Environment.
-
-## Annexe A — État des workflows au 2026-11-16
-
-Instantané daté : le supprimer une fois TRA-703, TRA-705 et TRA-729 mergés et les workflows
-réactivés. Les dix workflows du dépôt sont `disabled_manually` depuis le 2026-11-01. Un workflow désactivé
-ne se déclenche pas, même quand une PR le modifie. Vérifier l'état courant dans **Actions** (les
-workflows désactivés sont marqués), ou avec `gh workflow list --all`.
-
-À réactiver, par **Actions**, puis le workflow, puis **Enable workflow** (ou
-`gh workflow enable <fichier>`) :
-
-| Workflow | Fichier | Décision |
-| --- | --- | --- |
-| `ci` | `ci.yml` | Réactiver. |
-| `ai-review` | `ai-review.yml` | Réactiver. |
-| `review-gate` | `review-gate.yml` | Réactiver. |
-| `mobile-ci` | `mobile-ci.yml` | Réactiver. |
-| `ios-ci` | `ios-ci.yml` | Réactiver. |
-| `claude` | `claude.yml` | Réactiver **après le merge de TRA-703**. |
-
-À laisser désactivés : `deploy`, `pull-cache`, `sync-genre-cache`, `top-up-genres`. Ils tournent
-encore sur des runners auto-hébergés (`[self-hosted, linux]`) et n'ont aucun rôle dans l'envoi
-TestFlight.
-
-Pourquoi cet ordre :
-
-- Au 2026-11-16, les fichiers sur `main` ciblent tous des runners auto-hébergés, présumés éteints.
-  TRA-703 bascule `ci`, `mobile-ci`, `review-gate`, `ai-review` et `claude` sur `ubuntu-latest` ;
-  TRA-705 fait de même pour `ios-ci` sur un runner macOS hébergé. Tant qu'un workflow n'est pas
-  basculé, ses jobs restent en file sur un runner qui ne répond pas. Réactiver les cinq
-  premiers permet à la PR de TRA-703 de valider sa propre CI sur runners hébergés. Tant que
-  TRA-703 n'est pas mergé, ces fichiers n'ont pas sa garde `head.repo.full_name` sur `ai-review` :
-  appliquer d'abord le réglage 3.5.
-- `claude` attend le merge de TRA-703 : cette PR ajoute la condition qui réserve le workflow aux
-  auteurs `OWNER`, `MEMBER` et `COLLABORATOR`. Le dépôt est public : sans cette condition, tout
-  commentaire contenant `@claude` pourrait le déclencher.
-- Le workflow `ios-testflight` n'est pas dans cette liste : il n'existe pas encore sur `main`
-  (TRA-729). Un nouveau fichier de workflow est actif dès sa création ; vérifier son état dans
-  **Actions** après le merge.
