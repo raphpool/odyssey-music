@@ -58,8 +58,10 @@ jobs:
     # one-at-a-time limit (2026-10-12, #335: load 274, simulator not booted in 600 s) no longer applies. A fresh
     # VM has no simulator and no warm DerivedData, so check.sh creates track1-ci-pool and compiles cold on every
     # run, hence 45 min. Not measured on this runner yet: the first runs of TRA-705 record it in the PR.
+    # TRA-793 (2026-11-19): measured since, the green runs take 41 to 42 min, and PR #710 was cancelled at 45 min
+    # ("exceeded the maximum execution time of 45m0s") with no compiled change. 60 min leave a third of margin.
     runs-on: macos-26
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - name: Isolate HOME from the runner host account
         run: |
