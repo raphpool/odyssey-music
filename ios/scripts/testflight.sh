@@ -47,6 +47,8 @@ archive_path="$work_dir/Track1.xcarchive"
 export_dir="$work_dir/export"
 export_options="$work_dir/ExportOptions-AppStore.plist"
 
+# No signing setting on this command line (TRA-792): it would reach the Swift packages too, and they refuse a
+# provisioning profile. Production.xcconfig signs the app target from TRACK1_TEAM_ID and TRACK1_PROFILE_NAME.
 xcodebuild archive \
 	-project "$ios_dir/Track1.xcodeproj" \
 	-scheme Track1 \
@@ -55,12 +57,8 @@ xcodebuild archive \
 	-archivePath "$archive_path" \
 	-onlyUsePackageVersionsFromResolvedFile \
 	-disableAutomaticPackageResolution \
-	CODE_SIGNING_ALLOWED=YES \
-	CODE_SIGNING_REQUIRED=YES \
-	CODE_SIGN_STYLE=Manual \
-	"CODE_SIGN_IDENTITY=Apple Distribution" \
-	"DEVELOPMENT_TEAM=$team_id" \
-	"PROVISIONING_PROFILE_SPECIFIER=$profile_name" \
+	"TRACK1_TEAM_ID=$team_id" \
+	"TRACK1_PROFILE_NAME=$profile_name" \
 	"TRACK1_API_BASE_URL=$api_base_url" \
 	"CURRENT_PROJECT_VERSION=$build_number"
 
