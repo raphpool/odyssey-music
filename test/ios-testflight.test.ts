@@ -86,12 +86,12 @@ async function run(overrides: Record<string, string | undefined> = {}) {
 }
 
 describe.sequential("Track1 TestFlight archive script", () => {
-	it("archives Production with manual distribution signing, then exports with the API key", async () => {
+	it("archives Production with the team and profile for its xcconfig, then exports with the API key", async () => {
 		const { calls, exportOptions, result } = await run();
 		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
 		// The work directory is a fresh <run> folder under the output directory, itself outside the repository.
 		expect(calls).toEqual([
-			`archive|-project|<ios>/Track1.xcodeproj|-scheme|Track1|-configuration|Production|-destination|generic/platform=iOS|-archivePath|<tmp>/output/<run>/Track1.xcarchive|-onlyUsePackageVersionsFromResolvedFile|-disableAutomaticPackageResolution|CODE_SIGNING_ALLOWED=YES|CODE_SIGNING_REQUIRED=YES|CODE_SIGN_STYLE=Manual|CODE_SIGN_IDENTITY=Apple Distribution|DEVELOPMENT_TEAM=${teamId}|PROVISIONING_PROFILE_SPECIFIER=${profileName}|TRACK1_API_BASE_URL=${apiBaseUrl}|CURRENT_PROJECT_VERSION=<build>|`,
+			`archive|-project|<ios>/Track1.xcodeproj|-scheme|Track1|-configuration|Production|-destination|generic/platform=iOS|-archivePath|<tmp>/output/<run>/Track1.xcarchive|-onlyUsePackageVersionsFromResolvedFile|-disableAutomaticPackageResolution|TRACK1_TEAM_ID=${teamId}|TRACK1_PROFILE_NAME=${profileName}|TRACK1_API_BASE_URL=${apiBaseUrl}|CURRENT_PROJECT_VERSION=<build>|`,
 			"-exportArchive|-archivePath|<tmp>/output/<run>/Track1.xcarchive|-exportPath|<tmp>/output/<run>/export|-exportOptionsPlist|<tmp>/output/<run>/ExportOptions-AppStore.plist|-authenticationKeyPath|<tmp>/AuthKey.p8|-authenticationKeyID|KEYID12345|-authenticationKeyIssuerID|issuer-uuid|",
 		]);
 		expect(exportOptions).toContain("<string>app-store-connect</string>");
@@ -187,5 +187,43 @@ describe.sequential("Track1 TestFlight archive script", () => {
 		expect(exported.result.stderr).toContain(expectedError);
 		// With an upload there is no IPA to read: only the archive was checked, and it is fine.
 		expect(uploaded.result.status, uploaded.result.stderr).toBe(0);
+	});
+
+	// TRA-792 (2026-11-19): the first TestFlight run failed at the archive. The profile, passed on the command line,
+	// reached the Swift packages, and Xcode refuses a profile on a package target.
+	it("signs the app target only: no signing setting on the command line, device-only settings in Production", async () => {
+		const { calls, result } = await run();
+		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+		const archive = calls.find((call) => call.startsWith("archive|")) ?? "";
+		expect(archive).not.toMatch(/\|(CODE_SIGN\w*|DEVELOPMENT_TEAM|PROVISIONING_PROFILE\w*)=/);
+
+		const configuration = (name: string) => readFile(resolve(`ios/Configurations/${name}.xcconfig`), "utf8");
+		const signingLines = (text: string) =>
+			text.split("\n").filter((line) => /^(CODE_SIGN|DEVELOPMENT_TEAM|PROVISIONING_PROFILE)/.test(line));
+		expect(signingLines(await configuration("Production"))).toEqual([
+			"CODE_SIGNING_ALLOWED[sdk=iphoneos*] = YES",
+			"CODE_SIGNING_REQUIRED[sdk=iphoneos*] = YES",
+			"CODE_SIGN_STYLE[sdk=iphoneos*] = Manual",
+			"CODE_SIGN_IDENTITY[sdk=iphoneos*] = Apple Distribution",
+			"DEVELOPMENT_TEAM[sdk=iphoneos*] = $(TRACK1_TEAM_ID)",
+			"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*] = $(TRACK1_PROFILE_NAME)",
+		]);
+		// Simulator builds of Production, and the other configurations, keep the unsigned build of Base.xcconfig.
+		expect(signingLines(await configuration("Base"))).toEqual([
+			"CODE_SIGNING_ALLOWED = NO",
+			"CODE_SIGNING_REQUIRED = NO",
+		]);
+		expect(signingLines(await configuration("Development"))).toEqual([]);
+		expect(signingLines(await configuration("Preview"))).toEqual([]);
+
+		// Only the app target's Production configuration is based on Production.xcconfig, so no package sees it.
+		const project = await readFile(resolve("ios/Track1.xcodeproj/project.pbxproj"), "utf8");
+		const basedOnProduction = project
+			.split("\n")
+			.filter((line) => line.includes("baseConfigurationReference") && line.includes("Production.xcconfig"));
+		expect(basedOnProduction).toHaveLength(1);
+		expect(basedOnProduction[0]).toContain("PRODUCT_MODULE_NAME = Track1;");
+		// A signing key in the project's own build settings would silently win over the xcconfig.
+		expect(project).not.toMatch(/CODE_SIGN|PROVISIONING_PROFILE|DEVELOPMENT_TEAM/);
 	});
 });

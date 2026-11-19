@@ -3,3 +3,16 @@
 PRODUCT_BUNDLE_IDENTIFIER = com.dropcliffs.track1
 TRACK1_ENVIRONMENT = production
 TRACK1_API_BASE_URL = https:/$()/api.track1.example/mobile/v1
+
+// TRA-792 (2026-11-19): the first TestFlight archive failed because testflight.sh passed the provisioning profile
+// on the xcodebuild command line, which reaches every target: the Swift packages (Segment, Sovran,
+// JSONSafeEncoding, Track1Core) refused it ("does not support provisioning profiles"). Only the app target reads
+// this file, so the distribution signing lives here, for device builds only. testflight.sh supplies the team and
+// the profile name as TRACK1_TEAM_ID and TRACK1_PROFILE_NAME, which no package reads. Without them a device build
+// of Production fails to sign; simulator builds and the other configurations keep Base.xcconfig's unsigned build.
+CODE_SIGNING_ALLOWED[sdk=iphoneos*] = YES
+CODE_SIGNING_REQUIRED[sdk=iphoneos*] = YES
+CODE_SIGN_STYLE[sdk=iphoneos*] = Manual
+CODE_SIGN_IDENTITY[sdk=iphoneos*] = Apple Distribution
+DEVELOPMENT_TEAM[sdk=iphoneos*] = $(TRACK1_TEAM_ID)
+PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*] = $(TRACK1_PROFILE_NAME)
