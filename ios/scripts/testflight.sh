@@ -47,8 +47,9 @@ archive_path="$work_dir/Track1.xcarchive"
 export_dir="$work_dir/export"
 export_options="$work_dir/ExportOptions-AppStore.plist"
 
-# No signing setting on this command line (TRA-792): it would reach the Swift packages too, and they refuse a
-# provisioning profile. Production.xcconfig signs the app target from TRACK1_TEAM_ID and TRACK1_PROFILE_NAME.
+# No signing setting on this command line (TRA-792, 2026-11-19): it reaches the Swift packages too, and the first
+# TestFlight run failed with "Sovran does not support provisioning profiles". Production.xcconfig signs the app
+# target only, from TRACK1_TEAM_ID and TRACK1_PROFILE_NAME.
 xcodebuild archive \
 	-project "$ios_dir/Track1.xcodeproj" \
 	-scheme Track1 \

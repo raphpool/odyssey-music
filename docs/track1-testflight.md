@@ -366,6 +366,8 @@ tout envoi.
 | `No signing certificate "Apple Distribution" found` | Le `.p12` contient bien un certificat **Apple Distribution** (pas **Apple Development**) **et sa clé privée** : l'export doit partir de **My Certificates** (1.3, étapes 8 à 11). |
 | Certificat expiré ou révoqué | Date d'expiration du certificat (1.3). En créer un nouveau, régénérer le profil (1.4), remplacer les secrets. |
 | `Code signing is required for product type 'Application'` | Le `.p12` n'a pas été importé : voir les deux lignes précédentes. |
+| `<paquet> does not support provisioning profiles` | Un réglage de signature est repassé sur la ligne de commande de `xcodebuild archive`, qui atteint aussi les paquets Swift. La signature doit rester dans `ios/Configurations/Production.xcconfig` (TRA-792) : ouvrir un ticket. |
+| Erreur de signature de Track1 en archivant depuis Xcode, sur un Mac | Normal : `Production.xcconfig` attend l'équipe et le profil de `TRACK1_TEAM_ID` et `TRACK1_PROFILE_NAME`, que seul `testflight.sh` fournit. Passer par le workflow. |
 
 ### 6.4 Erreurs de profil
 

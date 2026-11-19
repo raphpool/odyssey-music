@@ -223,5 +223,7 @@ describe.sequential("Track1 TestFlight archive script", () => {
 			.filter((line) => line.includes("baseConfigurationReference") && line.includes("Production.xcconfig"));
 		expect(basedOnProduction).toHaveLength(1);
 		expect(basedOnProduction[0]).toContain("PRODUCT_MODULE_NAME = Track1;");
+		// A signing key in the project's own build settings would silently win over the xcconfig.
+		expect(project).not.toMatch(/CODE_SIGN|PROVISIONING_PROFILE|DEVELOPMENT_TEAM/);
 	});
 });
