@@ -79,8 +79,10 @@ describe("ios-check runner label (TRA-411, TRA-705)", () => {
 		expect(iosCi).not.toContain("self-hosted");
 	});
 
-	it("gives ios-check 45 minutes, for the cold DerivedData of a hosted runner", () => {
-		expect(withoutComments(iosCi)).toMatch(/^ {4}timeout-minutes: 45\s*$/m);
+	// TRA-793 (2026-11-19): 45 minutes cancelled a run; the green ones take 41 to 42 minutes on a cold VM.
+	it("gives ios-check 60 minutes, for the cold DerivedData of a hosted runner", () => {
+		expect(withoutComments(iosCi)).toMatch(/^ {4}timeout-minutes: 60\s*$/m);
+		expect(withoutComments(iosCi).match(/timeout-minutes:/g)).toHaveLength(1);
 	});
 
 	it("selects the pinned Xcode before check.sh and lists the installed ones when it is missing", () => {
