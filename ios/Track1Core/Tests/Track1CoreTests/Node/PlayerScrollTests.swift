@@ -61,6 +61,33 @@ final class PlayerScrollTests: XCTestCase {
 		XCTAssertEqual(PlayerScroll.snapOffset(proposed: 500, viewportHeight: viewport, frames: frames), -337)
 	}
 
+	/// TRA-795: the frames the view reports start below the top margin that centres the first paragraph.
+	func testScrollingFocusesEveryParagraphInTurnAndTheOneHoldingTheCentre() throws {
+		let window = 774.0
+		let heights = [34.0, 68, 102, 68, 34, 68]
+		var minY = window / 2 - heights[0] / 2
+		var frames: [PlayerItemFrame] = []
+		for height in heights {
+			frames.append(PlayerItemFrame(minY: minY, height: height))
+			minY += height + 56
+		}
+		let last = try XCTUnwrap(frames.last)
+		XCTAssertEqual(PlayerScroll.focusedIndex(offset: 0, viewportHeight: window, frames: frames), 0)
+
+		var visited: [Int] = []
+		for step in 0...Int(last.midY - window / 2) {
+			let center = Double(step) + window / 2
+			let focused = try XCTUnwrap(
+				PlayerScroll.focusedIndex(offset: Double(step), viewportHeight: window, frames: frames))
+			if let holder = frames.firstIndex(where: { $0.minY <= center && center <= $0.maxY }) {
+				XCTAssertEqual(focused, holder, "offset \(step): the frame that holds the centre is the focus")
+			}
+			if visited.last != focused { visited.append(focused) }
+		}
+
+		XCTAssertEqual(visited, Array(frames.indices), "each paragraph takes the focus once, in order")
+	}
+
 	// MARK: ends of the content
 
 	func testTheFirstParagraphCanBeCentredAtANegativeOffset() {

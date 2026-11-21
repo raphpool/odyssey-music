@@ -293,11 +293,27 @@ enum UITestFlows {
 		return [
 			"node": [
 				"id": slug, "type": type(ofSlug: slug), "name": name(of: slug), "teaser": "Teaser of \(name(of: slug)).",
-				"article": "Article of \(name(of: slug)).", "citations": [Any](), "facts": facts, "edges": edgeValues,
+				"article": article(of: slug), "citations": [Any](), "facts": facts, "edges": edgeValues,
 				"materialized_at": "2026-01-01T00:00:00Z", "image_url": NSNull(),
 			],
 			"source": "cache",
 		]
+	}
+
+	/// The reader draws one paragraph per sentence (TRA-795): six of them, so that a scroll has somewhere to go.
+	static let articleSentenceCount = 6
+
+	/// The first sentence names the node: `TodayFlowTests` finds the node of the day in the first paragraph.
+	private static func article(of slug: String) -> String {
+		let title = name(of: slug)
+		return [
+			"Article of \(title) opens with a first sentence.",
+			"The second sentence of \(title) is a little longer, so that it wraps on two lines.",
+			"A third sentence follows to give the reader something to scroll to.",
+			"The fourth one is just as plain as the others.",
+			"Then comes a fifth sentence, which keeps the column going.",
+			"The sixth and last sentence closes the article.",
+		].joined(separator: " ")
 	}
 
 	private static func linksBody(_ slug: String) -> [String: Any] {

@@ -30,6 +30,10 @@ enum PlayerMetrics {
 	static let arrowColor = Track1Tokens.colorIconPrimary
 	static let arrowStroke: CGFloat = 1.8
 	static let contentSpace = "player-content"
+	/// The scroll view itself, outside its content: the iOS 17 offset is read in it (see `PlayerOffsetProbe`).
+	static let viewportSpace = "player-viewport"
+	/// What VoiceOver and the UI tests read on the sentence that has the focus; the others have no value.
+	static let focusValue = "focus"
 
 	/// `338:2463`: a 393 x 2064 frame, the three cover bands at 0, 5 and 10 %, then `background.elevated`
 	/// from 15 %. `CoverTintGradient` cannot draw it: its stops are fixed at 0, 13, 27 and 50 %.
@@ -69,6 +73,14 @@ enum PlayerMetrics {
 	/// From the bottom of the screen: the window's safe area, the tab bar, then the gap (694 in the mockup).
 	static func nowBarBottomInset(safeAreaBottom: CGFloat) -> CGFloat {
 		safeAreaBottom + Track1TabBarMetrics.reservedHeight(safeAreaBottom: safeAreaBottom) + nowBarGap
+	}
+
+	static func color(for role: Track1TextRole) -> Color {
+		role == focusedRole ? focusedColor : dimColor
+	}
+
+	static func accessibilityValue(for role: Track1TextRole) -> String {
+		role == focusedRole ? focusValue : ""
 	}
 
 	/// Room above the first and under the last paragraph, so that each one can reach `readingCenter`.
@@ -209,6 +221,8 @@ private struct PlayerReader: View {
 	@State private var hero: NodeHeroModel
 	@State private var focused = 0
 	@State private var frames: [PlayerItemFrame] = []
+	/// Written on every scroll frame, so kept out of `@State` values: a reference does not invalidate the view.
+	@State private var lastOffset = PlayerScrollOffset()
 	@Environment(\.accessibilityReduceMotion) private var reduceMotion
 	@Environment(\.openURL) private var openURL
 
@@ -256,10 +270,41 @@ private struct PlayerReader: View {
 		}
 	}
 
+	/// 2026-11-21 (TRA-795, first TestFlight build): no sentence took the focus, whatever the scroll. The focus
+	/// used to be derived inside a preference, from a `.scrollView` offset and the frames captured with it, and
+	/// no test followed it end to end. Only the offset goes out of the scroll view now; the focus is computed
+	/// here from the offset and the frames, whichever of the two moves last.
+	private func scrolled(to offset: CGFloat) {
+		lastOffset.value = offset
+		refocus(frames: frames)
+	}
+
+	private func measured(_ items: [PlayerItemFrame]) {
+		frames = items
+		refocus(frames: items)
+	}
+
+	private func refocus(frames: [PlayerItemFrame]) {
+		let next = PlayerView.focusedIndex(offset: lastOffset.value, frames: frames)
+		if next != focused { focused = next }
+	}
+
+	/// iOS 18 reads the offset from the scroll view itself. iOS 17 has no such API: it reads the preference of
+	/// `PlayerOffsetProbe`, measured in a space declared outside the scroll view, as the genre list does.
+	@ViewBuilder
+	private func tracked(_ scroll: some View) -> some View {
+		if #available(iOS 18, *) {
+			scroll.onScrollGeometryChange(
+				for: CGFloat.self, of: { $0.contentOffset.y }, action: { _, offset in scrolled(to: offset) })
+		} else {
+			scroll.onPreferenceChange(PlayerOffsetKey.self) { scrolled(to: $0) }
+		}
+	}
+
 	private func reading(height: CGFloat) -> some View {
 		let top = PlayerMetrics.topMargin(paragraph: CGFloat(frames.first?.height ?? 0))
 		let bottom = PlayerMetrics.bottomMargin(viewport: height, paragraph: CGFloat(frames.last?.height ?? 0))
-		return ScrollView(showsIndicators: false) {
+		let scroll = ScrollView(showsIndicators: false) {
 			VStack(alignment: .leading, spacing: PlayerMetrics.paragraphSpacing) {
 				ForEach(Array(paragraphs.enumerated()), id: \.offset) { index, text in
 					PlayerParagraph(
@@ -271,21 +316,16 @@ private struct PlayerReader: View {
 			.padding(.top, top)
 			.padding(.bottom, bottom)
 			.frame(maxWidth: .infinity)
-			.background {
-				GeometryReader { proxy in
-					let offset = -proxy.frame(in: .scrollView).minY
-					Color.clear.preference(
-						key: PlayerFocusKey.self, value: PlayerView.focusedIndex(offset: offset, frames: frames))
-				}
-			}
+			.background { PlayerOffsetProbe() }
 			.coordinateSpace(name: PlayerMetrics.contentSpace)
 		}
 		.scrollTargetBehavior(PlayerSnapBehavior(frames: frames))
-		.mask {
-			LinearGradient(stops: PlayerMetrics.fadeStops(height: height), startPoint: .top, endPoint: .bottom)
-		}
-		.onPreferenceChange(PlayerFocusKey.self) { focused = $0 }
-		.onPreferenceChange(PlayerFramesKey.self) { frames = PlayerView.items(from: $0) }
+		.coordinateSpace(name: PlayerMetrics.viewportSpace)
+		return tracked(scroll)
+			.mask {
+				LinearGradient(stops: PlayerMetrics.fadeStops(height: height), startPoint: .top, endPoint: .bottom)
+			}
+			.onPreferenceChange(PlayerFramesKey.self) { measured(PlayerView.items(from: $0)) }
 	}
 }
 
@@ -301,11 +341,12 @@ private struct PlayerParagraph: View {
 			// The inner animation drives the body, the outer one the colour: under Reduce Motion the body
 			// changes at once and only the colour fades.
 			.animation(Track1Motion.animation(.fast, reduceMotion: reduceMotion), value: isFocused)
-			.foregroundStyle(isFocused ? PlayerMetrics.focusedColor : PlayerMetrics.dimColor)
+			.foregroundStyle(PlayerMetrics.color(for: role))
 			.animation(Track1Motion.animation(.fast, reduceMotion: false), value: isFocused)
 			.frame(width: PlayerMetrics.columnWidth, alignment: .leading)
 			.accessibilityElement(children: .combine)
 			.accessibilityIdentifier(PlayerMetrics.paragraphIdentifier(index))
+			.accessibilityValue(PlayerMetrics.accessibilityValue(for: role))
 			.background {
 				GeometryReader { proxy in
 					Color.clear.preference(
@@ -326,14 +367,36 @@ private struct PlayerSnapBehavior: ScrollTargetBehavior {
 	}
 }
 
-/// The focused paragraph, read from the offset behind the content: it only fires when the focus changes,
-/// not at every scroll frame. And the frame of each paragraph.
-private struct PlayerFocusKey: PreferenceKey {
-	static let defaultValue = 0
+/// The scroll offset: the content's y at the top of the screen. The focus is not a preference: the reader
+/// computes it from this and from the frames, so that neither can leave it stale.
+private struct PlayerOffsetKey: PreferenceKey {
+	static let defaultValue: CGFloat = 0
 
-	static func reduce(value: inout Int, nextValue: () -> Int) { value = nextValue() }
+	static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) { value = nextValue() }
 }
 
+/// The last offset reported, shared with the closures of the scroll callbacks.
+@MainActor
+private final class PlayerScrollOffset {
+	var value: CGFloat = 0
+}
+
+/// The iOS 17 offset: where the content starts in the scroll view, negated. Drawn on iOS 17 only, where
+/// `onScrollGeometryChange` does not exist. It reads the scroll view's own space, not `.scrollView`.
+private struct PlayerOffsetProbe: View {
+	var body: some View {
+		if #available(iOS 18, *) {
+			Color.clear
+		} else {
+			GeometryReader { proxy in
+				Color.clear.preference(
+					key: PlayerOffsetKey.self, value: -proxy.frame(in: .named(PlayerMetrics.viewportSpace)).minY)
+			}
+		}
+	}
+}
+
+/// The frame of each paragraph, in the content space.
 private struct PlayerFramesKey: PreferenceKey {
 	static let defaultValue: [Int: CGRect] = [:]
 

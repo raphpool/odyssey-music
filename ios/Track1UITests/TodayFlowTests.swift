@@ -64,6 +64,56 @@ final class TodayFlowTests: XCTestCase {
 		XCTAssertEqual(title.label, titleOfTheDay)
 	}
 
+	/// TRA-795: the first build never moved the focus off the opening sentence. The sentence whose frame holds
+	/// the reading centre (387 pt from the top, `PlayerMetrics.readingCenter`) is the focus, and it alone.
+	@MainActor
+	func testThePlayerFocusesTheSentenceThatHoldsTheReadingCenter() {
+		let app = UITestFlows.launch()
+		UITestFlows.declineConsent(app)
+		UITestFlows.completeOnboarding(app)
+		UITestFlows.tapWhenReady(app.buttons["today-discover"])
+		XCTAssertTrue(element(app, "player-paragraph-0").waitForExistence(timeout: 10), "player-paragraph-0")
+
+		let opening = settledFocus(in: app)
+		XCTAssertEqual(opening.focused, [0], "the first sentence is the focus when the reader opens")
+		XCTAssertEqual(opening.centered, [0], "the first sentence is at the reading centre when it opens")
+
+		// A flick may carry the six-sentence article to its end at the first swipe: once on the last sentence,
+		// the second swipe has nowhere to go and must not be required to move the focus.
+		let last = UITestFlows.articleSentenceCount - 1
+		var previous = 0
+		for swipe in 1...2 {
+			app.swipeUp()
+			let scrolled = settledFocus(in: app)
+			XCTAssertEqual(scrolled.focused, scrolled.centered, "swipe \(swipe): the focus follows the centre")
+			XCTAssertEqual(scrolled.focused.count, 1, "swipe \(swipe): one focus")
+			let index = scrolled.focused.first ?? 0
+			XCTAssertTrue(
+				index > previous || previous == last,
+				"swipe \(swipe): the focus moved on to a later sentence (\(previous) to \(index))")
+			previous = index
+		}
+	}
+
+	/// The sentences that expose the "focus" value, and those whose frame holds the reading centre. Read again
+	/// until they agree on one sentence or `timeout` runs out: the scroll decelerates, then snaps.
+	@MainActor
+	private func settledFocus(
+		in app: XCUIApplication, timeout: TimeInterval = 5
+	) -> (focused: [Int], centered: [Int]) {
+		let center = 387.0
+		let deadline = Date().addingTimeInterval(timeout)
+		while true {
+			let paragraphs = (0..<UITestFlows.articleSentenceCount).map { element(app, "player-paragraph-\($0)") }
+			let present = paragraphs.enumerated().filter { $0.element.exists }
+			let focused = present.filter { ($0.element.value as? String) == "focus" }.map(\.offset)
+			let centered = present.filter { $0.element.frame.minY <= center && center <= $0.element.frame.maxY }
+				.map(\.offset)
+			if (focused.count == 1 && focused == centered) || Date() >= deadline { return (focused, centered) }
+			Thread.sleep(forTimeInterval: 0.1)
+		}
+	}
+
 	@MainActor
 	func testACatalogWithoutLinkedWorksShowsTheEmptyStateAndOffersTheGenres() {
 		let app = UITestFlows.launch(catalog: UITestFlows.catalogWithoutLinkedWorksJSON)
