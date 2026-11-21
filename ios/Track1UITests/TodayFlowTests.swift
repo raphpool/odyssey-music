@@ -78,6 +78,9 @@ final class TodayFlowTests: XCTestCase {
 		XCTAssertEqual(opening.focused, [0], "the first sentence is the focus when the reader opens")
 		XCTAssertEqual(opening.centered, [0], "the first sentence is at the reading centre when it opens")
 
+		// A flick may carry the six-sentence article to its end at the first swipe: once on the last sentence,
+		// the second swipe has nowhere to go and must not be required to move the focus.
+		let last = UITestFlows.articleSentenceCount - 1
 		var previous = 0
 		for swipe in 1...2 {
 			app.swipeUp()
@@ -85,7 +88,9 @@ final class TodayFlowTests: XCTestCase {
 			XCTAssertEqual(scrolled.focused, scrolled.centered, "swipe \(swipe): the focus follows the centre")
 			XCTAssertEqual(scrolled.focused.count, 1, "swipe \(swipe): one focus")
 			let index = scrolled.focused.first ?? 0
-			XCTAssertGreaterThan(index, previous, "swipe \(swipe): the focus moved on to a later sentence")
+			XCTAssertTrue(
+				index > previous || previous == last,
+				"swipe \(swipe): the focus moved on to a later sentence (\(previous) to \(index))")
 			previous = index
 		}
 	}
