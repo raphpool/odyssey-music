@@ -87,7 +87,7 @@ final class TodayFlowTests: XCTestCase {
 		XCTAssertTrue(UITestFlows.tabBar(in: app).exists, "tab-bar")
 		let nowBarFrame = UITestFlows.settledFrame(of: nowBar)
 		let tabBarFrame = UITestFlows.settledFrame(of: UITestFlows.tabBar(in: app))
-		// Half a point of slack for the rounding of the frames; the overlap of the bug was 17 pt.
+		// Half a point of slack for the rounding of the frames; the overlap of the bug was 18 pt.
 		XCTAssertLessThanOrEqual(
 			nowBarFrame.maxY + Self.nowBarGap, tabBarFrame.minY + 0.5,
 			"player-now-bar \(nowBarFrame) is not \(Self.nowBarGap) pt above tab-bar \(tabBarFrame)")

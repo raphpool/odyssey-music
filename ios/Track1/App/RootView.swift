@@ -63,8 +63,9 @@ private struct ApplicationTabs: View {
 	/// False until the profile has been read once: `.missing` before that is not a first launch, and the
 	/// onboarding must not flash for a person who has a profile.
 	@State private var profileLoaded = false
-	/// The window's bottom safe area, handed to the tab bar (see `tabs`).
-	@State private var windowSafeAreaBottom: CGFloat = 0
+	/// The window's bottom safe area, handed to the tab bar (see `tabs`). Seeded from the key window so that
+	/// the first frame is not drawn with 0, which the probe only corrects one turn of the main loop later.
+	@State private var windowSafeAreaBottom: CGFloat = KeyWindowSafeArea.bottom
 	/// The opt-in screen over the tabs, for a profile made before it existed (TRA-746).
 	@State private var showsReminderPrompt = false
 
@@ -170,7 +171,7 @@ private struct ApplicationTabs: View {
 		//
 		// 2026-11-21 (TRA-796, TestFlight build 1, iPhone 393 x 852, iOS 26): this was the
 		// `safeAreaInsets.bottom` of a `GeometryReader` in this background, and it read 0 under a `TabView`. The
-		// tab bar then added the 12 pt of a screen without a home indicator (pill at 744 to 804, 12 pt too high)
+		// tab bar then added the 12 pt of a screen without a home indicator (pill at 744 to 806, 12 pt too high)
 		// and the Now bar of the reader ended at 762, over the tab bar. The window does not depend on the
 		// insets of the view tree, and it leaves the keyboard out, so the bar does not move while a field is
 		// focused.
@@ -432,6 +433,19 @@ private struct InvalidConfigurationView: View {
 		.accessibilityIdentifier("invalid-configuration")
 		.accessibilityElement(children: .combine)
 		.accessibilityLabel("Configuration requise. \(error.userMessage)")
+	}
+}
+
+/// The bottom safe area of the key window, read now. Only a seed: `WindowSafeAreaReader` stays the source
+/// that follows the window afterwards. It is 0 when no window is key yet.
+private enum KeyWindowSafeArea {
+	static var bottom: CGFloat {
+		MainActor.assumeIsolated {
+			UIApplication.shared.connectedScenes
+				.compactMap { $0 as? UIWindowScene }
+				.flatMap(\.windows)
+				.first(where: \.isKeyWindow)?.safeAreaInsets.bottom ?? 0
+		}
 	}
 }
 
