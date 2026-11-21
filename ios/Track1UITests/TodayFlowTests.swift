@@ -76,6 +76,61 @@ final class TodayFlowTests: XCTestCase {
 		XCTAssertTrue(app.buttons["genres-edit"].waitForExistence(timeout: 5))
 	}
 
+	// 2026-11-21 (TRA-796, TestFlight build 1, iPhone 393 x 852): the Now bar of the reader ended at 762, over
+	// the tab bar that starts at 744. The window's bottom safe area read 0, so the reader counted 91 pt under
+	// its bar instead of 113. Figma leaves 5 pt between the two (`PlayerMetrics.nowBarGap`).
+	@MainActor
+	func testThePlayerNowBarEndsAboveTheTabBar() {
+		let app = openPlayer()
+		let nowBar = element(app, "player-now-bar")
+		XCTAssertTrue(nowBar.waitForExistence(timeout: 10), "player-now-bar")
+		XCTAssertTrue(UITestFlows.tabBar(in: app).exists, "tab-bar")
+		let nowBarFrame = UITestFlows.settledFrame(of: nowBar)
+		let tabBarFrame = UITestFlows.settledFrame(of: UITestFlows.tabBar(in: app))
+		// Half a point of slack for the rounding of the frames; the overlap of the bug was 18 pt.
+		XCTAssertLessThanOrEqual(
+			nowBarFrame.maxY + Self.nowBarGap, tabBarFrame.minY + 0.5,
+			"player-now-bar \(nowBarFrame) is not \(Self.nowBarGap) pt above tab-bar \(tabBarFrame)")
+	}
+
+	// 2026-11-21 (TRA-796): with a home indicator the bar adds nothing under its pill, which then ends where
+	// the window's safe area starts. The `tab-bar` frame cannot tell: its fade runs to the screen edge. So the
+	// pill is read from the selected tab, which sits `Self.pillPadding` above the pill's bottom.
+	@MainActor
+	func testTheTabBarPillEndsAtTheWindowSafeArea() {
+		let app = UITestFlows.launch()
+		UITestFlows.declineConsent(app)
+		UITestFlows.completeOnboarding(app)
+		let tab = UITestFlows.tabButton("Aujourd’hui", in: app)
+		XCTAssertTrue(tab.waitForExistence(timeout: 15), "tab-today")
+		let window = app.windows.firstMatch
+		XCTAssertTrue(window.waitForExistence(timeout: 2))
+		let pillBottom = UITestFlows.settledFrame(of: tab).maxY + Self.pillPadding
+		XCTAssertEqual(
+			pillBottom, window.frame.maxY - Self.homeIndicatorInset, accuracy: 1,
+			"The pill ends at \(pillBottom) in a window of \(window.frame)")
+	}
+
+	/// `PlayerMetrics.nowBarGap`.
+	private static let nowBarGap: CGFloat = 5
+	/// `Track1TabBarMetrics.pillPadding`.
+	private static let pillPadding: CGFloat = 4
+	/// The bottom safe area of the iPhone 17 Pro in portrait, the only device of ios-check.
+	private static let homeIndicatorInset: CGFloat = 34
+
+	/// From the first launch to the reader of the node of the day. Its Now bar appears once `/links` answers.
+	@MainActor
+	private func openPlayer() -> XCUIApplication {
+		let app = UITestFlows.launch()
+		UITestFlows.declineConsent(app)
+		UITestFlows.completeOnboarding(app)
+		let discover = app.buttons["today-discover"]
+		XCTAssertTrue(discover.waitForExistence(timeout: 15), "today-discover")
+		UITestFlows.tapWhenReady(discover)
+		XCTAssertTrue(element(app, "player-paragraph-0").waitForExistence(timeout: 10), "player-paragraph-0")
+		return app
+	}
+
 	@MainActor
 	private func element(_ app: XCUIApplication, _ identifier: String) -> XCUIElement {
 		app.descendants(matching: .any)[identifier].firstMatch
