@@ -21,6 +21,10 @@ public enum TodayState: Equatable, Sendable {
 /// A new pick also plans the next days (2026-11-17, TRA-743, plan D4): those picks are saved in the same
 /// history, as ordinary entries with a future date, so the day that comes serves the very work its reminder
 /// named even if the catalog changed meanwhile.
+///
+/// Only works that have a cover are picked (2026-11-21, TRA-794: the first TestFlight build showed a work
+/// with the placeholder). The catalog does not say which, so each work picked goes through `checkCover` and
+/// one without a cover is set aside: the pick is made again among the others.
 @MainActor
 @Observable
 public final class TodayViewModel {
@@ -37,6 +41,10 @@ public final class TodayViewModel {
 	@ObservationIgnored private let timeZone: () -> TimeZone
 	@ObservationIgnored private let makeID: () -> UUID
 	@ObservationIgnored private let recordEvent: NodeEventRecorder?
+	@ObservationIgnored private let checkCover: CoverCheck?
+
+	/// The most `checkCover` calls one `load` or `extendPlanIfNeeded` may make: the home waits for them.
+	static let maxCoverChecks = 10
 
 	@ObservationIgnored private var latestRequestedProfile: Profile?
 	@ObservationIgnored private var emittedViewIDs = Set<UUID>()
@@ -49,7 +57,8 @@ public final class TodayViewModel {
 		now: @escaping () -> Date = { .now },
 		timeZone: @escaping () -> TimeZone = { .current },
 		makeID: @escaping () -> UUID = UUID.init,
-		recordEvent: NodeEventRecorder? = nil
+		recordEvent: NodeEventRecorder? = nil,
+		checkCover: CoverCheck? = nil
 	) {
 		self.readCatalog = readCatalog
 		self.store = store
@@ -57,6 +66,7 @@ public final class TodayViewModel {
 		self.timeZone = timeZone
 		self.makeID = makeID
 		self.recordEvent = recordEvent
+		self.checkCover = checkCover
 	}
 
 	public func load(for profile: Profile) async {
@@ -103,36 +113,48 @@ public final class TodayViewModel {
 		// Entries dated after today are plans, not works the person has been given: `pick` counts every other
 		// date as seen, so they would change today's work depending on whether a plan happens to be on disk.
 		let past = others.filter { $0.localDate < localDate }.sorted { $0.localDate < $1.localDate }
-		guard
-			let pick = DailySelection.pick(
-				candidates: candidates, history: past, localID: profile.localID, localDate: localDate)
-		else {
-			publish(.emptyCatalog)
-			return
-		}
 		// Resolved here, with the catalog already in hand, because a persisted recommendation is served without
 		// reading it again (2026-10-24, TRA-698, plan D8).
 		let genreNames = TodayReason.genreNames(
 			selection: profile.selection, taxonomy: EditorialGenreTaxonomy(catalog: catalog))
-		let recommendation = DailyRecommendation(
-			recommendationID: makeID(),
-			localDate: localDate,
-			profileRevision: profile.revision,
-			nodeID: pick.identity,
-			nodeType: pick.type,
-			name: pick.name,
-			teaser: pick.teaser,
-			reasons: pick.reasons,
-			profileGenreNames: genreNames,
-			viewRecorded: false)
-
-		// A stored plan of the current revision is kept by the plan itself, the others are picked again. One that
-		// names today's work (a clock or time zone that moved back) is left out too, so it is picked again and
-		// today's work is not announced a second time.
-		let keptPlan = others.filter { $0.localDate > localDate && $0.nodeID != recommendation.nodeID }
-		let reminders = ReminderPlan.plan(
-			candidates: candidates, history: past + [recommendation] + keptPlan,
-			profile: profile, catalog: catalog, today: localDate, profileGenreNames: genreNames, makeID: makeID)
+		let todayID = makeID()
+		let alreadyStored = Set(others.map(\.recommendationID))
+		let settled = await settleCovers(among: candidates, for: profile) { usable in
+			guard
+				let pick = DailySelection.pick(
+					candidates: usable, history: past, localID: profile.localID, localDate: localDate)
+			else { return nil }
+			let recommendation = DailyRecommendation(
+				recommendationID: todayID,
+				localDate: localDate,
+				profileRevision: profile.revision,
+				nodeID: pick.identity,
+				nodeType: pick.type,
+				name: pick.name,
+				teaser: pick.teaser,
+				reasons: pick.reasons,
+				profileGenreNames: genreNames,
+				viewRecorded: false)
+			// A stored plan of the current revision is kept by the plan itself, the others are picked again. One
+			// that names today's work (a clock or time zone that moved back) is left out too, so it is picked
+			// again and today's work is not announced a second time.
+			let keptPlan = others.filter { $0.localDate > localDate && $0.nodeID != recommendation.nodeID }
+			let reminders = ReminderPlan.plan(
+				candidates: usable, history: past + [recommendation] + keptPlan,
+				profile: profile, catalog: catalog, today: localDate, profileGenreNames: genreNames, makeID: makeID)
+			// Only the works picked now are checked: an entry already on disk was announced and is served as is.
+			let fresh = ([recommendation] + reminders.map(\.recommendation)).filter {
+				!alreadyStored.contains($0.recommendationID)
+			}
+			return CoverDraft(recommendation: recommendation, reminders: reminders, picked: fresh.map(\.nodeID))
+		}
+		guard !Task.isCancelled, latestRequestedProfile == profile else { return }
+		guard let settled else {
+			publish(.emptyCatalog)
+			return
+		}
+		let recommendation = settled.recommendation
+		let reminders = settled.reminders
 
 		// The store neither deduplicates nor sorts, and keeps the last entries: past days in date order, then
 		// today, then the plan, so the oldest days are the ones to go. Rebuilding every date after today from the
@@ -185,10 +207,16 @@ public final class TodayViewModel {
 		let keptPlan = stored.filter { $0.localDate > localDate && $0.nodeID != today.nodeID }
 		let genreNames = TodayReason.genreNames(
 			selection: profile.selection, taxonomy: EditorialGenreTaxonomy(catalog: catalog))
-		let reminders = ReminderPlan.plan(
-			candidates: candidates, history: past + [today] + keptPlan,
-			profile: profile, catalog: catalog, today: localDate, profileGenreNames: genreNames, makeID: makeID)
-		guard !reminders.isEmpty, !Task.isCancelled, latestRequestedProfile == profile else { return }
+		let alreadyStored = Set(stored.map(\.recommendationID))
+		let settled = await settleCovers(among: candidates, for: profile) { usable in
+			let reminders = ReminderPlan.plan(
+				candidates: usable, history: past + [today] + keptPlan,
+				profile: profile, catalog: catalog, today: localDate, profileGenreNames: genreNames, makeID: makeID)
+			let fresh = reminders.map(\.recommendation).filter { !alreadyStored.contains($0.recommendationID) }
+			return CoverDraft(recommendation: today, reminders: reminders, picked: fresh.map(\.nodeID))
+		}
+		guard let reminders = settled?.reminders, !reminders.isEmpty else { return }
+		guard !Task.isCancelled, latestRequestedProfile == profile else { return }
 
 		guard case .success = await store.save(past + [today] + reminders.map(\.recommendation)) else { return }
 		// Other tastes may have been requested during the save: their `load` publishes its own plan.
@@ -247,6 +275,53 @@ public final class TodayViewModel {
 			],
 			source: .home,
 			occurredAt: date)
+	}
+
+	/// One computation of the picks: the work of the day, the plan that goes with it, and the works among them
+	/// that were picked now and so have not been checked yet.
+	private struct CoverDraft {
+		let recommendation: DailyRecommendation
+		let reminders: [PlannedReminder]
+		let picked: [NodeIdentity]
+	}
+
+	/// Runs `compute` on the candidates, checks the works it picked one by one (today's first) and, as soon as
+	/// one has no cover, runs it again on the candidates that are left, until every work picked has been
+	/// checked or the budget is spent.
+	///
+	/// - A work whose answer is `found` is kept. A network error (`unreachable`) never sets a work aside, and
+	///   stops the checks: the network is down, so the next ones would only wait for their own timeout.
+	///   Only `missing` and `pending` set a work aside.
+	/// - When the candidates left are none, the full list is used, so a catalog with no cover at all still
+	///   shows a work. When no check has kept a work (every answer was a refusal, or the budget ended on
+	///   refusals), the original pick is returned rather than one that nothing has checked.
+	/// - A cancelled caller, or one whose tastes were superseded, stops checking: the caller drops the result.
+	private func settleCovers(
+		among candidates: [AffinityCandidate], for profile: Profile,
+		compute: ([AffinityCandidate]) -> CoverDraft?
+	) async -> CoverDraft? {
+		guard let origin = compute(candidates) else { return nil }
+		guard let checkCover else { return origin }
+		var current = origin
+		var withoutCover = Set<NodeIdentity>()
+		var kept = Set<NodeIdentity>()
+		var checks = 0
+		while checks < Self.maxCoverChecks {
+			guard let identity = current.picked.first(where: { !kept.contains($0) && !withoutCover.contains($0) }),
+				!Task.isCancelled, latestRequestedProfile == profile
+			else { break }
+			checks += 1
+			switch await checkCover(identity) {
+			case .found: kept.insert(identity)
+			case .unreachable: return current
+			case .missing, .pending:
+				withoutCover.insert(identity)
+				let usable = candidates.filter { !withoutCover.contains($0.identity) }
+				guard let next = compute(usable.isEmpty ? candidates : usable) else { return current }
+				current = next
+			}
+		}
+		return kept.isEmpty && !withoutCover.isEmpty ? origin : current
 	}
 
 	/// The plan always changes together with the state it was computed for, so a load that returns early

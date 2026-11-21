@@ -54,9 +54,13 @@ struct TodayView: View {
 		self.router = router
 		self.readers = readers
 		self.imageStore = imageStore
+		// 2026-11-21 (TRA-794): the pick asks `/image`, the reader the hero draws from, whether a work has a
+		// cover. It does not go through `imageStore`, whose `nil` cannot tell an error from a missing cover.
+		let readImage = readers.image
 		_model = State(
 			initialValue: TodayViewModel(
-				readCatalog: readers.catalog, store: store, recordEvent: { analytics.record($0) }))
+				readCatalog: readers.catalog, store: store, recordEvent: { analytics.record($0) },
+				checkCover: { CoverAvailability(result: await readImage($0), for: $0) }))
 	}
 
 	var body: some View {
