@@ -50,7 +50,8 @@ final class HeroImageSourceTests: XCTestCase {
 		let edges = ["project": Self.list(.project, "first", "second")]
 
 		XCTAssertEqual(
-			try Self.candidates(.track, imageURL: nil, edges: edges), [.node(try Self.id("project:first"))])
+			try Self.candidates(.track, imageURL: nil, edges: edges),
+			[.node(try Self.id("project:first")), .node(try Self.id("track:roni-size"))])
 	}
 
 	// MARK: - Reciprocity (TRA-593)
