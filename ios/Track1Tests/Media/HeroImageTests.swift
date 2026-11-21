@@ -139,15 +139,28 @@ final class HeroImageTests: XCTestCase {
 		XCTAssertEqual(backend.loaded, [])
 	}
 
-	func testAProjectWithoutImageIsAPlaceholderWithoutAnyRead() async throws {
+	// TRA-794: the home recommends a work after reading its `/image`, so the hero reads that same endpoint.
+	func testAProjectWithoutImageReadsItsOwnImageOnceAndIsAPlaceholderWhenThereIsNone() async throws {
 		let backend = Backend(images: [:])
 		let model = try model(backend, type: .project, imageURL: nil)
 
 		await model.load()
 
 		XCTAssertEqual(model.state, .placeholder)
-		XCTAssertEqual(backend.reads, [])
+		XCTAssertEqual(backend.reads, ["project:sample-project"])
 		XCTAssertEqual(backend.loaded, [])
+	}
+
+	func testAProjectWithoutImageShowsTheImageItsOwnImageEndpointGives() async throws {
+		let backend = Backend(images: [first: Self.solid(.red)])
+		let model = try model(backend, type: .project, imageURL: nil)
+		backend.answers["project:sample-project"] = first
+
+		await model.load()
+
+		guard case .loaded = model.state else { return XCTFail("State was \(model.state).") }
+		XCTAssertEqual(backend.reads, ["project:sample-project"])
+		XCTAssertEqual(backend.loaded, [first])
 	}
 
 	// MARK: - Cancellation
