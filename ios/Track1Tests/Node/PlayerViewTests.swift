@@ -62,6 +62,27 @@ final class PlayerViewTests: XCTestCase {
 		XCTAssertEqual(Metrics.paragraphIdentifier(2), "player-paragraph-2")
 	}
 
+	func testTheFocusedSentenceIsWhiteAt22AndTheOthersAreDimAt20() {
+		XCTAssertEqual(Track1TextRole.reader.size, 22)
+		XCTAssertEqual(Track1TextRole.readerDim.size, 20)
+		let roles = (0..<3).map { PlayerView.role(forParagraph: $0, focusedIndex: 1) }
+
+		XCTAssertEqual(roles, [.readerDim, .reader, .readerDim])
+		XCTAssertEqual(rgba(Metrics.color(for: .reader)), rgba(Track1Tokens.colorTextPrimary))
+		XCTAssertEqual(rgba(Metrics.color(for: .readerDim)), [0x8D, 0x7A, 0x6D, 0xFF])
+	}
+
+	func testOnlyTheFocusedSentenceExposesTheFocusValue() {
+		XCTAssertEqual(Metrics.focusValue, "focus")
+		XCTAssertEqual(Metrics.accessibilityValue(for: .reader), "focus")
+		XCTAssertEqual(Metrics.accessibilityValue(for: .readerDim), "")
+	}
+
+	func testReduceMotionRemovesTheAnimationOfTheFocusChange() {
+		XCTAssertNil(Track1Motion.animation(.fast, reduceMotion: true))
+		XCTAssertNotNil(Track1Motion.animation(.fast, reduceMotion: false))
+	}
+
 	func testTheBackgroundIsTheCoverBandsAt0And5And10PercentThenTheElevatedColour() {
 		let bands = [
 			LinearRGB(red: 0.29, green: 0.33, blue: 0.32), LinearRGB(red: 0.27, green: 0.26, blue: 0.23),
@@ -122,6 +143,14 @@ final class PlayerViewTests: XCTestCase {
 			XCTAssertEqual(roles.firstIndex(of: .reader), index)
 		}
 		XCTAssertEqual(PlayerView.focusedIndex(offset: 0, frames: []), 0, "The first one until they are measured.")
+	}
+
+	/// TRA-795: the offset and the frames come in either order, and the focus must follow the last one.
+	func testTheFocusFollowsAnOffsetReportedBeforeTheFramesAreMeasured() {
+		let offset: CGFloat = 206
+
+		XCTAssertEqual(PlayerView.focusedIndex(offset: offset, frames: []), 0)
+		XCTAssertEqual(PlayerView.focusedIndex(offset: offset, frames: Self.frames), 1)
 	}
 
 	func testFramesAreReadInTheOrderOfTheParagraphs() {
