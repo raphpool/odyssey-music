@@ -18,12 +18,14 @@ final class HeroImageSourceTests: XCTestCase {
 		}
 	}
 
-	func testProjectUsesOnlyItsOwnImage() throws {
+	/// TRA-794: a project with no `image_url` asks its own `/image` and never borrows from an edge.
+	func testProjectUsesItsImageElseItsOwnImageEndpointAndNeverAnEdge() throws {
 		let edges = ["artists": Self.list(.artist, "a"), "tracks": Self.list(.track, "t")]
 		let own = HeroCandidate.url(try XCTUnwrap(URL(string: cover)))
 
 		XCTAssertEqual(try Self.candidates(.project, imageURL: cover, edges: edges), [own])
-		XCTAssertEqual(try Self.candidates(.project, imageURL: nil, edges: edges), [])
+		XCTAssertEqual(
+			try Self.candidates(.project, imageURL: nil, edges: edges), [.node(try Self.id("project:roni-size"))])
 	}
 
 	func testTrackUsesItsImageThenItsProjectEdge() throws {
@@ -32,8 +34,16 @@ final class HeroImageSourceTests: XCTestCase {
 		let project = HeroCandidate.node(try Self.id("project:album"))
 
 		XCTAssertEqual(try Self.candidates(.track, imageURL: cover, edges: edges), [own, project])
-		XCTAssertEqual(try Self.candidates(.track, imageURL: nil, edges: edges), [project])
-		XCTAssertEqual(try Self.candidates(.track, imageURL: nil, edges: [:]), [])
+	}
+
+	/// TRA-794: a track with no `image_url` tries its project's `/image`, then its own.
+	func testTrackWithoutAnImageTriesItsProjectThenItsOwnImageEndpoint() throws {
+		let edges = ["project": Self.object(.project, "album")]
+		let project = HeroCandidate.node(try Self.id("project:album"))
+		let own = HeroCandidate.node(try Self.id("track:roni-size"))
+
+		XCTAssertEqual(try Self.candidates(.track, imageURL: nil, edges: edges), [project, own])
+		XCTAssertEqual(try Self.candidates(.track, imageURL: nil, edges: [:]), [own])
 	}
 
 	func testTrackProjectEdgeAsAListUsesItsFirstEntry() throws {
@@ -92,7 +102,9 @@ final class HeroImageSourceTests: XCTestCase {
 		]
 		for value in unsafe {
 			XCTAssertEqual(try Self.candidates(.artist, imageURL: value, edges: [:]), [.node(own)], value)
-			XCTAssertEqual(try Self.candidates(.project, imageURL: value, edges: [:]), [], value)
+			XCTAssertEqual(
+				try Self.candidates(.project, imageURL: value, edges: [:]), [.node(try Self.id("project:roni-size"))],
+				value)
 			XCTAssertEqual(
 				try Self.candidates(.genre, imageURL: value, edges: [:]), [.node(try Self.id("genre:roni-size"))], value)
 			XCTAssertEqual(
@@ -116,6 +128,28 @@ final class HeroImageSourceTests: XCTestCase {
 			[.url(try XCTUnwrap(URL(string: cover)))])
 		XCTAssertEqual(
 			HeroImageSource.candidates(for: try decode("")), [.node(try Self.id("artist:sample-node"))])
+	}
+
+	// MARK: - Cover availability (TRA-794)
+
+	func testCoverAvailabilityReadsTheImageAnswerLikeTheImageStore() throws {
+		let asked = try Self.id("project:a")
+		func answer(_ body: String) throws -> APIResult<ImageResponse> {
+			.success(try JSONDecoder().decode(ImageResponse.self, from: Data(body.utf8)), etag: nil)
+		}
+		let found = #"{"slug":"project:a","image_url":"\#(cover)","source":"test","state":"found"}"#
+		let olderServer = #"{"slug":"project:a","image_url":"\#(cover)","source":"test"}"#
+		let none = #"{"slug":"project:a","image_url":null,"source":"no-match","state":"none"}"#
+		let pending = #"{"slug":"project:a","image_url":null,"source":"pending","state":"pending"}"#
+		let other = #"{"slug":"project:b","image_url":"\#(cover)","source":"test","state":"found"}"#
+
+		XCTAssertEqual(CoverAvailability(result: try answer(found), for: asked), .found)
+		XCTAssertEqual(CoverAvailability(result: try answer(olderServer), for: asked), .found)
+		XCTAssertEqual(CoverAvailability(result: try answer(none), for: asked), .missing)
+		XCTAssertEqual(CoverAvailability(result: try answer(pending), for: asked), .pending)
+		XCTAssertEqual(CoverAvailability(result: try answer(other), for: asked), .missing)
+		XCTAssertEqual(CoverAvailability(result: .failure(.network), for: asked), .unreachable)
+		XCTAssertEqual(CoverAvailability(result: .notModified(etag: "x"), for: asked), .unreachable)
 	}
 
 	// MARK: - Style (TRA-500)
