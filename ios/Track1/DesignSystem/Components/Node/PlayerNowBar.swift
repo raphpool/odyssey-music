@@ -9,7 +9,8 @@ enum PlayerNowBarMetrics {
 		"player-open-\(provider.rawValue)"
 	}
 
-	/// `#FFFFFF` at 15 %. No border and no blur material.
+	/// `#FFFFFF` at 15 %. No border and no blur material. Drawn before iOS 26 only: from there the bar
+	/// is a capsule of Liquid Glass (`BarSurface`, TRA-797).
 	static let fill = Track1Tokens.colorGlassPill
 	static let cornerRadius = Track1Tokens.radiusFull
 	static let horizontalPadding = Track1Tokens.spacing20
@@ -93,8 +94,9 @@ struct PlayerNowBar: View {
 		.padding(.horizontal, PlayerNowBarMetrics.horizontalPadding)
 		.padding(.vertical, PlayerNowBarMetrics.verticalPadding)
 		.frame(minHeight: PlayerNowBarMetrics.height)
-		.background(
-			PlayerNowBarMetrics.fill,
+		.barBackground(
+			.current,
+			flatFill: PlayerNowBarMetrics.fill,
 			in: RoundedRectangle(cornerRadius: PlayerNowBarMetrics.cornerRadius, style: .continuous)
 		)
 		.disabled(buttonsAreDisabled)

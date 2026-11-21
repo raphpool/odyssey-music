@@ -75,6 +75,13 @@ final class PlayerNowBarTests: XCTestCase {
 		XCTAssertEqual(Metrics.buttonIdentifier(for: .spotify), "player-open-spotify")
 	}
 
+	/// Before iOS 26 the bar keeps its flat `colorGlassPill`; from iOS 26 it is drawn as a glass capsule.
+	func testBarIsFlatBeforeIOS26AndGlassFromIOS26() {
+		XCTAssertEqual(BarSurface.surface(isGlassAvailable: false), .flat)
+		XCTAssertEqual(BarSurface.surface(isGlassAvailable: true), .glass)
+		XCTAssertEqual(rgbaBytes(Metrics.fill), rgbaBytes(Track1Tokens.colorGlassPill))
+	}
+
 	func testAServiceDrawsItsMarkAndArrowAndReachesAtLeast44() {
 		let visual = Metrics.serviceVisualSize
 		let outset = Metrics.touchOutset
