@@ -166,16 +166,17 @@ private struct ApplicationTabs: View {
 			entry(for: .today).tag(AppTab.today)
 			entry(for: .genres).tag(AppTab.genres)
 		}
-		// The window's bottom safe area, read here, outside the insets of the tabs: inside one the bar is
-		// already above the home indicator and would read 0. The keyboard is left out so that the bar does not
-		// change its padding while a field is focused.
+		// The window's bottom safe area, read from the window itself (`WindowSafeAreaReader`).
+		//
+		// 2026-11-21 (TRA-796, TestFlight build 1, iPhone 393 x 852, iOS 26): this was the
+		// `safeAreaInsets.bottom` of a `GeometryReader` in this background, and it read 0 under a `TabView`. The
+		// tab bar then added the 12 pt of a screen without a home indicator (pill at 744 to 804, 12 pt too high)
+		// and the Now bar of the reader ended at 762, over the tab bar. The window does not depend on the
+		// insets of the view tree, and it leaves the keyboard out, so the bar does not move while a field is
+		// focused.
 		.background {
-			GeometryReader { proxy in
-				Color.clear.preference(key: WindowSafeAreaBottomKey.self, value: proxy.safeAreaInsets.bottom)
-			}
-			.ignoresSafeArea(.keyboard, edges: .bottom)
+			WindowSafeAreaReader { windowSafeAreaBottom = $0 }
 		}
-		.onPreferenceChange(WindowSafeAreaBottomKey.self) { windowSafeAreaBottom = $0 }
 		.overlay(alignment: .bottom) { tabBar }
 	}
 
@@ -434,12 +435,57 @@ private struct InvalidConfigurationView: View {
 	}
 }
 
-/// The bottom safe area of the window, carried from a background `GeometryReader` to `ApplicationTabs`.
-private struct WindowSafeAreaBottomKey: PreferenceKey {
-	static let defaultValue: CGFloat = 0
+/// Reports the bottom safe area of the window that hosts it: when it joins the window, then each time its
+/// layout changes (rotation, scene change). Nothing is reported while the view is not in a window.
+private struct WindowSafeAreaReader: UIViewRepresentable {
+	let onChange: (CGFloat) -> Void
 
-	static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-		value = nextValue()
+	func makeUIView(context: Context) -> WindowSafeAreaProbe {
+		WindowSafeAreaProbe()
+	}
+
+	func updateUIView(_ uiView: WindowSafeAreaProbe, context: Context) {
+		uiView.onChange = onChange
+		uiView.report()
+	}
+}
+
+private final class WindowSafeAreaProbe: UIView {
+	var onChange: ((CGFloat) -> Void)?
+	private var lastReported: CGFloat?
+
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		isUserInteractionEnabled = false
+		isAccessibilityElement = false
+	}
+
+	@available(*, unavailable)
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) is not used")
+	}
+
+	override func didMoveToWindow() {
+		super.didMoveToWindow()
+		report()
+	}
+
+	override func layoutSubviews() {
+		super.layoutSubviews()
+		report()
+	}
+
+	override func safeAreaInsetsDidChange() {
+		super.safeAreaInsetsDidChange()
+		report()
+	}
+
+	/// Only a change is sent, and one turn of the main loop later: this can run while SwiftUI updates its
+	/// views, where a write to `@State` is refused.
+	func report() {
+		guard let inset = window?.safeAreaInsets.bottom, inset != lastReported, onChange != nil else { return }
+		lastReported = inset
+		Task { @MainActor [weak self] in self?.onChange?(inset) }
 	}
 }
 
