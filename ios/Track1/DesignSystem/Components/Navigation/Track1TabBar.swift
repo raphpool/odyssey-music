@@ -50,8 +50,9 @@ enum BarSurface: Equatable {
 }
 
 extension View {
-	/// Draws the pill behind the view without changing its layout: a capsule of glass on `.glass`,
-	/// `flatFill` in `flatShape` on `.flat`. One background only, like `SheetGlass`.
+	/// Draws the pill behind the view without changing its layout: glass on `.glass`, `flatFill` on `.flat`,
+	/// both in `flatShape` (a capsule, or the equivalent full-radius shape) so that the two surfaces cannot
+	/// diverge. One background only, like `SheetGlass`.
 	@ViewBuilder
 	func barBackground<S: Shape>(_ surface: BarSurface, flatFill: Color, in flatShape: S) -> some View {
 		switch surface {
@@ -67,7 +68,7 @@ extension View {
 	@ViewBuilder
 	private func glassBarBackground<S: Shape>(flatFill: Color, in flatShape: S) -> some View {
 		if #available(iOS 26, *) {
-			glassEffect(.regular, in: Capsule())
+			glassEffect(.regular, in: flatShape)
 		} else {
 			background(flatFill, in: flatShape)
 		}
@@ -95,7 +96,8 @@ enum Track1TabBarStyle {
 /// Figma `Tab bar` (`324:1792`, v1): two tabs in a centered pill, icons only. Before iOS 26 the pill is a
 /// flat translucent fill (`colorGlassPill`) with no border and no material; from iOS 26 it is a capsule of
 /// Liquid Glass (`BarSurface`). In both cases the selected tab sits on a darker capsule
-/// (`colorGlassPillSelected`), which stays readable on the glass. The labels are not drawn; they stay as accessibility labels.
+/// (`colorGlassPillSelected`), which stays readable on the glass. The labels are not drawn; they stay as
+/// accessibility labels.
 ///
 /// The bar has no state of its own and does not know `AppTab`: the screen owns the selection and passes it
 /// down. Place it with `safeAreaInset(edge: .bottom, spacing: 0)` on the `TabView`, so that the content scrolls
