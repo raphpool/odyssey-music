@@ -35,6 +35,24 @@ final class Track1TabBarTests: XCTestCase {
 		XCTAssertEqual(rgbaHex(Track1TabBarStyle.selectedFill), "00000033")
 	}
 
+	func testSurfaceIsGlassWhenAvailableAndFlatOtherwise() {
+		XCTAssertEqual(BarSurface.surface(isGlassAvailable: true), .glass)
+		XCTAssertEqual(BarSurface.surface(isGlassAvailable: false), .flat)
+	}
+
+	func testCurrentSurfaceFollowsTheRunningOS() {
+		var expected = BarSurface.flat
+		if #available(iOS 26, *) { expected = .glass }
+		XCTAssertEqual(BarSurface.current, expected)
+	}
+
+	/// Before iOS 26 nothing changes: the pill keeps `colorGlassPill`, the selected tab its darker fill.
+	func testFlatSurfaceKeepsThePillAndSelectedFillTokens() {
+		XCTAssertEqual(BarSurface.surface(isGlassAvailable: false), .flat)
+		XCTAssertEqual(rgbaHex(Track1TabBarStyle.pillFill), rgbaHex(Track1Tokens.colorGlassPill))
+		XCTAssertEqual(rgbaHex(Track1TabBarStyle.selectedFill), rgbaHex(Track1Tokens.colorGlassPillSelected))
+	}
+
 	func testTonesArePrimaryWhenActiveAndSecondaryWhenInactive() {
 		XCTAssertEqual(Track1TabBarStyle.activeTone, .primary)
 		XCTAssertEqual(Track1TabBarStyle.inactiveTone, .secondary)
