@@ -240,12 +240,178 @@ describe("validateTranslation", () => {
 		});
 	});
 
+	describe("rule 5: markup", () => {
+		it("flags a code fence", () => {
+			const article = `\`\`\`\n${FRENCH_P1}\n\n${FRENCH_P2}`;
+			expectSingle(validateTranslation(makeSource(), makeCandidate({ article })), "markup", "article");
+		});
+
+		it("flags a markdown heading at the start of a line", () => {
+			const article = `${FRENCH_P1}\n\n# ${FRENCH_P2}`;
+			expectSingle(validateTranslation(makeSource(), makeCandidate({ article })), "markup", "article");
+		});
+
+		it("flags ** and __ that the source does not have", () => {
+			const bold = `**Le Marlow Quartet** ${FRENCH_P1.slice("Le Marlow Quartet ".length)}\n\n${FRENCH_P2}`;
+			const under = `__${FRENCH_P1}__\n\n${FRENCH_P2}`;
+			expectSingle(validateTranslation(makeSource(), makeCandidate({ article: bold })), "markup", "article");
+			expectSingle(validateTranslation(makeSource(), makeCandidate({ article: under })), "markup", "article");
+		});
+
+		it("flags markup in the teaser", () => {
+			const teaser = `**${FRENCH_TEASER}**`;
+			expectSingle(validateTranslation(makeSource(), makeCandidate({ teaser })), "markup", "teaser");
+		});
+
+		it("accepts ** when the source field already contains it", () => {
+			const source = makeSource({ article: `**${SOURCE_P1}**\n\n${SOURCE_P2}` });
+			const candidate = makeCandidate({ article: `**${FRENCH_P1}**\n\n${FRENCH_P2}` });
+			expect(validateTranslation(source, candidate)).toEqual([]);
+		});
+	});
+
+	describe("rule 6: escape_leftover", () => {
+		it("flags a literal backslash-n", () => {
+			const article = `${FRENCH_P1.replace("mer. Ses", "mer.\\nSes")}\n\n${FRENCH_P2}`;
+			expect(article).toContain("\\n");
+			expectSingle(
+				validateTranslation(makeSource(), makeCandidate({ article })),
+				"escape_leftover",
+				"article",
+			);
+		});
+
+		it("flags a literal backslash-quote", () => {
+			const teaser = FRENCH_TEASER.replace("la techno", 'la \\"techno\\"');
+			expectSingle(validateTranslation(makeSource(), makeCandidate({ teaser })), "escape_leftover", "teaser");
+		});
+
+		it("does not flag a real line break", () => {
+			expect(validateTranslation(makeSource(), makeCandidate())).toEqual([]);
+		});
+	});
+
+	describe("rule 7: url_added", () => {
+		it("flags a URL absent from the source field", () => {
+			const article = `${FRENCH_P1}\n\n${FRENCH_P2} (https://example.com/marlow)`;
+			expectSingle(validateTranslation(makeSource(), makeCandidate({ article })), "url_added", "article");
+		});
+
+		it("accepts a URL that the source field already contains, ignoring trailing punctuation", () => {
+			const source = makeSource({ article: `${SOURCE_P1}\n\n${SOURCE_P2} See https://example.com/marlow` });
+			const candidate = makeCandidate({
+				article: `${FRENCH_P1}\n\n${FRENCH_P2} Voir https://example.com/marlow.`,
+			});
+			expect(validateTranslation(source, candidate)).toEqual([]);
+		});
+
+		it("judges the URL against the same field only", () => {
+			const source = makeSource({ teaser: `${SOURCE_TEASER} https://example.com/marlow` });
+			const candidate = makeCandidate({ article: `${FRENCH_P1}\n\n${FRENCH_P2} https://example.com/marlow` });
+			expectSingle(validateTranslation(source, candidate), "url_added", "article");
+		});
+
+		it("flags a URL smuggled into a fact", () => {
+			const facts = { origin: "Cornouailles, Angleterre", status: "http://evil.test/x" };
+			expectSingle(validateTranslation(makeSource(), makeCandidate({ facts })), "url_added", "facts.status");
+		});
+	});
+
+	describe("rule 8: fact_keys", () => {
+		it("accepts a source without facts and a candidate without facts", () => {
+			const candidate = makeCandidate();
+			delete candidate.facts;
+			expect(validateTranslation(makeSource({ facts: {} }), candidate)).toEqual([]);
+		});
+
+		it("treats an absent candidate.facts as {} (every source fact is missing)", () => {
+			const candidate = makeCandidate();
+			delete candidate.facts;
+			const issues = validateTranslation(makeSource(), candidate);
+			expect(issues.map((issue) => `${issue.code}:${issue.field}`)).toEqual([
+				"fact_keys:facts.origin",
+				"fact_keys:facts.status",
+			]);
+		});
+
+		it("flags a missing fact", () => {
+			const facts = { origin: "Cornouailles, Angleterre" };
+			expectSingle(validateTranslation(makeSource(), makeCandidate({ facts })), "fact_keys", "facts.status");
+		});
+
+		it("flags an extra fact", () => {
+			const facts = { origin: "Cornouailles, Angleterre", status: "Actif depuis 1991", label: "Warp" };
+			expectSingle(validateTranslation(makeSource(), makeCandidate({ facts })), "fact_keys", "facts.label");
+		});
+
+		it("flags an extra fact when the source has none", () => {
+			const issues = validateTranslation(
+				makeSource({ facts: {} }),
+				makeCandidate({ facts: { label: "Warp" } }),
+			);
+			expectSingle(issues, "fact_keys", "facts.label");
+		});
+
+		it("flags an empty or blank fact value", () => {
+			const facts = { origin: "Cornouailles, Angleterre", status: "  " };
+			expectSingle(validateTranslation(makeSource(), makeCandidate({ facts })), "fact_keys", "facts.status");
+		});
+
+		it("does not confuse inherited object properties with facts", () => {
+			const source = makeSource({ facts: { constructor: "Cornwall" } });
+			const missing = validateTranslation(source, makeCandidate({ facts: {} }));
+			expectSingle(missing, "fact_keys", "facts.constructor");
+		});
+	});
+
+	describe("review findings (self-review, TRA-803)", () => {
+		it("returns issues instead of throwing when the model output has the wrong runtime shape", () => {
+			const broken = {
+				teaser: undefined,
+				article: 42,
+				facts: { origin: 1991, status: null },
+			} as unknown as TranslationCandidate;
+			const issues = validateTranslation(makeSource(), broken);
+			expect(issues.map((issue) => `${issue.code}:${issue.field}`)).toEqual([
+				"empty:teaser",
+				"empty:article",
+				"fact_keys:facts.origin",
+				"fact_keys:facts.status",
+			]);
+		});
+
+		it("treats a non-object facts value as absent", () => {
+			const broken = { ...makeCandidate(), facts: "oops" } as unknown as TranslationCandidate;
+			expect(validateTranslation(makeSource({ facts: {} }), broken)).toEqual([]);
+		});
+
+		it("accepts a leading # that the source field also carries (e.g. a chart position)", () => {
+			const source = makeSource({ facts: { peak: "#1 in the UK" } });
+			const kept = validateTranslation(source, makeCandidate({ facts: { peak: "#1 au Royaume-Uni" } }));
+			const invented = validateTranslation(
+				makeSource({ facts: { peak: "number one in the UK" } }),
+				makeCandidate({ facts: { peak: "#1 au Royaume-Uni" } }),
+			);
+			expect(kept).toEqual([]);
+			expectSingle(invented, "markup", "facts.peak");
+		});
+
+		it("detects URLs whatever the case of the scheme", () => {
+			const article = `${FRENCH_P1}\n\n${FRENCH_P2} HTTPS://evil.test/x`;
+			expectSingle(validateTranslation(makeSource(), makeCandidate({ article })), "url_added", "article");
+		});
+	});
+
 	describe("detail", () => {
-		it("never exceeds 120 characters, even for huge candidates", () => {
+		it("never exceeds 120 characters, even for huge offending excerpts", () => {
+			const longUrl = `https://example.com/${"a".repeat(2000)}`;
+			const longKey = "k".repeat(2000);
 			const candidates: TranslationCandidate[] = [
+				makeCandidate({ article: `${FRENCH_P1}\n\n${FRENCH_P2} ${longUrl}` }),
+				makeCandidate({ article: `${"#".repeat(500)} ${FRENCH_P1}\n\n${FRENCH_P2}` }),
+				makeCandidate({ article: `${FRENCH_P1}\n\n${FRENCH_P2} ${"\\n".repeat(500)}` }),
+				makeCandidate({ facts: { origin: "x", status: "y", [longKey]: "z" } }),
 				makeCandidate({ teaser: SOURCE_TEASER, article: `${SOURCE_P1}\n\n${SOURCE_P2}`.repeat(10) }),
-				makeCandidate({ article: `${FRENCH_P1}\n\n${FRENCH_P2} ${FILLER.repeat(500)}` }),
-				makeCandidate({ facts: { origin: "x".repeat(5000), status: "y" } }),
 			];
 			let checked = 0;
 			for (const candidate of candidates) {
