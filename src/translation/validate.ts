@@ -79,7 +79,10 @@ const URL_PATTERN = /https?:\/\/[^\s<>()[\]"'«»“”]+/gi;
 const TRAILING_PUNCTUATION = /[.,;:!?]+$/;
 // Quoted passages that may be titles: "…", “…” or «…». Single quotes are not delimiters: an elision
 // ('90s) and a possessive (Smiths') would pair up into a fake passage (2026-11-23, TRA-804 review).
-const TITLE_QUOTE = /"([^"]*)"|“([^”]*)”|«([^»]*)»/g;
+// A straight quote right after a digit is an inch mark (12"), not an opening quote.
+const TITLE_QUOTE = /(?<!\d)"([^"]*)"|“([^”]*)”|«([^»]*)»/g;
+const SPACE_BEFORE_PUNCTUATION = /[   ]+(?=[:;!?])/g;
+const SHORT_DECADE = /années\s+(\d0)(?!\d)/g;
 const YEAR = /(?<!\d)(?:1\d{3}|20\d{2})(?!\d)/g;
 const TYPOGRAPHIC_APOSTROPHE = /[’ʼ‘]/g;
 const THOUSANDS_SPACE = /(?<!\d)(\d{1,3})[   ](?=\d{3}(?!\d))/g;
@@ -260,21 +263,38 @@ function checkFidelity(
 	const text = normalizeTypography(rawText);
 	const properNouns = rawProperNouns.map(normalizeTypography);
 	for (const noun of new Set(properNouns)) {
-		if (noun !== "" && containsName(original, noun) && !containsName(text, noun)) {
+		if (noun !== "" && containsName(original, noun) && !hasName(text, noun)) {
 			issues.push({ code: "missing_proper_noun", field, detail: clip(noun) });
 		}
 	}
 	for (const title of extractTitles(original, properNouns)) {
-		if (!text.includes(title)) issues.push({ code: "missing_title", field, detail: clip(title) });
+		if (text.includes(title) || (properNouns.includes(title) && hasName(text, title))) continue;
+		issues.push({ code: "missing_title", field, detail: clip(title) });
 	}
 	const present = countYears(text);
+	addShortDecades(present, original, text);
 	for (const [year, count] of countYears(original)) {
 		if ((present.get(year) ?? 0) < count) issues.push({ code: "missing_year", field, detail: year });
 	}
 }
 
 function normalizeTypography(text: string): string {
-	return text.normalize("NFC").replace(TYPOGRAPHIC_APOSTROPHE, "'");
+	// French puts a (no-break) space before : ; ! ? ("Mezzanine : Live"): it is not part of a name.
+	return text.normalize("NFC").replace(TYPOGRAPHIC_APOSTROPHE, "'").replace(SPACE_BEFORE_PUNCTUATION, "");
+}
+
+/** A name may lose its leading English article in French: "The Beatles" becomes "les Beatles". */
+function hasName(text: string, name: string): boolean {
+	return containsName(text, name) || (name.startsWith("The ") && containsName(text, name.slice(4)));
+}
+
+/** The source decade "the 1960s" may come back as "années 60": count that as the full year. */
+function addShortDecades(present: Map<string, number>, original: string, text: string): void {
+	for (const match of text.matchAll(SHORT_DECADE)) {
+		for (const year of [`19${match[1]}`, `20${match[1]}`]) {
+			if (new RegExp(`(?<!\\d)${year}s`).test(original)) present.set(year, (present.get(year) ?? 0) + 1);
+		}
+	}
 }
 
 /** Exact, case-sensitive match that neither starts nor ends in the middle of a word ("Air" vs "Airplay"). */

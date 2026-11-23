@@ -454,6 +454,14 @@ describe("validateTranslation", () => {
 				}
 			});
 
+			it("lets a name lose its leading The, and only that article", () => {
+				const nouns = ["The Beatles", "Air"];
+				expect(check("The Beatles covered it.", "Les Beatles l'ont repris.", nouns)).toEqual([]);
+				const lost = check("The Beatles covered it.", "Ils l'ont repris.", nouns);
+				expect(expectSingle(lost, "missing_proper_noun", "article").detail).toBe("The Beatles");
+				expectSingle(check("Air covered it.", "Ils l'ont repris.", nouns), "missing_proper_noun", "article");
+			});
+
 			it("is case-sensitive and holds for the teaser and the facts too", () => {
 				const issues = validateTranslation(
 					makeSource({
@@ -510,6 +518,23 @@ describe("validateTranslation", () => {
 					"missing_title",
 					"article",
 				);
+			});
+
+			it("does not take an inch mark for an opening quote", () => {
+				const en = 'He issued a 12" on Warp Records and "Come to Daddy".';
+				const nouns = ["Warp Records"];
+				expect(check(en, 'Il a sorti un 12" sur Warp Records et « Come to Daddy ».', nouns)).toEqual([]);
+				const lost = check(en, 'Il a sorti un 12" sur Warp Records et « Viens papa ».', nouns);
+				expect(expectSingle(lost, "missing_title", "article").detail).toBe("Come to Daddy");
+			});
+
+			it("ignores French spacing before : ; ! ? in titles and names", () => {
+				const en = 'The live set "Mezzanine: Live Sessions" and Godspeed You! Black Emperor.';
+				const nouns = ["Godspeed You! Black Emperor"];
+				for (const space of [" ", " ", " "]) {
+					const fr = `Le live « Mezzanine${space}: Live Sessions » et Godspeed You${space}! Black Emperor.`;
+					expect(check(en, fr, nouns)).toEqual([]);
+				}
 			});
 
 			it("does not pair an elision with a possessive into a title", () => {
@@ -586,6 +611,16 @@ describe("validateTranslation", () => {
 					const fr = `Le premier disque s'est vendu à 1${space}500 exemplaires dans une salle de 1${space}200 places.`;
 					expect(check(en, fr)).toEqual([]);
 				}
+			});
+
+			it("accepts a source decade as the short form, and refuses another decade", () => {
+				expect(check("It peaked in the 1960s.", "Il a culminé dans les années 60.")).toEqual([]);
+				expect(check("It ended in the late 1970s.", "Cela a fini à la fin des années 70.")).toEqual([]);
+				expect(check("It began in the 2010s.", "Cela a commencé dans les années 10.")).toEqual([]);
+				const wrong = check("It peaked in the 1960s.", "Il a culminé dans les années 70.");
+				expect(expectSingle(wrong, "missing_year", "article").detail).toBe("1960");
+				const plain = check("It peaked in 1960.", "Il a culminé dans les années 60.");
+				expectSingle(plain, "missing_year", "article");
 			});
 
 			it("does not glue a year to the figure that follows it", () => {
