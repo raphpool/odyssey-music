@@ -1,6 +1,7 @@
-import type { NodeType } from "./node-spec.js";
+import type { ContentLocale, NodeType } from "./node-spec.js";
 
 export {
+	CONTENT_LOCALES,
 	EDGE_FIELDS_BY_TYPE,
 	EDGE_TARGET_TYPES_BY_TYPE,
 	LIST_EDGES_BY_TYPE,
@@ -10,9 +11,10 @@ export {
 	REVERSE_EDGE_PAIRS,
 	SINGULAR_EDGES_BY_TYPE,
 	TEASER_FIELD_BY_TYPE,
+	TRANSLATABLE_FACT_FIELDS,
 } from "./node-spec.js";
 
-export type { NodeType };
+export type { ContentLocale, NodeType };
 
 export type Slug = `${NodeType}:${string}`;
 
@@ -48,6 +50,23 @@ export const IMAGE_SOURCES = [
 ] as const;
 export type ImageSource = (typeof IMAGE_SOURCES)[number];
 
+/** One translation of a node's text (TRA-802). Written by the translation pipeline, never by hand. */
+export interface NodeTranslation {
+	/** Translation of the type's teaser field (TEASER_FIELD_BY_TYPE). */
+	teaser: string;
+	/** Translation of editorial_article. */
+	article: string;
+	/** Keys: a subset of TRANSLATABLE_FACT_FIELDS[type]. */
+	facts?: Record<string, string>;
+	/** 64 lowercase hex chars: hash of the English source this translation was made from. */
+	source_sha256: string;
+	model: string;
+	/** ISO 8601 datetime. */
+	translated_at: string;
+}
+
+export type NodeL10n = Partial<Record<ContentLocale, NodeTranslation>>;
+
 export interface BaseNode {
 	slug: Slug;
 	type: NodeType;
@@ -62,6 +81,8 @@ export interface BaseNode {
 	image_url?: string;
 	// Provenance of image_url, so a resolver batch can be invalidated or re-run by source.
 	image_source?: ImageSource;
+	// Translations next to the English text (TRA-802). Never projected by toVizNode.
+	l10n?: NodeL10n;
 }
 
 export interface GenreNode extends BaseNode {

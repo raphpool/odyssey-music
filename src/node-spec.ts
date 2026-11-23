@@ -117,6 +117,19 @@ export const OPTIONAL_TEXT_FIELDS: Record<NodeType, readonly string[]> = {
 	track: ["cover_url", "year", "duration", "bpm", "musical_key", "vocals", "samples_notes", "inspirations"],
 };
 
+/** Languages a node may carry a translation for (TRA-802). English stays the node's own text. */
+export const CONTENT_LOCALES = ["fr"] as const;
+export type ContentLocale = (typeof CONTENT_LOCALES)[number];
+
+/** Text facts a translation may carry. A subset of OPTIONAL_TEXT_FIELDS. */
+export const TRANSLATABLE_FACT_FIELDS: Record<NodeType, readonly string[]> = {
+	genre: ["era", "origin", "sonic_markers"],
+	label: ["location", "active_years"],
+	artist: ["origin", "active_years"],
+	project: ["musical_key", "vocals", "samples_notes", "inspirations"],
+	track: ["musical_key", "vocals", "samples_notes", "inspirations"],
+};
+
 export const TEASER_FIELD_BY_TYPE: Record<NodeType, string> = {
 	genre: "editorial_definition",
 	label: "editorial_description",

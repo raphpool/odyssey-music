@@ -114,6 +114,29 @@ describe("toVizNode — node-level qid whitelist (TRA-19)", () => {
 	});
 });
 
+describe("toVizNode — l10n projection (TRA-802)", () => {
+	it("never surfaces l10n and keeps the English teaser and article", () => {
+		const artist = artistNode({
+			slug: "artist:l10n",
+			name: "L10n",
+			l10n: {
+				fr: {
+					teaser: "Resume francais.",
+					article:
+						"Un long article francais, assez long pour passer le plancher de quatre-vingts caracteres.",
+					source_sha256: "a".repeat(64),
+					model: "gemini-flash-lite",
+					translated_at: "2026-11-23T10:00:00.000Z",
+				},
+			},
+		});
+		const viz = toVizNode(artist);
+		expect("l10n" in viz).toBe(false);
+		expect(viz.teaser).toBe(artist.editorial_bio);
+		expect(viz.article).toBe(artist.editorial_article);
+	});
+});
+
 describe("toVizNode — image_url projection (TRA-455)", () => {
 	const caa = "https://coverartarchive.org/release-group/6a9b9f3e/front-500";
 

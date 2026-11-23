@@ -3,7 +3,14 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { toVizNode } from "../src/graph.js";
 import { isAllowedImageUrl } from "../src/images/hosts.js";
-import { EDGE_FIELDS_BY_TYPE, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
+import {
+	CONTENT_LOCALES,
+	EDGE_FIELDS_BY_TYPE,
+	NODE_TYPES,
+	OPTIONAL_TEXT_FIELDS,
+	SINGULAR_EDGES_BY_TYPE,
+	TRANSLATABLE_FACT_FIELDS,
+} from "../src/node-spec.js";
 import { nodePayloadSchema, readNodePayloadSchema } from "../src/schemas.js";
 import type { NodePayload } from "../src/types.js";
 
@@ -465,5 +472,105 @@ describe("nodePayloadSchema — canonical slugs (TRA-501)", () => {
 		}
 		expect(count).toBeGreaterThan(1000);
 		expect(failures).toEqual([]);
+	});
+});
+
+describe("nodePayloadSchema — l10n.fr block (TRA-802)", () => {
+	const article = "Un long article en francais sur ce noeud et sa portee culturelle. ".repeat(3);
+	const validFr = {
+		teaser: "Un resume court.",
+		article,
+		facts: { origin: "Cornouailles" },
+		source_sha256: "a".repeat(64),
+		model: "gemini-flash-lite",
+		translated_at: "2026-11-23T10:00:00.000Z",
+	};
+	const label = {
+		type: "label" as const,
+		slug: "label:warp-records",
+		name: "Warp Records",
+		editorial_description: "Independent electronic label.",
+		editorial_article: "A real prose body about the label Warp Records. ".repeat(8),
+		citations: [{ url: "https://example.com/warp" }],
+		materialized_at: new Date().toISOString(),
+		genres: [],
+		roster: [],
+		notable_releases: [],
+	};
+	const project = {
+		type: "project" as const,
+		slug: "project:selected-ambient-works",
+		name: "Selected Ambient Works",
+		editorial_pitch: "A landmark ambient album.",
+		editorial_article: "A real prose body about the project. ".repeat(8),
+		citations: [{ url: "https://example.com/saw" }],
+		materialized_at: new Date().toISOString(),
+		artists: [],
+		genres: [],
+		tracklist: [],
+		producers: [],
+		related_projects: [],
+	};
+	const byType = { genre: baseGenre, label, artist: baseArtist, project, track: baseTrack };
+
+	for (const type of NODE_TYPES) {
+		it(`round-trips a valid l10n.fr on a ${type}`, () => {
+			const parsed = nodePayloadSchema.parse({ ...byType[type], l10n: { fr: validFr } });
+			expect(parsed.l10n).toEqual({ fr: validFr });
+		});
+	}
+
+	it("reads a node with l10n.fr through the read schema too", () => {
+		const parsed = readNodePayloadSchema.parse({ ...baseArtist, l10n: { fr: validFr } });
+		expect(parsed.l10n).toEqual({ fr: validFr });
+	});
+
+	it("accepts a translation without facts", () => {
+		const { facts: _facts, ...noFacts } = validFr;
+		const parsed = nodePayloadSchema.parse({ ...baseArtist, l10n: { fr: noFacts } });
+		expect(parsed.l10n?.fr).toEqual(noFacts);
+	});
+
+	it("passes a node without l10n and returns no l10n key", () => {
+		const parsed = nodePayloadSchema.parse(baseArtist);
+		expect("l10n" in parsed).toBe(false);
+	});
+
+	const bad: Array<[string, Record<string, unknown>]> = [
+		["article under 80 characters", { article: "trop court" }],
+		["empty teaser", { teaser: "" }],
+		["source_sha256 too short", { source_sha256: "a".repeat(63) }],
+		["source_sha256 uppercase", { source_sha256: "A".repeat(64) }],
+		["source_sha256 non-hex", { source_sha256: "g".repeat(64) }],
+		["translated_at not ISO", { translated_at: "yesterday" }],
+		["empty model", { model: "" }],
+		["empty fact value", { facts: { origin: "" } }],
+	];
+	for (const [reason, override] of bad) {
+		it(`rejects l10n.fr with ${reason}`, () => {
+			const node = { ...baseArtist, l10n: { fr: { ...validFr, ...override } } };
+			expect(nodePayloadSchema.safeParse(node).success).toBe(false);
+		});
+	}
+
+	it("drops an undeclared locale (l10n.es) without error", () => {
+		const parsed = nodePayloadSchema.parse({ ...baseArtist, l10n: { fr: validFr, es: validFr } });
+		expect(parsed.l10n).toEqual({ fr: validFr });
+	});
+
+	it("declares in the schema every locale listed in CONTENT_LOCALES", () => {
+		// The schema hardcodes `fr`: a locale added to CONTENT_LOCALES alone would be silently stripped.
+		for (const locale of CONTENT_LOCALES) {
+			const parsed = nodePayloadSchema.parse({ ...baseArtist, l10n: { [locale]: validFr } });
+			expect(parsed.l10n?.[locale]).toEqual(validFr);
+		}
+	});
+
+	it("keeps every translatable fact field inside OPTIONAL_TEXT_FIELDS", () => {
+		for (const type of NODE_TYPES) {
+			for (const field of TRANSLATABLE_FACT_FIELDS[type]) {
+				expect(OPTIONAL_TEXT_FIELDS[type]).toContain(field);
+			}
+		}
 	});
 });
