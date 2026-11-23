@@ -7,17 +7,16 @@ import Foundation
 public enum ArticleSentences {
 	/// Rules, in this order: `\r\n` becomes `\n`; per line, the heading or list marker goes, then the inline
 	/// markup, then the bracketed note calls; each line is cut with Foundation's sentence segmentation;
-	/// sentences are trimmed and empty ones dropped; a fragment under `minimumLength` is glued to its neighbour.
+	/// sentences are trimmed and empty ones dropped; a sentence that ends with a known abbreviation, or that is
+	/// followed by one opening with a closing sign, is joined to its neighbour; a fragment under
+	/// `minimumLength` is glued to its neighbour.
 	public static func split(_ article: String) -> [String] {
 		let normalised = article.replacingOccurrences(of: "\r\n", with: "\n")
 		var sentences: [String] = []
 		for line in normalised.split(separator: "\n") {
 			let text = clean(String(line))
-			let whole = text.startIndex..<text.endIndex
-			text.enumerateSubstrings(in: whole, options: .bySentences) { piece, _, _, _ in
-				let sentence = piece?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-				if !sentence.isEmpty { sentences.append(sentence) }
-			}
+			let ranges = joinNeighbours(sentenceRanges(in: text), in: text)
+			sentences += ranges.map { String(text[$0]) }
 		}
 		return glueShortFragments(sentences)
 	}
@@ -25,6 +24,90 @@ public enum ArticleSentences {
 	/// Under this length a fragment is not a sentence worth a paragraph of its own: it is what a cut after
 	/// `feat.` or a note call left behind.
 	private static let minimumLength = 25
+
+	// MARK: - Segmentation
+
+	private typealias TextRange = Range<String.Index>
+
+	/// The trimmed range of every sentence Foundation finds in `text`. Ranges, not strings: a join below must
+	/// give back the text as it was written, and `trimmingCharacters(in: .whitespacesAndNewlines)` also strips
+	/// U+00A0, so joining trimmed strings would lose the no-break space of `«~Where Is My Mind~?~»`.
+	private static func sentenceRanges(in text: String) -> [TextRange] {
+		var ranges: [TextRange] = []
+		text.enumerateSubstrings(in: text.startIndex..<text.endIndex, options: .bySentences) { _, range, _, _ in
+			if let trimmed = trim(range, in: text) { ranges.append(trimmed) }
+		}
+		return ranges
+	}
+
+	private static func trim(_ range: TextRange, in text: String) -> TextRange? {
+		var lower = range.lowerBound
+		var upper = range.upperBound
+		while lower < upper, isBlank(text[lower]) { lower = text.index(after: lower) }
+		while lower < upper, isBlank(text[text.index(before: upper)]) { upper = text.index(before: upper) }
+		return lower < upper ? lower..<upper : nil
+	}
+
+	private static func isBlank(_ character: Character) -> Bool {
+		character.unicodeScalars.allSatisfy { CharacterSet.whitespacesAndNewlines.contains($0) }
+	}
+
+	// MARK: - Joins
+
+	/// Abbreviations that never end a sentence of their own, compared without case. Closed list on purpose
+	/// (2026-11-23): `etc.` often ends a sentence, and initials are left out because "Kid A." or "face B."
+	/// do too. Added for French, where `feat.`, `Dr. Dre` or `Vol. II` followed by a capital are frequent;
+	/// Foundation may cut there, and the 25-character floor below would glue the tail to the wrong side,
+	/// the sentence before.
+	private static let abbreviations: Set<String> = [
+		"feat.",
+		"ft.",
+		"vs.",
+		"prod.",
+		"vol.",
+		"dr.",
+		"st.",
+		"no.",
+	]
+
+	/// A sentence cannot open with one of these. ICU cuts before the `»` of `«~Where Is My Mind~?~»` because
+	/// a space follows the `?` (2026-11-23, seen with `Intl.Segmenter` in Node on the French sentences of the
+	/// plan, not confirmed against Foundation). The other signs are the closed list of the ticket; if Foundation
+	/// never cuts before them, the join does nothing.
+	private static let closingSigns: Set<Character> = ["»", "”", ")", ",", ";", ":"]
+
+	/// Joins neighbouring sentences of one line. The joined sentence is the span of `text` covering both, so no
+	/// space is invented or lost between them. Runs before `glueShortFragments`, which would otherwise glue the
+	/// tail of a cut after an abbreviation to the previous sentence. It never relies on where Foundation cut:
+	/// when it did not cut, there is nothing to join.
+	private static func joinNeighbours(_ ranges: [TextRange], in text: String) -> [TextRange] {
+		var joined: [TextRange] = []
+		for range in ranges {
+			if let previous = joined.last, shouldJoin(text[previous], text[range]) {
+				joined[joined.count - 1] = previous.lowerBound..<range.upperBound
+			} else {
+				joined.append(range)
+			}
+		}
+		return joined
+	}
+
+	private static func shouldJoin(_ previous: Substring, _ next: Substring) -> Bool {
+		endsWithAbbreviation(previous) || opensWithClosingSign(next, after: previous)
+	}
+
+	private static func endsWithAbbreviation(_ sentence: Substring) -> Bool {
+		guard let word = sentence.split(whereSeparator: \.isWhitespace).last else { return false }
+		return abbreviations.contains(word.lowercased())
+	}
+
+	/// A straight `"` is the same character opening or closing a quote, and an English sentence may well open
+	/// with one: it only closes when the sentence before it holds an odd number of them.
+	private static func opensWithClosingSign(_ sentence: Substring, after previous: Substring) -> Bool {
+		guard let first = sentence.first else { return false }
+		if first == "\"" { return previous.filter { $0 == "\"" }.count % 2 == 1 }
+		return closingSigns.contains(first)
+	}
 
 	// MARK: - Fragments
 
