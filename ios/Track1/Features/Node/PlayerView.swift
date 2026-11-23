@@ -36,8 +36,6 @@ enum PlayerMetrics {
 	static let viewportSpace = "player-viewport"
 	/// What VoiceOver and the UI tests read on the sentence that has the focus; the others have no value.
 	static let focusValue = "focus"
-	/// The scroll counts as stopped once its offset has not changed for this long (see `PlayerReader.rested`).
-	static let restDelay = Duration.milliseconds(120)
 
 	/// `338:2463`: a 393 x 2064 frame, the three cover bands at 0, 5 and 10 %, then `background.elevated`
 	/// from 15 %. `CoverTintGradient` cannot draw it: its stops are fixed at 0, 13, 27 and 50 %.
@@ -96,15 +94,17 @@ enum PlayerMetrics {
 		max(0, viewport - readingCenter - paragraph / 2)
 	}
 
-	/// Where a gesture that began at `origin`, the offset the reader was resting at, settles when the scroll
-	/// view proposed `proposed`: one paragraph further, or back on the current one
-	/// (`PlayerScroll.carouselOffset`), kept inside the content.
+	/// Where a gesture that counts from `origin` (`PlayerScroll.carouselOrigin`) settles when the scroll view
+	/// proposed `proposed`: one paragraph further, or back on the current one (`PlayerScroll.carouselOffset`),
+	/// kept inside the content. `touchedAt` is where the finger landed, if not at `origin`.
 	static func settledOffset(
-		origin: CGFloat, proposed: CGFloat, viewport: CGFloat, content: CGFloat, frames: [PlayerItemFrame]
+		origin: CGFloat, touchedAt: CGFloat? = nil, proposed: CGFloat, viewport: CGFloat, content: CGFloat,
+		frames: [PlayerItemFrame]
 	) -> CGFloat {
 		let reading = Double(readingViewport)
 		let settled = PlayerScroll.carouselOffset(
-			origin: Double(origin), proposed: Double(proposed), viewportHeight: reading, frames: frames)
+			origin: Double(origin), proposed: Double(proposed), touchedAt: touchedAt.map { Double($0) },
+			viewportHeight: reading, frames: frames)
 		return min(max(CGFloat(settled), 0), max(0, content - viewport))
 	}
 }
@@ -227,8 +227,10 @@ private struct PlayerReader: View {
 	@State private var frames: [PlayerItemFrame] = []
 	/// Written on every scroll frame, so kept out of `@State` values: a reference does not invalidate the view.
 	@State private var lastOffset = PlayerScrollOffset()
-	/// Where the scroll last came to rest: the start of the next gesture, whatever `originalTarget` holds.
-	@State private var restOffset: CGFloat = 0
+	/// What the snap behaviour and the touches share; a reference, so that a touch does not redraw the view.
+	@State private var carousel = PlayerCarousel()
+	/// True while a finger is down: a `GestureState` is reset when the gesture is cancelled too.
+	@GestureState private var isTouching = false
 	@Environment(\.accessibilityReduceMotion) private var reduceMotion
 	@Environment(\.openURL) private var openURL
 
@@ -282,21 +284,8 @@ private struct PlayerReader: View {
 	/// here from the offset and the frames, whichever of the two moves last.
 	private func scrolled(to offset: CGFloat) {
 		lastOffset.value = offset
+		carousel.moved(to: Double(offset))
 		refocus(frames: frames)
-		rested(after: offset)
-	}
-
-	/// 2026-11-23 (TRA-801): the carousel needs the offset a gesture begins at, and neither iOS 17 nor
-	/// `ScrollTargetBehaviorContext` gives it with certainty. The scroll is at rest once its offset has stayed
-	/// the same for `PlayerMetrics.restDelay`; that offset goes to `restOffset`, which the snap behaviour
-	/// receives and which changes then only, not at every frame. The pending wait lives in the reference.
-	private func rested(after offset: CGFloat) {
-		lastOffset.restTask?.cancel()
-		lastOffset.restTask = Task {
-			try? await Task.sleep(for: PlayerMetrics.restDelay)
-			guard !Task.isCancelled else { return }
-			if restOffset != offset { restOffset = offset }
-		}
 	}
 
 	private func measured(_ items: [PlayerItemFrame]) {
@@ -337,8 +326,13 @@ private struct PlayerReader: View {
 			.background { PlayerOffsetProbe() }
 			.coordinateSpace(name: PlayerMetrics.contentSpace)
 		}
-		.scrollTargetBehavior(PlayerSnapBehavior(frames: frames, restOffset: restOffset))
+		.scrollTargetBehavior(PlayerSnapBehavior(frames: frames, carousel: carousel))
 		.coordinateSpace(name: PlayerMetrics.viewportSpace)
+		// Simultaneous, so that the scroll view keeps the touch. It only tells when a finger lands.
+		.simultaneousGesture(DragGesture(minimumDistance: 0).updating($isTouching) { _, state, _ in state = true })
+		.onChange(of: isTouching) { _, touching in
+			if touching { carousel.touch(at: Double(lastOffset.value)) }
+		}
 		return tracked(scroll)
 			.mask {
 				LinearGradient(stops: PlayerMetrics.fadeStops(height: height), startPoint: .top, endPoint: .bottom)
@@ -376,16 +370,80 @@ private struct PlayerParagraph: View {
 /// 2026-11-23 (TRA-801, TestFlight build of 11/23): the target was the paragraph nearest to where the scroll
 /// would have stopped, so a swipe carried several sentences and could stop between two. It is a carousel now:
 /// the gesture steps one paragraph from the one it began on, or comes back to it when it was too short.
-/// The paragraph it began on is the one the reader was resting at: `originalTarget` is not read, because the
-/// SDK does not say whether it is where the finger went down or where the scroll view proposed to stop.
+/// The paragraph it began on is fixed by the touch (`PlayerCarousel`), not read here: `originalTarget` is
+/// not used, as the SDK does not say whether it is where the finger went down or where the scroll would stop.
 private struct PlayerSnapBehavior: ScrollTargetBehavior {
 	let frames: [PlayerItemFrame]
-	let restOffset: CGFloat
+	let carousel: PlayerCarousel
 
+	/// May run more than once for one gesture: `PlayerCarousel` hands back the target it already settled on.
 	func updateTarget(_ target: inout ScrollTarget, context: TargetContext) {
-		target.rect.origin.y = PlayerMetrics.settledOffset(
-			origin: restOffset, proposed: target.rect.minY, viewport: context.containerSize.height,
-			content: context.contentSize.height, frames: frames)
+		let proposed = target.rect.minY
+		let (viewport, content) = (context.containerSize.height, context.contentSize.height)
+		let settled = carousel.settle(proposed: Double(proposed)) { origin, touchedAt in
+			let offset = PlayerMetrics.settledOffset(
+				origin: CGFloat(origin), touchedAt: CGFloat(touchedAt), proposed: proposed, viewport: viewport,
+				content: content, frames: frames)
+			return Double(offset)
+		}
+		target.rect.origin.y = CGFloat(settled)
+	}
+}
+
+/// What the touches, the offsets and the snap behaviour share (TRA-801), under one lock, as the behaviour is
+/// not main-actor bound. A touch fixes where the next gesture counts from: `origin`, and `touchedAt`, the
+/// offset the finger landed at. A touch that lands while the scroll is still heading to where the last
+/// gesture sent it, as the second of two swipes in a row does, counts from there
+/// (`PlayerScroll.carouselOrigin`). A scroll that no finger moves (VoiceOver, keyboard) counts from where
+/// it is.
+final class PlayerCarousel: @unchecked Sendable {
+	/// A scroll whose offset has not changed for this long is not moving.
+	static let movingWindow = 0.15
+	/// A touch is still the one that moves the scroll if the offset changed within this long: a finger that
+	/// pauses before it lifts keeps it, a tap does not keep it for the next scroll.
+	static let touchWindow = 1.0
+	/// Two offsets this close are the same one.
+	static let echoTolerance = 0.5
+
+	private let lock = NSLock()
+	private var gesture = (origin: 0.0, touchedAt: 0.0)
+	private var live = 0.0
+	private var movedAt = -Double.infinity
+	/// Where the last gesture was sent, and whether the gesture in progress has been settled already (true
+	/// until the first touch: a scroll with no touch to count from).
+	private var heading: Double?
+	private var isSettled = true
+
+	/// The offset changed. `now` is a monotonic time in seconds.
+	func moved(to offset: Double, at now: Double = ProcessInfo.processInfo.systemUptime) {
+		lock.lock()
+		defer { lock.unlock() }
+		(live, movedAt) = (offset, now)
+	}
+
+	func touch(at offset: Double, now: Double = ProcessInfo.processInfo.systemUptime) {
+		lock.lock()
+		defer { lock.unlock() }
+		let isMoving = now - movedAt < Self.movingWindow
+		gesture = (PlayerScroll.carouselOrigin(live: offset, heading: heading, isMoving: isMoving), offset)
+		isSettled = false
+	}
+
+	/// The offset the scroll settles at, from `compute(origin, touchedAt)`. Asked again for the gesture it
+	/// settled, with its own answer as the proposal, it answers the same. A scroll with no touch to count from
+	/// (none since the last settle, or not moving it any more) counts from `live`.
+	func settle(
+		proposed: Double, now: Double = ProcessInfo.processInfo.systemUptime,
+		compute: (_ origin: Double, _ touchedAt: Double) -> Double
+	) -> Double {
+		lock.lock()
+		defer { lock.unlock() }
+		if isSettled, let heading, abs(proposed - heading) < Self.echoTolerance { return heading }
+		let isTouched = !isSettled && now - movedAt < Self.touchWindow
+		let (origin, touchedAt) = isTouched ? gesture : (live, live)
+		let target = compute(origin, touchedAt)
+		(heading, isSettled) = (target, true)
+		return target
 	}
 }
 
@@ -401,8 +459,6 @@ private struct PlayerOffsetKey: PreferenceKey {
 @MainActor
 private final class PlayerScrollOffset {
 	var value: CGFloat = 0
-	/// The wait that turns a scroll that stopped changing into a rest, cancelled by the next offset.
-	var restTask: Task<Void, Never>?
 }
 
 /// The iOS 17 offset: where the content starts in the scroll view, negated. Drawn on iOS 17 only, where

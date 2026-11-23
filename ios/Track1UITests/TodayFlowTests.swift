@@ -86,17 +86,19 @@ final class TodayFlowTests: XCTestCase {
 		XCTAssertEqual(first.focused, [1], "one swipe up moves the focus by exactly one sentence")
 		XCTAssertEqual(first.centered, [1], "the focus holds the reading centre after the stop")
 
-		// A second one: two swipes up in all, two sentences.
+		// Two swipes up in a row, without waiting for the first scroll to settle in between: two sentences.
+		// XCUITest may let the first one stop before the second; the touch mid-flight is in `PlayerScrollTests`.
+		app.swipeUp()
 		app.swipeUp()
 		let second = settledFocus(in: app, movedFrom: first.focused)
-		XCTAssertEqual(second.focused, [2], "two swipes up move the focus by two sentences")
-		XCTAssertEqual(second.centered, [2], "the focus holds the reading centre after the stop")
+		XCTAssertEqual(second.focused, [3], "two swipes up in a row move the focus by two sentences")
+		XCTAssertEqual(second.centered, [3], "the focus holds the reading centre after the stop")
 
 		// One swipe down goes back by one.
 		app.swipeDown()
 		let back = settledFocus(in: app, movedFrom: second.focused)
-		XCTAssertEqual(back.focused, [1], "one swipe down moves the focus back by one sentence")
-		XCTAssertEqual(back.centered, [1], "the focus holds the reading centre after the stop")
+		XCTAssertEqual(back.focused, [2], "one swipe down moves the focus back by one sentence")
+		XCTAssertEqual(back.centered, [2], "the focus holds the reading centre after the stop")
 	}
 
 	/// The sentences that expose the "focus" value, and those whose frame holds the reading centre. Read again

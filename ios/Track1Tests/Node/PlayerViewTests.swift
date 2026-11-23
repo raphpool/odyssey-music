@@ -182,6 +182,46 @@ final class PlayerViewTests: XCTestCase {
 		XCTAssertEqual(settled(0, -50, []), 0)
 	}
 
+	/// TRA-801: a touch that lands during the scroll of the previous swipe counts from where that scroll was
+	/// heading, and the behaviour may be asked twice for one gesture without taking a second step.
+	func testTheCarouselCarriesTheTouchBetweenTwoSwipes() {
+		let carousel = PlayerCarousel()
+		var seen: (origin: Double, touchedAt: Double)?
+		func settle(_ proposed: Double, to target: Double, at now: Double) -> Double {
+			seen = nil
+			return carousel.settle(proposed: proposed, now: now) { origin, touchedAt in
+				seen = (origin, touchedAt)
+				return target
+			}
+		}
+
+		carousel.moved(to: 0, at: 10)
+		carousel.touch(at: 0, now: 10.01)
+		XCTAssertEqual(settle(150, to: 200, at: 10.1), 200)
+		XCTAssertEqual(seen?.origin, 0, "At rest it counts from the offset of the touch.")
+		XCTAssertEqual(settle(200, to: 999, at: 10.12), 200, "Asked again, it answers the same.")
+		XCTAssertNil(seen, "Without counting again.")
+
+		carousel.moved(to: 60, at: 10.30)
+		carousel.touch(at: 60, now: 10.31)
+		XCTAssertEqual(settle(210, to: 400, at: 10.35), 400)
+		XCTAssertEqual(seen?.origin, 200, "Mid-flight it counts from where the scroll was heading.")
+		XCTAssertEqual(seen?.touchedAt, 60, "And the displacement from where the finger landed.")
+
+		carousel.moved(to: 150, at: 11)
+		_ = settle(300, to: 250, at: 12)
+		XCTAssertEqual(seen?.origin, 150, "A scroll that no touch started counts from where it is.")
+
+		carousel.touch(at: 20, now: 13)
+		carousel.moved(to: 90, at: 13.05)
+		_ = settle(120, to: 100, at: 13.9)
+		XCTAssertEqual(seen?.origin, 20, "A finger that paused before it lifted keeps its touch.")
+
+		carousel.touch(at: 5, now: 20)
+		_ = settle(300, to: 250, at: 25)
+		XCTAssertEqual(seen?.origin, 90, "A tap is not the touch of a scroll that comes much later.")
+	}
+
 	// MARK: - Header and Now bar
 
 	func testTheHeaderStartsAt24() { XCTAssertEqual(Metrics.headerLeading, 24) }

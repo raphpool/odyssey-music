@@ -260,6 +260,35 @@ final class PlayerScrollTests: XCTestCase {
 		XCTAssertEqual(backward, [4, 3, 2, 1, 0, 0, 0, 0], "one step per swipe, then the first paragraph")
 	}
 
+	/// A touch that lands mid-animation, 30 % of the way between two paragraphs: the nearest is the one left.
+	func testATouchDuringTheAnimationCountsFromTheParagraphItHeadsTo() {
+		let live = centeredOffset(0) + 0.3 * (centeredOffset(1) - centeredOffset(0))
+		XCTAssertEqual(PlayerScroll.focusedIndex(offset: live, viewportHeight: viewport, frames: figmaFrames), 0)
+
+		let origin = PlayerScroll.carouselOrigin(live: live, heading: centeredOffset(1), isMoving: true)
+		XCTAssertEqual(origin, centeredOffset(1))
+		// The finger landed at `live`, and the scroll view projects from there: the displacement counts from there.
+		func swipe(_ travelled: Double) -> Double {
+			PlayerScroll.carouselOffset(
+				origin: origin, proposed: live + travelled, touchedAt: live, viewportHeight: viewport,
+				frames: figmaFrames)
+		}
+		XCTAssertEqual(swipe(150), centeredOffset(2), "two swipes up in a row are two steps")
+		XCTAssertEqual(swipe(-150), centeredOffset(0), "a swipe back undoes the first one")
+		XCTAssertEqual(swipe(10), centeredOffset(1), "a short touch stays on the paragraph it was heading to")
+
+		// Down, then up before it stops: the origin is where the first one was heading, so up is back on 1.
+		let downLive = centeredOffset(1) - 0.3 * (centeredOffset(1) - centeredOffset(0))
+		let back = PlayerScroll.carouselOrigin(live: downLive, heading: centeredOffset(0), isMoving: true)
+		XCTAssertEqual(back, centeredOffset(0))
+		XCTAssertEqual(settle(back, travelling: 300), centeredOffset(1))
+	}
+
+	func testATouchAtRestOrWithoutAHeadingCountsFromTheLiveOffset() {
+		XCTAssertEqual(PlayerScroll.carouselOrigin(live: -259, heading: nil, isMoving: true), -259)
+		XCTAssertEqual(PlayerScroll.carouselOrigin(live: -259, heading: -77, isMoving: false), -259)
+	}
+
 	func testALongParagraphIsReadFreelyButAFlickGoesNoFurtherThanTheNextParagraph() {
 		// A 900 high paragraph, then three short ones whose middles are 1041, 1295 and 1549.
 		let frames = [

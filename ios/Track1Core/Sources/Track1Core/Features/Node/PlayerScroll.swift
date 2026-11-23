@@ -88,16 +88,29 @@ public enum PlayerScroll {
 		return displacement > 0 ? min(from + 1, last) : max(from - 1, 0)
 	}
 
+	/// The offset a gesture that begins now counts from, for `carouselOffset`. At rest it is `live`, the offset
+	/// at the touch. A touch that lands while the scroll is still moving towards `heading`, the offset the last
+	/// gesture was sent to, stops it between two paragraphs, where the nearest one may be the one it was
+	/// leaving: the paragraph it was heading to is the one the reader has reached, so that is the origin. A
+	/// scroll that is not `isMoving`, or that has no `heading`, has nothing to finish: `live` stays as is.
+	public static func carouselOrigin(live: Double, heading: Double?, isMoving: Bool) -> Double {
+		guard let heading, isMoving else { return live }
+		return heading
+	}
+
 	/// The offset where a carousel gesture should stop: the one that puts the middle of the paragraph chosen by
 	/// `carouselIndex` on the window centre. `origin` is the offset where the gesture began, which tells the
 	/// paragraph the reader was on, and `proposed` where the scroll view would have stopped. As in `snapOffset`
-	/// the result may be negative or run past the end of the content, and the view clamps it.
+	/// the result may be negative or run past the end of the content, and the view clamps it. `touchedAt` is the
+	/// offset the finger landed at when it is not `origin`, a touch mid-flight: `proposed` is projected from
+	/// there, so the displacement counts from there too.
 	///
 	/// A gesture that begins inside a long paragraph (see `longItemRatio`) is not a step: it is read freely, as
 	/// `snapOffset` does, or that paragraph could only be crossed in one jump. It still goes no further than
 	/// where the paragraph before or after the long one is centred, so that a flick is never more than a step.
 	public static func carouselOffset(
-		origin: Double, proposed: Double, viewportHeight: Double, frames: [PlayerItemFrame]
+		origin: Double, proposed: Double, touchedAt: Double? = nil, viewportHeight: Double,
+		frames: [PlayerItemFrame]
 	) -> Double {
 		guard let current = focusedIndex(offset: origin, viewportHeight: viewportHeight, frames: frames) else {
 			return proposed
@@ -114,7 +127,7 @@ public enum PlayerScroll {
 			let upper = longIndex < frames.count - 1 ? frames[longIndex + 1].midY - viewportHeight / 2 : .infinity
 			return min(max(free, lower), upper)
 		}
-		let step = proposed - origin
+		let step = proposed - (touchedAt ?? origin)
 		let height = frames[current].height
 		let target = carouselIndex(from: current, displacement: step, currentHeight: height, count: frames.count)
 		return frames[target].midY - viewportHeight / 2
