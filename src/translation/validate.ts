@@ -81,6 +81,7 @@ const TRAILING_PUNCTUATION = /[.,;:!?]+$/;
 // glued to a letter is an apostrophe (Blur's, Smiths'), not a quotation mark.
 const TITLE_QUOTE = /"([^"]*)"|“([^”]*)”|(?<![\p{L}\p{N}])'([\p{Lu}\p{N}][^']*)'(?![\p{L}\p{N}])/gu;
 const YEAR = /(?<!\d)(?:1\d{3}|20\d{2})(?!\d)/g;
+const TYPOGRAPHIC_APOSTROPHE = /[’ʼ‘]/g;
 const THOUSANDS_SPACE = /(?<!\d)(\d{1,3})[   ](?=\d{3}(?!\d))/g;
 const LETTER_OR_DIGIT_BEFORE = /[\p{L}\p{N}]$/u;
 const LETTER_OR_DIGIT_AFTER = /^[\p{L}\p{N}]/u;
@@ -249,11 +250,15 @@ function extractUrls(text: string): string[] {
 /** Names, titles and years found in the source field must come back unchanged in the candidate field. */
 function checkFidelity(
 	field: string,
-	original: string,
-	text: string,
-	properNouns: readonly string[],
+	rawOriginal: string,
+	rawText: string,
+	rawProperNouns: readonly string[],
 	issues: TranslationIssue[],
 ): void {
+	// Typographic apostrophes and Unicode forms are not a change of name: compare the normalised forms.
+	const original = normalizeTypography(rawOriginal);
+	const text = normalizeTypography(rawText);
+	const properNouns = rawProperNouns.map(normalizeTypography);
 	for (const noun of new Set(properNouns)) {
 		if (noun !== "" && containsName(original, noun) && !containsName(text, noun)) {
 			issues.push({ code: "missing_proper_noun", field, detail: clip(noun) });
@@ -266,6 +271,10 @@ function checkFidelity(
 	for (const [year, count] of countYears(original)) {
 		if ((present.get(year) ?? 0) < count) issues.push({ code: "missing_year", field, detail: year });
 	}
+}
+
+function normalizeTypography(text: string): string {
+	return text.normalize("NFC").replace(TYPOGRAPHIC_APOSTROPHE, "'");
 }
 
 /** Exact, case-sensitive match that neither starts nor ends in the middle of a word ("Air" vs "Airplay"). */

@@ -441,6 +441,19 @@ describe("validateTranslation", () => {
 				expect(expectSingle(lost, "missing_proper_noun", "article").detail).toBe("Air");
 			});
 
+			it("accepts a typographic apostrophe or Unicode form change, in both directions", () => {
+				const pairs = [
+					["Guns N’ Roses", "Guns N' Roses"],
+					["Guns N' Roses", "Guns N’ Roses"],
+					["Björk", "Björk"],
+					["Björk", "Björk"],
+				] as const;
+				for (const [en, fr] of pairs) {
+					expect(check(`${en} toured.`, `${fr} a tourné.`, [fr])).toEqual([]);
+					expectSingle(check(`${en} toured.`, "Ils ont tourné.", [fr]), "missing_proper_noun", "article");
+				}
+			});
+
 			it("is case-sensitive and holds for the teaser and the facts too", () => {
 				const issues = validateTranslation(
 					makeSource({
@@ -483,6 +496,18 @@ describe("validateTranslation", () => {
 				);
 				const kept = "Son single « Around the World » fut un succès.";
 				expect(check("His first single was “Around the World,” a hit.", kept)).toEqual([]);
+			});
+
+			it("accepts a typographic apostrophe change in a title, in both directions", () => {
+				const straight = "Who's Next";
+				const curly = "Who’s Next";
+				expect(check(`His album "${straight}" sold.`, `Son album « ${curly} » s'est vendu.`)).toEqual([]);
+				expect(check(`His album "${curly}" sold.`, `Son album « ${straight} » s'est vendu.`)).toEqual([]);
+				expectSingle(
+					check(`His album "${curly}" sold.`, "Son album s'est vendu."),
+					"missing_title",
+					"article",
+				);
 			});
 
 			it("does not take an apostrophe for a quote", () => {
@@ -545,6 +570,14 @@ describe("validateTranslation", () => {
 				}
 				const dropped = check(en, "Il a vendu 1 500 exemplaires dans une grande salle.");
 				expect(expectSingle(dropped, "missing_year", "article").detail).toBe("1200");
+			});
+
+			it("accepts the debut sold 1500 copies / 1 500 exemplaires, whatever the space", () => {
+				const en = "The debut sold 1500 copies in a 1200-capacity hall.";
+				for (const space of [" ", " ", " "]) {
+					const fr = `Le premier disque s'est vendu à 1${space}500 exemplaires dans une salle de 1${space}200 places.`;
+					expect(check(en, fr)).toEqual([]);
+				}
 			});
 
 			it("does not glue a year to the figure that follows it", () => {
