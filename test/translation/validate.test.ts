@@ -496,6 +496,13 @@ describe("validateTranslation", () => {
 				);
 			});
 
+			it("does not take a one- or two-word capitalised quotation for a title", () => {
+				const genius = 'One critic called it "Pure genius".';
+				expect(check(genius, "Un critique y voit du pur génie.")).toEqual([]);
+				expect(check('The crowd shouted "Thanks".', "La foule a crié merci.")).toEqual([]);
+				expect(check('He called it "Baroque pop".', "Il parlait de pop baroque.")).toEqual([]);
+			});
+
 			it("holds a quoted known name to the letter, even when it is not title-shaped", () => {
 				const en = 'The track "minipops 67 [120.2]" is a classic.';
 				const nouns = ["minipops 67 [120.2]"];
@@ -528,6 +535,21 @@ describe("validateTranslation", () => {
 
 			it("takes the early 2010s as the decade, not as a lost year", () => {
 				expect(check("He rose in the early 2010s.", "Il a émergé au début des années 2010.")).toEqual([]);
+			});
+
+			it("reads French digit grouping (space, no-break, narrow no-break) as the same quantity", () => {
+				const en = "He sold 1500 copies in a 1200-capacity hall.";
+				for (const space of [" ", " ", " "]) {
+					const fr = `Il a vendu 1${space}500 exemplaires dans une salle de 1${space}200 places.`;
+					expect(check(en, fr)).toEqual([]);
+				}
+				const dropped = check(en, "Il a vendu 1 500 exemplaires dans une grande salle.");
+				expect(expectSingle(dropped, "missing_year", "article").detail).toBe("1200");
+			});
+
+			it("does not glue a year to the figure that follows it", () => {
+				const en = "In 1994 200 fans came.";
+				expectSingle(check(en, "Ils étaient 200 fans à venir."), "missing_year", "article");
 			});
 
 			it("ignores numbers outside 1000-2099 and longer digit runs", () => {

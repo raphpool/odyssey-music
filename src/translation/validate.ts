@@ -81,10 +81,12 @@ const TRAILING_PUNCTUATION = /[.,;:!?]+$/;
 // glued to a letter is an apostrophe (Blur's, Smiths'), not a quotation mark.
 const TITLE_QUOTE = /"([^"]*)"|“([^”]*)”|(?<![\p{L}\p{N}])'([\p{Lu}\p{N}][^']*)'(?![\p{L}\p{N}])/gu;
 const YEAR = /(?<!\d)(?:1\d{3}|20\d{2})(?!\d)/g;
+const THOUSANDS_SPACE = /(?<!\d)(\d{1,3})[   ](?=\d{3}(?!\d))/g;
 const LETTER_OR_DIGIT_BEFORE = /[\p{L}\p{N}]$/u;
 const LETTER_OR_DIGIT_AFTER = /^[\p{L}\p{N}]/u;
 const CAPITAL_OR_DIGIT_START = /^[\p{Lu}\p{N}]/u;
 const MAX_TITLE_WORDS = 8;
+const MIN_TITLE_CAPITALS = 2;
 const BLANK_LINE_SEPARATOR = /\n(?:[^\S\n]*\n)+/;
 
 /** Empty array = accepted. Pure and deterministic. */
@@ -291,12 +293,19 @@ function extractTitles(text: string, properNouns: readonly string[]): Set<string
 function looksLikeTitle(inner: string): boolean {
 	const words = inner.split(/\s+/);
 	const capitalized = words.filter((word) => CAPITAL_OR_DIGIT_START.test(word)).length;
-	return words.length <= MAX_TITLE_WORDS && capitalized * 2 >= words.length;
+	// At least two capitalised words: a lone capitalised word or phrase is usually a critic's quoted
+	// remark ("Pure genius", "Thanks"), which French translates. Lone titles are caught via properNouns.
+	return (
+		words.length <= MAX_TITLE_WORDS && capitalized >= MIN_TITLE_CAPITALS && capitalized * 2 >= words.length
+	);
 }
 
 function countYears(text: string): Map<string, number> {
 	const counts = new Map<string, number>();
-	for (const match of text.matchAll(YEAR)) counts.set(match[0], (counts.get(match[0]) ?? 0) + 1);
+	// French groups thousands with a space ("1 500"): read it as the same quantity as the English "1500".
+	for (const match of text.replace(THOUSANDS_SPACE, "$1").matchAll(YEAR)) {
+		counts.set(match[0], (counts.get(match[0]) ?? 0) + 1);
+	}
 	return counts;
 }
 
