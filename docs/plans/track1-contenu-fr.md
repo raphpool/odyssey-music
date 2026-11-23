@@ -205,11 +205,20 @@ traduction optionnel » : question Q3.
 traduction courante. `teaser`, `article` et `facts` gardent l'anglais. La provenance n'est pas exposée.
 `version` reste `v1` ; le catalogue ne change pas.
 
-Côté iOS, `NodeDetail` applique le français **au décodage, en un seul endroit** : si `l10n.fr` est présent et
-complet, `teaser` et `article` prennent le français, `facts` prend le français clé par clé, et
-`contentLanguage` vaut `.fr` ; sinon rien ne change et `contentLanguage` vaut `.en`. Les trois lecteurs
-(`NodePageHeader`, `PlayerView.paragraphs`, `NodeArticleView`) ne sont pas modifiés. Le repli est **par nœud
-entier** : jamais un teaser français sur un article anglais.
+Côté iOS, l'app n'affiche **qu'une langue, celle de l'appareil** (précision de Raphael, 23/11). Jamais
+l'anglais et le français côte à côte.
+- La langue voulue vient des préférences de l'appareil : `Locale.preferredLanguages`. Le français si la
+  première langue commence par `fr`, l'anglais sinon. Elle est lue en un seul endroit et injectable pour les
+  tests.
+- Sur un appareil en français, `NodeDetail` applique le français en un seul endroit, si `l10n.fr` est présent
+  et complet : `teaser` et `article` prennent le français, `facts` prend le français clé par clé, et
+  `contentLanguage` vaut `.fr`. Sinon, la fiche reste en anglais et `contentLanguage` vaut `.en`.
+- Sur un appareil en anglais (ou dans toute autre langue), `l10n.fr` est ignoré : tout reste en anglais.
+- Les trois lecteurs (`NodePageHeader`, `PlayerView.paragraphs`, `NodeArticleView`) ne sont pas modifiés.
+- Le repli est **par nœud entier** : jamais un teaser français sur un article anglais.
+
+L'interface de l'app reste en français (décision Q4 de la v1). La faire suivre la langue de l'appareil est
+hors de ce plan.
 
 `ArticleSentences` garde la segmentation de Foundation et gagne deux règles, utiles aussi à l'anglais : une
 phrase qui finit par une abréviation d'une liste fermée (`feat.`, `ft.`, `vs.`, `prod.`, `vol.`, `Dr.`, `St.`,
@@ -1338,11 +1347,16 @@ JSON reçu, champ additif et facultatif :
         // existing members unchanged
         /// Language of `teaser`, `article` and `facts` as decoded.
         public let contentLanguage: ContentLanguage
-        /// The app is French-only: the one place that says which language is preferred.
-        public static let preferredContentLanguage: ContentLanguage = .fr
     }
 
-Règle de décodage :
+    /// The language the content is shown in: the device's first preferred language when it is French,
+    /// English otherwise. Read in one place; tests inject the list of preferred languages.
+    public static func preferredContentLanguage(preferredLanguages: [String]) -> ContentLanguage
+
+Règle de langue (précision de Raphael, 23/11) : l'app n'affiche que la langue de l'appareil, jamais les deux.
+Sur un appareil qui n'est pas en français, `l10n.fr` est ignoré et la fiche reste en anglais.
+
+Règle de décodage, sur un appareil en français :
 - `l10n.fr` est lu de façon tolérante : absent, mal formé ou d'un autre type, il est lu comme absent et ne
   fait jamais échouer la fiche.
 - Le bloc s'applique seulement si `article` et `teaser` sont non vides une fois rognés. Alors `teaser` et
@@ -1354,7 +1368,12 @@ Règle de décodage :
 
 ## Critères d'acceptation
 - [ ] Une réponse sans `l10n` se décode comme aujourd'hui, avec `contentLanguage == .en`.
-- [ ] Une réponse avec un `l10n.fr` complet donne `article` et `teaser` français et `contentLanguage == .fr`.
+- [ ] Sur un appareil en français, une réponse avec un `l10n.fr` complet donne `article` et `teaser` français,
+      et `contentLanguage == .fr`.
+- [ ] Sur un appareil en anglais (`["en-GB", "fr-FR"]`), la même réponse reste entièrement en anglais, avec
+      `contentLanguage == .en`.
+- [ ] `preferredContentLanguage` : `["fr-FR"]` et `["fr-CA", "en"]` donnent `.fr` ; `["en-US"]`, `["de-DE",
+      "fr-FR"]` et `[]` donnent `.en`.
 - [ ] `facts["origin"]` prend la valeur française ; `facts["year"]`, absent du bloc, garde sa valeur.
 - [ ] Une clé de `l10n.fr.facts` absente des faits anglais n'apparaît pas dans `facts`.
 - [ ] `l10n.fr` avec un `article` vide ou fait d'espaces : tout reste en anglais.
