@@ -625,6 +625,123 @@ final class TodayViewModelTests: XCTestCase {
 		XCTAssertEqual(model.state, .unavailable)
 	}
 
+	// MARK: Covers (TRA-794)
+
+	/// 2026-11-21: "Night" was recommended with the placeholder. `none` and `pending` are set aside.
+	func testAWorkWithoutACoverIsSetAsideAndAWorkWithACoverIsRecommended() async throws {
+		let works = try worksCatalog(9)
+		let original = try await originalWorks(of: works)
+		let rejected = try XCTUnwrap(original.first)
+		var outcomes: [[NodeIdentity]] = []
+
+		for refusal in [CoverAvailability.missing, .pending] {
+			let probe = CoverProbe { identity, _ in identity == rejected ? refusal : .found }
+			let store = makeStore(named: "\(refusal)")
+			let model = try await loadChecking(probe, catalog: works, store: store)
+
+			let history = await store.history()
+			let asked = await probe.asked
+			XCTAssertEqual(asked.first, rejected, "\(refusal)")
+			XCTAssertNotEqual(try recommendation(of: model).nodeID, rejected, "\(refusal)")
+			XCTAssertEqual(history.count, 8, "\(refusal)")
+			XCTAssertFalse(history.contains { $0.nodeID == rejected }, "\(refusal)")
+			XCTAssertTrue(Set(history.map(\.nodeID)).isSubset(of: Set(asked)), "\(refusal)")
+			outcomes.append(history.map(\.nodeID))
+		}
+		// The same answers give the same works.
+		XCTAssertEqual(outcomes.first, outcomes.last)
+	}
+
+	func testPlannedDaysFollowTheSameRule() async throws {
+		let works = try worksCatalog(9)
+		let original = try await originalWorks(of: works)
+		let rejected = original[2]
+		let probe = CoverProbe { identity, _ in identity == rejected ? .missing : .found }
+		let store = makeStore()
+		let model = try await loadChecking(probe, catalog: works, store: store)
+
+		let history = await store.history()
+		let asked = await probe.asked
+		XCTAssertTrue(asked.contains(rejected))
+		XCTAssertEqual(history.map(\.localDate), [Self.parisDate] + Self.plannedDates)
+		XCTAssertFalse(history.contains { $0.nodeID == rejected })
+		XCTAssertEqual(model.upcoming.map(\.recommendation), Array(history.dropFirst()))
+	}
+
+	func testANetworkErrorKeepsTheWorkAndStopsTheChecks() async throws {
+		let works = try worksCatalog(9)
+		let original = try await originalWorks(of: works)
+		let probe = CoverProbe { _, _ in .unreachable }
+		let store = makeStore()
+		_ = try await loadChecking(probe, catalog: works, store: store)
+
+		let history = await store.history()
+		let asked = await probe.asked
+		XCTAssertEqual(history.map(\.nodeID), original)
+		XCTAssertEqual(asked, Array(original.prefix(1)))
+	}
+
+	func testNoMoreThanTenChecksAreMadeAndTheOriginalChoiceIsKeptWhenNoCoverWasFound() async throws {
+		let works = try worksCatalog(30)
+		let original = try await originalWorks(of: works)
+		let probe = CoverProbe { _, _ in .missing }
+		let store = makeStore()
+		_ = try await loadChecking(probe, catalog: works, store: store)
+
+		let history = await store.history()
+		let asked = await probe.asked
+		XCTAssertEqual(Set(asked).count, 10)
+		XCTAssertEqual(history.map(\.nodeID), original)
+	}
+
+	func testACatalogWithNoCoverAtAllStillShowsItsOriginalChoice() async throws {
+		let works = try catalog()
+		let original = try await originalWorks(of: works)
+		let probe = CoverProbe { _, _ in .missing }
+		let store = makeStore()
+		let model = try await loadChecking(probe, catalog: works, store: store)
+
+		let history = await store.history()
+		XCTAssertEqual(history.map(\.nodeID), original)
+		XCTAssertEqual(try recommendation(of: model).nodeID, original.first)
+	}
+
+	func testTodaysStoredEntryIsServedWithoutAnyCheck() async throws {
+		let store = makeStore()
+		let stored = try storedRecommendation(date: Self.parisDate, node: "project:beta", revision: 1)
+		_ = await store.save([stored])
+		let probe = CoverProbe { _, _ in .missing }
+		let model = try await loadChecking(probe, catalog: try catalog(), store: store)
+
+		XCTAssertEqual(model.state, .recommendation(stored))
+		let asked = await probe.asked
+		XCTAssertEqual(asked, [])
+	}
+
+	/// Only the day that is added is checked: the days already announced keep their work.
+	func testExtendPlanChecksOnlyTheNewDayAndSetsItsWorkAsideWithoutACover() async throws {
+		let works = try worksCatalog(10)
+		let taste = try profile(revision: 1)
+		let store = makeStore()
+		let first = makeModel(probe: CatalogProbe(result: .success(works, etag: nil)), store: store)
+		await first.load(for: taste)
+		let firstHistory = await store.history()
+
+		let probe = CoverProbe { _, index in index == 0 ? .missing : .found }
+		let tomorrow = makeModel(
+			probe: CatalogProbe(result: .success(works, etag: nil)), store: store,
+			now: Self.clock.addingTimeInterval(86_400), checkCover: { await probe.check($0) })
+		await tomorrow.load(for: taste)
+		await tomorrow.extendPlanIfNeeded(for: taste)
+
+		let asked = await probe.asked
+		let history = await store.history()
+		XCTAssertEqual(asked.count, 2)
+		XCTAssertEqual(Array(history.prefix(8)), firstHistory)
+		XCTAssertNotEqual(history.last?.nodeID, asked.first)
+		XCTAssertEqual(history.last?.nodeID, asked.last)
+	}
+
 	// MARK: Events
 
 	func testImpressionIsRecordedOnceAcrossCallsAndAfterARestart() async throws {
@@ -758,13 +875,43 @@ final class TodayViewModelTests: XCTestCase {
 		DailyRecommendationStore(localStore: LocalStore(directoryURL: directoryURL))
 	}
 
+	private func loadChecking(
+		_ probe: CoverProbe, catalog: Catalog, store: DailyRecommendationStore
+	) async throws -> TodayViewModel {
+		let model = makeModel(
+			probe: CatalogProbe(result: .success(catalog, etag: nil)), store: store,
+			checkCover: { await probe.check($0) })
+		await model.load(for: try profile(revision: 1))
+		return model
+	}
+
+	private func makeStore(named name: String) -> DailyRecommendationStore {
+		DailyRecommendationStore(
+			localStore: LocalStore(directoryURL: directoryURL.appending(path: name, directoryHint: .isDirectory)))
+	}
+
+	private func worksCatalog(_ count: Int) throws -> Catalog {
+		let works = (1...count).map { "project:work\($0)" }
+		return try catalog(
+			nodes: [("genre:rock", "Rock")] + works.map { ($0, $0) },
+			edges: works.map { ($0, "genre:rock", "genres") })
+	}
+
+	/// What `catalog` gives when nothing is checked, today's work first.
+	private func originalWorks(of catalog: Catalog) async throws -> [NodeIdentity] {
+		let store = makeStore(named: "original")
+		let model = makeModel(probe: CatalogProbe(result: .success(catalog, etag: nil)), store: store)
+		await model.load(for: try profile(revision: 1))
+		return await store.history().map(\.nodeID)
+	}
+
 	private func makeID() -> UUID {
 		nextID += 1
 		return UUID(uuidString: String(format: "AAAAAAAA-0000-4000-8000-%012X", nextID))!
 	}
 
 	private func makeModel(
-		probe: CatalogProbe, store: DailyRecommendationStore, now: Date? = nil
+		probe: CatalogProbe, store: DailyRecommendationStore, now: Date? = nil, checkCover: CoverCheck? = nil
 	) -> TodayViewModel {
 		let instant = now ?? Self.clock
 		return TodayViewModel(
@@ -773,7 +920,8 @@ final class TodayViewModelTests: XCTestCase {
 			now: { instant },
 			timeZone: { Self.paris },
 			makeID: { [unowned self] in makeID() },
-			recordEvent: { [unowned self] in events.append($0) })
+			recordEvent: { [unowned self] in events.append($0) },
+			checkCover: checkCover)
 	}
 
 	private func recommendation(of model: TodayViewModel) throws -> DailyRecommendation {
@@ -866,5 +1014,21 @@ private actor CatalogProbe {
 	func read() async -> APIResult<Catalog> {
 		calls += 1
 		return result
+	}
+}
+
+/// The external boundary of the cover rule: answers `/image` for each identity and records what was asked, in
+/// order. `answer` also gets the number of questions asked before this one.
+private actor CoverProbe {
+	private(set) var asked: [NodeIdentity] = []
+	private let answer: @Sendable (NodeIdentity, Int) -> CoverAvailability
+
+	init(answer: @escaping @Sendable (NodeIdentity, Int) -> CoverAvailability) {
+		self.answer = answer
+	}
+
+	func check(_ identity: NodeIdentity) -> CoverAvailability {
+		defer { asked.append(identity) }
+		return answer(identity, asked.count)
 	}
 }

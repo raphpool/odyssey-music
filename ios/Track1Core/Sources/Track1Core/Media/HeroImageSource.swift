@@ -31,7 +31,8 @@ public enum HeroImageStyle: Equatable, Sendable {
 /// back at the node. The server can: `/image` of the node itself borrows a cover only from a work that
 /// declares the node (TRA-591, TRA-592, TRA-597). So an artist, label or genre with no `image_url` asks for
 /// its own `/image`, and shows the type gradient when the server finds no reciprocal work.
-/// A track still takes its own project's cover: that is its album, not a list.
+/// A track still takes its own project's cover: that is its album, not a list. A project or a track with no
+/// `image_url` also asks for its own `/image` (2026-11-21, TRA-794).
 public enum HeroImageSource {
 	public static func candidates(for node: NodeDetail) -> [HeroCandidate] {
 		candidates(type: node.type, id: node.id, imageURL: node.imageURL, edges: node.edges)
@@ -49,8 +50,11 @@ public enum HeroImageSource {
 			HeroCandidate.url)
 		switch type {
 		case .artist, .label, .genre: return [own ?? .node(id)]
-		case .project: return own.map { [$0] } ?? []
-		case .track: return [own, first(of: edges["project"])].compactMap { $0 }
+		// 2026-11-21 (TRA-794): the hero reads the `/image` the recommendation's cover check read.
+		case .project: return [own ?? .node(id)]
+		case .track:
+			if let own { return [own, first(of: edges["project"])].compactMap { $0 } }
+			return [first(of: edges["project"]), HeroCandidate.node(id)].compactMap { $0 }
 		}
 	}
 
@@ -110,3 +114,37 @@ public enum HeroImageSource {
 		}
 	}
 }
+
+/// What `/image` says about the cover of a node (2026-11-21, TRA-794: the home only recommends works that
+/// have one, and the catalog does not say which).
+public enum CoverAvailability: Equatable, Sendable {
+	/// The server has an image the hero can load from a public HTTPS URL.
+	case found
+	/// The server has none, or answered for another slug: the hero would show the placeholder.
+	case missing
+	/// The server is still looking for it (`state` "pending"): not a cover yet.
+	case pending
+	/// No usable answer (network, HTTP error, no body). Says nothing about the cover.
+	case unreachable
+
+	/// Reads the answer like `NodeImageStore`, so `found` is a cover the hero can draw: the slug is the one
+	/// asked for and the URL passes `URLValidation.publicHTTPSURL`.
+	public init(result: APIResult<ImageResponse>, for identity: NodeIdentity) {
+		guard case .success(let response, _) = result else {
+			self = .unreachable
+			return
+		}
+		if response.slug != identity {
+			self = .missing
+		} else if response.isPending {
+			self = .pending
+		} else if let url = response.imageURL, URLValidation.publicHTTPSURL(from: url.absoluteString) != nil {
+			self = .found
+		} else {
+			self = .missing
+		}
+	}
+}
+
+/// Asks the server whether `identity` has a cover, from its own `/image`: the external boundary of the rule.
+public typealias CoverCheck = @Sendable (NodeIdentity) async -> CoverAvailability
