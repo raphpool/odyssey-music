@@ -4,6 +4,17 @@ import { type GenreRedirects, resolveReadSlug } from "../genre-registry.js";
 import type { NodePayload, Slug } from "../types.js";
 import type { MaterializeRequest } from "./materialize-service.js";
 
+// 2026-11-23 (TRA-822): the web client stays in English (plan track1-contenu-fr, D5), but both web routes
+// (GET /node/:slug, POST /materialize) used to hand the raw node back, so `l10n` -- the French text and its
+// provenance (source_sha256, model, translated_at), stale ones included -- reached it. The key is dropped
+// from the response only: the node on disk keeps its block, and the mobile API serves `l10n.fr` itself.
+// A node without `l10n` is returned as is, same object and same key order.
+export function withoutL10n(node: NodePayload): NodePayload {
+	if (!("l10n" in node)) return node;
+	const { l10n: _l10n, ...rest } = node;
+	return rest;
+}
+
 export type NodeLookupResult = { source: "cache"; node: NodePayload; redirected_from?: Slug };
 
 export function createNodeService(deps: {
