@@ -54,31 +54,32 @@ final class PlayerViewTests: XCTestCase {
 	}
 
 	func testRolesColoursAndIdentifiersAreTheMockupOnes() {
-		XCTAssertEqual(Metrics.focusedRole, .reader)
-		XCTAssertEqual(Metrics.dimRole, .readerDim)
+		XCTAssertEqual(Metrics.role, .reader)
 		XCTAssertEqual(rgba(Metrics.focusedColor), rgba(Track1Tokens.colorTextPrimary))
 		XCTAssertEqual(rgba(Metrics.dimColor), [0x8D, 0x7A, 0x6D, 0xFF])
 		XCTAssertEqual(Metrics.identifier, "player")
 		XCTAssertEqual(Metrics.paragraphIdentifier(2), "player-paragraph-2")
 	}
 
-	func testTheFocusedSentenceIsWhiteAt22AndTheOthersAreDimAt20() {
+	/// TRA-801: the 20 to 22 pt growth of the focus reflowed the lines while the text was scrolling.
+	func testEverySentenceHasTheReaderRoleAndOnlyTheColourTellsTheFocus() {
+		XCTAssertEqual(Metrics.role, .reader)
 		XCTAssertEqual(Track1TextRole.reader.size, 22)
-		XCTAssertEqual(Track1TextRole.readerDim.size, 20)
-		let roles = (0..<3).map { PlayerView.role(forParagraph: $0, focusedIndex: 1) }
 
-		XCTAssertEqual(roles, [.readerDim, .reader, .readerDim])
-		XCTAssertEqual(rgba(Metrics.color(for: .reader)), rgba(Track1Tokens.colorTextPrimary))
-		XCTAssertEqual(rgba(Metrics.color(for: .readerDim)), [0x8D, 0x7A, 0x6D, 0xFF])
+		let focused = (0..<3).map { rgba(Metrics.color(isFocused: $0 == 1)) }
+		let white = rgba(Track1Tokens.colorTextPrimary)
+		let dim: [UInt8] = [0x8D, 0x7A, 0x6D, 0xFF]
+		XCTAssertEqual(focused, [dim, white, dim])
 	}
 
 	func testOnlyTheFocusedSentenceExposesTheFocusValue() {
 		XCTAssertEqual(Metrics.focusValue, "focus")
-		XCTAssertEqual(Metrics.accessibilityValue(for: .reader), "focus")
-		XCTAssertEqual(Metrics.accessibilityValue(for: .readerDim), "")
+		XCTAssertEqual(Metrics.accessibilityValue(isFocused: true), "focus")
+		XCTAssertEqual(Metrics.accessibilityValue(isFocused: false), "")
 	}
 
-	func testReduceMotionRemovesTheAnimationOfTheFocusChange() {
+	/// TRA-801: the colour is the only thing that changes with the focus, and it changes at once.
+	func testReduceMotionRemovesTheFadeOfTheFocusColour() {
 		XCTAssertNil(Track1Motion.animation(.fast, reduceMotion: true))
 		XCTAssertNotNil(Track1Motion.animation(.fast, reduceMotion: false))
 	}
@@ -131,16 +132,13 @@ final class PlayerViewTests: XCTestCase {
 
 	// MARK: - Focus and scroll
 
-	func testExactlyOneParagraphIsInTheReaderRoleAndItIsTheFocusedOne() {
+	func testTheFocusedParagraphIsTheOneThatHoldsTheReadingCenter() {
 		for (offset, index) in [(0, 0), (206, 1), (412, 2)] as [(CGFloat, Int)] {
 			let focused = PlayerView.focusedIndex(offset: offset, frames: Self.frames)
-			let roles = (0..<3).map { PlayerView.role(forParagraph: $0, focusedIndex: focused) }
 
 			XCTAssertEqual(focused, index, "offset \(offset)")
 			XCTAssertEqual(
 				focused, PlayerScroll.focusedIndex(offset: Double(offset), viewportHeight: 774, frames: Self.frames))
-			XCTAssertEqual(roles.filter { $0 == .reader }.count, 1)
-			XCTAssertEqual(roles.firstIndex(of: .reader), index)
 		}
 		XCTAssertEqual(PlayerView.focusedIndex(offset: 0, frames: []), 0, "The first one until they are measured.")
 	}
@@ -167,15 +165,21 @@ final class PlayerViewTests: XCTestCase {
 		XCTAssertEqual(Metrics.bottomMargin(viewport: 844, paragraph: 1000), 0)
 	}
 
-	func testAScrollSettlesOnTheCentredParagraphWithinTheContent() {
-		func settled(_ proposed: CGFloat, _ frames: [PlayerItemFrame] = Self.frames) -> CGFloat {
-			Metrics.snappedOffset(proposed: proposed, viewport: 844, content: 1256, frames: frames)
+	func testAGestureSettlesOneParagraphFurtherWithinTheContent() {
+		func settled(
+			_ origin: CGFloat, _ proposed: CGFloat, content: CGFloat = 1256, _ frames: [PlayerItemFrame] = Self.frames
+		) -> CGFloat {
+			Metrics.settledOffset(origin: origin, proposed: proposed, viewport: 844, content: content, frames: frames)
 		}
 
-		XCTAssertEqual(settled(190), 206, "The middle of the second paragraph (593) goes to 387.")
-		XCTAssertEqual(settled(1000), 412, "Never past the end of the content.")
-		XCTAssertEqual(settled(-50), 0, "Never before its start.")
-		XCTAssertEqual(settled(-50, []), 0)
+		XCTAssertEqual(settled(0, 190), 206, "The middle of the second paragraph (593) goes to 387.")
+		XCTAssertEqual(settled(0, 1000), 206, "However far the scroll view proposed, it is one step.")
+		XCTAssertEqual(settled(412, 300), 206, "And one step back.")
+		XCTAssertEqual(settled(206, 220), 206, "A short gesture comes back to the current paragraph.")
+		XCTAssertEqual(settled(412, 1000), 412, "Never past the end of the content.")
+		XCTAssertEqual(settled(0, -50), 0, "Never before its start.")
+		XCTAssertEqual(settled(206, 400, content: 600), 0, "Kept inside a content that is shorter than the screen.")
+		XCTAssertEqual(settled(0, -50, []), 0)
 	}
 
 	// MARK: - Header and Now bar

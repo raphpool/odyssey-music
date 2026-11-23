@@ -22,8 +22,10 @@ enum PlayerMetrics {
 	/// which is not the middle of the 844 pt frame. `PlayerScroll` takes a window centred on it.
 	static let readingCenter: CGFloat = 387
 	static let readingViewport = 2 * readingCenter
-	static let focusedRole = Track1TextRole.reader
-	static let dimRole = Track1TextRole.readerDim
+	/// 2026-11-23 (TRA-801, TestFlight build of 11/23): one role for every sentence. The focus used to grow from
+	/// 20 to 22 pt, which reflowed the lines under the finger at each step of the scroll. Only the colour tells
+	/// the focus now.
+	static let role = Track1TextRole.reader
 	static let focusedColor = Track1Tokens.colorTextPrimary
 	static let dimColor = Track1Tokens.colorTextTertiary
 	static let backFill = Track1Tokens.colorGlassPill
@@ -34,6 +36,8 @@ enum PlayerMetrics {
 	static let viewportSpace = "player-viewport"
 	/// What VoiceOver and the UI tests read on the sentence that has the focus; the others have no value.
 	static let focusValue = "focus"
+	/// The scroll counts as stopped once its offset has not changed for this long (see `PlayerReader.rested`).
+	static let restDelay = Duration.milliseconds(120)
 
 	/// `338:2463`: a 393 x 2064 frame, the three cover bands at 0, 5 and 10 %, then `background.elevated`
 	/// from 15 %. `CoverTintGradient` cannot draw it: its stops are fixed at 0, 13, 27 and 50 %.
@@ -75,12 +79,12 @@ enum PlayerMetrics {
 		safeAreaBottom + Track1TabBarMetrics.reservedHeight(safeAreaBottom: safeAreaBottom) + nowBarGap
 	}
 
-	static func color(for role: Track1TextRole) -> Color {
-		role == focusedRole ? focusedColor : dimColor
+	static func color(isFocused: Bool) -> Color {
+		isFocused ? focusedColor : dimColor
 	}
 
-	static func accessibilityValue(for role: Track1TextRole) -> String {
-		role == focusedRole ? focusValue : ""
+	static func accessibilityValue(isFocused: Bool) -> String {
+		isFocused ? focusValue : ""
 	}
 
 	/// Room above the first and under the last paragraph, so that each one can reach `readingCenter`.
@@ -92,16 +96,20 @@ enum PlayerMetrics {
 		max(0, viewport - readingCenter - paragraph / 2)
 	}
 
-	static func snappedOffset(
-		proposed: CGFloat, viewport: CGFloat, content: CGFloat, frames: [PlayerItemFrame]
+	/// Where a gesture that began at `origin`, the offset the reader was resting at, settles when the scroll
+	/// view proposed `proposed`: one paragraph further, or back on the current one
+	/// (`PlayerScroll.carouselOffset`), kept inside the content.
+	static func settledOffset(
+		origin: CGFloat, proposed: CGFloat, viewport: CGFloat, content: CGFloat, frames: [PlayerItemFrame]
 	) -> CGFloat {
-		let snapped = PlayerScroll.snapOffset(
-			proposed: Double(proposed), viewportHeight: Double(readingViewport), frames: frames)
-		return min(max(CGFloat(snapped), 0), max(0, content - viewport))
+		let reading = Double(readingViewport)
+		let settled = PlayerScroll.carouselOffset(
+			origin: Double(origin), proposed: Double(proposed), viewportHeight: reading, frames: frames)
+		return min(max(CGFloat(settled), 0), max(0, content - viewport))
 	}
 }
 
-/// The reader (Figma `338:2461`): one sentence per paragraph, the centred one in the `reader` role.
+/// The reader (Figma `338:2461`): one sentence per paragraph, all in the `reader` role, the centred one lit.
 /// The text moves under the finger only. The article comes from the network: `Text(verbatim:)`, never a link.
 struct PlayerView: View {
 	static let emptyMessage = "Pas encore de texte pour cette œuvre."
@@ -179,10 +187,6 @@ struct PlayerView: View {
 		return PlayerScroll.focusedIndex(offset: Double(offset), viewportHeight: viewport, frames: frames) ?? 0
 	}
 
-	static func role(forParagraph index: Int, focusedIndex: Int) -> Track1TextRole {
-		index == focusedIndex ? PlayerMetrics.focusedRole : PlayerMetrics.dimRole
-	}
-
 	var body: some View {
 		ZStack(alignment: .topLeading) {
 			switch Self.screen(for: model.state) {
@@ -223,6 +227,8 @@ private struct PlayerReader: View {
 	@State private var frames: [PlayerItemFrame] = []
 	/// Written on every scroll frame, so kept out of `@State` values: a reference does not invalidate the view.
 	@State private var lastOffset = PlayerScrollOffset()
+	/// Where the scroll last came to rest: the start of the next gesture, whatever `originalTarget` holds.
+	@State private var restOffset: CGFloat = 0
 	@Environment(\.accessibilityReduceMotion) private var reduceMotion
 	@Environment(\.openURL) private var openURL
 
@@ -277,6 +283,20 @@ private struct PlayerReader: View {
 	private func scrolled(to offset: CGFloat) {
 		lastOffset.value = offset
 		refocus(frames: frames)
+		rested(after: offset)
+	}
+
+	/// 2026-11-23 (TRA-801): the carousel needs the offset a gesture begins at, and neither iOS 17 nor
+	/// `ScrollTargetBehaviorContext` gives it with certainty. The scroll is at rest once its offset has stayed
+	/// the same for `PlayerMetrics.restDelay`; that offset goes to `restOffset`, which the snap behaviour
+	/// receives and which changes then only, not at every frame. The pending wait lives in the reference.
+	private func rested(after offset: CGFloat) {
+		lastOffset.restTask?.cancel()
+		lastOffset.restTask = Task {
+			try? await Task.sleep(for: PlayerMetrics.restDelay)
+			guard !Task.isCancelled else { return }
+			if restOffset != offset { restOffset = offset }
+		}
 	}
 
 	private func measured(_ items: [PlayerItemFrame]) {
@@ -307,9 +327,7 @@ private struct PlayerReader: View {
 		let scroll = ScrollView(showsIndicators: false) {
 			VStack(alignment: .leading, spacing: PlayerMetrics.paragraphSpacing) {
 				ForEach(Array(paragraphs.enumerated()), id: \.offset) { index, text in
-					PlayerParagraph(
-						text: text, index: index,
-						role: PlayerView.role(forParagraph: index, focusedIndex: focused), reduceMotion: reduceMotion)
+					PlayerParagraph(text: text, index: index, isFocused: index == focused, reduceMotion: reduceMotion)
 				}
 			}
 			.frame(width: PlayerMetrics.columnWidth)
@@ -319,7 +337,7 @@ private struct PlayerReader: View {
 			.background { PlayerOffsetProbe() }
 			.coordinateSpace(name: PlayerMetrics.contentSpace)
 		}
-		.scrollTargetBehavior(PlayerSnapBehavior(frames: frames))
+		.scrollTargetBehavior(PlayerSnapBehavior(frames: frames, restOffset: restOffset))
 		.coordinateSpace(name: PlayerMetrics.viewportSpace)
 		return tracked(scroll)
 			.mask {
@@ -332,21 +350,19 @@ private struct PlayerReader: View {
 private struct PlayerParagraph: View {
 	let text: String
 	let index: Int
-	let role: Track1TextRole
+	let isFocused: Bool
 	let reduceMotion: Bool
 
 	var body: some View {
-		let isFocused = role == PlayerMetrics.focusedRole
-		Track1Text(text, role: role, verbatim: true)
-			// The inner animation drives the body, the outer one the colour: under Reduce Motion the body
-			// changes at once and only the colour fades.
+		// The colour is the only thing the focus changes, so the layout never moves with it. It fades, and
+		// switches at once under Reduce Motion.
+		Track1Text(text, role: PlayerMetrics.role, verbatim: true)
+			.foregroundStyle(PlayerMetrics.color(isFocused: isFocused))
 			.animation(Track1Motion.animation(.fast, reduceMotion: reduceMotion), value: isFocused)
-			.foregroundStyle(PlayerMetrics.color(for: role))
-			.animation(Track1Motion.animation(.fast, reduceMotion: false), value: isFocused)
 			.frame(width: PlayerMetrics.columnWidth, alignment: .leading)
 			.accessibilityElement(children: .combine)
 			.accessibilityIdentifier(PlayerMetrics.paragraphIdentifier(index))
-			.accessibilityValue(PlayerMetrics.accessibilityValue(for: role))
+			.accessibilityValue(PlayerMetrics.accessibilityValue(isFocused: isFocused))
 			.background {
 				GeometryReader { proxy in
 					Color.clear.preference(
@@ -357,12 +373,18 @@ private struct PlayerParagraph: View {
 }
 
 /// D3: `viewAligned` aligns on the top edge on iOS 17, so the target is the offset that centres a paragraph.
+/// 2026-11-23 (TRA-801, TestFlight build of 11/23): the target was the paragraph nearest to where the scroll
+/// would have stopped, so a swipe carried several sentences and could stop between two. It is a carousel now:
+/// the gesture steps one paragraph from the one it began on, or comes back to it when it was too short.
+/// The paragraph it began on is the one the reader was resting at: `originalTarget` is not read, because the
+/// SDK does not say whether it is where the finger went down or where the scroll view proposed to stop.
 private struct PlayerSnapBehavior: ScrollTargetBehavior {
 	let frames: [PlayerItemFrame]
+	let restOffset: CGFloat
 
 	func updateTarget(_ target: inout ScrollTarget, context: TargetContext) {
-		target.rect.origin.y = PlayerMetrics.snappedOffset(
-			proposed: target.rect.minY, viewport: context.containerSize.height,
+		target.rect.origin.y = PlayerMetrics.settledOffset(
+			origin: restOffset, proposed: target.rect.minY, viewport: context.containerSize.height,
 			content: context.contentSize.height, frames: frames)
 	}
 }
@@ -379,6 +401,8 @@ private struct PlayerOffsetKey: PreferenceKey {
 @MainActor
 private final class PlayerScrollOffset {
 	var value: CGFloat = 0
+	/// The wait that turns a scroll that stopped changing into a rest, cancelled by the next offset.
+	var restTask: Task<Void, Never>?
 }
 
 /// The iOS 17 offset: where the content starts in the scroll view, negated. Drawn on iOS 17 only, where

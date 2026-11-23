@@ -66,8 +66,10 @@ final class TodayFlowTests: XCTestCase {
 
 	/// TRA-795: the first build never moved the focus off the opening sentence. The sentence whose frame holds
 	/// the reading centre (387 pt from the top, `PlayerMetrics.readingCenter`) is the focus, and it alone.
+	/// TRA-801: the scroll is a carousel, so a swipe is exactly one sentence, whatever its speed: the build of
+	/// 11/23 could carry several sentences at once, or stop between two.
 	@MainActor
-	func testThePlayerFocusesTheSentenceThatHoldsTheReadingCenter() {
+	func testThePlayerStepsOneSentenceAtATimeAndFocusesTheOneAtTheReadingCenter() {
 		let app = UITestFlows.launch()
 		UITestFlows.declineConsent(app)
 		UITestFlows.completeOnboarding(app)
@@ -78,40 +80,54 @@ final class TodayFlowTests: XCTestCase {
 		XCTAssertEqual(opening.focused, [0], "the first sentence is the focus when the reader opens")
 		XCTAssertEqual(opening.centered, [0], "the first sentence is at the reading centre when it opens")
 
-		// A flick may carry the six-sentence article to its end at the first swipe: once on the last sentence,
-		// the second swipe has nowhere to go and must not be required to move the focus.
-		let last = UITestFlows.articleSentenceCount - 1
-		var previous = 0
-		for swipe in 1...2 {
-			app.swipeUp()
-			let scrolled = settledFocus(in: app)
-			XCTAssertEqual(scrolled.focused, scrolled.centered, "swipe \(swipe): the focus follows the centre")
-			XCTAssertEqual(scrolled.focused.count, 1, "swipe \(swipe): one focus")
-			let index = scrolled.focused.first ?? 0
-			XCTAssertTrue(
-				index > previous || previous == last,
-				"swipe \(swipe): the focus moved on to a later sentence (\(previous) to \(index))")
-			previous = index
-		}
+		// One swipe up: exactly the next sentence, and it holds the reading centre once the scroll has stopped.
+		app.swipeUp()
+		let first = settledFocus(in: app, movedFrom: opening.focused)
+		XCTAssertEqual(first.focused, [1], "one swipe up moves the focus by exactly one sentence")
+		XCTAssertEqual(first.centered, [1], "the focus holds the reading centre after the stop")
+
+		// A second one: two swipes up in all, two sentences.
+		app.swipeUp()
+		let second = settledFocus(in: app, movedFrom: first.focused)
+		XCTAssertEqual(second.focused, [2], "two swipes up move the focus by two sentences")
+		XCTAssertEqual(second.centered, [2], "the focus holds the reading centre after the stop")
+
+		// One swipe down goes back by one.
+		app.swipeDown()
+		let back = settledFocus(in: app, movedFrom: second.focused)
+		XCTAssertEqual(back.focused, [1], "one swipe down moves the focus back by one sentence")
+		XCTAssertEqual(back.centered, [1], "the focus holds the reading centre after the stop")
 	}
 
 	/// The sentences that expose the "focus" value, and those whose frame holds the reading centre. Read again
-	/// until they agree on one sentence or `timeout` runs out: the scroll decelerates, then snaps.
+	/// until two reads 0.2 s apart agree on one sentence or `timeout` runs out: the scroll decelerates, then
+	/// snaps, and a read in the middle of it must not be taken for the stop. With `start`, the sentence the
+	/// swipe began on, a read that still shows it is not the stop either: the scroll may not have begun yet.
 	@MainActor
 	private func settledFocus(
-		in app: XCUIApplication, timeout: TimeInterval = 5
+		in app: XCUIApplication, movedFrom start: [Int]? = nil, timeout: TimeInterval = 5
 	) -> (focused: [Int], centered: [Int]) {
-		let center = 387.0
 		let deadline = Date().addingTimeInterval(timeout)
+		var previous: (focused: [Int], centered: [Int])?
 		while true {
-			let paragraphs = (0..<UITestFlows.articleSentenceCount).map { element(app, "player-paragraph-\($0)") }
-			let present = paragraphs.enumerated().filter { $0.element.exists }
-			let focused = present.filter { ($0.element.value as? String) == "focus" }.map(\.offset)
-			let centered = present.filter { $0.element.frame.minY <= center && center <= $0.element.frame.maxY }
-				.map(\.offset)
-			if (focused.count == 1 && focused == centered) || Date() >= deadline { return (focused, centered) }
-			Thread.sleep(forTimeInterval: 0.1)
+			let reading = readFocus(in: app)
+			let agrees = reading.focused.count == 1 && reading.focused == reading.centered && reading.focused != start
+			if agrees, let previous, previous == reading { return reading }
+			previous = reading
+			if Date() >= deadline { return reading }
+			Thread.sleep(forTimeInterval: 0.2)
 		}
+	}
+
+	@MainActor
+	private func readFocus(in app: XCUIApplication) -> (focused: [Int], centered: [Int]) {
+		let center = 387.0
+		let paragraphs = (0..<UITestFlows.articleSentenceCount).map { element(app, "player-paragraph-\($0)") }
+		let present = paragraphs.enumerated().filter { $0.element.exists }
+		let focused = present.filter { ($0.element.value as? String) == "focus" }.map(\.offset)
+		let centered = present.filter { $0.element.frame.minY <= center && center <= $0.element.frame.maxY }
+			.map(\.offset)
+		return (focused, centered)
 	}
 
 	@MainActor
