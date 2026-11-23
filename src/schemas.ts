@@ -36,6 +36,17 @@ const metricsSchema = z
 	})
 	.optional();
 
+// Same rules on read and write, and independent of the slug: declared outside buildSchemas (TRA-802).
+// Which fact keys a type may translate is not checked here (baseFields does not know the type).
+export const nodeTranslationSchema = z.object({
+	teaser: z.string().min(1),
+	article: z.string().min(80),
+	facts: z.record(z.string().min(1)).optional(),
+	source_sha256: z.string().regex(/^[a-f0-9]{64}$/),
+	model: z.string().min(1),
+	translated_at: z.string().datetime(),
+});
+
 function buildSchemas(slugSchema: z.ZodType<string>) {
 	const edgeRefBase = z.object({
 		slug: slugSchema,
@@ -102,6 +113,8 @@ function buildSchemas(slugSchema: z.ZodType<string>) {
 			.refine(isAllowedImageUrl, { message: "image_url host not allowed" })
 			.optional(),
 		image_source: z.enum(IMAGE_SOURCES).optional(),
+		// z.object strips undeclared locale keys (l10n.es), which is the intended behaviour (TRA-802).
+		l10n: z.object({ fr: nodeTranslationSchema.optional() }).optional(),
 	};
 
 	const genreSchema = z.object({
