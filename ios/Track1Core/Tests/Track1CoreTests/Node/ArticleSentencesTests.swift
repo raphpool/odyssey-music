@@ -135,6 +135,149 @@ final class ArticleSentencesTests: XCTestCase {
 		XCTAssertEqual(ArticleSentences.split("Hello there."), ["Hello there."])
 	}
 
+	// MARK: - French sentences (TRA-815)
+
+	// "\u{00A0}" is the no-break space the French typography puts inside « » and before ? ! : ;
+
+	func testGuillemetTitleAtTheStartDoesNotHideTheCutAfterAnInitial() {
+		let article =
+			"«\u{00A0}Idioteque\u{00A0}» est le huitième morceau de Kid A. "
+			+ "Le morceau repose sur un échantillon de Paul Lansky."
+		XCTAssertEqual(
+			ArticleSentences.split(article),
+			[
+				"«\u{00A0}Idioteque\u{00A0}» est le huitième morceau de Kid A.",
+				"Le morceau repose sur un échantillon de Paul Lansky.",
+			])
+	}
+
+	func testQuestionMarkAfterANoBreakSpaceEndsItsSentence() {
+		let article = "Qui aurait parié sur ce disque\u{00A0}? Personne, à l’époque, chez Warp Records."
+		XCTAssertEqual(
+			ArticleSentences.split(article),
+			[
+				"Qui aurait parié sur ce disque\u{00A0}?",
+				"Personne, à l’époque, chez Warp Records.",
+			])
+	}
+
+	func testFeaturingAbbreviationBeforeACapitalDoesNotCut() {
+		let sentence =
+			"Le maxi sort chez XL Recordings avec Burial feat. Four Tet, puis ressort en 2012 "
+			+ "dans une version longue."
+		XCTAssertEqual(ArticleSentences.split(sentence), [sentence])
+	}
+
+	func testFtAbbreviationBeforeACapitalDoesNotCut() {
+		let sentence = "Le morceau réunit Skream ft. Example et sort en 2010 chez Tempa."
+		XCTAssertEqual(ArticleSentences.split(sentence), [sentence])
+	}
+
+	func testDoctorAbbreviationBeforeACapitalDoesNotCut() {
+		let sentence = "Le disque est produit par Dr. Dre et sort en 1999 chez Aftermath Entertainment."
+		XCTAssertEqual(ArticleSentences.split(sentence), [sentence])
+	}
+
+	func testVolumeAbbreviationBeforeACapitalDoesNotCut() {
+		let sentence = "La compilation Artificial Intelligence Vol. II paraît en 1994 chez Warp Records."
+		XCTAssertEqual(ArticleSentences.split(sentence), [sentence])
+	}
+
+	func testVersusAbbreviationBeforeACapitalDoesNotCut() {
+		let sentence = "Le maxi oppose Basic Channel vs. Maurizio sur deux faces de douze minutes."
+		XCTAssertEqual(ArticleSentences.split(sentence), [sentence])
+	}
+
+	func testSaintAbbreviationBeforeACapitalDoesNotCut() {
+		let sentence = "Enregistré à St. Louis en 1978, l’album sort l’année suivante chez Stax."
+		XCTAssertEqual(ArticleSentences.split(sentence), [sentence])
+	}
+
+	func testClosingGuillemetAfterAQuestionMarkStaysWithItsTitle() {
+		let sentence =
+			"Le groupe enchaîne avec «\u{00A0}Where Is My Mind\u{00A0}?\u{00A0}», "
+			+ "devenu son titre le plus connu."
+		XCTAssertEqual(ArticleSentences.split(sentence), [sentence])
+	}
+
+	func testSentenceEndingWithAClosingGuillemetKeepsItAndStillCuts() {
+		let article =
+			"Le groupe enchaîne avec «\u{00A0}Where Is My Mind?\u{00A0}». "
+			+ "La suite est plus contrastée, mais reste dans la même veine."
+		XCTAssertEqual(
+			ArticleSentences.split(article),
+			[
+				"Le groupe enchaîne avec «\u{00A0}Where Is My Mind?\u{00A0}».",
+				"La suite est plus contrastée, mais reste dans la même veine.",
+			])
+	}
+
+	func testGuillemetTitleThenANewSentenceGivesTwoSentences() {
+		let article =
+			"Le critique parle d’un «\u{00A0}disque parfait\u{00A0}». "
+			+ "La suite est plus contrastée, mais reste dans la même veine."
+		XCTAssertEqual(ArticleSentences.split(article).count, 2)
+	}
+
+	func testColonAfterANoBreakSpaceDoesNotCut() {
+		let article =
+			"Le disque tient en trois mots\u{00A0}: basse, espace, silence. "
+			+ "Il sort en 2006 chez Hyperdub Records."
+		XCTAssertEqual(
+			ArticleSentences.split(article),
+			[
+				"Le disque tient en trois mots\u{00A0}: basse, espace, silence.",
+				"Il sort en 2006 chez Hyperdub Records.",
+			])
+	}
+
+	func testEtceteraStillEndsASentence() {
+		let article =
+			"Le label publie de la house, de la techno, etc. "
+			+ "Il ferme ses portes en 2001 après dix ans."
+		XCTAssertEqual(
+			ArticleSentences.split(article),
+			[
+				"Le label publie de la house, de la techno, etc.",
+				"Il ferme ses portes en 2001 après dix ans.",
+			])
+	}
+
+	func testProducedByAbbreviationBeforeACapitalDoesNotCut() {
+		let sentence = "Le disque sort en 1999, prod. Jean Dupont, chez un petit label de Lyon."
+		XCTAssertEqual(ArticleSentences.split(sentence), [sentence])
+	}
+
+	func testEnglishSentenceWithFeaturingDoesNotCut() {
+		let sentence =
+			"The single was a collaboration with Flying Lotus feat. Thundercat and reached the charts in 2014."
+		XCTAssertEqual(ArticleSentences.split(sentence), [sentence])
+	}
+
+	func testAbbreviationIsComparedWithoutCase() {
+		let sentence = "Le maxi oppose Basic Channel VS. Maurizio sur deux faces de douze minutes."
+		XCTAssertEqual(ArticleSentences.split(sentence), [sentence])
+	}
+
+	func testAnAbbreviationAtTheEndOfALineIsNotJoinedToTheNextLine() {
+		let article = "Le maxi sort chez XL Recordings avec Burial feat.\nFour Tet signe la face B du disque."
+		XCTAssertEqual(
+			ArticleSentences.split(article),
+			["Le maxi sort chez XL Recordings avec Burial feat.", "Four Tet signe la face B du disque."])
+	}
+
+	func testStraightOpeningQuoteStartsItsOwnSentence() {
+		let article =
+			"Le critique écrit sur le disque et sur sa pochette. "
+			+ "\"Rien n’est plus beau que ce disque\", ajoute-t-il dans sa chronique."
+		XCTAssertEqual(
+			ArticleSentences.split(article),
+			[
+				"Le critique écrit sur le disque et sur sa pochette.",
+				"\"Rien n’est plus beau que ce disque\", ajoute-t-il dans sa chronique.",
+			])
+	}
+
 	// MARK: - Empty
 
 	func testEmptyOrBlankArticleGivesNoSentence() {
