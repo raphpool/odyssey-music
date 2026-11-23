@@ -414,14 +414,14 @@ final class PlayerCarousel: @unchecked Sendable {
 	private var heading: Double?
 	private var isSettled = true
 
-	/// The offset changed. `now` is a monotonic time in seconds.
-	func moved(to offset: Double, at now: Double = ProcessInfo.processInfo.systemUptime) {
+	/// The offset changed. `now` is a time in seconds; only the gap between two of them counts.
+	func moved(to offset: Double, at now: Double = Date().timeIntervalSinceReferenceDate) {
 		lock.lock()
 		defer { lock.unlock() }
 		(live, movedAt) = (offset, now)
 	}
 
-	func touch(at offset: Double, now: Double = ProcessInfo.processInfo.systemUptime) {
+	func touch(at offset: Double, now: Double = Date().timeIntervalSinceReferenceDate) {
 		lock.lock()
 		defer { lock.unlock() }
 		let isMoving = now - movedAt < Self.movingWindow
@@ -433,7 +433,7 @@ final class PlayerCarousel: @unchecked Sendable {
 	/// settled, with its own answer as the proposal, it answers the same. A scroll with no touch to count from
 	/// (none since the last settle, or not moving it any more) counts from `live`.
 	func settle(
-		proposed: Double, now: Double = ProcessInfo.processInfo.systemUptime,
+		proposed: Double, now: Double = Date().timeIntervalSinceReferenceDate,
 		compute: (_ origin: Double, _ touchedAt: Double) -> Double
 	) -> Double {
 		lock.lock()
