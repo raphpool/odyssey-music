@@ -77,9 +77,9 @@ const QUOTED_PASSAGE = /"[^"]*"|“[^”]*”|«[^»]*»/g;
 const WORD = /\p{L}+/gu;
 const URL_PATTERN = /https?:\/\/[^\s<>()[\]"'«»“”]+/gi;
 const TRAILING_PUNCTUATION = /[.,;:!?]+$/;
-// Quoted passages that may be titles: "…", “…”, or '…' opening with a capital or a digit. A single quote
-// glued to a letter is an apostrophe (Blur's, Smiths'), not a quotation mark.
-const TITLE_QUOTE = /"([^"]*)"|“([^”]*)”|(?<![\p{L}\p{N}])'([\p{Lu}\p{N}][^']*)'(?![\p{L}\p{N}])/gu;
+// Quoted passages that may be titles: "…", “…” or «…». Single quotes are not delimiters: an elision
+// ('90s) and a possessive (Smiths') would pair up into a fake passage (2026-11-23, TRA-804 review).
+const TITLE_QUOTE = /"([^"]*)"|“([^”]*)”|«([^»]*)»/g;
 const YEAR = /(?<!\d)(?:1\d{3}|20\d{2})(?!\d)/g;
 const TYPOGRAPHIC_APOSTROPHE = /[’ʼ‘]/g;
 const THOUSANDS_SPACE = /(?<!\d)(\d{1,3})[   ](?=\d{3}(?!\d))/g;

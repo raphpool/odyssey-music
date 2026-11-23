@@ -482,7 +482,7 @@ describe("validateTranslation", () => {
 				expect(check(EN, 'Son premier single, "Around the World", fut un succès.')).toEqual([]);
 			});
 
-			it("handles curly and single quotes, ignoring a final punctuation mark", () => {
+			it("handles curly quotes and guillemets, ignoring a final punctuation mark", () => {
 				const fr = "Son premier single fut un succès.";
 				expectSingle(
 					check("His first single was “Around the World,” a hit.", fr),
@@ -490,10 +490,12 @@ describe("validateTranslation", () => {
 					"article",
 				);
 				expectSingle(
-					check("His first single was 'Around the World', a hit.", fr),
+					check("His first single was «Around the World», a hit.", fr),
 					"missing_title",
 					"article",
 				);
+				// Single quotes are not delimiters.
+				expect(check("His first single was 'Around the World', a hit.", fr)).toEqual([]);
 				const kept = "Son single « Around the World » fut un succès.";
 				expect(check("His first single was “Around the World,” a hit.", kept)).toEqual([]);
 			});
@@ -508,6 +510,12 @@ describe("validateTranslation", () => {
 					"missing_title",
 					"article",
 				);
+			});
+
+			it("does not pair an elision with a possessive into a title", () => {
+				const en = "Their sound defined the '90s, and the Smiths' influence was clear.";
+				const fr = "Leur son a défini les années 90, et l'influence des Smiths était nette.";
+				expect(check(en, fr)).toEqual([]);
 			});
 
 			it("does not take an apostrophe for a quote", () => {
