@@ -9,7 +9,7 @@ import {
 	reverseFor,
 	reversibleFields,
 } from "./reverse-edges.js";
-import { nodePayloadSchema, readNodePayloadSchema } from "./schemas.js";
+import { nodePayloadSchema, nodeTranslationSchema, readNodePayloadSchema } from "./schemas.js";
 import { isValidSlug, parseSlug } from "./slug.js";
 import type { EdgeRef, NodePayload, Slug } from "./types.js";
 
@@ -23,6 +23,48 @@ const warnedNonCanonical = new Set<string>();
 /** Tests only: forget which non-canonical slugs were already logged. */
 export function resetNonCanonicalSlugWarnings(): void {
 	warnedNonCanonical.clear();
+}
+
+// Same reasoning for nodes whose l10n block was discarded on read (TRA-821).
+const warnedInvalidTranslation = new Set<string>();
+
+/** Tests only: forget which invalid-translation nodes were already logged. */
+export function resetInvalidTranslationWarnings(): void {
+	warnedInvalidTranslation.clear();
+}
+
+/**
+ * 2026-11-23 (TRA-821): reading discards an `l10n` block that fails the translation rules instead of failing
+ * the node. The symptom: one bad `l10n.fr` (older tool, hand edit, rule tightened since) made get() throw
+ * for the whole node, so the English card, /data.json and build:graph all broke because of a translation.
+ * Writes keep the strict rule; this only runs on the way out of the disk. Returns the input untouched when
+ * there is nothing to discard. `fields` names the offending top-level key of the block, never a value or a
+ * record key: a translation is untrusted content and has no place in a log line.
+ *
+ * Side effect to keep in mind: update() and reverse-edge application read through get() and write the
+ * result back, so a node rewritten that way loses its invalid block on disk (it is derived and regenerable
+ * from `source_sha256`; before this, those paths threw and the node could not be rewritten at all).
+ */
+function discardInvalidTranslation(obj: unknown): { value: unknown; fields: string[] } {
+	if (!isPlainRecord(obj) || !("l10n" in obj)) return { value: obj, fields: [] };
+	const l10n = obj.l10n;
+	let fields: string[];
+	if (!isPlainRecord(l10n)) {
+		fields = ["l10n"];
+	} else if (l10n.fr === undefined) {
+		return { value: obj, fields: [] };
+	} else {
+		const fr = nodeTranslationSchema.safeParse(l10n.fr);
+		if (fr.success) return { value: obj, fields: [] };
+		const keys = fr.error.issues.map((i) => ["l10n", "fr", ...i.path.slice(0, 1)].join("."));
+		fields = [...new Set(keys)].slice(0, 10);
+	}
+	const { l10n: _discarded, ...rest } = obj;
+	return { value: rest, fields };
+}
+
+function isPlainRecord(v: unknown): v is Record<string, unknown> {
+	return typeof v === "object" && v !== null && !Array.isArray(v);
 }
 
 export interface PendingReverse {
@@ -192,7 +234,15 @@ export class NodeCache {
 		if (!isPathSafeSlug(slug)) throw new ValidationError("Invalid slug");
 		try {
 			const raw = await readFile(this.pathFor(slug), "utf8");
-			const obj = JSON.parse(raw) as unknown;
+			const parsedJson = JSON.parse(raw) as unknown;
+			const { value: obj, fields: discardedFields } = discardInvalidTranslation(parsedJson);
+			if (discardedFields.length > 0 && !warnedInvalidTranslation.has(slug)) {
+				warnedInvalidTranslation.add(slug);
+				log.warn("cached node has an invalid l10n block; discarding it on read", {
+					slug,
+					fields: discardedFields,
+				});
+			}
 			const canonical = nodePayloadSchema.safeParse(obj);
 			if (canonical.success) return canonical.data as NodePayload;
 			// TRA-501: reading is tolerant of a slug that is merely non-canonical (a node written by a
