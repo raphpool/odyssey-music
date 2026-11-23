@@ -4,8 +4,11 @@ import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { NodeCache } from "../../src/cache.js";
 import type { GenreRedirects } from "../../src/genre-registry.js";
+import { buildGraphFromCache, toVizNode } from "../../src/graph.js";
+import { createMobileCatalog } from "../../src/mobile/catalog.js";
 import { createMobileNodeReader, MobileNodeInputError, safePublicHttpsUrl } from "../../src/mobile/nodes.js";
-import type { ArtistNode, GenreNode, Slug } from "../../src/types.js";
+import { translationSourceHash, translationSourceOf } from "../../src/translation/source.js";
+import type { ArtistNode, GenreNode, NodePayload, NodeTranslation, Slug } from "../../src/types.js";
 
 function genreNode(overrides: Partial<GenreNode> & { slug: Slug; name: string }): GenreNode {
 	return {
@@ -47,6 +50,21 @@ function artistNode(overrides: Partial<ArtistNode> & { slug: Slug; name: string 
 		members: [],
 		similar_artists: [],
 		...overrides,
+	};
+}
+
+const FRENCH_ARTICLE =
+	"Un long article en français sur ce genre, bien au-delà du plancher de quatre-vingts signes. ";
+
+// A French block whose fingerprint matches the English text of `node` today, as the translation pipeline stores it.
+function frenchBlock(node: NodePayload, facts?: Record<string, string>): NodeTranslation {
+	return {
+		teaser: "Une courte définition.",
+		article: FRENCH_ARTICLE,
+		...(facts ? { facts } : {}),
+		source_sha256: translationSourceHash(translationSourceOf(node)),
+		model: "gemini-flash-lite",
+		translated_at: "2026-11-20T10:00:00.000Z",
 	};
 }
 
@@ -207,6 +225,135 @@ describe("mobile node reader", () => {
 		expect(result?.node.citations).toEqual([
 			{ url: "https://public.example.com/source", title: "Public source" },
 		]);
+	});
+
+	describe("l10n.fr (TRA-810)", () => {
+		async function readGenre(
+			overrides: Partial<GenreNode>,
+			l10n?: (node: GenreNode) => NodeTranslation,
+		): Promise<Awaited<ReturnType<ReturnType<typeof createMobileNodeReader>["read"]>>> {
+			const node = genreNode({ slug: "genre:electronic", name: "Electronic", ...overrides });
+			await cache.write(l10n ? { ...node, l10n: { fr: l10n(node) } } : node);
+			return createMobileNodeReader({ cache, redirects: new Map() }).read("genre:electronic");
+		}
+
+		it("serves the current French block next to the English text, which stays at the top level", async () => {
+			const result = await readGenre({}, (node) => frenchBlock(node));
+
+			expect(result?.node.l10n).toEqual({
+				fr: { teaser: "Une courte définition.", article: FRENCH_ARTICLE },
+			});
+			expect(result?.node.teaser).toBe("A short definition.");
+			expect(result?.node.article).toMatch(/^A real long article/);
+		});
+
+		it("serves a node without a block with no l10n key and the unchanged response", async () => {
+			const result = await readGenre({ sonic_markers: "Drum machines" });
+
+			expect(result ? "l10n" in result.node : true).toBe(false);
+			expect(result?.node.facts).toEqual({ sonic_markers: "Drum machines" });
+		});
+
+		it("serves no l10n when the English article changed since the translation", async () => {
+			const original = genreNode({ slug: "genre:electronic", name: "Electronic" });
+			const stale = frenchBlock(original);
+
+			const result = await readGenre(
+				{ editorial_article: `${original.editorial_article} Revised.` },
+				() => stale,
+			);
+
+			expect(result ? "l10n" in result.node : true).toBe(false);
+		});
+
+		it("never serves source_sha256, model or translated_at", async () => {
+			const result = await readGenre({ origin: "Detroit" }, (node) =>
+				frenchBlock(node, { origin: "Détroit" }),
+			);
+
+			expect(Object.keys(result?.node.l10n ?? {})).toEqual(["fr"]);
+			expect(Object.keys(result?.node.l10n?.fr ?? {}).sort()).toEqual(["article", "facts", "teaser"]);
+			expect(result?.node.l10n?.fr?.facts).toEqual({ origin: "Détroit" });
+		});
+
+		it("serves only translatable fact keys that also exist in the English facts", async () => {
+			const result = await readGenre({ era: "1980s", origin: "Detroit" }, (node) =>
+				frenchBlock(node, {
+					origin: "Détroit",
+					// translatable for a genre, but the English sheet has no sonic_markers
+					sonic_markers: "Machines à rythmes",
+					// not translatable for a genre
+					qid: "Q9778",
+				}),
+			);
+
+			expect(result?.node.l10n?.fr?.facts).toEqual({ origin: "Détroit" });
+			expect(result?.node.facts).toEqual({ era: "1980s", origin: "Detroit" });
+		});
+
+		it("omits facts when no translated key survives", async () => {
+			const result = await readGenre({ era: "1980s" }, (node) =>
+				frenchBlock(node, { sonic_markers: "Machines" }),
+			);
+
+			expect(result?.node.l10n?.fr).toBeDefined();
+			expect(result?.node.l10n?.fr ? "facts" in result.node.l10n.fr : true).toBe(false);
+		});
+
+		it("keeps redirected_from and l10n.fr when the node is read through a redirect", async () => {
+			const node = genreNode({ slug: "genre:electronic", name: "Electronic" });
+			await cache.write({ ...node, l10n: { fr: frenchBlock(node) } });
+			const redirects: GenreRedirects = new Map([
+				["genre:electronic-music" as Slug, "genre:electronic" as Slug],
+			]);
+
+			const result = await createMobileNodeReader({ cache, redirects }).read("genre:electronic-music");
+
+			expect(result?.redirected_from).toBe("genre:electronic-music");
+			expect(result?.node.l10n?.fr?.article).toBe(FRENCH_ARTICLE);
+		});
+
+		it("filters facts by the type of the node, not only for genres", async () => {
+			const artist = artistNode({ slug: "artist:juan-atkins", name: "Juan Atkins", origin: "Detroit" });
+			await cache.write({
+				...artist,
+				l10n: {
+					fr: frenchBlock(artist, {
+						origin: "Détroit",
+						// translatable for an artist, but absent from the English sheet
+						active_years: "depuis 1980",
+						// translatable for a genre only
+						era: "années 1980",
+					}),
+				},
+			});
+
+			const result = await createMobileNodeReader({ cache, redirects: new Map() }).read("artist:juan-atkins");
+
+			expect(result?.node.l10n?.fr?.facts).toEqual({ origin: "Détroit" });
+		});
+
+		// The catalog is built from the real cache graph: a stored French block must reach neither its nodes nor
+		// its revision, or every translation written would force clients to download the catalog again.
+		it("leaves the catalog revision unchanged by a French block", async () => {
+			const plain = genreNode({ slug: "genre:electronic", name: "Electronic" });
+			const translatedDirectory = await mkdtemp(join(tmpdir(), "odyssey-mobile-nodes-fr-"));
+			try {
+				await cache.write(plain);
+				await new NodeCache(translatedDirectory).write({ ...plain, l10n: { fr: frenchBlock(plain) } });
+				const revisionOf = async (dir: string): Promise<string> =>
+					(
+						await createMobileCatalog({
+							getGraph: () => buildGraphFromCache(dir, { taxonomy: "degrade" }),
+						}).getCatalog()
+					).revision;
+
+				expect(await revisionOf(translatedDirectory)).toBe(await revisionOf(directory));
+				expect("l10n" in toVizNode({ ...plain, l10n: { fr: frenchBlock(plain) } })).toBe(false);
+			} finally {
+				await rm(translatedDirectory, { recursive: true, force: true });
+			}
+		});
 	});
 
 	it("returns null for an absent valid slug and rejects unsafe slugs before cache reads", async () => {

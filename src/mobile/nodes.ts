@@ -2,7 +2,10 @@ import type { NodeCache } from "../cache.js";
 import { isNotFoundError } from "../errors.js";
 import { type GenreRedirects, resolveReadSlug } from "../genre-registry.js";
 import { toVizNode, type VizNode } from "../graph.js";
-import type { Citation, Slug } from "../types.js";
+import { TRANSLATABLE_FACT_FIELDS } from "../node-spec.js";
+import { currentTranslation } from "../translation/source.js";
+import type { Citation, NodePayload, Slug } from "../types.js";
+import type { MobileNodeL10n } from "./contracts.js";
 
 const MOBILE_SLUG_PATTERN =
 	/^(artist|project|track|genre|label):[a-z0-9]+(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$/;
@@ -14,8 +17,12 @@ export class MobileNodeInputError extends Error {
 	}
 }
 
+// The English projection, plus an additive French block when one is current. Top-level teaser, article and
+// facts stay English: the client picks the language (TRA-810).
+export type MobileNode = VizNode & { l10n?: MobileNodeL10n };
+
 export interface MobileNodeResult {
-	node: VizNode;
+	node: MobileNode;
 	source: "cache";
 	redirected_from?: Slug;
 }
@@ -43,11 +50,34 @@ export function createMobileNodeReader(dependencies: MobileNodeDependencies): Mo
 			});
 			if (!node) return null;
 			const vizNode = toVizNode(node);
+			const english = sanitizeNodeImage({ ...vizNode, citations: sanitizeCitations(vizNode.citations) });
+			const l10n = projectL10n(node, english.facts);
 			return {
-				node: sanitizeNodeImage({ ...vizNode, citations: sanitizeCitations(vizNode.citations) }),
+				node: l10n ? { ...english, l10n } : english,
 				source: "cache",
 				...(lookupSlug === slug ? {} : { redirected_from: slug }),
 			};
+		},
+	};
+}
+
+// The block is read from the NodePayload, not from VizNode: the projection shared with the web graph stays
+// English-only. It is served only while it matches today's English text (currentTranslation); a stale block is
+// absent rather than shown over a changed article.
+function projectL10n(node: NodePayload, englishFacts: Record<string, string>): MobileNodeL10n | undefined {
+	const translation = currentTranslation(node, "fr");
+	if (!translation) return undefined;
+	const facts: Record<string, string> = {};
+	for (const field of TRANSLATABLE_FACT_FIELDS[node.type]) {
+		const value = translation.facts?.[field];
+		// A translated fact with no English counterpart would show text the sheet does not otherwise have.
+		if (value !== undefined && Object.hasOwn(englishFacts, field)) facts[field] = value;
+	}
+	return {
+		fr: {
+			teaser: translation.teaser,
+			article: translation.article,
+			...(Object.keys(facts).length > 0 ? { facts } : {}),
 		},
 	};
 }
