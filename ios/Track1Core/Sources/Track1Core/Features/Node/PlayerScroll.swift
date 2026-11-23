@@ -61,4 +61,62 @@ public enum PlayerScroll {
 		}
 		return isReadingLongItem ? proposed : target.midY - viewportHeight / 2
 	}
+
+	// MARK: carousel (TRA-801)
+
+	/// A gesture that travels less than this share of the current paragraph's height settles back on it.
+	public static let carouselThresholdRatio = 1.0 / 3
+
+	/// Floor of that threshold, in points: a third of a one-line paragraph is a few points, which a resting
+	/// finger covers without meaning to scroll.
+	public static let carouselMinimumThreshold = 20.0
+
+	/// The paragraph a carousel gesture settles on. `displacement` is how far the content was proposed to move
+	/// from where the gesture began, positive towards the end of the content (a swipe up). Past the threshold
+	/// the result is the next paragraph, or the previous one when negative, however long the displacement and
+	/// whatever the speed behind it: a swipe is one step. Under the threshold, or without a usable
+	/// displacement, it is `current`. The first and the last paragraph are the ends, never passed.
+	public static func carouselIndex(
+		from current: Int, displacement: Double, currentHeight: Double, count: Int
+	) -> Int {
+		guard count > 0 else { return current }
+		let last = count - 1
+		let from = min(max(current, 0), last)
+		let threshold = max(currentHeight * carouselThresholdRatio, carouselMinimumThreshold)
+		// A NaN displacement fails this comparison and stays on the current paragraph.
+		guard abs(displacement) >= threshold else { return from }
+		return displacement > 0 ? min(from + 1, last) : max(from - 1, 0)
+	}
+
+	/// The offset where a carousel gesture should stop: the one that puts the middle of the paragraph chosen by
+	/// `carouselIndex` on the window centre. `origin` is the offset where the gesture began, which tells the
+	/// paragraph the reader was on, and `proposed` where the scroll view would have stopped. As in `snapOffset`
+	/// the result may be negative or run past the end of the content, and the view clamps it.
+	///
+	/// A gesture that begins inside a long paragraph (see `longItemRatio`) is not a step: it is read freely, as
+	/// `snapOffset` does, or that paragraph could only be crossed in one jump. It still goes no further than
+	/// where the paragraph before or after the long one is centred, so that a flick is never more than a step.
+	public static func carouselOffset(
+		origin: Double, proposed: Double, viewportHeight: Double, frames: [PlayerItemFrame]
+	) -> Double {
+		guard let current = focusedIndex(offset: origin, viewportHeight: viewportHeight, frames: frames) else {
+			return proposed
+		}
+		let center = origin + viewportHeight / 2
+		let longHeight = viewportHeight * longItemRatio
+		let longIndex = frames.firstIndex { frame in
+			frame.height > longHeight && frame.minY <= center && center <= frame.maxY
+		}
+		if let longIndex {
+			let free = snapOffset(proposed: proposed, viewportHeight: viewportHeight, frames: frames)
+			// No bound on the side of a long paragraph that is the first or the last one.
+			let lower = longIndex > 0 ? frames[longIndex - 1].midY - viewportHeight / 2 : -Double.infinity
+			let upper = longIndex < frames.count - 1 ? frames[longIndex + 1].midY - viewportHeight / 2 : .infinity
+			return min(max(free, lower), upper)
+		}
+		let step = proposed - origin
+		let height = frames[current].height
+		let target = carouselIndex(from: current, displacement: step, currentHeight: height, count: frames.count)
+		return frames[target].midY - viewportHeight / 2
+	}
 }

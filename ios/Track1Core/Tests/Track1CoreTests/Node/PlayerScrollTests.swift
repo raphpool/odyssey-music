@@ -153,4 +153,132 @@ final class PlayerScrollTests: XCTestCase {
 		XCTAssertEqual(PlayerScroll.snapOffset(proposed: 50, viewportHeight: 1000, frames: regular), -100)
 		XCTAssertEqual(PlayerScroll.snapOffset(proposed: 50, viewportHeight: 1000, frames: long), 50)
 	}
+
+	// MARK: carousel (TRA-801)
+
+	private func step(from current: Int, _ displacement: Double, height: Double = 170, count: Int = 3) -> Int {
+		PlayerScroll.carouselIndex(from: current, displacement: displacement, currentHeight: height, count: count)
+	}
+
+	/// Where a gesture that began at `origin` settles when the scroll view proposed `origin + travelled`.
+	private func settle(
+		_ origin: Double, travelling travelled: Double, in frames: [PlayerItemFrame]? = nil
+	) -> Double {
+		PlayerScroll.carouselOffset(
+			origin: origin, proposed: origin + travelled, viewportHeight: viewport, frames: frames ?? figmaFrames)
+	}
+
+	func testASwipeIsOneStepWhateverItsLengthAndItsDirection() {
+		// 170 high: the threshold is 56.67. Past it the answer is the next paragraph, or the previous one.
+		for displacement in [57.0, 120, 600, 5_000, 1_000_000] {
+			XCTAssertEqual(step(from: 0, displacement), 1, "displacement \(displacement)")
+			XCTAssertEqual(step(from: 2, -displacement), 1, "displacement \(-displacement)")
+		}
+	}
+
+	func testAShortGestureComesBackToTheCurrentParagraph() {
+		for displacement in [56.0, 20, 1, 0, -1, -20, -56, Double.nan] {
+			XCTAssertEqual(step(from: 1, displacement), 1, "displacement \(displacement)")
+		}
+	}
+
+	func testTheThresholdIsAThirdOfTheCurrentHeightWithAFloorForShortParagraphs() {
+		XCTAssertEqual(PlayerScroll.carouselThresholdRatio, 1.0 / 3)
+		XCTAssertEqual(PlayerScroll.carouselMinimumThreshold, 20)
+		// 170 / 3 = 56.67: just under stays, just over goes.
+		XCTAssertEqual(step(from: 1, 56.6), 1)
+		XCTAssertEqual(step(from: 1, 56.7), 2)
+		// A third of 30 is 10: the floor of 20 applies instead.
+		XCTAssertEqual(step(from: 1, 19.9, height: 30), 1)
+		XCTAssertEqual(step(from: 1, 20, height: 30), 2)
+		XCTAssertEqual(step(from: 1, -20, height: 30), 0)
+	}
+
+	func testTheCarouselStaysOnTheFirstAndTheLastParagraphAtTheEnds() {
+		XCTAssertEqual(step(from: 0, -5_000), 0)
+		XCTAssertEqual(step(from: 2, 5_000), 2)
+		XCTAssertEqual(step(from: 0, 5_000, count: 1), 0)
+	}
+
+	func testTheCarouselOffsetCentresTheNeighbourWhateverTheSpeed() {
+		for travelled in [110.0, 400, 5_000] {
+			XCTAssertEqual(settle(centeredOffset(0), travelling: travelled), centeredOffset(1), "\(travelled)")
+			XCTAssertEqual(settle(centeredOffset(2), travelling: -travelled), centeredOffset(1), "\(travelled)")
+		}
+	}
+
+	func testTheCarouselOffsetGoesBackToTheCurrentParagraphUnderTheThreshold() {
+		for travelled in [-50.0, -10, 0, 10, 50] {
+			XCTAssertEqual(settle(centeredOffset(1), travelling: travelled), centeredOffset(1), "\(travelled)")
+		}
+	}
+
+	func testTheCarouselOffsetStartsFromTheParagraphNearestToWhereTheGestureBegan() {
+		// 30 points off the middle of the second paragraph, which is still the nearest to the window centre.
+		let origin = centeredOffset(1) + 30
+		XCTAssertEqual(settle(origin, travelling: 300), centeredOffset(2))
+		XCTAssertEqual(settle(origin, travelling: -300), centeredOffset(0))
+	}
+
+	func testTheCarouselOffsetStopsAtTheFirstAndTheLastParagraph() {
+		XCTAssertEqual(settle(centeredOffset(0), travelling: -900), centeredOffset(0))
+		XCTAssertEqual(settle(centeredOffset(2), travelling: 900), centeredOffset(2))
+		XCTAssertEqual(settle(0, travelling: 120, in: []), 120, "Without frames the proposed offset is kept.")
+	}
+
+	func testTheCarouselOffsetAlwaysPutsAParagraphAtTheCentre() {
+		for origin in [-337.0, -200, -77, 100, 251] {
+			for travelled in stride(from: -900.0, through: 900, by: 45) {
+				let settled = settle(origin, travelling: travelled)
+				let index = PlayerScroll.focusedIndex(offset: settled, viewportHeight: viewport, frames: figmaFrames)
+				XCTAssertEqual(settled, index.map(centeredOffset), "origin \(origin), travelled \(travelled)")
+			}
+		}
+	}
+
+	/// The TRA-795 article: six sentences. Each swipe moves the focus by one, to the last and then back.
+	func testSwipingAcrossAnArticleMovesOneParagraphAtATime() throws {
+		let window = 774.0
+		let heights = [34.0, 68, 102, 68, 34, 68]
+		var minY = window / 2 - heights[0] / 2
+		var built: [PlayerItemFrame] = []
+		for height in heights {
+			built.append(PlayerItemFrame(minY: minY, height: height))
+			minY += height + 56
+		}
+		let frames = built
+		var offset = 0.0
+		func swipe(_ travelled: Double) throws -> Int {
+			offset = PlayerScroll.carouselOffset(
+				origin: offset, proposed: offset + travelled, viewportHeight: window, frames: frames)
+			return try XCTUnwrap(PlayerScroll.focusedIndex(offset: offset, viewportHeight: window, frames: frames))
+		}
+
+		let forward = try (0..<8).map { _ in try swipe(3_000) }
+		XCTAssertEqual(forward, [1, 2, 3, 4, 5, 5, 5, 5], "one step per swipe, then the last paragraph")
+		let backward = try (0..<8).map { _ in try swipe(-3_000) }
+		XCTAssertEqual(backward, [4, 3, 2, 1, 0, 0, 0, 0], "one step per swipe, then the first paragraph")
+	}
+
+	func testALongParagraphIsReadFreelyButAFlickGoesNoFurtherThanTheNextParagraph() {
+		// A 900 high paragraph, then three short ones whose middles are 1041, 1295 and 1549.
+		let frames = [
+			PlayerItemFrame(minY: 0, height: 900), PlayerItemFrame(minY: 956, height: 170),
+			PlayerItemFrame(minY: 1_182, height: 226), PlayerItemFrame(minY: 1_464, height: 170),
+		]
+		// The window centre (522) is inside the long paragraph: a short scroll is kept as proposed.
+		XCTAssertEqual(settle(100, travelling: 200, in: frames), 300)
+		// Proposed 1100 would land on the last paragraph; the next one is centred at 619.
+		XCTAssertEqual(settle(100, travelling: 1_000, in: frames), 619)
+		// Towards the start nothing comes before it: the snap alone settles on its middle.
+		XCTAssertEqual(settle(100, travelling: -2_100, in: frames), 28)
+	}
+
+	func testAGestureThatBeginsOutsideALongParagraphStillStepsOneParagraph() {
+		let frames = [PlayerItemFrame(minY: 0, height: 900), PlayerItemFrame(minY: 956, height: 170)]
+		// The centre (1022) is on the short paragraph: a swipe up has nowhere further to go.
+		XCTAssertEqual(settle(600, travelling: 100, in: frames), 619)
+		// A swipe down goes to the middle of the long paragraph (450), where it can be read.
+		XCTAssertEqual(settle(600, travelling: -200, in: frames), 28)
+	}
 }
