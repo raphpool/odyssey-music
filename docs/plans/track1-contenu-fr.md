@@ -275,49 +275,49 @@ et n'entrent pas dans ce total. Le tier est le tier pressenti.
 
 Déployable seule : champ optionnel et fonctions pures. Aucun nœud ne porte encore de français.
 
-- [ ] TRA-? 1.1 [P] Déclarer le bloc `l10n.fr` dans le schéma de nœud — tier/3, 2 pts
-- [ ] TRA-? 1.2 [P] Refuser une traduction mal formée — tier/2, 2 pts
-- [ ] TRA-? 1.3 Refuser une traduction infidèle : noms, titres, années — tier/2, 2 pts (après 1.2)
-- [ ] TRA-? 1.4 Extraire la source d'une traduction, son empreinte et la typographie française — tier/2, 2 pts (après 1.1 et 1.2 ; parallèle à 1.3)
+- [ ] TRA-802 1.1 [P] Déclarer le bloc `l10n.fr` dans le schéma de nœud — tier/3, 2 pts
+- [ ] TRA-803 1.2 [P] Refuser une traduction mal formée — tier/2, 2 pts
+- [ ] TRA-804 1.3 Refuser une traduction infidèle : noms, titres, années — tier/2, 2 pts (après 1.2)
+- [ ] TRA-805 1.4 Extraire la source d'une traduction, son empreinte et la typographie française — tier/2, 2 pts (après 1.1 et 1.2 ; parallèle à 1.3)
 
 ### Partie 2 — Le moteur et le lot : les œuvres du dépôt sont traduites
 
 Déployable seule : le dépôt gagne du français validé ; l'anglais n'est pas touché. Atteint la prod par 5.3.
 
-- [ ] TRA-? 2.1 Traduire un nœud, fournisseur injecté — tier/2, 2 pts (après 1.3 et 1.4)
-- [ ] TRA-? 2.2 Brancher Gemini comme fournisseur de traduction — tier/2, 2 pts (après 2.1)
-- [ ] TRA-? 2.3 Créer l'outil de lot : aperçu, écriture gardée, reprise — tier/2, 3 pts (après 2.2)
-- [ ] TRA-? 2.4 Donner au lot son débit, son arrêt sur quota et son échantillon — tier/2, 2 pts (après 2.3)
-- [ ] TRA-? 2.5 Jouer le pilote sur 30 œuvres et faire valider la qualité — tier/3, 1 pt (après 2.4 ; exige la clé, Q2)
-- [ ] TRA-? 2.6 Traduire les projets et les tracks du dépôt — tier/2, 1 pt (après validation de 2.5)
+- [ ] TRA-806 2.1 Traduire un nœud, fournisseur injecté — tier/2, 2 pts (après 1.3 et 1.4)
+- [ ] TRA-807 2.2 Brancher Gemini comme fournisseur de traduction — tier/2, 2 pts (après 2.1)
+- [ ] TRA-808 2.3 Créer l'outil de lot : aperçu, écriture gardée, reprise — tier/2, 3 pts (après 2.2)
+- [ ] TRA-811 2.4 Donner au lot son débit, son arrêt sur quota et son échantillon — tier/2, 2 pts (après 2.3)
+- [ ] TRA-812 2.5 Jouer le pilote sur 30 œuvres et faire valider la qualité — tier/3, 1 pt (après 2.4 ; exige la clé, Q2)
+- [ ] TRA-813 2.6 Traduire les projets et les tracks du dépôt — tier/2, 1 pt (après validation de 2.5)
 
 ### Partie 3 — Les nouveaux nœuds naissent avec leur français
 
 Déployable seule : étape facultative, inerte sans clé, qui ne coûte jamais un nœud. Sans effet en prod avant
 le déploiement du code.
 
-- [ ] TRA-? 3.1 Brancher la traduction à l'écriture dans le pipeline — tier/2, 3 pts (après 2.2 ; parallèle à 2.3)
+- [ ] TRA-809 3.1 Brancher la traduction à l'écriture dans le pipeline — tier/2, 3 pts (après 2.2 ; parallèle à 2.3)
 
 ### Partie 4 — L'API mobile sert le français, l'app le lit
 
 Déployable seule : champ additif côté serveur ; côté iOS, comportement inchangé tant que le serveur ne
 l'envoie pas.
 
-- [ ] TRA-? 4.1 Servir `l10n.fr` sur `/mobile/v1/nodes/:id` — tier/3, 2 pts (après 1.4 ; parallèle à 2.1)
-- [ ] TRA-? 4.2 [P] Lire `l10n.fr` côté iOS et afficher le français — tier/2, 2 pts (ne dépend pas de 4.1, le contrat est fixé ici)
-- [ ] TRA-? 4.3 [P] Fiabiliser le découpage en phrases pour le français — tier/2, 2 pts
+- [ ] TRA-810 4.1 Servir `l10n.fr` sur `/mobile/v1/nodes/:id` — tier/3, 2 pts (après 1.4 ; parallèle à 2.1)
+- [ ] TRA-814 4.2 [P] Lire `l10n.fr` côté iOS et afficher le français — tier/2, 2 pts (ne dépend pas de 4.1, le contrat est fixé ici)
+- [ ] TRA-815 4.3 [P] Fiabiliser le découpage en phrases pour le français — tier/2, 2 pts
 
 ### Partie 5 — Mise en production (actions de Raphael, bloquées par Q1)
 
-- [ ] TRA-? 5.1 [P] Ramener dans le dépôt les nœuds créés en prod — tier/2, 1 pt (dès que possible ; ne dépend de rien)
-- [ ] TRA-? 5.2 Traduire les œuvres ramenées de la prod — tier/2, 1 pt (après 5.1 et 2.5)
-- [ ] TRA-? 5.3 Déployer le code, puis passer le cache traduit sur la prod — tier/3, 1 pt (après 1.1, 4.1 et 2.6 ; de préférence après 3.1 et 5.2)
+- [ ] TRA-816 5.1 [P] Ramener dans le dépôt les nœuds créés en prod — tier/2, 1 pt (dès que possible ; ne dépend de rien)
+- [ ] TRA-817 5.2 Traduire les œuvres ramenées de la prod — tier/2, 1 pt (après 5.1 et 2.5)
+- [ ] TRA-818 5.3 Déployer le code, puis passer le cache traduit sur la prod — tier/3, 1 pt (après 1.1, 4.1 et 2.6 ; de préférence après 3.1 et 5.2)
 
 ### Partie 6 — Le reste du catalogue
 
 Déployable seule : mêmes outils, autres types. Atteint la prod par un nouveau passage de 5.3.
 
-- [ ] TRA-? 6.1 Traduire les artistes, les genres et les labels — tier/2, 2 pts (après 2.6)
+- [ ] TRA-819 6.1 Traduire les artistes, les genres et les labels — tier/2, 2 pts (après 2.6)
 
 ### Ordre d'attaque
 
@@ -410,7 +410,7 @@ Total : 18 tâches, 33 pts. Voisinage avec le plan pochettes : ses tâches 3.1 e
 
 ## Tickets proposés (format `ticket-template.md`, à créer après validation)
 
-### TRA-? (1.1) — Déclarer le bloc `l10n.fr` dans le schéma de nœud
+### TRA-802 (1.1) — Déclarer le bloc `l10n.fr` dans le schéma de nœud
 
 ```markdown
 ## Contexte
@@ -493,7 +493,7 @@ tier/3 — changement du schéma de nœud.
 - Diff écrit à tenir sous 200 lignes, tests compris.
 ```
 
-### TRA-? (1.2) — Refuser une traduction mal formée
+### TRA-803 (1.2) — Refuser une traduction mal formée
 
 ```markdown
 ## Contexte
@@ -586,7 +586,7 @@ tier/2 — logique métier locale, pure, sans effet de bord.
 - Commentaires et noms en anglais ; pas d'export default.
 ```
 
-### TRA-? (1.3) — Refuser une traduction infidèle : noms, titres, années
+### TRA-804 (1.3) — Refuser une traduction infidèle : noms, titres, années
 
 ```markdown
 ## Contexte
@@ -650,7 +650,7 @@ tier/2 — logique métier locale, pure, sans effet de bord.
   deux motifs servent au second essai du traducteur.
 ```
 
-### TRA-? (1.4) — Extraire la source d'une traduction, son empreinte et la typographie française
+### TRA-805 (1.4) — Extraire la source d'une traduction, son empreinte et la typographie française
 
 ```markdown
 ## Contexte
@@ -729,7 +729,7 @@ tier/2 — fonctions pures, sans effet de bord.
 - `node:crypto` suffit ; aucune dépendance.
 ```
 
-### TRA-? (2.1) — Traduire un nœud, fournisseur injecté
+### TRA-806 (2.1) — Traduire un nœud, fournisseur injecté
 
 ```markdown
 ## Contexte
@@ -830,7 +830,7 @@ tier/2 — nouveau module sans effet de bord.
 - Le prompt est une constante courte, sans exemple long : le diff doit tenir sous 300 lignes.
 ```
 
-### TRA-? (2.2) — Brancher Gemini comme fournisseur de traduction
+### TRA-807 (2.2) — Brancher Gemini comme fournisseur de traduction
 
 ```markdown
 ## Contexte
@@ -892,7 +892,7 @@ tier/2 — adaptateur d'une frontière externe, sans effet de bord irréversible
   suffit, et la clé locale peut être factice.
 ```
 
-### TRA-? (2.3) — Créer l'outil de lot : aperçu, écriture gardée, reprise
+### TRA-808 (2.3) — Créer l'outil de lot : aperçu, écriture gardée, reprise
 
 ```markdown
 ## Contexte
@@ -983,7 +983,7 @@ tier/2 — outil hors `scripts/migrations/`, aperçu par défaut, écritures val
 - `out/` est ignoré par git : le manifeste n'entre pas dans une PR.
 ```
 
-### TRA-? (2.4) — Donner au lot son débit, son arrêt sur quota et son échantillon
+### TRA-811 (2.4) — Donner au lot son débit, son arrêt sur quota et son échantillon
 
 ```markdown
 ## Contexte
@@ -1054,7 +1054,7 @@ tier/2 — outil hors `scripts/migrations/`, logique locale couverte par des tes
 - Pas de dépendance pour la limitation de débit : une file et une horloge suffisent.
 ```
 
-### TRA-? (2.5) — Jouer le pilote sur 30 œuvres et faire valider la qualité
+### TRA-812 (2.5) — Jouer le pilote sur 30 œuvres et faire valider la qualité
 
 ```markdown
 ## Contexte
@@ -1107,7 +1107,7 @@ tier/3 — relecture humaine obligatoire : c'est le seul contrôle de la qualit�
 - Ne pas retoucher un texte français à la main. Pour reprendre un nœud : `--force --slugs <slug>`.
 ```
 
-### TRA-? (2.6) — Traduire les projets et les tracks du dépôt
+### TRA-813 (2.6) — Traduire les projets et les tracks du dépôt
 
 ```markdown
 ## Contexte
@@ -1155,7 +1155,7 @@ tier/2 — contenu généré, validé par l'outil, relu sur échantillon dans le
 - Si `deploy/pull-cache.sh` doit tourner (5.1), le lancer de préférence avant de merger cette PR (R12).
 ```
 
-### TRA-? (3.1) — Brancher la traduction à l'écriture dans le pipeline
+### TRA-809 (3.1) — Brancher la traduction à l'écriture dans le pipeline
 
 ```markdown
 ## Contexte
@@ -1235,7 +1235,7 @@ tier/2 — étape facultative du pipeline, couverte par des tests, sans effet ir
 - Ne modifier `CLAUDE.md` que sur cette ligne.
 ```
 
-### TRA-? (4.1) — Servir `l10n.fr` sur `/mobile/v1/nodes/:id`
+### TRA-810 (4.1) — Servir `l10n.fr` sur `/mobile/v1/nodes/:id`
 
 ```markdown
 ## Contexte
@@ -1314,7 +1314,7 @@ tier/3 — changement d'un contrat d'API public.
 - Diff écrit à tenir sous 200 lignes, tests et doc compris.
 ```
 
-### TRA-? (4.2) — Lire `l10n.fr` côté iOS et afficher le français
+### TRA-814 (4.2) — Lire `l10n.fr` côté iOS et afficher le français
 
 ```markdown
 ## Contexte
@@ -1399,7 +1399,7 @@ tier/2 — logique de décodage locale, couverte par des tests.
 - Se livre par TestFlight sans déploiement serveur.
 ```
 
-### TRA-? (4.3) — Fiabiliser le découpage en phrases pour le français
+### TRA-815 (4.3) — Fiabiliser le découpage en phrases pour le français
 
 ```markdown
 ## Contexte
@@ -1484,7 +1484,7 @@ tier/2 — logique locale pure, couverte par des tests.
 - Se livre par TestFlight sans déploiement serveur ; améliore aussi les articles anglais.
 ```
 
-### TRA-? (5.1) — Ramener dans le dépôt les nœuds créés en prod
+### TRA-816 (5.1) — Ramener dans le dépôt les nœuds créés en prod
 
 ```markdown
 ## Contexte
@@ -1534,7 +1534,7 @@ tier/2 — lecture seule en prod, ajout de nœuds déjà validés par le script.
   celui-ci : ne pas relever un plafond ici.
 ```
 
-### TRA-? (5.2) — Traduire les œuvres ramenées de la prod
+### TRA-817 (5.2) — Traduire les œuvres ramenées de la prod
 
 ```markdown
 ## Contexte
@@ -1577,7 +1577,7 @@ tier/2 — contenu généré, validé par l'outil, relu sur échantillon.
 - Ne pas retoucher un texte à la main : `--force --slugs <slug>`.
 ```
 
-### TRA-? (5.3) — Déployer le code, puis passer le cache traduit sur la prod
+### TRA-818 (5.3) — Déployer le code, puis passer le cache traduit sur la prod
 
 ```markdown
 ## Contexte
@@ -1637,7 +1637,7 @@ tier/3 — écriture en production.
   sur l'anglais dès que le bloc manque.
 ```
 
-### TRA-? (6.1) — Traduire les artistes, les genres et les labels
+### TRA-819 (6.1) — Traduire les artistes, les genres et les labels
 
 ```markdown
 ## Contexte
