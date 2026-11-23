@@ -193,6 +193,19 @@ public struct NodeResponse: Decodable, Sendable {
 		guard source == "cache" else { throw APIModelError.invalidValue }
 	}
 }
+/// The language the text of a node page (`teaser`, `article` and `facts`) is written in.
+public enum ContentLanguage: String, Sendable {
+	case en, fr
+}
+
+extension CodingUserInfoKey {
+	/// Replaces `Locale.preferredLanguages` while a `NodeDetail` is decoded. Tests set it to pin the device
+	/// language; the app leaves it unset, so `APIClient` needs no language parameter (TRA-814, 2026-11-23).
+	public static var preferredLanguages: CodingUserInfoKey {
+		CodingUserInfoKey(rawValue: "track1.preferred-languages")!
+	}
+}
+
 public struct NodeDetail: Decodable, Sendable {
 	public let id: NodeIdentity
 	public let type: NodeType
@@ -207,8 +220,10 @@ public struct NodeDetail: Decodable, Sendable {
 	/// How the server obtained `imageURL` (for example a cover derived from a release). Never shown as text
 	/// (rule 9); the hero reads it to pick its `HeroImageStyle`.
 	public let imageSource: String?
+	/// Language of `teaser`, `article` and `facts` as decoded.
+	public let contentLanguage: ContentLanguage
 	enum CodingKeys: String, CodingKey {
-		case id, type, name, teaser, article, citations, facts, edges
+		case id, type, name, teaser, article, citations, facts, edges, l10n
 		case materializedAt = "materialized_at"
 		case imageURL = "image_url"
 		case imageSource = "image_source"
@@ -218,15 +233,71 @@ public struct NodeDetail: Decodable, Sendable {
 		id = try v.decode(NodeIdentity.self, forKey: .id)
 		type = try v.decode(NodeType.self, forKey: .type)
 		name = try v.decode(String.self, forKey: .name)
-		teaser = try v.decodeRequiredNullable(String.self, forKey: .teaser)
-		article = try v.decode(String.self, forKey: .article)
+		let englishTeaser = try v.decodeRequiredNullable(String.self, forKey: .teaser)
+		let englishArticle = try v.decode(String.self, forKey: .article)
+		var mergedFacts = try v.decode([String: String].self, forKey: .facts)
+		// The French block replaces the English text as a whole or not at all: a device that is not French, or
+		// a block that is missing, malformed or incomplete, leaves the page in English, never half and half.
+		let french = Self.deviceLanguage(of: decoder) == .fr ? Self.frenchContent(in: v) : nil
+		for (key, value) in french?.facts ?? [:] where mergedFacts[key] != nil {
+			// A blank French value would erase a real English one and drop the fact from the header.
+			if !value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { mergedFacts[key] = value }
+		}
+		teaser = french?.teaser ?? englishTeaser
+		article = french?.article ?? englishArticle
+		facts = mergedFacts
+		contentLanguage = french != nil ? .fr : .en
 		citations = try v.decode([Citation].self, forKey: .citations)
-		facts = try v.decode([String: String].self, forKey: .facts)
 		edges = try v.decode([String: NodeEdgeValue].self, forKey: .edges)
 		materializedAt = try v.decode(Date.self, forKey: .materializedAt)
 		imageURL = try v.decodeIfPresent(ValidatedPublicURL.self, forKey: .imageURL)?.value
 		imageSource = try v.decodeIfPresent(String.self, forKey: .imageSource)
 		guard id.type == type, !name.isEmpty else { throw APIModelError.invalidValue }
+	}
+
+	/// The language the content is shown in: French when the first preferred language is French, English
+	/// otherwise. The only place that decides it, so the readers of `teaser` and `article` stay unchanged.
+	public static func preferredContentLanguage(preferredLanguages: [String]) -> ContentLanguage {
+		guard let first = preferredLanguages.first?.lowercased() else { return .en }
+		return first == "fr" || first.hasPrefix("fr-") || first.hasPrefix("fr_") ? .fr : .en
+	}
+
+	/// The only read of the device's languages; `CodingUserInfoKey.preferredLanguages` overrides it in tests.
+	private static func deviceLanguage(of decoder: Decoder) -> ContentLanguage {
+		let languages = decoder.userInfo[.preferredLanguages] as? [String] ?? Locale.preferredLanguages
+		return preferredContentLanguage(preferredLanguages: languages)
+	}
+
+	private static func frenchContent(in v: KeyedDecodingContainer<CodingKeys>) -> FrenchContent? {
+		let block = (try? v.decodeIfPresent(LocalizedContent.self, forKey: .l10n)) ?? nil
+		return block?.fr
+	}
+}
+/// The `l10n.fr` block of a node. Decoding throws unless `teaser` and `article` are filled, so an incomplete
+/// block is read as absent (2026-11-23: a French teaser over an English article must never reach the reader).
+private struct FrenchContent: Decodable {
+	let teaser: String
+	let article: String
+	let facts: [String: String]
+	enum CodingKeys: String, CodingKey { case teaser, article, facts }
+	init(from decoder: Decoder) throws {
+		let v = try decoder.container(keyedBy: CodingKeys.self)
+		teaser = try v.decode(String.self, forKey: .teaser)
+		article = try v.decode(String.self, forKey: .article)
+		facts = try v.decodeIfPresent([String: String].self, forKey: .facts) ?? [:]
+		let blank = CharacterSet.whitespacesAndNewlines
+		if teaser.trimmingCharacters(in: blank).isEmpty { throw APIModelError.invalidValue }
+		if article.trimmingCharacters(in: blank).isEmpty { throw APIModelError.invalidValue }
+	}
+}
+/// The additive `l10n` object of a node. Only `fr` is read: the app never shows another language.
+private struct LocalizedContent: Decodable {
+	let fr: FrenchContent?
+	enum CodingKeys: String, CodingKey { case fr }
+	init(from decoder: Decoder) throws {
+		let v = try decoder.container(keyedBy: CodingKeys.self)
+		// Additive, optional field: a malformed value is read as absent instead of failing the whole node page.
+		fr = (try? v.decodeIfPresent(FrenchContent.self, forKey: .fr)) ?? nil
 	}
 }
 public struct Citation: Decodable, Sendable {

@@ -130,6 +130,25 @@ final class PlayerViewTests: XCTestCase {
 		XCTAssertEqual(PlayerView.paragraphs(for: try node(article: "", teaser: nil)), [PlayerView.emptyMessage])
 	}
 
+	func testAFrenchNodeIsReadFromItsFrenchArticle() throws {
+		let french = "La première phrase est assez longue pour tenir seule. La seconde phrase est aussi longue."
+		let source = """
+			{"id":"project:sample","type":"project","name":"Sample","teaser":"English teaser.",\
+			"article":"\(Self.article)","citations":[],"facts":{},"edges":{},\
+			"materialized_at":"2026-10-08T00:00:00Z","image_url":null,\
+			"l10n":{"fr":{"teaser":"Un teaser.","article":"\(french)"}}}
+			"""
+		let decoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .iso8601
+		decoder.userInfo[.preferredLanguages] = ["fr-FR"]
+
+		let node = try decoder.decode(NodeDetail.self, from: Data(source.utf8))
+
+		XCTAssertEqual(node.contentLanguage, .fr)
+		XCTAssertEqual(PlayerView.paragraphs(for: node), ArticleSentences.split(french))
+		XCTAssertNotEqual(PlayerView.paragraphs(for: node), ArticleSentences.split(Self.article))
+	}
+
 	// MARK: - Focus and scroll
 
 	func testTheFocusedParagraphIsTheOneThatHoldsTheReadingCenter() {
