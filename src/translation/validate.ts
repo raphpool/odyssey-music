@@ -2,8 +2,7 @@ import type { NodeType } from "../node-spec.js";
 
 // Form judge for model-produced translations (TRA-803). The model output is untrusted data, so every
 // check here is a cheap, deterministic structural test: no network, no model, no cache access.
-// Rules here: emptiness, length, paragraphs, language. Surface rules (markup, escapes, URLs, fact keys)
-// come with TRA-820; fidelity rules (proper nouns, titles, years) belong to TRA-1.3; their codes are declared below so
+// Fidelity rules (proper nouns, titles, years) belong to TRA-1.3; their codes are declared below so
 // that ticket does not have to change an exported type.
 
 export interface TranslationSource {
@@ -63,6 +62,9 @@ const FACT_RATIO_SLACK = 20;
 const TEASER_MIN_WORDS_FOR_LANGUAGE_CHECK = 12;
 const MIN_FRENCH_SHARE = 0.1;
 const MAX_ENGLISH_SHARE = 0.08;
+/** Hard cap so an issue never echoes a whole (possibly huge, possibly hostile) text back. */
+const MAX_DETAIL_LENGTH = 120;
+const EXCERPT_RADIUS = 30;
 
 const FRENCH_STOPWORDS: ReadonlySet<string> = new Set(
 	"le la les des du de un une et est dans en que qui pour avec sur par au aux".split(" "),
@@ -71,6 +73,8 @@ const ENGLISH_STOPWORDS: ReadonlySet<string> = new Set("the and of with is was b
 
 const QUOTED_PASSAGE = /"[^"]*"|“[^”]*”|«[^»]*»/g;
 const WORD = /\p{L}+/gu;
+const URL_PATTERN = /https?:\/\/[^\s<>()[\]"'«»“”]+/gi;
+const TRAILING_PUNCTUATION = /[.,;:!?]+$/;
 const BLANK_LINE_SEPARATOR = /\n(?:[^\S\n]*\n)+/;
 
 /** Empty array = accepted. Pure and deterministic. */
@@ -79,10 +83,22 @@ export function validateTranslation(
 	candidate: TranslationCandidate,
 ): TranslationIssue[] {
 	const issues: TranslationIssue[] = [];
-	checkProse("teaser", source.teaser, candidate.teaser, issues);
-	checkProse("article", source.article, candidate.article, issues);
-	checkFacts(source.facts, candidate.facts ?? {}, issues);
+	// The candidate comes straight from a model: the types say strings, the runtime may disagree.
+	// Treat anything else as absent rather than throwing (typed results at the boundary).
+	checkProse("teaser", source.teaser, asText(candidate.teaser), issues);
+	checkProse("article", source.article, asText(candidate.article), issues);
+	checkFacts(source.facts, asRecord(candidate.facts), issues);
 	return issues;
+}
+
+function asText(value: unknown): string {
+	return typeof value === "string" ? value : "";
+}
+
+function asRecord(value: unknown): Record<string, unknown> {
+	return typeof value === "object" && value !== null && !Array.isArray(value)
+		? (value as Record<string, unknown>)
+		: {};
 }
 
 function checkProse(
@@ -114,25 +130,39 @@ function checkProse(
 		}
 	}
 
+	checkSurface(field, original, text, issues);
 	checkLanguage(field, text, issues);
 }
 
-/** Key and value rules for facts come with TRA-820; here only the length bound of rule 2 applies. */
 function checkFacts(
 	sourceFacts: Record<string, string>,
-	candidateFacts: Record<string, string>,
+	candidateFacts: Record<string, unknown>,
 	issues: TranslationIssue[],
 ): void {
-	for (const [key, rawValue] of Object.entries(candidateFacts)) {
-		if (!Object.hasOwn(sourceFacts, key)) continue;
-		const value = rawValue.trim();
+	for (const key of Object.keys(sourceFacts)) {
+		const field = `facts.${key}`;
+		if (!Object.hasOwn(candidateFacts, key)) {
+			issues.push({ code: "fact_keys", field, detail: "missing from candidate" });
+			continue;
+		}
+		const value = asText(candidateFacts[key]).trim();
+		if (value === "") {
+			issues.push({ code: "fact_keys", field, detail: "empty or non-string value" });
+			continue;
+		}
 		const original = (sourceFacts[key] ?? "").trim();
 		if (value.length > FACT_RATIO_FACTOR * original.length + FACT_RATIO_SLACK) {
 			issues.push({
 				code: "length_ratio",
-				field: `facts.${key}`,
+				field,
 				detail: `${value.length} chars for a ${original.length}-char source`,
 			});
+		}
+		checkSurface(field, original, value, issues);
+	}
+	for (const key of Object.keys(candidateFacts)) {
+		if (!Object.hasOwn(sourceFacts, key)) {
+			issues.push({ code: "fact_keys", field: `facts.${clip(key)}`, detail: "not in source" });
 		}
 	}
 }
@@ -149,6 +179,54 @@ function checkLengthRatio(
 	if (ratio < bounds.min || ratio > bounds.max) {
 		issues.push({ code: "length_ratio", field, detail: `ratio ${ratio.toFixed(2)}` });
 	}
+}
+
+/** Markup, literal escapes and added URLs: shared by prose fields and facts. */
+function checkSurface(field: string, original: string, text: string, issues: TranslationIssue[]): void {
+	const markup = findMarkup(original, text);
+	if (markup)
+		issues.push({ code: "markup", field, detail: excerptAround(text, markup.index, markup.length) });
+
+	const escapeIndex = findEscapeLeftover(text);
+	if (escapeIndex >= 0) {
+		issues.push({ code: "escape_leftover", field, detail: excerptAround(text, escapeIndex, 2) });
+	}
+
+	const sourceUrls = new Set(extractUrls(original));
+	const added = extractUrls(text).find((url) => !sourceUrls.has(url));
+	if (added !== undefined) issues.push({ code: "url_added", field, detail: clip(added) });
+}
+
+function findMarkup(original: string, text: string): { index: number; length: number } | undefined {
+	// Every marker is only suspicious when the source did not carry it itself: a faithful translation of
+	// "#1 in the UK" keeps its leading "#" and must not be refused.
+	if (!original.includes("```")) {
+		const fence = text.indexOf("```");
+		if (fence >= 0) return { index: fence, length: 3 };
+	}
+	if (!/^#/m.test(original)) {
+		const heading = /^#/m.exec(text);
+		if (heading) return { index: heading.index, length: 1 };
+	}
+	for (const marker of ["**", "__"]) {
+		if (original.includes(marker)) continue;
+		const index = text.indexOf(marker);
+		if (index >= 0) return { index, length: 2 };
+	}
+	return undefined;
+}
+
+/** A model that double-escapes its JSON leaves a literal backslash-n or backslash-quote behind. */
+function findEscapeLeftover(text: string): number {
+	const newline = text.indexOf("\\n");
+	const quote = text.indexOf('\\"');
+	if (newline < 0) return quote;
+	if (quote < 0) return newline;
+	return Math.min(newline, quote);
+}
+
+function extractUrls(text: string): string[] {
+	return (text.match(URL_PATTERN) ?? []).map((url) => url.replace(TRAILING_PUNCTUATION, ""));
 }
 
 function checkLanguage(field: ProseField, text: string, issues: TranslationIssue[]): void {
@@ -179,4 +257,14 @@ function normalizeNewlines(text: string): string {
 
 function percent(share: number): string {
 	return `${Math.round(share * 100)}%`;
+}
+
+function clip(text: string): string {
+	const flat = text.replace(/\s+/g, " ").trim();
+	return flat.length <= MAX_DETAIL_LENGTH ? flat : `${flat.slice(0, MAX_DETAIL_LENGTH - 1)}…`;
+}
+
+function excerptAround(text: string, index: number, length: number): string {
+	const start = Math.max(0, index - EXCERPT_RADIUS);
+	return clip(text.slice(start, index + length + EXCERPT_RADIUS));
 }
