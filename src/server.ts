@@ -58,7 +58,7 @@ import { type CatalogIndex, createMusicBrainzCatalog } from "./musicbrainz.js";
 import { createGraphService } from "./services/graph-service.js";
 import { createImageService, type DisplayImage } from "./services/image-service.js";
 import { createMaterializeService, type MaterializeRequest } from "./services/materialize-service.js";
-import { createNodeService } from "./services/node-service.js";
+import { createNodeService, withoutL10n } from "./services/node-service.js";
 import { createSearchService } from "./services/search-service.js";
 import { makeSimilarArtistsResolver } from "./similar-artists-wiring.js";
 import { isReadableSlug } from "./slug.js";
@@ -308,7 +308,7 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 		} catch (e) {
 			log.warn("image warm failed", { slug: raw, error: e instanceof Error ? e.message : String(e) });
 		}
-		json(res, 200, result);
+		json(res, 200, { ...result, node: withoutL10n(result.node) });
 		return;
 	}
 	if (req.method === "GET" && path.startsWith("/image/")) {
@@ -378,7 +378,7 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 		const body = await readJson<MaterializeRequest>(req);
 		const fresh = url.searchParams.get("fresh") === "1" || url.searchParams.get("fresh") === "true";
 		const result = await materializeService.handleMaterialize(body, { fresh });
-		json(res, 200, result);
+		json(res, 200, { ...result, node: withoutL10n(result.node) });
 		return;
 	}
 	// GET /resolve/:trackSlug → returns {videoId, url, title, resolvedAt}, cached
