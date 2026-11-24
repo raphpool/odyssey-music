@@ -623,6 +623,13 @@ describe("validateTranslation", () => {
 				expectSingle(plain, "missing_year", "article");
 			});
 
+			// 2026-11-24 (AI review of #726): « Années 60 » opening a sentence was not credited, so a faithful
+			// translation got `missing_year`.
+			it("accepts the short decade whatever its case", () => {
+				expect(check("The 1960s changed everything.", "Années 60 : tout change.")).toEqual([]);
+				expect(check("It peaked in the 1960s.", "Il a culminé dans les ANNÉES 60.")).toEqual([]);
+			});
+
 			it("does not glue a year to the figure that follows it", () => {
 				const en = "In 1994 200 fans came.";
 				expectSingle(check(en, "Ils étaient 200 fans à venir."), "missing_year", "article");

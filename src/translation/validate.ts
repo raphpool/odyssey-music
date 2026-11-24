@@ -82,7 +82,8 @@ const TRAILING_PUNCTUATION = /[.,;:!?]+$/;
 // A straight quote right after a digit is an inch mark (12"), not an opening quote.
 const TITLE_QUOTE = /(?<!\d)"([^"]*)"|“([^”]*)”|«([^»]*)»/g;
 const SPACE_BEFORE_PUNCTUATION = /[   ]+(?=[:;!?])/g;
-const SHORT_DECADE = /années\s+(\d0)(?!\d)/g;
+// Case-insensitive (2026-11-24, AI review of #726): « Années 60 » opens sentences and headings.
+const SHORT_DECADE = /années\s+(\d0)(?!\d)/giu;
 const YEAR = /(?<!\d)(?:1\d{3}|20\d{2})(?!\d)/g;
 const TYPOGRAPHIC_APOSTROPHE = /[’ʼ‘]/g;
 const THOUSANDS_SPACE = /(?<!\d)(\d{1,3})[   ](?=\d{3}(?!\d))/g;
