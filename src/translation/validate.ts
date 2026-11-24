@@ -73,14 +73,15 @@ const FRENCH_STOPWORDS: ReadonlySet<string> = new Set(
 );
 const ENGLISH_STOPWORDS: ReadonlySet<string> = new Set("the and of with is was by from which".split(" "));
 
-const QUOTED_PASSAGE = /"[^"]*"|“[^”]*”|«[^»]*»/g;
 const WORD = /\p{L}+/gu;
 const URL_PATTERN = /https?:\/\/[^\s<>()[\]"'«»“”]+/gi;
 const TRAILING_PUNCTUATION = /[.,;:!?]+$/;
-// Quoted passages that may be titles: "…", “…” or «…». Single quotes are not delimiters: an elision
-// ('90s) and a possessive (Smiths') would pair up into a fake passage (2026-11-23, TRA-804 review).
-// A straight quote right after a digit is an inch mark (12"), not an opening quote.
-const TITLE_QUOTE = /(?<!\d)"([^"]*)"|“([^”]*)”|«([^»]*)»/g;
+// Quote openers: "…", “…” or «…». Single quotes are not delimiters: an elision ('90s) and a possessive
+// (Smiths') would pair up into a fake passage (2026-11-23, TRA-804 review). A straight quote right after
+// a digit is an inch mark (12"), not an opening quote: it used to pair with the next straight quote and
+// swallow whole paragraphs before the language check (2026-11-24, TRA-824).
+const QUOTE_OPENER = /(?<!\d)"|[“«]/g;
+const QUOTE_CLOSER: Readonly<Record<string, string>> = { '"': '"', "“": "”", "«": "»" };
 const SPACE_BEFORE_PUNCTUATION = /[   ]+(?=[:;!?])/g;
 // Case-insensitive (2026-11-24, AI review of #726): « Années 60 » opens sentences and headings.
 const SHORT_DECADE = /années\s+(\d0)(?!\d)/giu;
@@ -298,6 +299,35 @@ function addShortDecades(present: Map<string, number>, original: string, text: s
 	}
 }
 
+/**
+ * Splits text into its quoted passages (delimiters included, in order, non-overlapping) and the text
+ * outside them. Linear on purpose: it reads model output, and a regex retried from every unclosed opener
+ * was quadratic (20,000 unclosed « took 1.4 s, 2026-11-24, TRA-804 deep review). Once a closer is
+ * missing, no later opener of that kind can find one, so each closer is searched for until its first miss.
+ */
+function splitQuotes(text: string): { passages: string[]; outside: string } {
+	const passages: string[] = [];
+	const outside: string[] = [];
+	const exhausted = new Set<string>();
+	let copied = 0;
+	QUOTE_OPENER.lastIndex = 0;
+	for (let open = QUOTE_OPENER.exec(text); open !== null; open = QUOTE_OPENER.exec(text)) {
+		const closer = QUOTE_CLOSER[open[0]] as string;
+		if (exhausted.has(closer)) continue;
+		const close = text.indexOf(closer, open.index + 1);
+		if (close < 0) {
+			exhausted.add(closer);
+			continue;
+		}
+		outside.push(text.slice(copied, open.index));
+		passages.push(text.slice(open.index, close + 1));
+		copied = close + 1;
+		QUOTE_OPENER.lastIndex = copied;
+	}
+	outside.push(text.slice(copied));
+	return { passages, outside: outside.join(" ") };
+}
+
 /** Exact, case-sensitive match that neither starts nor ends in the middle of a word ("Air" vs "Airplay"). */
 function containsName(text: string, name: string): boolean {
 	for (let at = text.indexOf(name); at >= 0; at = text.indexOf(name, at + 1)) {
@@ -313,8 +343,8 @@ function containsName(text: string, name: string): boolean {
 function extractTitles(text: string, properNouns: readonly string[]): Set<string> {
 	const known = new Set(properNouns.map((noun) => noun.toLowerCase()));
 	const titles = new Set<string>();
-	for (const match of text.matchAll(TITLE_QUOTE)) {
-		const inner = (match[1] ?? match[2] ?? match[3] ?? "").trim().replace(TRAILING_PUNCTUATION, "").trim();
+	for (const passage of splitQuotes(text).passages) {
+		const inner = passage.slice(1, -1).trim().replace(TRAILING_PUNCTUATION, "").trim();
 		if (inner !== "" && (known.has(inner.toLowerCase()) || looksLikeTitle(inner))) titles.add(inner);
 	}
 	return titles;
@@ -341,7 +371,7 @@ function countYears(text: string): Map<string, number> {
 
 function checkLanguage(field: ProseField, text: string, issues: TranslationIssue[]): void {
 	// Quoted passages are titles or verbatim quotes that legitimately stay in English.
-	const words = (text.replace(QUOTED_PASSAGE, " ").toLowerCase().match(WORD) ?? []) as string[];
+	const words = (splitQuotes(text).outside.toLowerCase().match(WORD) ?? []) as string[];
 	if (words.length === 0) return;
 	// The short-teaser exemption counts the words actually judged: too few of them make the shares noise.
 	if (field === "teaser" && words.length < TEASER_MIN_WORDS_FOR_LANGUAGE_CHECK) return;

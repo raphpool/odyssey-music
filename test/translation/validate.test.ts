@@ -218,6 +218,32 @@ describe("validateTranslation", () => {
 			);
 		});
 
+		it('is not fooled by a 12" inch mark pairing with a later straight quote (TRA-824)', () => {
+			// Untranslated English paragraph sandwiched between an inch mark and a quoted title: the inch
+			// mark used to open a fake passage that swallowed the whole paragraph before the language check.
+			const lead = 'Le projet sort un 12" en 1991.';
+			const english = `${SOURCE_P1}\n\n${SOURCE_P2} Best known for "Come to Daddy".`;
+			const issues = validateTranslation(makeSource(), makeCandidate({ article: `${lead}\n\n${english}` }));
+			expect(issues.map((issue) => `${issue.code}:${issue.field}`)).toContain("not_french:article");
+		});
+
+		it('still ignores English titles in straight quotes after a 12" inch mark (TRA-824)', () => {
+			const p2 = QUOTED_TITLES.replace("{a}", `un 12" intitulé "${titleA}"`)
+				.replace("{b}", `« ${titleB} »`)
+				.replace("{c}", `"${titleC}"`);
+			const issues = validateTranslation(makeSource(), makeCandidate({ article: `${FRENCH_P1}\n\n${p2}` }));
+			expect(issues.map((issue) => issue.code)).not.toContain("not_french");
+		});
+
+		it("stays fast on thousands of unclosed quote openers (TRA-824)", () => {
+			// 20,000 unmatched « took 1.4 s with the regex scan (TRA-804 deep review): quadratic, so 40,000 is ~4x
+			// slower than that; the bound leaves a wide margin for a loaded CI runner.
+			const hostile = `${FRENCH_P2} ${"«".repeat(40_000)}`;
+			const started = performance.now();
+			validateTranslation(makeSource(), makeCandidate({ article: `${FRENCH_P1}\n\n${hostile}` }));
+			expect(performance.now() - started).toBeLessThan(1000);
+		});
+
 		it("does not judge a teaser of 8 words", () => {
 			const text = "Ambient techno pioneer from the rainy Cornish coast";
 			const source = makeSource({ teaser: text });
