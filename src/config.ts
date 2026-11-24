@@ -69,6 +69,14 @@ export const pipelineConfig = {
 	fetchTopKNoWiki: envInt("PIPELINE_FETCH_TOP_K_NO_WIKI", 3),
 };
 
+// TRA-806: node translation (fr). Same Gemini model family as the writing step unless overridden.
+export const translationConfig = {
+	model: envString("GEMINI_TRANSLATION_MODEL", pipelineConfig.defaultModel),
+	temperature: 0.2,
+	timeoutMs: 20_000, // one provider call
+	stepTimeoutMs: 30_000, // the whole translation step of the pipeline
+};
+
 export const pricingConfig = {
 	geminiFlashLiteInputUsdPerMillion: Number.parseFloat(
 		envString("GEMINI_FLASH_LITE_INPUT_USD_PER_MILLION", "0.075"),
