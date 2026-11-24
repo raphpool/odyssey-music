@@ -2,8 +2,7 @@ import type { NodeType } from "../node-spec.js";
 
 // Form judge for model-produced translations (TRA-803). The model output is untrusted data, so every
 // check here is a cheap, deterministic structural test: no network, no model, no cache access.
-// Fidelity rules (proper nouns, titles, years) belong to TRA-1.3; their codes are declared below so
-// that ticket does not have to change an exported type.
+// Fidelity rules (proper nouns, titles, years: TRA-804) check that what the source field names survives.
 
 export interface TranslationSource {
 	type: NodeType;
@@ -12,7 +11,10 @@ export interface TranslationSource {
 	article: string;
 	/** Translatable facts only, non-blank. */
 	facts: Record<string, string>;
-	/** Names that must survive verbatim. Reserved: enforced by TRA-1.3, not by this ticket's rules. */
+	/**
+	 * Names that must survive verbatim. May hold names the text never cites (edge names): only those present
+	 * in the source field are enforced.
+	 */
 	properNouns: readonly string[];
 }
 
@@ -75,6 +77,21 @@ const QUOTED_PASSAGE = /"[^"]*"|“[^”]*”|«[^»]*»/g;
 const WORD = /\p{L}+/gu;
 const URL_PATTERN = /https?:\/\/[^\s<>()[\]"'«»“”]+/gi;
 const TRAILING_PUNCTUATION = /[.,;:!?]+$/;
+// Quoted passages that may be titles: "…", “…” or «…». Single quotes are not delimiters: an elision
+// ('90s) and a possessive (Smiths') would pair up into a fake passage (2026-11-23, TRA-804 review).
+// A straight quote right after a digit is an inch mark (12"), not an opening quote.
+const TITLE_QUOTE = /(?<!\d)"([^"]*)"|“([^”]*)”|«([^»]*)»/g;
+const SPACE_BEFORE_PUNCTUATION = /[   ]+(?=[:;!?])/g;
+// Case-insensitive (2026-11-24, AI review of #726): « Années 60 » opens sentences and headings.
+const SHORT_DECADE = /années\s+(\d0)(?!\d)/giu;
+const YEAR = /(?<!\d)(?:1\d{3}|20\d{2})(?!\d)/g;
+const TYPOGRAPHIC_APOSTROPHE = /[’ʼ‘]/g;
+const THOUSANDS_SPACE = /(?<!\d)(\d{1,3})[   ](?=\d{3}(?!\d))/g;
+const LETTER_OR_DIGIT_BEFORE = /[\p{L}\p{N}]$/u;
+const LETTER_OR_DIGIT_AFTER = /^[\p{L}\p{N}]/u;
+const CAPITAL_OR_DIGIT_START = /^[\p{Lu}\p{N}]/u;
+const MAX_TITLE_WORDS = 8;
+const MIN_TITLE_CAPITALS = 2;
 const BLANK_LINE_SEPARATOR = /\n(?:[^\S\n]*\n)+/;
 
 /** Empty array = accepted. Pure and deterministic. */
@@ -85,9 +102,10 @@ export function validateTranslation(
 	const issues: TranslationIssue[] = [];
 	// The candidate comes straight from a model: the types say strings, the runtime may disagree.
 	// Treat anything else as absent rather than throwing (typed results at the boundary).
-	checkProse("teaser", source.teaser, asText(candidate.teaser), issues);
-	checkProse("article", source.article, asText(candidate.article), issues);
-	checkFacts(source.facts, asRecord(candidate.facts), issues);
+	const { properNouns } = source;
+	checkProse("teaser", source.teaser, asText(candidate.teaser), properNouns, issues);
+	checkProse("article", source.article, asText(candidate.article), properNouns, issues);
+	checkFacts(source.facts, asRecord(candidate.facts), properNouns, issues);
 	return issues;
 }
 
@@ -105,6 +123,7 @@ function checkProse(
 	field: ProseField,
 	sourceText: string,
 	candidateText: string,
+	properNouns: readonly string[],
 	issues: TranslationIssue[],
 ): void {
 	const original = normalizeNewlines(sourceText).trim();
@@ -132,11 +151,13 @@ function checkProse(
 
 	checkSurface(field, original, text, issues);
 	checkLanguage(field, text, issues);
+	checkFidelity(field, original, text, properNouns, issues);
 }
 
 function checkFacts(
 	sourceFacts: Record<string, string>,
 	candidateFacts: Record<string, unknown>,
+	properNouns: readonly string[],
 	issues: TranslationIssue[],
 ): void {
 	for (const key of Object.keys(sourceFacts)) {
@@ -159,6 +180,7 @@ function checkFacts(
 			});
 		}
 		checkSurface(field, original, value, issues);
+		checkFidelity(field, original, value, properNouns, issues);
 	}
 	for (const key of Object.keys(candidateFacts)) {
 		if (!Object.hasOwn(sourceFacts, key)) {
@@ -227,6 +249,94 @@ function findEscapeLeftover(text: string): number {
 
 function extractUrls(text: string): string[] {
 	return (text.match(URL_PATTERN) ?? []).map((url) => url.replace(TRAILING_PUNCTUATION, ""));
+}
+
+/** Names, titles and years found in the source field must come back unchanged in the candidate field. */
+function checkFidelity(
+	field: string,
+	rawOriginal: string,
+	rawText: string,
+	rawProperNouns: readonly string[],
+	issues: TranslationIssue[],
+): void {
+	// Typographic apostrophes and Unicode forms are not a change of name: compare the normalised forms.
+	const original = normalizeTypography(rawOriginal);
+	const text = normalizeTypography(rawText);
+	const properNouns = rawProperNouns.map(normalizeTypography);
+	for (const noun of new Set(properNouns)) {
+		if (noun !== "" && containsName(original, noun) && !hasName(text, noun)) {
+			issues.push({ code: "missing_proper_noun", field, detail: clip(noun) });
+		}
+	}
+	for (const title of extractTitles(original, properNouns)) {
+		if (text.includes(title) || (properNouns.includes(title) && hasName(text, title))) continue;
+		issues.push({ code: "missing_title", field, detail: clip(title) });
+	}
+	const present = countYears(text);
+	addShortDecades(present, original, text);
+	for (const [year, count] of countYears(original)) {
+		if ((present.get(year) ?? 0) < count) issues.push({ code: "missing_year", field, detail: year });
+	}
+}
+
+function normalizeTypography(text: string): string {
+	// French puts a (no-break) space before : ; ! ? ("Mezzanine : Live"): it is not part of a name.
+	return text.normalize("NFC").replace(TYPOGRAPHIC_APOSTROPHE, "'").replace(SPACE_BEFORE_PUNCTUATION, "");
+}
+
+/** A name may lose its leading English article in French: "The Beatles" becomes "les Beatles". */
+function hasName(text: string, name: string): boolean {
+	return containsName(text, name) || (name.startsWith("The ") && containsName(text, name.slice(4)));
+}
+
+/** The source decade "the 1960s" may come back as "années 60": count that as the full year. */
+function addShortDecades(present: Map<string, number>, original: string, text: string): void {
+	for (const match of text.matchAll(SHORT_DECADE)) {
+		for (const year of [`19${match[1]}`, `20${match[1]}`]) {
+			if (new RegExp(`(?<!\\d)${year}s`).test(original)) present.set(year, (present.get(year) ?? 0) + 1);
+		}
+	}
+}
+
+/** Exact, case-sensitive match that neither starts nor ends in the middle of a word ("Air" vs "Airplay"). */
+function containsName(text: string, name: string): boolean {
+	for (let at = text.indexOf(name); at >= 0; at = text.indexOf(name, at + 1)) {
+		const glued =
+			LETTER_OR_DIGIT_BEFORE.test(text.slice(0, at)) ||
+			LETTER_OR_DIGIT_AFTER.test(text.slice(at + name.length));
+		if (!glued) return true;
+	}
+	return false;
+}
+
+/** Quoted passages that are known names or look like titles; quotes and a final punctuation mark removed. */
+function extractTitles(text: string, properNouns: readonly string[]): Set<string> {
+	const known = new Set(properNouns.map((noun) => noun.toLowerCase()));
+	const titles = new Set<string>();
+	for (const match of text.matchAll(TITLE_QUOTE)) {
+		const inner = (match[1] ?? match[2] ?? match[3] ?? "").trim().replace(TRAILING_PUNCTUATION, "").trim();
+		if (inner !== "" && (known.has(inner.toLowerCase()) || looksLikeTitle(inner))) titles.add(inner);
+	}
+	return titles;
+}
+
+function looksLikeTitle(inner: string): boolean {
+	const words = inner.split(/\s+/);
+	const capitalized = words.filter((word) => CAPITAL_OR_DIGIT_START.test(word)).length;
+	// At least two capitalised words: a lone capitalised word or phrase is usually a critic's quoted
+	// remark ("Pure genius", "Thanks"), which French translates. Lone titles are caught via properNouns.
+	return (
+		words.length <= MAX_TITLE_WORDS && capitalized >= MIN_TITLE_CAPITALS && capitalized * 2 >= words.length
+	);
+}
+
+function countYears(text: string): Map<string, number> {
+	const counts = new Map<string, number>();
+	// French groups thousands with a space ("1 500"): read it as the same quantity as the English "1500".
+	for (const match of text.replace(THOUSANDS_SPACE, "$1").matchAll(YEAR)) {
+		counts.set(match[0], (counts.get(match[0]) ?? 0) + 1);
+	}
+	return counts;
 }
 
 function checkLanguage(field: ProseField, text: string, issues: TranslationIssue[]): void {

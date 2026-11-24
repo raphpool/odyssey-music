@@ -106,8 +106,8 @@ describe("validateTranslation", () => {
 
 		it("flags an article that is too short relative to the source (but over 80 characters)", () => {
 			const article =
-				"Le Marlow Quartet est le projet d'un compositeur de Cornouailles.\n\n" +
-				"Il a publié de nombreux albums et reste une référence pour les producteurs.";
+				"Le Marlow Quartet est le projet d'Elias Marlow, un compositeur de Cornouailles.\n\n" +
+				"Il a publié de nombreux albums pour Warp et reste une référence pour les producteurs.";
 			expectSingle(validateTranslation(makeSource(), makeCandidate({ article })), "length_ratio", "article");
 		});
 
@@ -124,7 +124,7 @@ describe("validateTranslation", () => {
 		it("flags a fact longer than 3x the source + 20", () => {
 			const facts = {
 				origin: "Cornouailles, Angleterre",
-				status: `Actif depuis ${"très longtemps ".repeat(6)}`,
+				status: `Actif depuis 1991, ${"très longtemps ".repeat(6)}`,
 			};
 			expectSingle(
 				validateTranslation(makeSource(), makeCandidate({ facts })),
@@ -312,7 +312,7 @@ describe("validateTranslation", () => {
 		});
 
 		it("flags a URL smuggled into a fact", () => {
-			const facts = { origin: "Cornouailles, Angleterre", status: "http://evil.test/x" };
+			const facts = { origin: "Cornouailles, Angleterre", status: "1991 http://evil.test/x" };
 			expectSingle(validateTranslation(makeSource(), makeCandidate({ facts })), "url_added", "facts.status");
 		});
 	});
@@ -399,6 +399,257 @@ describe("validateTranslation", () => {
 		it("detects URLs whatever the case of the scheme", () => {
 			const article = `${FRENCH_P1}\n\n${FRENCH_P2} HTTPS://evil.test/x`;
 			expectSingle(validateTranslation(makeSource(), makeCandidate({ article })), "url_added", "article");
+		});
+	});
+
+	describe("fidelity rules (TRA-804)", () => {
+		/** A faithful base pair plus one extra sentence per side, so only the sentence under test can fail. */
+		function check(en: string, fr: string, extraNouns: string[] = []): TranslationIssue[] {
+			const source = makeSource({
+				article: `${SOURCE_P1}\n\n${SOURCE_P2} ${en}`,
+				properNouns: [...makeSource().properNouns, ...extraNouns],
+			});
+			return validateTranslation(source, makeCandidate({ article: `${FRENCH_P1}\n\n${FRENCH_P2} ${fr}` }));
+		}
+
+		it("accepts a faithful translation with its names, titles and years", () => {
+			const en =
+				'In 1994 he signed to Warp Records and released "Around the World", then "Around the World" in 1994.';
+			const fr =
+				"En 1994, il a signé chez Warp Records et publié « Around the World », puis « Around the World » en 1994.";
+			expect(check(en, fr, ["Warp Records"])).toEqual([]);
+		});
+
+		describe("missing_proper_noun", () => {
+			it("flags a name of the source article that the candidate lost", () => {
+				const issue = expectSingle(
+					check("He signed to Warp Records.", "Il a signé chez un label.", ["Warp Records"]),
+					"missing_proper_noun",
+					"article",
+				);
+				expect(issue.detail).toBe("Warp Records");
+			});
+
+			it("ignores an edge name that the source article never cites", () => {
+				const source = makeSource({ properNouns: [...makeSource().properNouns, "Warp Records", "Autechre"] });
+				expect(validateTranslation(source, makeCandidate())).toEqual([]);
+			});
+
+			it("does not take Airplay for Air, in the source or in the candidate", () => {
+				expect(check("Airplay was strong.", "La diffusion était forte.", ["Air"])).toEqual([]);
+				const lost = check("Air toured the world.", "Airplay a tourné partout.", ["Air"]);
+				expect(expectSingle(lost, "missing_proper_noun", "article").detail).toBe("Air");
+			});
+
+			it("accepts a typographic apostrophe or Unicode form change, in both directions", () => {
+				const pairs = [
+					["Guns N’ Roses", "Guns N' Roses"],
+					["Guns N' Roses", "Guns N’ Roses"],
+					["Björk", "Björk"],
+					["Björk", "Björk"],
+				] as const;
+				for (const [en, fr] of pairs) {
+					expect(check(`${en} toured.`, `${fr} a tourné.`, [fr])).toEqual([]);
+					expectSingle(check(`${en} toured.`, "Ils ont tourné.", [fr]), "missing_proper_noun", "article");
+				}
+			});
+
+			it("lets a name lose its leading The, and only that article", () => {
+				const nouns = ["The Beatles", "Air"];
+				expect(check("The Beatles covered it.", "Les Beatles l'ont repris.", nouns)).toEqual([]);
+				const lost = check("The Beatles covered it.", "Ils l'ont repris.", nouns);
+				expect(expectSingle(lost, "missing_proper_noun", "article").detail).toBe("The Beatles");
+				expectSingle(check("Air covered it.", "Ils l'ont repris.", nouns), "missing_proper_noun", "article");
+			});
+
+			it("is case-sensitive and holds for the teaser and the facts too", () => {
+				const issues = validateTranslation(
+					makeSource({
+						teaser: SOURCE_TEASER.replace("Cornwall", "Cornwall, home of Warp"),
+						facts: { label: "Signed to Warp" },
+					}),
+					makeCandidate({
+						teaser: FRENCH_TEASER.replace("Cornouailles", "Cornouailles, chez warp"),
+						facts: { label: "Chez warp" },
+					}),
+				);
+				expect(issues.map((issue) => `${issue.code}:${issue.field}`)).toEqual([
+					"missing_proper_noun:teaser",
+					"missing_proper_noun:facts.label",
+				]);
+			});
+		});
+
+		describe("missing_title", () => {
+			const EN = 'His first single, "Around the World", was a hit.';
+
+			it("flags a translated title and accepts guillemets around the kept one", () => {
+				const flagged = check(EN, "Son premier single, « Autour du monde », fut un succès.");
+				expect(expectSingle(flagged, "missing_title", "article").detail).toBe("Around the World");
+				expect(check(EN, "Son premier single, « Around the World », fut un succès.")).toEqual([]);
+				expect(check(EN, 'Son premier single, "Around the World", fut un succès.')).toEqual([]);
+			});
+
+			it("handles curly quotes and guillemets, ignoring a final punctuation mark", () => {
+				const fr = "Son premier single fut un succès.";
+				expectSingle(
+					check("His first single was “Around the World,” a hit.", fr),
+					"missing_title",
+					"article",
+				);
+				expectSingle(
+					check("His first single was «Around the World», a hit.", fr),
+					"missing_title",
+					"article",
+				);
+				// Single quotes are not delimiters.
+				expect(check("His first single was 'Around the World', a hit.", fr)).toEqual([]);
+				const kept = "Son single « Around the World » fut un succès.";
+				expect(check("His first single was “Around the World,” a hit.", kept)).toEqual([]);
+			});
+
+			it("accepts a typographic apostrophe change in a title, in both directions", () => {
+				const straight = "Who's Next";
+				const curly = "Who’s Next";
+				expect(check(`His album "${straight}" sold.`, `Son album « ${curly} » s'est vendu.`)).toEqual([]);
+				expect(check(`His album "${curly}" sold.`, `Son album « ${straight} » s'est vendu.`)).toEqual([]);
+				expectSingle(
+					check(`His album "${curly}" sold.`, "Son album s'est vendu."),
+					"missing_title",
+					"article",
+				);
+			});
+
+			it("does not take an inch mark for an opening quote", () => {
+				const en = 'He issued a 12" on Warp Records and "Come to Daddy".';
+				const nouns = ["Warp Records"];
+				expect(check(en, 'Il a sorti un 12" sur Warp Records et « Come to Daddy ».', nouns)).toEqual([]);
+				const lost = check(en, 'Il a sorti un 12" sur Warp Records et « Viens papa ».', nouns);
+				expect(expectSingle(lost, "missing_title", "article").detail).toBe("Come to Daddy");
+			});
+
+			it("ignores French spacing before : ; ! ? in titles and names", () => {
+				const en = 'The live set "Mezzanine: Live Sessions" and Godspeed You! Black Emperor.';
+				const nouns = ["Godspeed You! Black Emperor"];
+				for (const space of [" ", " ", " "]) {
+					const fr = `Le live « Mezzanine${space}: Live Sessions » et Godspeed You${space}! Black Emperor.`;
+					expect(check(en, fr, nouns)).toEqual([]);
+				}
+			});
+
+			it("does not pair an elision with a possessive into a title", () => {
+				const en = "Their sound defined the '90s, and the Smiths' influence was clear.";
+				const fr = "Leur son a défini les années 90, et l'influence des Smiths était nette.";
+				expect(check(en, fr)).toEqual([]);
+			});
+
+			it("does not take an apostrophe for a quote", () => {
+				expect(check("Blur's Parklife and the Smiths' Meat Is Murder.", "Parklife de Blur.")).toEqual([]);
+			});
+
+			it("lets a critic's quotation be translated", () => {
+				const en = 'One critic called it a "playful, occasionally inspired time capsule".';
+				expect(check(en, "Un critique y voit une capsule temporelle ludique et parfois inspirée.")).toEqual(
+					[],
+				);
+			});
+
+			it("does not take a one- or two-word capitalised quotation for a title", () => {
+				const genius = 'One critic called it "Pure genius".';
+				expect(check(genius, "Un critique y voit du pur génie.")).toEqual([]);
+				expect(check('The crowd shouted "Thanks".', "La foule a crié merci.")).toEqual([]);
+				expect(check('He called it "Baroque pop".', "Il parlait de pop baroque.")).toEqual([]);
+			});
+
+			it("holds a quoted known name to the letter, even when it is not title-shaped", () => {
+				const en = 'The track "minipops 67 [120.2]" is a classic.';
+				const nouns = ["minipops 67 [120.2]"];
+				expect(check(en, "Le morceau « minipops 67 [120.2] » est un classique.", nouns)).toEqual([]);
+				const lost = check(en, "Le morceau « minipops 67 [120,2] » est un classique.", nouns);
+				expect(lost.map((issue) => issue.code)).toEqual(["missing_proper_noun", "missing_title"]);
+			});
+
+			it("does not count more than 8 words or a mostly lowercase passage as a title", () => {
+				const nine = '"The Long and Winding Road That Leads to Your Door"';
+				expect(check(`He sang ${nine}.`, "Il a chanté une longue route.")).toEqual([]);
+				expect(check('The "ambient music" scene grew.', "La scène de la musique ambient a grandi.")).toEqual(
+					[],
+				);
+			});
+		});
+
+		describe("missing_year", () => {
+			it("accepts 2001's Drukqs with the year kept, and flags the year dropped", () => {
+				expect(check("2001's Drukqs was long.", "Drukqs, sorti en 2001, était long.")).toEqual([]);
+				const dropped = check("2001's Drukqs was long.", "Drukqs était long.");
+				expect(expectSingle(dropped, "missing_year", "article").detail).toBe("2001");
+			});
+
+			it("counts occurrences: two 1994 in the source need two in the candidate", () => {
+				const en = "In 1994 he toured, and in 1994 he rested.";
+				expect(check(en, "En 1994 il a tourné, puis en 1994 il s'est reposé.")).toEqual([]);
+				expectSingle(check(en, "En 1994 il a tourné, puis il s'est reposé."), "missing_year", "article");
+			});
+
+			it("takes the early 2010s as the decade, not as a lost year", () => {
+				expect(check("He rose in the early 2010s.", "Il a émergé au début des années 2010.")).toEqual([]);
+			});
+
+			it("reads French digit grouping (space, no-break, narrow no-break) as the same quantity", () => {
+				const en = "He sold 1500 copies in a 1200-capacity hall.";
+				for (const space of [" ", " ", " "]) {
+					const fr = `Il a vendu 1${space}500 exemplaires dans une salle de 1${space}200 places.`;
+					expect(check(en, fr)).toEqual([]);
+				}
+				const dropped = check(en, "Il a vendu 1 500 exemplaires dans une grande salle.");
+				expect(expectSingle(dropped, "missing_year", "article").detail).toBe("1200");
+			});
+
+			it("accepts the debut sold 1500 copies / 1 500 exemplaires, whatever the space", () => {
+				const en = "The debut sold 1500 copies in a 1200-capacity hall.";
+				for (const space of [" ", " ", " "]) {
+					const fr = `Le premier disque s'est vendu à 1${space}500 exemplaires dans une salle de 1${space}200 places.`;
+					expect(check(en, fr)).toEqual([]);
+				}
+			});
+
+			it("accepts a source decade as the short form, and refuses another decade", () => {
+				expect(check("It peaked in the 1960s.", "Il a culminé dans les années 60.")).toEqual([]);
+				expect(check("It ended in the late 1970s.", "Cela a fini à la fin des années 70.")).toEqual([]);
+				expect(check("It began in the 2010s.", "Cela a commencé dans les années 10.")).toEqual([]);
+				const wrong = check("It peaked in the 1960s.", "Il a culminé dans les années 70.");
+				expect(expectSingle(wrong, "missing_year", "article").detail).toBe("1960");
+				const plain = check("It peaked in 1960.", "Il a culminé dans les années 60.");
+				expectSingle(plain, "missing_year", "article");
+			});
+
+			// 2026-11-24 (AI review of #726): « Années 60 » opening a sentence was not credited, so a faithful
+			// translation got `missing_year`.
+			it("accepts the short decade whatever its case", () => {
+				expect(check("The 1960s changed everything.", "Années 60 : tout change.")).toEqual([]);
+				expect(check("It peaked in the 1960s.", "Il a culminé dans les ANNÉES 60.")).toEqual([]);
+			});
+
+			it("does not glue a year to the figure that follows it", () => {
+				const en = "In 1994 200 fans came.";
+				expectSingle(check(en, "Ils étaient 200 fans à venir."), "missing_year", "article");
+			});
+
+			it("ignores numbers outside 1000-2099 and longer digit runs", () => {
+				const en = "It sold 999 copies, then 2100 and 12345 more.";
+				expect(check(en, "Il s'est vendu en peu d'exemplaires.")).toEqual([]);
+			});
+
+			it("holds for the teaser and the facts", () => {
+				const issues = validateTranslation(
+					makeSource({ teaser: SOURCE_TEASER.replace("strange", "strange 1991") }),
+					makeCandidate({ facts: { origin: "Cornouailles, Angleterre", status: "Actif depuis longtemps" } }),
+				);
+				expect(issues.map((issue) => `${issue.code}:${issue.field}`)).toEqual([
+					"missing_year:teaser",
+					"missing_year:facts.status",
+				]);
+			});
 		});
 	});
 
