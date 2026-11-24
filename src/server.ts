@@ -30,7 +30,7 @@ import { createServer, type IncomingMessage, type ServerResponse } from "node:ht
 import { join } from "node:path";
 import { NodeCache } from "./cache.js";
 import { buildCacheIndex, type CacheIndex, createCacheIndexHolder } from "./cache-index.js";
-import { readApnsPushConfiguration, serverConfig, streamConfig } from "./config.js";
+import { pipelineConfig, readApnsPushConfiguration, serverConfig, streamConfig } from "./config.js";
 import { loadEnv } from "./env.js";
 import { AppError, isNotFoundError } from "./errors.js";
 import { onDemandImagesEnabled } from "./flags.js";
@@ -64,6 +64,7 @@ import { makeSimilarArtistsResolver } from "./similar-artists-wiring.js";
 import { isReadableSlug } from "./slug.js";
 import { handleStream } from "./stream.js";
 import { LINKABLE_TYPES, resolveStreamingLinks } from "./streaming-links.js";
+import { makePipelineTranslator } from "./translation/pipeline-translator.js";
 import type { EdgeRef, NodeType, Slug } from "./types.js";
 import {
 	invalidateSidecar,
@@ -120,6 +121,15 @@ const materializeService = createMaterializeService({
 	resolveImage: (node) => resolveImage(node, { cache }),
 	// TRA-480: ... and its similar artists (ListenBrainz, else the graph).
 	similarArtists: makeSimilarArtistsResolver({ cache, getCacheIndex }),
+	// TRA-809: ... and its French text, only with a Gemini key (the step is optional, never blocking).
+	...(pipelineConfig.geminiApiKey
+		? {
+				translate: makePipelineTranslator({
+					apiKey: pipelineConfig.geminiApiKey,
+					logger: (line) => log.info(line),
+				}),
+			}
+		: {}),
 });
 const getNode = createNodeService({ cache, runJit: materializeService.runJit, redirects: genreRedirects });
 // TRA-583: ONE queue per process (plan 3b-D4), so its single worker is the only background consumer of

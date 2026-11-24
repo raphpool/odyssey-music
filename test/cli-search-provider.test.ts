@@ -55,6 +55,16 @@ describe("buildCrawlDeps", () => {
 		expect(buildCrawlDeps("tavily", env).resolveImage).toBeUndefined();
 	});
 
+	// TRA-809: the crawler and the refresh spread these deps into runPipeline, so this is what gives a crawled
+	// node its French text. Same condition as the image, plus a Gemini key.
+	it("wires a translator only when the crawl has a cache directory and a Gemini key", () => {
+		expect(buildCrawlDeps("tavily", env, "/tmp/odyssey-cache").translate).toBeTypeOf("function");
+		expect(buildCrawlDeps("tavily", env).translate).toBeUndefined();
+		expect(
+			buildCrawlDeps("tavily", { ...env, GEMINI_API_KEY: "" }, "/tmp/odyssey-cache").translate,
+		).toBeUndefined();
+	});
+
 	// TRA-480: same condition for similar artists (the graph fallback reads the cache being written).
 	it("wires a similar-artists resolver only when the crawl has a cache directory", () => {
 		expect(buildCrawlDeps("tavily", env, "/tmp/odyssey-cache").similarArtists).toBeTypeOf("function");

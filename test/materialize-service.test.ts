@@ -815,6 +815,58 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 		TIMEOUT_MS,
 	);
 
+	// TRA-809: the service hands `translate` to runPipeline when it has one -- on a ?fresh=1 refresh too, which
+	// rewrites the node and used to drop its l10n -- and passes nothing otherwise.
+	it.each([
+		["a translate is injected", true],
+		["no translate is injected", false],
+	])(
+		"a fresh refresh writes l10n.fr only when %s (TRA-809)",
+		async (_label, injected) => {
+			await cache.write(genreNode({ slug: "genre:techno", name: "Techno", qid: "Q170611" }));
+			const block = {
+				teaser: "Un genre né à Détroit.",
+				article:
+					"Un article français assez long pour franchir largement le seuil des quatre-vingts caractères.",
+				source_sha256: "b".repeat(64),
+				model: "test-model",
+				translated_at: "2026-11-24T10:00:00.000Z",
+			};
+			const translate = vi.fn(async () => block);
+			const genreRegistry = createGenreRegistry({
+				cache,
+				resolver: await loadGenreResolver(),
+				redirects: new Map(),
+			});
+			const createMaterializeService = await loadCreateMaterializeService();
+			const service = createMaterializeService({
+				cache,
+				env: ENV,
+				genreRegistry,
+				...(injected ? { translate } : {}),
+			});
+			installPipelineMocks({
+				draft: genreDraftFixture({
+					name: "Techno",
+					parent_genres: [],
+					subgenres: [],
+					related_genres: [],
+					key_artists: [],
+					key_labels: [],
+					landmark_tracks: [],
+				}),
+			});
+
+			const result = await service.handleMaterialize({ type: "genre", name: "Techno" }, { fresh: true });
+
+			expect(result.source).toBe("jit");
+			expect(translate).toHaveBeenCalledTimes(injected ? 1 : 0);
+			expect(result.node.l10n?.fr).toEqual(injected ? block : undefined);
+			expect((await cache.get("genre:techno")).l10n?.fr).toEqual(injected ? block : undefined);
+		},
+		TIMEOUT_MS,
+	);
+
 	it(
 		"rejects a contradictory client mbid for an existing node without refreshing or overwriting it (TRA-295)",
 		async () => {

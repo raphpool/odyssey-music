@@ -22,7 +22,7 @@ import { fileURLToPath } from "node:url";
 import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
 import { clearedPick, isRejectedPick } from "./cleared-landmarks.js";
-import { pipelineConfig, pricingConfig, scopedReleaseSlugsEnabled } from "./config.js";
+import { pipelineConfig, pricingConfig, scopedReleaseSlugsEnabled, translationConfig } from "./config.js";
 import {
 	DEFAULT_DISCOGRAPHY_CAP,
 	type DiscographyPolicy,
@@ -62,7 +62,7 @@ import {
 	OPTIONAL_TEXT_FIELDS,
 	TEASER_FIELD_BY_TYPE,
 } from "./node-spec.js";
-import { nodePayloadSchema } from "./schemas.js";
+import { nodePayloadSchema, nodeTranslationSchema } from "./schemas.js";
 import { MAX_SIMILAR_ARTISTS } from "./similar-artists.js";
 import { isValidSlug, makeScopedSlug, makeSlug, pickScopeArtistName } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
@@ -114,7 +114,16 @@ import { isAllowedImageUrl } from "./images/hosts.js";
 import type { ResolvedImage } from "./images/resolve-image.js";
 import { firecrawlSearch } from "./tools/firecrawl-search.js";
 import { rankResults, rankUrl, type TavilyResult, tavilySearch } from "./tools/tavily.js";
-import type { ArtistNode, Citation, EdgeRef, ImageSource, NodePayload, NodeType, Slug } from "./types.js";
+import type {
+	ArtistNode,
+	Citation,
+	EdgeRef,
+	ImageSource,
+	NodePayload,
+	NodeTranslation,
+	NodeType,
+	Slug,
+} from "./types.js";
 import { QID_PATTERN } from "./types.js";
 
 export interface PipelineDeps {
@@ -154,6 +163,9 @@ export interface PipelineDeps {
 	// Unset = `similar_artists: []`, as before. A throw or a timeout leaves the node with `[]`: the pipeline
 	// never fails because of it.
 	similarArtists?: (artist: ArtistNode) => Promise<EdgeRef[]>;
+	/** OPTIONAL: French translation of the node, after enrichment. Unset = no translation step. A null,
+	 *  a throw or a timeout leaves the node without l10n: the pipeline never fails because of it. */
+	translate?: (node: NodePayload) => Promise<NodeTranslation | null>;
 }
 
 /** The artist node a cache holds for an MB artist id: its slug and the name it is filed under. */
@@ -806,6 +818,8 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 		enrichment.confirmedArtistMbid,
 		log,
 	);
+	// Last of all: the translation reads the node as it will be written.
+	await attachTranslation(node as Record<string, unknown>, deps.translate, log);
 	const validated = validateNode(node);
 
 	return {
@@ -890,6 +904,46 @@ async function attachSimilarArtists(
 // Upper bound on the image step: the resolver makes several third-party requests, and none of them
 // may hold a materialization (a Gemini call already paid for) hostage.
 const IMAGE_RESOLVE_TIMEOUT_MS = 20_000;
+
+/**
+ * TRA-809: set `l10n.fr` on the draft when the translator yields a valid block. The block is checked against
+ * the node schema here: a bad one must cost the translation, never the node. No keep-the-old-block branch
+ * (unlike the image): the node is rebuilt on every run, so a refreshed node carries this run's block or none.
+ * The step is bounded by stepTimeoutMs because one provider call alone may last ~41 s (20 s plus a retry).
+ */
+async function attachTranslation(
+	node: Record<string, unknown>,
+	translate: PipelineDeps["translate"],
+	log: PipelineLog,
+): Promise<void> {
+	// The draft is raw model output: an l10n it invented is never a translation, whatever happens below.
+	delete node.l10n;
+	if (!translate) return;
+	const label = `${String(node.type)}:${String(node.slug)}`;
+	let timer: ReturnType<typeof setTimeout> | undefined;
+	try {
+		const timeout = new Promise<never>((_, reject) => {
+			timer = setTimeout(() => reject(new Error("timed out")), translationConfig.stepTimeoutMs);
+		});
+		const result = await Promise.race([translate(node as unknown as NodePayload), timeout]);
+		if (!result) {
+			log(`[pipeline] no translation for ${label}`);
+			return;
+		}
+		const parsed = nodeTranslationSchema.safeParse(result);
+		if (!parsed.success) {
+			log(`[pipeline] translation dropped for ${label}: invalid block`);
+			return;
+		}
+		node.l10n = { fr: parsed.data };
+		log(`[pipeline] translation attached for ${label}`);
+	} catch (e) {
+		const msg = e instanceof Error ? e.message : String(e);
+		log(`[pipeline] translation skipped for ${label}: ${msg.slice(0, 100)}`);
+	} finally {
+		clearTimeout(timer);
+	}
+}
 
 /**
  * TRA-479: set `image_url` / `image_source` on the draft when the resolver finds a picture.

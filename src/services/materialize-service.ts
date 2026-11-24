@@ -212,6 +212,8 @@ export function createMaterializeService(deps: {
 	// TRA-480: attaches `similar_artists` to an artist being materialized (see PipelineDeps.similarArtists).
 	// Built by the composition root from the resolver and this same cache; unset = `[]`, as before.
 	similarArtists?: PipelineDeps["similarArtists"];
+	// TRA-809: French translation of the node being materialized (see PipelineDeps.translate). Unset = none.
+	translate?: PipelineDeps["translate"];
 }) {
 	const inflight = new Map<string, Promise<JitResult>>();
 
@@ -709,6 +711,7 @@ export function createMaterializeService(deps: {
 			genreRegistry: deps.genreRegistry,
 			...(deps.resolveImage ? { resolveImage: deps.resolveImage } : {}),
 			...(deps.similarArtists ? { similarArtists: deps.similarArtists } : {}),
+			...(deps.translate ? { translate: deps.translate } : {}),
 			...(opts.maxProviderAttempts === undefined ? {} : { maxProviderAttempts: opts.maxProviderAttempts }),
 		});
 		const requestedSlug = r.requestedSlug;

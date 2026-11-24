@@ -20,6 +20,7 @@ import { resolveImage } from "./images/resolve-image.js";
 import { logger } from "./logger.js";
 import type { PipelineDeps } from "./pipeline.js";
 import { makeExpiringCacheIndex, makeSimilarArtistsResolver } from "./similar-artists-wiring.js";
+import { makePipelineTranslator } from "./translation/pipeline-translator.js";
 
 export const program = new Command();
 const log = logger.child({ module: "cli" });
@@ -79,6 +80,15 @@ export function buildCrawlDeps(
 					similarArtists: makeSimilarArtistsResolver({
 						cache: new NodeCache(out),
 						getCacheIndex: makeExpiringCacheIndex(() => buildCacheIndex(out)),
+					}),
+				}),
+		// TRA-809: same condition, plus a key. The crawler and the refresh spread these deps into runPipeline.
+		...(out === undefined || !env.GEMINI_API_KEY
+			? {}
+			: {
+					translate: makePipelineTranslator({
+						apiKey: env.GEMINI_API_KEY,
+						logger: (line) => log.info(line),
 					}),
 				}),
 	};
