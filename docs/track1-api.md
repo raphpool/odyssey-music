@@ -139,6 +139,41 @@ taxonomy:
   (`available: false`) sans faire échouer le catalogue ; un `mode` absent reste une
   erreur de contrat.
 
+## Contenu localisé d'une fiche (TRA-810)
+
+`GET /mobile/v1/nodes/:id` sert la fiche en anglais. Quand une traduction française est
+**courante**, la réponse porte en plus un champ additif `node.l10n.fr` :
+
+```json
+{
+	"node": {
+		"teaser": "…",
+		"article": "…",
+		"facts": { "origin": "Detroit" },
+		"l10n": {
+			"fr": { "teaser": "…", "article": "…", "facts": { "origin": "Détroit" } }
+		}
+	},
+	"source": "cache"
+}
+```
+
+- `teaser`, `article` et `facts` de premier niveau restent **l'anglais**, et `version` reste
+  `v1`. Aucune route n'accepte de paramètre de langue : le client choisit.
+- **Présence** : `l10n.fr` est présent si et seulement si la traduction stockée a été faite
+  à partir du texte anglais actuel de la fiche. Si l'article, le teaser ou un fait traduisible
+  anglais a changé depuis, la clé `l10n` est **absente** (jamais `null`, jamais `{}`).
+- `facts` ne porte que les clés traduisibles du type de la fiche qui existent aussi dans les
+  `facts` anglais ; sans aucune clé, `facts` est omis.
+- `source_sha256`, `model` et `translated_at` ne sortent jamais.
+- Une fiche lue par redirection (`redirected_from`) porte son `l10n.fr` comme les autres.
+- Le catalogue ne change pas : `l10n` n'entre pas dans `revision`.
+
+Règle de repli côté client : afficher le français seulement si la langue de l'appareil est le
+français **et** que `l10n.fr` a un `teaser` et un `article` non vides ; sinon, afficher l'anglais
+du premier niveau. Un fait absent de `l10n.fr.facts` s'affiche en anglais. Un client qui ignore
+`l10n` reste correct.
+
 ## Recherche : hits de projet et de morceau (TRA-547)
 
 `GET /mobile/v1/search` renvoie `{q,hits,sources}`. Un hit `project` ou `track` porte, en plus de

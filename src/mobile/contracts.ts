@@ -5,6 +5,18 @@ export const MOBILE_CATALOG_MAX_IDENTITIES_BYTES = 8 * 1024;
 
 export type MobileNodeType = (typeof MOBILE_NODE_TYPES)[number];
 
+// French content of a node sheet (TRA-810). Only what a client renders: the provenance fields of the stored
+// block (source_sha256, model, translated_at) never leave the server.
+export interface MobileNodeTranslation {
+	teaser: string;
+	article: string;
+	facts?: Record<string, string>;
+}
+
+export interface MobileNodeL10n {
+	fr?: MobileNodeTranslation;
+}
+
 export interface MobileCatalogNode {
 	identity: string;
 	type: MobileNodeType;
