@@ -211,3 +211,287 @@ describe("CLI", () => {
 		[["c", "--bogus"]],
 	])("rejects %j", (argv) => expect(parseCliArgs(argv)).toBeNull());
 });
+
+// TRA-811: throughput, quota stop and sample. No real timer: the clock and the wait are injected, and a
+// "slow" translator only yields to the event loop.
+
+/** `n` untranslated artists `artist:n00`, `artist:n01`... (slug order is creation order). */
+function manyNodes(n: number): string[] {
+	const nodes = Array.from({ length: n }, (_, i) =>
+		artistNode(`n${String(i).padStart(2, "0")}`, `Node ${i}`),
+	);
+	for (const node of nodes) put(node);
+	return nodes.map((node) => node.slug);
+}
+const tick = () => new Promise<void>((resolve) => setImmediate(resolve));
+const USAGE = { inputTokens: 10, outputTokens: 5, costUsd: 0.001 };
+
+type Step = "ok" | TranslationFailure;
+/** A translator that gives `steps[i]` to its i-th call (then "ok"); calls start in slug order. */
+function scripted(steps: readonly Step[]) {
+	const calls: string[] = [];
+	const translate: NodeTranslator = async (node) => {
+		const step = steps[calls.length] ?? "ok";
+		calls.push(node.slug);
+		return step === "ok"
+			? { ok: true, translation: translationOf(node), attempts: 1, usage: USAGE }
+			: { ok: false, reason: step, issues: [], attempts: 2, usage: USAGE };
+	};
+	return { calls, translate };
+}
+
+/** A clock that only moves when the tool waits. */
+function fakeClock() {
+	let t = 1_000;
+	const sleeps: number[] = [];
+	return {
+		sleeps,
+		now: () => t,
+		sleep: async (ms: number) => {
+			sleeps.push(ms);
+			t += ms;
+		},
+	};
+}
+
+describe("throughput", () => {
+	it("never has more than --concurrency calls in flight, and lists translated and failed in slug order", async () => {
+		const slugs = manyNodes(6);
+		const inner = fake().translate;
+		let inFlight = 0;
+		let peak = 0;
+		let started = 0;
+		const translate: NodeTranslator = async (node, locale) => {
+			const mine = started++;
+			inFlight++;
+			peak = Math.max(peak, inFlight);
+			// The first call is the slowest, so results arrive out of slug order. The first two are refused.
+			for (let i = 0; i < (mine === 0 ? 6 : 1); i++) await tick();
+			inFlight--;
+			if (mine < 2) return { ok: false, reason: "invalid_output", issues: [], attempts: 2, usage: USAGE };
+			return inner(node, locale);
+		};
+		const manifest = await run(translate, { concurrency: 2 });
+		expect(peak).toBe(2);
+		expect(manifest.translated).toEqual(slugs.slice(2));
+		expect(manifest.failed.map((f) => f.slug)).toEqual(slugs.slice(0, 2));
+	});
+
+	it.each([
+		["the 4th call only after 60 simulated seconds", 4, 4, [1_000, 1_000, 1_000, 61_000]],
+		[
+			"never more than 3 in any minute, the window sliding",
+			7,
+			1,
+			[1_000, 1_000, 1_000, 61_000, 61_000, 61_000, 121_000],
+		],
+	])("with --rpm 3 starts %s", async (_name, count, concurrency, expected) => {
+		manyNodes(count);
+		const clock = fakeClock();
+		const inner = fake().translate;
+		const starts: number[] = [];
+		const translate: NodeTranslator = (node, locale) => {
+			starts.push(clock.now());
+			return inner(node, locale);
+		};
+		await run(translate, { rpm: 3, concurrency, now: clock.now, sleep: clock.sleep });
+		expect(starts).toEqual(expected);
+	});
+
+	it("refuses bounds the CLI would refuse", async () => {
+		await expect(run(fake().translate, { concurrency: 0 })).rejects.toThrow(/concurrency/);
+		await expect(run(fake().translate, { rpm: 0 })).rejects.toThrow(/rpm/);
+	});
+});
+
+describe("quota stop", () => {
+	it("stops after three quota_exhausted in a row: exit 3, manifest written, nothing started after, earlier nodes kept", async () => {
+		const slugs = manyNodes(6);
+		const { calls, translate } = scripted([
+			"ok",
+			"ok",
+			"quota_exhausted",
+			"quota_exhausted",
+			"quota_exhausted",
+		]);
+		const manifestPath = join(dir, "out", "m.json");
+		const code = await runCli(
+			[dir, "--apply", "--concurrency", "1", "--manifest", manifestPath],
+			"key",
+			translate,
+		);
+		expect(code).toBe(3);
+		expect(calls).toEqual(slugs.slice(0, 5));
+		// The three nodes that raised the stop are not failures: they are simply left for the next run.
+		expect(JSON.parse(readFileSync(manifestPath, "utf8"))).toMatchObject({
+			stopped: "quota_exhausted",
+			translated: slugs.slice(0, 2),
+			failed: [],
+		});
+		for (const slug of slugs.slice(0, 2)) expect(JSON.parse(bytes(slug)).l10n.fr.model).toBe("fake-model");
+		for (const slug of slugs.slice(2)) expect(JSON.parse(bytes(slug)).l10n).toBeUndefined();
+	});
+
+	const [Q, U, I]: Step[] = ["quota_exhausted", "provider_unavailable", "invalid_output"];
+	it.each([
+		["two provider_unavailable, a success, two more do not stop", [U, U, "ok", U, U], undefined],
+		["an invalid_output resets the series", [Q, Q, I, Q, Q], undefined],
+		["quota, quota, unavailable stop on the last reason: unavailable", [Q, Q, U], U],
+		["quota, unavailable, quota stop on the last reason: quota", [Q, U, Q], Q],
+	] as [string, Step[], Step | undefined][])("%s", async (_name, steps, stopped) => {
+		manyNodes(6);
+		const { calls, translate } = scripted(steps);
+		const manifest = await run(translate, { concurrency: 1 });
+		expect(manifest.stopped).toBe(stopped);
+		expect(calls).toHaveLength(stopped ? 3 : 6);
+		expect(manifest.failed).toHaveLength(stopped ? 0 : steps.filter((s) => s !== "ok").length);
+	});
+
+	it("lets the calls in flight finish and writes their valid results, but starts nothing new", async () => {
+		const slugs = manyNodes(6);
+		const inner = fake().translate;
+		const calls: string[] = [];
+		const translate: NodeTranslator = async (node, locale) => {
+			calls.push(node.slug);
+			if (node.slug !== slugs[1]) {
+				return { ok: false, reason: "quota_exhausted", issues: [], attempts: 2, usage: USAGE };
+			}
+			// Still running when the third quota answer stops the batch.
+			while (calls.length < 4) await tick();
+			for (let i = 0; i < 5; i++) await tick();
+			return inner(node, locale);
+		};
+		const manifest = await run(translate, { concurrency: 2 });
+		expect(calls).toEqual(slugs.slice(0, 4));
+		expect(manifest).toMatchObject({ stopped: "quota_exhausted", translated: [slugs[1]], failed: [] });
+		expect(JSON.parse(bytes(slugs[1] as string)).l10n.fr.model).toBe("fake-model");
+	});
+
+	it("a second run with a translator that answers finishes the batch without translating again", async () => {
+		const slugs = manyNodes(6);
+		const first = await run(
+			scripted(["ok", "ok", "provider_unavailable", "provider_unavailable", "provider_unavailable"])
+				.translate,
+			{ concurrency: 1 },
+		);
+		expect(first.stopped).toBe("provider_unavailable");
+		const written = slugs.slice(0, 2).map(bytes);
+		const { calls, translate } = fake();
+		const second = await run(translate, { concurrency: 1 });
+		expect(second).not.toHaveProperty("stopped");
+		expect(calls).toEqual(slugs.slice(2));
+		expect(second.translated).toEqual(slugs.slice(2));
+		expect(slugs.slice(0, 2).map(bytes)).toEqual(written);
+	});
+});
+
+describe("--sample", () => {
+	const english = translationSourceOf(artistNode("x", "X"));
+	const sections = (text: string) => text.split(/^## /m).slice(1);
+	const slugOf = (section: string) => section.split("\n")[0];
+
+	it("holds both versions of a regular draw of the nodes translated in the pass; the same nodes draw the same", async () => {
+		const slugs = manyNodes(10);
+		const inner = fake().translate;
+		const translate: NodeTranslator = async (node, locale) => {
+			const outcome = await inner(node, locale);
+			return outcome.ok
+				? { ...outcome, translation: { ...outcome.translation, facts: { origin: "Né à Lyon." } } }
+				: outcome;
+		};
+		const first = join(dir, "out", "first.md");
+		await run(translate, { samplePath: first, sampleSize: 4 });
+		const text = readFileSync(first, "utf8");
+		expect(sections(text).map(slugOf)).toEqual([0, 2, 5, 7].map((i) => slugs[i]));
+		for (const section of sections(text)) {
+			const order = [
+				english.teaser,
+				english.article,
+				"Un teaser français.",
+				"Un article français",
+				"Né à Lyon.",
+			];
+			const positions = order.map((part) => section.indexOf(part));
+			expect(positions.every((p) => p >= 0)).toBe(true);
+			expect(positions).toEqual([...positions].sort((a, b) => a - b));
+		}
+		const second = join(dir, "out", "second.md");
+		await run(translate, { samplePath: second, sampleSize: 4, force: true });
+		expect(readFileSync(second, "utf8")).toBe(text);
+	});
+
+	it("takes only the nodes translated in this pass, and all of them when there are fewer than the size", async () => {
+		fourNodes();
+		const path = join(dir, "out", "sample.md");
+		await run(fake().translate, { samplePath: path });
+		expect(sections(readFileSync(path, "utf8")).map(slugOf)).toEqual([
+			"artist:two",
+			"project:one",
+			"track:one",
+		]);
+	});
+
+	it("is written after a quota stop, and not by a preview", async () => {
+		const slugs = manyNodes(5);
+		const path = join(dir, "out", "sample.md");
+		await run(fake().translate, { apply: false, samplePath: path });
+		expect(existsSync(path)).toBe(false);
+		const stopped = scripted(["ok", "quota_exhausted", "quota_exhausted", "quota_exhausted"]);
+		await run(stopped.translate, { concurrency: 1, samplePath: path });
+		expect(sections(readFileSync(path, "utf8")).map(slugOf)).toEqual([slugs[0]]);
+	});
+});
+
+describe("a sample that cannot be written", () => {
+	it("warns and keeps the manifest, quota stop included", async () => {
+		manyNodes(4);
+		const manifestPath = join(dir, "m.json");
+		const { translate } = scripted(["ok", "quota_exhausted", "quota_exhausted", "quota_exhausted"]);
+		// The sample path is a directory: writeFile fails after every node is paid for and written.
+		const argv = [dir, "--apply", "--concurrency", "1", "--sample", dir, "--manifest", manifestPath];
+		expect(await runCli(argv, "key", translate)).toBe(3);
+		expect(JSON.parse(readFileSync(manifestPath, "utf8"))).toMatchObject({ stopped: "quota_exhausted" });
+		expect(
+			vi
+				.mocked(process.stderr.write)
+				.mock.calls.map(([text]) => String(text))
+				.join(""),
+		).toContain("sample not written");
+	});
+});
+
+describe("CLI flags of TRA-811", () => {
+	it("parses the defaults and the bounds that are allowed", () => {
+		expect(parseCliArgs(["c"])).toMatchObject({ concurrency: 4, rpm: 120, sampleSize: 30 });
+		expect(parseCliArgs(["c"])).not.toHaveProperty("samplePath");
+		expect(
+			parseCliArgs([
+				"c",
+				"--concurrency",
+				"16",
+				"--rpm",
+				"2000",
+				"--sample",
+				"out/s.md",
+				"--sample-size",
+				"5",
+			]),
+		).toMatchObject({ concurrency: 16, rpm: 2000, samplePath: "out/s.md", sampleSize: 5 });
+		expect(parseCliArgs(["c", "--concurrency", "1", "--rpm", "1"])).toMatchObject({ concurrency: 1, rpm: 1 });
+	});
+
+	it.each([
+		[["c", "--concurrency", "0"]],
+		[["c", "--concurrency", "17"]],
+		[["c", "--rpm", "2001"]],
+		[["c", "--sample-size", "0"]],
+		[["c", "--sample"]],
+	])("rejects %j", (argv) => expect(parseCliArgs(argv)).toBeNull());
+
+	it.each([
+		["--concurrency", "0"],
+		["--rpm", "5000"],
+	])("%s %s exits 2", async (flag, value) => {
+		expect(await runCli([dir, flag, value], "key")).toBe(2);
+	});
+});

@@ -1,6 +1,8 @@
 /**
  * Batch tool that writes `l10n.<locale>` into the nodes of a cache (TRA-808, plan docs/plans/track1-contenu-fr.md
- * part 2). One node at a time, in slug order; throughput, quota stop and sample are TRA-811's business.
+ * part 2). Nodes are taken in slug order, `--concurrency` at a time, at most `--rpm` calls started per sliding
+ * minute (TRA-811). A "call" is a translator call: the translator retries once on an invalid answer, so the
+ * provider can see up to twice `--rpm` requests (keep `--rpm` under half the key's limit when it matters).
  *
  * Preview by default: without `--apply` the translator is never called and no node is written (counts and
  * manifest are). A node is handled when it has no `currentTranslation` (`missing`: no block; `stale`: a block
@@ -15,9 +17,18 @@
  * - Never `NodeCache.write` (reverse edges, other nodes rewritten); never `materialized_at` (the data channel
  *   arbitrates repo vs prod on it).
  *
- * Exit codes: 0 done, 1 done with `failed` (or an error), 2 usage. Flags: see `parseCliArgs`.
+ * - Quota stop (TRA-811, plan risk R8): three results in a row that are `quota_exhausted` or
+ *   `provider_unavailable` (any mix) stop the batch. Calls in flight finish and their valid results are
+ *   written, nothing new starts, `stopped` carries the last reason, and the three nodes are left out of
+ *   `failed`: they are not at fault, and the next run takes them again like any untranslated node. A success
+ *   or an `invalid_output` (the provider did answer) resets the series.
+ * - `--sample <path>` (only with `--apply`): a Markdown file with a regular draw of `--sample-size` of the
+ *   nodes translated in this pass, English then French, for a human to read before the batch is merged.
+ *
+ * Exit codes: 0 done, 1 done with `failed` (or an error), 2 usage, 3 stopped on quota (wins over 1).
+ * Flags: see `parseCliArgs`.
  */
-import { mkdir, readFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
 import { pathToFileURL } from "node:url";
 import { isDeepStrictEqual } from "node:util";
@@ -44,9 +55,18 @@ import {
 import { onlyAddsSchemaDefaults } from "./migrations/2026-10-15-backfill-artist-identity.js";
 
 export const DEFAULT_MANIFEST_PATH = "out/translate-nodes-fr.json";
+export const DEFAULT_CONCURRENCY = 4;
+export const DEFAULT_RPM = 120;
+export const DEFAULT_SAMPLE_SIZE = 30;
+const MAX_CONCURRENCY = 16;
+const MAX_RPM = 2000;
+const RPM_WINDOW_MS = 60_000;
+/** Consecutive provider-side failures that stop the batch. */
+const STOP_AFTER = 3;
 
 type Obj = Record<string, unknown>;
 type Status = "current" | "missing" | "stale" | "ineligible";
+type Stopped = "quota_exhausted" | "provider_unavailable";
 
 export interface TranslationRunOptions {
 	cacheDir: string;
@@ -56,6 +76,15 @@ export interface TranslationRunOptions {
 	limit?: number;
 	force: boolean;
 	apply: boolean;
+	// Optional here (the CLI always fills them): the TRA-808 callers do not know them, and a run without them
+	// must behave as the defaults say.
+	concurrency?: number;
+	rpm?: number;
+	sampleSize?: number;
+	samplePath?: string;
+	/** Clock and wait, injected by tests only. */
+	now?: () => number;
+	sleep?: (ms: number) => Promise<void>;
 }
 
 export interface TranslationRunManifest {
@@ -66,9 +95,11 @@ export interface TranslationRunManifest {
 	applied: boolean;
 	/** `total` = current + missing + stale + ineligible, over the nodes the filters select. */
 	counts: Record<NodeType, Record<"total" | Status, number>>;
+	/** Sorted: nodes finish out of slug order when several calls run at once. */
 	translated: Slug[];
 	failed: { slug: Slug; reason: TranslationFailure; issues: TranslationIssue[] }[];
 	usage: TranslationUsage;
+	stopped?: Stopped;
 }
 
 const isPlainRecord = (value: unknown): value is Obj =>
@@ -107,18 +138,86 @@ function withTranslation(raw: Obj, locale: ContentLocale, translation: NodeTrans
 	return { ...raw, l10n: { ...l10n, [locale]: translation } };
 }
 
+/**
+ * Hands out call slots: at most `rpm` per sliding minute, in the order they are asked for. A queue and a clock
+ * are enough, so no dependency.
+ */
+function createRateLimiter(rpm: number, now: () => number, sleep: (ms: number) => Promise<void>) {
+	const starts: number[] = [];
+	let tail: Promise<void> = Promise.resolve();
+	const take = async (): Promise<void> => {
+		for (;;) {
+			const t = now();
+			let oldest = starts[0];
+			while (oldest !== undefined && t - oldest >= RPM_WINDOW_MS) {
+				starts.shift();
+				oldest = starts[0];
+			}
+			if (oldest === undefined || starts.length < rpm) {
+				starts.push(t);
+				return;
+			}
+			await sleep(oldest + RPM_WINDOW_MS - t);
+		}
+	};
+	return () => {
+		tail = tail.then(take);
+		return tail;
+	};
+}
+
+const bySlug = (a: { slug: string }, b: { slug: string }) => (a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0);
+
+/** `size` items at a regular step through the (already sorted) list; the whole list when it is not longer. */
+function pickSample<T>(sorted: readonly T[], size: number): T[] {
+	if (sorted.length <= size) return [...sorted];
+	return Array.from({ length: size }, (_, i) => sorted[Math.floor((i * sorted.length) / size)] as T);
+}
+
+interface WrittenTranslation {
+	slug: Slug;
+	node: Obj;
+	translation: NodeTranslation;
+}
+
+function renderSample(entries: readonly WrittenTranslation[], locale: ContentLocale): string {
+	const parts = [`# translate-nodes ${locale}: sample of ${entries.length} node(s)`];
+	if (entries.length === 0) parts.push("No node was translated in this pass.");
+	for (const { slug, node, translation } of entries) {
+		const source = translationSourceOf(node as unknown as NodePayload);
+		parts.push(`## ${slug}`, "### EN", `**Teaser**\n\n${source.teaser}`, `**Article**\n\n${source.article}`);
+		parts.push(`### ${locale.toUpperCase()}`, `**Teaser**\n\n${translation.teaser}`);
+		parts.push(`**Article**\n\n${translation.article}`);
+		const facts = Object.entries(translation.facts ?? {});
+		if (facts.length > 0) parts.push(`**Facts**\n\n${facts.map(([k, v]) => `- ${k}: ${v}`).join("\n")}`);
+	}
+	return `${parts.join("\n\n")}\n`;
+}
+
 export async function runTranslation(
 	options: TranslationRunOptions,
 	translate: NodeTranslator,
 ): Promise<TranslationRunManifest> {
+	const concurrency = options.concurrency ?? DEFAULT_CONCURRENCY;
+	const rpm = options.rpm ?? DEFAULT_RPM;
+	// The CLI refuses these first (exit 2); a hole here would hang the run, so a caller that gets it wrong throws.
+	for (const [name, value, max] of [
+		["concurrency", concurrency, MAX_CONCURRENCY],
+		["rpm", rpm, MAX_RPM],
+	] as const) {
+		if (!Number.isInteger(value) || value < 1 || value > max) {
+			throw new RangeError(`${name} must be an integer from 1 to ${max}, got ${value}`);
+		}
+	}
 	const { nodes, invalid } = await readCacheNodes(options.cacheDir);
 	warnSkippedNodeFiles(invalid);
 	const counts = Object.fromEntries(
 		NODE_TYPES.map((type) => [type, { total: 0, current: 0, missing: 0, stale: 0, ineligible: 0 }]),
 	) as TranslationRunManifest["counts"];
 	const usage: TranslationUsage = { inputTokens: 0, outputTokens: 0, costUsd: 0 };
-	const translated: Slug[] = [];
-	const failed: TranslationRunManifest["failed"] = [];
+	const written: WrittenTranslation[] = [];
+	let failed: TranslationRunManifest["failed"] = [];
+	const stop: { reason?: Stopped } = {};
 
 	const todo: typeof nodes = [];
 	for (const file of nodes) {
@@ -130,8 +229,23 @@ export async function runTranslation(
 		if (status !== "ineligible" && (status !== "current" || options.force)) todo.push(file);
 	}
 
-	if (options.apply) {
-		for (const file of todo.slice(0, options.limit)) {
+	const takeSlot = createRateLimiter(
+		rpm,
+		options.now ?? Date.now,
+		options.sleep ?? ((ms) => new Promise((resolve) => setTimeout(resolve, ms))),
+	);
+	const queue = todo.slice(0, options.limit);
+	let cursor = 0;
+	// Set by a quota stop or by an error in a worker: nothing new starts, calls in flight finish.
+	let halted = false;
+	// Slugs of the current run of provider-side failures, in the order the results arrived.
+	let series: Slug[] = [];
+
+	// One worker: the apply branch below runs `concurrency` of them. A preview never calls it.
+	const work = async (): Promise<void> => {
+		while (!halted) {
+			const file = queue[cursor++];
+			if (file === undefined) return;
 			const slug = file.slug as Slug;
 			// A node the schema would alter can never be written: refuse it before paying for a translation.
 			const { l10n: _l10n, ...bare } = file.node;
@@ -139,14 +253,32 @@ export async function runTranslation(
 				failed.push({ slug, reason: "invalid_output", issues: [] });
 				continue;
 			}
+			await takeSlot();
+			// The stop may have come while this call waited for its slot.
+			if (halted) return;
 			const outcome = await translate(file.node as unknown as NodePayload, options.locale);
 			usage.inputTokens += outcome.usage.inputTokens;
 			usage.outputTokens += outcome.usage.outputTokens;
 			usage.costUsd += outcome.usage.costUsd;
 			if (!outcome.ok) {
-				failed.push({ slug, reason: outcome.reason, issues: outcome.issues });
+				const { reason } = outcome;
+				if (reason === "invalid_output") {
+					series = [];
+					failed.push({ slug, reason, issues: outcome.issues });
+				} else if (stop.reason === undefined) {
+					// A result that lands after the stop is the same outage: left for the next run, not a failure.
+					series.push(slug);
+					failed.push({ slug, reason, issues: outcome.issues });
+					if (series.length >= STOP_AFTER) {
+						stop.reason = reason;
+						halted = true;
+						const raisedIt = new Set(series);
+						failed = failed.filter((f) => !raisedIt.has(f.slug));
+					}
+				}
 				continue;
 			}
+			series = [];
 			const next = withTranslation(file.node, options.locale, outcome.translation);
 			if (!passesSchema(next)) {
 				// The node, not the model, is at fault, so there is no validator issue to report.
@@ -163,7 +295,35 @@ export async function runTranslation(
 			if (!isDeepStrictEqual(after, before)) {
 				throw new Error(`${slug}: the node on disk differs from the node read, beyond l10n; stopping`);
 			}
-			translated.push(slug);
+			written.push({ slug, node: file.node, translation: outcome.translation });
+		}
+	};
+
+	if (options.apply) {
+		const halting = (error: unknown): never => {
+			halted = true;
+			throw error;
+		};
+		// Let every worker settle before rethrowing, so no write is left running behind the error.
+		const settled = await Promise.allSettled(
+			Array.from({ length: concurrency }, () => work().catch(halting)),
+		);
+		for (const result of settled) if (result.status === "rejected") throw result.reason;
+
+		// Results arrive in completion order; the manifest and the sample must not depend on it.
+		written.sort(bySlug);
+		failed.sort(bySlug);
+		if (options.samplePath !== undefined) {
+			try {
+				const sample = pickSample(written, options.sampleSize ?? DEFAULT_SAMPLE_SIZE);
+				await mkdir(dirname(options.samplePath), { recursive: true });
+				await writeFile(options.samplePath, renderSample(sample, options.locale));
+			} catch (error) {
+				// The nodes are paid for and written: a sample that cannot be written must not cost the manifest.
+				process.stderr.write(
+					`warning: sample not written: ${error instanceof Error ? error.message : error}\n`,
+				);
+			}
 		}
 	}
 
@@ -174,9 +334,10 @@ export async function runTranslation(
 		generated_at: new Date().toISOString(),
 		applied: options.apply,
 		counts,
-		translated,
+		translated: written.map((w) => w.slug),
 		failed,
 		usage,
+		...(stop.reason === undefined ? {} : { stopped: stop.reason }),
 	};
 }
 
@@ -192,6 +353,7 @@ export function formatSummary(manifest: TranslationRunManifest, manifestPath: st
 		lines.push(`  translated ${manifest.translated.length}, failed ${manifest.failed.length}`);
 		for (const f of manifest.failed) lines.push(`    ${f.slug}: ${f.reason}`);
 		lines.push(`  cost $${manifest.usage.costUsd.toFixed(4)}`);
+		if (manifest.stopped) lines.push(`  STOPPED: ${manifest.stopped}; run the same command again to resume`);
 	} else lines.push("  preview: no translator call, no node written (re-run with --apply)");
 	lines.push(`manifest: ${manifestPath}`);
 	return lines.join("\n");
@@ -211,7 +373,11 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 		force: false,
 		apply: false,
 		manifestPath: DEFAULT_MANIFEST_PATH,
+		concurrency: DEFAULT_CONCURRENCY,
+		rpm: DEFAULT_RPM,
+		sampleSize: DEFAULT_SAMPLE_SIZE,
 	};
+	const integerIn = (text: string, max: number) => /^[1-9]\d*$/.test(text) && Number(text) <= max;
 	for (let i = 1; i < argv.length; i++) {
 		const flag = argv[i];
 		if (flag === "--force") args.force = true;
@@ -227,7 +393,13 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 				args.slugs = list as Slug[];
 			} else if (flag === "--limit" && /^[1-9]\d*$/.test(value)) args.limit = Number(value);
 			else if (flag === "--manifest") args.manifestPath = value;
-			else return null;
+			else if (flag === "--concurrency" && integerIn(value, MAX_CONCURRENCY))
+				args.concurrency = Number(value);
+			else if (flag === "--rpm" && integerIn(value, MAX_RPM)) args.rpm = Number(value);
+			else if (flag === "--sample") args.samplePath = value;
+			else if (flag === "--sample-size" && integerIn(value, Number.MAX_SAFE_INTEGER)) {
+				args.sampleSize = Number(value);
+			} else return null;
 		}
 	}
 	return args;
@@ -242,7 +414,7 @@ export async function runCli(
 	const args = parseCliArgs(argv);
 	if (!args) {
 		process.stderr.write(
-			"usage: translate-nodes.ts <cache-dir> [--locale fr] [--types a,b] [--slugs a,b] [--limit n] [--force] [--apply] [--manifest <path>]\n",
+			"usage: translate-nodes.ts <cache-dir> [--locale fr] [--types a,b] [--slugs a,b] [--limit n] [--force] [--apply] [--manifest <path>] [--concurrency 1-16] [--rpm 1-2000] [--sample <path>] [--sample-size n]\n",
 		);
 		return 2;
 	}
@@ -266,7 +438,9 @@ export async function runCli(
 	await mkdir(dirname(args.manifestPath), { recursive: true });
 	await atomicWriteJson(args.manifestPath, manifest);
 	console.log(formatSummary(manifest, args.manifestPath));
-	return manifest.failed.length > 0 ? 1 : 0;
+	if (args.apply && args.samplePath !== undefined) console.log(`sample: ${args.samplePath}`);
+	// The manifest is written above, before this code is returned: a stop on quota never loses it.
+	return manifest.stopped ? 3 : manifest.failed.length > 0 ? 1 : 0;
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
