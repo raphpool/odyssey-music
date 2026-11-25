@@ -54,7 +54,7 @@ interface RatioBounds {
 }
 
 // Thresholds are decided in the plan (D3); do not tune them without measuring on the pilot (TRA-2.5).
-const MIN_ARTICLE_LENGTH = 80;
+export const MIN_ARTICLE_LENGTH = 80;
 const RATIO_BOUNDS: Record<ProseField, RatioBounds> = {
 	article: { min: 0.7, max: 1.7 },
 	teaser: { min: 0.6, max: 2.0 },
