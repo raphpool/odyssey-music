@@ -158,16 +158,16 @@ Une seule partie, deux tâches **séquentielles** (T2 dépend de T1). Points = e
 
 | # | Tâche | Tier | Pts | Dépend de |
 |---|---|---|---|---|
-| 1.1 | TRA-? · Ajouter le composant `AmbientCoverBackdrop` et la dérive `AmbientDrift` | tier/2 | 3 | — |
-| 1.2 | TRA-? · Remplacer le dégradé de la home par le fond ambiant de la cover | tier/2 | 2 | 1.1 |
+| 1.1 | TRA-829 · Ajouter le composant `AmbientCoverBackdrop` et la dérive `AmbientDrift` | tier/2 | 3 | — |
+| 1.2 | TRA-830 · Remplacer le dégradé de la home par le fond ambiant de la cover | tier/2 | 2 | 1.1 |
 
 ### Partie 1 — Fond ambiant de la home (déployable seule : sans cover, rien ne change)
 
-- [ ] TRA-? 1.1 — `Track1Core` : `AmbientDrift` (boucle, amplitude, phase, offset) et ses tests ;
+- [ ] TRA-829 1.1 — `Track1Core` : `AmbientDrift` (boucle, amplitude, phase, offset) et ses tests ;
   `DesignSystem` : `AmbientCoverBackdrop` + `AmbientCoverBackdropMetrics` et leurs tests (constantes,
   invariant de marge, voile, WCAG) ; deux entrées pbxproj (`0490`, `0491`). Aucun appelant : la home ne
   change pas encore.
-- [ ] TRA-? 1.2 — `TodayHomeView` : `backdrop` dessine `AmbientCoverBackdrop(cover:)` ou le fond plat selon
+- [ ] TRA-830 1.2 — `TodayHomeView` : `backdrop` dessine `AmbientCoverBackdrop(cover:)` ou le fond plat selon
   `TodayHomeContent.backdrop(hasCover:reduceTransparency:)` ; suppression de `TodayHomeMetrics.tintHeight` /
   `tintStops` et du paramètre `tint` ; `TodayView.Page` et `read()` ne portent plus de teinte ;
   `TodayHomeViewTests` réécrits.
@@ -257,7 +257,7 @@ Conséquences :
 
 ## Annexe — Brouillons de tickets (format `ticket-template.md`)
 
-### TRA-? (1.1) — Ajouter le composant `AmbientCoverBackdrop` et la dérive `AmbientDrift`
+### TRA-829 (1.1) — Ajouter le composant `AmbientCoverBackdrop` et la dérive `AmbientDrift`
 
 - Tier : **tier/2** · Estimate : **3** · Partie 1 · Labels : `tier/2`
 
@@ -389,10 +389,10 @@ chemin sensible.
 - `swift-format` strict : tabs, 110 colonnes. Aucune couleur brute : `Track1Tokens.colorBackgroundElevated`
   (`DesignSystem/` n'est pas scanné, mais on n'en a pas besoin).
 - `AmbientDrift` : `Foundation` seulement, pas de `#if os(iOS)` ; tuple nommé comme `ProgressFraction.sweep`.
-- Commits conventionnels, `Refs TRA-?` ; PR titrée `TRA-? …`, `Fixes TRA-?`.
+- Commits conventionnels, `Refs TRA-829` ; PR titrée `TRA-829 …`, `Fixes TRA-829`.
 ```
 
-### TRA-? (1.2) — Remplacer le dégradé de la home par le fond ambiant de la cover
+### TRA-830 (1.2) — Remplacer le dégradé de la home par le fond ambiant de la cover
 
 - Tier : **tier/2** · Estimate : **2** · Partie 1 · Labels : `tier/2` · Dépend de 1.1
 
@@ -493,6 +493,6 @@ cet écran ; couvert par des tests de contrat, aucun chemin sensible, Raphael no
   de ~10 % de GPU au repos : ticket de suivi (pré-flou CoreImage ou `frameInterval = 1/10`), pas de
   changement dans ce ticket.
 - Commentaires en anglais, datés, avec l'ID du ticket là où le code s'écarte du mock-up `324:1790`.
-- `swift-format` strict, tabs, 110 colonnes. Commits conventionnels, `Refs TRA-?` ; PR `TRA-? …`,
-  `Fixes TRA-?`.
+- `swift-format` strict, tabs, 110 colonnes. Commits conventionnels, `Refs TRA-830` ; PR `TRA-830 …`,
+  `Fixes TRA-830`.
 ```

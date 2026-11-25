@@ -173,7 +173,7 @@ Une partie, un ticket. Points = estimate Linear.
 
 | # | Tâche | Tier | Pts | Dépend de |
 |---|---|---|---|---|
-| 1.1 | TRA-? · Core + DS + lecteur · « Source : media.com » sous la dernière phrase, cliquable, avec ses tests Core, app et UI | tier/2 | 2 | — |
+| 1.1 | TRA-826 · Core + DS + lecteur · « Source : media.com » sous la dernière phrase, cliquable, avec ses tests Core, app et UI | tier/2 | 2 | — |
 
 Diff attendu ≈ 280 lignes (Core ~45 + tests ~70 ; `Track1Text` ~12 ; `PlayerView` ~70 ; `PlayerViewTests`
 ~45 ; `NodeTextComponentsTests` ~15 ; `UITestFlows` ~3 ; `TodayFlowTests` ~35). Si l'implémentation dépasse
@@ -182,7 +182,7 @@ de visible), (b) le lecteur + test UI (tier/2) — voir Q8.
 
 ### Partie 1 — La ligne de source (déployable seule : une ligne de plus en fin de lecture, rien d'autre ne bouge)
 
-- [ ] TRA-? 1.1 — `PlayerSource` (Core) ; `Track1Text(_ text: Text, role:)` ; `PlayerMetrics.source*` ;
+- [ ] TRA-826 1.1 — `PlayerSource` (Core) ; `Track1Text(_ text: Text, role:)` ; `PlayerMetrics.source*` ;
   `PlayerView.source(for:)` ; `PlayerSourceLine` sous les phrases dans `PlayerReader.reading(height:)` ;
   fixture UI avec citation ; tests Core, app et UI.
 
@@ -250,7 +250,7 @@ de visible), (b) le lecteur + test UI (tier/2) — voir Q8.
 
 ## Ticket (brouillon, format `ticket-template.md`)
 
-### TRA-? (1.1) — Afficher « Source : media.com » cliquable sous la dernière phrase du lecteur
+### TRA-826 (1.1) — Afficher « Source : media.com » cliquable sous la dernière phrase du lecteur
 
 - Tier : **tier/2** · Estimate : **2** · Partie 1 · Labels : `tier/2`
 
@@ -410,5 +410,5 @@ d'une URL tierce déjà validée par le chemin existant (`URLValidation`), couve
   `descendants(matching: .any)`, la ligne se lit avec `app.buttons[…]`.
 - Si le diff dépasse 300 lignes, couper : (a) `PlayerSource` + `Track1Text(Text, role:)` + tests (tier/1),
   (b) lecteur + UI (tier/2) ; (b) dépend de (a).
-- Commits conventionnels, `Refs TRA-?` ; PR titrée `TRA-? …`, `Fixes TRA-?`.
+- Commits conventionnels, `Refs TRA-826` ; PR titrée `TRA-826 …`, `Fixes TRA-826`.
 ```

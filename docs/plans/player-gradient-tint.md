@@ -127,10 +127,10 @@ jugeables séparément sur appareil (un axe du brief chacune).
 
 ### Partie 1 — Fond du lecteur
 
-- [ ] TRA-? **Retarder le passage au foncé du dégradé du lecteur** (axe géométrie, D4 + D5) —
+- [ ] TRA-831 **Retarder le passage au foncé du dégradé du lecteur** (axe géométrie, D4 + D5) —
   `PlayerMetrics` et son test. tier/1, 1 point. **Après** le ticket 1.2 de
   `home-ambient-cover-background`.
-- [ ] TRA-? **Teinter davantage le fond du lecteur avec la couleur de la cover** (axe ton,
+- [ ] TRA-832 **Teinter davantage le fond du lecteur avec la couleur de la cover** (axe ton,
   D1 + D2 + D3) — `CoverTintTone.Scale` dans `Track1Core`, `NodeHeroModel(scale:)`,
   `NodePageView.pageTint(scale:)`, `PlayerView`, et leurs tests. tier/2, 3 points. Aucune dépendance.
 

@@ -194,21 +194,21 @@ Deux tâches, une partie par tâche, séquentielles (2 bloquée par 1). Points =
 
 | # | Tâche | Tier | Pts | Dépend de |
 |---|---|---|---|---|
-| 1.1 | TRA-? · Core · `Encodable` sur les modèles du catalogue + `GenreCatalogStore` (snapshot, `load`, `refresh`, `remember`) + tests Core | tier/2 | 3 | — |
-| 2.1 | TRA-? · App · Brancher le store dans `AppContainer`, `RootView`, `GenresTabView` ; préchauffage au lancement ; tests UI | tier/2 | 2 | 1.1 |
+| 1.1 | TRA-827 · Core · `Encodable` sur les modèles du catalogue + `GenreCatalogStore` (snapshot, `load`, `refresh`, `remember`) + tests Core | tier/2 | 3 | — |
+| 2.1 | TRA-828 · App · Brancher le store dans `AppContainer`, `RootView`, `GenresTabView` ; préchauffage au lancement ; tests UI | tier/2 | 2 | 1.1 |
 
 Chaque PR laisse `swift test --package-path ios/Track1Core`, `ios-check` et `npm run check` verts.
 
 ### Partie 1 — Persistance (déployable seule : aucun comportement visible ne change, le code est prêt à brancher)
 
-- [ ] TRA-? 1.1 — `APIModels.swift` : `Encodable` sur les sept types du catalogue, `Equatable` sur `Catalog`,
+- [ ] TRA-827 1.1 — `APIModels.swift` : `Encodable` sur les sept types du catalogue, `Equatable` sur `Catalog`,
   `CatalogNode`, `CatalogEdge` ; nouveau `GenreCatalogStore.swift` (snapshot réduit aux genres, `load` avec
   partage des lectures concurrentes, `refresh` conditionnel par ETag/`revision`, `remember`, `remembering`,
   `resetBeforeUse`) ; tests `API/CatalogEncodingTests.swift` et `Genres/GenreCatalogStoreTests.swift`.
 
 ### Partie 2 — Branchement (déployable seule : l'onglet s'affiche depuis le disque)
 
-- [ ] TRA-? 2.1 — `AppContainer` construit `genreCatalog` (lecteur prod avec ETag, lecteur fixture sous
+- [ ] TRA-828 2.1 — `AppContainer` construit `genreCatalog` (lecteur prod avec ETag, lecteur fixture sous
   simulateur, resets) ; `RootView` l'injecte à l'onglet, enveloppe le `loadCatalog` de l'onboarding avec
   `remembering`, préchauffe au lancement ; `GenresTabView` remplace `loadCatalog` par `genreCatalog`,
   lit `load()` et lance `refresh()` en arrière-plan ; tests UI : preuve « servi depuis le disque » (catalogue
@@ -422,7 +422,7 @@ tier/2 — logique locale et fichier dérivé régénérable ; aucun chemin `sen
   « 2026-11-25 : l'onglet Genres relisait le catalogue entier à chaque lancement ».
 - Seule exécution Swift autorisée en local : `swift test --package-path ios/Track1Core`
   (`docs/track1-builds.md:130-134`). `ios-check` tourne en CI sur PR « ready ».
-- Commits conventionnels, `Refs TRA-?` ; PR titrée `TRA-? …`, `Fixes TRA-?`.
+- Commits conventionnels, `Refs TRA-827` ; PR titrée `TRA-827 …`, `Fixes TRA-827`.
 ```
 
 ### 2.1 — Servir l'onglet Genres depuis le snapshot disque, rafraîchir en arrière-plan et préchauffer au lancement
@@ -431,7 +431,7 @@ tier/2 — logique locale et fichier dérivé régénérable ; aucun chemin `sen
 
 ```markdown
 ## Contexte
-Avec TRA-? (1.1), Core sait garder un snapshot des genres sur disque et le relire sans réseau. Cette tâche
+Avec TRA-827 (1.1), Core sait garder un snapshot des genres sur disque et le relire sans réseau. Cette tâche
 le branche : l'onglet Genres lit le snapshot à son apparition (plus de spinner quand il existe), révalide
 en arrière-plan, l'onboarding alimente le snapshot, et le lancement le préchauffe pour les appareils qui
 n'en ont pas encore (mise à jour). Plan : docs/plans/genre-tab-instant.md#partie-2 (D2, D3, D4, D6).
@@ -539,5 +539,5 @@ tier/2 — branchement d'un composant testé, logique locale ; aucun chemin `sen
 - Pas de simulateur en local (`docs/track1-builds.md:130-134`) ; typecheck de l'app sans `xcodebuild`
   possible (l.146-160) ; les tests UI passent par `ios-check`, qui ignore les PR en brouillon et n'est pas un
   check requis : passer la PR en « ready » et attendre son vert avant de demander le merge.
-- Commits conventionnels, `Refs TRA-?` ; PR titrée `TRA-? …`, `Fixes TRA-?`.
+- Commits conventionnels, `Refs TRA-828` ; PR titrée `TRA-828 …`, `Fixes TRA-828`.
 ```
