@@ -15,7 +15,7 @@ déploiement, jamais édité à la main.
 - Lint/format : Biome — tabs, guillemets doubles, largeur 110
 - Front : une page unique `web/index.html`, JS inline, aucun framework, aucun build
 - Serveur : http stdlib, routage à la main, pas de framework
-- Modèle : Gemini Flash Lite, **un seul appel** par nœud, schéma de réponse contraint
+- Modèle : Gemini Flash Lite, **un seul appel de rédaction** par nœud, schéma de réponse contraint ; plus un appel de traduction, étape optionnelle (`PipelineDeps.translate`)
 - Porte d'entrée locale : `npm run check` (lint + typecheck + test)
 - Logique iOS pure : `ios/Track1Core`, testée en local par `swift test` (voir `docs/track1-builds.md`) ; l'app n'est compilée que par `ios-check`
 - Le process de livraison est dans `/delivery-process` (skill)
