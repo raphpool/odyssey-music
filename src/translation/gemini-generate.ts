@@ -27,8 +27,10 @@ function isQuotaError(error: unknown): boolean {
 	return /\b429\b/.test(message) || message.includes("RESOURCE_EXHAUSTED");
 }
 
-/** Statuses for which the same request can never succeed: relaunching the batch changes nothing (TRA-837). */
-const PERMANENT_STATUSES: ReadonlySet<number> = new Set([400, 401, 403, 404]);
+/** Statuses that hold for the whole batch (model, key, rights): relaunching changes nothing (TRA-837). */
+const PERMANENT_STATUSES: ReadonlySet<number> = new Set([401, 403, 404]);
+/** A 400 refuses this request; whether it refuses them all is for the batch to see (see `bad_request`). */
+const BAD_REQUEST_STATUS = 400;
 export const MAX_DETAIL_LENGTH = 200;
 
 function statusOf(error: unknown): number | undefined {
@@ -111,7 +113,9 @@ export function createGeminiGenerateJson(apiKey: string): GenerateJson {
 				? "quota_exhausted"
 				: permanent
 					? "provider_rejected"
-					: "provider_unavailable";
+					: detail.status === BAD_REQUEST_STATUS
+						? "bad_request"
+						: "provider_unavailable";
 			return { ok: false, reason, detail };
 		} finally {
 			clearTimeout(timer);
@@ -120,12 +124,10 @@ export function createGeminiGenerateJson(apiKey: string): GenerateJson {
 
 	return async (request) => {
 		let result = await attempt(request);
-		// A permanent refusal is not retried: the second call would wait for the same answer.
-		for (
-			let tries = 1;
-			!result.ok && result.reason !== "provider_rejected" && tries < MAX_ATTEMPTS;
-			tries++
-		) {
+		// A refusal of the request is not retried: the second call would wait for the same answer.
+		const refused = (r: GenerateJsonResult) =>
+			!r.ok && (r.reason === "provider_rejected" || r.reason === "bad_request");
+		for (let tries = 1; !result.ok && !refused(result) && tries < MAX_ATTEMPTS; tries++) {
 			await new Promise((resolve) => setTimeout(resolve, pipelineConfig.retryDelayMs));
 			result = await attempt(request);
 		}

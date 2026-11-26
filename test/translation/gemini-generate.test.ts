@@ -143,10 +143,22 @@ describe("provider failure detail (TRA-837)", () => {
 		expect(sdk.generateContent).toHaveBeenCalledTimes(1);
 	});
 
-	it.each([400, 401, 403, 404])("treats HTTP %i as permanent", async (status) => {
+	it.each([401, 403, 404])("treats HTTP %i as permanent for the whole batch", async (status) => {
 		sdk.generateContent.mockRejectedValue(apiError(status, "nope"));
 		const result = await settle(createGeminiGenerateJson("k")(REQUEST));
 		expect(result).toMatchObject({ ok: false, reason: "provider_rejected", detail: { status } });
+		expect(sdk.generateContent).toHaveBeenCalledTimes(1);
+	});
+
+	it("treats a 400 as the refusal of this request only: bad_request, with its detail, not retried", async () => {
+		sdk.generateContent.mockRejectedValue(apiError(400, "Invalid argument: thinking_budget"));
+		// Not a one-letter key: it would match inside "thinking".
+		const result = await settle(createGeminiGenerateJson("test-key-0001")(REQUEST));
+		expect(result).toEqual({
+			ok: false,
+			reason: "bad_request",
+			detail: { status: 400, message: "Invalid argument: thinking_budget" },
+		});
 		expect(sdk.generateContent).toHaveBeenCalledTimes(1);
 	});
 

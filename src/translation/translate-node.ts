@@ -34,10 +34,17 @@ export interface ProviderFailureDetail {
 }
 
 /**
- * `provider_rejected`: a permanent refusal (404 model not found, 400, 401, 403). Retrying the same request
- * cannot succeed, unlike `quota_exhausted` and `provider_unavailable`, which are worth waiting out.
+ * - `provider_rejected`: a refusal that holds for the whole batch (404 model not found, 401, 403). Retrying
+ *   cannot succeed, unlike `quota_exhausted` and `provider_unavailable`, which are worth waiting out.
+ * - `bad_request`: a 400. It often depends on this one request (a prompt the API refuses), so it fails this
+ *   node only; the batch stops on it only when it repeats (a setting the model refuses for every node).
+ *   Review of #742, 2026-11-26: treating a lone 400 as permanent froze every run on the same node.
  */
-export type ProviderFailureReason = "quota_exhausted" | "provider_unavailable" | "provider_rejected";
+export type ProviderFailureReason =
+	| "quota_exhausted"
+	| "provider_unavailable"
+	| "provider_rejected"
+	| "bad_request";
 
 export type GenerateJsonResult =
 	| { ok: true; text: string; inputTokens: number; outputTokens: number }
