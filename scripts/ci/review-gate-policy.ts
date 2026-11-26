@@ -54,8 +54,120 @@ export const sensitivePath =
 export const gateIntegrityPath =
 	/^\.github\/(workflows\/(ai-review|review-gate)\.yml|review-gate-authors\.txt)$|^scripts\/ci\/(review-gate-policy|review-reuse)|^REVIEW\.md$|^\.codex\/scripts\/publish-review-status\.sh$/i;
 
-export const classifyRisk = (paths: readonly string[], labels: readonly string[]): Tier => {
-	if (paths.some((path) => sensitivePath.test(path)) || labels.includes("tier/3")) return 3;
+// TRA-841 (2026-11-26): a data PR is tier/3 only so that Raphael approves its content, which the deep review cannot
+// do. On TRA-812 (#738, 30 project nodes that only gained `l10n.fr`) it hit its 60-turn limit twice without a verdict
+// and `review-gate` blocked the PR; the risks it looks for (diff scope, equality outside `l10n`, Zod validation,
+// audit-cache, integrity) are already checked mechanically. Such a PR is therefore tier 2. Everything else keeps its
+// tier: a path outside `cache/nodes/` (the gate itself included, via `sensitivePath`) or any change that is not an
+// added `l10n` block (a deletion, a merge, a rewrite) stays tier/3, because losing data is a real risk there.
+const cacheNodePath = /^cache\/nodes\/[^\0]+\.json$/;
+
+export interface FileChange {
+	path: string;
+	// First letter of `git diff --name-status`: only `M` can qualify; added, deleted, copied or type-changed files cannot.
+	status: string;
+	// File content on the merge base and on the head; null when the file does not exist on that side.
+	base: string | null;
+	head: string | null;
+}
+
+const isPlainObject = (value: unknown): value is Record<string, unknown> =>
+	typeof value === "object" && value !== null && !Array.isArray(value);
+
+// Structural JSON equality: the key order of an object does not matter, the order of an array does.
+const sameJson = (a: unknown, b: unknown): boolean => {
+	if (a === b) return true;
+	if (Array.isArray(a) || Array.isArray(b)) {
+		return (
+			Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((v, i) => sameJson(v, b[i]))
+		);
+	}
+	if (!isPlainObject(a) || !isPlainObject(b)) return false;
+	const keys = Object.keys(a);
+	return (
+		keys.length === Object.keys(b).length && keys.every((k) => Object.hasOwn(b, k) && sameJson(a[k], b[k]))
+	);
+};
+
+// The one locale and the keys of a translation block that src/schemas.ts declares (`nodeTranslationSchema`), held here
+// because the gate runs this file alone. A block of another shape is not recognised, so it keeps the deep review: the
+// worst a schema change does is turn the shortcut off. Keep in step with src/schemas.ts.
+const l10nLocales: ReadonlySet<string> = new Set(["fr"]);
+const l10nBlockKeys: ReadonlySet<string> = new Set([
+	"teaser",
+	"article",
+	"facts",
+	"source_sha256",
+	"model",
+	"translated_at",
+]);
+
+const isTranslationBlock = (block: unknown): boolean => {
+	if (!isPlainObject(block)) return false;
+	return Object.entries(block).every(([key, value]) =>
+		key === "facts"
+			? isPlainObject(value) && Object.values(value).every((fact) => typeof fact === "string")
+			: l10nBlockKeys.has(key) && typeof value === "string",
+	);
+};
+
+const withoutL10n = (node: Record<string, unknown>): Record<string, unknown> => {
+	const { l10n: _l10n, ...rest } = node;
+	return rest;
+};
+
+const parseJson = (text: string | null): unknown => {
+	if (text === null) return undefined;
+	try {
+		return JSON.parse(text) as unknown;
+	} catch {
+		return undefined;
+	}
+};
+
+// True when the file differs from its base only by `l10n` blocks (locales) that the base did not have: parsed JSON
+// compared, no text read. Every doubt is false (fail closed): unreadable or non-object JSON, a locale of the base
+// changed or removed, no locale added, or an added block that is not a plain translation block of the declared locale.
+const addsOnlyL10n = (change: FileChange): boolean => {
+	if (change.status !== "M" || !cacheNodePath.test(change.path)) return false;
+	const base = parseJson(change.base);
+	const head = parseJson(change.head);
+	if (!isPlainObject(base) || !isPlainObject(head)) return false;
+	if (!sameJson(withoutL10n(base), withoutL10n(head))) return false;
+	const baseL10n = Object.hasOwn(base, "l10n") ? base.l10n : {};
+	const headL10n = head.l10n;
+	if (!isPlainObject(baseL10n) || !isPlainObject(headL10n)) return false;
+	const keptLocales = Object.keys(baseL10n).every(
+		(locale) => Object.hasOwn(headL10n, locale) && sameJson(baseL10n[locale], headL10n[locale]),
+	);
+	if (!keptLocales) return false;
+	const added = Object.keys(headL10n).filter((locale) => !Object.hasOwn(baseL10n, locale));
+	return (
+		added.length > 0 &&
+		added.every((locale) => l10nLocales.has(locale) && isTranslationBlock(headL10n[locale]))
+	);
+};
+
+export const isL10nOnlyAddition = (changes: readonly FileChange[]): boolean =>
+	changes.length > 0 && changes.every(addsOnlyL10n);
+
+export interface RiskOptions {
+	// Result of `isL10nOnlyAddition` for the whole diff, computed by the caller from the default branch's copy of this file.
+	l10nOnly?: boolean;
+}
+
+export const classifyRisk = (
+	paths: readonly string[],
+	labels: readonly string[],
+	options: RiskOptions = {},
+): Tier => {
+	if (paths.some((path) => sensitivePath.test(path))) return 3;
+	if (labels.includes("tier/3")) {
+		// Defense in depth: even a true flag only counts when every path of the diff is a cache node file.
+		const l10nOnly =
+			options.l10nOnly === true && paths.length > 0 && paths.every((path) => cacheNodePath.test(path));
+		return l10nOnly ? 2 : 3;
+	}
 	if (labels.includes("tier/2")) return 2;
 	return 1;
 };
@@ -91,11 +203,72 @@ export const evaluateReviewGate = (input: GateInput): GateVerdict => {
 	return input.deepClaude === "success" && input.touchesGate === false ? "pass" : "wait";
 };
 
+type GitRunner = (args: readonly string[]) => string;
+
+// The changes of `base...head` with both sides of every file read from git, as the gate's diff sees them (--no-renames,
+// -z). A missing side is null. Only a modified cache node is read: anything else cannot qualify anyway.
+const readChanges = (git: GitRunner, base: string, head: string): FileChange[] => {
+	const mergeBase = git(["merge-base", base, head]).trim();
+	const tokens = git(["diff", "-z", "--name-status", "--no-renames", `${base}...${head}`]).split("\0");
+	if (tokens.pop() !== "") throw new Error("Unexpected git diff output");
+	const show = (rev: string, path: string): string | null => {
+		try {
+			return git(["show", `${rev}:${path}`]);
+		} catch {
+			return null;
+		}
+	};
+	const changes: FileChange[] = [];
+	for (let i = 0; i < tokens.length; i += 2) {
+		const status = tokens[i]?.[0] ?? "";
+		const path = tokens[i + 1] ?? "";
+		const readable = status === "M" && cacheNodePath.test(path);
+		changes.push({
+			path,
+			status,
+			base: readable ? show(mergeBase, path) : null,
+			head: readable ? show(head, path) : null,
+		});
+	}
+	return changes;
+};
+
+// `review-gate-policy.ts l10n-only <base> <head>` prints `true` or `false` on stdout; anything that goes wrong prints
+// `false` and the reason on stderr, so a broken check shows in the job log instead of looking like a PR that is not
+// l10n-only. The built-in is imported at call time, not with an `import` statement: the gate copies this file alone
+// from the default branch and runs it with `node --experimental-strip-types` (test/review-gate-workflow.test.ts).
+const l10nOnlyCommand = async (base: string | undefined, head: string | undefined): Promise<void> => {
+	let result = false;
+	try {
+		if (base === undefined || head === undefined) throw new Error("Usage: l10n-only <base> <head>");
+		const { execFileSync } = await import("node:child_process");
+		const git: GitRunner = (args) =>
+			execFileSync("git", args, {
+				encoding: "utf8",
+				maxBuffer: 256 * 1024 * 1024,
+				stdio: ["ignore", "pipe", "pipe"],
+			});
+		result = isL10nOnlyAddition(readChanges(git, base, head));
+	} catch (error) {
+		console.error(`l10n-only: not applied, ${error instanceof Error ? error.message : String(error)}`);
+	}
+	console.log(String(result));
+};
+
 const main = (): void => {
 	const encoded = process.argv[2];
-	if (encoded === undefined) throw new Error("Usage: review-gate-policy.ts <json-input>");
-	const input = JSON.parse(encoded) as Omit<GateInput, "touchesGate"> & { paths: string[]; labels: string[] };
-	const risk = classifyRisk(input.paths, input.labels);
+	if (encoded === undefined)
+		throw new Error("Usage: review-gate-policy.ts <json-input> | l10n-only <base> <head>");
+	if (encoded === "l10n-only") {
+		void l10nOnlyCommand(process.argv[3], process.argv[4]);
+		return;
+	}
+	const input = JSON.parse(encoded) as Omit<GateInput, "touchesGate"> & {
+		paths: string[];
+		labels: string[];
+		l10nOnly?: boolean;
+	};
+	const risk = classifyRisk(input.paths, input.labels, { l10nOnly: input.l10nOnly === true });
 	const touchesGate = input.paths.some((path) => gateIntegrityPath.test(path));
 	console.log(JSON.stringify({ risk, verdict: evaluateReviewGate({ ...input, risk, touchesGate }) }));
 };

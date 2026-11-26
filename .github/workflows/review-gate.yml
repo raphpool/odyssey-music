@@ -257,7 +257,18 @@ jobs:
             if [ -n "$ignored" ]; then
               echo "::warning::Statuts codex ignorés (auteur hors de .github/review-gate-authors.txt) : $ignored"
             fi
-            input=$(jq -nc --argjson paths "$paths" --argjson labels "$labels" --arg claude "$claude" --arg codex "$codex" --arg deep "$deep" --arg deepClaude "${deep_claude:-missing}" --argjson claudeBlocking "$claude_blocking" '{paths:$paths,labels:$labels,ordinary:{claude:$claude,codex:$codex,claudeBlocking:$claudeBlocking},deep:$deep,deepClaude:$deepClaude,risk:1}')
+            # TRA-841 (2026-11-26): a tier/3 PR whose every file is a cache node that only gained `l10n` blocks has no deep
+            # review to wait for (#738 hit its 60 turns twice and blocked the gate). The check is the default branch's
+            # copy of the policy, run on the PR's checkout: JSON parsed and compared, never text. Only the literal
+            # `true` counts; a crash, a timeout, a shallow history or any other output is `false`, which keeps the deep
+            # review (the reason goes to the job log on stderr). The merge still waits for Raphael's OK, written as a
+            # procedure step in the PR. Asked once per run, and only for a tier/3 label: the head does not move here.
+            if [ -z "${l10n_only:-}" ] && jq -e 'index("tier/3") != null' <<< "$labels" > /dev/null; then
+              l10n_only=$(node --experimental-strip-types --no-warnings "$RUNNER_TEMP/review-gate-policy/review-gate-policy.ts" l10n-only "${{ github.event.pull_request.base.sha }}" "$SHA" || echo false)
+              [ "$l10n_only" = "true" ] || l10n_only=false
+            fi
+            : "${l10n_only:=false}"
+            input=$(jq -nc --argjson paths "$paths" --argjson labels "$labels" --arg claude "$claude" --arg codex "$codex" --arg deep "$deep" --arg deepClaude "${deep_claude:-missing}" --argjson claudeBlocking "$claude_blocking" --argjson l10nOnly "$l10n_only" '{paths:$paths,labels:$labels,ordinary:{claude:$claude,codex:$codex,claudeBlocking:$claudeBlocking},deep:$deep,deepClaude:$deepClaude,l10nOnly:$l10nOnly,risk:1}')
             result=$(node --experimental-strip-types --no-warnings "$RUNNER_TEMP/review-gate-policy/review-gate-policy.ts" "$input")
             decision=$(jq -r .verdict <<< "$result")
             echo "attempt=$attempt $result"
