@@ -1,7 +1,9 @@
 import { execFileSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { afterAll, beforeAll, beforeEach, describe, expect, it } from "vitest";
 
@@ -548,6 +550,8 @@ describe("review gate policy", () => {
 
 		// The gate really runs the default branch's copy of this file as a CLI, on a real checkout.
 		describe("CLI against a git history", () => {
+			const projectRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
+			const tsxCli = createRequire(import.meta.url).resolve("tsx/cli");
 			let repo = "";
 			const git = (...args: string[]): string =>
 				execFileSync("git", ["-C", repo, ...args], { encoding: "utf8" }).trim();
@@ -555,19 +559,15 @@ describe("review gate policy", () => {
 				mkdirSync(dirname(join(repo, path)), { recursive: true });
 				writeFileSync(join(repo, path), `${JSON.stringify(value, null, "\t")}\n`);
 			};
-			const l10nOnly = (base: string, head: string): string =>
+			// The policy runs with the temporary repository as its working directory (it is git's), so tsx cannot be found
+			// by `npx` from there: it is started by absolute path, resolved from the project like the test itself.
+			const runPolicy = (...args: string[]): string =>
 				execFileSync(
-					"npx",
-					[
-						"--no-install",
-						"tsx",
-						join(process.cwd(), "scripts/ci/review-gate-policy.ts"),
-						"l10n-only",
-						base,
-						head,
-					],
+					process.execPath,
+					[tsxCli, join(projectRoot, "scripts/ci/review-gate-policy.ts"), ...args],
 					{ cwd: repo, encoding: "utf8" },
 				).trim();
+			const l10nOnly = (base: string, head: string): string => runPolicy("l10n-only", base, head);
 			const commit = (message: string): string => {
 				git("add", "-A");
 				git("commit", "-q", "-m", message);
@@ -625,33 +625,20 @@ describe("review gate policy", () => {
 			it("prints false on an unknown revision, an empty diff and missing arguments", () => {
 				expect(l10nOnly(base, "does-not-exist")).toBe("false");
 				expect(l10nOnly(base, base)).toBe("false");
-				expect(
-					execFileSync(
-						"npx",
-						["--no-install", "tsx", join(process.cwd(), "scripts/ci/review-gate-policy.ts"), "l10n-only"],
-						{ cwd: repo, encoding: "utf8" },
-					).trim(),
-				).toBe("false");
+				expect(runPolicy("l10n-only")).toBe("false");
 			});
 
 			it("carries the flag through the JSON CLI: tier/3 label, l10nOnly true, deep review skipped, gate passes", () => {
 				const result = JSON.parse(
-					execFileSync(
-						"npx",
-						[
-							"--no-install",
-							"tsx",
-							join(process.cwd(), "scripts/ci/review-gate-policy.ts"),
-							JSON.stringify({
-								paths: ["cache/nodes/project/p0.json"],
-								labels: ["tier/3"],
-								l10nOnly: true,
-								ordinary: { claude: "success", codex: "missing", claudeBlocking: false },
-								deep: "missing",
-								deepClaude: "missing",
-							}),
-						],
-						{ cwd: repo, encoding: "utf8" },
+					runPolicy(
+						JSON.stringify({
+							paths: ["cache/nodes/project/p0.json"],
+							labels: ["tier/3"],
+							l10nOnly: true,
+							ordinary: { claude: "success", codex: "missing", claudeBlocking: false },
+							deep: "missing",
+							deepClaude: "missing",
+						}),
 					),
 				);
 				expect(result).toEqual({ risk: 2, verdict: "pass" });
