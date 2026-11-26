@@ -64,5 +64,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une introduction brute et viscérale à l'esthétique dark cabaret de The Dresden Dolls, rassemblant des démos précoces et des performances live qui définissent leur son piano-punk.",
+      "article": "A Is for Accident fait office de premier album live et de compilation pour le duo américain de dark cabaret The Dresden Dolls, sorti en 2003. Compilé à partir d'enregistrements s'étalant de 2001 à 2003, l'album capture l'énergie frénétique et théâtrale des années de formation du groupe sur la scène musicale de Boston. Avec Amanda Palmer au piano et au chant et Brian Viglione à la batterie et à la guitare, le duo a cultivé un son à la fois mélodique et menaçant, souvent qualifié de « Brechtian punk cabaret ». Les titres présentés ici, incluant des favoris du public comme « Coin-Operated Boy » et « Christopher Lydon », mettent en avant la dépendance du groupe aux instruments acoustiques couplée à une intensité punk-rock qui évite le vernis de la production moderne au profit d'une performance brute.\n\nLe projet capture des prestations issues de divers lieux emblématiques de la région de Boston, tels que T.T. The Bear's Place et le Lizard Lounge, ainsi que des enregistrements de sessions radio pour WMBR et WBRS. En mettant en lumière ces sessions précoces et non polies aux côtés de démos live spécifiques et de chutes de studio, A Is for Accident agit comme un document fondateur pour la base de fans du duo. Il est arrivé quelques mois seulement avant leur premier album studio éponyme, et son succès — validé par une réception critique solide, incluant une note de 8.4 de la part de Pitchfork — a contribué à consolider leur réputation. L'album demeure également un exemple notable d'indépendance artistique ; Palmer a déclaré que le groupe avait conservé la propriété et les droits de distribution, leur permettant de le rendre librement disponible sur des plateformes comme Bandcamp au cours des années suivantes. Cette sortie reste une étape clé de la musique indépendante des années 2000, illustrant la puissance d'une éthique DIY à l'ère de la découverte numérique naissante.",
+      "source_sha256": "77b1421203867bdad8e0ecf22d5b89f3860e0bc116ef35767b4e9be134f146a9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:33:00.999Z"
+    }
+  }
 }

@@ -96,5 +96,14 @@
       "type": "project",
       "name": "Ambient 4: On Land"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre ambient révolutionnaire qui utilise des boucles magnétiques superposées pour créer un paysage sonore génératif et apaisant, conçu pour transformer l'anxiété publique en un espace d'introspection.",
+      "article": "Ambient 1: Music for Airports, publié en février 1979, constitue une étape fondamentale du design sonore moderne et du genre ambient. Conçu par le polymathe anglais Brian Eno, l'album est né d'une expérience frustrante à l'aéroport de Cologne-Bonn, où l'environnement acoustique austère et sans inspiration a poussé Eno à imaginer une forme de musique spécifiquement conçue pour atténuer l'anxiété des espaces publics. Plutôt que de s'appuyer sur des mélodies ou des rythmes traditionnels, Eno a utilisé des boucles magnétiques de longueurs variables — une technique qu'il a commencé à affiner pendant sa convalescence après un accident de voiture en 1975 — pour créer des paysages sonores génératifs capables d'évoluer organiquement au fil du temps.\n\nL'approche d'Eno était enracinée dans le concept de « musique d'ameublement », inspiré par Erik Satie, qui suggérait que la musique pouvait servir d'élément fonctionnel d'un environnement plutôt que de point focal pour une attention intense. Dans les notes de pochette originales de l'album, Eno a défini l'ambient music comme étant « aussi ignorables qu'intéressante », soulignant sa double capacité à fournir une toile de fond sereine ou à récompenser une écoute plus profonde et active. Le processus d'enregistrement a impliqué la superposition d'éléments disparates, notamment le piano de Robert Wyatt et des enregistrements vocaux capturés dans le studio de Conny Plank, en des textures qui semblaient simultanément structurées et suspendues.\n\nEn tant que premier volet de la célèbre série « Ambient » d'Eno, le projet a considérablement influencé la trajectoire de la musique électronique, minimaliste et post-rock. Il offrait une alternative sophistiquée à la « Muzak » commerciale et stérile qui imprégnait les aéroports et les bureaux de l'époque. Des décennies après sa sortie, il demeure une référence pour sa tonalité sereine et son défi audacieux à la hiérarchie traditionnelle entre l'auditeur et l'interprète, créant efficacement un espace permettant à l'auditeur de penser au sein du son. Il est largement considéré comme l'œuvre définissant le genre ambient, un statut consolidé par une reconnaissance critique durable et son statut continu de jalon de la composition audio moderne.",
+      "source_sha256": "17d60e4e156675fc870c6086217aaa15a630a061c8e26ce623f71b9ded953bff",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:34:02.481Z"
+    }
+  }
 }

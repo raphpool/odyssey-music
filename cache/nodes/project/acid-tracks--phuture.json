@@ -66,5 +66,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Acid Tracks » est largement considéré comme l'hymne fondateur de l'acid house, une sortie séminale de 1987 du trio basé à Chicago Phuture, composé de DJ Pierre, Earl « Spanky » Smith Jr. et Herbert Jackson.",
+      "article": "« Acid Tracks » est largement considéré comme l'hymne fondateur de l'acid house, une sortie séminale de 1987 du trio basé à Chicago Phuture, composé de DJ Pierre, Earl « Spanky » Smith Jr. et Herbert Jackson. Conçu à l'origine sous le titre de travail « In Your Mind », le morceau est né de l'expérimentation fortuite et quelque peu accidentelle du trio avec un Roland TB-303, un synthétiseur de basse qui avait été largement ignoré par l'industrie musicale à l'époque. Cherchant à reproduire l'intensité des sets légendaires joués par DJ Ron Hardy au club de Chicago le Muzic Box, le groupe a poussé les paramètres de la machine vers un territoire étranger et grinçant, créant un son brut et abrasif qui allait redéfinir la musique de danse.\n\nL'impact de « Acid Tracks » fut immédiat et sismique. Après que Hardy a commencé à tester une démo sur cassette du morceau au Muzic Box, celui-ci s'est transformé d'une expérience initialement discordante en une pièce maîtresse rituelle de ses sets, finissant par être piraté par les habitués sous le nom de « Ron Hardy's Acid Track ». Le trio a finalement cherché une sortie officielle via Trax Records, enrôlant le pionnier de la house music Marshall Jefferson pour aider à la production et au mastering. Le disque de 12 minutes qui en a résulté, soutenu par les morceaux « Phuture Jacks » et « Your Only Friend », a effectivement lancé le genre « acid house ». Son influence a transcendé ses racines de Chicago, trouvant une seconde vie massive et transformatrice sur la scène musicale électronique naissante du Royaume-Uni, fournissant finalement le modèle pour des décennies de rave et de culture dance underground à suivre. Le nom « acid » lui-même fut un cas de sérendipité ; bien que le public l'ait associé à la culture de la drogue, DJ Pierre a précisé plus tard qu'il avait simplement choisi ce nom parce qu'il trouvait que le son granuleux et corrosif du 303 lui rappelait les acides industriels faisant fondre le métal.",
+      "source_sha256": "44e22647a35780ac26fc56f43519056df8c4a4c233d58e4f7b0c1b4f24f7266b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:33:57.542Z"
+    }
+  }
 }

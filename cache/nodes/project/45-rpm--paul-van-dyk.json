@@ -131,5 +131,14 @@
       "type": "project",
       "name": "Seven Ways"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Premier album studio du pionnier de la trance Paul van Dyk, 45 RPM s'impose comme un disque électronique phare de 1994 qui a contribué à définir le son mélodique et énergique de la scène trance émergente de Berlin.",
+      "article": "45 RPM est le premier album studio du pionnier allemand de la trance Paul van Dyk, sorti initialement en 1994 sur le label MFS. Arrivé à la croisée de l'explosion techno du début des années 90 et de la scène trance en plein essor, l'album constitue un document définitif du paysage musical électronique berlinois durant cette période charnière. Bien que Paul van Dyk ait par la suite connu un succès grand public massif, 45 RPM capture son énergie brute et exploratoire, mêlant des éléments de techno, d'electro, de house et les paysages sonores mélodiques et atmosphériques qui allaient bientôt définir le genre trance. Le projet est peut-être culturellement plus significatif pour avoir introduit « For an Angel », un morceau qui deviendrait par la suite un pilier emblématique de la musique électronique de danse. La sortie allemande originale était particulièrement substantielle, fréquemment accompagnée d'un second disque présentant des remixes que van Dyk avait produits pour des artistes comme New Order et Inspiral Carpets, illustrant sa réputation grandissante de remixeur très demandé. Avec un titre qui fait un clin d'œil ludique au format classique du vinyle sept pouces, l'album demeure une pièce essentielle de l'histoire de la musique de danse allemande, comblant le fossé entre l'esprit underground des entrepôts de Berlin et le son mélodique plus poli qui a dominé les pistes de danse mondiales à la fin des années 1990. Son influence durable persiste à travers sa contribution au vocabulaire sonore fondamental du genre trance. Tout au long des douze titres, incluant le morceau-titre, « Emergency! » et « A Magical Moment », van Dyk démontre une maîtrise des rythmes entraînants, répétitifs et émotifs qui allaient définir le son de la trance européenne. Ce premier album l'a établi comme une figure clé du mouvement électronique, préparant le terrain pour sa carrière internationale ultérieure et son travail influent sur des albums plus tardifs tels que Seven Ways. L'album demeure aujourd'hui un classique de l'époque, reflétant l'esprit novateur du label MFS et l'effervescence créative d'un Berlin post-Mur.",
+      "source_sha256": "bbf1926b03cf16a7ac0fe4cc7151d7e7335bb42cecd17fdfe33cd424d3bf8446",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:32:57.697Z"
+    }
+  }
 }
