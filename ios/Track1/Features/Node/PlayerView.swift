@@ -411,9 +411,11 @@ private struct PlayerSourceLine: View {
 		Button(action: { open(source.url) }) {
 			Track1Text(label + domain, role: PlayerMetrics.role)
 				.frame(width: PlayerMetrics.columnWidth, alignment: .leading)
-				.padding(outset)
+				// Vertical only: the line is already as wide as the column, and a horizontal outset moved the
+				// frame VoiceOver and the UI test read 5 pt left of the sentences (2026-11-26, ios-check).
+				.padding(.vertical, outset)
 				.contentShape(Rectangle())
-				.padding(-outset)
+				.padding(.vertical, -outset)
 		}
 		// `.plain` keeps the colours set on the runs, which a link tint would replace.
 		.buttonStyle(.plain)
