@@ -65,6 +65,25 @@ final class NodeTextComponentsTests: XCTestCase {
 		XCTAssertEqual(SectionHeader.identifier(field: "tracklist"), "section-tracklist")
 	}
 
+	// MARK: - Track1Text(Text)
+
+	/// TRA-826: the reader's source line is two styled runs in one `Text`. It must take the same line boxes as
+	/// the string initialiser, or the line would not sit where the other sentences do.
+	@MainActor
+	func testTrack1TextFromATextMeasuresLikeTheStringInitialiser() {
+		let size = CGSize(width: 309, height: 1000)
+		let fromText = UIHostingController(
+			rootView: Track1Text(
+				Text(verbatim: "Source\u{00A0}: ") + Text(verbatim: "media.example").underline(), role: .reader)
+		).sizeThatFits(in: size)
+		let fromString = UIHostingController(
+			rootView: Track1Text("Source\u{00A0}: media.example", role: .reader, verbatim: true)
+		).sizeThatFits(in: size)
+
+		XCTAssertGreaterThan(fromString.height, 0)
+		XCTAssertEqual(fromText.height, fromString.height, accuracy: 0.5)
+	}
+
 	// MARK: - Teaser card
 
 	func testTeaserCardIdentifier() {

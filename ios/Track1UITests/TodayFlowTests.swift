@@ -101,6 +101,41 @@ final class TodayFlowTests: XCTestCase {
 		XCTAssertEqual(back.centered, [2], "the focus holds the reading centre after the stop")
 	}
 
+	/// TRA-826 (plan player-source-link): the article ends with "Source : media.example" 24 pt under its last
+	/// sentence. The line is not a sentence: it never takes the focus, and the carousel does not stop on it.
+	/// The line is not tapped: the link would leave the app for Safari.
+	@MainActor
+	func testTheReaderEndsWithTheSourceOfTheArticleUnderItsLastSentence() {
+		let app = openPlayer()
+		// A button that carries the link trait may be reported as a link: either way, it is the one element.
+		let source = element(app, "player-source")
+		XCTAssertTrue(source.waitForExistence(timeout: 10), "player-source")
+		let linkTypes: [XCUIElement.ElementType] = [.button, .link]
+		XCTAssertTrue(linkTypes.contains(source.elementType), "\(source.elementType)")
+		XCTAssertEqual(source.label, "Source\u{00A0}: \(UITestFlows.sourceDomain)")
+
+		var focus = settledFocus(in: app).focused
+		for _ in 0..<(UITestFlows.articleSentenceCount - 1) {
+			app.swipeUp()
+			focus = settledFocus(in: app, movedFrom: focus).focused
+		}
+		XCTAssertEqual(focus, [UITestFlows.articleSentenceCount - 1], "five swipes reach the last sentence")
+
+		let last = element(app, "player-paragraph-\(UITestFlows.articleSentenceCount - 1)")
+		XCTAssertTrue(source.isHittable, "the source line can be reached under the last sentence")
+		XCTAssertEqual(source.frame.minY - last.frame.maxY, 24, accuracy: 1, "24 pt under the last sentence")
+		XCTAssertEqual(source.frame.minX, last.frame.minX, accuracy: 1, "on the left edge of the column")
+		XCTAssertLessThanOrEqual(source.frame.maxY, app.frame.maxY)
+		UITestFlows.screenshot(named: "3.2-source", in: self)
+
+		// The line is not a step of the carousel: one more swipe leaves the focus on the last sentence.
+		app.swipeUp()
+		XCTAssertEqual(settledFocus(in: app).focused, focus, "the focus stays on the last sentence")
+		XCTAssertFalse(
+			element(app, "player-paragraph-\(UITestFlows.articleSentenceCount)").exists,
+			"the source line is not a paragraph")
+	}
+
 	/// The sentences that expose the "focus" value, and those whose frame holds the reading centre. Read again
 	/// until two reads 0.2 s apart agree on one sentence or `timeout` runs out: the scroll decelerates, then
 	/// snaps, and a read in the middle of it must not be taken for the stop. With `start`, the sentence the
