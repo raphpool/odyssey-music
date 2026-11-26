@@ -1,4 +1,4 @@
-import { pricingConfig, translationConfig } from "../config.js";
+import { pricingForModel, translationConfig } from "../config.js";
 import type { ContentLocale } from "../node-spec.js";
 import type { NodePayload, NodeTranslation } from "../types.js";
 import { translationSourceHash, translationSourceOf } from "./source.js";
@@ -32,7 +32,8 @@ export type GenerateJson = (request: GenerateJsonRequest) => Promise<GenerateJso
 export interface TranslationUsage {
 	inputTokens: number;
 	outputTokens: number;
-	costUsd: number;
+	/** null when the model has no known tariff: an unknown cost, not a free one. */
+	costUsd: number | null;
 }
 
 export type TranslationFailure = "provider_unavailable" | "quota_exhausted" | "invalid_output";
@@ -148,11 +149,12 @@ export function createNodeTranslator(deps: NodeTranslatorDeps): NodeTranslator {
 		let inputTokens = 0;
 		let outputTokens = 0;
 		let issues: TranslationIssue[] = [];
-		// Priced like buildMetrics (src/pipeline.ts).
+		// Priced at the tariff of the model actually called (TRA-836); null when it has none.
+		const pricing = pricingForModel(model);
 		const costUsd = () =>
-			(inputTokens * pricingConfig.geminiFlashLiteInputUsdPerMillion +
-				outputTokens * pricingConfig.geminiFlashLiteOutputUsdPerMillion) /
-			1_000_000;
+			pricing === undefined
+				? null
+				: (inputTokens * pricing.inputUsdPerMillion + outputTokens * pricing.outputUsdPerMillion) / 1_000_000;
 		const usage = (): TranslationUsage => ({ inputTokens, outputTokens, costUsd: costUsd() });
 
 		for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
