@@ -23,5 +23,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre du noise de 2002 signé Merzbow, Amlux propose quatre explorations intenses et structurées du son expérimental qui ont redéfini le potentiel de la power-electronics en tant que médium complexe et stratifié.",
+      "article": "Amlux est un album de noise expérimental séminal de l'artiste japonais Merzbow, sorti à l'origine en 2002. Enregistré dans son studio personnel à Tokyo entre 2000 et 2001, le projet constitue un marqueur significatif dans l'évolution du son de Masami Akita, capturant un moment où sa power-electronics dense et abrasive a commencé à évoluer vers des compositions plus structurées, presque rythmiques, tout en conservant l'intensité de son mur de bruit caractéristique. L'album comprend quatre titres, dont les évocateurs « Takemitsu » et « Luxurious Automobile », qui illustrent sa capacité à manipuler le feedback et le traitement du signal pour créer des architectures sonores immersives et gargantuesques. Contrairement à certaines de ses premières œuvres plus chaotiques, Amlux démontre une approche sophistiquée et stratifiée du noise qui invite à une écoute approfondie, consolidant le statut d'Akita en tant que maître du genre.\n\nL'influence d'Amlux s'étend bien au-delà de sa sortie initiale ; il est devenu une référence centrale pour une gamme variée d'artistes et de producteurs cherchant à réinterpréter son esthétique brutale. Cet impact est immortalisé par la compilation 'Ikebana: Merzbow's Amlux Rebuilt, Reused and Recycled', qui présente une multitude de musiciens expérimentaux remixant et réimaginant des titres de cet album spécifique. En mêlant une expérimentation technologique rigoureuse à une approche brute et viscérale de la production, Amlux a comblé le fossé entre le noise purement agressif et les explorations plus modernes et détaillées de l'art sonore, ce qui en fait une entrée essentielle dans la vaste discographie de Merzbow. Il demeure une leçon magistrale sur la manière de traiter le bruit brut avec la sensibilité d'un compositeur, équilibrant efficacement un volume écrasant avec des textures intentionnelles et changeantes qui maintiennent l'auditeur captivé tout au long de ses près de 50 minutes.",
+      "source_sha256": "83470464b76658228cef8b58928c09aae9e3a49fe5b66e5e4a28cf537672ff3b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:34:57.486Z"
+    }
+  }
 }

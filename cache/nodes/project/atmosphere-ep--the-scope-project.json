@@ -58,5 +58,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Atmosphere EP est un projet indie rock de 2016 de l'entité musicale connue sous le nom de The Scope Project, proposant une collection concise de morceaux qui explorent des ambiances atmosphériques et des structures de chansons introspectives. Cette sortie de cinq titres encapsule un moment précis de la discographie de l'artiste, mêlant sensibilités mélodiques et arrangements indie rock classiques.",
+      "article": "Atmosphere EP, sorti en 2016, représente une entrée distincte dans la discographie de The Scope Project. Cette collection de cinq titres sert d'exploration du son indie rock, caractérisée par des arrangements mid-tempo, une interprétation vocale émotive et les textures sonores caractéristiques de la scène musicale indépendante du milieu des années 2010. À travers des chansons telles que le morceau-titre « Atmosphere », « Clear Mind » et « Hiding in Plain Sight », l'EP démontre un engagement à construire une ambiance cohérente et contemplative sur sa durée de quinze minutes.\n\nMusicalement, le projet équilibre des mélodies accessibles aux accents pop avec la base plus ancrée et centrée sur la guitare, typique du genre durant cette période. The Scope Project parvient à maintenir un sentiment d'intimité tout au long du disque, invitant les auditeurs dans l'espace narratif nuancé construit par l'artiste. Bien que les morceaux individuels offrent des explorations rythmiques spécifiques, l'EP fonctionne mieux en tant qu'expérience d'écoute singulière, illustrant l'accent mis par le groupe sur l'atmosphère et la vulnérabilité lyrique. La sortie demeure un témoignage de la production du groupe durant ses années d'activité, contribuant au paysage plus large de la musique rock indépendante du milieu des années 2010 en offrant un projet court, poli et ciblé qui met en lumière l'évolution de leurs capacités techniques et d'écriture.",
+      "source_sha256": "615ac4dada9d7d74b8f8b7b04508bd3d1d1b6b39e23fee842a5f3b96d5d5c7fe",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:36:00.121Z"
+    }
+  }
 }

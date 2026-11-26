@@ -88,5 +88,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier album définitif de 1967 qui a présenté au monde la maîtrise révolutionnaire de la guitare de Jimi Hendrix, fusionnant racines blues et innovation psychédélique.",
+      "article": "Are You Experienced est le premier album studio de The Jimi Hendrix Experience, sorti initialement en mai 1967. Il constitue un moment charnière dans l'histoire de la musique rock, servant d'introduction à l'approche révolutionnaire de Jimi Hendrix vis-à-vis de la guitare électrique. Enregistré à Londres sur une période de cinq mois entre fin 1966 et début 1967, l'album est né de la transition de Hendrix, passant de musicien de studio R&B à force pionnière du rock psychédélique et du hard rock. Produit par Chas Chandler, l'album présente une formation en power trio soudée comprenant le batteur Mitch Mitchell et le bassiste Noel Redding, dont l'interaction a fourni la base parfaite aux techniques expérimentales de Hendrix.\n\nLa sortie de l'album, d'abord au Royaume-Uni sur Track Records puis aux États-Unis sur Reprise, a marqué un changement culturel immédiat. Il a mis en avant un mélange d'improvisation basée sur le blues, une utilisation sans précédent du feedback et une écriture imaginative qui défiait les conventions de l'époque. La version américaine, en particulier, a consolidé des singles à succès comme Purple Haze, Hey Joe et The Wind Cries Mary, cimentant le statut de Hendrix en tant que virtuose de la guitare et icône culturelle. L'impact de l'album fut si profond qu'il a été ajouté au National Recording Registry en 2005, l'archiviste du Smithsonian Reuben Jackson comparant célèbrement l'influence de Hendrix sur la syntaxe musicale à celle de James Joyce sur la littérature. Des décennies plus tard, il demeure l'un des premiers albums les plus célébrés de l'histoire, apparaissant constamment en tête des classements critiques pour sa puissance brute, son innovation technique et son influence durable sur l'évolution du rock.",
+      "source_sha256": "8d49b9bf15d193b7fba781a2f8c37184398fdac4dd37d7b0d9379e5329abb43c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:35:57.154Z"
+    }
+  }
 }

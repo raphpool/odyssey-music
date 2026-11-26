@@ -73,5 +73,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre fondateur du genre glitch, l'album de 1995 de Oval transforme les dommages numériques en un paysage sonore ambiant envoûtant, aquatique et profondément atmosphérique. Il demeure l'une des expériences les plus influentes de la musique électronique moderne.",
+      "article": "Sorti en 1995, 94diskont. s'impose comme une étape séminale dans l'évolution de la musique électronique, marquant le moment définitif où le groupe allemand Oval a cristallisé son esthétique glitch pionnière. Émergeant des scènes expérimentales de Francfort, le projet — composé à l'époque de Markus Popp, Sebastian Oschatz et Frank Metzger — est devenu célèbre pour une méthodologie radicale : endommager littéralement des CD avec des cutters, du ruban adhésif et de la peinture, puis capturer les sauts physiques et les erreurs numériques qui en résultaient pour construire des paysages sonores sereins et stratifiés. Ce processus déconstructif, loin de créer un bruit abrasif, a produit une beauté aquatique et méditative inattendue, comblant le fossé entre la manipulation numérique clinique et la qualité immersive de la musique ambient.\n\nLa pièce maîtresse structurelle de l'album, Do While, est un chef-d'œuvre de 24 minutes qui servait à l'origine de fondation à l'installation à 8 canaux et 128 haut-parleurs Wohnton du groupe. Son influence sur le paysage électronique expérimental est profonde, les critiques et les historiens le citant souvent comme le texte fondateur du genre glitch qui allait dominer la fin des années 90. Au-delà de la nouveauté technique, 94diskont. est profondément émotionnel ; il a transformé le son d'un ordinateur défaillant et bégayant en une expérience profonde et cristalline. Le disque a reçu un accueil critique immédiat, figurant sur des listes de fin d'année influentes et cimentant la réputation de Oval en tant qu'architectes d'un « nouvel avenir » pour la composition ambient, tout en influençant d'innombrables artistes à travers les scènes IDM et expérimentales pour les décennies à venir. Par son approche radicale, l'album a prouvé que les textures humaines les plus envoûtantes pouvaient être trouvées dans les défaillances de la machine.",
+      "source_sha256": "8bf430fe77622d6ffe6b4e1db7b872821d94f8d79fd5932cb2e7e6ca04224710",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:32:59.776Z"
+    }
+  }
 }

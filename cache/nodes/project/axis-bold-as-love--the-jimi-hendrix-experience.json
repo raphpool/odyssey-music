@@ -128,5 +128,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pierre angulaire du rock psychédélique, Axis: Bold as Love capture The Jimi Hendrix Experience au sommet de sa forme créative, mêlant expérimentation guitaristique virtuose et profondeur mélodique dans l'écriture.",
+      "article": "Axis: Bold as Love est le deuxième album studio de The Jimi Hendrix Experience, sorti en décembre 1967. Apparu seulement sept mois après les débuts fulgurants du groupe, Are You Experienced, l'album constitue un document charnière de l'évolution artistique rapide de Hendrix. Enregistré aux Olympic Studios à Londres, il voit Hendrix, aux côtés du bassiste Noel Redding et du batteur Mitch Mitchell, s'enfoncer davantage dans l'expérimentation en studio sous la direction du producteur Chas Chandler et de l'ingénieur Eddie Kramer. Alors que leur premier opus était une révélation rock imprégnée de blues, Axis: Bold as Love a dévoilé une palette émotionnelle et sonore plus large, intégrant des éléments de pop, de soul et des textures psychédéliques de plus en plus complexes.\n\nL'album est célébré pour des titres comme le mélodique et soul « Little Wing » et le hard-rock « Spanish Castle Magic », qui sont tous deux devenus des piliers des prestations scéniques de Hendrix. Les sessions ont été caractérisées par une utilisation innovante des techniques d'enregistrement quatre pistes, notamment le mixage « ping-pong », qui a permis à Hendrix de superposer son jeu de guitare virtuose et ses percussions imaginatives — incluant des sons non conventionnels comme le martèlement sur les estrades de batterie et le jeu de flûte à bec — en un tout cohérent et venu d'ailleurs. Malgré sa production soignée, l'époque n'a pas été exempte de tensions ; la pochette emblématique de l'album, qui dépeint les membres du groupe en divinités hindoues, a été finalisée sans l'avis de Hendrix, ce qui a conduit l'artiste à exprimer publiquement son mécontentement. Indépendamment de la controverse entourant son emballage, la musique qu'il contient a cimenté le statut de The Jimi Hendrix Experience en tant que maîtres du rock psychédélique, ouvrant la voie aux jams plus expansifs et tentaculaires que l'on retrouve sur leur chef-d'œuvre suivant, Electric Ladyland.",
+      "source_sha256": "45490356de2f6bef2e8e56794159f0dc7d7a339963a6c2b666af4539699ffa78",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:36:57.791Z"
+    }
+  }
 }
