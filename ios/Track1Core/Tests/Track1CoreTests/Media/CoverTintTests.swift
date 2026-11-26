@@ -76,6 +76,85 @@ final class CoverTintTests: XCTestCase {
 		XCTAssertEqual(tint.shadow.red, 0.53, accuracy: channel)
 	}
 
+	// MARK: - Player scale (TRA-832)
+
+	func testPlayerScaleGivesGreyStopsOnItsOwnBrightnessScale() throws {
+		let grey = LinearRGB(red: 0.5, green: 0.5, blue: 0.5)
+
+		let tint = try XCTUnwrap(CoverTintTone.tint(bands: [grey, grey, grey], scale: .player))
+
+		for (stop, brightness) in zip(tint.stops, [0.46, 0.38, 0.30]) {
+			XCTAssertEqual(stop.red, stop.green, accuracy: channel)
+			XCTAssertEqual(stop.green, stop.blue, accuracy: channel)
+			XCTAssertEqual(stop.red, brightness, accuracy: channel)
+		}
+	}
+
+	func testPlayerScaleCapsASaturatedRedAtItsOwnSaturationMax() throws {
+		let red = LinearRGB(red: 1, green: 0, blue: 0)
+
+		let tint = try XCTUnwrap(CoverTintTone.tint(bands: [red, red, red], scale: .player))
+		let first = Self.readHSB(tint.stops[0])
+
+		XCTAssertEqual(first.saturation, 0.60, accuracy: 0.01)
+		XCTAssertEqual(first.brightness, 0.46, accuracy: 0.01)
+		XCTAssertEqual(first.hue, 0, accuracy: 1)
+		XCTAssertEqual(Self.readHSB(tint.shadow).saturation, 0.60, accuracy: 0.01)
+	}
+
+	func testPlayerScaleKeepsTheSaturationOfABandBelowItsMax() throws {
+		// 0.50 is above the page cap (0.35) and below the player cap (0.60): only the player keeps it whole.
+		let bands = [Self.hsb(210, 0.50, 0.70), Self.hsb(210, 0.50, 0.60), Self.hsb(210, 0.50, 0.50)]
+
+		let player = try XCTUnwrap(CoverTintTone.tint(bands: bands, scale: .player))
+		let page = try XCTUnwrap(CoverTintTone.tint(bands: bands, scale: .page))
+
+		XCTAssertEqual(Self.readHSB(player.stops[0]).saturation, 0.50, accuracy: 0.01)
+		XCTAssertEqual(Self.readHSB(page.stops[0]).saturation, 0.35, accuracy: 0.01)
+	}
+
+	func testPlayerScaleKeepsTheHueOfEachBand() throws {
+		let bands = [Self.hsb(300, 0.60, 0.70), Self.hsb(210, 0.50, 0.60), Self.hsb(359, 0.40, 0.50)]
+
+		let tint = try XCTUnwrap(CoverTintTone.tint(bands: bands, scale: .player))
+
+		XCTAssertEqual(Self.readHSB(tint.stops[0]).hue, 300, accuracy: 1)
+		XCTAssertEqual(Self.readHSB(tint.stops[1]).hue, 210, accuracy: 1)
+		XCTAssertEqual(Self.readHSB(tint.stops[2]).hue, 359, accuracy: 1)
+		XCTAssertEqual(Self.readHSB(tint.shadow).hue, 300, accuracy: 1)
+	}
+
+	func testPageScaleIsTheDefaultAndMatchesTheLegacyConstants() throws {
+		let bands = [Self.hsb(164, 0.13, 0.60), Self.hsb(48, 0.15, 0.50), Self.hsb(30, 0.32, 0.40)]
+
+		XCTAssertEqual(CoverTintTone.tint(bands: bands), CoverTintTone.tint(bands: bands, scale: .page))
+		XCTAssertEqual(CoverTintTone.Scale.page.stopBrightness, [0.33, 0.27, 0.20])
+		XCTAssertEqual(CoverTintTone.Scale.page.saturationMax, 0.35)
+		XCTAssertEqual(CoverTintTone.stopBrightness, CoverTintTone.Scale.page.stopBrightness)
+		XCTAssertEqual(CoverTintTone.saturationMax, CoverTintTone.Scale.page.saturationMax)
+	}
+
+	func testEveryScaleHasThreeStopsWhoseBrightnessStrictlyDecreasesDownTheBackground() throws {
+		let grey = LinearRGB(red: 0.5, green: 0.5, blue: 0.5)
+
+		for scale in [CoverTintTone.Scale.page, .player] {
+			XCTAssertEqual(scale.stopBrightness.count, 3)
+			let tint = try XCTUnwrap(CoverTintTone.tint(bands: [grey, grey, grey], scale: scale))
+			let brightness = tint.stops.map { max($0.red, $0.green, $0.blue) }
+			XCTAssertEqual(brightness.count, 3)
+			XCTAssertLessThan(brightness[1], brightness[0])
+			XCTAssertLessThan(brightness[2], brightness[1])
+		}
+	}
+
+	func testPlayerScaleIsNilUnlessThereAreExactlyThreeBands() {
+		let band = LinearRGB(red: 0.2, green: 0.4, blue: 0.6)
+
+		XCTAssertNil(CoverTintTone.tint(bands: [band, band], scale: .player))
+		XCTAssertNotNil(CoverTintTone.tint(bands: [band, band, band], scale: .player))
+		XCTAssertNil(CoverTintTone.tint(bands: [band, band, band, band], scale: .player))
+	}
+
 	// MARK: - Band count
 
 	func testNilUnlessThereAreExactlyThreeBands() {
