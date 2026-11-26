@@ -5,29 +5,29 @@ import UIKit
 /// size. `verbatim` is for data that does not belong to the app (third-party names and titles): it keeps
 /// the string from being read as a localization key or as Markdown.
 struct Track1Text: View {
-	private let content: String
+	private let label: Text
 	private let role: Track1TextRole
-	private let verbatim: Bool
 	@ScaledMetric private var lineHeight: CGFloat
 	@ScaledMetric private var naturalHeight: CGFloat
 
-	init(_ content: String, role: Track1TextRole, verbatim: Bool = false) {
-		self.content = content
+	/// For a line made of several styled runs (a `Text` built with `+`): it takes the same line boxes as the
+	/// string initialiser. The caller owns the runs, so a network string goes in with `Text(verbatim:)`.
+	init(_ text: Text, role: Track1TextRole) {
+		label = text
 		self.role = role
-		self.verbatim = verbatim
 		_lineHeight = ScaledMetric(wrappedValue: role.lineHeight, relativeTo: role.textStyle)
 		let natural = UIFont(name: role.face.rawValue, size: role.size) ?? .systemFont(ofSize: role.size)
 		_naturalHeight = ScaledMetric(wrappedValue: natural.lineHeight, relativeTo: role.textStyle)
+	}
+
+	init(_ content: String, role: Track1TextRole, verbatim: Bool = false) {
+		self.init(verbatim ? Text(verbatim: content) : Text(LocalizedStringKey(content)), role: role)
 	}
 
 	var body: some View {
 		Track1LineHeightLayout(lineHeight: lineHeight, naturalHeight: naturalHeight) {
 			label.track1Text(role)
 		}
-	}
-
-	private var label: Text {
-		verbatim ? Text(verbatim: content) : Text(LocalizedStringKey(content))
 	}
 }
 

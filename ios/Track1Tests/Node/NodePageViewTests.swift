@@ -93,6 +93,29 @@ final class NodePageViewTests: XCTestCase {
 		}
 	}
 
+	func testWithoutACoverThePlayerScaleGivesThreeBrighterStopsOfTheTypeHue() throws {
+		XCTAssertEqual(CoverTintTone.Scale.player.stopBrightness, [0.46, 0.38, 0.30])
+		for type in NodeType.allCases {
+			let tint = NodePageView.pageTint(coverTint: nil, type: type, scale: .player)
+			let typeHue = try Self.hsb(of: Track1Tokens.colorNode(type)).hue
+
+			XCTAssertEqual(tint.stops.count, 3, type.rawValue)
+			for (stop, brightness) in zip(tint.stops, CoverTintTone.Scale.player.stopBrightness) {
+				let reading = try Self.hsb(of: Color(stop))
+				XCTAssertEqual(Self.hueDistanceInDegrees(reading.hue, typeHue), 0, accuracy: 2, type.rawValue)
+				XCTAssertEqual(reading.brightness, brightness, accuracy: 0.01, type.rawValue)
+			}
+		}
+	}
+
+	func testTheCoverTintIsKeptAsItIsOnThePlayerScaleToo() {
+		let coverTint = CoverTint(
+			stops: Array(repeating: LinearRGB(red: 0.2, green: 0.1, blue: 0.1), count: 3),
+			shadow: LinearRGB(red: 0.5, green: 0.2, blue: 0.2))
+
+		XCTAssertEqual(NodePageView.pageTint(coverTint: coverTint, type: .artist, scale: .player), coverTint)
+	}
+
 	/// `pageTint` takes no notion of root: a type has one fallback tint, and two types never share it.
 	func testTheFallbackTintBelongsToTheTypeAlone() {
 		let types = NodeType.allCases

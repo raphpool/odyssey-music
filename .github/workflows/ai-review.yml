@@ -288,9 +288,15 @@ jobs:
           paths=$(git diff -z --name-only --no-renames "$BASE_SHA"..."$HEAD_SHA" | tr '\0' '\n' | jq -R . | jq -s .)
           labels=$(gh pr view "$PR_NUMBER" --json labels --jq '[.labels[].name]')
           # The module path goes through env, not argv: the policy runs its CLI when argv[1] ends with its own name.
-          tier=$(POLICY="file://$trusted/review-gate-policy.ts" PATHS="$paths" LABELS="$labels" \
+          # TRA-841 (2026-11-26): a PR whose every file is a cache node that only gained `l10n` blocks is tier 2 even with
+          # a `tier/3` label, so no deep review runs (#738 hit its 60 turns twice without a verdict). Same policy copy and
+          # same diff as the gate; only the literal `true` counts, any failure keeps the tier/3 and its deep review (the
+          # reason goes to the job log on stderr).
+          l10n_only=$(node --experimental-strip-types --no-warnings "$trusted/review-gate-policy.ts" l10n-only "$BASE_SHA" "$HEAD_SHA" || echo false)
+          [ "$l10n_only" = "true" ] || l10n_only=false
+          tier=$(POLICY="file://$trusted/review-gate-policy.ts" PATHS="$paths" LABELS="$labels" L10N_ONLY="$l10n_only" \
             node --experimental-strip-types --no-warnings --input-type=module \
-            -e 'const { classifyRisk } = await import(process.env.POLICY); console.log(classifyRisk(JSON.parse(process.env.PATHS), JSON.parse(process.env.LABELS)))')
+            -e 'const { classifyRisk } = await import(process.env.POLICY); console.log(classifyRisk(JSON.parse(process.env.PATHS), JSON.parse(process.env.LABELS), { l10nOnly: process.env.L10N_ONLY === "true" }))')
           [[ "$tier" =~ ^[123]$ ]]
           echo "tier=$tier" >> "$GITHUB_OUTPUT"
 
