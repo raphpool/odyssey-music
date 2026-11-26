@@ -27,12 +27,14 @@ final class NodeHeroModel {
 	@ObservationIgnored private let type: NodeType
 	@ObservationIgnored private let imageSource: String?
 	@ObservationIgnored private let store: NodeImageStore<UIImage>
+	@ObservationIgnored private let scale: CoverTintTone.Scale
 
-	init(node: NodeDetail, store: NodeImageStore<UIImage>) {
+	init(node: NodeDetail, store: NodeImageStore<UIImage>, scale: CoverTintTone.Scale = .page) {
 		candidates = HeroImageSource.candidates(for: node)
 		type = node.type
 		imageSource = node.imageSource
 		self.store = store
+		self.scale = scale
 	}
 
 	/// Tries the candidates in order; the first image wins, and none leaves the placeholder. A load that
@@ -47,7 +49,7 @@ final class NodeHeroModel {
 			state = .loaded(
 				match.image,
 				tint: DominantColor.of(match.image),
-				coverTint: DominantColor.bands(of: match.image).flatMap(CoverTintTone.tint(bands:)))
+				coverTint: DominantColor.bands(of: match.image).flatMap { CoverTintTone.tint(bands: $0, scale: scale) })
 		} else {
 			state = .placeholder
 		}
