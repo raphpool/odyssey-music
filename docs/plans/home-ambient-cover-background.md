@@ -113,7 +113,7 @@ for every looping animation of the design system »), et le dépôt n'en a aucun
 constant, une seule grandeur à régler.
 
 ### D4 — Zoom et flou : des constantes, et un invariant de marge testé
-`AmbientCoverBackdropMetrics.zoom = 1.6`, `blurRadius = 64` (points de mise en page, soit ≈ 102 pt
+`AmbientCoverBackdropMetrics.zoom = 1.7 (1.6 jusqu'à l'amendement du 2026-11-26, voir TRA-829)`, `blurRadius = 64` (points de mise en page, soit ≈ 102 pt
 une fois agrandi). Invariant, vérifié par un test sur le cadre de référence 393 × 844 :
 `(zoom − 1) / 2 × 393 ≥ amplitude.x + blurRadius` (118 ≥ 88) et
 `(zoom − 1) / 2 × 844 ≥ amplitude.y + blurRadius` (253 ≥ 80). Aucun bord de l'image, aucune frange de
@@ -312,7 +312,7 @@ Track1Core (API publique, `Foundation` seulement, pas de SwiftUI) :
     }
 DesignSystem (interne à l'app) :
     enum AmbientCoverBackdropMetrics {
-        static let zoom: CGFloat                  // 1.6
+        static let zoom: CGFloat                  // 1.7
         static let blurRadius: CGFloat            // 64, applied before the zoom
         static let frameInterval: TimeInterval    // 1.0 / 15, as WelcomeBackdrop
         static let veilTopOpacity: Double         // 0.65
@@ -344,7 +344,7 @@ Track1Core (`AmbientDriftTests`, `swift test --package-path ios/Track1Core`) :
 - [ ] `offset(phase: 1.25) == offset(phase: 0.25)` et `offset(phase: .nan) == (0, 0)` (la phase passe par
       `LoopPhase.wrapped`).
 Track1Tests (`AmbientCoverBackdropTests`, `ios-check`) :
-- [ ] `zoom == 1.6`, `blurRadius == 64`, `frameInterval == 1/15` (± 1e-12), `veilTopOpacity == 0.65`,
+- [ ] `zoom == 1.7`, `blurRadius == 64`, `frameInterval == 1/15` (± 1e-12), `veilTopOpacity == 0.65`,
       `veilBottomOpacity == 0.80`, `veilTextStop == 0.62`, `designSize == (393, 844)`.
 - [ ] Invariant de marge : `overflow(side: 393) ≥ CGFloat(AmbientDrift.amplitude.x) + blurRadius` et
       `overflow(side: 844) ≥ CGFloat(AmbientDrift.amplitude.y) + blurRadius`.
@@ -496,3 +496,11 @@ cet écran ; couvert par des tests de contrat, aucun chemin sensible, Raphael no
 - `swift-format` strict, tabs, 110 colonnes. Commits conventionnels, `Refs TRA-830` ; PR `TRA-830 …`,
   `Fixes TRA-830`.
 ```
+
+## Amendement du 2026-11-26 — zoom 1,7
+
+Validé par Raphael pendant l'implémentation de TRA-829 : le flou est appliqué avant le zoom, donc agrandi
+avec l'image. À 1,6 sa bande de bord faisait environ 102 pt à l'écran et la dérive en montrait environ 8 pt
+sur 393 pt de large. Le zoom passe à 1,7 et l'invariant de marge testé devient
+`overflow ≥ amplitude + blurRadius × zoom`. Les mentions « 1,6 » qui restent plus haut (Q2, notes du
+brouillon 1.1) sont historiques.
