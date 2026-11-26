@@ -22,10 +22,26 @@
  *   written, nothing new starts, `stopped` carries the last reason, and the three nodes are left out of
  *   `failed`: they are not at fault, and the next run takes them again like any untranslated node. A success
  *   or an `invalid_output` (the provider did answer) resets the series.
+ * - Permanent refusal stop (TRA-837, 2026-11-26): a `provider_rejected` (404 model not found, 401, 403)
+ *   stops the batch at the first one, with its own exit code: waiting and relaunching cannot fix it, and
+ *   exit 3 says exactly that. The node is left out of `failed`, like the nodes of a quota stop, and the stop
+ *   names it (`rejected_slugs`, and the `STOPPED:` line).
+ * - 400 (`bad_request`, review of #742): a 400 often depends on one node's request, so a lone one fails that
+ *   node (in `failed`, with its slug and `provider_error`) and the batch goes on. Three in a row (a setting
+ *   the model refuses for every node) stop the batch as `provider_rejected`, exit 4, the three slugs in
+ *   `rejected_slugs` and out of `failed`. Any other result restarts that series; it is independent of the
+ *   quota series above, which a 400 restarts too (the provider did answer).
+ * - Why the provider failed (TRA-837): a provider failure carries its HTTP status and a truncated message,
+ *   written to the manifest (`provider_error`, on the stop and on each `failed` entry) and to the summary. The
+ *   pilot of TRA-812 only read `STOPPED: provider_unavailable` for a 404 on the model. The provider removes the
+ *   API key and the request text from the message before it gets here.
+ * - `attempts`: the manifest gives, for each translated node, the 1 or 2 translator attempts it took, and the
+ *   summary counts "first attempt / second attempt" (the pilot PR has to report that split).
  * - `--sample <path>` (only with `--apply`): a Markdown file with a regular draw of `--sample-size` of the
  *   nodes translated in this pass, English then French, for a human to read before the batch is merged.
  *
- * Exit codes: 0 done, 1 done with `failed` (or an error), 2 usage, 3 stopped on quota (wins over 1).
+ * Exit codes: 0 done, 1 done with `failed` (or an error), 2 usage, 3 stopped on quota or on passing provider
+ * failures (wins over 1), 4 stopped on a permanent provider refusal (wins over 1 and 3).
  * Flags: see `parseCliArgs`.
  */
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -41,6 +57,8 @@ import { currentTranslation, translationSourceOf } from "../src/translation/sour
 import {
 	createNodeTranslator,
 	type NodeTranslator,
+	type ProviderFailureDetail,
+	type ProviderFailureReason,
 	type TranslationFailure,
 	type TranslationUsage,
 } from "../src/translation/translate-node.js";
@@ -66,7 +84,10 @@ const STOP_AFTER = 3;
 
 type Obj = Record<string, unknown>;
 type Status = "current" | "missing" | "stale" | "ineligible";
-type Stopped = "quota_exhausted" | "provider_unavailable";
+/** A `bad_request` never stops the batch under its own name: three in a row stop it as `provider_rejected`. */
+type Stopped = Exclude<ProviderFailureReason, "bad_request">;
+export const EXIT_STOPPED_PASSING = 3;
+export const EXIT_STOPPED_PERMANENT = 4;
 
 export interface TranslationRunOptions {
 	cacheDir: string;
@@ -97,9 +118,20 @@ export interface TranslationRunManifest {
 	counts: Record<NodeType, Record<"total" | Status, number>>;
 	/** Sorted: nodes finish out of slug order when several calls run at once. */
 	translated: Slug[];
-	failed: { slug: Slug; reason: TranslationFailure; issues: TranslationIssue[] }[];
+	/** Translator attempts (1 = accepted at once, 2 = after the retry) of each node in `translated`, in slug order. */
+	attempts: Record<string, 1 | 2>;
+	failed: {
+		slug: Slug;
+		reason: TranslationFailure;
+		issues: TranslationIssue[];
+		provider_error?: ProviderFailureDetail;
+	}[];
 	usage: TranslationUsage;
 	stopped?: Stopped;
+	/** Why the provider failed on the result that raised `stopped`. */
+	provider_error?: ProviderFailureDetail;
+	/** With `stopped: "provider_rejected"`: the slug(s) whose requests the provider refused, slug order. */
+	rejected_slugs?: Slug[];
 }
 
 const isPlainRecord = (value: unknown): value is Obj =>
@@ -178,6 +210,7 @@ interface WrittenTranslation {
 	slug: Slug;
 	node: Obj;
 	translation: NodeTranslation;
+	attempts: 1 | 2;
 }
 
 function renderSample(entries: readonly WrittenTranslation[], locale: ContentLocale): string {
@@ -217,7 +250,7 @@ export async function runTranslation(
 	const usage: TranslationUsage = { inputTokens: 0, outputTokens: 0, costUsd: 0 };
 	const written: WrittenTranslation[] = [];
 	let failed: TranslationRunManifest["failed"] = [];
-	const stop: { reason?: Stopped } = {};
+	const stop: { reason?: Stopped; providerError?: ProviderFailureDetail; rejected?: Slug[] } = {};
 
 	const todo: typeof nodes = [];
 	for (const file of nodes) {
@@ -240,6 +273,8 @@ export async function runTranslation(
 	let halted = false;
 	// Slugs of the current run of provider-side failures, in the order the results arrived.
 	let series: Slug[] = [];
+	// Slugs of the current run of 400 answers (TRA-837); any other result starts it again.
+	let badRequests: Slug[] = [];
 
 	// One worker: the apply branch below runs `concurrency` of them. A preview never calls it.
 	const work = async (): Promise<void> => {
@@ -265,15 +300,47 @@ export async function runTranslation(
 					: usage.costUsd + outcome.usage.costUsd;
 			if (!outcome.ok) {
 				const { reason } = outcome;
+				const withDetail = outcome.detail === undefined ? {} : { provider_error: outcome.detail };
 				if (reason === "invalid_output") {
 					series = [];
+					badRequests = [];
 					failed.push({ slug, reason, issues: outcome.issues });
-				} else if (stop.reason === undefined) {
+				} else if (stop.reason === undefined && reason === "provider_rejected") {
+					// Holds for the whole batch (TRA-837): no series to wait for, since every request will be
+					// refused the same way. Like the nodes of a quota stop, this one is not at fault: left for
+					// the next run, and so are the passing failures of the current series, which the stop makes
+					// moot. The stop names it, so the operator sees which request was refused.
+					stop.reason = reason;
+					stop.rejected = [slug];
+					if (outcome.detail !== undefined) stop.providerError = outcome.detail;
+					halted = true;
+					const inSeries = new Set(series);
+					failed = failed.filter((f) => !inSeries.has(f.slug));
+				} else if (stop.reason === undefined && reason === "bad_request") {
+					// A 400 often depends on this node's request (review of #742, 2026-11-26: a lone one froze every
+					// run on the same node). It fails this node only, and the provider did answer, so the quota
+					// series restarts. Three in a row mean the model refuses a setting for every node: same stop
+					// as a permanent refusal.
+					series = [];
+					badRequests.push(slug);
+					failed.push({ slug, reason, issues: outcome.issues, ...withDetail });
+					if (badRequests.length >= STOP_AFTER) {
+						stop.reason = "provider_rejected";
+						stop.rejected = [...badRequests];
+						if (outcome.detail !== undefined) stop.providerError = outcome.detail;
+						halted = true;
+						// Not at fault, like the nodes of a quota stop: named by the stop instead of listed in `failed`.
+						const raisedIt = new Set(badRequests);
+						failed = failed.filter((f) => !raisedIt.has(f.slug));
+					}
+				} else if (stop.reason === undefined && reason !== "bad_request") {
 					// A result that lands after the stop is the same outage: left for the next run, not a failure.
+					badRequests = [];
 					series.push(slug);
-					failed.push({ slug, reason, issues: outcome.issues });
+					failed.push({ slug, reason, issues: outcome.issues, ...withDetail });
 					if (series.length >= STOP_AFTER) {
 						stop.reason = reason;
+						if (outcome.detail !== undefined) stop.providerError = outcome.detail;
 						halted = true;
 						const raisedIt = new Set(series);
 						failed = failed.filter((f) => !raisedIt.has(f.slug));
@@ -282,6 +349,7 @@ export async function runTranslation(
 				continue;
 			}
 			series = [];
+			badRequests = [];
 			const next = withTranslation(file.node, options.locale, outcome.translation);
 			if (!passesSchema(next)) {
 				// The node, not the model, is at fault, so there is no validator issue to report.
@@ -298,7 +366,7 @@ export async function runTranslation(
 			if (!isDeepStrictEqual(after, before)) {
 				throw new Error(`${slug}: the node on disk differs from the node read, beyond l10n; stopping`);
 			}
-			written.push({ slug, node: file.node, translation: outcome.translation });
+			written.push({ slug, node: file.node, translation: outcome.translation, attempts: outcome.attempts });
 		}
 	};
 
@@ -338,10 +406,19 @@ export async function runTranslation(
 		applied: options.apply,
 		counts,
 		translated: written.map((w) => w.slug),
+		attempts: Object.fromEntries(written.map((w) => [w.slug, w.attempts])),
 		failed,
 		usage,
 		...(stop.reason === undefined ? {} : { stopped: stop.reason }),
+		...(stop.providerError === undefined ? {} : { provider_error: stop.providerError }),
+		...(stop.rejected === undefined ? {} : { rejected_slugs: [...stop.rejected].sort() as Slug[] }),
 	};
+}
+
+/** ` (HTTP 404: message)`, ` (message)` when no answer came, "" when the provider gave nothing. */
+function describeProviderError(detail: ProviderFailureDetail | undefined): string {
+	if (detail === undefined) return "";
+	return ` (${detail.status === undefined ? "" : `HTTP ${detail.status}: `}${detail.message})`;
 }
 
 export function formatSummary(manifest: TranslationRunManifest, manifestPath: string): string {
@@ -354,13 +431,26 @@ export function formatSummary(manifest: TranslationRunManifest, manifestPath: st
 	}
 	if (manifest.applied) {
 		lines.push(`  translated ${manifest.translated.length}, failed ${manifest.failed.length}`);
-		for (const f of manifest.failed) lines.push(`    ${f.slug}: ${f.reason}`);
+		const second = Object.values(manifest.attempts).filter((attempts) => attempts === 2).length;
+		lines.push(
+			`  accepted on first attempt ${manifest.translated.length - second} / second attempt ${second}`,
+		);
+		for (const f of manifest.failed)
+			lines.push(`    ${f.slug}: ${f.reason}${describeProviderError(f.provider_error)}`);
 		lines.push(
 			manifest.usage.costUsd === null
 				? "  cost unknown (no tariff for the model)"
 				: `  cost $${manifest.usage.costUsd.toFixed(4)}`,
 		);
-		if (manifest.stopped) lines.push(`  STOPPED: ${manifest.stopped}; run the same command again to resume`);
+		if (manifest.stopped) {
+			const why = `${manifest.stopped}${describeProviderError(manifest.provider_error)}`;
+			const rejected = manifest.rejected_slugs ?? [];
+			lines.push(
+				manifest.stopped === "provider_rejected"
+					? `  STOPPED: ${why}${rejected.length > 0 ? ` for ${rejected.join(", ")}` : ""}; the provider will refuse every retry: fix the cause (model, key, setting), then run again`
+					: `  STOPPED: ${why}; run the same command again to resume`,
+			);
+		}
 	} else lines.push("  preview: no translator call, no node written (re-run with --apply)");
 	lines.push(`manifest: ${manifestPath}`);
 	return lines.join("\n");
@@ -446,8 +536,9 @@ export async function runCli(
 	await atomicWriteJson(args.manifestPath, manifest);
 	console.log(formatSummary(manifest, args.manifestPath));
 	if (args.apply && args.samplePath !== undefined) console.log(`sample: ${args.samplePath}`);
-	// The manifest is written above, before this code is returned: a stop on quota never loses it.
-	return manifest.stopped ? 3 : manifest.failed.length > 0 ? 1 : 0;
+	// The manifest is written above, before this code is returned: a stop never loses it.
+	if (manifest.stopped === "provider_rejected") return EXIT_STOPPED_PERMANENT;
+	return manifest.stopped ? EXIT_STOPPED_PASSING : manifest.failed.length > 0 ? 1 : 0;
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {

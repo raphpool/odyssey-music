@@ -9,6 +9,12 @@ import type { NodePayload } from "../src/types.js";
 import { writeNode } from "./helpers/migration-channel.js";
 import { artistNode, edge, projectNode, trackNode } from "./images/helpers.js";
 
+// The SDK is the external boundary: only the TRA-837 end-to-end tests below reach it (no translator passed).
+const sdk = vi.hoisted(() => ({ generateContent: vi.fn() }));
+vi.mock("@google/genai", () => ({
+	GoogleGenAI: vi.fn(() => ({ models: { generateContent: sdk.generateContent } })),
+}));
+
 let dir: string;
 beforeEach(() => {
 	dir = mkdtempSync(join(tmpdir(), "translate-nodes-"));
@@ -522,5 +528,281 @@ describe("run cost", () => {
 		expect(manifest.usage.costUsd).toBeNull();
 		expect(formatSummary(manifest, "m.json")).toContain("cost unknown (no tariff for the model)");
 		expect(formatSummary(manifest, "m.json")).not.toContain("cost $");
+	});
+});
+
+// TRA-837: why the provider failed, a permanent refusal that stops the batch, and the attempts of each node.
+
+type Step837 =
+	| {
+			fail:
+				| "provider_rejected"
+				| "provider_unavailable"
+				| "quota_exhausted"
+				| "bad_request"
+				| "invalid_output";
+			detail?: { status?: number; message: string };
+	  }
+	| { attempts: 1 | 2 };
+/** A translator that gives `plan[i]` to its i-th call (then a success after one attempt). */
+function planned(plan: readonly Step837[]) {
+	const calls: string[] = [];
+	const translate: NodeTranslator = async (node) => {
+		const step = plan[calls.length] ?? { attempts: 1 };
+		calls.push(node.slug);
+		if ("fail" in step) {
+			return {
+				ok: false,
+				reason: step.fail,
+				issues: [],
+				attempts: 1,
+				usage: USAGE,
+				...(step.detail === undefined ? {} : { detail: step.detail }),
+			};
+		}
+		return { ok: true, translation: translationOf(node), attempts: step.attempts, usage: USAGE };
+	};
+	return { calls, translate };
+}
+const MODEL_GONE = {
+	status: 404,
+	message: "models/gemini-2.0-flash is no longer available to new users.",
+};
+const printed = () =>
+	vi
+		.mocked(console.log)
+		.mock.calls.map((call) => String(call[0]))
+		.join("\n");
+
+describe("why the provider failed (TRA-837)", () => {
+	const manifestFile = () => join(dir, "out", "m.json");
+	const cli = (translate: NodeTranslator) =>
+		runCli([dir, "--apply", "--concurrency", "1", "--manifest", manifestFile()], "key", translate);
+
+	it("a permanent refusal stops the batch at the first node with exit 4, and says why in manifest and output", async () => {
+		const slugs = manyNodes(5);
+		const { calls, translate } = planned([
+			{ attempts: 1 },
+			{ fail: "provider_rejected", detail: MODEL_GONE },
+		]);
+		const code = await cli(translate);
+
+		expect(code).toBe(4);
+		expect(calls).toEqual(slugs.slice(0, 2));
+		expect(JSON.parse(readFileSync(manifestFile(), "utf8"))).toMatchObject({
+			stopped: "provider_rejected",
+			provider_error: MODEL_GONE,
+			translated: slugs.slice(0, 1),
+			// The refused node is not at fault: it is left for the next run, like the nodes of a quota stop.
+			failed: [],
+			// ...but the stop names it, so the operator knows which request was refused.
+			rejected_slugs: [slugs[1]],
+		});
+		const output = printed();
+		expect(output).toContain(
+			`STOPPED: provider_rejected (HTTP 404: models/gemini-2.0-flash is no longer available`,
+		);
+		expect(output).toContain(`for ${slugs[1]};`);
+		expect(output).toContain("will refuse every retry");
+		expect(JSON.parse(bytes(slugs[1] as string)).l10n).toBeUndefined();
+	});
+
+	it("a permanent refusal after one passing failure leaves that node out of failed too, like a quota stop", async () => {
+		manyNodes(5);
+		const blip: Step837 = { fail: "provider_unavailable", detail: { status: 503, message: "busy" } };
+		const manifest = await run(planned([blip, { fail: "provider_rejected", detail: MODEL_GONE }]).translate, {
+			concurrency: 1,
+		});
+		expect(manifest).toMatchObject({ stopped: "provider_rejected", provider_error: MODEL_GONE, failed: [] });
+	});
+
+	const BAD_REQUEST = { status: 400, message: "Invalid argument: thinking budget is not supported." };
+	const bad: Step837 = { fail: "bad_request", detail: BAD_REQUEST };
+
+	it("an isolated 400 is a failure of that node, with its slug and detail, and the batch goes on", async () => {
+		const slugs = manyNodes(4);
+		const { calls, translate } = planned([{ attempts: 1 }, bad]);
+		const code = await cli(translate);
+
+		expect(code).toBe(1);
+		expect(calls).toEqual(slugs);
+		const manifest = JSON.parse(readFileSync(manifestFile(), "utf8"));
+		expect(manifest.stopped).toBeUndefined();
+		expect(manifest.translated).toEqual([slugs[0], slugs[2], slugs[3]]);
+		expect(manifest.failed).toEqual([
+			{ slug: slugs[1], reason: "bad_request", issues: [], provider_error: BAD_REQUEST },
+		]);
+		expect(printed()).toContain(`${slugs[1]}: bad_request (HTTP 400: ${BAD_REQUEST.message})`);
+	});
+
+	it("three 400 in a row stop the batch like a permanent refusal: exit 4, the three slugs named, not in failed", async () => {
+		const slugs = manyNodes(6);
+		const { calls, translate } = planned([{ attempts: 1 }, bad, bad, bad]);
+		const code = await cli(translate);
+
+		expect(code).toBe(4);
+		expect(calls).toEqual(slugs.slice(0, 4));
+		const manifest = JSON.parse(readFileSync(manifestFile(), "utf8"));
+		expect(manifest).toMatchObject({
+			stopped: "provider_rejected",
+			provider_error: BAD_REQUEST,
+			rejected_slugs: slugs.slice(1, 4),
+			translated: [slugs[0]],
+			failed: [],
+		});
+		const stopped = printed()
+			.split("\n")
+			.find((line) => line.includes("STOPPED"));
+		expect(stopped).toContain("HTTP 400");
+		expect(stopped).toContain(slugs.slice(1, 4).join(", "));
+		for (const slug of slugs.slice(4)) expect(JSON.parse(bytes(slug)).l10n).toBeUndefined();
+	});
+
+	const P = "provider_rejected" as const;
+	const K = "bad_request" as const;
+	const I = "invalid_output" as const;
+	const U = "provider_unavailable" as const;
+	it.each([
+		["a success resets the 400 series", [K, K, "ok", K, K]],
+		["an invalid_output resets it", [K, K, I, K, K]],
+		["a passing provider failure resets it", [K, K, U, K, K]],
+	] as [string, (Extract<Step837, { fail: unknown }>["fail"] | "ok")[]][])("%s", async (_name, steps) => {
+		manyNodes(6);
+		const plan: Step837[] = steps.map((s) =>
+			s === "ok" ? { attempts: 1 } : { fail: s, detail: BAD_REQUEST },
+		);
+		const manifest = await run(planned(plan).translate, { concurrency: 1 });
+		expect(manifest.stopped).toBeUndefined();
+		expect(manifest.failed.filter((f) => f.reason === "bad_request")).toHaveLength(4);
+	});
+
+	it("400 do not feed the quota series (a 400 is an answer), and quota failures do not feed the 400 series", async () => {
+		manyNodes(8);
+		const quota: Step837 = { fail: "quota_exhausted", detail: { status: 429, message: "slow down" } };
+		const manifest = await run(planned([quota, quota, bad, quota, quota, bad, bad]).translate, {
+			concurrency: 1,
+		});
+		expect(manifest.stopped).toBeUndefined();
+	});
+
+	it("a 401, 403 or 404 after two 400 still stops at once and names its own slug", async () => {
+		const slugs = manyNodes(5);
+		const manifest = await run(
+			planned([bad, bad, { fail: P, detail: { status: 401, message: "API key not valid" } }]).translate,
+			{ concurrency: 1 },
+		);
+		expect(manifest).toMatchObject({ stopped: "provider_rejected", rejected_slugs: [slugs[2]] });
+		// The two isolated 400 are real failures of their nodes and stay listed.
+		expect(manifest.failed.map((f) => f.slug)).toEqual([slugs[0], slugs[1]]);
+	});
+
+	it("keeps exit 3 for a series of passing failures, and now says why", async () => {
+		manyNodes(5);
+		const down: Step837 = {
+			fail: "provider_unavailable",
+			detail: { status: 503, message: "The model is overloaded." },
+		};
+		const code = await cli(planned([down, down, down]).translate);
+
+		expect(code).toBe(3);
+		expect(JSON.parse(readFileSync(manifestFile(), "utf8"))).toMatchObject({
+			stopped: "provider_unavailable",
+			provider_error: { status: 503, message: "The model is overloaded." },
+		});
+		expect(printed()).toContain("STOPPED: provider_unavailable (HTTP 503: The model is overloaded.)");
+	});
+
+	it("keeps the detail of a passing failure that did not stop the batch, in the manifest and the failure list", async () => {
+		const slugs = manyNodes(3);
+		const blip: Step837 = { fail: "provider_unavailable", detail: { message: "network down: ECONNRESET" } };
+		const manifest = await run(planned([blip]).translate, { concurrency: 1 });
+
+		expect(manifest.stopped).toBeUndefined();
+		expect(manifest.failed).toEqual([
+			{
+				slug: slugs[0],
+				reason: "provider_unavailable",
+				issues: [],
+				provider_error: { message: "network down: ECONNRESET" },
+			},
+		]);
+		expect(formatSummary(manifest, "m.json")).toContain(
+			`${slugs[0]}: provider_unavailable (network down: ECONNRESET)`,
+		);
+	});
+
+	it("lists the attempts of each translated node and counts first and second attempts in the summary", async () => {
+		const slugs = manyNodes(4);
+		const { translate } = planned([{ attempts: 1 }, { attempts: 2 }, { attempts: 1 }, { attempts: 2 }]);
+		const manifest = await run(translate, { concurrency: 1 });
+
+		expect(manifest.attempts).toEqual({
+			[slugs[0] as string]: 1,
+			[slugs[1] as string]: 2,
+			[slugs[2] as string]: 1,
+			[slugs[3] as string]: 2,
+		});
+		expect(Object.keys(manifest.attempts)).toEqual(manifest.translated);
+		expect(formatSummary(manifest, "m.json")).toContain("accepted on first attempt 2 / second attempt 2");
+	});
+
+	it("gives no attempts in a preview", async () => {
+		manyNodes(2);
+		const manifest = await run(planned([]).translate, { apply: false });
+		expect(manifest.attempts).toEqual({});
+	});
+
+	// End to end: the real Gemini provider on a faked SDK, which answers 404 with a message that holds the key.
+	const KEY = "AIzaSyFAKE-key_0123456789abcdefghijklmnopq";
+	it("never writes the API key in the output, the manifest or stderr, even when the provider error holds it", async () => {
+		const slugs = manyNodes(3);
+		const body = {
+			error: {
+				code: 404,
+				message: `models/gemini-2.0-flash is no longer available to new users (key=${KEY}).`,
+				status: "NOT_FOUND",
+			},
+		};
+		sdk.generateContent.mockReset();
+		sdk.generateContent.mockRejectedValue(Object.assign(new Error(JSON.stringify(body)), { status: 404 }));
+		const code = await runCli([dir, "--apply", "--concurrency", "1", "--manifest", manifestFile()], KEY);
+
+		expect(code).toBe(4);
+		expect(sdk.generateContent).toHaveBeenCalledTimes(1);
+		const everything = [
+			printed(),
+			readFileSync(manifestFile(), "utf8"),
+			vi
+				.mocked(process.stderr.write)
+				.mock.calls.map((call) => String(call[0]))
+				.join(""),
+		].join("\n");
+		expect(everything).not.toContain(KEY);
+		expect(everything).not.toContain(KEY.slice(0, 12));
+		expect(everything).toContain(
+			"HTTP 404: models/gemini-2.0-flash is no longer available to new users (key=[redacted])",
+		);
+		expect(JSON.parse(bytes(slugs[0] as string)).l10n).toBeUndefined();
+	});
+
+	it("end to end, three 400 from the real provider stop the batch after three calls, key still hidden", async () => {
+		const slugs = manyNodes(6);
+		const body = {
+			error: { code: 400, message: `Invalid argument (key=${KEY})`, status: "INVALID_ARGUMENT" },
+		};
+		sdk.generateContent.mockReset();
+		sdk.generateContent.mockRejectedValue(Object.assign(new Error(JSON.stringify(body)), { status: 400 }));
+		const code = await runCli([dir, "--apply", "--concurrency", "1", "--manifest", manifestFile()], KEY);
+
+		expect(code).toBe(4);
+		// One call per node: a 400 is not retried.
+		expect(sdk.generateContent).toHaveBeenCalledTimes(3);
+		const manifest = readFileSync(manifestFile(), "utf8");
+		expect(JSON.parse(manifest)).toMatchObject({
+			stopped: "provider_rejected",
+			rejected_slugs: slugs.slice(0, 3),
+			provider_error: { status: 400, message: "Invalid argument (key=[redacted])" },
+		});
+		expect(`${printed()}\n${manifest}`).not.toContain(KEY);
 	});
 });
