@@ -22,9 +22,26 @@ export interface GenerateJsonRequest {
 	temperature: number;
 }
 
+/**
+ * Why the provider refused, kept for the operator (TRA-837, 2026-11-26). Without it, the pilot's 404 "model no
+ * longer available" only read `provider_unavailable`, which means "wait and retry": no wait could fix it.
+ * The provider has already removed the API key and the request text from `message`, and truncated it.
+ */
+export interface ProviderFailureDetail {
+	/** HTTP status, absent for a failure that never got an answer (network, timeout). */
+	status?: number;
+	message: string;
+}
+
+/**
+ * `provider_rejected`: a permanent refusal (404 model not found, 400, 401, 403). Retrying the same request
+ * cannot succeed, unlike `quota_exhausted` and `provider_unavailable`, which are worth waiting out.
+ */
+export type ProviderFailureReason = "quota_exhausted" | "provider_unavailable" | "provider_rejected";
+
 export type GenerateJsonResult =
 	| { ok: true; text: string; inputTokens: number; outputTokens: number }
-	| { ok: false; reason: "quota_exhausted" | "provider_unavailable" };
+	| { ok: false; reason: ProviderFailureReason; detail?: ProviderFailureDetail };
 
 /** The provider boundary: the only thing tests replace. Never throws for a provider error. */
 export type GenerateJson = (request: GenerateJsonRequest) => Promise<GenerateJsonResult>;
@@ -36,7 +53,7 @@ export interface TranslationUsage {
 	costUsd: number | null;
 }
 
-export type TranslationFailure = "provider_unavailable" | "quota_exhausted" | "invalid_output";
+export type TranslationFailure = ProviderFailureReason | "invalid_output";
 
 export type TranslateOutcome =
 	| { ok: true; translation: NodeTranslation; attempts: 1 | 2; usage: TranslationUsage }
@@ -46,6 +63,8 @@ export type TranslateOutcome =
 			issues: TranslationIssue[];
 			attempts: number;
 			usage: TranslationUsage;
+			/** Only on a provider failure that came with one. */
+			detail?: ProviderFailureDetail;
 	  };
 
 export interface NodeTranslatorDeps {
@@ -167,7 +186,14 @@ export function createNodeTranslator(deps: NodeTranslatorDeps): NodeTranslator {
 			});
 			// Retrying a provider failure is the provider's job (TRA-807), not this function's.
 			if (!result.ok)
-				return { ok: false, reason: result.reason, issues: [], attempts: attempt, usage: usage() };
+				return {
+					ok: false,
+					reason: result.reason,
+					issues: [],
+					attempts: attempt,
+					usage: usage(),
+					...(result.detail === undefined ? {} : { detail: result.detail }),
+				};
 			inputTokens += result.inputTokens;
 			outputTokens += result.outputTokens;
 

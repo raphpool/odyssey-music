@@ -158,6 +158,16 @@ describe("createNodeTranslator", () => {
 		expect(!outcome.ok && outcome.issues.map((issue) => issue.code)).toContain("empty");
 	});
 
+	it("hands the provider's detail to the caller on a refusal, and adds none when the provider gave none", async () => {
+		const detail = { status: 404, message: "model gone" };
+		const withDetail = await run([{ ok: false, reason: "provider_rejected", detail }]);
+		expect(withDetail.outcome).toMatchObject({ ok: false, reason: "provider_rejected", attempts: 1, detail });
+		expect(withDetail.requests).toHaveLength(1);
+
+		const without = await run([{ ok: false, reason: "provider_unavailable" }]);
+		expect(without.outcome).not.toHaveProperty("detail");
+	});
+
 	it.each(["quota_exhausted", "provider_unavailable"] as const)("stops at once on %s", async (reason) => {
 		const { outcome, requests } = await run([{ ok: false, reason }]);
 

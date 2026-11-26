@@ -22,10 +22,20 @@
  *   written, nothing new starts, `stopped` carries the last reason, and the three nodes are left out of
  *   `failed`: they are not at fault, and the next run takes them again like any untranslated node. A success
  *   or an `invalid_output` (the provider did answer) resets the series.
+ * - Permanent refusal stop (TRA-837, 2026-11-26): a `provider_rejected` (404 model not found, 400, 401, 403)
+ *   stops the batch at the first one, with its own exit code: waiting and relaunching cannot fix it, and
+ *   exit 3 says exactly that. The node is left out of `failed`, like the nodes of a quota stop.
+ * - Why the provider failed (TRA-837): a provider failure carries its HTTP status and a truncated message,
+ *   written to the manifest (`provider_error`, on the stop and on each `failed` entry) and to the summary. The
+ *   pilot of TRA-812 only read `STOPPED: provider_unavailable` for a 404 on the model. The provider removes the
+ *   API key and the request text from the message before it gets here.
+ * - `attempts`: the manifest gives, for each translated node, the 1 or 2 translator attempts it took, and the
+ *   summary counts "first attempt / second attempt" (the pilot PR has to report that split).
  * - `--sample <path>` (only with `--apply`): a Markdown file with a regular draw of `--sample-size` of the
  *   nodes translated in this pass, English then French, for a human to read before the batch is merged.
  *
- * Exit codes: 0 done, 1 done with `failed` (or an error), 2 usage, 3 stopped on quota (wins over 1).
+ * Exit codes: 0 done, 1 done with `failed` (or an error), 2 usage, 3 stopped on quota or on passing provider
+ * failures (wins over 1), 4 stopped on a permanent provider refusal (wins over 1 and 3).
  * Flags: see `parseCliArgs`.
  */
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -41,6 +51,8 @@ import { currentTranslation, translationSourceOf } from "../src/translation/sour
 import {
 	createNodeTranslator,
 	type NodeTranslator,
+	type ProviderFailureDetail,
+	type ProviderFailureReason,
 	type TranslationFailure,
 	type TranslationUsage,
 } from "../src/translation/translate-node.js";
@@ -66,7 +78,9 @@ const STOP_AFTER = 3;
 
 type Obj = Record<string, unknown>;
 type Status = "current" | "missing" | "stale" | "ineligible";
-type Stopped = "quota_exhausted" | "provider_unavailable";
+type Stopped = ProviderFailureReason;
+export const EXIT_STOPPED_PASSING = 3;
+export const EXIT_STOPPED_PERMANENT = 4;
 
 export interface TranslationRunOptions {
 	cacheDir: string;
@@ -97,9 +111,18 @@ export interface TranslationRunManifest {
 	counts: Record<NodeType, Record<"total" | Status, number>>;
 	/** Sorted: nodes finish out of slug order when several calls run at once. */
 	translated: Slug[];
-	failed: { slug: Slug; reason: TranslationFailure; issues: TranslationIssue[] }[];
+	/** Translator attempts (1 = accepted at once, 2 = after the retry) of each node in `translated`, in slug order. */
+	attempts: Record<string, 1 | 2>;
+	failed: {
+		slug: Slug;
+		reason: TranslationFailure;
+		issues: TranslationIssue[];
+		provider_error?: ProviderFailureDetail;
+	}[];
 	usage: TranslationUsage;
 	stopped?: Stopped;
+	/** Why the provider failed on the result that raised `stopped`. */
+	provider_error?: ProviderFailureDetail;
 }
 
 const isPlainRecord = (value: unknown): value is Obj =>
@@ -178,6 +201,7 @@ interface WrittenTranslation {
 	slug: Slug;
 	node: Obj;
 	translation: NodeTranslation;
+	attempts: 1 | 2;
 }
 
 function renderSample(entries: readonly WrittenTranslation[], locale: ContentLocale): string {
@@ -217,7 +241,7 @@ export async function runTranslation(
 	const usage: TranslationUsage = { inputTokens: 0, outputTokens: 0, costUsd: 0 };
 	const written: WrittenTranslation[] = [];
 	let failed: TranslationRunManifest["failed"] = [];
-	const stop: { reason?: Stopped } = {};
+	const stop: { reason?: Stopped; providerError?: ProviderFailureDetail } = {};
 
 	const todo: typeof nodes = [];
 	for (const file of nodes) {
@@ -268,12 +292,27 @@ export async function runTranslation(
 				if (reason === "invalid_output") {
 					series = [];
 					failed.push({ slug, reason, issues: outcome.issues });
+				} else if (stop.reason === undefined && reason === "provider_rejected") {
+					// Permanent (TRA-837): no series to wait for, since the same request will be refused again.
+					// Like the nodes of a quota stop, this one is not at fault: left for the next run, and so are
+					// the passing failures of the current series, which the stop makes moot.
+					stop.reason = reason;
+					if (outcome.detail !== undefined) stop.providerError = outcome.detail;
+					halted = true;
+					const inSeries = new Set(series);
+					failed = failed.filter((f) => !inSeries.has(f.slug));
 				} else if (stop.reason === undefined) {
 					// A result that lands after the stop is the same outage: left for the next run, not a failure.
 					series.push(slug);
-					failed.push({ slug, reason, issues: outcome.issues });
+					failed.push({
+						slug,
+						reason,
+						issues: outcome.issues,
+						...(outcome.detail === undefined ? {} : { provider_error: outcome.detail }),
+					});
 					if (series.length >= STOP_AFTER) {
 						stop.reason = reason;
+						if (outcome.detail !== undefined) stop.providerError = outcome.detail;
 						halted = true;
 						const raisedIt = new Set(series);
 						failed = failed.filter((f) => !raisedIt.has(f.slug));
@@ -298,7 +337,7 @@ export async function runTranslation(
 			if (!isDeepStrictEqual(after, before)) {
 				throw new Error(`${slug}: the node on disk differs from the node read, beyond l10n; stopping`);
 			}
-			written.push({ slug, node: file.node, translation: outcome.translation });
+			written.push({ slug, node: file.node, translation: outcome.translation, attempts: outcome.attempts });
 		}
 	};
 
@@ -338,10 +377,18 @@ export async function runTranslation(
 		applied: options.apply,
 		counts,
 		translated: written.map((w) => w.slug),
+		attempts: Object.fromEntries(written.map((w) => [w.slug, w.attempts])),
 		failed,
 		usage,
 		...(stop.reason === undefined ? {} : { stopped: stop.reason }),
+		...(stop.providerError === undefined ? {} : { provider_error: stop.providerError }),
 	};
+}
+
+/** ` (HTTP 404: message)`, ` (message)` when no answer came, "" when the provider gave nothing. */
+function describeProviderError(detail: ProviderFailureDetail | undefined): string {
+	if (detail === undefined) return "";
+	return ` (${detail.status === undefined ? "" : `HTTP ${detail.status}: `}${detail.message})`;
 }
 
 export function formatSummary(manifest: TranslationRunManifest, manifestPath: string): string {
@@ -354,13 +401,25 @@ export function formatSummary(manifest: TranslationRunManifest, manifestPath: st
 	}
 	if (manifest.applied) {
 		lines.push(`  translated ${manifest.translated.length}, failed ${manifest.failed.length}`);
-		for (const f of manifest.failed) lines.push(`    ${f.slug}: ${f.reason}`);
+		const second = Object.values(manifest.attempts).filter((attempts) => attempts === 2).length;
+		lines.push(
+			`  accepted on first attempt ${manifest.translated.length - second} / second attempt ${second}`,
+		);
+		for (const f of manifest.failed)
+			lines.push(`    ${f.slug}: ${f.reason}${describeProviderError(f.provider_error)}`);
 		lines.push(
 			manifest.usage.costUsd === null
 				? "  cost unknown (no tariff for the model)"
 				: `  cost $${manifest.usage.costUsd.toFixed(4)}`,
 		);
-		if (manifest.stopped) lines.push(`  STOPPED: ${manifest.stopped}; run the same command again to resume`);
+		if (manifest.stopped) {
+			const why = `${manifest.stopped}${describeProviderError(manifest.provider_error)}`;
+			lines.push(
+				manifest.stopped === "provider_rejected"
+					? `  STOPPED: ${why}; the provider will refuse every retry: fix the cause (model, key, request), then run again`
+					: `  STOPPED: ${why}; run the same command again to resume`,
+			);
+		}
 	} else lines.push("  preview: no translator call, no node written (re-run with --apply)");
 	lines.push(`manifest: ${manifestPath}`);
 	return lines.join("\n");
@@ -446,8 +505,9 @@ export async function runCli(
 	await atomicWriteJson(args.manifestPath, manifest);
 	console.log(formatSummary(manifest, args.manifestPath));
 	if (args.apply && args.samplePath !== undefined) console.log(`sample: ${args.samplePath}`);
-	// The manifest is written above, before this code is returned: a stop on quota never loses it.
-	return manifest.stopped ? 3 : manifest.failed.length > 0 ? 1 : 0;
+	// The manifest is written above, before this code is returned: a stop never loses it.
+	if (manifest.stopped === "provider_rejected") return EXIT_STOPPED_PERMANENT;
+	return manifest.stopped ? EXIT_STOPPED_PASSING : manifest.failed.length > 0 ? 1 : 0;
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {

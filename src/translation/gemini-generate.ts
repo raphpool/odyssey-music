@@ -1,6 +1,11 @@
 import { GoogleGenAI, type Schema } from "@google/genai";
 import { pipelineConfig, translationConfig } from "../config.js";
-import type { GenerateJson, GenerateJsonRequest, GenerateJsonResult } from "./translate-node.js";
+import type {
+	GenerateJson,
+	GenerateJsonRequest,
+	GenerateJsonResult,
+	ProviderFailureDetail,
+} from "./translate-node.js";
 
 // The only module of the translation feature that touches the Gemini SDK (TRA-807). It turns every provider
 // failure into a typed result: the translator above it never sees an exception from the network.
@@ -20,6 +25,42 @@ function isQuotaError(error: unknown): boolean {
 	const message = messageOf(error);
 	// Word-bounded: a request id or byte count that merely contains the digits must not read as a quota error.
 	return /\b429\b/.test(message) || message.includes("RESOURCE_EXHAUSTED");
+}
+
+/** Statuses for which the same request can never succeed: relaunching the batch changes nothing (TRA-837). */
+const PERMANENT_STATUSES: ReadonlySet<number> = new Set([400, 401, 403, 404]);
+export const MAX_DETAIL_LENGTH = 200;
+
+function statusOf(error: unknown): number | undefined {
+	const status =
+		typeof error === "object" && error !== null ? (error as { status?: unknown }).status : undefined;
+	return typeof status === "number" && Number.isInteger(status) ? status : undefined;
+}
+
+/** The SDK puts the API's JSON body in `message`; the sentence inside it is what a human needs. */
+function readableMessage(raw: string): string {
+	try {
+		const body: unknown = JSON.parse(raw);
+		const inner = (body as { error?: { message?: unknown } } | null)?.error?.message;
+		if (typeof inner === "string" && inner.trim() !== "") return inner;
+	} catch {
+		// Not JSON: a network or timeout error, whose text is already readable.
+	}
+	return raw;
+}
+
+/**
+ * What an operator may read about a failure: the status and a one-line, truncated message. The key and the
+ * request text are removed first and the cut comes last, so it can never leave half a secret behind. An
+ * API error may echo the request (400) or a URL carrying the key.
+ */
+function describeFailure(error: unknown, secrets: readonly string[]): ProviderFailureDetail {
+	let message = readableMessage(messageOf(error));
+	for (const secret of secrets) if (secret !== "") message = message.replaceAll(secret, "[redacted]");
+	message = message.replace(/\s+/g, " ").trim();
+	if (message.length > MAX_DETAIL_LENGTH) message = `${message.slice(0, MAX_DETAIL_LENGTH)}…`;
+	const status = statusOf(error);
+	return status === undefined ? { message } : { status, message };
 }
 
 /** Built on @google/genai: responseMimeType application/json, thinking disabled. */
@@ -63,7 +104,15 @@ export function createGeminiGenerateJson(apiKey: string): GenerateJson {
 				outputTokens: usage?.candidatesTokenCount ?? 0,
 			};
 		} catch (error) {
-			return { ok: false, reason: isQuotaError(error) ? "quota_exhausted" : "provider_unavailable" };
+			const detail = describeFailure(error, [apiKey, request.prompt, request.systemInstruction]);
+			const permanent = detail.status !== undefined && PERMANENT_STATUSES.has(detail.status);
+			// A quota answer wins: it is the only refusal the batch may wait out.
+			const reason = isQuotaError(error)
+				? "quota_exhausted"
+				: permanent
+					? "provider_rejected"
+					: "provider_unavailable";
+			return { ok: false, reason, detail };
 		} finally {
 			clearTimeout(timer);
 		}
@@ -71,7 +120,12 @@ export function createGeminiGenerateJson(apiKey: string): GenerateJson {
 
 	return async (request) => {
 		let result = await attempt(request);
-		for (let tries = 1; !result.ok && tries < MAX_ATTEMPTS; tries++) {
+		// A permanent refusal is not retried: the second call would wait for the same answer.
+		for (
+			let tries = 1;
+			!result.ok && result.reason !== "provider_rejected" && tries < MAX_ATTEMPTS;
+			tries++
+		) {
 			await new Promise((resolve) => setTimeout(resolve, pipelineConfig.retryDelayMs));
 			result = await attempt(request);
 		}
