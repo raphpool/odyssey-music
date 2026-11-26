@@ -293,7 +293,8 @@ enum UITestFlows {
 		return [
 			"node": [
 				"id": slug, "type": type(ofSlug: slug), "name": name(of: slug), "teaser": "Teaser of \(name(of: slug)).",
-				"article": article(of: slug), "citations": [Any](), "facts": facts, "edges": edgeValues,
+				"article": article(of: slug), "citations": [["url": "https://www.media.example/\(slug)", "title": "Media"]],
+				"facts": facts, "edges": edgeValues,
 				"materialized_at": "2026-01-01T00:00:00Z", "image_url": NSNull(),
 			],
 			"source": "cache",
@@ -302,6 +303,9 @@ enum UITestFlows {
 
 	/// The reader draws one paragraph per sentence (TRA-795): six of them, so that a scroll has somewhere to go.
 	static let articleSentenceCount = 6
+
+	/// The host of the citation every fixture node carries, as the reader's source line draws it (without `www.`).
+	static let sourceDomain = "media.example"
 
 	/// The first sentence names the node: `TodayFlowTests` finds the node of the day in the first paragraph.
 	private static func article(of slug: String) -> String {

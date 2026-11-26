@@ -37,6 +37,17 @@ enum PlayerMetrics {
 	/// What VoiceOver and the UI tests read on the sentence that has the focus; the others have no value.
 	static let focusValue = "focus"
 
+	/// TRA-826 (plan player-source-link, D2 and D3), no Figma node: the source line under the last sentence.
+	static let sourceIdentifier = "player-source"
+	/// A footnote, closer than the 56 pt between sentences (D2).
+	static let sourceSpacing: CGFloat = Track1Tokens.spacing24
+	static let sourceLabelColor: Color = Track1Tokens.colorTextPrimary
+	/// The domain is the label colour at 80 %, not a new token (D3).
+	static let sourceDomainOpacity: Double = 0.8
+	static let sourceDomainColor: Color = Track1Tokens.colorTextPrimary.opacity(sourceDomainOpacity)
+	/// 44 pt of touch on a 34 pt line, the back button's recipe (`PlayerBackButton`).
+	static let sourceTouchOutset: CGFloat = (PlayerNowBarMetrics.minimumTouchTarget - role.lineHeight) / 2
+
 	/// `338:2463`: a 393 x 2064 frame, the three cover bands at 0, 5 and 10 %, then `background.elevated`
 	/// from 15 %. `CoverTintGradient` cannot draw it: its stops are fixed at 0, 13, 27 and 50 %.
 	static let tintHeight: CGFloat = 2064
@@ -111,6 +122,8 @@ enum PlayerMetrics {
 
 /// The reader (Figma `338:2461`): one sentence per paragraph, all in the `reader` role, the centred one lit.
 /// The text moves under the finger only. The article comes from the network: `Text(verbatim:)`, never a link.
+/// The one link is the source line under the last sentence: its target is the first citation URL that
+/// `URLValidation` accepts, its text the host of that URL (`PlayerSource`).
 struct PlayerView: View {
 	static let emptyMessage = "Pas encore de texte pour cette œuvre."
 
@@ -146,8 +159,19 @@ struct PlayerView: View {
 
 	/// The sentences of the article; an empty article falls back on the cleaned teaser, then on the message.
 	static func paragraphs(for node: NodeDetail) -> [String] {
+		readableText(of: node) ?? [emptyMessage]
+	}
+
+	/// nil when the reader shows `emptyMessage` (no sentence in the article and no teaser): no text, no source;
+	/// else `PlayerSource.first(in: node.citations)`.
+	static func source(for node: NodeDetail) -> PlayerSource? {
+		readableText(of: node) == nil ? nil : PlayerSource.first(in: node.citations)
+	}
+
+	private static func readableText(of node: NodeDetail) -> [String]? {
 		let sentences = ArticleSentences.split(node.article)
-		return sentences.isEmpty ? [NodePageHeader(node: node).teaser ?? emptyMessage] : sentences
+		if !sentences.isEmpty { return sentences }
+		return NodePageHeader(node: node).teaser.map { [$0] }
 	}
 
 	static func artistNames(of node: NodeDetail) -> String? {
@@ -222,6 +246,8 @@ private struct PlayerReader: View {
 	let safeAreaBottom: CGFloat
 	/// Cut once: the body runs again each time the focus changes.
 	let paragraphs: [String]
+	/// Resolved once, like `paragraphs`.
+	let source: PlayerSource?
 	@State private var hero: NodeHeroModel
 	@State private var focused = 0
 	@State private var frames: [PlayerItemFrame] = []
@@ -239,6 +265,7 @@ private struct PlayerReader: View {
 		self.model = model
 		self.safeAreaBottom = safeAreaBottom
 		paragraphs = PlayerView.paragraphs(for: node)
+		source = PlayerView.source(for: node)
 		_hero = State(initialValue: NodeHeroModel(node: node, store: imageStore))
 	}
 
@@ -314,10 +341,14 @@ private struct PlayerReader: View {
 		let top = PlayerMetrics.topMargin(paragraph: CGFloat(frames.first?.height ?? 0))
 		let bottom = PlayerMetrics.bottomMargin(viewport: height, paragraph: CGFloat(frames.last?.height ?? 0))
 		let scroll = ScrollView(showsIndicators: false) {
-			VStack(alignment: .leading, spacing: PlayerMetrics.paragraphSpacing) {
-				ForEach(Array(paragraphs.enumerated()), id: \.offset) { index, text in
-					PlayerParagraph(text: text, index: index, isFocused: index == focused, reduceMotion: reduceMotion)
+			VStack(alignment: .leading, spacing: PlayerMetrics.sourceSpacing) {
+				VStack(alignment: .leading, spacing: PlayerMetrics.paragraphSpacing) {
+					ForEach(Array(paragraphs.enumerated()), id: \.offset) { index, text in
+						PlayerParagraph(text: text, index: index, isFocused: index == focused, reduceMotion: reduceMotion)
+					}
 				}
+				// No `PlayerFramesKey` here: the line is not a frame, a focus or a step of the carousel.
+				if let source { PlayerSourceLine(source: source) { openURL($0) } }
 			}
 			.frame(width: PlayerMetrics.columnWidth)
 			.padding(.top, top)
@@ -363,6 +394,32 @@ private struct PlayerParagraph: View {
 						key: PlayerFramesKey.self, value: [index: proxy.frame(in: .named(PlayerMetrics.contentSpace))])
 				}
 			}
+	}
+}
+
+/// TRA-826 (plan player-source-link, D1): "Source : domain", the domain underlined and the whole line one link.
+/// The domain comes from the network, so both runs are `Text(verbatim:)`, and the target is the URL that
+/// `PlayerSource` took from `URLValidation`, never a string.
+private struct PlayerSourceLine: View {
+	let source: PlayerSource
+	let open: (URL) -> Void
+
+	var body: some View {
+		let outset = PlayerMetrics.sourceTouchOutset
+		let label = Text(verbatim: PlayerSource.label + " ").foregroundStyle(PlayerMetrics.sourceLabelColor)
+		let domain = Text(verbatim: source.domain).underline().foregroundStyle(PlayerMetrics.sourceDomainColor)
+		Button(action: { open(source.url) }) {
+			Track1Text(label + domain, role: PlayerMetrics.role)
+				.frame(width: PlayerMetrics.columnWidth, alignment: .leading)
+				.padding(outset)
+				.contentShape(Rectangle())
+				.padding(-outset)
+		}
+		// `.plain` keeps the colours set on the runs, which a link tint would replace.
+		.buttonStyle(.plain)
+		.accessibilityLabel(source.line)
+		.accessibilityAddTraits(.isLink)
+		.accessibilityIdentifier(PlayerMetrics.sourceIdentifier)
 	}
 }
 
