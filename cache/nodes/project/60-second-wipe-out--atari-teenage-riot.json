@@ -159,5 +159,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre abrasif de 1999, 60 Second Wipe Out capture l'énergie chaotique et culminante des pionniers du digital hardcore, Atari Teenage Riot, dans une collision entre colère punk et bruit industriel programmé.",
+      "article": "Publié en 1999 sur Digital Hardcore Recordings, 60 Second Wipe Out constitue le troisième album studio des pionniers anarchistes du digital hardcore basés à Berlin, Atari Teenage Riot. S'éloignant de l'intensité purement électronique et chargée de breakbeats de leurs premiers travaux, ce disque intègre une énergie plus directe, teintée de punk, tout en conservant l'esthétique sonore confrontationnelle caractéristique du groupe. Produit par le membre fondateur Alec Empire, l'album fait office de déclaration définitive du genre « digital hardcore » : une fusion volatile de bruit industriel, d'anarcho-punk et de breakcore frénétique, programmée pour devenir une musique de protestation politique militante.\n\nL'album se distingue par sa production brute et agressive, qui équilibre des synthétiseurs durs et saturés avec des éléments de guitare live et des performances vocales politiques scandées. Avec la participation des piliers du groupe Hanin Elias, Carl Crack et Nic Endo, ainsi que des apparitions d'invités tels que Kathleen Hanna et Dino Cazares, 60 Second Wipe Out capture une intersection chaotique des mouvements underground des années 90. Malgré une réception critique polarisante à l'époque — souvent critiqué pour son intensité implacable — il demeure un projet phare qui a efficacement comblé le fossé entre les sous-cultures électroniques et l'activisme hardcore punk, consolidant la réputation d'Atari Teenage Riot comme l'un des groupes les plus abrasifs et intransigeants de leur époque. La liste des titres comprend des hymnes agressifs comme Revolution Action et Digital Hardcore, qui sont depuis devenus synonymes de l'héritage du groupe, consistant à utiliser le chaos à haut BPM pour défier l'apathie culturelle et politique.",
+      "source_sha256": "597eacba118be56e0374ebca33277c94ed2e688cf3215a16bed34f0d9a1dc232",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:32:58.912Z"
+    }
+  }
 }

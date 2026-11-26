@@ -64,5 +64,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une série de longue date de compilations et de mixtapes qui a chroniqué le développement du hip-hop français tout au long des années 2000.",
+      "article": "100% Rap Français représente une marque récurrente et une série de compilations au sein du paysage hip-hop français, documentant l'évolution du genre depuis le tournant du millénaire jusqu'à la fin des années 2000. Ces compilations et mixtapes, qui sont apparues fréquemment sous divers formats, notamment CD et cassette, ont servi de plateformes essentielles pour présenter à la fois des figures établies et des talents émergents de la scène locale. En regroupant des titres d'artistes divers, ces sorties ont fourni un instantané complet des changements stylistiques et des thèmes lyriques prédominants dans le rap français durant cette ère, allant des hymnes de rue underground aux productions plus orientées vers le grand public. La série demeure une pierre angulaire archivistique importante pour les collectionneurs et les passionnés du mouvement hip-hop français, reflétant la nature vibrante et souvent fragmentée de l'industrie au début des années 2000.",
+      "source_sha256": "1b51126c267365f36197aba10b539b7e62cfd694a8eac5a269962dabb242bb2c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:32:57.177Z"
+    }
+  }
 }

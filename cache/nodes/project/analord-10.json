@@ -57,5 +57,14 @@
       "name": "Aphex Twin"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pièce essentielle de la série Analord axée sur l'analogique, ce EP de 2005 de Richard D. James (sous le nom d'AFX) propose de l'acid brut piloté par le matériel et des polyrythmies complexes via son propre label Rephlex.",
+      "article": "Analord 10 est un EP 12 pouces charnière publié en 2005 par l'influent musicien électronique Richard D. James sous son pseudonyme AFX. Constituant un volet crucial de la série plus large Analord — une séquence d'EP qui a capturé la profonde fascination de James pour la synthèse analogique — ce disque poursuit son exploration de rythmes bruts pilotés par des machines. Une grande partie du matériel publié sous l'égide d'Analord a été enregistrée en utilisant du matériel vintage, marquant un départ par rapport aux textures glitch complexes et lourdes en logiciels de ses précédentes productions chez Warp Records, pour pencher plutôt vers une palette sonore plus directe, teintée d'acid et centrée sur le matériel.\n\nAvec des titres comme « Fenix Funk 5 » et « XMD 5a », Analord 10 met en lumière l'incroyable capacité de James à manipuler l'équipement analogique pour générer des polyrythmies complexes et contagieuses qui semblent à la fois nostalgiques et futuristes. La série elle-même a été distribuée par son propre label, Rephlex, qui a aidé à définir le son de la scène IDM underground du milieu des années 2000. La sortie physique d'Analord 10, souvent accompagnée d'un classeur en PVC en édition limitée pour les collectionneurs, souligne la nature idiosyncratique et tactile du projet. Il demeure un témoignage de l'influence durable de la musique électronique basée sur le matériel et de l'ingéniosité technique de Richard D. James. En se concentrant sur l'interaction entre des lignes de basse profondes et chaudes et des percussions saccadées et rapides, le projet reste une sortie marquante au sein de sa vaste discographie.",
+      "source_sha256": "44c2095d864b8eb5bddfe11d571eebb6d76102f42a381fdf63942d6abba2eabd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:34:59.655Z"
+    }
+  }
 }

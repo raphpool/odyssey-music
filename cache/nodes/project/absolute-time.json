@@ -19,5 +19,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Absolute Time est une œuvre séminale de la musique électronique expérimentale du milieu des années 90 qui a consolidé la réputation de Cristian Vogel en tant que pionnier d'une intelligence rythmique sans compromis.",
+      "article": "Absolute Time est une œuvre séminale de la musique électronique expérimentale du milieu des années 90 qui a consolidé la réputation de Cristian Vogel en tant que pionnier d'une intelligence rythmique sans compromis. À travers sa programmation complexe et ses textures abrasives, l'album capture un moment où la techno a commencé à se replier sur elle-même, explorant des paysages sonores complexes et chargés de glitchs qui évitaient les structures traditionnelles axées sur le club au profit d'une expérience sonore cérébrale, fracturée et profondément physique. Cet album fait figure de référence pour le développement de l'IDM et de la techno intelligente, comblant le fossé entre les pistes de danse underground et les salles d'écoute avant-gardistes. Les techniques de production de Vogel — souvent caractérisées par leur précision implacable, quasi mécanique, et leur conception sonore surprenante — ont repoussé les limites de ce que les rythmes électroniques pouvaient accomplir, transformant la percussion synthétisée en un langage malléable et expressif. Sorti à l'origine en 1995, son influence résonne à travers le travail d'innombrables producteurs qui ont cherché à marier maîtrise technique et intensité émotionnelle brute. L'édition remastérisée de 2015 apporte une clarté renouvelée à ces compositions denses, soulignant l'ambition architecturale pure qui continue de faire d'Absolute Time une écoute fascinante des décennies après sa création. Il demeure un point d'entrée essentiel dans le son électronique expérimental des années 90, offrant un modèle pour les futures générations d'artistes cherchant à briser les contraintes des genres. En dépouillant les mélodies conventionnelles au profit de textures rudes et changeantes, Vogel a redéfini les possibilités de l'environnement de studio en tant qu'instrument à part entière. Le résultat est une œuvre d'art qui semble aussi stimulante et avant-gardiste aujourd'hui qu'elle l'était lors de sa sortie initiale, cimentant la place de Vogel en tant que figure clé de l'avant-garde électronique.",
+      "source_sha256": "0818eb0d9fb7908ac14dc2cc3f2db80c960fbc025de67a3991ebd23aeea792e5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:33:02.820Z"
+    }
+  }
 }

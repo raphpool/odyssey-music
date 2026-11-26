@@ -132,5 +132,14 @@
       "type": "project",
       "name": "Kicking a Dead Pig"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "A Wrenched Virile Lore est le compagnon de remixes de 2012 de l'album acclamé de Mogwai, Hardcore Will Never Die But You Will, servant de réimagination cérébrale et d'univers alternatif de leurs fondations post-rock. La collection souligne la volonté du groupe de sortir de sa structure signature « loud-quiet-loud », permettant à une gamme variée de producteurs électroniques et expérimentaux — dont Justin K. Broadrick, Tim Hecker et The Soft Moon — de déconstruire et de réassembler leur matériel source en de nouvelles configurations textuellement denses.",
+      "article": "Sorti en 2012, A Wrenched Virile Lore est le deuxième album de remixes majeur des pionniers écossais influents du post-rock, Mogwai. Arrivant près de 15 ans après leur première collection de remixes, Kicking a Dead Pig, ce projet se concentre exclusivement sur la réinterprétation de titres de l'album de 2011 du groupe, Hardcore Will Never Die But You Will. Alors que leur début de carrière était défini par leur contraste marqué entre une quiétude minimaliste et des crescendos dévastateurs et saturés, A Wrenched Virile Lore présente un groupe plus à l'aise avec les textures électroniques et la collaboration externe.\n\nLe projet présente une liste éclectique de remixeurs qui entraînent le matériel source vers des paysages plus sombres, plus ambiants ou rythmiques. Parmi les contributions notables, citons Justin K. Broadrick (connu pour Godflesh/Jesu), qui transforme le titre post-punk « George Square Thatcher Death Party » en une ouverture anthémique prête pour les stades, et Tim Hecker, qui propose une version obsédante et spectrale de « Rano Pano ». D'autres contributeurs, tels que The Soft Moon et Zombi, retirent les couches des compositions de Mogwai pour exposer de nouvelles possibilités motorik et néo-gothiques au sein des mélodies. En tant qu'album, il fonctionne comme une expansion cérébrale d'univers alternatif de son disque parent, prouvant que l'identité compositionnelle de Mogwai reste puissante même lorsqu'elle est soumise à une chirurgie sonore extrême par des producteurs électroniques. C'est une pièce complémentaire vitale pour les auditeurs intéressés par l'intersection du post-rock et de l'underground électronique expérimental du début des années 2010.",
+      "source_sha256": "c5532723329aa19695d3c768a01031ebee6d05ba154ef7ca9e30b6b261b809f6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:33:01.944Z"
+    }
+  }
 }

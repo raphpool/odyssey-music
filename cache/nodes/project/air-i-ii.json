@@ -19,5 +19,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pierre angulaire de la musique ambient des années 1990, cette collection de 2 CD combine les deux premiers volumes de la série séminale « Air » de Pete Namlook en un voyage méditatif et expansif.",
+      "article": "« Air I + II » est un artefact par excellence de la musique électronique ambient des années 1990, publié en 1994 sous la forme d'un coffret de 2 CD par le pionnier de l'électronique expérimentale Pete Namlook. Apparu à l'origine sous la forme de deux volumes distincts sur le label influent de Namlook basé à Francfort, Fax +49-69/450464, ce projet s'impose comme une exploration monumentale des textures atmosphériques et des paysages sonores propices à l'écoute attentive. Namlook, connu pour sa production prolifique et son engagement envers l'éthique « ambient » du début des années quatre-vingt-dix, façonne un voyage méditatif et tentaculaire à travers ces disques, intégrant les contributions vocales subtiles d'Alexa Spielmann et d'Elisabeth Michels aux côtés de motifs électroniques minimalistes et fluides.\n\nLe projet se caractérise par ses compositions au long cours — de nombreux morceaux dépassant largement les dix minutes — qui évitent les structures de chansons traditionnelles au profit d'une évolution fluide et immersive. Les thèmes de la nature, de l'introspection et de la méditation technologique sont omniprésents, reflétant la palette sonore plus large défendue par le label Fax durant sa période la plus fertile. Cette réédition de 1994, produite par Instinct Records pour le marché américain, demeure une référence pour les collectionneurs du genre, marquant un sommet dans la capacité de Namlook à tisser diverses influences électroniques en un tout sonore unifié, méditatif et profondément atmosphérique. Sa réputation continue de croître parmi les auditeurs d'ambient contemporains qui le considèrent comme un chef-d'œuvre « épique » et cohérent, essentiel à la compréhension de l'évolution de la musique électronique européenne du milieu des années 90.",
+      "source_sha256": "08575e6d153bca797da86d9d8782b8c9f5d0b434136fdc35ab09ca3e7cf8a897",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:33:57.264Z"
+    }
+  }
 }

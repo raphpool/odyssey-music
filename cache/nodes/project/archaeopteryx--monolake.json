@@ -89,5 +89,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une exploration vaste et défiant les genres du design sonore qui équilibre textures ambiantes, rythmes breakbeat et atmosphère cinématographique, marquant un moment charnière et diversifié dans la discographie de Monolake.",
+      "article": "Sorti en 2020, Archaeopteryx s'impose comme l'un des projets les plus diversifiés et les plus vastes du projet électronique vétéran Monolake, l'entreprise de longue date de l'artiste sonore et développeur de logiciels Robert Henke. S'éloignant des fondations techno minimalistes strictement orientées club pour lesquelles le nom est devenu légendaire, cet album adopte une palette plus large et plus cinématographique. À travers ses dix-neuf titres, Henke mélange des breakbeats complexes, des textures ambiantes luxuriantes et des arrangements subtils influencés par le jazz, créant un monde sonore immersif qui ressemble souvent à la bande originale d'un paysage de science-fiction imaginaire.\n\nLe projet est largement considéré comme une leçon magistrale de design sonore moderne. Henke, cofondateur d'Ableton, utilise l'album pour repousser les limites de la production numérique, sculptant méticuleusement les fréquences pour construire tension et espace. Les titres oscillent entre des paysages sonores introspectifs et des passages plus dynamiques axés sur le rythme, maintenant une vision esthétique cohérente malgré les tempos variés et les expérimentations structurelles. Les fans comme les critiques ont noté l'éloignement de l'album des conventions « technoid », l'identifiant comme une synthèse mature et atmosphérique de la préoccupation de toute une vie de Henke pour la texture, le rythme et l'exploration acoustique. Archaeopteryx témoigne de l'évolution durable de Monolake, prouvant que le projet demeure à la pointe de la production de musique électronique expérimentale.",
+      "source_sha256": "55efb5488ccf3893ecace69914d16924ad523864bac0e813e603e509c2e80a92",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:35:04.252Z"
+    }
+  }
 }
