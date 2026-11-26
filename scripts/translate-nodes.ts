@@ -259,7 +259,10 @@ export async function runTranslation(
 			const outcome = await translate(file.node as unknown as NodePayload, options.locale);
 			usage.inputTokens += outcome.usage.inputTokens;
 			usage.outputTokens += outcome.usage.outputTokens;
-			usage.costUsd += outcome.usage.costUsd;
+			usage.costUsd =
+				usage.costUsd === null || outcome.usage.costUsd === null
+					? null
+					: usage.costUsd + outcome.usage.costUsd;
 			if (!outcome.ok) {
 				const { reason } = outcome;
 				if (reason === "invalid_output") {
@@ -352,7 +355,11 @@ export function formatSummary(manifest: TranslationRunManifest, manifestPath: st
 	if (manifest.applied) {
 		lines.push(`  translated ${manifest.translated.length}, failed ${manifest.failed.length}`);
 		for (const f of manifest.failed) lines.push(`    ${f.slug}: ${f.reason}`);
-		lines.push(`  cost $${manifest.usage.costUsd.toFixed(4)}`);
+		lines.push(
+			manifest.usage.costUsd === null
+				? "  cost unknown (no tariff for the model)"
+				: `  cost $${manifest.usage.costUsd.toFixed(4)}`,
+		);
 		if (manifest.stopped) lines.push(`  STOPPED: ${manifest.stopped}; run the same command again to resume`);
 	} else lines.push("  preview: no translator call, no node written (re-run with --apply)");
 	lines.push(`manifest: ${manifestPath}`);

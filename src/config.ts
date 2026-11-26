@@ -86,6 +86,33 @@ export const pricingConfig = {
 	),
 };
 
+export interface ModelPricing {
+	inputUsdPerMillion: number;
+	outputUsdPerMillion: number;
+}
+
+/**
+ * Tariff of a Gemini model by exact id, or undefined when it is not known.
+ * TRA-836 (2026-11-26): the translation step priced every model at the 2.5 tariff (`pricingConfig`), so the
+ * TRA-812 pilot on gemini-3.1-flash-lite reported $0.0060 for a real cost of about $0.028. Callers must treat
+ * undefined as "cost unknown", never fall back to another model's prices.
+ */
+export function pricingForModel(model: string): ModelPricing | undefined {
+	switch (model) {
+		case "gemini-2.5-flash-lite":
+			// Keeps the env overrides of the writing pipeline.
+			return {
+				inputUsdPerMillion: pricingConfig.geminiFlashLiteInputUsdPerMillion,
+				outputUsdPerMillion: pricingConfig.geminiFlashLiteOutputUsdPerMillion,
+			};
+		case "gemini-3.1-flash-lite":
+			// Google price page, checked 2026-11-26.
+			return { inputUsdPerMillion: 0.25, outputUsdPerMillion: 1.5 };
+		default:
+			return undefined;
+	}
+}
+
 export const cliConfig = {
 	webhookAllowlist: envString("ODYSSEY_WEBHOOK_ALLOW", "")
 		.split(",")
