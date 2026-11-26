@@ -49,15 +49,17 @@ struct NodePageView: View {
 
 	/// The tint of the page and of its card: the cover's palette when there is one, else three equal bands of the
 	/// node-type colour (D3), which `CoverTintTone` darkens like any cover. It does not depend on the root.
-	static func pageTint(coverTint: CoverTint?, type: NodeType) -> CoverTint {
+	static func pageTint(
+		coverTint: CoverTint?, type: NodeType, scale: CoverTintTone.Scale = .page
+	) -> CoverTint {
 		if let coverTint { return coverTint }
 		// The conversions cannot fail for a token colour; if one did, fall back on `background.elevated`
 		// (0x1A110E), written out so that the last step cannot fail either.
 		let rgb =
 			LinearRGB(Track1Tokens.colorNode(type)) ?? LinearRGB(Track1Tokens.colorBackgroundElevated)
 			?? LinearRGB(red: 26 / 255, green: 17 / 255, blue: 14 / 255)
-		let bands = Array(repeating: rgb, count: CoverTintTone.stopBrightness.count)
-		return CoverTintTone.tint(bands: bands) ?? CoverTint(stops: bands, shadow: rgb)
+		let bands = Array(repeating: rgb, count: scale.stopBrightness.count)
+		return CoverTintTone.tint(bands: bands, scale: scale) ?? CoverTint(stops: bands, shadow: rgb)
 	}
 
 	static func heroImage(for state: NodeHeroModel.State) -> Track1Artwork.State {

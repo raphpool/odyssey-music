@@ -266,11 +266,12 @@ private struct PlayerReader: View {
 		self.safeAreaBottom = safeAreaBottom
 		paragraphs = PlayerView.paragraphs(for: node)
 		source = PlayerView.source(for: node)
-		_hero = State(initialValue: NodeHeroModel(node: node, store: imageStore))
+		_hero = State(initialValue: NodeHeroModel(node: node, store: imageStore, scale: .player))
 	}
 
 	var body: some View {
-		let tint = NodePageView.pageTint(coverTint: NodePageView.coverTint(for: hero.state), type: node.type)
+		let tint = NodePageView.pageTint(
+			coverTint: NodePageView.coverTint(for: hero.state), type: node.type, scale: .player)
 		GeometryReader { proxy in reading(height: proxy.size.height) }
 			.background(alignment: .top) {
 				LinearGradient(stops: PlayerMetrics.tintStops(tint), startPoint: .top, endPoint: .bottom)

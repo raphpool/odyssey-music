@@ -27,9 +27,9 @@ public struct CoverTint: Equatable, Sendable {
 	}
 }
 
-/// Maps the three colour bands of a cover (top, middle, bottom) onto the fixed brightness scale of the
-/// "Background · cover tint" spec. Only the hue and the saturation of a band survive, so every cover gets the
-/// same dark, low-contrast ground whatever its own luminosity.
+/// Maps the three colour bands of a cover (top, middle, bottom) onto a fixed brightness scale (`Scale`; the
+/// "Background · cover tint" spec for `.page`). Only the hue and the saturation of a band survive, so every
+/// cover gets the same ground whatever its own luminosity.
 ///
 /// The constants are the HSB reading of the Cosmogramma references (plan annex A.2); they are Raphael's to
 /// judge on a device, so they are not tuned here.
@@ -38,26 +38,40 @@ public enum CoverTintTone {
 	public static let stopPositions: [Double] = [0, 0.13, 0.27]
 	/// Where the gradient reaches the page background token.
 	public static let endpointPosition: Double = 0.50
-	/// The B of HSB (`max(r, g, b)`) of each stop.
-	public static let stopBrightness: [Double] = [0.33, 0.27, 0.20]
-	/// A band more saturated than this is pulled down to it, so a vivid cover never floods the page.
-	public static let saturationMax: Double = 0.35
+	/// The brightness and saturation ceiling a screen paints a cover with.
+	public struct Scale: Equatable, Sendable {
+		/// The B of HSB (`max(r, g, b)`) of each stop, top to bottom; always three values, strictly decreasing.
+		public let stopBrightness: [Double]
+		/// A band more saturated than this is pulled down to it, so a vivid cover never floods the screen.
+		public let saturationMax: Double
+
+		/// The dark, low-contrast ground of the node page and its card.
+		public static let page = Scale(stopBrightness: [0.33, 0.27, 0.20], saturationMax: 0.35)
+
+		/// Brighter and more saturated than `.page`: the player is full screen, so the cover has to show through
+		/// (brief of 2026-11-25, decision D2, TRA-832). The values are Raphael's to tune on a device.
+		public static let player = Scale(stopBrightness: [0.46, 0.38, 0.30], saturationMax: 0.60)
+	}
+
+	/// The node-page scale, kept so existing readers of the constants see no change.
+	public static let stopBrightness: [Double] = Scale.page.stopBrightness
+	public static let saturationMax: Double = Scale.page.saturationMax
 	public static let shadowBrightness: Double = 0.53
 	/// The glow is livelier than the stop it sits above: the first band's saturation is multiplied by this.
 	public static let shadowSaturationGain: Double = 1.65
 
 	/// `nil` unless `bands` holds exactly three colours.
-	public static func tint(bands: [LinearRGB]) -> CoverTint? {
-		guard bands.count == stopBrightness.count, let first = bands.first else { return nil }
+	public static func tint(bands: [LinearRGB], scale: Scale = .page) -> CoverTint? {
+		guard bands.count == scale.stopBrightness.count, let first = bands.first else { return nil }
 
-		let stops = zip(bands, stopBrightness).map { band, brightness -> LinearRGB in
+		let stops = zip(bands, scale.stopBrightness).map { band, brightness -> LinearRGB in
 			let hsb = HSB(band)
-			return HSB(hue: hsb.hue, saturation: min(hsb.saturation, saturationMax), brightness: brightness).rgb
+			return HSB(hue: hsb.hue, saturation: min(hsb.saturation, scale.saturationMax), brightness: brightness).rgb
 		}
 		let lead = HSB(first)
 		let shadow = HSB(
 			hue: lead.hue,
-			saturation: min(lead.saturation * shadowSaturationGain, saturationMax),
+			saturation: min(lead.saturation * shadowSaturationGain, scale.saturationMax),
 			brightness: shadowBrightness
 		).rgb
 		return CoverTint(stops: stops, shadow: shadow)

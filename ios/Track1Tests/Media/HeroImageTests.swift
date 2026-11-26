@@ -90,6 +90,19 @@ final class HeroImageTests: XCTestCase {
 		XCTAssertNil(NodePageView.coverTint(for: .placeholder))
 	}
 
+	func testAPlayerScaleModelCarriesTheCoverTintOfItsBandsOnThePlayerScale() async throws {
+		let backend = Backend(images: [first: Self.thirds()])
+		let model = try model(backend, imageURL: first, scale: .player)
+
+		await model.load()
+
+		guard case .loaded(_, _, let coverTint) = model.state else { return XCTFail("State was \(model.state).") }
+		let bands = try XCTUnwrap(DominantColor.bands(of: Self.thirds()))
+		XCTAssertEqual(coverTint, CoverTintTone.tint(bands: bands, scale: .player))
+		XCTAssertNotEqual(coverTint, CoverTintTone.tint(bands: bands))
+		XCTAssertNotNil(coverTint)
+	}
+
 	func testFirstImageWinsAndLaterCandidatesAreNotRead() async throws {
 		let backend = Backend(images: [first: Self.solid(.red), second: Self.solid(.blue)])
 		let model = try model(backend, type: .track, imageURL: first, listed: ("project", "project:a"))
@@ -252,10 +265,11 @@ final class HeroImageTests: XCTestCase {
 
 	private func model(
 		_ backend: Backend, type: NodeType = .artist, imageURL: String?,
-		listed: (edge: String, slug: String)? = nil
+		listed: (edge: String, slug: String)? = nil, scale: CoverTintTone.Scale = .page
 	) throws -> NodeHeroModel {
 		NodeHeroModel(
-			node: try Self.node(type: type, imageURL: imageURL, listed: listed), store: backend.store)
+			node: try Self.node(type: type, imageURL: imageURL, listed: listed), store: backend.store,
+			scale: scale)
 	}
 
 	/// A node decoded from the JSON the API sends, so the fixture cannot drift from the real shape. `listed` is

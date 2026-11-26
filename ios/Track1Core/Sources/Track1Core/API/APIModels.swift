@@ -46,12 +46,24 @@ public struct NodeIdentity: RawRepresentable, Hashable, Codable, Sendable {
 	}
 }
 
-public struct Catalog: Decodable, Sendable {
+public struct Catalog: Codable, Equatable, Sendable {
 	public let version: String
 	public let revision: String
 	public let taxonomy: CatalogTaxonomy
 	public let nodes: [CatalogNode]
 	public let edges: [CatalogEdge]
+
+	/// Reserved for `GenreCatalogStore`, which reduces an already validated catalog to its genre nodes.
+	/// It does not revalidate, which is why it is not `public` (TRA-827, plan D2).
+	init(
+		version: String, revision: String, taxonomy: CatalogTaxonomy, nodes: [CatalogNode], edges: [CatalogEdge]
+	) {
+		self.version = version
+		self.revision = revision
+		self.taxonomy = taxonomy
+		self.nodes = nodes
+		self.edges = edges
+	}
 
 	public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: APIKeys.self)
@@ -63,13 +75,22 @@ public struct Catalog: Decodable, Sendable {
 		guard version == "v1", revision.range(of: "^sha256:[a-f0-9]{64}$", options: .regularExpression) != nil
 		else { throw APIModelError.invalidValue }
 	}
+
+	public func encode(to encoder: Encoder) throws {
+		var values = encoder.container(keyedBy: APIKeys.self)
+		try values.encode(version, forKey: .version)
+		try values.encode(revision, forKey: .revision)
+		try values.encode(taxonomy, forKey: .taxonomy)
+		try values.encode(nodes, forKey: .nodes)
+		try values.encode(edges, forKey: .edges)
+	}
 }
 
 /// The taxonomy block of the catalog. Decoding is tolerant on purpose (plan D1): the server may serve a
 /// mode or a payload this client build does not understand, and rejecting the whole catalog for that would
 /// brick the app. Anything unrecognised therefore collapses to `.degraded(available: false)`; only a
 /// missing `mode` is a contract error.
-public enum CatalogTaxonomy: Decodable, Equatable, Sendable {
+public enum CatalogTaxonomy: Codable, Equatable, Sendable {
 	case degraded(available: Bool)
 	case editorial(EditorialTaxonomy)
 
@@ -85,6 +106,20 @@ public enum CatalogTaxonomy: Decodable, Equatable, Sendable {
 				?? .degraded(available: false)
 		default:
 			self = .degraded(available: false)
+		}
+	}
+
+	/// `mode` and the editorial fields share one container, as in `init(from:)`: a misnamed key would not fail
+	/// the decoding, it would silently degrade the taxonomy (TRA-827, plan D1).
+	public func encode(to encoder: Encoder) throws {
+		var values = encoder.container(keyedBy: APIKeys.self)
+		switch self {
+		case .degraded(let available):
+			try values.encode("degraded", forKey: .mode)
+			try values.encode(available, forKey: .available)
+		case .editorial(let taxonomy):
+			try values.encode("editorial", forKey: .mode)
+			try taxonomy.encodeFields(into: &values)
 		}
 	}
 }
@@ -113,6 +148,17 @@ public struct EditorialTaxonomy: Equatable, Sendable {
 		else { throw APIModelError.invalidValue }
 	}
 
+	/// Writes what `init(validating:)` reads. `legacySelectionBySlug` goes out as an object keyed by the slug's
+	/// raw value, because a `[NodeIdentity: [String]]` would encode as a flat alternating array.
+	fileprivate func encodeFields(into values: inout KeyedEncodingContainer<APIKeys>) throws {
+		try values.encode(2, forKey: .version)
+		try values.encode(families, forKey: .families)
+		try values.encode(genres, forKey: .genres)
+		var legacy: [String: [String]] = [:]
+		for (slug, selection) in legacySelectionBySlug { legacy[slug.rawValue] = selection }
+		try values.encode(legacy, forKey: .legacySelectionBySlug)
+	}
+
 	fileprivate static func genreIdentity(_ rawValue: String) throws -> NodeIdentity {
 		guard let identity = NodeIdentity(rawValue: rawValue), identity.type == .genre else {
 			throw APIModelError.invalidValue
@@ -121,7 +167,7 @@ public struct EditorialTaxonomy: Equatable, Sendable {
 	}
 }
 
-public struct EditorialTaxonomyFamily: Decodable, Equatable, Sendable {
+public struct EditorialTaxonomyFamily: Codable, Equatable, Sendable {
 	public let key: String
 	public let label: String
 	public let order: Int
@@ -137,9 +183,17 @@ public struct EditorialTaxonomyFamily: Decodable, Equatable, Sendable {
 			throw APIModelError.invalidValue
 		}
 	}
+
+	public func encode(to encoder: Encoder) throws {
+		var v = encoder.container(keyedBy: APIKeys.self)
+		try v.encode(key, forKey: .key)
+		try v.encode(label, forKey: .label)
+		try v.encode(order, forKey: .order)
+		try v.encodeIfPresent(slug, forKey: .slug)
+	}
 }
 
-public struct EditorialTaxonomyGenre: Decodable, Equatable, Sendable {
+public struct EditorialTaxonomyGenre: Codable, Equatable, Sendable {
 	public let id: String
 	public let name: String
 	public let family: String
@@ -155,9 +209,17 @@ public struct EditorialTaxonomyGenre: Decodable, Equatable, Sendable {
 			throw APIModelError.invalidValue
 		}
 	}
+
+	public func encode(to encoder: Encoder) throws {
+		var v = encoder.container(keyedBy: APIKeys.self)
+		try v.encode(id, forKey: .id)
+		try v.encode(name, forKey: .name)
+		try v.encode(family, forKey: .family)
+		try v.encode(slugs, forKey: .slugs)
+	}
 }
 
-public struct CatalogNode: Decodable, Sendable {
+public struct CatalogNode: Codable, Equatable, Sendable {
 	public let identity: NodeIdentity
 	public let type: NodeType
 	public let name: String
@@ -170,8 +232,22 @@ public struct CatalogNode: Decodable, Sendable {
 		teaser = try v.decodeRequiredNullable(String.self, forKey: .teaser)
 		guard identity.type == type, !name.isEmpty else { throw APIModelError.invalidValue }
 	}
+
+	/// `teaser` is always written, as `null` when absent: `init(from:)` requires the key
+	/// (`decodeRequiredNullable`).
+	public func encode(to encoder: Encoder) throws {
+		var v = encoder.container(keyedBy: APIKeys.self)
+		try v.encode(identity, forKey: .identity)
+		try v.encode(type, forKey: .type)
+		try v.encode(name, forKey: .name)
+		if let teaser {
+			try v.encode(teaser, forKey: .teaser)
+		} else {
+			try v.encodeNil(forKey: .teaser)
+		}
+	}
 }
-public struct CatalogEdge: Decodable, Sendable {
+public struct CatalogEdge: Codable, Equatable, Sendable {
 	public let source: NodeIdentity
 	public let target: NodeIdentity
 	public let type: String
