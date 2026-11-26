@@ -233,7 +233,8 @@ public struct CatalogNode: Codable, Equatable, Sendable {
 		guard identity.type == type, !name.isEmpty else { throw APIModelError.invalidValue }
 	}
 
-	/// `teaser` is always written, as `null` when absent: `init(from:)` requires the key (`decodeRequiredNullable`).
+	/// `teaser` is always written, as `null` when absent: `init(from:)` requires the key
+	/// (`decodeRequiredNullable`).
 	public func encode(to encoder: Encoder) throws {
 		var v = encoder.container(keyedBy: APIKeys.self)
 		try v.encode(identity, forKey: .identity)
