@@ -67,5 +67,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« 1/1 » est le morceau d'ouverture séminal du chef-d'œuvre de Brian Eno de 1978, Ambient 1: Music for Airports.",
+      "article": "« 1/1 » est le morceau d'ouverture séminal du chef-d'œuvre de Brian Eno de 1978, Ambient 1: Music for Airports. Largement considéré comme le moment déterminant du genre ambient, le morceau est né du désir d'Eno de créer une musique fonctionnant comme une installation sonore, spécifiquement conçue pour contrer la musique diffusée, jugée « nerveuse » et « irritante », qu'il avait entendue à l'aéroport de Cologne-Bonn. En s'éloignant des structures conventionnelles de la musique populaire, Eno a cherché à créer un environnement qui puisse être à la fois écouté attentivement et ignoré, un concept devenu depuis une pierre angulaire de la théorie ambient.\n\nTechniquement, le morceau est un triomphe de la conception sonore générative. Il a été construit en utilisant un système sophistiqué de vingt-deux boucles de bande de longueurs variables, certaines atteignant jusqu'à vingt mètres. Ces boucles présentaient des enregistrements fragmentés de notes de piano et de clusters vocaux choraux, laissés à fonctionner et à interagir les uns avec les autres selon les lois du hasard et de la superposition. Parce que les boucles étaient de longueurs différentes et non harmoniques, leurs cycles se décalaient constamment les uns par rapport aux autres, garantissant que le motif musical ne se répéterait pas de la même manière pendant une durée massive. Cette approche a créé un sentiment de musique « éternelle », où la composition semble suspendue dans l'espace, incarnant parfaitement la philosophie d'Eno du studio comme outil de composition. « 1/1 » demeure une réalisation profonde, influençant des décennies de compositeurs expérimentaux, minimalistes et électroniques qui considèrent ses textures douces et atmosphériques comme une source d'inspiration primaire.",
+      "source_sha256": "2db73969a29103bd7f2792de72d46faf33ac6e88534638922614275b5c507fed",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T22:17:55.541Z"
+    }
+  }
 }

@@ -58,5 +58,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« 4 », souvent désigné par les fans sous le nom de « Grass », est une composition envoûtante et éthérée issue de l'album studio séminal de 1994 d'Aphex Twin, Selected Ambient Works Volume II.",
+      "article": "« 4 », souvent désigné par les fans sous le nom de « Grass », est une composition envoûtante et éthérée issue de l'album studio séminal de 1994 d'Aphex Twin, Selected Ambient Works Volume II. Publiée sur Warp Records, cette collection a marqué un écart significatif par rapport à l'ambient techno plus orientée vers la danse du premier album du producteur, Selected Ambient Works 85–92. Au lieu de cela, Volume II s'est orienté vers un territoire purement expérimental, riche en drones et minimaliste, profondément nourri par l'intérêt de Richard D. James pour le rêve lucide et les paysages sonores abstraits et non linéaires.\n\nComme la plupart des morceaux de l'album, « 4 » a été publié à l'origine sans titre formel, représenté plutôt par une icône circulaire abstraite dans les notes de pochette qui correspondait au profil sonore du morceau — dans ce cas, une forme douce et pastorale. Le morceau lui-même est un exemple par excellence de l'esthétique « froide », clairsemée et évocatrice qui définit le disque. Il évite les structures rythmiques traditionnelles de ses travaux antérieurs, privilégiant une atmosphère soutenue et légèrement mélancolique qui résonne avec un sentiment d'isolement et de réflexion intérieure. Il est fréquemment cité comme l'un des moments les plus marquants et les plus accessibles du disque, capturant l'ambiance unique et surnaturelle qui a consolidé l'héritage d'Aphex Twin en tant que pionnier de la musique électronique expérimentale et ambient. Les critiques rétrospectives continuent de considérer Volume II comme une œuvre monumentale du genre, et « 4 » demeure une pierre angulaire dans l'évolution du son ambient.",
+      "source_sha256": "d2f8f0d8d1a07bd4223b7c372f10818bc9c52d10ea5c43bd193a9f75e1b4f9bc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T22:18:00.124Z"
+    }
+  }
 }

@@ -54,5 +54,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Acid Tracks », sorti en 1987 par le trio de Chicago Phuture (DJ Pierre, Spanky et Herbert Jackson), constitue le point de genèse définitif du genre acid house.",
+      "article": "« Acid Tracks », sorti en 1987 par le trio de Chicago Phuture (DJ Pierre, Spanky et Herbert Jackson), constitue le point de genèse définitif du genre acid house. Produit avec l'aide du pionnier de la house Marshall Jefferson et publié sur Trax Records, le morceau est défini par la résonance distincte et grinçante du synthétiseur de basse Roland TB-303. Le groupe avait découvert par accident la capacité de la machine à créer des textures agressives, déformées et synthétiques alors qu'il tentait d'imiter les sons d'une guitare basse traditionnelle. Le chemin du morceau vers la célébrité a commencé lorsque le trio a prudemment présenté une démo — initialement intitulée « In Your Mind » — au légendaire DJ Ron Hardy dans son club, le Muzic Box. Bien qu'il ait initialement vidé la piste, les passages répétés de Hardy tout au long de la nuit l'ont transformé en une obsession locale, les fans piratant l'enregistrement sous le nom de « Ron Hardy's Acid Track ». Cette expérience accidentelle de synthèse « granuleuse » a non seulement donné son nom au genre naissant, mais a effectivement exporté le son de l'intimité de la scène underground de Chicago vers un phénomène mondial, particulièrement au Royaume-Uni, où il est devenu une pierre angulaire de la culture rave. Son influence brute, répétitive et psychédélique demeure une référence inégalée dans l'histoire de la musique électronique.",
+      "source_sha256": "c718da69e9329af05c5e391b6b64063f0098c114dcf702aebeca805f829def6b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T22:18:56.902Z"
+    }
+  }
 }

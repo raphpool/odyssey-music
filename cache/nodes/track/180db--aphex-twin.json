@@ -54,5 +54,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un morceau d'IDM à haute énergie et techniquement complexe issu de l'album « Syro » d'Aphex Twin sorti en 2014, mêlant une impulsion rythmique incessante à une conception sonore sophistiquée et multicouche.",
+      "article": "« 180db_ » (également connu sous le nom de « 180db_ [130] ») est un morceau du producteur électronique emblématique Aphex Twin, figurant sur son album très attendu de 2014, « Syro ». Publié via Warp Records, le morceau illustre le style de production complexe, énergique et techniquement précis qui a défini le son de l'album. Lors de sa sortie, « Syro » a constitué un moment culturel majeur pour la musique électronique, marquant le premier album studio de Richard D. James sous le nom d'Aphex Twin en plus d'une décennie. « 180db_ » sert d'exemple par excellence de l'esthétique de l'album, qui équilibrait les sensibilités IDM classiques avec la conception sonore haute fidélité et immaculée de la production studio moderne.\n\nLe morceau se caractérise par son tempo entraînant et incessant — noté par le « [130] » entre crochets qui fait probablement référence à son BPM — et un motif de batterie frénétique et étroitement séquencé qui est la marque de fabrique du travail de James. Le morceau mélange des rythmes chaotiques avec des textures mélodiques étonnamment accessibles, une tension qui est restée centrale au son d'Aphex Twin depuis ses débuts sur la scène acid techno de Cornwall. Le morceau a attiré une attention notable pour son utilisation habile de l'échantillonnage, en particulier l'incorporation d'éléments vocaux ou rythmiques de « Chinese Chicken » de Duke Williams and the Extremes, un témoignage de la capacité de James à recontextualiser des sources obscures dans de nouveaux environnements sonores complexes. En tant que partie intégrante de « Syro », « 180db_ » a aidé à combler le fossé entre l'expérimentalisme du début des années 90 et le paysage électronique poli des années 2010, réaffirmant le statut d'Aphex Twin en tant que figure fondatrice de la musique électronique contemporaine. La sortie de l'album et du morceau lui-même a suscité un vaste discours critique sur l'héritage, l'innovation et l'évolution de la production de musique électronique.",
+      "source_sha256": "dceb010567d55b73355948d0d829449fd9341ef02fe3f021b5debace914d2c1e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T22:17:57.366Z"
+    }
+  }
 }
