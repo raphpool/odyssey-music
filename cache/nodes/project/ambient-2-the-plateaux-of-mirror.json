@@ -122,5 +122,14 @@
       "type": "project",
       "name": "The Pearl"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Une collaboration ambient marquante qui fusionne les mélodies de piano fragiles et improvisées de Harold Budd avec les paysages sonores électroniques pionniers de Brian Eno.",
+      "article": "Sorti en 1980, Ambient 2: The Plateaux of Mirror s'impose comme une collaboration séminale entre le pianiste minimaliste Harold Budd et le pionnier de la musique ambient Brian Eno. En tant que deuxième volet de la série « Ambient » de Eno — faisant suite au fondamental Ambient 1: Music for Airports — cet album fait figure de leçon magistrale de minimalisme atmosphérique. Enregistré à Hamilton, en Ontario, le projet a capturé une synergie créative unique où les mélodies de piano fragiles et improvisées de Budd ont été injectées dans l'univers sonore électronique de Eno. Eno a agi à la fois comme producteur et manipulateur sonore, traitant la production acoustique de Budd avec du délai, des effets de chœur et d'autres procédés pour élargir le potentiel timbral du piano. Ce processus fut une expérience formatrice pour Budd, marquant sa première immersion profonde dans l'utilisation du studio d'enregistrement comme instrument de composition actif.\n\nLe résultat est une œuvre d'une beauté délicate et lumineuse qui évite la froideur clinique parfois associée aux expérimentations minimalistes. L'interaction entre le phrasé humaniste et souvent dense de Budd et les traitements ambient abstraits de Eno crée un environnement sonore prismatique, décrit par les critiques comme un « conduit pour une introspection profonde ». Bien que des collaborations ultérieures comme The Pearl (1984) aient affiné cette approche, Ambient 2 demeure une pierre angulaire du genre, illustrant l'immense potentiel du dialogue entre la tradition acoustique et le traitement électronique moderne. Il a efficacement comblé le fossé entre le minimalisme d'avant-garde et le genre ambient en plein essor, laissant une influence durable sur des générations de musiciens néoclassiques et électroniques qui continuent d'explorer l'espace entre l'immobilité et la texture.",
+      "source_sha256": "7db393e1c53ac593d99af37743b9c9cddd46178acef9d15a1037735ec8dd8cf9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:34:04.008Z"
+    }
+  }
 }

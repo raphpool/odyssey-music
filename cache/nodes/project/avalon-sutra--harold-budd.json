@@ -121,5 +121,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Odyssée contemplative et expansive en double album, Avalon Sutra / As Long As I Can Hold My Breath capture Harold Budd dans ce qu'il a de plus délicat, mêlant des miniatures impressionnistes pour piano à une vaste réinterprétation ambiante immersive signée Akira Rabelais. Publié sur le label Samadhisound de David Sylvian, il s'impose comme un jalon poignant de la musique ambient contemporaine.",
+      "article": "Publié en 2005 sur l'influent label Samadhisound, Avalon Sutra / As Long As I Can Hold My Breath est un double album qui témoigne de l'influence durable du compositeur ambient Harold Budd. La parution est structurée en deux moitiés distinctes qui explorent les frontières du minimalisme et de l'atmosphère sonore. Le premier disque, Avalon Sutra, sert de collection de courtes compositions intimes mettant en vedette les improvisations au piano, délicates et baignées d'écho, caractéristiques de Budd, accompagnées par des arrangements subtils de cordes et de bois par Jon Gibson. Les morceaux, évocateurs et souvent mélancoliques, sont profondément personnels, nombre d'entre eux étant dédiés à des amis et collaborateurs, dont David Sylvian et Barney Wilen.\n\nLe second disque, As Long As I Can Hold My Breath, est une pièce musicale expansive et singulière créée par l'artiste sonore expérimental Akira Rabelais. Il s'agit essentiellement d'une transformation radicale et longue du matériau source original présent sur le premier disque, étirant, dissolvant et recontextualisant les motifs de piano de Budd en un paysage sonore scintillant et caverneux qui dure plus d'une heure. Au moment de sa sortie, le projet fut largement présenté comme la déclaration musicale finale de Budd, ajoutant une dimension de valdiction à la qualité délicate et évanescente de l'œuvre, bien que Budd ait fini par enregistrer à nouveau par la suite. Par sa juxtaposition saisissante entre piano cristallin et abstraction profonde et traitée, l'album demeure une pierre angulaire de la musique ambient du XXIe siècle, reflétant l'esthétique minimaliste défendue par le label de David Sylvian à cette époque.",
+      "source_sha256": "8877f26fb064ff8bc389bb3cdde7994efed4f68f0013849c0042fbec56e8b3d1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:36:57.839Z"
+    }
+  }
 }

@@ -91,5 +91,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Premier album explosif qui a redéfini le hard rock de la fin des années 80, Appetite for Destruction a connu une ascension lente et organique pour devenir l'un des albums les plus emblématiques et les plus vendus de l'histoire. Proposant un mélange brut et énergique d'hymnes rock hédonistes, le disque demeure un document définitif de la scène de L.A.",
+      "article": "Appetite for Destruction est le premier album studio du groupe de hard rock américain Guns N' Roses, sorti le 21 juillet 1987 chez Geffen. Produit par Mike Clink, l'album est largement considéré comme un moment charnière dans le paysage du hard rock de la fin des années 1980, arrivant à une époque où le genre était de plus en plus dominé par le son poli et commercial du « hair metal ». À l'opposé, Appetite for Destruction offrait une esthétique brute, dangereuse et sans excuses, un son qui reflétait les réalités plus sombres de la scène rock de Los Angeles dont le groupe était issu.\n\nLe chemin du succès de l'album fut notoirement peu conventionnel. Il a fait ses débuts au Billboard 200 à une modeste 182e place lors de sa sortie initiale, mais l'élan du bouche-à-oreille, des tournées incessantes et une forte rotation de singles marquants comme « Welcome to the Jungle », « Paradise City » et la power ballad en tête des classements « Sweet Child o' Mine » l'ont lentement propulsé vers la célébrité. En août 1988, plus d'un an après sa sortie, l'album a finalement atteint la première place du Billboard 200. Il est resté une force culturelle pendant des années, finissant par se vendre à plus de 30 millions d'exemplaires dans le monde et devenant l'un des premiers albums les plus vendus de l'histoire de la musique.\n\nLes critiques comme les fans attribuent la puissance durable de l'album à l'alchimie entre les membres du groupe : la prestation vocale distincte et brute d'Axl Rose s'accordait parfaitement avec les riffs de guitare hargneux et saturés de wah-wah de Slash, le tout ancré par une section rythmique percutante. L'album a réussi à équilibrer des hymnes agressifs et hédonistes avec une profondeur mélodique, capturant l'esprit « vivre à la limite » de l'époque sans sacrifier la qualité de l'écriture. Son héritage est cimenté non seulement par ses chiffres commerciaux massifs, mais aussi par son rôle dans la revitalisation du genre hard rock à la fin des années 80, comblant le fossé entre l'intensité influencée par le punk et l'accessibilité grand public.",
+      "source_sha256": "0a26f883acd8d6e0335ef311325610e60bbfb48131a9d314dd92280d99249009",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:35:02.540Z"
+    }
+  }
 }

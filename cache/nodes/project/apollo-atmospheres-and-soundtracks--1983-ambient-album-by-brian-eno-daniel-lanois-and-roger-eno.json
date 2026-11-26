@@ -24,5 +24,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Collaboration monumentale entre Brian Eno, Daniel Lanois et Roger Eno, cet album ambient majeur de 1983 capture avec brio le silence vaste et solitaire de l'espace ainsi que l'émerveillement suscité par les missions lunaires Apollo.",
+      "article": "Apollo: Atmospheres & Soundtracks est un album ambient séminal de 1983 composé par Brian Eno en collaboration avec son frère Roger Eno et le producteur Daniel Lanois. Initialement commandé pour le film documentaire « For All Mankind » — qui relate l'alunissage d'Apollo 11 et qui est sorti plus tard en 1989 — le projet fait figure de leçon magistrale en matière de conception sonore atmosphérique. S'éloignant des représentations conventionnelles, dramatiques et souvent chauvines de la course à l'espace, le trio a façonné un environnement sonore défini par des paysages sonores vastes et éthérés qui visent à capturer l'étrangeté profonde et l'immobilité de l'expérience lunaire. L'enregistrement a eu lieu entre 1981 et 1982 au Grant Avenue Studio de Daniel Lanois à Hamilton, en Ontario, en utilisant un mélange de pedal steel guitar, de synthétiseurs et de textures traitées qui allaient devenir une marque de fabrique du travail des collaborateurs.\n\nLe disque est largement considéré comme l'une des œuvres ambient de Brian Eno les plus accessibles et les plus riches en émotions. Des titres comme « An Ending (Ascent) » ont transcendé leur contexte original, devenant des pièces emblématiques de la musique ambient moderne, fréquemment utilisées au cinéma, à la télévision et dans des rétrospectives culturelles. Contrairement à certaines des expériences ambient plus statiques de Brian Eno, « Apollo » conserve une sensibilité mélodique subtile et dynamique, jetant un pont entre l'art sonore purement textural et la pop instrumentale contemplative. L'influence durable de l'album sur la composition de musiques de film et sur le genre ambient dans son ensemble est attestée par son succès critique constant, depuis sa sortie initiale en 1983 sur EG Records jusqu'à sa réédition augmentée de 2019. En résistant à la tentation d'illustrer l'alunissage par une grandiloquence orchestrale, le projet a réussi à ancrer l'événement cosmique dans un espace humain, introspectif et empreint d'émerveillement.",
+      "source_sha256": "3a75990ded11b82c58edbf641177d89fc75903120ecc155a78b8936e5259faac",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:35:01.715Z"
+    }
+  }
 }
