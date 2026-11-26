@@ -25,6 +25,20 @@ dépendance majeure, tout ce qui touche `infra/`.
 - Merge : manuel, jamais d'auto-merge
 - Une PR tier/3 ne dépasse pas 200 lignes de diff. Sinon on découpe.
 
+## Exception : PR de cache qui n'ajoute que des `l10n` (TRA-841)
+Une PR `tier/3` dont **chaque** fichier modifié est sous `cache/nodes/**` et ne
+diffère de sa base que par des blocs `l10n` ajoutés (JSON parsé et comparé, aucune
+autre locale ni aucun autre champ touché) est classée risque 2 : la deep-review IA
+ne tourne pas, la review ordinaire et les checks requis suffisent pour le gate.
+Le contrôle est `isL10nOnlyAddition` dans `scripts/ci/review-gate-policy.ts`, lu
+depuis la branche par défaut ; au moindre doute il répond non et la deep-review
+reste exigée. Une suppression, une fusion, une réécriture, un fichier ajouté ou
+tout fichier hors `cache/nodes/` la garde, comme toute PR qui touche le gate.
+
+Le label reste `tier/3` : l'approbation de Raphael sur le contenu est une étape de
+procédure, écrite dans la PR (case non cochée dans les critères d'acceptation).
+Elle ne devient pas un check, et le merge attend son OK.
+
 ## Escalade automatique
 Une PR passe en tier/3 quoi qu'ait dit le ticket si un chemin de son diff
 correspond à `sensitivePath`.
