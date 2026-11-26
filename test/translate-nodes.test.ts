@@ -1,8 +1,15 @@
+import { EventEmitter } from "node:events";
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { formatSummary, parseCliArgs, runCli, runTranslation } from "../scripts/translate-nodes.js";
+import {
+	formatSummary,
+	parseCliArgs,
+	resumeAdvice,
+	runCli,
+	runTranslation,
+} from "../scripts/translate-nodes.js";
 import { translationSourceHash, translationSourceOf } from "../src/translation/source.js";
 import type { NodeTranslator, TranslationFailure } from "../src/translation/translate-node.js";
 import type { NodePayload } from "../src/types.js";
@@ -804,5 +811,184 @@ describe("why the provider failed (TRA-837)", () => {
 			provider_error: { status: 400, message: "Invalid argument (key=[redacted])" },
 		});
 		expect(`${printed()}\n${manifest}`).not.toContain(KEY);
+	});
+});
+
+describe("resuming after a stop or an interruption (TRA-839)", () => {
+	const manifestFile = () => join(dir, "out", "m.json");
+	const readManifest = () => JSON.parse(readFileSync(manifestFile(), "utf8"));
+	const STOP: Step[] = ["quota_exhausted", "quota_exhausted", "quota_exhausted"];
+	const base = () => [dir, "--apply", "--concurrency", "1", "--manifest", manifestFile()];
+	const resumeLine = () =>
+		printed()
+			.split("\n")
+			.find((line) => line.includes("STOPPED"));
+	/** Ctrl-C and `kill`: an emitter stands in for `process`, whose listeners a test must not call. */
+	const signals = () => new EventEmitter();
+
+	describe("the command given after a quota stop", () => {
+		it("with --limit n and k nodes written, gives the same command with --limit n-k, and following it stays at n", async () => {
+			const slugs = manyNodes(8);
+			const argv = [...base(), "--limit", "5"];
+			const code = await runCli(argv, "key", scripted(["ok", "ok", ...STOP]).translate);
+
+			expect(code).toBe(3);
+			expect(readManifest().translated).toEqual(slugs.slice(0, 2));
+			// n = 5, k = 2: the resume takes 3 nodes, not 5.
+			const resumed = [...base(), "--limit", "3"].join(" ");
+			expect(resumeLine()).toContain(`resume with: npm run translate:nodes -- ${resumed}`);
+
+			const { calls, translate } = fake();
+			expect(await runCli([dir, "--apply", "--concurrency", "1", "--limit", "3"], "key", translate)).toBe(0);
+			expect(calls).toEqual(slugs.slice(2, 5));
+		});
+
+		it("counts only the written nodes: a node that failed in the pass is taken again, so it does not lower the limit", async () => {
+			manyNodes(8);
+			await runCli(
+				[...base(), "--limit", "6"],
+				"key",
+				scripted(["ok", "invalid_output", "ok", ...STOP]).translate,
+			);
+			expect(resumeLine()).toMatch(/--limit 4$/);
+		});
+
+		it("puts --limit n-k in place, wherever the flag was, and quotes what the shell would read", () => {
+			const args = parseCliArgs(["my dir", "--limit", "9", "--apply", "--manifest", "o'k.json"]);
+			expect(args).not.toBeNull();
+			expect(
+				resumeAdvice(["my dir", "--limit", "9", "--apply", "--manifest", "o'k.json"], args as never, 4),
+			).toBe(`resume with: npm run translate:nodes -- 'my dir' --limit 5 --apply --manifest 'o'\\''k.json'`);
+		});
+
+		it("without --limit keeps the same command, which is right there", async () => {
+			manyNodes(6);
+			await runCli(base(), "key", scripted(["ok", ...STOP]).translate);
+			expect(resumeLine()).toContain("run the same command again to resume");
+		});
+
+		it("with --force does not offer the same command, which would translate the written nodes again", async () => {
+			manyNodes(6);
+			await runCli([...base(), "--force"], "key", scripted(["ok", ...STOP]).translate);
+			expect(resumeLine()).toContain("do not run the same command again");
+			expect(resumeLine()).toContain("--slugs");
+		});
+
+		it("says nothing to resume when the limit is already reached", () => {
+			const args = parseCliArgs([dir, "--limit", "2"]) as never;
+			expect(resumeAdvice([dir, "--limit", "2"], args, 2)).toContain("nothing is left to resume");
+		});
+
+		it("offers no resume after a permanent refusal: the cause comes first", async () => {
+			manyNodes(5);
+			const refused: Step837[] = [{ fail: "provider_rejected", detail: MODEL_GONE }];
+			await runCli([...base(), "--limit", "4"], "key", planned(refused).translate);
+			expect(printed()).toContain("fix the cause");
+			expect(printed()).not.toContain("resume with");
+			expect(printed()).not.toContain("to resume");
+		});
+	});
+
+	describe("an interruption by SIGINT or SIGTERM", () => {
+		it.each([
+			["SIGINT", 130],
+			["SIGTERM", 143],
+		] as const)(
+			"%s: finishes the calls in flight, then writes the manifest and the sample with what is translated, exit %i",
+			async (name, exit) => {
+				const slugs = manyNodes(6);
+				const source = signals();
+				const inner = fake().translate;
+				const calls: string[] = [];
+				const translate: NodeTranslator = async (node, locale) => {
+					calls.push(node.slug);
+					// The signal comes while the third call is in flight: it is paid for, so it is written.
+					if (calls.length === 3) source.emit(name);
+					return inner(node, locale);
+				};
+				const sample = join(dir, "out", "sample.md");
+				const argv = [...base(), "--limit", "5", "--sample", sample];
+				const code = await runCli(argv, "key", translate, source);
+
+				expect(code).toBe(exit);
+				expect(calls).toEqual(slugs.slice(0, 3));
+				expect(readManifest()).toMatchObject({
+					applied: true,
+					interrupted: name,
+					translated: slugs.slice(0, 3),
+					failed: [],
+					usage: { inputTokens: 30, outputTokens: 15 },
+				});
+				expect(Object.keys(readManifest().attempts)).toEqual(slugs.slice(0, 3));
+				expect(readFileSync(sample, "utf8")).toContain(`## ${slugs[2]}`);
+				expect(printed()).toContain(`INTERRUPTED: ${name}, 3 node(s) written`);
+				expect(printed()).toContain("resume with: npm run translate:nodes --");
+				expect(printed()).toContain("--limit 2 ");
+				for (const slug of slugs.slice(3)) expect(JSON.parse(bytes(slug)).l10n).toBeUndefined();
+				for (const slug of slugs.slice(0, 3)) expect(JSON.parse(bytes(slug)).l10n.fr).toBeDefined();
+			},
+		);
+
+		it("cuts short a worker that waits for a rate slot instead of waiting out the minute", async () => {
+			const slugs = manyNodes(4);
+			const controller = new AbortController();
+			const { calls, translate } = fake();
+			const run2 = runTranslation(
+				{
+					cacheDir: dir,
+					locale: "fr",
+					force: false,
+					apply: true,
+					concurrency: 2,
+					rpm: 1,
+					signal: controller.signal,
+					// The second worker waits for a slot that never comes: only the interruption can end the pass.
+					sleep: () => new Promise<void>(() => {}),
+				},
+				translate,
+			);
+			await vi.waitFor(() => expect(calls).toHaveLength(1));
+			controller.abort("SIGTERM");
+			const manifest = await run2;
+
+			expect(calls).toEqual(slugs.slice(0, 1));
+			expect(manifest).toMatchObject({ interrupted: "SIGTERM", translated: slugs.slice(0, 1) });
+		});
+
+		it("starts nothing when the signal came before the pass began, and still gives a manifest", async () => {
+			manyNodes(3);
+			const controller = new AbortController();
+			controller.abort("SIGTERM");
+			const { calls, translate } = fake();
+			const manifest = await run(translate, { signal: controller.signal });
+			expect(calls).toEqual([]);
+			expect(manifest).toMatchObject({ interrupted: "SIGTERM", translated: [] });
+		});
+
+		it("is not caught in a preview, and its listeners are gone once the run is over", async () => {
+			manyNodes(3);
+			const source = signals();
+			await runCli([dir, "--manifest", manifestFile()], "", undefined, source);
+			expect(source.listenerCount("SIGINT") + source.listenerCount("SIGTERM")).toBe(0);
+			let during = -1;
+			const translate: NodeTranslator = async (node, locale) => {
+				during = source.listenerCount("SIGINT") + source.listenerCount("SIGTERM");
+				return fake().translate(node, locale);
+			};
+			await runCli(base(), "key", translate, source);
+			expect(during).toBe(2);
+			expect(source.listenerCount("SIGINT") + source.listenerCount("SIGTERM")).toBe(0);
+		});
+	});
+
+	it("a run with neither stop nor interruption keeps its manifest and its summary", async () => {
+		const slugs = manyNodes(3);
+		const manifest = await run(fake().translate, { concurrency: 1, limit: 2 });
+		expect(manifest).not.toHaveProperty("interrupted");
+		expect(manifest).not.toHaveProperty("stopped");
+		expect(manifest.translated).toEqual(slugs.slice(0, 2));
+		expect(formatSummary(manifest, "m.json")).not.toMatch(/STOPPED|INTERRUPTED|resume/);
+		expect(await runCli([...base(), "--limit", "2"], "key", fake().translate)).toBe(0);
+		expect(printed()).not.toMatch(/STOPPED|INTERRUPTED|resume/);
 	});
 });
