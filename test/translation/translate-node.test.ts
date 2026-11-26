@@ -57,13 +57,24 @@ function reply(text: string, inputTokens = 100, outputTokens = 50): GenerateJson
 }
 
 /** Runs the translator against a fake provider that plays `results` in order and records every request. */
-async function run(results: GenerateJsonResult[], target = node, now: () => Date = () => NOW) {
+async function run(
+	results: GenerateJsonResult[],
+	target = node,
+	now: () => Date = () => NOW,
+	model?: string,
+) {
 	const requests: GenerateJsonRequest[] = [];
 	const generate: GenerateJson = async (request) => {
 		requests.push(request);
 		return results[requests.length - 1] ?? { ok: false, reason: "provider_unavailable" };
 	};
-	return { outcome: await createNodeTranslator({ generate, now })(target, "fr"), requests };
+	return {
+		outcome: await createNodeTranslator({ generate, now, ...(model === undefined ? {} : { model }) })(
+			target,
+			"fr",
+		),
+		requests,
+	};
 }
 
 const rejected = reply(answer({ teaser: "" }));
@@ -177,15 +188,37 @@ describe("createNodeTranslator", () => {
 		expect(outcome.ok && outcome.translation.article).toBe(`${FRENCH_P1}\n\n${FRENCH_P2}`);
 	});
 
-	it("adds up the tokens of both attempts and prices them", async () => {
+	it("adds up the tokens of both attempts", async () => {
 		const { outcome } = await run([reply(answer({ teaser: "" }), 1_000, 400), reply(answer(), 1_200, 500)]);
 
 		expect(outcome.usage).toMatchObject({ inputTokens: 2_200, outputTokens: 900 });
-		expect(outcome.usage.costUsd).toBeCloseTo(
-			(2_200 * pricingConfig.geminiFlashLiteInputUsdPerMillion +
-				900 * pricingConfig.geminiFlashLiteOutputUsdPerMillion) /
-				1_000_000,
-			10,
-		);
+	});
+
+	// TRA-836 (2026-11-26): the pilot ran on gemini-3.1-flash-lite but was priced at the 2.5 tariff
+	// (reported $0.0060 for a real cost of about $0.028).
+	describe("cost follows the translation model", () => {
+		const replies = () => [reply(answer(), 1_000_000, 1_000_000)];
+
+		it("prices gemini-3.1-flash-lite at 0.25 / 1.50 USD per million tokens", async () => {
+			const { outcome } = await run(replies(), node, () => NOW, "gemini-3.1-flash-lite");
+
+			expect(outcome.usage.costUsd).toBeCloseTo(1.75, 10);
+		});
+
+		it("keeps gemini-2.5-flash-lite at the 2.5 tariff", async () => {
+			const { outcome } = await run(replies(), node, () => NOW, "gemini-2.5-flash-lite");
+
+			expect(outcome.usage.costUsd).toBeCloseTo(
+				pricingConfig.geminiFlashLiteInputUsdPerMillion + pricingConfig.geminiFlashLiteOutputUsdPerMillion,
+				10,
+			);
+		});
+
+		it("marks the cost unknown for a model without a known tariff, instead of guessing", async () => {
+			const { outcome } = await run(replies(), node, () => NOW, "gemini-9-unpriced");
+
+			expect(outcome.ok).toBe(true);
+			expect(outcome.usage).toEqual({ inputTokens: 1_000_000, outputTokens: 1_000_000, costUsd: null });
+		});
 	});
 });

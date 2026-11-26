@@ -2,7 +2,7 @@ import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "no
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { parseCliArgs, runCli, runTranslation } from "../scripts/translate-nodes.js";
+import { formatSummary, parseCliArgs, runCli, runTranslation } from "../scripts/translate-nodes.js";
 import { translationSourceHash, translationSourceOf } from "../src/translation/source.js";
 import type { NodeTranslator, TranslationFailure } from "../src/translation/translate-node.js";
 import type { NodePayload } from "../src/types.js";
@@ -493,5 +493,34 @@ describe("CLI flags of TRA-811", () => {
 		["--rpm", "5000"],
 	])("%s %s exits 2", async (flag, value) => {
 		expect(await runCli([dir, flag, value], "key")).toBe(2);
+	});
+});
+
+// TRA-836 (2026-11-26): a model without a known tariff must not produce a cost that looks real.
+describe("run cost", () => {
+	const priced =
+		(costUsd: number | null): NodeTranslator =>
+		async (node) => ({
+			ok: true,
+			translation: translationOf(node),
+			attempts: 1,
+			usage: { inputTokens: 10, outputTokens: 5, costUsd },
+		});
+
+	it("sums the cost of the translations", async () => {
+		fourNodes();
+		const manifest = await run(priced(0.25));
+
+		expect(manifest.usage.costUsd).toBeCloseTo(0.75, 10);
+		expect(formatSummary(manifest, "m.json")).toContain("cost $0.7500");
+	});
+
+	it("turns unknown as soon as one translation has no known cost, and says so in the summary", async () => {
+		fourNodes();
+		const manifest = await run(priced(null));
+
+		expect(manifest.usage.costUsd).toBeNull();
+		expect(formatSummary(manifest, "m.json")).toContain("cost unknown (no tariff for the model)");
+		expect(formatSummary(manifest, "m.json")).not.toContain("cost $");
 	});
 });
