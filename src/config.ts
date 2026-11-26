@@ -69,9 +69,13 @@ export const pipelineConfig = {
 	fetchTopKNoWiki: envInt("PIPELINE_FETCH_TOP_K_NO_WIKI", 3),
 };
 
-// TRA-806: node translation (fr). Same Gemini model family as the writing step unless overridden.
+// TRA-806: node translation (fr).
+// TRA-838 (2026-11-26): the model is pinned here, no longer inherited from the writing model. The inherited
+// gemini-2.5-flash-lite answers 404 to new API keys, gemini-3.5-flash-lite answers 400 to the
+// `thinkingBudget: 0` the translator sets, and the TRA-812 pilot was judged in gemini-3.1-flash-lite: the
+// batch and the write-time translation (TRA-809) must both run the model that was validated.
 export const translationConfig = {
-	model: envString("GEMINI_TRANSLATION_MODEL", pipelineConfig.defaultModel),
+	model: envString("GEMINI_TRANSLATION_MODEL", "gemini-3.1-flash-lite"),
 	temperature: 0.2,
 	timeoutMs: 20_000, // one provider call
 	stepTimeoutMs: 30_000, // the whole translation step of the pipeline
