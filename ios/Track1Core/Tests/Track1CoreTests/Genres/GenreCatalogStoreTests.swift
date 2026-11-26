@@ -160,6 +160,148 @@ final class GenreCatalogStoreTests: XCTestCase {
 		XCTAssertEqual(calls.count, 1)
 	}
 
+	// MARK: - refresh()
+
+	func testRefreshSendsTheStoredETagAndKeepsTheFileOnNotModified() async throws {
+		let before = try await seed(try Self.catalog(), etag: "e1")
+		let probe = CatalogProbe(.notModified(etag: "e1"))
+
+		let outcome = await makeStore(probe).refresh()
+
+		XCTAssertEqual(outcome, .unchanged)
+		let sent = await probe.requestedETags
+		XCTAssertEqual(sent, ["e1"])
+		let after = try await localStore.read(named: Self.fileName).get()
+		XCTAssertEqual(after, before)
+	}
+
+	func testRefreshWithTheSameRevisionLeavesTheBytesAlone() async throws {
+		let before = try await seed(try Self.catalog(), etag: "e1")
+		let probe = CatalogProbe(.success(try Self.catalog(), etag: "e2"))
+
+		let outcome = await makeStore(probe).refresh()
+
+		XCTAssertEqual(outcome, .unchanged)
+		let after = try await localStore.read(named: Self.fileName).get()
+		XCTAssertEqual(after, before, "Same revision: even the ETag on disk stays as it was.")
+	}
+
+	func testRefreshWithAnotherRevisionReplacesTheSnapshot() async throws {
+		_ = try await seed(try Self.catalog(), etag: "e1")
+		let newer = try Self.catalog(revision: Self.otherRevision)
+		let store = makeStore(CatalogProbe(.success(newer, etag: "e2")))
+
+		let outcome = await store.refresh()
+		let load = await store.load()
+
+		XCTAssertEqual(outcome, .updated)
+		guard case .ready(let snapshot, let source) = load else { return XCTFail("Expected a ready snapshot.") }
+		XCTAssertEqual(source, .disk)
+		XCTAssertEqual(snapshot.etag, "e2")
+		XCTAssertEqual(snapshot.catalog.revision, Self.otherRevision)
+	}
+
+	func testFailedOrDegradedRefreshKeepsTheFile() async throws {
+		let before = try await seed(try Self.catalog(), etag: "e1")
+		let results: [APIResult<Catalog>] = [
+			.failure(.timeout),
+			.success(try Self.catalog(taxonomy: .degraded(available: true), revision: Self.otherRevision), etag: "e2"),
+		]
+
+		for result in results {
+			let outcome = await makeStore(CatalogProbe(result)).refresh()
+
+			XCTAssertEqual(outcome, .failed)
+			let after = try await localStore.read(named: Self.fileName).get()
+			XCTAssertEqual(after, before)
+		}
+	}
+
+	func testRefreshWithoutSnapshotSendsNoETagAndStoresTheDownload() async throws {
+		let probe = CatalogProbe(.success(try Self.catalog(), etag: "e1"))
+		let store = makeStore(probe)
+
+		let outcome = await store.refresh()
+
+		XCTAssertEqual(outcome, .updated)
+		let sent = await probe.requestedETags
+		XCTAssertEqual(sent, [nil])
+		let stored = try await localStore.read(named: Self.fileName).get()
+		XCTAssertNotNil(stored)
+	}
+
+	func testRefreshWithoutSnapshotFailsOnNotModifiedAndStoresNothing() async throws {
+		let probe = CatalogProbe(.notModified(etag: "e1"))
+
+		let outcome = await makeStore(probe).refresh()
+
+		XCTAssertEqual(outcome, .failed, "A 304 has nothing to confirm when no snapshot is stored.")
+		let sent = await probe.requestedETags
+		XCTAssertEqual(sent, [nil])
+		let stored = try await localStore.read(named: Self.fileName).get()
+		XCTAssertNil(stored)
+	}
+
+	func testRefreshFailsWhenTheNewSnapshotCannotBeWritten() async throws {
+		let before = try await seed(try Self.catalog(), etag: "e1")
+		let failing = LocalStore(directoryURL: directoryURL, failNextWriteNamed: Self.fileName)
+		let newer = try Self.catalog(revision: Self.otherRevision)
+		let probe = CatalogProbe(.success(newer, etag: "e2"))
+		let store = GenreCatalogStore(localStore: failing, readCatalog: { await probe.read(etag: $0) })
+
+		let outcome = await store.refresh()
+
+		XCTAssertEqual(outcome, .failed, "`.updated` would promise a revision that `load()` cannot serve.")
+		let after = try await localStore.read(named: Self.fileName).get()
+		XCTAssertEqual(after, before, "The earlier snapshot is still the one on disk.")
+	}
+
+	// MARK: - remember(_:etag:) and remembering(_:)
+
+	func testRememberingADegradedCatalogKeepsTheExistingSnapshot() async throws {
+		let before = try await seed(try Self.catalog(), etag: "e1")
+		let probe = CatalogProbe(.failure(.network))
+		let store = makeStore(probe)
+
+		let degraded = try Self.catalog(taxonomy: .degraded(available: true), revision: Self.otherRevision)
+
+		await store.remember(degraded, etag: "e2")
+		let load = await store.load()
+
+		guard case .ready(let snapshot, let source) = load else { return XCTFail("Expected a ready snapshot.") }
+		XCTAssertEqual(source, .disk)
+		XCTAssertEqual(snapshot.etag, "e1")
+		let after = try await localStore.read(named: Self.fileName).get()
+		XCTAssertEqual(after, before)
+	}
+
+	func testRememberingReaderStoresASuccessAndReturnsItUnchanged() async throws {
+		let full = try Self.catalog()
+		let store = makeStore(CatalogProbe(.failure(.network)))
+		let remembering = store.remembering { .success(full, etag: "e1") }
+
+		let result = await remembering()
+
+		guard case .success(let returned, let etag) = result else { return XCTFail("Expected the success back.") }
+		XCTAssertEqual(returned, full, "The full catalog goes back to the caller, not the reduced one.")
+		XCTAssertEqual(etag, "e1")
+		let load = await store.load()
+		guard case .ready(_, let source) = load else { return XCTFail("Expected a ready snapshot.") }
+		XCTAssertEqual(source, .disk, "`remember` finished before the result came back.")
+	}
+
+	func testRememberingReaderPassesFailuresThroughAndStoresNothing() async throws {
+		let store = makeStore(CatalogProbe(.failure(.network)))
+		let remembering = store.remembering { .failure(.network) }
+
+		let result = await remembering()
+
+		guard case .failure(let error) = result else { return XCTFail("Expected the failure back.") }
+		XCTAssertEqual(error, .network)
+		let stored = try await localStore.read(named: Self.fileName).get()
+		XCTAssertNil(stored)
+	}
+
 	// MARK: - Helpers
 
 	private func makeStore(_ probe: CatalogProbe, resetBeforeUse: Bool = false) -> GenreCatalogStore {
@@ -178,9 +320,11 @@ final class GenreCatalogStoreTests: XCTestCase {
 
 	private struct SeedFailure: Error {}
 
+	private static let otherRevision = "sha256:" + String(repeating: "f", count: 64)
+
 	/// A full catalog: editorial taxonomy over three genre nodes, plus an artist and an edge that the snapshot
 	/// must drop.
-	private static func catalog(taxonomy: CatalogTaxonomy? = nil) throws -> Catalog {
+	private static func catalog(taxonomy: CatalogTaxonomy? = nil, revision: String? = nil) throws -> Catalog {
 		let editorial = try EditorialFixture.catalog(
 			nodes: [
 				("genre:house", "House"), ("artist:massive-attack", "Massive Attack"), ("genre:techno", "Techno"),
@@ -197,7 +341,7 @@ final class GenreCatalogStoreTests: XCTestCase {
 			legacy: ["genre:house": ["Q10413"]]
 		)
 		return Catalog(
-			version: editorial.version, revision: editorial.revision,
+			version: editorial.version, revision: revision ?? editorial.revision,
 			taxonomy: taxonomy ?? editorial.taxonomy, nodes: editorial.nodes, edges: editorial.edges)
 	}
 
