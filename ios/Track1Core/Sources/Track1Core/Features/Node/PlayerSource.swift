@@ -40,8 +40,8 @@ public struct PlayerSource: Equatable, Sendable {
 	public static func domain(of url: URL) -> String? {
 		guard let host = url.host?.lowercased() else { return nil }
 		let prefix = "www."
-		let stripped = host.hasPrefix(prefix) && host.dropFirst(prefix.count).contains(".")
-			? String(host.dropFirst(prefix.count)) : host
+		let rest = host.dropFirst(prefix.count)
+		let stripped = host.hasPrefix(prefix) && rest.contains(".") ? String(rest) : host
 		return stripped.isEmpty ? nil : stripped
 	}
 }

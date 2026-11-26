@@ -293,7 +293,8 @@ enum UITestFlows {
 		return [
 			"node": [
 				"id": slug, "type": type(ofSlug: slug), "name": name(of: slug), "teaser": "Teaser of \(name(of: slug)).",
-				"article": article(of: slug), "citations": [["url": "https://www.media.example/\(slug)", "title": "Media"]],
+				"article": article(of: slug),
+				"citations": [["url": "https://www.media.example/\(slug)", "title": "Media"]],
 				"facts": facts, "edges": edgeValues,
 				"materialized_at": "2026-01-01T00:00:00Z", "image_url": NSNull(),
 			],

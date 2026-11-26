@@ -110,7 +110,8 @@ final class TodayFlowTests: XCTestCase {
 		// A button that carries the link trait may be reported as a link: either way, it is the one element.
 		let source = element(app, "player-source")
 		XCTAssertTrue(source.waitForExistence(timeout: 10), "player-source")
-		XCTAssertTrue([XCUIElement.ElementType.button, .link].contains(source.elementType), "\(source.elementType)")
+		let linkTypes: [XCUIElement.ElementType] = [.button, .link]
+		XCTAssertTrue(linkTypes.contains(source.elementType), "\(source.elementType)")
 		XCTAssertEqual(source.label, "Source\u{00A0}: \(UITestFlows.sourceDomain)")
 
 		var focus = settledFocus(in: app).focused
