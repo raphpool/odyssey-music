@@ -91,6 +91,10 @@ const SYSTEM_PROMPT = [
 	"Write neutral editorial French and never address the reader. Add nothing and remove nothing.",
 	"Keep identical the names of people, groups and labels, the titles of albums and tracks, and genre names.",
 	"Translate the quotations of critics. Keep years and numbers.",
+	// 2026-11-27 (TRA-845): the model handed the facts back in English for 106 genres. Say it outright.
+	"Translate the values of the facts (places, periods and descriptions) into French too, keeping proper names, " +
+		'numbers and the names of gear and models (TR-808) as they are: "United States" becomes "États-Unis" ' +
+		'and "1960s–present" becomes "depuis les années 1960".',
 	"Keep the paragraphs: separate them with a blank line, as the source does.",
 	"Use French quotation marks (« ») for what the source puts between quotation marks.",
 	"Use no markup of any kind. Answer with a single JSON object and nothing else.",

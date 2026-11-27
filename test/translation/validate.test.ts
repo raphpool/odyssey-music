@@ -428,6 +428,120 @@ describe("validateTranslation", () => {
 		});
 	});
 
+	describe("rule 9: fact_untranslated (TRA-845)", () => {
+		/** Judges one fact that comes back exactly as the source gave it. */
+		function unchanged(value: string, properNouns: string[] = []): TranslationIssue[] {
+			const source = makeSource({ facts: { origin: value }, properNouns });
+			return validateTranslation(source, makeCandidate({ facts: { origin: value } }));
+		}
+
+		// Real values of the genre batch (TRA-819): the model handed all of these back untouched.
+		it.each([
+			"United States",
+			"1960s–present",
+			"Late 1980s–Present",
+			"United States and United Kingdom",
+			"Germany and Japan",
+			"West Berlin, Germany",
+		])("refuses %s left in English, on the fact's own field", (value) => {
+			const issue = expectSingle(unchanged(value), "fact_untranslated", "facts.origin");
+			expect(issue.detail).toBeDefined();
+		});
+
+		it.each(["Europe", "France", "Jamaica", "Detroit"])("accepts %s: nothing to translate", (value) => {
+			expect(unchanged(value)).toEqual([]);
+		});
+
+		it("accepts an unchanged value made only of names the source asks to keep", () => {
+			expect(unchanged("Kingdom and Sons", ["Kingdom and Sons"])).toEqual([]);
+			// Only the names are exempt: an English word outside them still counts.
+			expectSingle(unchanged("Warp and Ninja Tune", ["Warp"]), "fact_untranslated", "facts.origin");
+		});
+
+		it("matches markers as whole words, whatever their case", () => {
+			// "and", "to", "late" and "present" hide inside these names without being words of them.
+			for (const name of ["Andover", "Toronto", "Latesville", "Presentation"]) {
+				expect(unchanged(name)).toEqual([]);
+			}
+			expectSingle(unchanged("LATE 1980s"), "fact_untranslated", "facts.origin");
+		});
+
+		// Review of TRA-845: words that sit inside place names French keeps as they are must not refuse a
+		// correct value twice (the node would end in invalid_output with no way out).
+		it.each([
+			"East Lansing, Michigan",
+			"South Bronx",
+			"Barrow-in-Furness",
+			"Isle of Wight",
+			"Mid-City",
+			"The Hague",
+			"Massif Central",
+		])("accepts %s: a place name that stays as it is", (value) => {
+			expect(unchanged(value)).toEqual([]);
+		});
+
+		it.each(["London, UK", "Chicago, USA", "Brazil", "Australia"])("refuses %s left in English", (value) => {
+			expectSingle(unchanged(value), "fact_untranslated", "facts.origin");
+		});
+
+		it("does not take a retyped copy for a translation: case and punctuation are not French", () => {
+			const source = makeSource({ facts: { origin: "United States" } });
+			for (const origin of ["United states", "UNITED STATES.", "United  States"]) {
+				const issues = validateTranslation(source, makeCandidate({ facts: { origin } }));
+				expectSingle(issues, "fact_untranslated", "facts.origin");
+			}
+		});
+
+		it("does not excuse a country left in English because a band carries its name", () => {
+			expectSingle(unchanged("Japan", ["Japan"]), "fact_untranslated", "facts.origin");
+		});
+
+		it("accepts gear written like a decade: 808s and 909s are not English decades", () => {
+			expect(unchanged("808s")).toEqual([]);
+			expect(unchanged("909s")).toEqual([]);
+			expectSingle(unchanged("80s"), "fact_untranslated", "facts.origin");
+		});
+
+		it("refuses an English decade left as written, accepts it as « années 1990 »", () => {
+			expectSingle(unchanged("1990s"), "fact_untranslated", "facts.origin");
+			const source = makeSource({ facts: { origin: "1990s" } });
+			expect(validateTranslation(source, makeCandidate({ facts: { origin: "Années 1990" } }))).toEqual([]);
+		});
+
+		it("accepts a translated value, including one that keeps a proper noun and a year", () => {
+			const source = makeSource({ facts: { origin: "United States", status: "Active since 1991" } });
+			expect(
+				validateTranslation(
+					source,
+					makeCandidate({ facts: { origin: "États-Unis", status: "Actif depuis 1991" } }),
+				),
+			).toEqual([]);
+		});
+
+		it("judges each fact on its own, and a value padded with spaces is still the source value", () => {
+			const source = makeSource({ facts: { origin: "United States", status: "Berlin" } });
+			const issues = validateTranslation(
+				source,
+				makeCandidate({ facts: { origin: "United States", status: "Berlin" } }),
+			);
+			expectSingle(issues, "fact_untranslated", "facts.origin");
+			const spaced = validateTranslation(
+				source,
+				makeCandidate({ facts: { origin: " United States ", status: "Berlin" } }),
+			);
+			expectSingle(spaced, "fact_untranslated", "facts.origin");
+		});
+
+		it("only looks at a value identical to the source: a changed value is judged by the other rules", () => {
+			const source = makeSource({ facts: { origin: "United States" } });
+			const issues = validateTranslation(
+				source,
+				makeCandidate({ facts: { origin: "United States http://evil.test/x" } }),
+			);
+			expectSingle(issues, "url_added", "facts.origin");
+		});
+	});
+
 	describe("fidelity rules (TRA-804)", () => {
 		/** A faithful base pair plus one extra sentence per side, so only the sentence under test can fail. */
 		function check(en: string, fr: string, extraNouns: string[] = []): TranslationIssue[] {

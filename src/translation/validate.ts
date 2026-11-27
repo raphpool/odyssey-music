@@ -36,7 +36,8 @@ export type TranslationIssueCode =
 	| "markup"
 	| "escape_leftover"
 	| "url_added"
-	| "fact_keys";
+	| "fact_keys"
+	| "fact_untranslated";
 
 export interface TranslationIssue {
 	code: TranslationIssueCode;
@@ -72,6 +73,31 @@ const FRENCH_STOPWORDS: ReadonlySet<string> = new Set(
 	"le la les des du de un une et est dans en que qui pour avec sur par au aux".split(" "),
 );
 const ENGLISH_STOPWORDS: ReadonlySet<string> = new Set("the and of with is was by from which".split(" "));
+
+/**
+ * Words that mark a fact value as English when it comes back untouched (TRA-845). A closed list, not a
+ * language detector: facts are a few words long ("Germany and Japan"), too short for the stopword shares of
+ * checkLanguage. Each entry is a word the French value spells differently: a connector or period word
+ * ("and", "present", "early", "century") or a country the batch actually left in English ("Germany" is
+ * « Allemagne »). Names spelled alike in both languages (Europe, France, Detroit) are deliberately absent:
+ * an unchanged value made of them is a correct translation. So are the words that sit inside place names
+ * French keeps as they are (compass words in "East Lansing", "in" and "of" in "Barrow-in-Furness" and
+ * "Isle of Wight", "the" in "The Hague", "mid" in "Mid-City"): WORD splits a hyphenated name, so such a
+ * word would refuse a correct value twice (review of TRA-845). A miss costs one English fact; a false hit
+ * would refuse a valid node twice, so the list stays short. Compared lowercase, whole words.
+ */
+const ENGLISH_FACT_MARKERS: ReadonlySet<string> = new Set(
+	(
+		"and or to from since until present early late century centuries " +
+		"united states kingdom uk usa america england scotland wales ireland " +
+		"germany japan spain italy sweden netherlands belgium switzerland denmark norway poland russia " +
+		"brazil mexico china australia austria finland greece turkey argentina egypt iceland"
+	).split(" "),
+);
+/** "1990s", "80s": the English decade; French writes « années 1990 ». Not "808s" or "909s": those are gear. */
+const ENGLISH_DECADE = /(?<!\d)(?:\d{3}0s|\d0s)\b/i;
+/** Case, spacing and punctuation do not make a translation: "United states." is still the source. */
+const NON_ALPHANUMERIC = /[^\p{L}\p{N}]+/gu;
 
 const WORD = /\p{L}+/gu;
 const URL_PATTERN = /https?:\/\/[^\s<>()[\]"'«»“”]+/gi;
@@ -182,12 +208,51 @@ function checkFacts(
 		}
 		checkSurface(field, original, value, issues);
 		checkFidelity(field, original, value, properNouns, issues);
+		checkUntranslated(field, original, value, properNouns, issues);
 	}
 	for (const key of Object.keys(candidateFacts)) {
 		if (!Object.hasOwn(sourceFacts, key)) {
 			issues.push({ code: "fact_keys", field: `facts.${clip(key)}`, detail: "not in source" });
 		}
 	}
+}
+
+/**
+ * 2026-11-27 (TRA-845): a fact handed back as the source wrote it, while the source holds an English word.
+ * The symptom: on the genre batch (TRA-819) 106 of 314 genres kept `origin` and `era` in English
+ * ("United States", "1960s–present") under a French article, and a forced second run changed nothing for
+ * 106 of 110: the model returns the whole fact block unchanged and no rule looked at its language.
+ * Only an identical value is judged: names and years that must survive (checkFidelity) make a translated
+ * value legitimately close to its source, so a partial translation stays out of this rule's reach.
+ */
+function checkUntranslated(
+	field: string,
+	rawOriginal: string,
+	rawValue: string,
+	rawProperNouns: readonly string[],
+	issues: TranslationIssue[],
+): void {
+	const original = normalizeTypography(rawOriginal);
+	if (looseForm(rawValue) !== looseForm(original)) return;
+	// The names the source asks to keep are not English words, whatever they are made of. A name that is
+	// itself a marker is not exempt: a band called "Japan" must not excuse the country left in English.
+	let rest = original;
+	for (const noun of new Set(rawProperNouns.map(normalizeTypography))) {
+		if (noun !== "" && !ENGLISH_FACT_MARKERS.has(noun.toLowerCase())) rest = rest.split(noun).join(" ");
+	}
+	const marker = (rest.toLowerCase().match(WORD) ?? []).find((word) => ENGLISH_FACT_MARKERS.has(word));
+	const found = marker ?? ENGLISH_DECADE.exec(rest)?.[0];
+	if (found !== undefined) {
+		issues.push({
+			code: "fact_untranslated",
+			field,
+			detail: `identical to the English source ("${found}"): translate it into French`,
+		});
+	}
+}
+
+function looseForm(text: string): string {
+	return normalizeTypography(text).toLowerCase().replace(NON_ALPHANUMERIC, " ").trim();
 }
 
 function checkLengthRatio(
