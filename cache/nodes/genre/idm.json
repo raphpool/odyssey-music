@@ -122,5 +122,18 @@
       "name": "Artificial Intelligence"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de musique électronique cérébrale et expérimentale caractérisé par une conception sonore complexe, des motifs rythmiques non conventionnels et une esthétique axée sur une écoute attentive à domicile plutôt que sur une fonctionnalité en club.",
+      "article": "L'Intelligent dance music, communément appelée IDM, est un sous-genre nébuleux et intellectuellement chargé de la musique électronique qui a émergé du Royaume-Uni et du Japon à la fin des années 1980 et au début des années 1990. Souvent définie davantage par une éthique d'expérimentation idiosyncrasique que par des contraintes rythmiques ou harmoniques strictes, le genre représente un pivot des exigences répétitives et fonctionnelles de la musique de danse orientée club vers une expérience d'écoute plus cérébrale et domestique. En déconstruisant les éléments fondamentaux de l'acid house, de la techno, du breakbeat et de l'ambient, les producteurs d'IDM ont utilisé une synthèse complexe, un séquençage algorithmique et une conception sonore abstraite pour créer des paysages sonores complexes, souvent discordants et hautement émotifs.\n\nHistoriquement, le terme « IDM » est une étiquette contestée. Il a gagné en popularité en 1993 suite au lancement d'une liste de diffusion en ligne dédiée à la discussion sur les artistes figurant sur la compilation séminale de 1992 de Warp, 'Artificial Intelligence'. Bien que le sobriquet ait aidé à catégoriser un mouvement en plein essor, bon nombre des figures les plus éminentes du genre — notamment Aphex Twin et ses contemporains du label Rephlex — ont exprimé un profond scepticisme à l'égard du préfixe « intelligent », le considérant comme exclusif et prétentieux. Au lieu de cela, des termes tels que « braindance » ou simplement « electronic listening music » étaient souvent préférés par les artistes eux-mêmes. Malgré la controverse terminologique, l'héritage de l'IDM est fermement ancré dans son influence sur les sous-genres électroniques ultérieurs, notamment le glitch, le breakcore, le drill 'n' bass et la folktronica, consolidant sa place en tant qu'évolution pivot de la production musicale électronique moderne.",
+      "facts": {
+        "era": "Années 1990-présent",
+        "origin": "Royaume-Uni et Japon"
+      },
+      "source_sha256": "d03752e4207a59768eba97e0beee60639db1d33e748bff714c1c0892ef06e921",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:28:59.237Z"
+    }
+  }
 }

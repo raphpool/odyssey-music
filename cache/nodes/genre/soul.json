@@ -225,5 +225,18 @@
       "type": "track",
       "name": "A Change Is Gonna Come"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de musique populaire afro-américaine influencé par le gospel, caractérisé par une interprétation vocale intense, une profonde honnêteté émotionnelle et une fusion de rhythm and blues, de jazz et de traditions spirituelles, servant de pilier à l'expression culturelle noire durant l'ère des droits civiques.",
+      "article": "La Soul est un genre musical afro-américain déterminant qui a émergé aux États-Unis à la fin des années 1950 et a atteint son apogée tout au long des années 1960 et 1970. Issu d'une fusion entre le gospel, le rhythm and blues et le jazz, le genre se caractérise par son interprétation émotionnelle intense, sa vocalisation puissante et son élan rythmique. La musique Soul est indissociable du climat social et politique de son époque, en particulier des mouvements des droits civiques et du Black Power. Elle a fourni une bande-son sonore à la fierté noire, à l'autodétermination et à l'expérience communautaire des centres-villes, avec des paroles oscillant souvent entre un désir personnel profond et un militantisme politique manifeste.\n\nMusicalement, le genre est ancré dans des structures influencées par le gospel, incluant des modèles d'appel et de réponse, une vocalisation mélismatique et une utilisation dynamique du tempo et du timbre. Des icônes comme Ray Charles et James Brown ont ouvert la voie, mêlant l'énergie extatique de la chaire au groove séculier du R&B. Au milieu des années 60, des artistes tels que Aretha Franklin, Otis Redding et Sam Cooke ont affiné le son, le genre trouvant des puissances de production dans des labels comme Motown et Stax. L'héritage de la musique Soul est fondamental, influençant directement des styles ultérieurs tels que le funk, le disco et le R&B contemporain, tandis que son accent sur une performance brute et authentique demeure une référence pour la musique vocale populaire. Au-delà de ses contributions musicales, le terme « soul » est devenu un descripteur culturel pour un éventail plus large d'expressions créatives noires, reflétant un ethos de résilience et d'autonomisation qui persiste encore aujourd'hui.",
+      "facts": {
+        "era": "1950s–1970s",
+        "origin": "United States"
+      },
+      "source_sha256": "3e7fa347ec1d381389b2a0fb23a7eedf03e7e6d877756b8b60a0520b28c6feda",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:45:57.271Z"
+    }
+  }
 }

@@ -351,5 +351,19 @@
       "type": "track",
       "name": "I've Lost Control"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique électronique de danse caractérisé par un rythme répétitif 4/4 « four-on-the-floor », allant généralement de 115 à 130 battements par minute, apparu à Chicago au début des années 1980.",
+      "article": "La House est un pilier fondamental de la musique électronique de danse, apparue au début des années 1980 au sein de la culture club vibrante, queer, noire et latino de Chicago. Nommé d'après The Warehouse, le club où le DJ séminal Frankie Knuckles jouait une fusion de disques disco, post-disco et électroniques, le genre a évolué alors que les producteurs cherchaient à créer un son plus mécanique, propice à la danse. En isolant et en bouclant les sections rythmiques de disques disco et en les superposant à des synthétiseurs et des boîtes à rythmes — notamment les Roland TR-808, TR-909 et la TB-303 — les pionniers ont façonné le rythme signature « four-on-the-floor » qui définit le genre. Cette base rythmique, généralement fixée entre 115 et 130 battements par minute, offrait un cadre accessible et hypnotique permettant aux pistes de danse de pulser pendant des heures.\n\nLa scène naissante de Chicago, menée par des figures telles que Ron Hardy, Marshall Jefferson, Jesse Saunders et Steve \"Silk\" Hurley, s'est rapidement transformée d'un mouvement underground local en un phénomène mondial. À mesure que le son s'étendait à New York, Londres et au-delà, il s'est ramifié en d'innombrables sous-genres, incluant l'esthétique brute et grinçante de l'acid house, les grooves profonds et soul de la deep house, ainsi que les sons énergiques de la garage et de la tech house. La House a fondamentalement modifié le paysage de la musique populaire, imposant un changement rythmique à la radio grand public et à la culture club qui persiste encore aujourd'hui. Son héritage ne se trouve pas seulement dans l'évolution de la musique de danse, mais aussi dans la manière dont elle a favorisé des espaces inclusifs et communautaires où le DJ est devenu un chef d'orchestre de l'euphorie sonore, reliant des influences disparates de jazz, de soul et de post-punk en une expérience singulière et cohérente. Aujourd'hui, la House continue d'évoluer, servant à la fois de tradition underground respectée et de composante essentielle de la production pop moderne.",
+      "facts": {
+        "era": "Années 1980–présent",
+        "origin": "Chicago, Illinois, États-Unis",
+        "sonic_markers": "Motif de grosse caisse « four-on-the-floor », tempo de 115–130 BPM, utilisation intensive de boîtes à rythmes (TR-808/909) et de synthétiseurs (TB-303), boucles mélodiques répétitives, charleys syncopés."
+      },
+      "source_sha256": "b373f1cd0ebdce411c4faf741ed5cfd751562d4cf68468d8ca1d8c7c15fb790a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:28:58.448Z"
+    }
+  }
 }

@@ -105,5 +105,19 @@
       "type": "track",
       "name": "Can You Celebrate?"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un terme générique pour la musique populaire japonaise qui a gagné en usage courant dans les années 1990, mêlant les influences de la pop et du rock occidentaux aux traditions nationales.",
+      "article": "La J-pop a émergé en tant que catégorie de marché distincte au début des années 1990, remplaçant l'ancien style kayōkyoku (musique à chant lyrique). Le terme fonctionne comme une large couverture pour la musique populaire japonaise, dont les racines remontent à l'influence des années 1960 des groupes de rock occidentaux comme The Beatles et The Beach Boys sur des groupes locaux tels que Happy End. Au cours des années 1970 et 1980, le genre a évolué à travers la city pop de Tatsuro Yamashita et l'électropop révolutionnaire de Yellow Magic Orchestra. Les années 1990 ont connu une croissance commerciale massive portée par le « Being System » et le producteur Tetsuya Komuro, dont la « Komuro family » d'artistes comme Namie Amuro a dominé les classements avec des succès dance et techno vendus à des millions d'exemplaires. Contrairement à la musique japonaise traditionnelle, le genre adopte des prononciations de style occidental et des gammes musicales occidentales standard.",
+      "facts": {
+        "era": "Années 1990 à aujourd'hui",
+        "origin": "Japon",
+        "sonic_markers": "Structures pop et rock d'influence occidentale, harmonies en gamme majeure, utilisation fréquente de synthétiseurs et modèles de prononciation vocale spécifiques."
+      },
+      "source_sha256": "5e2bed58914468e61df9d13ad07b5edd7d9def9eb92236c575bc9d1539e6ee7c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:29:05.227Z"
+    }
+  }
 }

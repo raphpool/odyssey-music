@@ -156,5 +156,19 @@
       "type": "track",
       "name": "Fall"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un terme générique pour la musique pop ouest-africaine contemporaine qui fusionne les rythmes traditionnels avec des influences hip hop, R&B et dancehall.",
+      "article": "Afrobeats est un terme générique désignant la musique pop ouest-africaine contemporaine apparue au Nigeria et au Ghana au début des années 2000, popularisée à l'international via le Royaume-Uni par des personnalités comme DJ Abrantee. Distinct du genre Afrobeat des années 1970 initié par Fela Kuti, ce son moderne fusionne des styles locaux comme le hiplife, le jùjú et le highlife avec des influences mondiales de dancehall, de R&B et de house music. Le genre se caractérise par des rythmes de batterie entraînants et emblématiques, suivant souvent un motif de clave 3–2 ou 2–3 qui sert de moteur principal au morceau. La reconnaissance mondiale a accéléré à la fin des années 2010, comme en témoigne la croissance de 550 % des écoutes sur Spotify entre 2017 et 2022. Les techniques de production clés incluent l'intégration du pidgin anglais local et de dialectes, ainsi que des collaborations de haut niveau avec des stars internationales comme Drake, qui a participé au remix de 'Ojuelegba' et à 'One Dance'. En 2024, les Grammys ont établi une catégorie pour la Best African Music Performance, marquant l'influence significative du genre sur le paysage musical mondial.",
+      "facts": {
+        "era": "Années 2000 à 2020",
+        "origin": "Nigeria et Ghana",
+        "sonic_markers": "Signature rythmique 4/4, rythme de clave 3-2 ou 2-3, batterie électronique/instrumentale entraînante, mélodies syncopées, interprétation vocale imprégnée de R&B"
+      },
+      "source_sha256": "40f80ef26a41b57f34f0ff2a1bdda1ae4d8914421ac72e31e64db6810e7c94f5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:03:45.277Z"
+    }
+  }
 }

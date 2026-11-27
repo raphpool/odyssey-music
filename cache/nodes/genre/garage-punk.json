@@ -97,5 +97,19 @@
       "name": "Piece Of"
     }
   ],
-  "qid": "Q2296495"
+  "qid": "Q2296495",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de fusion apparu à la fin des années 1980, mêlant l'esthétique brute du garage rock des années 1960 à l'intensité du punk et de l'indie rock des années 1970.",
+      "article": "Le garage punk est un genre de fusion de musique rock apparu au sein de la scène underground indie rock à la fin des années 1980 et au début des années 1990. Il représente une synthèse stylistique du garage rock des années 1960, du punk rock dépouillé des années 1970 et de l'énergie brute du proto-punk de Détroit. Contrairement à la scène garage rock revival plus strictement axée sur le rétro, les groupes de garage punk ont souvent intégré un éventail varié d'influences, notamment le power pop, les girl groups des années 1960, le hardcore punk, le blues, le rhythm and blues primitif et le surf rock. Cette approche éclectique a permis au genre de servir de pont entre les sonorités garage traditionnelles et des styles plus agressifs ou expérimentaux, contribuant finalement au développement du stoner rock.\n\nBien que le terme soit fréquemment utilisé pour classer cet hybride des années 1980-1990, il possède une histoire étymologique complexe. L'expression « garage punk » a été utilisée dès 1972 par Lenny Kaye dans ses notes de pochette pour la compilation « Nuggets » afin de décrire le son de groupes des années 1960 comme The Shadows of Knight. Par conséquent, le terme est parfois utilisé de manière interchangeable avec le garage rock des années 1960, bien que dans le discours musical contemporain, il identifie plus spécifiquement le mouvement indie rock granuleux et imprégné de punk qui a suivi la première vague punk.",
+      "facts": {
+        "era": "fin des années 1980 au début des années 1990",
+        "origin": "États-Unis, scène underground indie rock",
+        "sonic_markers": "Haute énergie, guitares saturées, production dépouillée, voix brutes, tempo agressif."
+      },
+      "source_sha256": "f75749cb189aaeb51398a891b073d1f3dbd850ac2d3077d45b82af981b8fa748",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:09:02.011Z"
+    }
+  }
 }

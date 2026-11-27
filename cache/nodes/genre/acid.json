@@ -127,5 +127,19 @@
       "type": "track",
       "name": "We Call It Acieed"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de house music caractérisé par les balayages de filtre résonants et grinçants du synthétiseur de basse électronique Roland TB-303.",
+      "article": "L'acid house est apparue à Chicago vers 1985, définie par les balayages de filtre résonants caractéristiques et les lignes de basse grinçantes générées par le synthétiseur Roland TB-303. Le groupe de Chicago Phuture est largement crédité de la percée du genre, notamment avec leur sortie sur Trax Records en 1987, Acid Tracks, qui fut célèbre pour avoir été défendu par DJ Ron Hardy dans son club, The Music Box. Bien que le terme « acid » soit souvent lié à la contre-culture nourrie par la drogue et à la scène rave hédoniste de la fin des années 1980, d'autres suggèrent qu'il provient de l'argot désignant le fait de « voler » ou de « brûler à l'acide » en référence aux techniques d'échantillonnage. Le style a traversé le courant dominant au Royaume-Uni via des clubs comme Shoom et The Haçienda, où il est devenu un catalyseur pour le Second Summer of Love et le mouvement rave naissant. Malgré les premiers succès dans les classements britanniques d'artistes comme Baby Ford et Future Sound of London, le sensationnalisme médiatique et les paniques morales ont fini par entraîner des interdictions de diffusion généralisées sur les morceaux portant le mot « acid » dans leurs titres.",
+      "facts": {
+        "era": "milieu des années 1980 au début des années 1990",
+        "origin": "Chicago, Illinois",
+        "sonic_markers": "120-130 BPM, grosse caisse four-on-the-floor, balayages de filtre résonants du TB-303, arrangements minimalistes, motifs de basse avec glissando et accentuation."
+      },
+      "source_sha256": "226bd68a324502d87535e47c9e5112edb29f4694314558410bbaa198151add98",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:39:47.673Z"
+    }
+  }
 }

@@ -134,5 +134,18 @@
       "name": "Murmur"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une catégorie largement définie de musique rock apparue à la fin des années 1970, qui met l'accent sur l'indépendance vis-à-vis des tendances commerciales dominantes, s'appuyant souvent sur l'éthique DIY et l'esprit expérimental du post-punk et de la musique underground.",
+      "article": "Le rock alternatif, souvent simplement appelé « alternative » ou « alt-rock », est une catégorie musicale vaste et aux multiples facettes, issue de la scène underground indépendante de la fin des années 1970 et du début des années 1980. Se définissant fondamentalement contre la stagnation commerciale perçue du rock de stade et du glam metal, la musique alternative trouve ses racines dans l'éthique DIY et la diversité stylistique du punk rock, du post-punk et de la new wave. Tout au long des années 1980, le genre s'est développé grâce à un réseau décentralisé de labels indépendants, de stations de radio universitaires et de fanzines, permettant à des scènes régionales — du jangle pop d'Athens, en Géorgie, au bruit abrasif de l'underground américain — de s'épanouir loin du regard des départements artistiques des grandes maisons de disques.\n\nL'explosion du genre dans le courant dominant s'est produite au début des années 1990, portée par un changement culturel vers la génération X et le succès retentissant de groupes grunge comme Nirvana. Cette époque a effectivement fait tomber la barrière entre l'underground et le courant commercial, ouvrant la voie à des styles disparates tels que le shoegaze, la Britpop et, finalement, les mouvements emo des années 2000, pour toucher un public massif. Bien que le terme « alternative » reste notoirement élastique et résiste à une définition sonore unique, il est historiquement unifié par ses origines dans la musique indépendante et par une insistance constante sur l'autonomie artistique, l'écriture dynamique et l'introspection émotionnelle ou sociale. Des hymnes saturés du nord-ouest du Pacifique aux textures introspectives de l'indie britannique, la musique alternative demeure un prisme essentiel à travers lequel l'évolution de la musique moderne basée sur la guitare est comprise.",
+      "facts": {
+        "era": "Années 1980 à aujourd'hui",
+        "origin": "États-Unis et Royaume-Uni, fin des années 1970"
+      },
+      "source_sha256": "2898a41e15d82f65af79ad606ed5061ddd3b2a776bcb2e22528940f0f63c21a2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:04:37.211Z"
+    }
+  }
 }

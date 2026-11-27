@@ -246,5 +246,19 @@
       "type": "track",
       "name": "Good Life"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "La techno est une forme de musique électronique de danse issue de la culture jeune afro-américaine de Detroit au milieu des années 1980, caractérisée par ses rythmes rapides issus de machines et ses mélodies de synthétiseur atmosphériques.",
+      "article": "La techno a émergé au milieu des années 1980 à Detroit, dans le Michigan, née d'une intersection créative entre la culture jeune afro-américaine et une profonde fascination pour la musique électronique européenne. Pionnier du trio fondateur composé de Juan Atkins, Derrick May et Kevin Saunderson — souvent désignés collectivement sous le nom de Belleville Three — le genre a synthétisé la précision robotique de Kraftwerk avec l'élan percutant et soul de la house music de Chicago. Contrairement à son homologue house, qui reposait souvent sur des structures dérivées du disco, la techno de Detroit des débuts a privilégié des paysages sonores instrumentaux et futuristes qui reflétaient le paysage industriel de son lieu de naissance. Des artistes comme Model 500 et Rythim Is Rythim ont créé des morceaux qui n'étaient pas seulement destinés aux clubs, mais à une nouvelle conscience « techno-rebel » inspirée par la théorie sociale futuriste d'Alvin Toffler.\n\nAlors que le son traversait l'Atlantique à la fin des années 1980, il est devenu le cœur battant de la scène rave européenne en plein essor, où il a rapidement évolué et s'est fragmenté. Dans les clubs du Royaume-Uni, de Belgique et d'Allemagne, la musique a pris un caractère plus dur et plus agressif, caractérisé par des riffs intenses et des textures distordues, marquant l'ascension de la techno « hardcore ». Tout au long des années 1990, le genre s'est étendu en une vaste gamme de sous-styles, allant des sommets mélodiques et cosmiques de la trance à l'expérimentation axée sur l'écoute domestique de l'electronica, en passant par la vitesse frénétique et distordue de la gabba. Malgré sa fragmentation mondiale en divers mouvements commerciaux et underground, le cœur de la techno reste lié à l'esprit novateur de ses créateurs de Detroit, continuant d'influencer la production de musique électronique, la culture club et la pop grand public bien après sa création. Son héritage est celui d'une réinvention continue, équilibrant la froideur mécanique de la machine avec l'expérience profondément émotionnelle et communautaire de la piste de danse.",
+      "facts": {
+        "era": "1985–présent",
+        "origin": "Detroit, Michigan, États-Unis",
+        "sonic_markers": "Signature rythmique 4/4, percussions répétitives de type machine, mélodies de synthétiseur, tempo élevé (généralement 120-150 BPM), absence de structures vocales couplet-refrain traditionnelles."
+      },
+      "source_sha256": "f43c83b44b17ecafa2315b1eb8dfa5eef516fe60b28a9eba816336129fa6140c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:37:02.388Z"
+    }
+  }
 }

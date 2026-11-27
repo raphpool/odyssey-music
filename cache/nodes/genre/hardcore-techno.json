@@ -136,5 +136,19 @@
       "type": "track",
       "name": "Hardcore Uproar"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique électronique à haute énergie caractérisé par des tempos rapides, des basses distordues et une conception sonore intense influencée par l'industriel.",
+      "article": "La Hardcore techno a émergé au début des années 1990 comme une évolution à haut tempo de la musique de danse électronique, puisant ses racines dans la scène new beat belge et l'influence industrielle de producteurs comme Marc Trauner. Les premières expérimentations avec des sons agressifs et saturés ont abouti à des morceaux comme « We Have Arrived » de Mescalinum United en 1990, qui ont contribué à établir la plage caractéristique de 160-200 BPM du genre et ses grosses caisses en dents de scie distordues. La scène new beat belge a également contribué à des éléments de conception sonore emblématiques, notamment les stabs « Mentasm » et « Anastasia », qui sont devenus centraux dans l'esthétique du genre. Suite à ces développements, les scènes régionales se sont rapidement étendues ; Rotterdam est devenue un centre principal pour le mouvement gabber avec Paul Elstak fondant Rotterdam Records en 1992, tandis qu'à New York, Lenny Dee lançait Industrial Strength Records en 1991 pour promouvoir le son américain plus dur. Le genre s'est davantage propagé à travers des compilations et des événements massifs, notamment la série Thunderdome aux Pays-Bas, qui a attiré des milliers de participants et formalisé la sous-culture gabber.",
+      "facts": {
+        "era": "début des années 1990 à aujourd'hui",
+        "origin": "Pays-Bas, Belgique et Allemagne",
+        "sonic_markers": "160–200+ BPM, grosses caisses en dents de scie saturées, stabs influencés par l'industriel, synthèse agressive"
+      },
+      "source_sha256": "adbe80d405a98e2f58816e07bf0795160459d864db79a8cab9278c4a30da9f0f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:28:01.441Z"
+    }
+  }
 }

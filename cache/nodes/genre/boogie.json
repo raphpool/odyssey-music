@@ -144,5 +144,19 @@
       "type": "track",
       "name": "Boogie Wonderland"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de danse électronique dérivé du funk et post-disco, caractérisé par des rythmes mid-tempo, une basse slap et une utilisation prédominante des synthétiseurs au début des années 1980.",
+      "article": "Apparu aux États-Unis à la fin des années 1970 et au début des années 1980, le boogie est un genre de danse électronique ancré dans le R&B qui délaisse fréquemment le rythme disco standard « four-on-the-floor ». Le son est défini par une plage de tempo moyen de 110 à 116 BPM, mettant l'accent sur les deuxième et quatrième temps plutôt que sur les motifs rythmiques typiques du disco traditionnel. Des productions classiques comme le single de Kashif de 1983 « I Just Gotta Have You (Lover Turn Me On) » ont contribué à établir la dépendance du genre aux synthétiseurs et à la basse électronique, tandis que des morceaux tels que « You're the One for Me » de D. Train en 1981 et « Don't Make Me Wait » de Peech Boys en 1982 ont mis en valeur l'utilisation d'une réverbération caverneuse et de lignes de basse profondes et entraînantes. Le terme a été inventé par les DJ londoniens Norman Jay et Dez Parkes comme une étiquette rétrospective pour cette musique de danse afro-américaine. Des producteurs nigérians comme Nkono Teles ont ensuite adapté le style à Lagos avec des synthétiseurs locaux et de la basse slap, créant des variations régionales connues sous le nom d'afro-boogie.",
+      "facts": {
+        "era": "fin des années 1970 au milieu des années 1980",
+        "origin": "États-Unis ; scène club underground de Londres",
+        "sonic_markers": "110-116 BPM, basse slap, utilisation intensive de synthétiseurs, boîtes à rythmes, accent sur les temps 2 et 4"
+      },
+      "source_sha256": "85053a430fdbcc8d231a69ad4e53002cfe5a0cf140f5ab27b926b640941f99c7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:06:37.146Z"
+    }
+  }
 }

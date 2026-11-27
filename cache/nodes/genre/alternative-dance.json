@@ -148,5 +148,17 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q2187392"
+  "qid": "Q2187392",
+  "l10n": {
+    "fr": {
+      "teaser": "L'alternative dance est un genre musical qui fusionne les structures mélodiques et les sensibilités de l'alternative et de l'indie rock avec l'esthétique rythmique, synthétique et orientée club de la musique électronique de danse.",
+      "article": "L'alternative dance — souvent appelée « indie dance » ou « underground dance » — a émergé au début des années 1980 comme une intersection stylistique vitale où la sensibilité mélodique et structurée de l'alternative et de l'indie rock s'est heurtée à l'énergie viscérale et axée sur le rythme de la musique électronique de danse. Enraciné principalement dans les îles Britanniques, le genre représente un éloignement de la division rigide entre les « groupes » (instrumentation traditionnelle) et les « DJs » (production électronique séquencée). Au cœur de sa sonorité, l'alternative dance marie les structures couplet-refrain avec les palettes texturées et riches en synthétiseurs du post-disco, de la synth-pop et de l'industriel, utilisant souvent des rythmes house et electro pour porter la composition.\n\nLa genèse du genre est fréquemment attribuée au travail novateur de New Order qui, au lendemain de Joy Division, a été le pionnier d'un son synthétisant l'angoisse post-punk avec les sensibilités électroniques émergentes de groupes allemands comme Kraftwerk. Cette influence s'est propagée, trouvant un foyer physique dans le club légendaire de Manchester, The Haçienda, qui est devenu un incubateur crucial pour la scène Madchester de la fin des années 1980. Tout au long des années 1990, la portée de l'alternative dance s'est considérablement élargie, avec des artistes comme The Prodigy, The Chemical Brothers et Björk portant sa fusion innovante à une renommée internationale. Ces artistes ont comblé le fossé entre la culture rave underground et la musique alternative grand public, intégrant souvent des éléments divers comme le breakbeat, le trip-hop et la production big beat.\n\nAu XXIe siècle, la démocratisation des logiciels de production musicale et l'essor de la connectivité numérique ont transformé le paysage du genre. Ce qui était autrefois une culture dictée par les DJs de club et les labels de disques physiques s'est orienté vers un écosystème décentralisé et communautaire favorisé par les blogs internet et la distribution numérique. En adoptant des technologies accessibles, les praticiens contemporains continuent de brouiller les frontières entre l'expérimentation électronique produite à domicile et l'esthétique indie rock, garantissant que l'alternative dance demeure une force fluide et en constante évolution dans la musique moderne.",
+      "facts": {
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "19c93f53396dc200153997bce2237aa6eb0eb124984323e6db3fe66d30ac53d2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:04:37.217Z"
+    }
+  }
 }

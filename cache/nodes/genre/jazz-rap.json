@@ -176,5 +176,18 @@
       "name": "Cantaloop (Flip Fantasia)"
     }
   ],
-  "qid": "Q255406"
+  "qid": "Q255406",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du hip-hop apparu à la fin des années 1980, fusionnant les fondations rythmiques du hip-hop avec des samples et des sensibilités musicales tirés du jazz, servant souvent de vecteur à un lyrisme conscient et poétique.",
+      "article": "Le jazz rap est un sous-genre fondamental du hip-hop apparu à la fin des années 1980 et qui a prospéré tout au long du début des années 1990, caractérisé par la fusion de l'instrumentation jazz afro-américaine traditionnelle avec la base rythmique de la production hip-hop. Principalement enraciné dans la scène boom-bap de la côte Est, le genre représentait un départ délibéré du rap plus agressif et orienté gangsta qui dominait l'époque. Au lieu de cela, les artistes de jazz rap ont cherché à réapproprier et à élever le hip-hop en l'alignant sur le capital culturel et la gravité historique du jazz. En échantillonnant les œuvres de figures légendaires telles que Herbie Hancock, Grant Green et Art Blakey, les producteurs ont tissé des textures complexes et soul dans leurs beats, offrant une riche toile de fond sonore pour un lyrisme conscient et poétique. Ce mariage des styles — où le swing et l'esprit d'improvisation du bebop, du soul-jazz et du cool jazz rencontraient la réalité urbaine et brute du rap — a fourni une plateforme pour le commentaire social et politique, cimentant l'héritage du jazz rap en tant que ramification « intellectuelle » vitale de la culture hip-hop. Des collectifs clés comme Native Tongues ont joué un rôle pivot dans la popularisation de cette esthétique, influençant les générations ultérieures de producteurs de hip-hop alternatif et lo-fi. La capacité du genre à rendre hommage au passé tout en repoussant les limites de la musique contemporaine demeure une caractéristique déterminante de son importance artistique durable.",
+      "facts": {
+        "era": "Fin des années 1980 - années 1990",
+        "origin": "Zone métropolitaine de New York, États-Unis"
+      },
+      "source_sha256": "5a9e0a84d2c18a14335d21a1de3004a52967412d84de938145d9ecd4f01393ad",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:29:59.676Z"
+    }
+  }
 }

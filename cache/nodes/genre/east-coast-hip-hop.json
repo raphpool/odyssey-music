@@ -112,5 +112,19 @@
       "name": "N.Y. State of Mind"
     }
   ],
-  "qid": "Q876171"
+  "qid": "Q876171",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre régional fondamental du hip-hop originaire de New York dans les années 1970, caractérisé par une attention particulière portée au lyrisme complexe et à la profondeur narrative.",
+      "article": "Le East Coast hip-hop est un sous-genre régional fondamental de la musique hip-hop qui a émergé à New York au début des années 1970. Largement reconnu comme le berceau de la culture, le Bronx a servi d'épicentre où le genre a d'abord évolué à partir d'un mélange d'influences funk, disco, R&B, jazz et blues. Contrairement à d'autres styles régionaux qui mettaient souvent l'accent sur une production orientée vers la danse, le East Coast hip-hop se distingue historiquement par son accent sur un lyrisme complexe et élaboré destiné à une écoute attentive. Cette emphase sur les jeux de mots et la profondeur narrative est devenue une marque de fabrique du genre, particulièrement durant son âge d'or. Au fil des décennies, le style s'est étendu à travers le nord-est des États-Unis, favorisant diverses formes dérivées telles que le boom bap, le jazz rap et le hardcore hip-hop. L'impact culturel du genre demeure profond, ayant établi les modèles techniques et thématiques du hip-hop à l'échelle mondiale tout en conservant une identité distincte définie par ses racines urbaines et sa densité lyrique.",
+      "facts": {
+        "era": "Années 1970 à aujourd'hui",
+        "origin": "New York, États-Unis",
+        "sonic_markers": "Lyrisme complexe, percussions boom bap, échantillonnage jazz et soul, accent mis sur le flow rythmique plutôt que sur la danse."
+      },
+      "source_sha256": "70ef9ff8e0299874e04519a33e27e9afc494a9b2a88079b3b70a0848785f7aab",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:54:06.593Z"
+    }
+  }
 }

@@ -58,5 +58,18 @@
   ],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q212944"
+  "qid": "Q212944",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique instrumentale dérivé de la musique folklorique et de danse traditionnelle des communautés juives ashkénazes d'Europe de l'Est, historiquement interprété par des musiciens itinérants professionnels lors de célébrations telles que les mariages.",
+      "article": "Le Klezmer est une tradition musicale vibrante et profondément expressive, enracinée dans la musique instrumentale des communautés juives ashkénazes d'Europe de l'Est. Historiquement, le terme « klezmer » (pluriel : klezmorim) désignait les musiciens professionnels eux-mêmes, généralement des hommes issus de familles héréditaires qui fournissaient le paysage sonore essentiel aux événements de la vie, notamment les mariages. Jouant d'instruments tels que le violon, le tsimbl (tympanon), la flûte, et plus tard la clarinette et les cuivres, ces musiciens menaient une existence sociale précaire, naviguant souvent entre les événements communautaires juifs et les célébrations régionales plus larges. Leur répertoire était hautement fonctionnel, équilibrant des mélodies réfléchies et pleines d'âme destinées à l'écoute et à la contemplation spirituelle avec des airs rythmiques et entraînants composés pour la danse.\n\nLe profil sonore du genre est distinct, souvent caractérisé par sa capacité à « imiter » la voix humaine — pleurant, riant et sanglotant — grâce à des techniques comme la « doina » (une forme rhapsodique et improvisée) et l'utilisation d'ornements microtonaux spécifiques. La musique a été profondément façonnée par les carrefours culturels et géographiques des zones frontalières d'Europe de l'Est, intégrant des éléments des traditions musicales roumaines, moldaves et hassidiques. Alors que les Juifs d'Europe de l'Est émigraient en masse vers la fin du XIXe siècle, notamment vers l'Amérique du Nord, la tradition a subi une transformation significative, s'adaptant aux nouveaux environnements urbains, aux technologies d'enregistrement et à l'évolution des goûts musicaux.\n\nVers le milieu du XXe siècle, le style klezmer traditionnel a commencé à s'estomper à mesure que les communautés immigrées s'assimilaient, mais le « Klezmer Revival » de la fin des années 1970 et des années 1980 a ravivé l'intérêt mondial pour le genre. Ce renouveau a sorti la musique de l'obscurité historique, la rétablissant comme une forme d'art vivante et évolutive qui continue de jeter un pont entre les traditions juives historiques et l'innovation contemporaine. Aujourd'hui, le klezmer sert non seulement d'accompagnement fonctionnel aux célébrations, mais aussi de symbole puissant de l'héritage culturel, renommé pour sa virtuosité et sa capacité singulière à traverser le spectre de l'émotion humaine, de la tristesse profonde à la joie extatique.",
+      "facts": {
+        "era": "XVIIIe siècle à nos jours",
+        "origin": "Europe de l'Est"
+      },
+      "source_sha256": "8173ec094a0ea1381aea42e709f9493e2c7f8ef14e80928f8629f3789e9600db",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:30:03.421Z"
+    }
+  }
 }

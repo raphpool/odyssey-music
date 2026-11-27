@@ -128,5 +128,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q83440"
+  "qid": "Q83440",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical américain très populaire, enraciné dans le folk du Sud et des Appalaches, caractérisé par des paroles narratives, un timbre vocal distinctif et un noyau instrumental à cordes polyvalent.",
+      "article": "La Country music, historiquement connue sous le nom de country and western, est une pierre angulaire de la culture populaire américaine qui a émergé du Sud et du Sud-Ouest des États-Unis dans les années 1920. Née d'un creuset diversifié de traditions culturelles, elle a synthétisé les influences folk britanniques et irlandaises avec les spirituals afro-américains, le blues et le gospel du Sud. Les années formatrices du genre ont été fortement façonnées par les traditions folk des montagnes des Appalaches, ainsi que par les héritages des cow-boys et des vaqueros de l'Ouest américain. Des instruments comme le fiddle, le banjo et, plus tard, la pedal steel guitar, définissent son paysage sonore distinctif, mélancolique et souvent axé sur la narration.\n\nTout au long du XXe siècle, la Country music a évolué à travers divers centres régionaux, du son poli de Nashville au son plus dur de Bakersfield et à l'esprit rebelle de l'outlaw country. Elle a maintenu un lien profond avec la narration, se concentrant sur des thèmes comme l'amour, la foi, le chagrin et les réalités quotidiennes de la classe ouvrière américaine. Malgré ses racines régionales, le genre a démontré une immense adaptabilité, engendrant des styles de fusion allant du bluegrass et du country rock à la country pop contemporaine. Aujourd'hui, la country demeure une force culturelle massive, se réinventant continuellement tout en conservant le timbre émotif et l'écriture confessionnelle qui ont captivé les auditeurs il y a près d'un siècle.",
+      "facts": {
+        "era": "1920s–present",
+        "origin": "United States"
+      },
+      "source_sha256": "b771104a1bd6d580f467bfa5c3a0d274ebccffb8c30a5021cea8856e65f00f8b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:41:50.012Z"
+    }
+  }
 }

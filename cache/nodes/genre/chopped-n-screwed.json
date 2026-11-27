@@ -86,5 +86,19 @@
       "type": "track",
       "name": "Screwed For Life"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Une technique de remixage hip-hop née à Houston, caractérisée par des tempos ralentis, des voix au pitch modifié et des segments rythmiques réordonnés.",
+      "article": "Pionnier du genre, DJ Screw a développé la technique Chopped N Screwed au début des années 1990 au sein de la scène hip-hop de Houston. Elle consiste à manipuler l'audio en ralentissant le tempo des morceaux entre 60 et 70 battements par minute, tout en intégrant du scratching et des effets de stop-time. Le manager Charles Washington, basé à Houston, a noté que le style a probablement émergé lors de rencontres informelles dans des appartements à la fin des années 1980, devenant finalement synonyme de la sous-culture locale de la ville. Au-delà d'une simple réduction de vitesse, la technique repose sur ce que les producteurs appellent le « chopping » : la reconfiguration de segments d'un break ou d'une phrase dans un nouvel ordre. Bien que les premiers critiques aient lié l'esthétique à la consommation régionale de lean à base de codéine, DJ Screw a toujours soutenu que la musique était destinée à un large public, y compris aux familles ne consommant pas de substances. Après son décès en 2000, son influence s'est étendue mondialement, alimentant des sous-genres contemporains basés sur Internet comme le future screw et le slowed and reverb.",
+      "facts": {
+        "era": "début des années 1990 à aujourd'hui",
+        "origin": "Houston, Texas, États-Unis",
+        "sonic_markers": "60-70 BPM, scratching, voix au pitch modifié, stop-time, emphase sur les basses"
+      },
+      "source_sha256": "2408632e83a646d7b93273db0417e827dad6afdaf27900186548c6994bbca995",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:59:27.287Z"
+    }
+  }
 }

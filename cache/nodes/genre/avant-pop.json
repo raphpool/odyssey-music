@@ -110,5 +110,18 @@
       "name": "An Electric Storm"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "L'Avant-pop décrit une musique populaire qui intègre l'expérimentalisme d'avant-garde, une conception sonore novatrice ou des techniques de composition idiosyncratiques, tout en conservant une sensibilité pop immédiate et accessible.",
+      "article": "L'Avant-pop représente un espace liminal fascinant dans l'histoire de la musique, où les frontières entre l'expérimentation artistique de haut niveau et l'accessibilité populaire se dissolvent. Il se caractérise par sa synthèse intentionnelle de sensibilités d'avant-garde — souvent ancrées dans la composition académique, la musique électronique ou le minimalisme — avec l'immédiateté structurelle de l'écriture de chansons pop. Plutôt que de rejeter l'attrait commercial, l'Avant-pop cherche à reconfigurer les tropes musicaux traditionnels, en veillant à ce que les mélodies accrocheuses restent intactes tout en exposant simultanément les auditeurs à des éléments « plus étranges » ou plus subversifs soudés à la conception.\n\nLes racines du genre remontent au milieu des années 1960, alors que les artistes pop ont commencé à traiter le studio d'enregistrement comme un laboratoire expérimental. Parmi les premiers exemples influents, citons « Tomorrow Never Knows » des Beatles, qui utilisait des techniques de musique concrète, et The Velvet Underground, qui a infusé du drone et du minimalisme dans des structures rock. Le terme a gagné en pertinence tout au long des années 1970 et 1980, à mesure que les lignes entre l'exploration « progressive » et la musique pop devenaient de plus en plus poreuses, soutenues par des artistes comme Brian Eno, Kate Bush et Laurie Anderson. Ces musiciens ont navigué entre les penchants de la musique classique contemporaine et les paysages évolutifs du rock et de l'electronica.\n\nDans un contexte contemporain, l'Avant-pop continue de fonctionner comme un genre non hiérarchique qui reflète la condition postmoderne. Il dépasse les limites des formes de chansons standard pour défier les attentes des auditeurs, s'appuyant souvent sur une palette diversifiée incluant le jazz, le noise, la musique classique et les traditions musicales mondiales. Des artistes tels que Björk, Julia Holter, Holly Herndon et Oneohtrix Point Never illustrent cette approche, utilisant leur plateforme pour ouvrir la voie à de nouveaux modes d'expression vocale et électronique qui poussent la musique pop vers des territoires radicaux et inexplorés. Il reste l'une des intersections les plus vitales pour ceux qui recherchent une musique à la fois profondément intelligente et intuitivement engageante.",
+      "facts": {
+        "era": "1960s–present",
+        "origin": "United Kingdom, United States, Germany"
+      },
+      "source_sha256": "5510432240d5ee79904faf5796548a343d510621b78ac6b944bb666710b42df5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:39:55.999Z"
+    }
+  }
 }

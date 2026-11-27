@@ -186,5 +186,19 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre électronique à haute énergie défini par des rythmes breakbeat rapides et des lignes de basse syncopées lourdes, né de la scène rave britannique des années 1990.",
+      "article": "Le Drum and bass (DnB) est un genre de musique électronique de danse apparu au Royaume-Uni au début des années 1990, issu des scènes breakbeat hardcore et jungle. Se définissant par des breakbeats à tempo élevé — généralement compris entre 165 et 185 battements par minute — et des lignes de basse et de sous-basse lourdes et syncopées, le genre représente une intersection significative entre la culture des sound systems jamaïcains, la musique rave et la production électronique expérimentale. Sa base sonore repose sur une programmation complexe de batteries, utilisant souvent des breakbeats samplés, juxtaposés à des textures synthétiques et à un poids profond dans les basses fréquences.\n\nHistoriquement, le genre est profondément enraciné dans le paysage multiculturel du Royaume-Uni. Il a absorbé l'influence du reggae, du dub et du hip-hop, en les mélangeant aux scènes techno et house en plein essor de l'époque. Les premiers producteurs, tels que 4hero, Goldie, Grooverider et LTJ Bukem, ont joué un rôle déterminant en éliminant les éléments plus orientés pop de la rave hardcore pour se concentrer sur des arrangements plus sombres et plus complexes. À mesure que le genre a mûri au milieu des années 1990, il s'est diversifié en de nombreux sous-genres, allant des textures atmosphériques et mélodiques de la « liquid funk » à l'énergie industrielle et sous haute tension de la « techstep » et de la « neurofunk ». En privilégiant l'innovation technique et la complexité rythmique, le Drum and bass a maintenu un public underground robuste et persistant tout en influençant périodiquement la musique grand public mondiale, y compris les fondations de genres ultérieurs comme le dubstep et la grime. Sa culture, célèbre pour être centrée sur l'éthos « junglist », demeure un témoignage de la puissance de la musique électronique intense, rythmée et riche en basses.",
+      "facts": {
+        "era": "Années 1990 à aujourd'hui",
+        "origin": "Royaume-Uni",
+        "sonic_markers": "165-185 BPM, breakbeats rapides, syncopation complexe, lignes de sous-basse lourdes, textures synthétiques, culture du sampling"
+      },
+      "source_sha256": "3453d4965fa0ec937f863e233c534defbc43125a86070b81e4619e995fa6e107",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:36:01.796Z"
+    }
+  }
 }

@@ -126,5 +126,18 @@
       "name": "Phylyps Trak"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le Dub techno est un sous-genre minimaliste et atmosphérique de la techno qui intègre les techniques de production chargées d'écho et de basses lourdes du dub reggae aux rythmes hypnotiques « four-on-the-floor » de la musique électronique.",
+      "article": "Le Dub techno est un sous-genre de la musique électronique de danse apparu au début des années 1990, fruit de la rencontre entre les paysages sonores caverneux et spacieux du dub reggae jamaïcain et la pulsation implacable et hypnotique de la techno de Berlin et de Détroit. Pionnier du genre, les producteurs allemands Moritz Von Oswald et Mark Ernestus, sous leur alias collectif Basic Channel, ont défini le genre par son son profond et réverbérant, l'utilisation de délais massifs et une esthétique minimaliste, froide mais organique. Contrairement à la techno grand public, qui met souvent l'accent sur des sommets énergétiques, le Dub techno privilégie l'atmosphère, la texture et l'impact psychologique de la répétition rythmique.\n\nLa signature sonore du genre est ancrée dans le processus de « dubbing », où les morceaux sont continuellement manipulés via des consoles de mixage, mettant l'accent sur les fréquences basses et les accords de synthétiseur expansifs et éthérés. Cela crée un paysage sonore brumeux, surréaliste et souvent dystopique qui semble à la fois futuriste et ancien. Des labels clés comme Chain Reaction et Rhythm & Sound de Basic Channel ont fourni le modèle, tandis que des artistes comme Deepchord (Rod Modell et Stephen Hitchell), Monolake, Porter Ricks et Pole ont poussé le son dans diverses directions, allant d'explorations ambiantes et mélodiques à des compositions sombres aux accents industriels. Le Dub techno est rarement une musique de « dance floor » au sens traditionnel ; il est souvent décrit comme intrositif, destiné à une écoute méditative et immersive qui encourage un état de transe. Au fil des décennies, il a évolué en un mouvement mondial, conservant son caractère expérimental et de niche tout en influençant d'innombrables producteurs sur les scènes ambient, house et électronique expérimentale. Il demeure l'un des recoins les plus intellectuellement et auditivement stimulants du paysage techno, célébré pour sa capacité à transformer de simples battements mécaniques en vastes architectures sonores émotionnelles.",
+      "facts": {
+        "era": "1990s - present",
+        "origin": "Berlin, Germany"
+      },
+      "source_sha256": "9b4de6d7bb17698f99bb9dedac5d61cbe9cc60659735639a038b0156f0eb037f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:41:57.032Z"
+    }
+  }
 }

@@ -69,5 +69,18 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un domaine multidisciplinaire impliquant l'application de la technologie informatique à la composition musicale, à la synthèse et à la conception sonore.",
+      "article": "La computer music représente l'intersection fondamentale entre l'informatique et la composition musicale, agissant comme un vaste champ d'étude et de pratique artistique qui englobe la synthèse sonore, la composition algorithmique et le traitement du signal numérique. Contrairement à l'instrumentation traditionnelle, qui repose sur la production physique du son, la computer music exploite la puissance de la logique et des systèmes binaires pour modéliser, générer et manipuler l'audio au niveau microscopique de la forme d'onde. Le domaine a émergé à la fin des années 1940 et au début des années 1950, non pas comme un genre commercial, mais comme une série d'expériences menées par des pionniers dans des institutions telles que les Bell Labs et des centres informatiques universitaires. Les premières étapes importantes ont inclus le CSIRAC en Australie et le Ferranti Mark 1 en Angleterre, qui ont réalisé les premiers exemples enregistrés de mélodies générées par ordinateur.\n\nTout au long des années 1960 et 1970, le domaine est passé de la génération de sons primitifs au développement d'architectures de synthèse sophistiquées. Des figures telles que Max Mathews, qui a créé la série MUSIC-N, et John Chowning, dont les travaux sur la synthèse par modulation de fréquence (FM) sont devenus une pierre angulaire du son numérique moderne, ont redéfini la relation entre le compositeur et la machine. Cette lignée relie les ordinateurs centraux massifs, occupant des salles entières et nécessitant des heures de temps de traitement pour quelques secondes d'audio, aux stations de travail audionumériques (DAW) omniprésentes qui définissent la production contemporaine. En traitant le son comme une donnée mathématique, la computer music a ouvert de nouvelles possibilités en matière de timbre, de spatialisation et de structures génératives qui étaient auparavant physiquement impossibles, devenant ainsi le socle de la culture de la musique électronique et de l'art sonore contemporain dans le monde entier.",
+      "facts": {
+        "era": "Années 1950–Présent",
+        "origin": "Mondial (principalement États-Unis, Australie, Royaume-Uni)"
+      },
+      "source_sha256": "a3d577aa4ee49d3f52fa525477df9d10da86e47034d0475730354f237ac06911",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T17:12:30.307Z"
+    }
+  }
 }

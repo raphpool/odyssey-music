@@ -77,5 +77,18 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le Highlife est un genre ouest-africain caractérisé par une fusion de rythmes et de folklore traditionnels akan avec le jazz occidental, des arrangements de cuivres et des mélodies portées par la guitare. Apparu au Ghana au début du XXe siècle en tant que style sophistiqué et dansant joué dans les clubs urbains, il a depuis profondément influencé la musique populaire africaine moderne.",
+      "article": "Le Highlife est un genre vibrant et fondamental de la musique ouest-africaine qui a émergé à la fin du XIXe siècle le long des régions côtières de ce qui est aujourd'hui le Ghana, alors la Côte-de-l'Or britannique. Le genre représente une synthèse unique de rythmes et de folklore traditionnels akan avec les structures mélodiques du jazz occidental, de la musique de fanfare et des styles de salle de bal comme le foxtrot et le calypso. Historiquement, le terme « Highlife » a été inventé dans les années 1920 en tant que descripteur social ; il faisait référence aux clubs de danse exclusifs et haut de gamme d'Accra et d'autres centres urbains où des clients de l'élite, vêtus de tenues de soirée formelles, se rassemblaient pour écouter des orchestres interpréter des versions sophistiquées et teintées de jazz de la musique indigène ghanéenne. Ceux qui ne pouvaient pas se permettre les frais d'entrée élevés ou qui étaient empêchés d'entrer écoutaient depuis l'extérieur, décrivant la musique comme le son de la « high life ».\n\nMusicalement, le Highlife est défini par sa syncope entraînante et dansante et le rôle prédominant des sections de cuivres et des guitares. Une technique caractéristique est le style de jeu de guitare à deux doigts, qui reflète souvent les motifs complexes et polyrythmiques trouvés dans les percussions et les tambours traditionnels d'Afrique de l'Ouest. Des pionniers tels que E.T. Mensah — souvent célébré comme le « King of Highlife » — ont joué un rôle déterminant dans la popularisation du genre à travers le continent, mélangeant ces éléments traditionnels avec les cuivres et les arrangements du big band jazz. Alors que le genre s'est répandu au-delà du Ghana au milieu du XXe siècle, il a évolué en sous-genres régionaux comme les styles axés sur la guitare du Nigeria, notamment le Igbo Highlife. Au XXIe siècle, l'ADN du Highlife a profondément influencé des formes dérivées, notamment l'Afrobeat et le Hiplife, influencé par le hip-hop et l'électronique. En 2025, le Highlife a été officiellement reconnu par l'UNESCO comme patrimoine culturel immatériel, soulignant son importance durable en tant que pilier de l'identité musicale africaine et de l'histoire de la musique populaire mondiale.",
+      "facts": {
+        "era": "1920s–present",
+        "origin": "Ghana"
+      },
+      "source_sha256": "93f8d596fc6bcb807525c695d0fd743f070077db1f9ea87ba9ef40ebea3e4bda",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:43:55.286Z"
+    }
+  }
 }

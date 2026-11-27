@@ -108,5 +108,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q1548603"
+  "qid": "Q1548603",
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de jazz qui s'est développé sur la côte Ouest américaine durant les années 1950, caractérisé par un tempérament détendu et cool, des arrangements précis et une sensibilité mélodique plus légère et lyrique.",
+      "article": "Le West Coast jazz est un sous-genre du cool jazz qui a prospéré en Californie, principalement à Los Angeles et à San Francisco, durant les années 1950. Se distinguant par une approche détendue, mélodique et cérébrale, cette musique contrastait souvent vivement avec les improvisations agressives et énergiques des scènes bebop et hard bop de New York. Alors que le jazz new-yorkais était fréquemment associé au « grain et au ciment » d'un environnement urbain, le West Coast jazz était souvent décrit par ses praticiens comme le reflet du mode de vie ensoleillé et décontracté de la côte Pacifique.\n\nMusicalement, le genre privilégiait la composition, les arrangements complexes et la sophistication harmonique plutôt que les solos bruts et enflammés caractéristiques du bebop de la côte Est. Cette orientation stylistique fut fortement influencée par le travail de Miles Davis et de ses collaborateurs lors des sessions fondatrices de Birth of the Cool, qui mettaient en vedette des arrangeurs comme Gerry Mulligan. Des musiciens tels que Gerry Mulligan, Chet Baker, Dave Brubeck et Shelly Manne devinrent synonymes de ce son, intégrant souvent une instrumentation non conventionnelle, comme le célèbre quartet sans piano de Gerry Mulligan ou l'inclusion d'un violoncelle par Chico Hamilton. Le genre fut soutenu par un réseau de musiciens locaux, dont beaucoup étaient d'anciens membres des grands orchestres de Stan Kenton et Woody Herman, et appuyé par des labels spécialisés tels que Pacific Jazz Records et Contemporary Records, qui capturèrent l'esthétique unique et légère de la scène pour un public national. Malgré sa popularité, la scène fut confrontée à des critiques concernant l'exclusion systémique des musiciens afro-américains des travaux de studio lucratifs, une tension qui demeura un élément significatif du paysage social et musical de l'époque.",
+      "facts": {
+        "era": "années 1950",
+        "origin": "Los Angeles et San Francisco, États-Unis"
+      },
+      "source_sha256": "60979de04a4f068f73ada1f67d79e259f3ab4c35dbb1fef982aaafa30035f57a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:37:59.576Z"
+    }
+  }
 }

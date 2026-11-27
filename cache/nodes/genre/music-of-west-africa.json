@@ -120,5 +120,19 @@
       "type": "track",
       "name": "Spirit Song of the Baoule"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Une région musicale diversifiée caractérisée par une fusion historique de percussions traditionnelles, de narration orale griotique et le développement de genres influents tels que le highlife et l'Afrobeat.",
+      "article": "Les traditions musicales d'Afrique de l'Ouest sont définies par une distinction de longue date entre la musique profane indigène, souvent centrée sur les percussions djembé, et les traditions influencées par l'islam qui mettent en avant des instruments à cordes comme le goje. Le rôle du griot demeure central dans ce paysage culturel, agissant en tant qu'historien et conteur qui préserve les traditions orales par l'interprétation vocale et l'accompagnement instrumental. Des styles populaires tels que le highlife ont émergé au XXe siècle grâce à une fusion de motifs de tambours locaux et d'instruments européens comme les accordéons et les cuivres, sous l'impulsion d'artistes tels que E.T. Mensah et E.K. Nyame au Ghana. Parallèlement, l'Afrobeat, fortement influencé par le jazz et le funk, a été développé par Fela Kuti à la fin des années 1960. Les scènes contemporaines sont marquées par une focalisation sur les rythmes de batterie électroniques, comme on peut le voir dans le travail d'artistes modernes tels que Wizkid, Burna Boy et Davido. Les instruments traditionnels comme la kora et le balafon restent essentiels à l'identité régionale, fréquemment utilisés par des virtuoses comme Sona Jobarteh et Toumani Diabaté pour jeter un pont entre les techniques musicales historiques et les contextes de performance modernes.",
+      "facts": {
+        "era": "Du IXe siècle à nos jours",
+        "origin": "Afrique de l'Ouest ; inclut des pays tels que le Nigeria, le Ghana, le Mali, le Sénégal et la Gambie.",
+        "sonic_markers": "Structures polyrythmiques, ensembles de maîtres-tambours, gammes pentatoniques/heptatoniques, accent mis sur l'appel et la réponse vocale-instrumentale, et fusion jazz-funk."
+      },
+      "source_sha256": "1f901edaa4a09a5b33b96de9b86756f5df8b963b5df269759e5fdd295326a620",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:31:59.752Z"
+    }
+  }
 }

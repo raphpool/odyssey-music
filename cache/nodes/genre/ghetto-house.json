@@ -120,5 +120,19 @@
       "type": "track",
       "name": "It's Time for the Percolator"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre brut et minimal de la house music de Chicago, défini par des motifs de boîtes à rythmes Roland, des échantillons vocaux répétitifs et des paroles explicites à caractère sexuel.",
+      "article": "Apparu sur la scène house de Chicago vers 1992, le Ghetto house — souvent appelé booty house — s'est défini par une production minimale utilisant les boîtes à rythmes Roland TR-808 et TR-909. Les morceaux adaptaient fréquemment le modèle structurel de « It's Time for the Percolator » de Cajmere, superposant des échantillons vocaux bruts et répétitifs ainsi que des paroles sexuellement explicites sur des rythmes four-to-the-floor ou syncopés. Pionnier grâce à des artistes comme DJ Deeon, DJ Funk et Parris Mitchell, ce son était synonyme de la production du label Dance Mania. La production restait volontairement dépouillée, s'appuyant souvent sur peu ou pas de traitement d'effets pour maintenir une esthétique lo-fi granuleuse qui privilégiait l'énergie du dancefloor. Ce sous-genre a fini par servir de précurseur fondamental à des styles plus rapides et plus fragmentés tels que le Chicago juke et le footwork.",
+      "facts": {
+        "era": "début des années 1990 à la fin des années 1990",
+        "origin": "Chicago, Illinois, États-Unis",
+        "sonic_markers": "grosse caisse 4/4, percussions Roland TR-808/909, production lo-fi, échantillons vocaux répétitifs, utilisation minimale de synthétiseurs"
+      },
+      "source_sha256": "2284c8f7dfe3d0a49296d921faced90b4f241086a1ce06d5adf374293d4a0b2a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:26:52.766Z"
+    }
+  }
 }

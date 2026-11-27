@@ -61,5 +61,14 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q2746731"
+  "qid": "Q2746731",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre fondé sur l'imitation humoristique, satirique ou ironique de chansons populaires, d'artistes ou de styles musicaux établis.",
+      "article": "La parody music est une forme musicale spécialisée caractérisée par l'imitation humoristique, satirique ou burlesque de chansons, de styles ou de compositions existants. Bien que la parodie en tant que procédé littéraire et artistique remonte à des siècles — avec des précédents historiques trouvés dans les œuvres de compositeurs comme Mozart et Bach —, elle s'est solidifiée en un genre distinct au sein de la culture pop moderne grâce à l'essor d'artistes spécialisés dans les novelty records. Le genre repose généralement sur la manipulation de mélodies, de structures et de thèmes lyriques reconnaissables pour offrir un ressort comique, un commentaire culturel ou une recontextualisation ironique.\n\nÀ la fin du XXe siècle, le genre a trouvé sa figure la plus éminente et la plus durable en \"Weird Al\" Yankovic, dont la carrière a transformé la parody music d'une nouveauté éphémère en un métier soutenu et respecté par la critique. L'approche de Yankovic, qui met l'accent sur une qualité de production méticuleuse et implique souvent la recherche d'une autorisation formelle auprès des artistes originaux, a élevé le niveau du genre. Il a distingué son travail par un mélange de parodies lyriques directes, de chansons pastiches originales qui imitent les sons d'artistes spécifiques et de medleys de polka à l'accordéon. L'impact culturel du genre est fortement lié à l'évolution des médias musicaux, en particulier l'essor de MTV et, plus tard, des plateformes numériques, qui ont permis aux artistes de parodie d'imiter l'esthétique visuelle des clips vidéo parallèlement à leurs satires audio. En équilibrant compétence musicale technique et esprit vif, la parody music a maintenu une niche unique, prouvant que l'imitation — lorsqu'elle est exécutée avec suffisamment de créativité — sert à la fois de critique et de célébration de la musique populaire qu'elle imite.",
+      "source_sha256": "17cf46754f3474604a8896e655c1bf0b840c01ca423701d9190ab84a016f9bc7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:33:00.646Z"
+    }
+  }
 }

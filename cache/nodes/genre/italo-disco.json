@@ -112,5 +112,18 @@
       "type": "track",
       "name": "Call Me"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de musique électronique dansante à haute énergie, porté par les synthétiseurs, né en Italie à la fin des années 1970 et au début des années 1980, caractérisé par des textures robotiques, une répétition mélodique et une esthétique abstraite et futuriste.",
+      "article": "L'Italo disco, un genre apparu en Italie à la fin des années 1970 et dans les années 1980, représente une convergence unique d'innovation électronique, de sensibilités pop européennes et d'esthétiques inspirées de la science-fiction. Loin d'être un mouvement monolithique reconnu par le public italien de l'époque, le genre était en grande partie un terme marketing popularisé par le label allemand ZYX Records pour catégoriser une souche spécifique de musique de danse riche en synthétiseurs, produite dans des studios italiens pour l'exportation vers les scènes de club d'Europe du Nord. Caractérisé par ses tempos entraînants, ses lignes de synthétiseur en arpèges, ses voix robotiques au vocodeur et ses paroles en anglais souvent intentionnellement naïves, l'Italo disco a fourni une bande-son pour la vie nocturne des stations balnéaires de l'Adriatique comme Rimini, illustrée par le célèbre club Altromondo.\n\nMusicalement, le genre fait le pont entre le travail électronique pionnier de Kraftwerk et Giorgio Moroder et l'essor ultérieur de la house et de la techno. Les producteurs de la scène privilégiaient fréquemment le processus de production en studio au détriment de l'image de marque des artistes individuels, employant souvent le même groupe central de musiciens de studio et de chanteurs sous de nombreux pseudonymes pour maximiser les opportunités commerciales. Cette approche a conduit à un catalogue vaste et complexe qui a prospéré grâce à l'expérimentation de nouvelles textures synthétiques. Bien qu'initialement rejeté par beaucoup comme une nouveauté jetable ou un « plaisir coupable » dans les territoires anglophones, l'Italo disco a fait l'objet d'une réévaluation culturelle significative. Au XXIe siècle, il est vénéré par l'underground électronique comme une force pionnière, son héritage étant évident dans l'ADN de la synth-pop contemporaine, de la house et de la musique de club moderne. L'esthétique du genre, qui mélange glamour futuriste et kitsch méditerranéen romancé, continue d'influencer le langage visuel et sonore de la culture dance moderne. Des artistes comme Den Harrow, Ryan Paris, Spagna et des titres tels que Dolce Vita, Tarzan Boy ou Call Me restent des emblèmes incontournables de cette période.",
+      "facts": {
+        "era": "Fin des années 1970 – années 1980",
+        "origin": "Italie"
+      },
+      "source_sha256": "469279219c6d317b07d19e714269914c70ba5c264f676aa5941dd11b70b5ff50",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:29:05.644Z"
+    }
+  }
 }

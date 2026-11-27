@@ -115,5 +115,18 @@
       "name": "Tiger Trap"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style d'indie pop défini par une éthique DIY, des guitares mélodiques cristallines et une adhésion consciente à la vulnérabilité, à l'innocence et à une esthétique sentimentale.",
+      "article": "Le Twee pop est un sous-genre influent et distinctif de l'indie pop apparu au Royaume-Uni au début des années 1980. Défini par son esthétique « mignonne », son éthique DIY et une simplicité musicale souvent ancrée dans le punk rock, le genre a remis en question les postures et l'hégémonie masculine de la scène rock contemporaine. Musicalement, il se caractérise par des guitares électriques au son clair et cristallin, des voix douces ou murmurées, et des structures de chansons qui privilégient des mélodies courtes, sucrées et accrocheuses. Sur le plan lyrique, le Twee pop explore souvent des thèmes liés à la sentimentalité naïve, aux amours de jeunesse, à l'enfance et à une nostalgie idiosyncrasique, en dépouillant intentionnellement le genre de l'âpreté associée à la musique rock traditionnelle.\n\nLe terme « twee », un terme familier britannique signifiant excessivement pittoresque ou délicat, a été initialement utilisé par les critiques musicaux comme un terme péjoratif. Cependant, le mouvement a fini par se réapproprier l'étiquette, la transformant en un signe distinctif qui souligne l'engagement du genre envers la vulnérabilité, la sensibilité et l'accessibilité. La scène a gagné un élan significatif grâce à la légendaire compilation C86 et au soutien de figures comme le DJ John Peel, qui a offert une plateforme à ces groupes discrets axés sur la mélodie. Des labels emblématiques tels que Sarah Records sont devenus des bastions pour ce son, favorisant une communauté qui prônait un esprit artistique et inclusif. Tout au long des années 1990 et au-delà, le genre s'est développé à l'international, trouvant un écho sur la scène indie écossaise avec des groupes comme Belle and Sebastian, et dans les cercles DIY américains avec des artistes de K Records comme Beat Happening. En privilégiant la sincérité sur le cynisme et la mélodie sur l'agressivité, le Twee pop a laissé une marque indélébile sur la musique indépendante, influençant tout, du noise pop aux arrangements sophistiqués de l'indie folk et au-delà.",
+      "facts": {
+        "era": "1980s-present",
+        "origin": "United Kingdom"
+      },
+      "source_sha256": "422472cec207514671e68bc550222b661cd2830311e822ca5880c9d7a6df0c6f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:46:53.614Z"
+    }
+  }
 }

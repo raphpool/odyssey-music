@@ -99,5 +99,17 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q612024"
+  "qid": "Q612024",
+  "l10n": {
+    "fr": {
+      "teaser": "La musique classique contemporaine est une catégorie vaste et diversifiée de musique savante occidentale composée approximativement de 1945 à nos jours, caractérisée par un rejet des contraintes historiques rigides et un pluralisme radical des styles, allant du modernisme post-tonal et du sérialisme au minimalisme et à l'art de la performance expérimental.",
+      "article": "La musique classique contemporaine représente un paysage vaste et kaléidoscopique de musique savante occidentale composée dans la période suivant le milieu du XXe siècle, généralement datée de 1945 à nos jours. Elle sert de terme générique englobant une gamme diversifiée de philosophies esthétiques et de méthodologies compositionnelles, allant des cadres rigoureux et hautement structurés du sérialisme intégral aux répétitions méditatives et cycliques du minimalisme, ainsi qu'aux approches expansives axées sur les textures du spectralisme. Contrairement aux époques antérieures de l'histoire de la musique, qui étaient souvent définies par un ensemble unifié de contraintes stylistiques ou de normes harmoniques, l'ère contemporaine est caractérisée par une explosion de pluralisme. Les compositeurs ont dépassé les hiérarchies tonales traditionnelles établies au cours des périodes baroque, classique et romantique, s'engageant souvent dans des paysages sonores post-tonaux, dissonants ou expérimentaux qui remettent en question les perceptions de l'auditeur en matière de forme, de structure et d'instrumentation.\n\nLa genèse de ce mouvement est ancrée dans la période suivant la Seconde Guerre mondiale, où une divergence s'est produite entre les traditions européennes et américaines. En Europe, des figures comme Pierre Boulez et Karlheinz Stockhausen ont mené la charge vers le haut modernisme et le sérialisme intégral, traitant le son avec une précision mathématique et une curiosité technologique, fortement influencées par les expériences électroniques. À l'inverse, aux États-Unis, un courant distinct d'expérimentalisme a émergé à travers des compositeurs comme John Cage, qui a remis en question la nature même de la musique, déconstruisant la notation, la performance et les frontières entre le son et le silence. Le minimalisme, initié par des figures telles que Philip Glass et Steve Reich, a plus tard émergé comme un contre-mouvement vital au haut modernisme, mettant l'accent sur la clarté, une pulsation régulière et la répétition en phase, ce qui influencerait profondément la musique populaire et les genres ambient. Aujourd'hui, la musique classique contemporaine continue de prospérer en tant que domaine en constante évolution, mêlant l'orchestration acoustique traditionnelle à l'innovation numérique, à la complexité post-tonale et à la persistance de l'expression néoromantique. Elle demeure un témoignage de la capacité inépuisable de la musique savante humaine à réinventer son langage, à s'engager avec les complexités du monde moderne et à offrir un espace vital pour l'exploration intellectuelle et sensorielle au-delà des limites confortables des styles historiques.",
+      "facts": {
+        "origin": "Monde occidental (Europe et États-Unis)"
+      },
+      "source_sha256": "78eea9d8cf00583807c7f8d241e1532f097522637fc1601fb78d76116bcb605f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T17:12:34.454Z"
+    }
+  }
 }

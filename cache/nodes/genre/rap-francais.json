@@ -70,5 +70,19 @@
       "type": "track",
       "name": "100% Rap Français"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style prédominant de musique hip-hop originaire des pays francophones, fortement influencé par la culture hip-hop américaine tout en étant adapté de manière unique à la langue française.",
+      "article": "Le Rap français, également connu sous le nom de hip-hop français, représente le style distinct de musique hip-hop développé au sein des nations francophones. Émergeant comme une force culturelle significative, la France s'est imposée comme le deuxième plus grand marché de hip-hop au monde, juste derrière les États-Unis. Le genre est profondément enraciné dans l'importation de la culture hip-hop américaine, tirant une forte inspiration des sons, de la mode, des clips vidéo et de l'esthétique initiés par les artistes new-yorkais. Cependant, il a évolué vers une expression artistique unique, de nombreux observateurs notant que la langue française est particulièrement bien adaptée aux exigences rythmiques du rap. Certains artistes ont également cité l'influence du chanteur Renaud comme un élément fondateur dans le développement du style local. La croissance et la prééminence soutenue du genre ont été davantage renforcées au début du XXIe siècle par les réglementations du ministère français de la Culture, qui ont imposé aux stations de radio nationales de diffuser un minimum de 40 pour cent de musique en langue française, offrant une plateforme vitale pour que les talents locaux atteignent un public plus large.",
+      "facts": {
+        "era": "Années 1980 à aujourd'hui",
+        "origin": "France et pays francophones",
+        "sonic_markers": "BPM variés, intégrant souvent des techniques de production américaines avec un débit lyrique français."
+      },
+      "source_sha256": "de4f401601d26a18a167d457040c362709b88c6a814517eafbdc693c4215c3b7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:34:06.613Z"
+    }
+  }
 }

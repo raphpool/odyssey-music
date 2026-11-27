@@ -95,5 +95,19 @@
       "type": "track",
       "name": "Phat Planet"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre diversifié et expérimental de musique électronique défini par une fusion de house, de dub et de reggae, popularisé par les techniques de production du groupe Leftfield.",
+      "article": "Émergeant du paysage électronique britannique au début des années 1990, le Leftfield Techno s'est développé comme une classification large et expérimentale pour la musique de danse qui repoussait les limites au-delà de la house grand public ou de la techno de club standard. Le terme est fortement associé au duo influent Leftfield — composé de Neil Barnes et Paul Daley — qui a été le pionnier d'une fusion de musique house avec du dub et du reggae, notamment sur des titres comme « Release the Pressure ». Ces compositions mettent souvent l'accent sur l'instrumental, utilisant des éléments inspirés des années 1980 tels que la réverbération « gated », les lignes de basse de synthétiseurs analogiques et une programmation de batterie électronique agressive. Bien que le terme fasse parfois référence au style de production spécifique du groupe, il fonctionne également comme une étiquette générique pour des artistes novateurs qui se situent à la « gauche » des scènes de musique électronique commerciale. Les producteurs dans cet espace emploient fréquemment de lourdes influences dub, des breakbeats complexes et une conception sonore non conventionnelle qui ont défié les normes des pistes de danse du milieu des années 1990.",
+      "facts": {
+        "era": "début des années 1990 à aujourd'hui",
+        "origin": "Londres, Royaume-Uni",
+        "sonic_markers": "Lignes de basse influencées par le dub, rythmes breakbeat, réverbération gated, textures de synthétiseurs analogiques, arrangements à forte dominante instrumentale."
+      },
+      "source_sha256": "ff55307c16d370be87ef20e69aec2c646af2496b9a9a27a0fc1bdb1cdba55ba6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:30:05.469Z"
+    }
+  }
 }

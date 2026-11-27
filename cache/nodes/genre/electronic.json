@@ -351,5 +351,14 @@
       "type": "track",
       "name": "Windowlicker"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "La musique électronique désigne toute musique principalement créée, modifiée ou interprétée à l'aide d'instruments et de technologies électroniques plutôt que d'instruments acoustiques traditionnels.",
+      "article": "La musique électronique est un écosystème musical vaste et aux multiples facettes, défini principalement par l'utilisation d'instruments et de technologies électroniques — notamment les synthétiseurs, les échantillonneurs, les boîtes à rythmes et les logiciels de production informatique — plutôt que par une instrumentation acoustique traditionnelle. Émergeant des explorations expérimentales en laboratoire et des travaux pionniers en studio au milieu du XXe siècle, le genre a évolué vers un paysage diversifié de sous-genres qui constituent désormais le fondement de la culture populaire contemporaine. Son histoire est marquée par la pollinisation croisée de mouvements de danse populaires, de scènes de clubs underground queer dans des villes comme Detroit, Chicago et Berlin, et par la démocratisation des technologies de création musicale.\n\nLe genre a suscité un intérêt grandissant dès ses débuts grâce à des croisements expérimentaux comme l'interprétation de Bach au synthétiseur Moog par Wendy Carlos, mais c'est la fusion de la précision électronique avec le rythme entraînant du disco, illustrée par le succès de Donna Summer en 1977 « I Feel Love », qui a catalysé le développement de la musique de danse moderne. Les décennies suivantes ont vu l'éclatement de ces sons en mouvements fondateurs, notamment l'ambient, la house et la techno. Alors que la house music a émergé de l'underground dominé par la communauté queer de Chicago, la techno s'est développée à Detroit comme un paysage sonore distinct influencé par l'industrie. Aujourd'hui, le terme fonctionne comme une vaste catégorie englobant tout, des textures ambient minimalistes et non rythmiques aux structures à haute énergie générées numériquement de l'EDM mondiale et au-delà. Son influence est incontournable, ayant remodelé l'architecture sonore de presque tous les styles musicaux contemporains.",
+      "source_sha256": "25362e44d7520125966682fc1db29a920de4cea5633ed7798563ca6ce34e22b9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:54:12.822Z"
+    }
+  }
 }

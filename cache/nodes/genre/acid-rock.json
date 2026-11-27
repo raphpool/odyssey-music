@@ -137,5 +137,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q236932"
+  "qid": "Q236932",
+  "l10n": {
+    "fr": {
+      "teaser": "L'acid rock est un sous-genre brut et à fort volume du rock psychédélique apparu au milieu des années 1960, défini par son recours intensif aux guitares saturées, au fuzztone et aux longues improvisations. Souvent utilisé pour décrire la facette la plus intense et ancrée dans le blues du mouvement psychédélique de la côte Ouest, il a servi de précurseur essentiel au développement du hard rock et du heavy metal.",
+      "article": "L'acid rock est un sous-genre puissant et à haute intensité de la musique rock qui a émergé de la côte Ouest américaine au milieu des années 1960, agissant à la fois comme un catalyseur et comme un cousin plus lourd et distinct du mouvement rock psychédélique au sens large. Ancré dans la rudesse du garage punk et l'élan primal du blues rock, l'acid rock s'est distingué des sensibilités fantaisistes et orientées pop de la scène psychédélique britannique ainsi que des explorations teintées de folk de la scène de Haight-Ashbury. Il privilégiait au contraire le volume, la dissonance et un sentiment de spontanéité agressive. Caractérisée par des guitares électriques lourdes et saturées, l'utilisation prédominante de pédales fuzztone et wah-wah, et des jams improvisés prolongés, souvent méditatifs ou frénétiques, cette musique était fréquemment associée aux fêtes underground « Acid Test » et à l'expérience contre-culturelle de l'époque.\n\nBien que le terme « acid rock » ait été souvent utilisé de manière vague ou interchangeable avec « rock psychédélique » à la fin des années 1960 — devenant fréquemment un terme générique pour tout groupe associé à la contre-culture — les historiens de la musique ont depuis consolidé son identité comme l'extrémité la plus extrême, saturée et rythmiquement lourde du spectre psychédélique. Alors que la décennie touchait à sa fin, l'engagement du genre envers une amplification puissante et des riffs saturés a servi de pont vital entre les explorations libres des années 1960 et l'agression structurée du début du heavy metal et du hard rock. De l'intensité proto-metal de la fin des années 60 à son influence ultérieure sur le stoner metal des années 1990, l'acid rock demeure un pilier fondamental pour tout son cherchant à mêler une atmosphère psychédélique profonde à la puissance écrasante de la guitare électrique saturée. Son héritage persiste dans chaque genre qui privilégie l'impact viscéral et physique du son autant que sa capacité à altérer la conscience.",
+      "facts": {
+        "era": "Mid-1960s to early 1970s",
+        "origin": "United States (specifically West Coast)"
+      },
+      "source_sha256": "998221ebeef9c1abadd05f0633a0102f9e8bacd6a0a10f91e4a14bc1bd0ddb44",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:39:50.157Z"
+    }
+  }
 }

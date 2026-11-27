@@ -72,5 +72,14 @@
       "name": "Kagayaki"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de la new-age fortement influencé par la musique ancienne, baroque et classique, généralement caractérisé par une instrumentation acoustique (comme le piano et la harpe), des tempos lents et une atmosphère méditative et pastorale.",
+      "article": "La neoclassical new-age est un sous-genre distinct et évocateur de la new-age, caractérisé par sa dette structurelle et esthétique profonde envers la musique savante occidentale des périodes ancienne, baroque et classique. Contrairement à la new-age grand public, qui s'appuie souvent sur des textures synthétiques ou des nappes ambiantes, la neoclassical new-age se concentre généralement sur une instrumentation acoustique — mettant fréquemment en avant le piano, la harpe ou des arrangements de musique de chambre délicats — pour créer une atmosphère de grâce méditative et intemporelle. Ce genre fait le pont entre les traditions formelles techniques du passé et l'intention tranquille et contemplative des sensibilités new-age contemporaines, aboutissant à des compositions qui semblent à la fois anciennes et immédiates.\n\nHistoriquement, les fondations du genre sont profondément ancrées dans le travail expérimental du début des années 1970, où les artistes ont commencé à fusionner des tendances électroniques progressives avec des influences classiques pastorales raffinées. Un catalyseur principal de cette évolution fut le groupe allemand Popol Vuh, dont l'album phare 'Hosianna Mantra' (1972) est fréquemment cité comme un point d'entrée essentiel. L'éloignement de l'album par rapport au travail précédent du groupe, très axé sur les synthétiseurs, vers une fusion spirituelle et délicate de guitare acoustique, de piano et de hautbois, a marqué un tournant vers ce qui allait devenir l'esthétique neoclassical new-age. À mesure que le genre a mûri, il s'est élargi pour inclure des œuvres minimalistes centrées sur le piano et des paysages sonores éthérés et vastes par des artistes tels que Harold Budd, dont les collaborations et la production solo illustrent la capacité du genre à la beauté et à l'introspection. Au Japon, des compositeurs comme Joe Hisaishi et Toshifumi Hinata ont plus tard raffiné ce style, en l'intégrant aux sensibilités narratives et émotionnelles de la culture moderne des bandes originales de films japonais. Aujourd'hui, le genre sert de sanctuaire aux auditeurs en quête d'expériences musicales complexes mais apaisantes qui évitent la dynamique rythmique de la pop moderne ou l'abstraction dissonante de la musique classique d'avant-garde, se concentrant plutôt sur la résonance de l'instrument et le silence entre les notes.",
+      "source_sha256": "be81d584929b2b93565ba2fefaa96df7060d192c51769bdb21543d9ec5494a2b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:32:01.607Z"
+    }
+  }
 }

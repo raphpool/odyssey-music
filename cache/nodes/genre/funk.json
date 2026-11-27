@@ -195,5 +195,18 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le funk est un genre musical axé sur le rythme, caractérisé par des lignes de basse syncopées, l'accent mis sur le premier temps d'une mesure (« the one ») et un groove contagieux propice à la danse. Enraciné dans la soul et le R&B des années 1960, il est devenu une force transformatrice qui a ouvert la voie au disco, au hip-hop et à la musique électronique de danse moderne.",
+      "article": "Le funk est un genre musical axé sur le rythme qui a émergé au sein des communautés afro-américaines au milieu des années 1960, servant de pont essentiel entre l'intensité émotionnelle de la soul et les innovations rythmiques de la musique de danse urbaine de la fin du XXe siècle. Contrairement au rhythm and blues traditionnel, qui mettait généralement l'accent sur le contretemps sur les deuxième et quatrième temps d'une mesure, le funk se définit par son rythme agressif et syncopé qui privilégie une impulsion forte sur la première note, un concept célèbre auquel James Brown et ses contemporains faisaient référence en parlant de frapper « the one ». Cette base rythmique, caractérisée par des motifs denses et imbriqués de lignes de basse, de percussions et de cuivres, crée un « groove » contagieux et dansant qui subordonne la mélodie à la puissance de la section rythmique.\n\nLes racines culturelles du terme « funk » sont profondément ancrées dans la tradition orale afro-américaine, décrivant initialement un style de performance brut et passionné qui reflétait les dures réalités de l'expérience noire, notamment la lutte urbaine, la résilience et la libération personnelle. À la fin des années 1960 et dans les années 1970, des pionniers comme James Brown et Sly and the Family Stone ont transformé cette esthétique en un mouvement musical qui mêlait souvent des commentaires sociaux urgents à ses rythmes percutants caractéristiques. Au début des années 1970, le genre s'est étendu à des explorations musicales complexes et conceptuelles avec des groupes comme Parliament-Funkadelic, dirigé par George Clinton, et des groupes influencés par la soul comme The Ohio Players et Kool and the Gang. L'influence du funk est fondamentale ; il a fourni l'ADN rythmique essentiel à l'essor du disco à la fin des années 1970, a façonné les textures de la musique électronique de danse naissante et est devenu le socle sur lequel la culture hip-hop a été bâtie. Aujourd'hui encore, la sensibilité « funk » — une concentration sur l'interaction des instruments pour créer un groove hypnotique et propulsif — demeure une pierre angulaire de la musique populaire américaine.",
+      "facts": {
+        "era": "Milieu des années 1960 aux années 1980 (et au-delà)",
+        "origin": "Communautés afro-américaines, États-Unis"
+      },
+      "source_sha256": "e46428cd2664cdd7dbaad54b541168c7b4992f49fdc4ab9656bb58f9251754a4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:08:58.122Z"
+    }
+  }
 }

@@ -157,5 +157,18 @@
       "name": "The Harder They Come"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le reggae est un genre de musique populaire jamaïcaine caractérisé par son phrasé à contretemps, ses lignes de basse lourdes et mélodiques, et son accent lyrique sur la conscience sociale et les thèmes spirituels.",
+      "article": "Le reggae a émergé du paysage musical vibrant et socialement chargé de la Jamaïque de la fin des années 1960, en particulier au sein des centres urbains de Kingston. Il a évolué à partir d'une lignée de styles locaux incluant le mento, le ska et le rocksteady, tout en puisant profondément dans les percussions africaines traditionnelles, le jazz et le rhythm and blues. Le genre a obtenu son nom et un moment déterminant de reconnaissance mondiale avec la sortie du single de 1968 « Do the Reggay » par Toots and the Maytals, un morceau qui a solidifié la transition des sons plus fluides et rapides du rocksteady vers la pulsation plus lourde et délibérée de la nouvelle forme.\n\nMusicalement, le reggae est instantanément reconnaissable par son « one drop » distinct ou son accentuation sur le contretemps, souvent articulé par des accords staccato de guitare ou de piano connus sous le nom de « skank ». La guitare basse sert de fondation, souvent traitée avec un timbre épais et lourd qui désaccentue les hautes fréquences pour créer une présence grave profonde et omniprésente. Ce paysage sonore a fourni la toile de fond idéale pour des thèmes lyriques allant de la lutte politique et de la conscience noire à la dévotion spirituelle et à la philosophie du mouvement Rastafari. Grâce au succès international d'artistes comme Bob Marley, Peter Tosh et Bunny Wailer, le reggae a transcendé ses racines jamaïcaines pour devenir une institution culturelle mondiale et un vecteur reconnu de commentaire social. En 2018, le genre a été inscrit sur la Liste représentative du patrimoine culturel immatériel de l'humanité de l'UNESCO, soulignant son impact profond sur la culture musicale mondiale et son rôle durable en tant que voix pour les marginalisés. Son influence est fondamentale pour la musique moderne, se ramifiant en divers sous-genres comme le dub, le dancehall et le roots reggae, tout en informant le développement de genres allant du punk britannique et du 2-tone au jungle et à la musique électronique de basse.",
+      "facts": {
+        "era": "Fin des années 1960–Présent",
+        "origin": "Jamaïque"
+      },
+      "source_sha256": "83a2bdb845918d91a497ab5645c618582815d8d145e75c7f37fa527dc60e78f0",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:34:57.675Z"
+    }
+  }
 }

@@ -147,5 +147,18 @@
       "type": "track",
       "name": "Born Slippy"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Le rave est un terme générique désignant un style de musique électronique de danse diversifié et énergique apparu à la fin des années 1980, défini par ses origines dans les fêtes clandestines en entrepôt et son influence sur la culture EDM mondiale.",
+      "article": "Le rave est un mouvement de musique électronique transformateur apparu à la fin des années 1980 et ayant explosé au début des années 1990, remodelant fondamentalement la culture club mondiale. Issu des scènes underground du Royaume-Uni et puisant profondément dans les fondations américaines comme le Chicago acid house et le Detroit techno, le rave représente une convergence de rythmes répétitifs rapides, de paysages sonores synthétisés et d'une éthique sous-culturelle fervente d'unité, de liberté et d'hédonisme communautaire. Il a servi de catalyseur à une nouvelle ère de culture jeune, caractérisée par des rassemblements massifs en entrepôt, des fêtes illégales en plein air et une évolution rapide de la conception sonore rendue possible par une technologie numérique accessible.\n\nMusicalement, le rave est une catégorie générique expansive plutôt qu'un style singulier. Il englobe des sous-genres électroniques à haute énergie, notamment le breakbeat, le trance, le jungle et les facettes les plus dures du techno. Le son est défini par des tempos allant de 120 à 160 BPM, des lignes de basse lourdes et pulsées, et des textures mélodiques hypnotiques conçues pour induire des états de transe chez les danseurs. Culturellement, le mouvement a laissé une marque indélébile sur l'industrie musicale, popularisant la musique électronique de danse (EDM) et ouvrant la voie au phénomène des méga-festivals qui domine le divertissement moderne. Bien qu'il ait fait face à un examen sociétal et juridique important concernant son association avec les événements underground et la culture de la drogue, son héritage perdure dans la popularité continue de la musique électronique à haute énergie et dans le désir humain durable d'expérience musicale collective. Des titres emblématiques comme « Out of Space » de The Prodigy et « Born Slippy » de Underworld se dressent comme des monuments à un mouvement qui a transformé la piste de danse en un lieu d'expression radicale.",
+      "facts": {
+        "era": "1988–1999",
+        "origin": "United Kingdom"
+      },
+      "source_sha256": "f07013d565495f1097821bf37c96c7d2e1a3eb502728d1ac589be1a61827aa73",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:45:54.521Z"
+    }
+  }
 }

@@ -160,5 +160,18 @@
       "name": "Floral Shoppe"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical et une esthétique nés sur Internet au début des années 2010, caractérisés par la manipulation de musiques pop, lounge et d'entreprise des années 1980 et 1990 pour créer des paysages sonores surréalistes, nostalgiques et souvent ironiques.",
+      "article": "Le Vaporwave est un microgenre, une esthétique et un phénomène culturel nés sur Internet qui se sont cristallisés au début des années 2010, émergeant comme un commentaire surréaliste et souvent ironique sur le capitalisme de consommation, la nostalgie numérique et les débris de la culture pop de la fin du XXe siècle. Musicalement, il se définit par une manipulation intensive de matériaux sources — généralement du smooth jazz, de la musique d'ascenseur, du R&B des années 80/90 et des morceaux lounge — qui sont ralentis, découpés et réarrangés pour évoquer une atmosphère fantomatique et hypnagogique. Cette esthétique de la « hauntology » transforme les sons optimistes sponsorisés par les entreprises du passé en quelque chose d'étrange et de onirique, reflétant une obsession collective pour les promesses non tenues de l'utopie technologique.\n\nLe mouvement est intrinsèquement lié à son langage visuel, qui prospère sur un mélange soigné de design Web 1.0, de motifs géométriques de style Memphis, d'extraits d'anime et d'environnements 3D rendus austères mettant en scène des statues classiques. En réutilisant les motifs publicitaires et les jingles d'entreprise des années 1980 et 90, les artistes de vaporwave créent un paysage sonore qui semble à la fois confortablement familier et profondément étranger. Bien qu'initialement centré sur le détachement ironique et la réflexion critique, le genre s'est rapidement étendu en un vaste écosystème de sous-genres — incluant Mallsoft, Future Funk et Signalwave — chacun itérant sur le principe fondamental de la mémoire, de l'obsolescence et de l'au-delà numérique. Son influence s'étend bien au-delà de la musique, façonnant la culture des mèmes sur Internet et définissant un dialecte visuel spécifique de l'art post-Internet qui continue de résonner aujourd'hui.",
+      "facts": {
+        "era": "Début des années 2010 à aujourd'hui",
+        "origin": "Culture Internet"
+      },
+      "source_sha256": "4b771493f7d133c39391f5011ce8957919755690681510a487bf7ba69b5ab289",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:37:57.485Z"
+    }
+  }
 }

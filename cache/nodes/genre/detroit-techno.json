@@ -125,5 +125,18 @@
       "name": "Techno! The New Dance Sound of Detroit"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Genre fondateur de la musique électronique de danse originaire de Detroit dans les années 1980, défini par l'intégration de textures synthétiques futuristes à des fondations rythmiques inspirées du funk.",
+      "article": "Detroit Techno est un genre séminal de musique électronique de danse qui a émergé du paysage urbain de Detroit, dans le Michigan, au milieu des années 1980. Né de l'intersection entre la tradition musicale afro-américaine, la science-fiction futuriste et le déclin industriel de la ville, le genre se caractérise par l'utilisation de synthétiseurs, de boîtes à rythmes et d'échantillonneurs pour créer une musique de danse percussive, mécanique et souvent imprégnée de soul. À sa base, le son représente un « triple choc » d'influences : le funk cosmique de George Clinton et Parliament-Funkadelic, les mélodies électroniques précises et répétitives de Kraftwerk, et les rythmes soul et R&B locaux axés sur le groove.\n\nLa genèse de Detroit Techno est célèbre pour être attribuée à « The Belleville Three » — Juan Atkins, Derrick May et Kevin Saunderson — qui ont expérimenté des paysages sonores électroniques alors qu'ils étaient au lycée dans la banlieue de Detroit. Leur musique était propulsée par des personnalités de la radio comme The Electrifying Mojo, dont les sessions nocturnes offraient une bouée de sauvetage et un centre culturel à une génération de jeunes, favorisant une communauté qui valorisait l'innovation, l'indépendance et une approche intellectuelle de la musique de danse. Alors que la ville souffrait de la désindustrialisation et de l'isolement économique, ces artistes ont trouvé la libération dans les possibilités « futuristes » de la technologie, transformant efficacement les pistes de danse locales et les fêtes en sous-sol en portails vers un nouveau son mondialisé.\n\nAu fil des décennies, le genre s'est étendu de ses débuts locaux pour devenir une force culturelle internationale massive. Des collectifs clés tels que Underground Resistance (formés par Mad Mike Banks, Rob Hood et Jeff Mills) ont infusé la musique avec des thèmes explicites de résistance sociale et de politique révolutionnaire, tandis que des plateformes comme Submerge et le festival annuel de musique électronique Movement ont aidé à cimenter Detroit comme l'épicentre mondial de la techno. Contrairement aux modes de danse purement éphémères, Detroit Techno demeure une tradition profondément enracinée, intellectuelle et entrepreneuriale, soutenue par une communauté soudée de producteurs, de propriétaires de labels et de DJ qui considèrent la machine non pas comme un remplacement froid de l'expression humaine, mais comme un instrument à maîtriser pour le bien du rythme, de l'âme et de la cohésion sociale.",
+      "facts": {
+        "era": "Milieu des années 1980 à aujourd'hui",
+        "origin": "Detroit, Michigan, États-Unis"
+      },
+      "source_sha256": "4ef481d0cf98da27f62520bc2cd19f33da6dc841593118c8676e4ee463924fec",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:20:22.583Z"
+    }
+  }
 }

@@ -97,5 +97,18 @@
       "name": "Songs About My Cats"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une forme volatile et complexe de musique électronique de danse caractérisée par des breakbeats à haute vitesse, découpés de manière complexe, et une esthétique chaotique riche en samples qui puise dans un large éventail d'influences musicales.",
+      "article": "Le Breakcore est un sous-genre chaotique et énergique de musique électronique de danse apparu entre le milieu et la fin des années 1990, à la croisée du jungle, du hardcore et du drum and bass. Défini par son rythme effréné et ses breakbeats complexes et lourdement traités — notamment l'emblématique « Amen break » —, le Breakcore repousse les limites de la complexité rythmique. Contrairement à une musique de danse plus standardisée, le Breakcore est connu pour son approche « tout est permis » en matière d'échantillonnage, puisant dans un vaste spectre incluant le noise industriel, le jazz fusion, le heavy metal, la musique classique et même le chiptune. Ce genre est souvent perçu comme une forme de musique électronique « pour connaisseurs », où la compétence technique du producteur dans le découpage et le réordonnancement d'échantillons numériques prend le pas sur les structures pop traditionnelles.\n\nLe développement du genre est inextricablement lié à l'essor d'Internet et du partage de fichiers en pair à pair, qui a permis à une communauté mondiale fragmentée d'échanger des morceaux, des techniques et des philosophies. Tout au long des années 2000, des labels emblématiques comme Planet Mu et Peace Off ont servi de centres névralgiques pour la scène, favorisant un environnement où les artistes pouvaient expérimenter avec l'humour, une agressivité sombre et des collages sonores défiant les genres. Dans les années 2020, le son a connu un renouveau significatif, évoluant vers un style plus nostalgique, atmosphérique et sentimental qui intègre des esthétiques issues des sous-cultures Internet, des jeux vidéo et des anime, cimentant son statut de force en mutation constante au sein de la musique électronique underground. Des figures marquantes comme Venetian Snares, Kid606 et Machine Girl ont façonné sa trajectoire, faisant passer le genre des recoins sombres de la culture rave underground à une présence numérique plus large et multifacette.",
+      "facts": {
+        "era": "1990s–Present",
+        "origin": "Australia, Europe, UK"
+      },
+      "source_sha256": "f50690ffe9becf5a6b772151997b5bdbd8bd9b85e0e940806fd8756056a78c00",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:40:50.759Z"
+    }
+  }
 }

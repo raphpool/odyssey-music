@@ -110,5 +110,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q2545135"
+  "qid": "Q2545135",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du rock alternatif et indépendant défini par la fusion de bruit abrasif, de larsens de guitare et de structures de chansons pop traditionnelles.",
+      "article": "Le Noise Pop est un sous-genre du rock alternatif et indépendant apparu au milieu des années 1980, principalement au Royaume-Uni, défini par sa juxtaposition de larsens de guitare agressifs et dissonants avec des mélodies pop entraînantes. Souvent décrit comme occupant un terrain d'entente entre la bubblegum pop des années 1960 et les expérimentations abrasives et avant-gardistes de l'ère post-punk, le genre crée une atmosphère sonore distinctement brumeuse, souvent narcotique. Bien qu'enraciné dans les expérimentations chargées de larsens du Velvet Underground, le genre s'est cristallisé avec la sortie en 1985 du premier album de The Jesus and Mary Chain, Psychocandy. Ce projet marquant a démontré comment la distorsion pouvait être utilisée non seulement comme une texture, mais comme un élément essentiel de la structure d'une chanson, ouvrant la voie aux développements ultérieurs du mouvement shoegaze.\n\nTout au long de la fin des années 1980 et jusqu'aux années 1990, l'influence du Noise Pop s'est étendue au-delà de la scène britannique, avec des groupes américains comme Sonic Youth, Dinosaur Jr. et Yo La Tengo intégrant des sensibilités similaires dans le paysage plus large du rock indépendant. À la fin des années 2000, le style a connu un regain d'intérêt, souvent caractérisé par une éthique lo-fi et DIY, défendue par des groupes tels que The Pains of Being Pure at Heart et Vivian Girls. Que le son soit brillant et propulsif ou stratifié et stimulant, le Noise Pop demeure une pierre angulaire de l'histoire de la musique indépendante, comblant continuellement le fossé entre la densité sonore expérimentale et l'accessibilité de la pop classique.",
+      "facts": {
+        "era": "Milieu des années 1980–Présent",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "3e3e19873580a05db9cd67e81f8fb7a7c4526c0b40612f9ad3fecd7c9ab8c346",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:32:06.026Z"
+    }
+  }
 }

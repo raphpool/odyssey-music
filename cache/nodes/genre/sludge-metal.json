@@ -138,5 +138,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q720959"
+  "qid": "Q720959",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre extrême du heavy metal défini par une fusion de riffs de doom metal au tempo lent et accordés bas avec l'esprit agressif, les structures et l'attitude nihiliste du hardcore punk.",
+      "article": "Le sludge metal est un sous-genre viscéral et agressif du metal extrême apparu au milieu des années 1980, agissant comme un pont entre le poids écrasant du doom metal et l'intensité frénétique du hardcore punk. Né principalement aux États-Unis, le genre se définit par ses tempos lents et lourds, son utilisation intensive de riffs de guitare accordés bas, épais et saturés, et une atmosphère distinctement nihiliste et sombre. Contrairement au doom metal traditionnel, qui penche souvent vers une grandeur épique ou gothique, le sludge metal conserve l'attitude brute et conflictuelle de ses racines punk. Cela se manifeste par ses styles vocaux généralement criés ou grognés et sa préoccupation thématique pour les franges les plus sombres de la réalité, incluant la pauvreté, la toxicomanie, la pollution et le désespoir personnel.\n\nLes racines du genre remontent à des groupes de hardcore californiens comme Black Flag — plus précisément leur album de 1984 'My War' — ainsi qu'à Flipper et Fang, qui ont commencé à expérimenter des structures plus lentes, semblables à des chants funèbres, qui contrastaient fortement avec la production habituelle à haute vitesse du genre. Les Melvins, originaires du nord-ouest du Pacifique, ont joué un rôle déterminant dans l'expansion de ces premières expérimentations vers un son cohérent et lourd qui influencerait finalement à la fois le mouvement grunge naissant et les scènes sludge distinctes du Sud. Dans les années 1990, des pôles régionaux comme La Nouvelle-Orléans ont donné naissance à un son « sludgecore » définitif, défendu par des groupes tels que Eyehategod, Crowbar et Acid Bath. Cette itération mettait l'accent sur une approche particulièrement abrasive et granuleuse du genre, intégrant souvent des éléments de Southern rock et de blues dans ce mélange chaotique. Au fil du temps, le genre s'est révélé remarquablement malléable ; dès les années 2000, il a fourni la base structurelle du post-metal grâce à des artistes comme Neurosis et Isis, tandis que d'autres ont mélangé ses principes fondamentaux avec du progressif, du crust punk ou de la musique industrielle, maintenant son statut comme l'une des mutations les plus abrasives et « laides » du paysage musical heavy.",
+      "facts": {
+        "era": "Milieu des années 1980–Présent",
+        "origin": "États-Unis (Californie, Washington, Louisiane)"
+      },
+      "source_sha256": "9fa489ec05dba41e6853be6011e8c10b285bc27a09da7a55c5533494900557d1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:35:57.999Z"
+    }
+  }
 }

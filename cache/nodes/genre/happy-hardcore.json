@@ -115,5 +115,19 @@
       "type": "track",
       "name": "Pretty Green Eyes"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre au tempo élevé de la musique hardcore caractérisé par des mélodies entraînantes, des riffs de piano et des rythmes de grosse caisse 4/4, qui s'est distingué des sonorités rave axées sur le breakbeat du début des années 1990.",
+      "article": "Apparu au début des années 1990 comme une réaction dynamique aux franges plus sombres et agressives du breakbeat hardcore britannique, le happy hardcore s'est imposé grâce au travail de producteurs tels que Slipmatt, DJ Vibes et DJ Seduction. Ces artistes se sont éloignés des scènes jungle et darkcore naissantes en se concentrant sur des compositions festives et joyeuses, définies par des arrangements riches en piano et des voix énergiques. Les morceaux de cette époque, comme ceux que l'on trouve sur les premières sorties d'Impact Records, présentent généralement des breakbeats accompagnés d'un rythme de grosse caisse 4/4. Au milieu des années 1990, le genre a évolué pour privilégier un rythme 4/4 percutant basé sur la 909, alors que des artistes comme Hixxy, Force & Styles et DJ Sharkey gagnaient en notoriété. Le son était fréquemment défendu par des stations de radio pirates comme Dream FM et documenté à travers la série de compilations commercialement populaires Bonkers, née d'un accord négocié entre Hixxy, Sharkey et React Music Limited.",
+      "facts": {
+        "era": "début des années 1990 au milieu des années 2000",
+        "origin": "Royaume-Uni, Belgique, Pays-Bas, Allemagne",
+        "sonic_markers": "170 BPM, breakbeats, grosses caisses 909, roulements de piano, échantillons vocaux joyeux"
+      },
+      "source_sha256": "52b3891b7d16e9719767320a0ebc0f67c19646755c225a5a8031a474260dc299",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:27:57.224Z"
+    }
+  }
 }

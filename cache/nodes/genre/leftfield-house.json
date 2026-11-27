@@ -111,5 +111,19 @@
       "type": "track",
       "name": "Phat Planet"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style électronique né à Londres dans les années 1990 qui intègre des rythmes house aux basses lourdes, aux échos et à la culture sound-system du dub et du reggae.",
+      "article": "Apparu à Londres en 1989 grâce au travail de production de Neil Barnes et Paul Daley, ce genre a été le pionnier de la fusion entre la house music et le dub et le reggae, un hybride qui a reçu l'étiquette progressive house au début des années 1990. Le son repose largement sur des fréquences basses lourdes, conçues en studio, utilisant souvent des chanteurs invités comme John Lydon et Earl Sixteen pour faire le pont entre la mécanique du dance floor et les structures de chansons influencées par le dub. Au-delà de ses rythmes de boîte à rythmes 4/4 standard, le style se définit par une orientation instrumentale qui pousse la musique électronique de danse vers un territoire expérimental défiant les frontières. Bien qu'il soit fréquemment associé au succès commercial de l'album Leftism de 1995, le genre représente un éloignement des structures pop standard vers un son décrit par Barnes comme « l'aboutissement d'années de frustration musicale ». Ses techniques de production incorporent fréquemment des percussions non conventionnelles, des textures atmosphériques et une manipulation d'échantillons, distanciant le résultat de la house grand public de l'époque.",
+      "facts": {
+        "era": "début des années 1990 au début des années 2000",
+        "origin": "Scène musicale dance de Londres, Royaume-Uni",
+        "sonic_markers": "tempo house 4/4, lignes de basse lourdes influencées par le dub, percussions de style reggae, paysages sonores atmosphériques, structures à forte composante instrumentale."
+      },
+      "source_sha256": "cb1c7b166866a27710cfe5ea4291e9ecd47f28ef6b6e42ee8891ce64e4310615",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:30:05.539Z"
+    }
+  }
 }

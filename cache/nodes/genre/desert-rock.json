@@ -97,5 +97,18 @@
       "name": "Blues for the Red Sun"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le Desert Rock est un sous-genre de rock lourd axé sur le groove, apparu dans la région de Palm Desert et de la Coachella Valley en Californie du Sud à la fin des années 1980 et au début des années 1990, caractérisé par des guitares accordées bas, des influences psychédéliques et un son brut et atmosphérique, souvent joué lors de fêtes improvisées en plein désert.",
+      "article": "Le Desert Rock est un style de rock lourd axé sur le groove qui a émergé du paysage isolé de la région de Palm Desert et de la Coachella Valley en Californie du Sud à la fin des années 1980 et au début des années 1990. Servant souvent de fondation au mouvement plus large du stoner rock, le genre est notoirement défini par son lien avec sa géographie. La scène primitive était connue pour ses « generator parties » — des rassemblements nocturnes spontanés en plein air tenus dans le désert où les groupes alimentaient leur équipement à l'aide de générateurs à essence. Cet environnement brut et DIY, combiné à une atmosphère psychédélique souvent nourrie de substances, a forgé un son caractérisé par des riffs de guitare lourds, répétitifs et accordés bas, des jams instrumentaux expansifs et une section rythmique décontractée mais intensément entraînante.\n\nLe son du genre est un hybride unique qui mélange des éléments de hard rock, de rock psychédélique, de punk et de metal. Contrairement à l'intensité à haute vitesse du heavy metal traditionnel ou à la noirceur du sludge, le desert rock met l'accent sur le groove, l'espace et la texture, attirant souvent des comparaisons avec la nature mystique et vaste du paysage désertique la nuit. Des figures clés telles que le groupe Kyuss — largement considéré comme les progéniteurs de la scène — ont codifié l'esthétique du desert rock avec des albums comme 'Blues for the Red Sun' et 'Welcome to Sky Valley'. Ces disques ont déplacé l'attention vers des expériences d'écoute à l'échelle de l'album et des jams hypnotiques et sismiques. Suite à la dissolution de Kyuss, des membres clés comme Josh Homme ont formé Queens of the Stone Age, qui a porté la sensibilité du desert rock à un public international plus large, tandis que d'autres artistes de la scène, dont Fu Manchu et Brant Bjork, ont continué à faire évoluer le son lourd, saturé et spacieux caractéristique du genre. L'héritage du desert rock demeure une force puissante dans la musique lourde moderne, célébré pour sa capacité à équilibrer une puissance écrasante avec un sens de mélodie cosmique et expansive.",
+      "facts": {
+        "era": "Fin des années 1980 à nos jours",
+        "origin": "Palm Desert, Californie, États-Unis"
+      },
+      "source_sha256": "35fa1db4453ce51d354d875826b7a143ba33f65b46bb6e8089371a7b31d5ebef",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:20:18.643Z"
+    }
+  }
 }

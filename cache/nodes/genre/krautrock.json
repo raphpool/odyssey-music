@@ -167,5 +167,18 @@
       "name": "Neu! 75"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un vaste mouvement musical expérimental né en Allemagne de l'Ouest à la fin des années 1960, caractérisé par des rythmes hypnotiques, l'expérimentation électronique et le rejet des structures de chansons rock anglo-américaines traditionnelles.",
+      "article": "Le Krautrock—connu à l'origine et plus précisément sous le nom de kosmische Musik (musique cosmique)—est un genre vaste et révolutionnaire de rock expérimental qui a émergé du paysage culturel ouest-allemand à la fin des années 1960 et au début des années 1970. Né du creuset sociopolitique de l'Allemagne d'après-guerre, le mouvement était porté par une jeune génération désireuse de démanteler les vestiges de l'histoire nazie de son pays et de rejeter la domination de la pop anglo-américaine et du rock basé sur le blues. Au lieu de cela, ces musiciens se sont tournés vers une synthèse radicale, souvent avant-gardiste, de rock psychédélique, d'expérimentation électronique, de minimalisme et de musique concrète. Le résultat fut un son totalement distinct de celui de l'époque, caractérisé par des rythmes hypnotiques et répétitifs—notamment le rythme « motorik » initié par des groupes comme Neu!—des improvisations étendues et l'utilisation pionnière de synthétiseurs et de manipulation de bandes magnétiques.\n\nLe terme « Krautrock » lui-même était à l'origine une étiquette péjorative utilisée par la presse musicale britannique pour regrouper un ensemble incroyablement diversifié de groupes qui n'avaient que peu de points communs en dehors de leur nationalité. Malgré ses origines désobligeantes, le terme est finalement devenu un insigne d'honneur pour la scène expérimentale. La musique a profondément remodelé la trajectoire du rock et de la musique électronique, jetant les bases de la musique ambient, du post-punk, de la techno et même de l'école « kosmische » de musique électronique qui a prospéré à Berlin et à Düsseldorf. Des artistes tels que Can, Kraftwerk, Faust et Tangerine Dream ont créé des paysages sonores qui transcendaient les structures de chansons traditionnelles, s'orientant plutôt vers des espaces méditatifs, propices à la transe et intellectuellement stimulants qui continuent d'influencer la musique électronique expérimentale aujourd'hui. Il représente l'un des moments les plus vitaux de la musique du XXe siècle, où la recherche d'une nouvelle identité post-nationale a produit certains des disques les plus avant-gardistes de l'époque.",
+      "facts": {
+        "era": "Fin des années 1960 au milieu des années 1970",
+        "origin": "Allemagne de l'Ouest"
+      },
+      "source_sha256": "369709300d13f5a570bcbcd476ca14432c34037c685a55bd345bcf7a0b70b83d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:30:04.136Z"
+    }
+  }
 }

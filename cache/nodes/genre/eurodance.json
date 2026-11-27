@@ -165,5 +165,18 @@
       "type": "track",
       "name": "Rhythm Is a Dancer"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre d'electronic dance music à haute énergie originaire de l'Europe de la fin des années 1980, défini par son mélange d'éléments house, techno et hip-hop, caractérisé par des tempos rapides, des accroches mélodiques au synthétiseur et une structure vocale caractéristique associant rappeurs masculins et chanteuses.",
+      "article": "L'Eurodance, fréquemment appelée Euro-NRG, s'impose comme l'un des phénomènes d'electronic dance music les plus marquants et les plus fructueux commercialement des années 1990. Originaire d'Europe de l'Ouest à la fin des années 1980 — avec des liens étroits avec les scènes rave post-chute du mur de Berlin en Allemagne et les circuits house et techno établis en Belgique et aux Pays-Bas —, le genre a synthétisé une formule distincte centrée sur la pop qui a dominé les ondes internationales pendant près d'une décennie. Musicalement, l'Eurodance se définit par un rythme four-to-the-floor à haute énergie, se situant généralement entre 120 et 150 BPM, soutenu par des lignes de basse syncopées, des accroches de synthétiseur de pointe et une structure couplet-refrain caractéristique. Il associait de manière typique le débit rythmique agressif d'un rappeur masculin à des voix féminines mélodiques et envolées, une combinaison conçue spécifiquement pour séduire les classements et dominer les clubs.\n\nAu-delà de ses marqueurs sonores, le genre était souvent le produit de l'ingéniosité de maisons de production ; les producteurs — plus célèbrement Michael Münzing et Luca Anzilotti de Snap! — agissaient souvent comme les architectes principaux, recrutant des chanteurs de studio et des interprètes pour servir de visage public au projet. Bien que souvent critiquée à son apogée comme étant « superficielle » ou hédoniste en raison de son accent mis sur des paroles simplistes traitant de romance, de fête et d'évasion en club, l'Eurodance fut une force culturelle majeure dans l'unification de la culture jeunesse européenne après la guerre froide. Le pic commercial du genre s'est produit entre 1992 et 1995, alimenté par des succès massifs comme « The Power » de Snap! et « Rhythm Is a Dancer » de Culture Beat. Bien que sa prééminence dans le courant dominant ait commencé à décliner après 1995, alors que la musique électronique se fragmentait en sous-genres plus diversifiés comme la trance et la progressive house, l'Eurodance demeure un pilier profondément nostalgique et influent de la culture pop des années 90, reconnu pour avoir porté les sensibilités rave vers le grand public mondial.",
+      "facts": {
+        "era": "1980s-1990s",
+        "origin": "Western Europe"
+      },
+      "source_sha256": "43d3853bb4fe2f873534475fc05fd05afa575168c4fade69844ad9945853924b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:42:52.816Z"
+    }
+  }
 }

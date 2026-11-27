@@ -143,5 +143,19 @@
       "type": "track",
       "name": "Gonna Make You Sweat"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical apparu au milieu des années 1980 qui superpose des voix rap sur des rythmes house.",
+      "article": "Apparu entre le milieu et la fin des années 1980 à Londres et à Chicago, le hip-house a fusionné l'élan rythmique de la house music avec le débit vocal du hip-hop. Le morceau « Rok da House » de Beatmasters et Cookie Crew, sorti en 1986, est fréquemment cité comme un enregistrement fondateur, bien que Tyree Cooper et Kool Rock Steady aient plus tard contesté la paternité du genre avec « Turn Up the Bass » en 1988. Le style a rapidement gagné du terrain dans les scènes acid house des entrepôts, poussé par des figures comme DJ Chad Jackson et les compilateurs de Telstar Records. Des producteurs comme Fast Eddie avec « Yo Yo Get Funky! » et des groupes comme Rob Base and DJ E-Z Rock avec « It Takes Two » ont établi la formule, qui a par la suite influencé le breakbeat hardcore et la scène rave britannique en plein essor. Dans les années 2000, le genre a évolué vers l'electro hop, rencontrant un succès grand public grâce à des artistes comme LMFAO, Pitbull et David Guetta, qui ont incorporé des voix rap sur une production léchée orientée vers les pistes de danse.",
+      "facts": {
+        "era": "milieu des années 1980 aux années 2010",
+        "origin": "Londres, Royaume-Uni et Chicago, États-Unis",
+        "sonic_markers": "Rythmes 4/4 de house music, débit vocal rap, production riche en samples, boucles rythmiques syncopées."
+      },
+      "source_sha256": "e3cea9c2e75481f6329d9907b086c2c5723c68ffa27efd22c2ffd82336292891",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:28:56.889Z"
+    }
+  }
 }

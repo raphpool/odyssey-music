@@ -120,5 +120,18 @@
       "name": "Oxygène"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre centré sur les synthétiseurs mettant l'accent sur la composition longue, le design sonore et les structures expérimentales, issu des mouvements rock progressif et krautrock de la fin des années 1960.",
+      "article": "Le Progressive Electronic, souvent abrégé en « prog electronic », est un genre vaste et étendu défini par un engagement premier envers la composition longue basée sur les synthétiseurs et un esprit d'expérimentation. Apparu à la fin des années 1960 et au début des années 1970, il se situe à l'intersection du progrès technologique — plus précisément la maturation du synthétiseur — et des sensibilités avant-gardistes de l'époque. Le genre se caractérise par l'utilisation extensive et intentionnelle d'instruments électroniques, s'éloignant de l'instrumentation rock standard pour se concentrer sur le design sonore, les paysages sonores superposés et des compositions souvent élaborées, divisées en plusieurs sections, pouvant dépasser dix minutes. Ses racines sont profondément ancrées dans le terreau du rock progressif et de la musique expérimentale allemande (Krautrock), où les artistes ont commencé à traiter les oscillateurs et séquenceurs électroniques non pas comme de simples nouveautés, mais comme des vecteurs légitimes d'une expression musicale complexe.\n\nLa culture du Progressive Electronic est définie par une emphase sur l'archétype du « créateur » — des musiciens qui construisent leurs propres mondes sonores plutôt que de s'appuyer sur des préréglages standards. Cet ethos a été défendu par des pionniers fondateurs comme Tangerine Dream, Klaus Schulze et Kraftwerk, qui ont effectivement repoussé les limites de ce qui pouvait être accompli avec du matériel analogique. Tout au long des années 1970 et 1980, le langage du genre a continué d'évoluer, puisant dans la musique classique occidentale, le jazz et, finalement, les mouvements naissants de l'ambient et du New Age. À partir des années 1990, l'influence de ces premiers pionniers est devenue fondamentale pour la musique électronique de danse moderne, l'ambient techno et l'IDM. Au XXIe siècle, le Progressive Electronic demeure un genre vital et diversifié, intégrant constamment des éléments de bruit industriel, de minimalisme et de traditions classiques mondiales, ce qui en fait un genre perpétuellement tourné vers l'avenir en réévaluant son passé sonore.",
+      "facts": {
+        "era": "1969-présent",
+        "origin": "Allemagne, Europe"
+      },
+      "source_sha256": "443ac6423d181f425027c88667316d59f9476ad87643ed9146b43dce1b3bba70",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:33:58.054Z"
+    }
+  }
 }

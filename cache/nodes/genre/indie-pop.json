@@ -119,5 +119,18 @@
   ],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q842324"
+  "qid": "Q842324",
+  "l10n": {
+    "fr": {
+      "teaser": "Une sous-culture et un genre mélodique axé sur le DIY, issus du post-punk, mettant l'accent sur les guitares cristallines, l'écriture personnelle et une éthique anti-commerciale.",
+      "article": "L'Indie Pop a émergé à la fin des années 1970 et au début des années 1980 au Royaume-Uni en tant qu'alternative mélodique et autonome, tant aux classements pop grand public qu'aux textures de plus en plus abrasives ou hyper-masculines de la musique rock contemporaine. Ancrée dans l'éthique DIY de l'ère post-punk, l'Indie Pop a marqué un changement fondamental dans le paysage de la musique indépendante. Alors que son cousin, l'indie rock, penchait souvent vers l'angoisse, la distorsion et une attitude brute, l'Indie Pop a privilégié la douceur, le tintement des guitares et une écriture personnelle, souvent introspective. Elle a défendu une esthétique « bedsit », caractérisée par une intimité cherchant à déconstruire le « cool » du statut de star du rock de stade, en le remplaçant par quelque chose de plus accessible, axé sur l'artisanat et démocratique.\n\nLe genre a été sans doute défini et consolidé par la scène « C86 » du milieu des années 80 — nommée d'après la compilation sur cassette du NME qui a servi de manifeste au mouvement — qui a mis en lumière une génération de groupes privilégiant les guitares carillonnantes et des structures de chansons directes, axées sur les refrains. Des labels comme Postcard Records en Écosse et plus tard K Records aux États-Unis sont devenus une infrastructure essentielle pour cette communauté, favorisant une éthique qui privilégiait l'indépendance artistique et la communauté par rapport à l'attrait du marché de masse. Au fil des décennies, l'influence de l'Indie Pop s'est étendue mondialement, engendrant des sous-genres tels que la twee pop, la chamber pop et l'indietronica. Elle a fonctionné non seulement comme un style sonore, mais comme une sous-culture robuste et durable, complète avec ses propres circuits de fanzines, sa mode et ses codes esthétiques, se dressant comme un contre-récit critique aux normes de l'industrie musicale commerciale.",
+      "facts": {
+        "era": "Fin des années 1970 à aujourd'hui",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "ba5dc1b5be3e0b41ea456877935f8be3e3dd5e5dcd497473f8615647bc11657c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:29:00.989Z"
+    }
+  }
 }

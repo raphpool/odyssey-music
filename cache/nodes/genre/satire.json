@@ -37,5 +37,14 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un mode artistique interdisciplinaire caractérisé par l'usage de l'ironie, de la parodie, du sarcasme et de l'exagération pour critiquer les failles sociales, politiques ou institutionnelles, visant à provoquer à la fois le rire et la réflexion critique.",
+      "article": "La satire n'est pas un genre singulier au sens technique ou sonore, mais plutôt un mode esthétique et rhétorique interdisciplinaire qui imprègne la musique à travers presque toutes les époques et tous les styles. Définie par l'usage de l'ironie, de la parodie, du sarcasme et de l'exagération, elle sert d'outil sophistiqué pour la critique sociale, politique et culturelle. Contrairement à la comédie pure, qui vise principalement le rire, le but de la satire est de « faire grimacer tout en gloussant », forçant le public à réfléchir sur les vices, les folies et les échecs institutionnels de son environnement contemporain. En adoptant un personnage — feignant souvent d'approuver les normes mêmes qu'il souhaite démanteler — le satiriste agit comme une « soupape de sécurité » pour la tension sociale, exposant l'hypocrisie du gouvernement, des médias et des conventions artistiques.\n\nEn musique, la satire se manifeste par les paroles, l'interprétation vocale et la subversion des tropes musicaux établis. Qu'il s'agisse du commentaire politique cinglant présent dans les chansons de protestation du milieu du XXe siècle, de la déconstruction irrévérencieuse des clichés de la pop commerciale, ou de l'ironie consciente de l'art de la performance post-moderne, la satire fonctionne en tendant un miroir à la société. Elle ne fournit pas nécessairement de solutions aux problèmes qu'elle critique ; elle accomplit plutôt le travail culturel essentiel consistant à déstabiliser l'autorité incontestée et à défier l'« imaginaire collectif ». Du burlesque complexe et multicouche des compositions classiques aux critiques immédiates et percutantes trouvées dans le punk et la satire de l'ère Internet moderne, ce mode demeure l'une des méthodes les plus efficaces et durables pour que les artistes reprennent le pouvoir et exigent des améliorations de la part des institutions qui façonnent nos vies. C'est l'art d'être « militairement ironique », garantissant que l'auditeur ne soit jamais totalement à l'aise dans le statu quo.",
+      "source_sha256": "750bf024bfef8d98044c092b095a1697bfb56c5cf7b637349b5b000a85ad6b59",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:35:03.861Z"
+    }
+  }
 }

@@ -105,5 +105,18 @@
       "name": "Whole Lotta Love"
     }
   ],
-  "qid": "Q193355"
+  "qid": "Q193355",
+  "l10n": {
+    "fr": {
+      "teaser": "Le blues rock est une fusion de blues électrique et de rock caractérisée par une improvisation rapide, des solos de guitare étendus et un son lourd axé sur les riffs.",
+      "article": "Le blues rock est un genre de fusion séminal apparu au début des années 1960 aux États-Unis et au Royaume-Uni, reliant les structures émotionnelles et improvisées du blues traditionnel aux dynamiques amplifiées et à haute énergie du rock and roll. À sa base, le genre conserve les cadres harmoniques et les progressions de 12 mesures du blues électrique tout en augmentant considérablement le tempo, en adoptant une posture sonore plus agressive et en utilisant fréquemment le format « ensemble » — guitare électrique, basse et batterie — qui deviendrait le socle de la musique rock ultérieure. Contrairement aux rythmes plus retenus et syncopés du blues traditionnel, le blues rock privilégie souvent une pulsation en croches droites et des textures denses et saturées, donnant la priorité aux longs solos de guitare et à une écriture basée sur les riffs.\n\nHistoriquement, le genre a servi de principal vecteur par lequel les innovations des pionniers du blues afro-américain comme Muddy Waters, Willie Dixon et Albert King ont atteint un public rock mondial et jeune. Les premiers représentants au Royaume-Uni, tels que The Rolling Stones et The Yardbirds, ont réinterprété des standards du blues pour les classements pop, tandis que des groupes américains comme The Paul Butterfield Blues Band et Lonnie Mack ont posé les fondations techniques du futur du genre. À la fin des années 1960 et au début des années 1970, le blues rock a évolué vers les mouvements hard rock et heavy metal, avec des groupes emblématiques comme Led Zeppelin, The Allman Brothers Band et Cream démontrant comment le genre pouvait s'étendre vers des jams virtuoses et expansifs. Aujourd'hui, le blues rock demeure un pilier fondamental de la culture rock classique, défini par son engagement durable envers le langage expressif de la guitare, caractérisé par les tirés de cordes qui ont initialement revitalisé le blues à l'ère moderne.",
+      "facts": {
+        "era": "1960s–present",
+        "origin": "United States and United Kingdom"
+      },
+      "source_sha256": "e9d89ded4aecaac88f8d20f21820614dac2f548e423063059783196d087b62c5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:40:49.841Z"
+    }
+  }
 }

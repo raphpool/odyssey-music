@@ -98,5 +98,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q1344"
+  "qid": "Q1344",
+  "l10n": {
+    "fr": {
+      "teaser": "L'opéra est une forme d'art dramatique multisensorielle qui intègre le chant, la musique orchestrale, le jeu d'acteur et le spectacle visuel pour raconter des histoires, né dans l'Italie de la fin de la Renaissance.",
+      "article": "L'opéra est une forme d'art dramatique complète apparue à la fin du XVIe siècle en Italie, représentant une fusion de musique vocale et instrumentale, de théâtre, de spectacle visuel et de danse. Conçu par la Camerata florentine, qui cherchait à faire revivre la puissance narrative du théâtre grec antique, le genre a évolué au cours de quatre siècles pour devenir une institution diversifiée et reconnue mondialement. Des productions ornées et rituelles de l'époque baroque — caractérisées par l'ascension des castrats virtuoses et le génie de compositeurs comme Georg Frideric Handel — aux œuvres structurellement rigoureuses et centrées sur l'humain de la période classique illustrées par Wolfgang Amadeus Mozart, l'opéra a reflété les courants intellectuels et sociaux changeants de l'histoire occidentale.\n\nLa période romantique du XIXe siècle a apporté une expansion significative au genre, avec des compositeurs comme Giuseppe Verdi et Richard Wagner repoussant les limites de la complexité harmonique, de l'échelle orchestrale et de l'ambition narrative. Alors que Verdi est resté ancré dans le potentiel expressif de la voix humaine et les traditions mélodiques italiennes, Wagner a révolutionné le médium par la mise en œuvre de leitmotivs et de cycles monumentaux inspirés par les mythes. Cette ère a également prospéré grâce à la tradition du bel canto et, plus tard, au mouvement vériste initié par Giacomo Puccini, qui a apporté une intensité viscérale et réaliste à la scène lyrique. Tout au long du XXe siècle et jusqu'à nos jours, l'opéra a continué à s'adapter, intégrant des thèmes politiques contemporains — comme on peut le voir dans les œuvres de Benjamin Britten et John Adams — et conservant son identité fondamentale en tant que médium multisensoriel exacerbé pour explorer les complexités de la condition humaine. Il demeure une pierre angulaire de la culture du spectacle occidentale, exigeant une immense compétence technique de la part des chanteurs, des instrumentistes et des chefs d'orchestre.",
+      "facts": {
+        "era": "1597–Présent",
+        "origin": "Florence, Italie"
+      },
+      "source_sha256": "64270947573a6f8484fae768452bf775cd937e22af04ea9afa04f5b1d0c4eab9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:32:59.583Z"
+    }
+  }
 }

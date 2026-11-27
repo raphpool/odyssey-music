@@ -83,5 +83,18 @@
       "name": "In the Court of the Crimson King"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du rock progressif qui se distingue par son utilisation intensive de motifs de musique classique, ses arrangements luxuriants dominés par les claviers et ses compositions complexes de longue durée qui repoussent les limites de la structure rock traditionnelle.",
+      "article": "Le Symphonic Prog est un sous-genre du rock progressif apparu à la fin des années 1960, défini par son intégration sophistiquée de structures et d'instrumentations issues de la musique classique au sein du cadre de la musique rock. Souvent considéré comme le style « classique » par excellence du rock progressif, il se caractérise par des signatures rythmiques complexes, des textures luxuriantes de synthétiseurs et de claviers — évoquant fréquemment l'esprit des compositeurs des périodes baroque ou romantique — et des structures de chansons étendues. Bien que le terme « symphonique » ne soit pas techniquement précis, ces groupes se produisant rarement avec des orchestres symphoniques complets, il reflète fidèlement l'ambition grandiose, expansive et intellectuelle de cette musique, qui puise souvent son inspiration thématique dans la littérature fantastique, la science-fiction et la mythologie.\n\nL'âge d'or du genre s'est déroulé entre 1969 et le milieu des années 1970, avec des œuvres séminales comme « In the Court of the Crimson King » de King Crimson et « Close to the Edge » de Yes, qui ont établi le modèle. Des groupes comme Genesis et Yes se sont tournés vers des arrangements mélodiques et complexes rappelant Bach ou Haendel, tandis qu'Emerson, Lake & Palmer ont adopté une approche plus agressive et virtuose, réinterprétant souvent directement des œuvres de compositeurs post-romantiques comme Moussorgski ou Bartók. À la fin des années 1970, alors que les goûts dominants évoluaient, l'influence du genre s'est transformée en rock néo-progressif. Cependant, le Symphonic Prog a connu un renouveau notable dans les années 1990, particulièrement au sein de la scène progressive suédoise avec des groupes tels que Änglagård, assurant que son héritage de composition virtuose et non commerciale se poursuive au XXIe siècle. Il demeure une pierre angulaire du canon du rock progressif, représentant une époque où les musiciens ont repoussé les limites du potentiel du rock par la complexité formelle et la maîtrise instrumentale.",
+      "facts": {
+        "era": "1969–1970 (pic principal), 1990–présent (renouveau)",
+        "origin": "Royaume-Uni, Europe"
+      },
+      "source_sha256": "5fe4f360a563b54499ee43fc650fc096950ce80e4c8263ce6200b6583e81009a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:36:56.992Z"
+    }
+  }
 }

@@ -104,5 +104,18 @@
       "name": "Die Mensch-Maschine"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un mouvement séminal de rock électronique et expérimental caractérisé par le rythme « motorik » entraînant, des textures de synthétiseurs minimalistes et une approche élégante et moderniste de la musique pop et avant-gardiste.",
+      "article": "La Düsseldorf School est un courant fondamental du rock électronique et expérimental allemand apparu au début des années 1970, centré sur l'environnement industriel et axé sur le design de Düsseldorf. Contrairement à son homologue plus éthéré, cosmique et improvisé, la Berlin School, la Düsseldorf School a privilégié une approche élégante, moderniste et rythmique. Elle est principalement caractérisée par le rythme « motorik » — un rythme 4/4 implacable, régulier et propulsif qui privilégie l'endurance mécanique à la complexité syncopée du jazz-fusion. Cette pulsation mécanique était souvent associée à des structures harmoniques statiques ou évoluant lentement, à l'utilisation intensive de synthétiseurs, de séquenceurs et de vocodeurs, et à une absence marquée d'improvisation basée sur le blues.\n\nLes artistes associés à cette scène, notamment le groupe pionnier Kraftwerk et le duo composé de Klaus Dinger et Michael Rother au sein de NEU!, se sont éloignés du trope de l'improvisation « Krautrock » pour se concentrer sur la répétition, la clarté de la production et une fascination pour la vie urbaine, la technologie et les transports. Leur production a directement influencé le développement de la synth-pop, de l'EBM, de l'electro-funk et des débuts de la techno. En abandonnant le maximalisme émotionnel au profit d'un minimalisme détaché et orienté vers le design, la Düsseldorf School a transformé le studio en instrument, intégrant l'avenir de la pop électronique mondiale dans ses cadres à la précision mécanique. Son héritage demeure une pierre angulaire pour toute musique reposant sur l'interaction entre des pulsations synthétiques rigides et une rigueur esthétique moderne. Des groupes comme La Düsseldorf, Deutsch Amerikanische Freundschaft (DAF) et Die Krupps ont poursuivi cette exploration, consolidant l'influence durable d'albums tels que Autobahn, Trans Europa Express et Die Mensch-Maschine.",
+      "facts": {
+        "era": "1970s - 1980s (avec une influence continue)",
+        "origin": "Düsseldorf, Allemagne"
+      },
+      "source_sha256": "cc7ab499b9a8e938fba7a7e3eef128dea80c0c3614473747b837cd3c6d4f9811",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:42:48.010Z"
+    }
+  }
 }

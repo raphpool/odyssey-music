@@ -70,5 +70,19 @@
       "type": "track",
       "name": "Hole In My Shoe"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un mouvement musical de la fin des années 1960 qui cherchait à reproduire et à amplifier les expériences psychédéliques par des techniques de production expérimentales et une instrumentation spécifique.",
+      "article": "La Psychedelia a émergé à la fin des années 1960 en tant que mouvement musical transformateur profondément ancré dans la culture psychédélique de l'époque. En tant que style de rock, il cherchait à reproduire et à amplifier les expériences altérant l'esprit associées à cette culture grâce à des techniques de production innovantes et une instrumentation non conventionnelle. Le genre a fonctionné comme une exploration sonore de la conscience, repoussant les limites des compositions rock traditionnelles pour créer des paysages sonores immersifs et atmosphériques qui ont défini la décennie.\n\nL'influence de la Psychedelia s'est étendue au-delà du rock standard, alors que des musiciens issus de divers horizons, y compris la soul, ont commencé à adopter ses méthodes de production distinctes et ses textures instrumentales. En intégrant ces éléments, les artistes ont créé un paysage musical fluide qui privilégiait l'expérimentation et l'expansion sensorielle. Aujourd'hui, le genre demeure un pilier fondamental de l'histoire du rock, caractérisé par son héritage durable de liberté créative et son impact significatif sur l'évolution de la production musicale populaire.",
+      "facts": {
+        "era": "fin des années 1960",
+        "origin": "Culture psychédélique mondiale",
+        "sonic_markers": "Techniques de production expérimentales, instrumentation non conventionnelle, paysages sonores atmosphériques."
+      },
+      "source_sha256": "6fc7624b802ef9aa08751f6d6cfb64b1d47e852f3f20752a16dae211f0466a27",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:34:01.407Z"
+    }
+  }
 }

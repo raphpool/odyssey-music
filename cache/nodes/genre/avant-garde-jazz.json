@@ -118,5 +118,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q790188"
+  "qid": "Q790188",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de jazz qui intègre la musique d'art avant-gardiste et les techniques de composition modernistes, en mettant l'accent sur un équilibre entre la composition d'ensemble structurée et la liberté d'improvisation.",
+      "article": "L'avant-garde jazz, souvent désigné sous le nom d'avant-jazz, de jazz expérimental ou simplement de « the new thing », représente une profonde expansion du langage jazz qui a émergé aux États-Unis au milieu des années 1950. En incorporant des principes issus de la musique classique du XXe siècle, de la composition moderniste et d'une expérimentation atonale rigoureuse, il a remis en question les conventions fondamentales du bebop et du post-bop. Au cœur de sa démarche, le genre cherche à combler le fossé entre l'expression improvisée spontanée et la conception structurelle prédéterminée. Bien qu'il soit souvent confondu avec le free jazz, l'avant-garde jazz se distingue fréquemment par son accent mis sur une structure organisée, que ce soit par le biais de mélodies composées, de cadres rythmiques spécifiques ou de la tension calculée entre les solistes et l'accompagnement.\n\nLe genre puise ses racines conceptuelles dans les innovations de la fin des années 1940, telles que les premières improvisations libres de Lennie Tristano. Cependant, il s'est cristallisé en un mouvement reconnaissable à la fin des années 1950, porté par des figures visionnaires comme Ornette Coleman, dont l'album phare de 1959, The Shape of Jazz to Come, a fondamentalement modifié la trajectoire de la musique improvisée. À mesure que le mouvement arrivait à maturité dans les années 1960, il a attiré des praticiens influents tels que Cecil Taylor, John Coltrane et The Art Ensemble of Chicago. Ces artistes, aux côtés de collectifs comme l'Association for the Advancement of Creative Musicians (AACM), ont fait entrer le jazz dans les salles de concert, les musées et les galeries, repoussant les limites de ce qui constituait une performance de jazz. La musique demeure un témoignage du pouvoir transformateur de la rébellion artistique, continuant d'influencer des sonorités diverses, allant des compositions avant-gardistes modernes au post-rock contemporain.",
+      "facts": {
+        "era": "1950s–1960s",
+        "origin": "United States"
+      },
+      "source_sha256": "09a1a36d0cb39fd36d740b623cfadb274c7d3e29b8c68b1c472054ebce128db6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:39:54.927Z"
+    }
+  }
 }

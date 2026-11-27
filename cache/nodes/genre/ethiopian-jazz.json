@@ -112,5 +112,19 @@
       "type": "track",
       "name": "Maskaram Setaba"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Une fusion distinctive de gammes éthiopiennes traditionnelles avec le jazz, le latin et le funk, initiée dans les années 1960 par l'arrangeur Mulatu Astatke.",
+      "article": "Apparu à Addis-Abeba à la fin des années 1960, l'Ethiopian Jazz fusionne les gammes et modes éthiopiens traditionnels avec des influences de jazz américain, de latin et de funk. Mulatu Astatke, le principal architecte du genre, a développé ce son en intégrant le vibraphone et les congas à la musique populaire éthiopienne après ses études au Berklee College of Music. Le mouvement a acquis une renommée mondiale grâce à la série de compilations Éthiopiques sur le label français Buda Musique, qui a restauré les bandes originales d'Amha Records des années 1970. La production privilégie souvent des arrangements instrumentaux mettant en avant le vibraphone, l'orgue et les percussions, mêlant gammes arabes et esthétique jazz-funk occidentale. Les artistes clés incluent Mahmoud Ahmed et Hailu Mergia, tandis que le son reste largement samplé dans le hip-hop moderne par des producteurs comme Madlib et Cut Chemist. Des morceaux emblématiques comme Tezeta, Musicawi Silt et Maskaram Setaba illustrent la richesse mélodique et rythmique de ce style, souvent soutenu par des groupes comme le Walias Band et distribué à l'origine par Amha Records ou plus récemment par Strut Records.",
+      "facts": {
+        "era": "fin des années 1960 à nos jours",
+        "origin": "Addis-Abeba, Éthiopie",
+        "sonic_markers": "Vibraphone, congas, orgue, mélodies modales, gammes arabes, rythmes jazz-funk."
+      },
+      "source_sha256": "2ab1614976ad4abea3bb3e0e7050263f38a70494b63febaa87053c8098da14ba",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:02:19.566Z"
+    }
+  }
 }

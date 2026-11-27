@@ -144,5 +144,19 @@
       "type": "track",
       "name": "Wank"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre minimaliste de house music caractérisé par son accent sur le micro-montage, les textures glitch et les percussions issues de sons trouvés, assemblés en rythmes de danse subtils et sophistiqués.",
+      "article": "La Microhouse est un sous-genre sophistiqué et axé sur le détail de la house music qui a émergé au début des années 2000, se concentrant principalement sur les scènes de musique électronique de Cologne et de Montréal. Caractérisé par une esthétique dépouillée et minimaliste, le genre se définit par l'utilisation de « débris numériques » — clics, glitches, parasites radio et sons trouvés hautement traités — réarrangés en grooves house complexes et propulsifs. Fonctionnant souvent à des tempos compris entre 118 et 126 BPM, la Microhouse privilégie la nuance texturale et le micro-montage aux structures mélodiques ou percussives traditionnelles. En construisant de la musique de danse à partir de fragments audio microscopiques et inattendus, les producteurs ont pu remettre en question les idées conventionnelles sur l'utilisation des instruments dans la musique de club, brouillant efficacement les frontières entre la house, la minimal techno et le design sonore ambient.\n\nLes labels allemands comme Kompakt et Perlon ont été essentiels à la croissance institutionnelle du genre, fournissant une infrastructure pour ce nouveau son expérimental. Alors qu'Isolée — dont le morceau « Wank » est fréquemment cité comme une œuvre fondatrice — a établi un modèle pour une musique percussive à échelle domestique, d'autres ont poussé le genre vers des territoires différents. Akufen, le pseudonyme de l'artiste montréalais Marc Leclair, a propulsé le son sur le devant de la scène internationale grâce à son utilisation de centaines de fragments radio micro-échantillonnés, créant une esthétique de « zapping ». Ricardo Villalobos a encore élargi les horizons du genre, introduisant des compositions de longue durée qui permettaient une évolution lente et hypnotique des micro-textures. Bien que le terme « Microhouse » soit moins fréquemment utilisé aujourd'hui, son héritage perdure dans la minimal techno moderne et la scène « rominimal » menée par des artistes roumains, où les principes fondamentaux du traitement granulaire, de la patience et de la production de grooves axés sur la texture continuent de prospérer.",
+      "facts": {
+        "era": "Début des années 2000 au milieu des années 2010",
+        "origin": "Allemagne et Canada",
+        "sonic_markers": "Clics, glitches, micro-montages, percussions issues de sons trouvés, structures 4/4 minimalistes, synthèse granulaire, variations timbrales subtiles."
+      },
+      "source_sha256": "1d457751601f4d9edfac97296e7b6fe50f5297ac91f806609a0658d7a48ceead",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:30:59.940Z"
+    }
+  }
 }

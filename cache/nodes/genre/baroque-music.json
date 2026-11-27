@@ -86,5 +86,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q8361"
+  "qid": "Q8361",
+  "l10n": {
+    "fr": {
+      "teaser": "Une période stylistique majeure de la musique savante occidentale (v. 1600–1750) caractérisée par l'essor de la tonalité classique, une polyphonie complexe et la naissance de formes telles que l'opéra et le concerto.",
+      "article": "La musique baroque désigne une période transformatrice de la musique classique occidentale s'étendant approximativement de 1600 à 1750. Servant de pont vital entre la fin de la Renaissance et l'aube de l'ère classique, cette période fut caractérisée par une évolution vers une polyphonie complexe, l'expression émotionnelle et la formalisation de la tonalité classique. Le terme « baroque » — dérivé du portugais « barroco », signifiant une perle de forme irrégulière — fut initialement utilisé comme un terme péjoratif au XVIIIe siècle pour critiquer une musique que les critiques jugeaient chaotique, dissonante et dépourvue de structure cohérente. Cependant, l'histoire a réhabilité le terme pour définir l'une des époques les plus prolifiques en matière d'innovation dans l'histoire musicale européenne.\n\nTechniquement, la période baroque a introduit des développements cruciaux qui ont défini la trajectoire de la musique classique pendant des siècles, notamment l'invention de l'orchestre moderne, le concerto grosso et le concept fondamental de la basse continue, où les instruments de basse fournissent une couche harmonique fondamentale. Cette ère a également marqué la naissance de l'opéra, de l'oratorio et de la cantate, qui mêlaient texte narratif et textures instrumentales sophistiquées. Les compositeurs de cette époque, tels que Johann Sebastian Bach, George Frideric Handel, Antonio Vivaldi et Arcangelo Corelli, ont repoussé les limites de l'ornementation et de la sophistication harmonique. Au début du XXe siècle, les musicologues ont commencé à classer formellement l'ère en phases précoce, moyenne et tardive, reconnaissant que cette période n'était pas définie par un ensemble uniforme de règles, mais par un esprit partagé d'expérimentation et la poursuite des « affections » — la représentation musicale de l'émotion humaine. Aujourd'hui, la musique baroque demeure un pilier central du canon classique, étudiée pour son ingéniosité technique et interprétée mondialement pour son pouvoir expressif durable.",
+      "facts": {
+        "era": "1600–1750",
+        "origin": "Europe"
+      },
+      "source_sha256": "48a83565111e0becfb18520b21671ba4fad1a6cdce321ed9f96a7ac5d638efa1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:39:55.532Z"
+    }
+  }
 }

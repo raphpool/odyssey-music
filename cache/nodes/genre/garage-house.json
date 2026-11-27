@@ -93,5 +93,18 @@
   ],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q928825"
+  "qid": "Q928825",
+  "l10n": {
+    "fr": {
+      "teaser": "La Garage House est un style soul de musique électronique de danse apparu dans les années 1980 à New York et dans le New Jersey, caractérisé par ses racines profondes dans le disco, le gospel et le R&B, mettant souvent en vedette des voix féminines émouvantes et des arrangements de piano expressifs.",
+      "article": "La Garage House, pierre angulaire de la culture dance américaine des années 1980, a émergé simultanément à la Chicago House au début et au milieu des années 1980. Centré sur les scènes nocturnes vibrantes de New York — plus précisément le légendaire Paradise Garage — et du Club Zanzibar de Newark, dans le New Jersey, le genre a tiré son nom du premier de ces lieux. Bien que la première musique house et la garage fussent souvent indiscernables, la garage s'est distinguée par une palette sonore plus profonde et plus chaleureuse, fortement redevable à ses racines disco, soul, gospel et R&B. Contrairement aux esthétiques plus mécaniques ou dépouillées de certains homologues de Chicago, la Garage House est célébrée pour sa production luxuriante, intégrant souvent des voix féminines puissantes aux inflexions gospel et des mélodies de piano soul complexes.\n\nDes figures clés comme le DJ Larry Levan au Paradise Garage ont joué un rôle déterminant dans le façonnement de l'identité sonore du genre, en défendant une approche du mixage éclectique et innovante qui privilégiait la résonance émotionnelle et l'énergie sur la piste de danse. Des producteurs comme Boyd Jarvis et des groupes tels que The Peech Boys ont été essentiels pour consolider l'identité précoce et distincte du genre avec des sorties séminales sur des labels comme Prelude Records. Au fil de son évolution, la Garage House a maintenu un lien étroit avec le versant sophistiqué de la musique de danse, fournissant finalement l'influence fondamentale à la scène UK garage naissante des années 1990. L'héritage de la Garage House persiste aujourd'hui, non seulement en tant que précurseur vital de la musique électronique de danse moderne, mais aussi comme un témoignage du pouvoir transformateur des paysages de clubs de New York et du New Jersey, où l'instrumentation électronique — synthétiseurs, boîtes à rythmes et séquenceurs — était imprégnée d'un esprit et d'une âme profondément humains.",
+      "facts": {
+        "era": "années 1980",
+        "origin": "New York et Newark, New Jersey, États-Unis"
+      },
+      "source_sha256": "7dab513ef1c0e5fcfa42c96fd20b27377f1a1acbaa090cc5fef6c3b8f9140c6a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:09:02.213Z"
+    }
+  }
 }

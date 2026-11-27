@@ -99,5 +99,18 @@
       "name": "For Your Pleasure"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le glam rock est un sous-genre du rock des années 1970, énergique et visuellement spectaculaire, défini par son mélange de racines rock and roll des années 1950 avec une mode flamboyante et androgyne et des personnages de scène théâtraux.",
+      "article": "Le glam rock, également connu sous le nom de glitter rock, était un sous-genre vibrant et théâtral de la musique rock apparu au Royaume-Uni au début des années 1970. Surgi en réponse directe à la « morosité du jean » perçue et au paysage rock de plus en plus sérieux et orienté vers le progressif de la fin des années 1960, le glam rock a prôné l'artifice, la décadence et le spectacle pur. Son esthétique était définie par des costumes flamboyants, un maquillage prononcé, des paillettes et des chaussures à semelles compensées vertigineuses, créant un langage visuel qui remettait en question les notions conventionnelles de masculinité et les rôles de genre par une androgynie radicale et une sensibilité camp. Musicalement, le genre était un collage hétérogène, puisant son inspiration dans l'énergie simple et entraînante du rock and roll des années 1950 et de la bubblegum pop, tout en filtrant ces influences à travers l'expérimentation de l'art rock et le flair dramatique du cabaret. Bien que souvent critiqué à l'époque comme superficiel ou purement commercial, le glam rock s'est avéré être un mouvement culturel charnière qui a aboli la barrière entre le public et l'artiste. Des pionniers tels que T. Rex et David Bowie ont utilisé la scène comme une toile pour des performances centrées sur des personnages, illustrées de manière célèbre par le personnage de Ziggy Stardust de Bowie. Bien que l'apogée du mouvement ait été relativement courte — environ de 1971 à 1975 — son ADN est ancré dans le développement ultérieur du punk rock, du gothic rock, de la synth-pop et de l'explosion ultérieure du glam metal. En mettant au premier plan l'importance du style, de la performance et de la personnalité de la rock star, le glam rock a fondamentalement remodelé la trajectoire de la culture pop et rock. Des albums emblématiques comme Electric Warrior de T. Rex, The Rise and Fall of Ziggy Stardust and the Spiders from Mars de David Bowie ou For Your Pleasure de Roxy Music, ainsi que les contributions de groupes comme Sweet, New York Dolls et Alice Cooper, restent des pierres angulaires du genre.",
+      "facts": {
+        "era": "1970-1975",
+        "origin": "United Kingdom"
+      },
+      "source_sha256": "7509d65778eeb405cc00bf93a0d607309a42de184ec35bd2dfdaaaeffe969651",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:43:50.347Z"
+    }
+  }
 }

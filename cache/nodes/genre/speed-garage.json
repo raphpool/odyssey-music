@@ -92,5 +92,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q780517"
+  "qid": "Q780517",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de dance britannique des années 1990 défini par des rythmes garage house accélérés, des échantillons vocaux soul découpés et des lignes de basse agressives et proéminentes.",
+      "article": "Le speed garage est un sous-genre de musique électronique à haute énergie issu de la scène dance britannique dynamique du milieu des années 1990, agissant comme un pont crucial entre la garage house américaine traditionnelle et l'intensité percutante du UK jungle et du drum and bass. Caractérisé par ses motifs de batterie accélérés et syncopés, ses échantillons vocaux lourdement traités et étirés dans le temps, et surtout par ses lignes de basse proéminentes et roulantes, ce son a redéfini le paysage des clubs britanniques. Il a remplacé les textures plus lisses et plus polies de la house new-yorkaise originale par une esthétique plus granuleuse, plus rapide et plus agressive, particulièrement adaptée à l'intensité nocturne des stations de radio pirates londoniennes et des lieux underground comme le Ministry of Sound.\n\nLa genèse du genre est le résultat direct de producteurs et de DJ expérimentant le changement de hauteur des échantillons vocaux soul tout en les superposant à des rythmes plus lourds et plus complexes. Cette innovation a transformé le garage en une puissance plus dure et plus rythmique. Des pionniers tels que DJ EZ, Tuff Jam et Todd Edwards ont joué un rôle déterminant dans l'élaboration de ce son, des artistes comme Double 99 et Armand Van Helden renforçant encore son statut dans la conscience des clubs mondiaux. À la fin des années 1990, le speed garage a explosé dans le courant dominant britannique, avec des succès comme « RipGroove » de Double 99 et les titres dominants des charts de l'Artful Dodger amenant le son à un public massif. Bien que le son se soit finalement fragmenté en 2-step et en sous-genres axés sur les basses qui mèneraient au UK garage et au dubstep, l'influence du speed garage reste indéniable, ayant établi le modèle pour des décennies de musique dance britannique axée sur les basses.",
+      "facts": {
+        "era": "Années 1990",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "cba680f9a8f595ce74b7d4ef3431f5315ef65c0abcf4c892885a46569cf79e14",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:46:48.231Z"
+    }
+  }
 }

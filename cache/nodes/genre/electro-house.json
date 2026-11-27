@@ -141,5 +141,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q627906"
+  "qid": "Q627906",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de house music défini par ses lignes de basse lourdes et distordues — utilisant souvent des ondes en dents de scie — et une production agressive axée sur les synthétiseurs, avec des tempos généralement compris entre 125 et 135 BPM.",
+      "article": "L'Electro House est un genre de musique électronique à haute énergie apparu entre le milieu et la fin des années 1990 comme une évolution granuleuse et riche en basses de la house music. Se distinguant de la house traditionnelle par son accent mis sur la distorsion, les lignes de basse de synthétiseur bourdonnantes et des techniques de production agressives, le genre se situe généralement à un tempo de 125 à 135 battements par minute. Son esthétique trouve ses racines dans la fusion de la house, de l'electro et d'éléments d'electroclash, les premiers morceaux étant souvent caractérisés par des motifs de basse en dents de scie « sales » et des paysages sonores mécaniques et grinçants.\n\nBien que ses origines soient quelque peu éclectiques, puisant son influence chez des artistes comme Daft Punk et Basement Jaxx, le genre a gagné une importance significative dans les années 2000. Le succès de Benny Benassi en 2002, « Satisfaction », est fréquemment cité comme un précurseur crucial ayant fait découvrir ce son à un public mondial. À la fin des années 2000 et au début des années 2010, l'Electro House est devenue une force dominante de la scène électronique grand public, portée par des producteurs de renom tels que Deadmau5, Justice, Steve Aoki et Skrillex. À mesure que le genre a mûri, il s'est fragmenté en divers sous-genres à succès, notamment le son « Big Room » taillé pour les festivals, les textures rythmiques complexes de la « Complextro » et l'énergie bondissante de la Melbourne Bounce. Son impact culturel demeure substantiel, ayant défini le son de l'essor international de l'EDM et des circuits des grands festivals pendant plus d'une décennie.",
+      "facts": {
+        "era": "Milieu des années 1990 à aujourd'hui",
+        "origin": "Mondial (origines en Europe et en Amérique du Nord)"
+      },
+      "source_sha256": "f258285101e1736c91776bf3593faebdcd48399aef09ff9eeeb46a7f5d1d60c9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:54:10.780Z"
+    }
+  }
 }

@@ -106,5 +106,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q1166158"
+  "qid": "Q1166158",
+  "l10n": {
+    "fr": {
+      "teaser": "Le dark cabaret est un sous-genre théâtral et mélancolique qui fusionne l'art de la performance et le réalisme satirique du cabaret européen du début du XXe siècle avec des sensibilités gothiques, post-punk et rock alternatif.",
+      "article": "Le dark cabaret est une convergence stylistique entre le rock alternatif moderne, le gothique et l'esprit théâtral, souvent transgressif, du « Kabarett » allemand de l'époque de Weimar et du music-hall européen du début du XXe siècle. Caractérisé par son atmosphère mélancolique, dramatique et souvent macabre, le genre réutilise la nature kitsch et performative du cabaret traditionnel à travers un prisme postmoderne déformé. Musicalement, il se définit par une approche éclectique et non conventionnelle de l'instrumentation ; bien que le piano en soit un pilier central, les paysages sonores sont fréquemment étoffés par l'accordéon, le violon, le violoncelle, le banjo et divers éléments de cuivres, créant une esthétique à la fois nostalgique, antique et résolument underground.\n\nLes thèmes lyriques du dark cabaret explorent souvent des sujets liés à la morbidité, au nihilisme, au chagrin d'amour et à la critique sociale cynique, livrés avec un sentiment de détachement ironique ou une vulnérabilité histrionique exacerbée. Bien que son ADN stylistique remonte aux œuvres expérimentales d'artistes comme Bertolt Brecht et Kurt Weill, l'itération moderne du genre a commencé à se cristalliser à la fin du XXe siècle. Des pionniers comme Marc & the Mambas et The Tiger Lillies ont introduit des éléments de cette noirceur théâtrale dans les sphères post-punk et alternatives, respectivement dans les années 80 et 90. Le genre a connu un regain de popularité notable au début et au milieu des années 2000, en grande partie grâce au succès retentissant d'artistes comme The Dresden Dolls, qui ont distillé les fils disparates du genre — théâtralité vocale, agressivité portée par le piano et sensibilités art-rock gothiques — sous une forme reconnaissable et accessible au grand public, qui a trouvé un écho profond au sein de la communauté alternative grandissante. Il demeure un genre d'une extrême flexibilité stylistique, comblant le fossé entre la musique de chambre délicate et l'art de la performance agressif influencé par le punk.",
+      "facts": {
+        "era": "Années 1980–présent",
+        "origin": "Mondial (avec des racines dans le cabaret européen de l'époque de Weimar)"
+      },
+      "source_sha256": "c690478ff3c646cef0889fc600a588a62ec234bc3b37b039b6edffd4272c5d2b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:20:15.277Z"
+    }
+  }
 }

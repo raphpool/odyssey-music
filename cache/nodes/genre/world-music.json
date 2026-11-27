@@ -66,5 +66,14 @@
   "key_artists": [],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une classification commerciale et marketing large et fourre-tout pour la musique originaire de l'extérieur du courant dominant traditionnel occidental, qu'il soit populaire ou classique, englobant à la fois des traditions folkloriques régionales authentiques et des fusions contemporaines.",
+      "article": "« World music » est un terme générique large, souvent débattu, utilisé pour catégoriser les traditions musicales, les styles folkloriques et les genres de fusion contemporains qui trouvent leur origine en dehors des sphères conventionnelles de la pop, du rock et de la musique classique occidentales. Bien que ses origines en tant que désignation industrielle formelle remontent à la fin des années 1980 — lorsque des maisons de disques britanniques cherchaient une étiquette commerciale cohérente pour les importations africaines, latino-américaines et autres importations internationales —, le concept trouve ses racines dans des tentatives antérieures de décrire les influences « exotiques » sur la musique occidentale. Le terme témoigne de la mondialisation croissante de l'industrie du disque et des changements multiculturels dans les sociétés occidentales à la fin du XXe siècle.\n\nSur le plan musical, la catégorie est notoirement diversifiée, englobant tout, des performances folkloriques traditionnelles riches en instruments comme le klezmer, le highlife ou la musique celtique, aux fusions « world beat » qui mélangent percussions indigènes et gammes non occidentales avec des techniques de production modernes et dansantes. Parce qu'il fonctionne en grande partie comme une catégorie commerciale fourre-tout, il a fait l'objet de critiques soutenues pour avoir potentiellement marginalisé les artistes non occidentaux en regroupant des expressions culturelles très différentes en un seul « autre » vaguement défini. Malgré ces critiques, le terme reste un indicateur significatif de la manière dont la migration mondiale et l'accessibilité numérique ont remodelé la relation de l'auditeur à la musique. Il a ouvert la voie à une pollinisation croisée dans les sphères du jazz, de la musique classique et électronique, favorisant une meilleure appréciation des gammes modales, des polyrythmies et des mélismes vocaux qui étaient autrefois relégués aux marges du Nord global. Aujourd'hui, la world music agit à la fois comme une passerelle commerciale et un outil pédagogique, encourageant le dialogue interculturel à travers le langage partagé de la mélodie et du rythme.",
+      "source_sha256": "7a860f346c1a048bfc2fc841e59d640f0b4f65e45615ab1ae68ecf4d01b43507",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:38:02.056Z"
+    }
+  }
 }

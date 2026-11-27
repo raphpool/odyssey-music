@@ -165,5 +165,18 @@
       "type": "track",
       "name": "Clarks"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical jamaïcain énergique et rythmé, issu de la culture des sound systems, caractérisé par l'utilisation de « riddims », des techniques de production numérique et une tradition vocale distincte de toasting.",
+      "article": "Le Dancehall est un genre dynamique et très rythmé de la musique populaire jamaïcaine apparu à la fin des années 1970, transformant fondamentalement le paysage musical caribéen et influençant la culture pop mondiale. Nommé d'après les salles de danse locales où les sound systems — d'imposantes installations de haut-parleurs mobiles gérées par des selectors — diffusaient tout, du ska au roots reggae, le genre a évolué pour devenir une force culturelle distincte. Contrairement à la nature spirituelle, socialement consciente et axée sur les instruments acoustiques du roots reggae traditionnel, le dancehall a adopté des rythmes synthétisés, une instrumentation électronique et une thématique lyrique centrée sur la réalité urbaine, la vie festive et le « slackness » (sujets osés).\n\nLa colonne vertébrale technique du dancehall est le « riddim » — une piste instrumentale préenregistrée qui sert de toile de fond à divers chanteurs et deejays pour « toaster » ou performer. Cette pratique permet à une seule production d'engendrer des dizaines de chansons uniques, une modularité qui reflète certains aspects de la production hip-hop. En 1985, la sortie de « (Under Me) Sleng Teng » de Wayne Smith, produit par King Jammy, a marqué un changement de paradigme vers le dancehall numérique, ou « ragga », caractérisé par des tempos plus rapides et une instrumentation entièrement électronique. Tout au long des années 1990 et jusqu'aux années 2000, le dancehall est devenu un phénomène mondial massif, avec des artistes comme Shabba Ranks, Sean Paul et Vybz Kartel propulsant le son dans les classements grand public des États-Unis et de l'Europe. Aujourd'hui, le dancehall continue de se mélanger au hip-hop, au R&B et à la dance music, conservant son statut de pilier vital et énergique de la musique moderne.",
+      "facts": {
+        "era": "1970s–present",
+        "origin": "Jamaica"
+      },
+      "source_sha256": "8120dca7244b81a10c7c15d11c0e58c48d01e5fc9a1d5327ef7ef76058d91511",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:41:51.125Z"
+    }
+  }
 }

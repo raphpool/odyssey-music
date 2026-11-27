@@ -107,5 +107,18 @@
       "type": "track",
       "name": "Protection"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Le trip hop est un genre électronique atmosphérique et downtempo qui mêle hip-hop à tempo lent, breakbeats et éléments de jazz, soul et dub dans un paysage sonore mélancolique et cinématographique. Apparu à Bristol, au Royaume-Uni, au début des années 1990, il est connu pour son utilisation expérimentale du sampling et sa production axée sur l'ambiance.",
+      "article": "Le trip hop est un genre séminal de musique électronique atmosphérique et downtempo issu de la scène underground de Bristol à la fin des années 1980 et au début des années 1990. Souvent désigné sous le nom de « the Bristol sound », le genre se définit par sa fusion psychédélique de hip-hop et d'electronica, caractérisée par des rythmes de batterie lents et lourds en basses, un sampling expérimental et des textures mélancoliques et sombres. Contrairement à l'attitude agressive du gangsta rap contemporain, le trip hop privilégiait une esthétique introspective et cinématographique, incorporant fréquemment des éléments de jazz, soul, dub, funk et musique ambient. La signature sonore du genre utilise souvent des pianos Rhodes, des cuivres et des sons non conventionnels comme des thérémines ou des Mellotrons, le tout posé sur des rythmes breakbeat décontractés.\n\nBien que le terme « trip hop » ait été inventé plus tard dans un article de Mixmag en 1994 pour décrire la production hip-hop expérimentale de DJ Shadow, les fondations du style ont été posées par des soundsystems de Bristol comme The Wild Bunch. Des artistes pionniers tels que Massive Attack, Tricky et Portishead sont devenus les visages du mouvement, façonnant des albums comme Blue Lines, Dummy et Maxinquaye qui ont défini le son alternatif de la fin des années 90 en Europe. Le genre est fréquemment remarqué pour ses voix féminines, puisant dans les traditions R&B et jazz, bien que les chanteurs masculins et les morceaux axés sur l'instrumental soient également au cœur de son héritage, avec des titres emblématiques comme Unfinished Sympathy, Glory Box ou Protection. L'influence du trip hop s'est étendue bien au-delà de Bristol, agissant comme un pont crucial entre le hip-hop underground, l'electronica et la musique alternative grand public, influençant un large éventail de producteurs et de chanteurs expérimentaux. En « transcendant » les limites du hip-hop standard, le genre a créé un modèle durable pour une production axée sur l'ambiance et l'atmosphère.",
+      "facts": {
+        "era": "1990s",
+        "origin": "Bristol, England"
+      },
+      "source_sha256": "ff888e2d71f863965a4f7bb8124b60a7da02ecf20450674ca21a9de9755f7a63",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:46:52.802Z"
+    }
+  }
 }

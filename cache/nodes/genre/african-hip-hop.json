@@ -94,5 +94,19 @@
       "type": "track",
       "name": "Rapper's Delight"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un mouvement musical diversifié englobant des scènes hip-hop régionales à travers le continent africain, incluant notamment le sous-genre Motswako.",
+      "article": "La musique hip-hop africaine maintient une présence significative sur le continent depuis le début des années 1980, souvent stimulée par une influence américaine généralisée. Le Sénégal a vu le genre s'implanter dès 1985, tandis que le Motswako a émergé comme un sous-genre distinct du hip-hop sud-africain, gagnant une popularité substantielle au Botswana et en Afrique du Sud. Des compilations telles que « Africa Raps » en 2002 et la série « Afrolution » en 2005 ont documenté la croissance de la scène régionale, mettant en lumière des artistes qui ont adapté le médium mondial à des contextes locaux. Ces enregistrements comblent souvent divers fossés stylistiques, s'appuyant sur des traditions indigènes et des techniques de production contemporaines pour créer une identité régionale unique.",
+      "facts": {
+        "era": "début des années 1980 à aujourd'hui",
+        "origin": "Afrique continentale",
+        "sonic_markers": "Fusions régionales de hip-hop avec des traditions musicales locales, rap dans diverses langues et styles de production distincts comme le Motswako."
+      },
+      "source_sha256": "d9181e0214f4a02780ec0157ffda10c9333c729c1b3024d817f82d165052b070",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:03:44.127Z"
+    }
+  }
 }

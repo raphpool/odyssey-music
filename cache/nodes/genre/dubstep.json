@@ -206,5 +206,18 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique électronique caractérisé par des lignes de sub-bass lourdes, des rythmes de batterie syncopés en demi-temps, et une esthétique sombre, atmosphérique et minimaliste, originaire de la scène underground du sud de Londres.",
+      "article": "Le Dubstep est un genre de musique électronique issu de la scène club underground du sud de Londres au début des années 2000. Initialement dérivé du UK garage et du 2-step, le genre s'est cristallisé lorsque les producteurs ont commencé à mélanger les rythmes syncopés et sautillants du garage avec les textures sombres, lourdes et spacieuses du dub jamaïcain, du drum and bass et du grime. Une caractéristique déterminante du son est l'accent mis sur les fréquences sub-bass profondes et résonnantes, une production minimaliste et un sentiment persistant de tension sonore. Le genre a été nourri dans le creuset de la boîte de nuit londonienne Plastic People lors des soirées « Forward » (FWD>>) et diffusé via la station de radio pirate Rinse FM, créant une communauté soudée de producteurs et de DJ qui privilégiaient l'esthétique de la culture « sound system ».\n\nLe terme « dubstep » lui-même a gagné en importance vers 2001-2002, apparaissant sur des sorties de labels pivots tels que Big Apple Records et Tempa. Les premières itérations du son se trouvaient souvent sur les faces B de disques de garage, signalant un virage vers une approche plus expérimentale et instrumentale qui privilégiait l'ambiance et les basses plutôt que les accroches vocales conventionnelles. Des artistes clés comme Digital Mystikz (Mala et Coki) et Distance ont aidé à définir l'esthétique « sombre » et « steppy » du genre, qui a gagné une traction critique significative au milieu des années 2000 grâce au soutien de personnalités comme John Peel et Mary Anne Hobbs. À mesure que le genre dépassait ses origines régionales, il s'est diversifié, se scindant plus tard en diverses directions, notamment le « brostep » plus lourd, plus agressif et commercialement réussi popularisé aux États-Unis, ainsi que des sous-variantes plus atmosphériques et mélodiques comme le future garage et le chillstep. Malgré sa commercialisation mondiale ultérieure, la scène initiale du sud de Londres demeure le cœur culturel du mouvement, représentatif d'une ère unique de la musique électronique urbaine britannique.",
+      "facts": {
+        "era": "Début des années 2000–Présent",
+        "origin": "Sud de Londres, Royaume-Uni"
+      },
+      "source_sha256": "7816444fb65b4f0ca9871e32ba5b24bfd08b733a7b8432e79706b25cf2414e74",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:36:04.540Z"
+    }
+  }
 }

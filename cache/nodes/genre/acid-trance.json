@@ -104,5 +104,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q481900"
+  "qid": "Q481900",
+  "l10n": {
+    "fr": {
+      "teaser": "L'acid trance est un genre électronique à haute énergie caractérisé par le mariage des structures épiques et euphoriques de la trance avec les lignes de basse résonnantes et grinçantes, pilotées par la TB-303, de l'acid house et de la techno.",
+      "article": "L'acid trance est un sous-genre hypnotique et énergique de musique électronique de danse qui a émergé au début des années 1990, né de la collision entre les arrangements euphoriques et expansifs de la trance européenne et les textures brutes et grinçantes de l'acid house et de la techno. Le genre se définit par son recours à la Roland TB-303, un synthétiseur de basse initialement destiné à l'accompagnement qui est devenu l'instrument emblématique des styles « acid ». En manipulant en temps réel la résonance, la coupure de filtre et la modulation d'enveloppe de la 303, les producteurs ont créé des lignes de basse évolutives, élastiques et caoutchouteuses qui constituent le point central de morceaux oscillant souvent entre 130 et 145 BPM.\n\nBien que les racines du son acid aient été plantées à Chicago à la fin des années 1980, l'acid trance a trouvé un foyer unique dans la scène rave européenne, particulièrement en Belgique et en Allemagne. Les clubs et labels belges, tels que le légendaire Bonzai Records, ont joué un rôle déterminant dans la popularisation d'une version plus dure et plus agressive du son. Contrairement à la trance plus mélodique et orientée vers la pop qui dominera plus tard les scènes des festivals, l'acid trance des débuts était conçue pour les sets sombres et prolongés des raves underground. Elle privilégiait la répétition hypnotique, les nappes atmosphériques et les montées pleines de tension qui culminaient en des chutes dramatiques et percutantes.\n\nLe modèle structurel d'un morceau d'acid trance implique généralement un rythme entraînant en 4/4, souvent ancré par des kicks et des percussions de style 909, sur fond de synthétiseurs cinématographiques et balayants. L'interaction entre la ligne acid mécanique et entraînante et les mélodies scintillantes et éthérées créait un sentiment de suspension « semblable à une transe », comblant le fossé entre l'intensité sombre de la techno et la nature édifiante de la trance. Bien que le pic de sa domination commerciale ait eu lieu au milieu et à la fin des années 1990, l'esthétique de l'acid trance demeure une pierre angulaire de la musique électronique de danse, influençant fortement la psytrance moderne et connaissant de fréquents renouveaux dans les scènes axées sur la trance classique à travers le monde. Son héritage est préservé à la fois par l'utilisation continue du matériel original TB-303 et par l'omniprésence d'émulations logicielles fidèles qui permettent aux producteurs de recréer la tension et la libération caractéristiques du genre.",
+      "facts": {
+        "era": "1990s",
+        "origin": "Europe (Belgium, Germany, UK)"
+      },
+      "source_sha256": "feeec11ab5d52e3b98cf7c4c6dcbd085623d03a022b0fc863b2e4b329fefcf8c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:39:51.286Z"
+    }
+  }
 }

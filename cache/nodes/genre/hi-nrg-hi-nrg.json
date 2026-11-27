@@ -87,5 +87,18 @@
       "type": "track",
       "name": "I Feel Love"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de disco rapide, porté par les synthétiseurs, défini par un rythme constant « four-on-the-floor », des arpèges entraînants et une production à haute intensité, apparu au début des années 1980.",
+      "article": "Le Hi-NRG est une évolution synthétique et rapide du disco apparue au début des années 1980, principalement issue de la culture queer des clubs de San Francisco et de New York. Caractérisé par ses motifs de boîte à rythmes « four-on-the-floor » incessants, ses lignes de basse synthétiques arpégées et ses performances vocales dramatiques, souvent plaintives, le Hi-NRG a éloigné la musique de danse des arrangements orchestraux et funk du disco de la fin des années 70 vers une esthétique plus froide, plus mécanique et purement rythmique. En privilégiant la vitesse (souvent entre 130 et 140 BPM) et l'intensité, il a servi de pont stylistique essentiel entre l'ère disco et l'explosion ultérieure de la house et de la techno, fournissant un vocabulaire fondamental de techniques de production électronique.\n\nSur le plan culturel, le Hi-NRG était un sanctuaire pour les communautés marginalisées, offrant la bande-son à haut indice d'octane des boîtes de nuit gays où l'esthétique de l'excès et de la théâtralité était célébrée. Des producteurs comme Patrick Cowley ont joué un rôle déterminant dans l'élaboration de ce son, utilisant des séquenceurs et des synthétiseurs pour repousser les limites de ce que la musique de danse pouvait être, en s'éloignant de l'instrumentation organique. Bien que le genre ait fini par toucher la pop grand public et laissé une empreinte durable sur l'Eurodance, sa contribution principale demeure son rôle dans le développement de la musique de danse électronique contemporaine. Il a transformé la piste de danse en un lieu de précision mécanique, anticipant efficacement les structures plus froides et plus répétitives qui allaient définir les scènes house et techno de la fin des années 80 et des années 90.",
+      "facts": {
+        "era": "années 1980",
+        "origin": "États-Unis (San Francisco/New York)"
+      },
+      "source_sha256": "aea5c731d019d7d0f48c1e0623763156719366dd3e2a742bf310d0f97d8be285",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:28:05.834Z"
+    }
+  }
 }

@@ -51,5 +51,14 @@
   ],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q423918"
+  "qid": "Q423918",
+  "l10n": {
+    "fr": {
+      "teaser": "Une forme de musique électroacoustique conçue pour une diffusion par haut-parleurs où la source sonore est dissimulée, favorisant une concentration sur les propriétés acoustiques du son plutôt que sur ses origines.",
+      "article": "La musique acousmatique est une forme sophistiquée de composition électroacoustique caractérisée par la dissimulation délibérée de la source sonore, généralement par l'utilisation de haut-parleurs comme principal médium de transmission. Émergeant du mouvement de la musique concrète à la fin des années 1940 en France, le genre repose sur l'idée philosophique d'écouter le son comme un objet à part entière, détaché de l'action physique ou de l'instrument qui l'a créé. Le terme lui-même est dérivé du concept pythagoricien antique des akousmatikoi, disciples qui écoutaient leur maître derrière un voile afin de se concentrer entièrement sur le contenu des paroles, plutôt que sur la distraction visuelle de l'orateur. Dans le contexte musical moderne, ce « voile » est la membrane du haut-parleur, qui permet au compositeur de présenter des sons — qu'ils soient synthétisés, enregistrés dans la nature ou échantillonnés à partir d'instruments traditionnels — sans que l'auditeur n'ait besoin d'en identifier l'origine.\n\nAu cœur de l'expérience acousmatique se trouve le concept d'écoute réduite de Pierre Schaeffer, qui demande au public de dépasser l'identification mimétique des sons (c'est-à-dire « c'est un oiseau » ou « c'est une porte qui claque ») pour se concentrer plutôt sur leurs qualités sonores internes : timbre, spectre, texture et évolution dans le temps. Les œuvres acousmatiques sont généralement composées comme des « supports fixés », ce qui signifie que la pièce existe en tant qu'artefact enregistré plutôt qu'en tant que performance live basée sur une partition. Cependant, cela ne signifie pas que l'œuvre est statique ; la pratique de la performance implique la « spatialisation », où un compositeur ou un interprète utilise un dispositif multi-haut-parleurs pour déplacer, projeter et manipuler le son en temps réel dans un espace de concert. En transformant et en superposant ces sons, les praticiens font de la composition un art de l'« organisation sonore », déplaçant l'attention de la mélodie et de l'harmonie traditionnelles vers une exploration purement immersive du paysage sonore. Aujourd'hui, le genre demeure une pierre angulaire des études académiques sur la musique électronique, favorisant une expérimentation approfondie avec le traitement du signal numérique et le design sonore.",
+      "source_sha256": "5c3d88e2b05015cebceca2c75595cf5973a6cb40e5f6af8c2f62bccdbc027eaf",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:03:43.131Z"
+    }
+  }
 }

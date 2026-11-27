@@ -107,5 +107,18 @@
       "name": "If You're Feeling Sinister"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style d'indie pop apparu dans les années 1990, caractérisé par la fusion d'une instrumentation rock traditionnelle avec des éléments orchestraux tels que des cordes, des cuivres et du piano, profondément influencé par la baroque pop et la sunshine pop des années 1960.",
+      "article": "La chamber pop, parfois appelée « ork-pop », est un sous-genre émotif et sophistiqué de l'indie pop qui a émergé de manière proéminente dans les années 1990 en tant qu'alternative délibérée et ornée à l'esthétique brute prédominante du grunge et du slacker rock. Ancré dans les sensibilités mélodiques de la pop des années 1960, le genre puise une forte inspiration dans les arrangements légendaires de l'ère « Pet Sounds » de Brian Wilson avec The Beach Boys, ainsi que dans l'écriture soignée de Burt Bacharach et l'ambition orchestrale de la baroque pop du milieu du siècle. Contrairement aux genres indie plus minimalistes, la chamber pop prospère grâce à l'intégration d'une instrumentation rock traditionnelle — guitares, basse et batterie — avec un éventail d'éléments « classiques » et pop-orchestraux tels que des cordes, des cuivres, des bois, du piano, des claviers Rhodes et du vibraphone.\n\nLe genre a mûri dans les années 1990 des deux côtés de l'Atlantique, trouvant sa place au sein de scènes indépendantes qui valorisaient le savoir-faire et la complexité harmonique. Au Royaume-Uni, des artistes comme The High Llamas, Tindersticks et Belle and Sebastian sont devenus synonymes de ce son, utilisant des arrangements luxuriants pour colorer leur écriture lettrée et souvent mélancolique. Parallèlement, la scène américaine a favorisé des entités comme le collectif The Elephant 6 Recording Co. et des artistes comme Eric Matthews, qui ont repoussé les limites de la production indie pop. Le genre a continué d'évoluer dans les années 2000, avec des productions acclamées par la critique d'artistes comme Arcade Fire, Sufjan Stevens et Rufus Wainwright, qui ont orienté le son vers un territoire art-pop plus maximaliste et expérimental. Bien qu'il se soit éloigné du surnom spécifique de « ork-pop », l'influence de la chamber pop persiste dans la musique indie moderne, représentant un pont entre la simplicité introspective du rock indépendant et les textures grandioses de l'écriture orchestrale.",
+      "facts": {
+        "era": "1990s–2000s (peak)",
+        "origin": "United States and United Kingdom"
+      },
+      "source_sha256": "1a2588167d5f178feb7704cb81a0ac8bee17148b6101920ac5af805c8501b083",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:40:54.662Z"
+    }
+  }
 }

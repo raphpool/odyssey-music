@@ -125,5 +125,18 @@
       "name": "4'33\""
     }
   ],
-  "qid": "Q2332751"
+  "qid": "Q2332751",
+  "l10n": {
+    "fr": {
+      "teaser": "La musique avant-garde désigne des compositions innovantes, expérimentales et intrinsèquement subversives, qui s'opposent intentionnellement aux tendances normatives pour défier les attentes du public. Il s'agit d'un phénomène fluide et trans-genre qui privilégie le dépassement des frontières artistiques et l'exploration conceptuelle au détriment des règles musicales établies.",
+      "article": "La musique avant-garde représente une impulsion persistante et transhistorique vers l'innovation radicale, l'expérimentation et la perturbation active des normes musicales établies. Plutôt qu'un modèle stylistique ou une structure rythmique spécifique, elle agit comme un état d'esprit culturel, repoussant les limites de ce qui est considéré comme audible, acceptable ou même musical. Par sa nature même, la musique avant-garde est souvent antagoniste au statu quo, utilisant fréquemment la dissonance, des sources sonores non conventionnelles, le silence ou le rejet de la tonalité traditionnelle pour défier les attentes de l'auditeur et forcer une confrontation avec le potentiel brut et inconnu du son. Parce qu'elle existe dans un état de flux constant, la désignation d'« avant-garde » est intrinsèquement relative ; ce qui est perçu comme choquant ou révolutionnaire à une époque peut finir par être absorbé dans le lexique musical plus large. Des compositions expérimentales du début du 20e siècle qui rejetaient l'harmonie fonctionnelle à l'émergence du free jazz et aux recherches électroniques de l'après-guerre, le mouvement a constamment cherché à redéfinir la relation entre le créateur, le public et le médium lui-même. Des figures emblématiques telles que John Cage, dont la composition centrée sur le silence 4'33\" sert de pilier conceptuel définitoire, illustrent la tendance du genre à privilégier le défi intellectuel et esthétique sur le simple divertissement. Ce dialogue permanent entre innovation et tradition garantit que la musique avant-garde demeure à la pointe du développement artistique, testant constamment les limites de l'expression humaine et osant redéfinir la nature fondamentale de la musique elle-même.",
+      "facts": {
+        "era": "20e siècle à nos jours",
+        "origin": "Europe occidentale et Amérique du Nord, début du 20e siècle"
+      },
+      "source_sha256": "80d807cb96da5ebe5431caee7403e72b54001337e9ce3afe85a9b11b6ae26337",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:05:37.216Z"
+    }
+  }
 }

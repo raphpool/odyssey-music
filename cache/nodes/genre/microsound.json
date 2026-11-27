@@ -104,5 +104,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q3503814"
+  "qid": "Q3503814",
+  "l10n": {
+    "fr": {
+      "teaser": "Le Microsound est un genre de musique électronique expérimentale qui explore les possibilités esthétiques d'un audio manipulé à des échelles de temps extrêmement courtes, utilisant souvent la synthèse granulaire et le traitement numérique du signal pour construire des compositions à partir de micro-événements.",
+      "article": "Le Microsound est un genre avant-gardiste de musique électronique expérimentale caractérisé par son attention portée au son à des échelles de temps extrêmement granulaires, durant souvent seulement quelques millisecondes. Apparu à la fin des années 1990 et ayant prospéré au début des années 2000, il fonctionne comme une évolution à l'ère numérique de la musique concrète, utilisant des techniques avancées de traitement du signal comme la synthèse granulaire et le micromontage pour manipuler l'audio à un niveau sub-note. En privilégiant l'agencement de minuscules particules sonores — clics, impulsions, glitches et textures statiques — les artistes de ce domaine traitent essentiellement l'audio comme une substance tangible et physique, dépouillant les attentes mélodiques ou harmoniques traditionnelles pour explorer l'architecture du son lui-même.\n\nSouvent décrit comme un cousin du genre glitch, le Microsound se distingue par son esthétique souvent plus austère et analytique, favorisant la précision et l'exploration timbrale. Le mouvement est profondément lié aux esthétiques numériques, où les contraintes et les possibilités de la synthèse informatique ont permis le contrôle granulaire nécessaire pour sculpter ces micro-événements. Des figures clés comme Alva Noto, Ryoji Ikeda et Fennesz ont joué un rôle déterminant dans la définition de ce son, comblant souvent le fossé entre la musique électronique minimaliste et les paysages sonores ambiants. Le genre exige un mode d'écoute actif et microscopique, invitant le public à s'engager avec les changements subtils, la densité et la spatialisation du son au sein du vide numérique, créant finalement une expérience immersive qui redéfinit la relation entre la technologie numérique et la structure musicale.",
+      "facts": {
+        "era": "Fin des années 1990 - Présent",
+        "origin": "Mondial (centré en Europe et au Japon)"
+      },
+      "source_sha256": "2be3f2469bc7ab2f4e7e05ab86c438c7d371a3c29298003fc5634fa37be0fc46",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:31:01.023Z"
+    }
+  }
 }

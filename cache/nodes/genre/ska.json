@@ -126,5 +126,18 @@
       "name": "Guns of Navarone"
     }
   ],
-  "qid": "Q54365"
+  "qid": "Q54365",
+  "l10n": {
+    "fr": {
+      "teaser": "Le ska est un style musical jamaïcain dynamique et syncopé apparu à la fin des années 1950, caractérisé par un « chop » sur le contretemps, des arrangements de cuivres puissants et une fusion de jazz, de R&B et de rythmes folkloriques caribéens.",
+      "article": "Le ska est un genre de musique populaire vibrant et rythmé, né en Jamaïque à la fin des années 1950, qui constitue le premier style pop urbain indigène du pays. Caractérisé par ses tempos rapides et énergiques ainsi que par une structure rythmique distincte — notamment un « chop » de guitare sur le contretemps — le ska a mêlé des influences folkloriques caribéennes locales comme le mento et le calypso aux sonorités naissantes du jazz américain et du rhythm and blues (R&B). Le genre a été initié par les opérateurs de sound systems mobiles jamaïcains qui cherchaient à imiter les disques de R&B provenant de villes comme La Nouvelle-Orléans.\n\nLes musiciens de studio et les arrangeurs ont joué un rôle central dans le développement précoce du ska, notamment The Skatalites, dont les membres comprenaient des figures légendaires comme le tromboniste Don Drummond. The Skatalites ont fourni l'ossature instrumentale de l'époque, accompagnant des chanteurs émergents tels que Prince Buster, Derrick Morgan et les débuts de Bob Marley and the Wailers. Le ska a considérablement évolué après l'indépendance de la Jamaïque en 1962, servant de toile de fond sonore festive à l'autonomie de la jeune nation avant de ralentir progressivement pour devenir le rocksteady, puis les grooves fondateurs du reggae.\n\nL'influence du ska s'est étendue bien au-delà des Caraïbes à travers plusieurs vagues internationales distinctes. Au début des années 1960, des artistes jamaïcains comme Millie Small ont fait découvrir ce son à Londres. À la fin des années 1970 et au début des années 1980, le mouvement 2 Tone au Royaume-Uni — mené par des groupes comme The Specials et Madness — a revitalisé le genre en lui insufflant l'énergie du punk et une conscience sociale. Cette connexion transatlantique a finalement amené le ska aux États-Unis, où il a connu un nouvel essor dans les années 1990 grâce à des groupes comme No Doubt et les Mighty Mighty Bosstones, prouvant ainsi l'adaptabilité remarquable et l'énergie contagieuse et durable du genre.",
+      "facts": {
+        "era": "1950s-present",
+        "origin": "Jamaica"
+      },
+      "source_sha256": "c43a7692d83b6f3b370c8934d4bd66d00610bcd3f911cda3ab5c98f6e8a34926",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:45:56.940Z"
+    }
+  }
 }

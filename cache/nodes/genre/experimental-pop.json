@@ -82,5 +82,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q25094591"
+  "qid": "Q25094591",
+  "l10n": {
+    "fr": {
+      "teaser": "L'experimental pop est un genre qui fusionne les structures pop traditionnelles avec une production avant-gardiste, une instrumentation non conventionnelle et des thèmes artistiques abstraits afin de subvertir les conventions de la musique populaire.",
+      "article": "L'experimental pop est un genre fluide et défiant les frontières qui occupe l'espace liminal entre les sensibilités pop traditionnelles et l'exploration avant-gardiste. Ancré dans le désir de remodeler le langage musical commun, il prend les structures fondamentales de la pop — accroches accessibles, formes couplet-refrain et contenu lyrique émotionnel — et les soumet à une reconstruction sonore radicale. Ce processus implique souvent l'intégration de textures électroniques abrasives, de structures de chansons non conventionnelles, de polyrythmies complexes et de techniques de production hautement conceptuelles qui privilégient la subversion artistique à la sécurité commerciale.\n\nL'histoire de l'experimental pop est inextricablement liée à des visionnaires pionniers qui ont utilisé le studio comme un instrument pour défier les attentes de l'auditeur sur ce que pouvait être une « pop song ». Des artistes tels que Kate Bush dans les années 1980 et Björk dans les années 1990 et 2000 en sont des exemples parfaits, ayant constamment fusionné l'intensité de l'art-rock, une conception sonore électronique complexe et des récits profondément personnels, souvent abstraits. Au cours des dernières décennies, le genre a été davantage élargi par des artistes comme Arca et SOPHIE, qui ont poussé l'esthétique vers l'extrême, employant fréquemment la distorsion numérique, des voix hyper-traitées et des percussions aux teintes industrielles pour examiner des thèmes complexes liés à l'identité, à la technologie et à la nature de l'artificiel. L'experimental pop n'existe pas simplement comme une catégorie statique ; il s'agit plutôt d'un paysage perpétuellement changeant qui sert d'incubateur pour le futur de la musique populaire, absorbant constamment des influences du jazz, de l'ambient, du hip-hop et du noise pour créer des sons à la fois profondément stimulants et étrangement familiers. Son importance durable réside dans sa capacité à démocratiser « l'expérimental », rendant des concepts inaccessibles tangibles grâce à l'attrait magnétique d'une mélodie pop.",
+      "facts": {
+        "era": "1970s–present",
+        "origin": "Global (with significant roots in UK and US avant-pop scenes)"
+      },
+      "source_sha256": "0b5b44e902c8dba282bda58e30c2edddcac196565e150e1f421bed7b8a87627f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:42:56.246Z"
+    }
+  }
 }

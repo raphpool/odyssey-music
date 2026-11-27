@@ -146,5 +146,18 @@
       "type": "track",
       "name": "Passion"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de house music caractérisé par son accent sur l'évolution structurelle graduelle, la superposition atmosphérique et une approche mélodique imprégnée de trance qui privilégie le mixage longue durée par rapport à la construction traditionnelle de morceaux basés sur des boucles.",
+      "article": "La Progressive House a émergé au début des années 1990 au sein de la culture club et rave dynamique du Royaume-Uni en tant qu'évolution sophistiquée, mélodique et expansive de la house music traditionnelle. S'éloignant de l'esthétique brute et granuleuse de l'acid house de Chicago, le genre était initialement caractérisé par un son « dur mais mélodieux » — une fusion de house américaine, de techno européenne et d'Italo disco qui privilégiait les montées progressives, les superpositions complexes et les textures atmosphériques. Les journalistes et les DJ de l'époque, tels que ceux de Mixmag, ont utilisé le terme « progressive » pour délimiter ce nouveau style introspectif qui cherchait à élever l'expérience sur la piste de danse au-delà des morceaux de club standard.\n\nLes premiers jalons clés du genre incluent des morceaux fondateurs comme « Not Forgotten » (1990) de Leftfield et « Passion » de Gat Decor. À mesure que le son a mûri au milieu des années 1990, il a trouvé un foyer puissant sur des albums de compilation comme « Renaissance: The Mix Collection » (1994) et « Northern Exposure » (1996), qui ont consolidé la réputation du genre pour ses sets de DJ épiques et de longue durée. Tout au long de son histoire, la Progressive House est restée définie par son engagement structurel envers la croissance et la tension, traversant diverses itérations, des sons underground adjacents à la trance de ses débuts aux interprétations « big room » plus bombastiques et prêtes pour les festivals qui ont dominé le paysage électronique mondial dans les années 2010. Malgré les changements dans son profil sonore et l'inévitable commercialisation qui suit tout mouvement populaire, l'essence du genre demeure un dévouement à l'arc narratif d'un mix, privilégiant des paysages sonores immersifs qui se déploient lentement.",
+      "facts": {
+        "era": "1990s–Present",
+        "origin": "United Kingdom"
+      },
+      "source_sha256": "e441c88cbe117afe0b90c2019b87daf6e4f86aee6437921d6d19ccaf14a948f1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:45:51.129Z"
+    }
+  }
 }

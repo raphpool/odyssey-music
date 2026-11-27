@@ -137,5 +137,18 @@
       "name": "Acid Tracks"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de house music né au milieu des années 80 à Chicago, défini par son son hypnotique et minimaliste ainsi que par les lignes de basse agressives et « squelching » produites par le synthétiseur Roland TB-303.",
+      "article": "L'Acid House est un sous-genre séminal de la house music apparu à Chicago au milieu des années 1980, transformant fondamentalement le paysage de la musique électronique de danse. Caractérisé par une esthétique hypnotique et minimaliste, le genre est défini par son utilisation emblématique du synthétiseur Roland TB-303. En manipulant la résonance du filtre, la fréquence de coupure et les paramètres d'accentuation du 303, les producteurs ont créé les lignes de basse « squelching » caractéristiques qui constituent la pièce maîtresse sonore du style. Cette approche texturale et agressive de la production, souvent associée à des rythmes réguliers « four-on-the-floor », offrait une rupture radicale avec les formes plus mélodiques de la house music, privilégiant l'expérimentation sonore aux structures musicales traditionnelles.\n\nLe nom du genre est inextricablement lié au morceau phare « Acid Tracks » de Phuture, qui fut célèbre pour avoir été défendu par DJ Ron Hardy au club The Music Box de Chicago. Bien que le terme « acid » ait initialement suscité des débats — allant de références aux effets psychédéliques du LSD à de l'argot concernant l'échantillonnage musical — il est devenu une pierre angulaire culturelle qui a défini un mouvement mondial. À la fin des années 1980, le son avait traversé l'Atlantique, trouvant un public massif et enthousiaste au Royaume-Uni, où il est devenu le pouls fondamental de la scène rave naissante. L'Acid House a non seulement propulsé la house music dans le courant dominant international, mais a également jeté les bases d'une vaste gamme de genres électroniques ultérieurs, notamment l'acid techno, la trance et le big beat, cimentant son héritage en tant que force pivot dans l'évolution de la culture dance moderne. Son influence reste palpable, ses sonorités distinctives de TB-303 continuant de définir l'esthétique « acid » à travers la musique électronique contemporaine.",
+      "facts": {
+        "era": "Milieu des années 1980–Présent",
+        "origin": "Chicago, États-Unis"
+      },
+      "source_sha256": "04e3b091469d6f62997a12189ab2351a8f8ef710cc449089323e5bbd0e338581",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:03:39.486Z"
+    }
+  }
 }

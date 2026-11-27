@@ -51,5 +51,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q848399"
+  "qid": "Q848399",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique populaire caractérisé par des arrangements orchestraux apaisants, mélodiques et riches, conçu pour une écoute d'ambiance et populaire à la radio des années 1950 aux années 1970.",
+      "article": "L'Easy listening est un genre de musique populaire et un format radiophonique qui a gagné en importance au milieu du XXe siècle, atteignant le sommet de sa popularité entre les années 1950 et 1970. Initialement désigné sous le nom de « mood music », il était conçu pour être apaisant, discret et agréable, servant de toile de fond mélodique à la vie domestique, aux heures de cocktail et aux espaces commerciaux. Musicalement, le genre se caractérise par des arrangements orchestraux riches, une forte dépendance aux sections de cordes et un tempo constant et doux. Contrairement aux sons plus agressifs, improvisés ou énergiques que l'on trouve dans le jazz contemporain ou le rock and roll, l'Easy listening mettait l'accent sur des transitions fluides et des mélodies familières, proposant souvent des interprétations instrumentales de standards populaires, de thèmes de films et de succès soft pop.\n\nL'identité structurelle du genre a été consolidée par sa prévalence sur la radio FM. Le terme « easy listening » lui-même a été popularisé dans les années 1960 par Claude Hall, rédacteur en chef du magazine Billboard, pour décrire le format de programmation à succès de stations comme WPIX-FM à New York. Ces stations de radio sélectionnaient soigneusement un mélange de morceaux instrumentaux et de chansons légères pour s'adapter aux rythmes de la journée de diffusion, en se concentrant sur le public adulte. Bien qu'il soit fréquemment confondu avec la « musique d'ascenseur » ou « Muzak » purement fonctionnelle et axée sur l'arrière-plan (qui était spécifiquement conçue pour être ignorée sur les lieux de travail ou dans les transports), l'Easy listening était une catégorie stylistique plus large qui englobait le travail d'arrangeurs, de chefs d'orchestre et de chanteurs pop renommés. Finalement, au fil des années 1970, le format a évolué vers ce que l'on appelle aujourd'hui le Adult Contemporary, marquant un éloignement de l'accent instrumental distinct du genre vers un son plus centré sur la voix et orienté vers la pop. Malgré son déclin dans la domination commerciale grand public, l'ère de l'Easy listening demeure une référence importante de la culture américaine du XXe siècle, capturant une esthétique spécifique du confort suburbain et de l'élégance sonore du milieu du siècle. Les artistes clés mentionnés dans le contexte du développement du genre incluent Dinah Washington, dont le travail au début des années 1950 a contribué à définir l'époque, et Jackie Gleason, dont les enregistrements de 1952 ont été essentiels à l'esthétique de la « mood music ». Des artistes comme Frank Sinatra, Nat King Cole et Engelbert Humperdinck sont fréquemment cités comme des piliers du versant vocal du genre, tandis que le son orchestral était défendu par des figures comme Mantovani. Ces artistes ont bénéficié de la culture radiophonique de l'époque, où une production riche et des mélodies accessibles étaient un élément incontournable des ondes suburbaines.",
+      "facts": {
+        "era": "1950s–1970s",
+        "origin": "United States"
+      },
+      "source_sha256": "7d2c23b9ffd3a1d38d759ba7437e5424296df823a3f8de16e823b840d0cdeeba",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:42:48.090Z"
+    }
+  }
 }

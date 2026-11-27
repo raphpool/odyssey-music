@@ -106,5 +106,19 @@
       "name": "Dirty Water"
     }
   ],
-  "qid": "Q211573"
+  "qid": "Q211573",
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de rock brut et énergique caractérisé par des guitares saturées, une interprétation agressive et une esthétique DIY qui a gagné en popularité au milieu des années 1960.",
+      "article": "Le Garage rock est un style de rock brut et énergique qui a émergé comme une force culturelle majeure au milieu des années 1960, principalement aux États-Unis et au Canada. Caractérisé par une interprétation agressive et non polie ainsi qu'une approche lyrique peu sophistiquée, le genre se définit par l'utilisation de guitares saturées et une esthétique DIY qui capturait l'esprit des musiciens amateurs jouant dans leurs garages. Ce son dépouillé a servi de précurseur essentiel au développement du psychedelic rock et des mouvements punk ultérieurs, privilégiant l'immédiateté et la puissance brute à la précision technique. Bien que son apogée initial ait eu lieu dans les années 1960, l'influence du genre a connu une résurgence significative au début des années 2000, prouvant l'attrait durable de son son viscéral axé sur la guitare. Le style demeure un élément fondamental de l'histoire du rock, célébré pour sa franchise et son rôle dans la démocratisation de la performance rock and roll.",
+      "facts": {
+        "era": "milieu des années 1960 au début des années 2000",
+        "origin": "États-Unis et Canada",
+        "sonic_markers": "Guitares saturées, interprétation vocale brute, tempo moyen, production amateur."
+      },
+      "source_sha256": "c975e142fa0c645b406cbe6b3ca04848f65c205a23bdd0d4fad88dbf743b178f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:09:03.281Z"
+    }
+  }
 }

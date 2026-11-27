@@ -147,5 +147,18 @@
       "type": "track",
       "name": "Can You Feel It"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "La deep house est un sous-genre sophistiqué de la house music caractérisé par sa fusion d'influences soul, jazz et funk avec des rythmes électroniques, évoluant généralement entre 110 et 124 battements par minute. Apparue au sein de la scène house de Chicago au milieu des années 1980, elle met l'accent sur les textures atmosphériques, les progressions d'accords complexes et la chaleur, utilisant souvent des pianos électriques et des synthétiseurs pour créer une esthétique fluide et hypnotique qui fait le pont entre la culture club profonde et une écriture mélodique et émotive.",
+      "article": "La deep house trouve son origine dans la scène dynamique de la dance music de Chicago au milieu des années 1980, agissant comme un contrepoint émotif et sophistiqué à l'énergie brute de la house primitive et de l'acid house. Des pionniers tels que Larry Heard (sous le nom de Mr. Fingers), Marshall Jefferson et Frankie Knuckles ont commencé à expérimenter avec le format, dépouillant les arrangements plus durs et percussifs de l'époque en faveur d'accords luxuriants teintés de jazz, d'échantillons vocaux imprégnés de soul et de lignes de basse profondément résonnantes. Cette concentration sur l'atmosphère et la musicalité — utilisant souvent la chaleur des synthétiseurs analogiques et des pianos électriques — a défini le surnom « deep » du genre, suggérant une complexité psychologique et émotionnelle qui transcendait la simple fonctionnalité du dance-floor.\n\nTout au long des années 1990 et 2000, le genre s'est développé à l'international, trouvant des racines profondes dans des labels et des scènes allant de New York à l'Europe. Bien que son essence fondamentale soit restée ancrée dans les rythmes hypnotiques et soul établis par les innovateurs de Chicago, le genre s'est révélé remarquablement malléable. Il est devenu un vecteur privilégié pour des artistes comme Kerri Chandler et Ron Trent pour explorer des techniques de production complexes, renforçant davantage la réputation du genre pour sa profondeur technique et son raffinement mélodique.\n\nÀ la fin des années 2000 et dans les années 2010, le terme « deep house » a connu une expansion commerciale significative. Des labels comme Diynamic, fondé par Solomun et Adriano Trolio, ont contribué à introduire une vague moderne de deep house qui privilégiait une production propre et des accroches mélodiques entraînantes, ouvrant finalement la voie à un croisement avec la conscience pop. Cette nouvelle ère intègre souvent des éléments organiques, tels que des guitares acoustiques et des arrangements vocaux pop soignés, créant une itération plus large et plus accessible du son. Malgré ces changements stylistiques, le cœur de la deep house reste ancré dans un engagement à créer un paysage sonore immersif et raffiné qui demeure autant une écoute pour la maison qu'un incontournable pour le club. Que ce soit lors de sa création originale en 1985 ou sous sa forme commerciale moderne, le genre continue d'être défini par sa recherche de profondeur, de chaleur et d'émotivité musicale.",
+      "facts": {
+        "era": "1985–présent",
+        "origin": "Chicago, Illinois, États-Unis"
+      },
+      "source_sha256": "c5f80cc59fc940b5ba2f5236c7450053d76cbafe80375a5d186e6abaf3e237ff",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:20:18.011Z"
+    }
+  }
 }

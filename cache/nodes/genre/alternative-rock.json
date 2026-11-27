@@ -166,5 +166,18 @@
       "type": "track",
       "name": "Smells Like Teen Spirit"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un vaste mouvement de musique rock issu de la scène underground des années 1980, défini par son rejet des codes du rock classique grand public et caractérisé par des guitares saturées, une éthique DIY et des thèmes liés au mécontentement générationnel.",
+      "article": "Le rock alternatif, souvent désigné simplement sous le nom de « alt-rock » ou « alternative », représente un tournant décisif dans la trajectoire de la musique populaire. Émergeant des scènes musicales indépendantes et DIY (do-it-yourself) des années 1980, le genre s'est défini par un rejet commun du son lisse et commercial du « classic rock » et du metal des années 1970 et 1980. Les musiciens associés au mouvement ont cherché à se distancier du vernis standard de l'industrie, privilégiant au contraire des sonorités de guitare brutes et saturées, des structures non conventionnelles et des thèmes lyriques qui résonnaient avec des sentiments d'aliénation et d'angoisse générationnelle.\n\nBien que le genre trouve ses racines dans l'underground de la fin des années 1970 et du début des années 1980 — s'appuyant fortement sur l'agressivité esthétique du punk et l'expérimentation artistique du post-punk — il a atteint son apogée culturel au début des années 1990. Le changement sismique s'est produit en 1991, souvent attribué à la sortie de Nevermind de Nirvana et au succès immédiat et explosif du premier single Smells Like Teen Spirit. Ce moment a propulsé des scènes auparavant confidentielles, telles que le « grunge » basé à Seattle, dans le courant dominant mondial. Soudainement, l'underground était devenu la force pop dominante, rendant effectivement le « hair metal » et les excès du rock de stade des années 1980 commercialement et culturellement obsolètes.\n\nLe mouvement était intrinsèquement hétérogène, englobant un vaste éventail de sous-genres qui partageaient une éthique plutôt qu'une palette sonore unique. De l'intellectualisme college-rock de R.E.M. et des textures saturées de larsen du shoegaze à la production agressive et teintée de sludge de la scène grunge, le rock alternatif est devenu un large parapluie pour ceux qui se sentaient en décalage avec la culture dominante. Au milieu des années 1990, le terme s'était solidifié en tant que format radio majeur, bien qu'il soit resté ancré dans sa croyance fondamentale : la poursuite d'une musique qui se voulait authentique, non conventionnelle et intrinsèquement « alternative » au statu quo. Son héritage demeure profond, car il a redéfini la manière dont la musique rock était produite, consommée et comprise à la fin du XXe siècle.",
+      "facts": {
+        "era": "Années 1980–1990",
+        "origin": "États-Unis et Royaume-Uni"
+      },
+      "source_sha256": "8ddfc4f721afcc6c5c3746da70227b5b5fd43deefd1660c7d63899501cfb73a7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:04:39.685Z"
+    }
+  }
 }

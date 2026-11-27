@@ -102,5 +102,19 @@
       "name": "Seventeen Seconds"
     }
   ],
-  "qid": "Q2343562"
+  "qid": "Q2343562",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre minimaliste imprégné d'électronique issu du post-punk, caractérisé par des voix détachées, des synthétiseurs analogiques et une esthétique sombre et atmosphérique.",
+      "article": "La Cold-wave est un sous-genre atmosphérique distinct du post-punk apparu en Europe à la fin des années 1970 et au début des années 1980. Caractérisé par un ton lyrique détaché et mélancolique ainsi qu'une esthétique de production minimaliste, le genre s'est défini par son éloignement de l'énergie brute du punk au profit des premières expérimentations électroniques. Les artistes utilisaient fréquemment des synthétiseurs portables abordables comme le Korg MS-20 pour créer des paysages sonores glacés et répétitifs, s'inspirant souvent directement du travail électronique pionnier de Kraftwerk. Le genre a trouvé un écho significatif en France, en Pologne et en Belgique, où des groupes ont développé un son défini par des sections rythmiques militantes et une éthique DIY.\n\nBien que le terme ait été inventé par le magazine Sounds en 1977, sa définition est restée fluide, chevauchant souvent la dark wave, la minimal wave et le gothic rock. La musique est marquée par un groove contrôlé et dépressif qui privilégie les textures analogiques aux arrangements traditionnels dominés par la guitare. Avec le temps, l'influence de la Cold-wave a contribué à ouvrir la voie au développement de l'electronic body music (EBM) et à des mouvements de musique électronique plus larges, laissant un héritage durable dans l'évolution de la musique alternative underground.",
+      "facts": {
+        "era": "fin des années 1970 au début des années 1980",
+        "origin": "Europe, particulièrement la France, la Pologne et la Belgique",
+        "sonic_markers": "Production minimaliste, synthétiseurs analogiques, voix détachées, sections rythmiques militantes, grooves dépressifs"
+      },
+      "source_sha256": "0537927958b2d538090e83aa75203debf249be5bdb14efbc9a68db16bc5e4763",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T17:12:27.979Z"
+    }
+  }
 }

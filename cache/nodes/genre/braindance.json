@@ -89,5 +89,14 @@
       "name": "Polygon Window"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le Braindance est un genre électronique expérimental défini par sa fusion de l'esthétique acid techno, de structures rythmiques complexes et d'une approche ludique et non académique de la conception sonore, porté par Rephlex Records au début des années 1990.",
+      "article": "Le Braindance est un sous-genre distinct et idiosyncrasique de musique électronique apparu au début des années 1990, principalement associé au label britannique influent Rephlex Records. Inventé par les fondateurs du label Richard D. James (Aphex Twin) et Grant Wilson-Claridge, le terme servait de descripteur spécifique au label qui fonctionnait souvent en tandem avec, tout en restant distinct de, l'étiquette plus large et plus académique d'« Intelligent Dance Music » (IDM). Là où l'IDM est devenue un terme générique pour des textures électroniques complexes et expérimentales, le Braindance a maintenu une orientation esthétique spécifique : il était profondément ancré dans l'héritage de l'acid techno, en particulier les timbres résonnants et grinçants de la Roland TB-303, tout en adoptant simultanément une manipulation de breakbeat à haute vitesse, complexe et souvent chargée de glitchs.\n\nMusicalement, le genre se caractérise par un tempo modéré à rapide, une attitude ludique ou irrévérencieuse envers la structure sonore, et une forte dépendance aux synthétiseurs analogiques et aux boîtes à rythmes classiques. Bien qu'il partage un ADN technique avec l'ambient techno et l'acid, il est défini par un sens de l'expérimentation incessante et un rejet des expériences d'écoute plus cliniques et « pures » que l'on trouvait dans d'autres recoins expérimentaux de l'époque. Le son est souvent erratique, mélangeant l'impact viscéral de l'acid orientée club avec des séquences rythmiques complexes et programmées qui exigent un engagement cognitif actif — d'où le « brain » dans le nom. En favorisant un catalogue comprenant des artistes comme µ-Ziq, DMX Krew, Ceephax Acid Crew et Global Goon, Rephlex Records a créé une communauté dédiée qui considérait la musique électronique comme un bac à sable pour une expression individuelle illimitée, plutôt que comme un genre lié par une orthodoxie stylistique. Son influence persiste aujourd'hui, non seulement en tant que marqueur historique de l'expérimentalisme des années 90, mais aussi en tant qu'ethos stylistique florissant qui continue d'influencer les producteurs modernes explorant l'intersection entre la chaleur analogique brute et la complexité algorithmique. Des projets comme Mike & Rich ou Polygon Window illustrent parfaitement cette approche hybride et inventive.",
+      "source_sha256": "e05f1c58cf511afa5408840a10e57b1be12f015df0bad5bbf68daa02141f8a32",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:06:39.856Z"
+    }
+  }
 }

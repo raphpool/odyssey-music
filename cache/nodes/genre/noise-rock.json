@@ -144,5 +144,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q181861"
+  "qid": "Q181861",
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de musique rock apparu dans les années 1980, caractérisé par l'utilisation agressive du larsen, d'une forte distorsion et de structures de chansons non conventionnelles pour privilégier une texture sonore brute et abrasive.",
+      "article": "Le Noise Rock est un sous-genre puissant et abrasif de la musique rock qui a émergé dans les années 1980 en tant que ramification expérimentale du punk rock. Bien qu'il conserve l'instrumentation de base du rock traditionnel — guitares, basse et batterie —, il rejette les structures de chansons standard et les conventions mélodiques au profit de textures sonores viscérales, souvent punitives. Le genre se caractérise par son utilisation intensive du larsen, une distorsion extrême et des techniques de jeu non conventionnelles, créant un « glorieux vacarme » qui privilégie la puissance et l'intensité pures du son plutôt que la virtuosité technique ou les esthétiques calibrées pour la radio.\n\nLes racines du genre sont étroitement liées au mouvement no wave, mais il s'est considérablement développé à mesure que les groupes ont commencé à mélanger ces explorations sonores dissonantes avec une écriture plus délibérée. Des pionniers comme Sonic Youth ont joué un rôle central en faisant découvrir le Noise Rock à un public plus large de rock alternatif, démontrant comment le larsen et les accordages non traditionnels pouvaient être intégrés dans des compositions captivantes, bien que stimulantes. Tout au long des années 1980 et 1990, le style s'est ramifié en diverses itérations : des groupes comme Swans et Big Black ont canalisé une intensité plus sombre et plus menaçante, tandis que d'autres formations ont adopté une approche « scuzz-rock » ou théâtralement répugnante, caractérisée par la production de groupes comme les Butthole Surfers et Pussy Galore. Trouvant souvent refuge sur des labels comme Touch & Go, le Noise Rock demeure une force essentielle de la musique underground, célébré pour son honnêteté émotionnelle brute et son refus de faire des compromis sur l'agression sonore. Son influence reste étendue, nourrissant des décennies de musique expérimentale, post-hardcore et avant-gardiste.",
+      "facts": {
+        "era": "années 1980 à aujourd'hui",
+        "origin": "États-Unis"
+      },
+      "source_sha256": "51d1568979db68bbe3dc022b06f0c87838b46bd4335c469b14c65d2744f1b69c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:32:57.571Z"
+    }
+  }
 }

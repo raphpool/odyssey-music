@@ -67,5 +67,18 @@
       "name": "Into the Pandemonium"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du heavy metal défini par son adoption de sons non traditionnels, de structures de chansons peu orthodoxes et l'intégration de techniques avant-gardistes ou expérimentales en dehors du cadre standard du metal.",
+      "article": "L'experimental metal, également largement connu sous le nom d'avant-garde metal, art metal ou avant-metal, représente une évolution repoussant les limites au sein du lexique du heavy metal. Apparu au milieu des années 1980, le genre se caractérise par un éloignement délibéré des structures standard et rigides du heavy metal traditionnel. Au lieu de cela, les artistes travaillant dans ce style intègrent des structures de chansons non conventionnelles, une instrumentation peu orthodoxe et une conception sonore expérimentale, puisant souvent dans des sources aussi disparates que le jazz, la noise music, la musique classique et le rock progressif. La genèse de l'experimental metal est souvent liée au désir des musiciens, en particulier au sein de la scène extreme metal, d'explorer le potentiel abstrait de leurs instruments, en s'affranchissant des conventions rigides qui définissaient les débuts du death metal et du thrash metal.\n\nL'identité sonore du genre est incroyablement fluide. Des groupes pionniers comme le groupe suisse Celtic Frost, notamment avec leur album phare de 1987 'Into the Pandemonium', sont fréquemment cités comme ayant établi le modèle de la nature éclectique du genre, utilisant des voix opératiques et des textures variées. De même, le groupe canadien Voivod a injecté dans la scène de la dissonance, un traitement vocal robotique et des signatures rythmiques complexes et fracturées qui ont fortement influencé les générations ultérieures de musiciens. À mesure que le style a mûri au cours des années 1990 et 2000, des labels tels que The End Records, Misanthropy Records et Ipecac Recordings ont offert un foyer aux artistes qui refusaient d'adhérer à un son unique. Aujourd'hui, l'experimental metal continue de prospérer en tant que terme générique pour les artistes qui privilégient le risque créatif, traitant le metal non pas comme un système fermé, mais comme un médium dynamique pour une expression intense et avant-gardiste. Il demeure un espace vital pour l'expérimentation technique, émotionnelle et structurelle, prouvant que la musique la plus lourde est souvent la plus ouverte à la transformation.",
+      "facts": {
+        "era": "Milieu des années 1980 à aujourd'hui",
+        "origin": "Scandinavie, Suisse, Japon et États-Unis"
+      },
+      "source_sha256": "4aa30098ccf6f86a1fe14eb514d51042f9ac4d45d6d11089157bdd66147cd311",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:42:55.370Z"
+    }
+  }
 }

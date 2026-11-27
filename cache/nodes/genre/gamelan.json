@@ -87,5 +87,19 @@
       "type": "track",
       "name": "Tabuh Lelambatan Lawas"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un ensemble musical traditionnel indonésien composé principalement d'instruments à percussion, de métallophones et de tambours, ancré dans une profonde histoire cérémonielle et de cour.",
+      "article": "Le Gamelan est une tradition d'ensemble indonésienne indigène qui présente un éventail de percussions, de métallophones, de xylophones et de tambours à main comme le kendang. Ses racines remontent aux bas-reliefs du VIIIe siècle du temple de Borobudur dans le centre de Java, où les premiers ensembles comprenaient des luths, des flûtes et des cymbales. La tradition s'est historiquement divisée en styles « forts » et « doux » avant de fusionner dans les diverses variations trouvées aujourd'hui à travers Java, Bali et la Sunda. Des instruments comme le gong ageng et le saron sont centraux, avec des systèmes d'accordage tels que le slendro et le pelog définissant l'échelle musicale. Au-delà de la performance, le Gamelan reste profondément ancré dans le rituel et la cérémonie de cour, avec des ensembles anciens comme le Singo Mengkok du XVe siècle conservés dans des musées régionaux. En 1977, un enregistrement javanais de « Gending ketawang puspawarna » par Mangkunegara IV a été envoyé dans l'espace sur les satellites Voyager de la NASA, représentant un élément fondamental de l'identité nationale indonésienne.",
+      "facts": {
+        "era": "Du VIIIe siècle à nos jours",
+        "origin": "Indonésie (Java, Bali et Sunda)",
+        "sonic_markers": "Principalement percussif, métallophones (bonang, gender, saron), contrôle rythmique via les tambours kendang, systèmes d'accordage slendro et pelog."
+      },
+      "source_sha256": "e8d40b0492d87e46b2d46746a3a37e58a38bde5f0b95e28d1556506668778ca8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:08:59.845Z"
+    }
+  }
 }

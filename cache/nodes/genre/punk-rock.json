@@ -194,5 +194,18 @@
   ],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q3071"
+  "qid": "Q3071",
+  "l10n": {
+    "fr": {
+      "teaser": "Le punk rock est un sous-genre agressif du rock, axé sur le DIY, apparu au milieu des années 1970 et défini par ses tempos rapides, sa production brute et un fort ethos anti-establishment et anticonformiste.",
+      "article": "Le punk rock a émergé au milieu des années 1970 comme une force réactionnaire contre la nature polie, complexe et à gros budget du rock progressif et du stadium rock qui dominaient les ondes de l'époque. Apparu simultanément dans les circuits underground de Londres et de New York, le genre s'est construit sur un socle d'énergie brute, de minimalisme technique et d'un ethos agressif et anti-establishment. Contrairement à la virtuosité professionnalisée des artistes grand public de l'époque, les punk rockers privilégiaient la vitesse, des structures de chansons courtes et percutantes, et une éthique démocratique du « do-it-yourself » (DIY) qui a effectivement supprimé les barrières entre le musicien et le public. Cet ethos a permis aux artistes de contourner les gardiens des labels traditionnels, en s'appuyant sur un réseau de labels indépendants, de petites salles de concert — comme le légendaire CBGB à Manhattan — et de radios underground pour cultiver un mouvement mondial en plein essor.\n\nSur le plan sonore, le punk rock se caractérise par des voix criées ou ricanantes, des guitares distordues et fortement grattées, et des sections rythmiques entraînantes et incessantes. Bien qu'enracinée dans les traditions du garage rock, du rockabilly et du rock des années 60, la musique a dépouillé l'ornementation excessive, laissant derrière elle un son austère et conflictuel. Le mouvement a fourni un exutoire vital à la frustration de la classe ouvrière et à l'aliénation suburbaine, favorisant une sous-culture qui s'est étendue bien au-delà de la musique, dans la mode, les arts visuels et le discours politique. À mesure que le genre a mûri, il s'est ramifié en un spectre diversifié de sous-genres, allant de l'intensité à haute vitesse du hardcore punk aux explorations plus structurées et artistiques du post-punk, et aux accroches accessibles et axées sur la guitare du pop-punk. Même des décennies après sa création, le punk reste une influence fondamentale sur la musique indépendante, évoluant continuellement tout en maintenant son engagement fondamental envers la liberté créative et le non-conformisme. En créant un modèle pour une production décentralisée et dirigée par l'artiste, le punk rock a fondamentalement modifié la trajectoire de la musique populaire mondiale.",
+      "facts": {
+        "era": "1970s - Present",
+        "origin": "London, England; New York City, USA"
+      },
+      "source_sha256": "aae5fc8f80504265b99ee1e90ec1d9b69db31831e08cf9eda578f206b858564f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:45:52.977Z"
+    }
+  }
 }

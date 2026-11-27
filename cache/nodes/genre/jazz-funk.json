@@ -147,5 +147,18 @@
       "name": "Troupeau bleu"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du jazz apparu dans les années 1970 qui intègre l'improvisation jazz aux rythmes syncopés et orientés groove du funk, utilisant généralement une instrumentation électrique et un rythme marqué propice à la danse.",
+      "article": "Le jazz-funk est un sous-genre distinct du jazz qui a prospéré dans les années 1970, défini par le mariage de l'improvisation jazz avec l'élan rythmique et dansant du funk. Contrairement à la nature souvent abstraite ou hautement cérébrale du free jazz précédent, le jazz-funk se concentrait sur le « groove » — un rythme marqué et syncopé soutenu par des lignes de basse électriques et la palette étendue de l'instrumentation électronique contemporaine. Ce mouvement a représenté un tournant décisif dans l'écosystème du jazz, alors que les musiciens adoptaient la viabilité commerciale et l'attrait viscéral de la soul, du rhythm and blues et du funk, tout en conservant la virtuosité et la spontanéité au cœur de la tradition jazz.\n\nLa signature sonore du jazz-funk se caractérise par son recours important aux claviers électriques, en particulier le Fender Rhodes et les premiers synthétiseurs analogiques, qui fournissaient une base sonore texturée et chaleureuse. La section rythmique a été tout autant transformée ; les batteurs se sont tournés vers des rythmes réguliers et entraînants plutôt que vers les motifs swing traditionnels, intégrant souvent des influences de percussions latines et afro-cubaines. Des architectes clés comme Herbie Hancock, avec son album phare de 1973 Head Hunters, ont popularisé le genre en mélangeant des harmonies complexes avec des arrangements hypnotiques et lourds en basses. D'autres figures essentielles telles que Donald Byrd, Lonnie Liston Smith et Miles Davis — dont les albums expérimentaux comme On the Corner ont contribué à poser les bases — ont repoussé les limites du genre. Au-delà des États-Unis, le style a résonné mondialement, avec des artistes comme Cortex en France et Banda Black Rio au Brésil créant des itérations régionales uniques qui mélangeaient le jazz-funk avec des traditions musicales locales. Aujourd'hui, le genre demeure très influent, notamment en tant que pilier fondamental de la culture du sampling hip-hop et du jazz moderne basé sur le groove.",
+      "facts": {
+        "era": "1970s - early 1980s",
+        "origin": "United States"
+      },
+      "source_sha256": "a0ba2fa395202e6da9c62c3396862d05877e65ee2f9887922b96a145182c4086",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:44:48.447Z"
+    }
+  }
 }

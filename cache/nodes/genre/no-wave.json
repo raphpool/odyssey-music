@@ -140,5 +140,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q823080"
+  "qid": "Q823080",
+  "l10n": {
+    "fr": {
+      "teaser": "Une scène musicale et artistique abrasive et avant-gardiste de la fin des années 1970 à New York, qui a rejeté les conventions du rock et de la « New Wave » commerciale au profit de la dissonance, de l'atonalité et du bruit expérimental.",
+      "article": "Le No Wave était un mouvement musical et artistique abrasif et avant-gardiste qui a explosé à la fin des années 1970 au sein du paysage urbain délabré et brut du centre-ville de New York. Émergeant comme un rejet direct et nihiliste de la mode « New Wave » naissante et commerciale, le mouvement a délibérément évité les structures blues-rock et punk traditionnelles de l'époque. Au lieu de cela, les artistes No Wave ont cherché à démanteler la musique rock de l'intérieur, utilisant l'atonalité, la dissonance, un réductionnisme agressif et le bruit expérimental pour créer un son intentionnellement conflictuel et profondément stimulant pour les auditeurs. Le mouvement n'a jamais été un genre monolithique avec des marqueurs sonores cohérents ; il a plutôt fonctionné comme une scène anti-art où les musiciens ont synthétisé des éléments de free jazz, de funk, de disco et de minimalisme dans une esthétique dure et axée sur la texture.\n\nL'héritage de la scène repose sur l'album de compilation de 1978 No New York, produit par Brian Eno, qui a capturé l'intensité claustrophobe des principaux participants du mouvement. Des groupes comme Teenage Jesus and the Jerks, Mars, DNA et James Chance and the Contortions ont transformé le lexique rock, remplaçant les riffs de guitare standard par des textures discordantes et des rythmes répétitifs et entraînants inspirés par la musique avant-gardiste du centre-ville de personnalités comme La Monte Young. Bien que le mouvement ait été de courte durée, il a exercé une influence massive et durable sur la musique indépendante, le cinéma et la mode, ouvrant la voie au développement du post-punk, de l'industriel, du noise rock et du mutant disco dans les années 1980. Il demeure le dernier mouvement avant-rock stylistiquement cohérent de New York, reflétant la désolation et la tension de son époque tout en remettant en question la définition même de ce que pouvait être la musique rock.",
+      "facts": {
+        "era": "Fin des années 1970 - début des années 1980",
+        "origin": "New York City, USA"
+      },
+      "source_sha256": "25074f310093f11deb24d35500b6188ac43eb115e87500566247fd5edbbd2924",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:45:48.157Z"
+    }
+  }
 }

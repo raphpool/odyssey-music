@@ -122,5 +122,18 @@
       "name": "Epicus Doomicus Metallicus"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du heavy metal caractérisé par des tempos lents, des guitares accordées bas et un son épais et lourd destiné à évoquer des sentiments de désespoir, d'effroi et une fatalité imminente.",
+      "article": "Le doom metal est un sous-genre extrême du heavy metal défini par son rythme délibéré, son instrumentation accordée bas et une atmosphère omniprésente et étouffante de mélancolie. Émergeant des fondations posées au début des années 1970, notamment par le travail de Black Sabbath, le genre se distingue du heavy metal traditionnel en privilégiant des tempos lents et écrasants ainsi qu'un mur de son épais et riche en basses plutôt que la vitesse ou la virtuosité. L'esthétique du doom est profondément ancrée dans le blues, mais elle transmute ces structures mélancoliques en quelque chose de plus sinistre, utilisant souvent des tritons et des dissonances pour évoquer un sentiment de désespoir inévitable. Les paroles traitent fréquemment de thèmes tels que la souffrance, le chagrin, la dépression et le poids existentiel de la vie, bien qu'elles puissent également s'étendre à l'occulte, au religieux et au psychédélique, selon le sous-genre spécifique.\n\nTout au long des années 1980, le genre a solidifié son identité grâce à des groupes pionniers comme Saint Vitus, Pentagram, Trouble et Candlemass, qui ont affiné le modèle de Black Sabbath pour en faire un son distinct et cohérent. À mesure que le mouvement a mûri, il s'est ramifié en un spectre diversifié de styles : de la grandeur épique et opératique de Candlemass aux chants funèbres désolés du funeral doom ; de la distorsion psychédélique et narcotique du stoner metal aux textures brutes et abrasives du sludge et du drone. En mettant l'accent sur le sustain, le larsen et l'impact psychologique du volume plutôt que sur des riffs rapides, le doom metal a maintenu sa position comme l'un des recoins les plus singuliers et influents du lexique heavy metal, offrant une descente cathartique au ralenti dans le cœur sombre de la lourdeur musicale. Il continue d'influencer les scènes expérimentales, post-metal et atmosphériques, demeurant un genre bâti sur la puissance du riff lourd et à combustion lente.",
+      "facts": {
+        "era": "1970s–present",
+        "origin": "United Kingdom and United States"
+      },
+      "source_sha256": "841f03ff6b21dfe90239fe493c2cec7fb3e3f7440e9ba3940b70eca6cf347e64",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:41:54.813Z"
+    }
+  }
 }

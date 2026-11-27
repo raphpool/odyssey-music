@@ -73,5 +73,19 @@
       "type": "track",
       "name": "Bouge de là"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre distinct et influent de musique hip-hop originaire de France, caractérisé par sa profondeur lyrique et son rôle significatif dans la culture française contemporaine.",
+      "article": "Le Hip-hop français, communément appelé rap français, a émergé en tant que mouvement culturel dynamique et influent en France à la fin des années 1980. Ancré dans le phénomène hip-hop mondial plus large, le genre a rapidement développé une identité distincte caractérisée par sa complexité lyrique, son commentaire social et une fusion linguistique unique. Tout au long des années 1990 et jusqu'aux années 2000, il a évolué d'une sous-culture underground vers une force dominante de l'industrie musicale française, capturant les réalités de la vie urbaine et les expériences diverses de la population française. Le genre est reconnu pour sa capacité à mélanger les techniques de production hip-hop traditionnelles avec les traditions poétiques françaises et des influences multiculturelles, créant un paysage sonore à la fois rythmiquement entraînant et intellectuellement stimulant. Au fil des décennies, il a consolidé sa place en tant que pilier de la musique française moderne, évoluant continuellement à travers diverses scènes régionales et innovations artistiques.",
+      "facts": {
+        "era": "fin des années 1980 à aujourd'hui",
+        "origin": "France, centres urbains",
+        "sonic_markers": "Tempos variés, utilisation intensive du sampling, accent lyrique sur le commentaire social et jeux de mots rythmiques."
+      },
+      "source_sha256": "fcd9a5a9402a92111dce738113892d870e7f7bd490c4d9848c9f9db6146511cd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:28:56.944Z"
+    }
+  }
 }

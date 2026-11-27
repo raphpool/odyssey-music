@@ -96,5 +96,19 @@
       "type": "track",
       "name": "I Want to Hold Your Hand"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical omniprésent destiné au marché de masse, qui a évolué à partir des fondations du rock and roll des années 1950.",
+      "article": "La popular music, souvent abrégée en pop, est un genre vaste qui s'est développé sous sa forme moderne au cours des années 1950. Elle a largement émergé de l'évolution culturelle et commerciale du rock and roll, privilégiant des mélodies accessibles et des structures adaptées à la radio. Contrairement aux styles de niche ou underground, la popular music est conçue pour une consommation de masse et domine fréquemment les classements. Son développement est étroitement lié à l'essor des formats d'enregistrement modernes, du vinyle et des cassettes à la distribution numérique, qui ont permis sa portée mondiale. Le genre se caractérise par son adaptabilité, absorbant constamment des éléments du rock, du R&B et de la musique électronique pour maintenir son attrait général. Des ressources de base de données comme Discogs suivent cette vaste histoire, documentant des milliers de variantes et de versions de sorties populaires au fur et à mesure qu'elles évoluent à travers des décennies de production et de changements commerciaux.",
+      "facts": {
+        "era": "Années 1950 à aujourd'hui",
+        "origin": "États-Unis et Royaume-Uni",
+        "sonic_markers": "Accroches mélodiques, structure couplet-refrain, arrangements soignés, 100-130 BPM"
+      },
+      "source_sha256": "8fecaf218e64b2df78217951137eeea095c64d420de7e171352e52c71887400a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:33:03.312Z"
+    }
+  }
 }

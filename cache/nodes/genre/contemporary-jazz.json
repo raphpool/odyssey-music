@@ -113,5 +113,14 @@
   ],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q5928480"
+  "qid": "Q5928480",
+  "l10n": {
+    "fr": {
+      "teaser": "Un terme générique vaste et évolutif désignant la musique jazz de la fin des années 1960 à nos jours, caractérisé par la fusion stylistique, l'expérimentation formelle et l'intégration d'influences musicales numériques et mondiales modernes.",
+      "article": "Le Contemporary Jazz est une catégorie musicale tentaculaire et aux multiples facettes qui englobe l'évolution du jazz de la fin du XXe siècle à nos jours. Plutôt qu'une tradition stylistique unique, il représente un engagement envers une réinvention perpétuelle, servant de terme générique pour les myriades de façons dont le jazz a interagi avec d'autres formes musicales populaires, les a absorbées et les a remises en question depuis les années 1960. Au fond, le Contemporary Jazz maintient l'accent essentiel du genre sur la virtuosité et la spontanéité créative, tout en s'écartant des modèles traditionnels par une approche vaste et éclectique de la composition, de l'instrumentation et de la structure formelle.\n\nLa genèse de cette ère moderne est souvent retracée jusqu'aux expérimentations des années 1960 et 1970, une période marquée par des artistes comme Miles Davis qui ont commencé à intégrer la puissance brute et les rythmes du rock, du funk et du R&B dans le cadre du jazz. Cette ère de fusion a fait voler en éclats les limites de ce qu'un ensemble de jazz pouvait être, encourageant l'inclusion d'instruments électroniques, de synthétiseurs et de textures non occidentales. Au cours des décennies suivantes, le genre s'est ramifié dans des territoires divers tels que le smooth jazz, le nu-jazz et diverses fusions mondiales, chacun reflétant le paysage culturel changeant de l'ère numérique.\n\nLe Contemporary Jazz se définit par son langage harmonique sophistiqué, utilisant souvent des accords étendus et des progressions complexes qui s'appuient sur les fondements du swing et du bebop plutôt que de simplement les répéter. Un écart majeur par rapport au jazz traditionnel réside dans son expérimentation structurelle ; alors que le jazz ancien s'appuyait fortement sur les formes de chansons standards comme véhicule pour l'improvisation en temps réel, les artistes contemporains privilégient fréquemment des compositions narratives de longue haleine. La palette sonore est large, mélangeant souvent des instruments acoustiques traditionnels comme le saxophone ou le piano avec une production numérique, des rythmes influencés par le hip-hop et des éléments de musiques du monde. Par la synthèse de ces influences mondiales, le Contemporary Jazz fonctionne comme une mosaïque auditive, repoussant continuellement les limites de l'expression musicale tout en restant attaché à l'esprit d'exploration qui définit le genre depuis sa création à La Nouvelle-Orléans.",
+      "source_sha256": "87da346ef7fc3a4da2c773fc38eab17d125c28de8d7a0f9317f8bf9ba00f5e3f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T17:12:34.482Z"
+    }
+  }
 }

@@ -85,5 +85,18 @@
   ],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q123421084"
+  "qid": "Q123421084",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre hybride combinant le rythme syncopé « kick-clap » du riddim avec la conception sonore agressive, riche en « growls » et les arrangements dramatiques du brostep.",
+      "article": "Le Briddim est une variante hybride de bass music apparue entre le milieu et la fin des années 2010, issue d'une synthèse directe du brostep et du riddim. Son nom, un mot-valise des deux styles, reflète la tension entre l'accent mis par le riddim sur le motif « kick-clap » syncopé et minimaliste, et le maximalisme à haut régime orienté vers le « drop » du brostep à l'américaine. Contrairement à la progression répétitive et axée sur les boucles du riddim traditionnel, le briddim s'appuie sur la dynamique structurelle du brostep, privilégiant des montées dramatiques et une conception sonore métallique intense caractérisée par des leads de synthétiseurs LFO « growly ».\n\nLes origines du genre sont profondément ancrées dans le catalogue de labels comme Never Say Die et sa filiale Black Label, où des producteurs ont commencé à expérimenter le croisement de paysages sonores dubstep agressifs avec la popularité naissante des rythmes riddim. Le terme lui-même a acquis une légitimité populaire suite à la sortie du morceau « Briddim Bomb » de Wooli et Kompany. Bien qu'initialement polarisant — souvent rejeté par les puristes de la scène riddim comme une itération inauthentique ou trop produite de leur esthétique de prédilection — le style a rencontré un succès massif dans le circuit EDM grand public. Il a comblé le fossé entre la scène club underground et les scènes de festivals à grande échelle, des producteurs comme Virtual Riot et Excision jouant un rôle central dans le raffinement et la popularisation du son. Le briddim demeure un chapitre déterminant, bien que controversé, de l'évolution de la bass music moderne, emblématique de la manière dont les sous-genres électroniques localisés sont transformés lorsqu'ils sont soumis aux pressions commerciales et aux attentes sonores de l'écosystème EDM plus large.",
+      "facts": {
+        "era": "2015-présent",
+        "origin": "États-Unis / International"
+      },
+      "source_sha256": "b150fc515cf2afa3393524cda053f2854455118b7d93be5628d11e9426d220fd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:06:44.169Z"
+    }
+  }
 }

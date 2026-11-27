@@ -61,5 +61,18 @@
       "name": "J-Tull Dot Com"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une vaste catégorie englobant des genres musicaux, des scènes et des esthétiques dont le développement, la distribution et l'identité culturelle sont principalement définis par Internet.",
+      "article": "La musique Internet, souvent qualifiée de « Internet culture » au sens large, désigne le paysage étendu des styles musicaux, des scènes et des microgenres qui ont été fondamentalement façonnés, distribués ou engendrés par Internet. Contrairement aux genres traditionnels définis par la géographie ou la lignée, cette catégorie se définit par sa méthode de prolifération : les mécanismes décentralisés, dirigés par des forums et axés sur des plateformes, propres à l'ère numérique. Des débuts pionniers de la communauté tracker music et d'Usenet à la fin des années 1980 et 1990, à l'explosion de la blogosphère dans les années 2000, jusqu'aux microgenres centrés sur les mèmes des années 2010 comme le vaporwave et le seapunk, la « Internet culture » dans la musique a constamment démantelé le contrôle traditionnel de l'industrie.\n\nCet écosystème sonore prospère grâce à l'échange rapide d'idées, aux réinterprétations ironiques des détritus de la culture pop et à la fusion d'esthétiques de niche en sons accessibles mondialement. L'ère des blogs des années 2000 a fait émerger des mouvements tels que le bloghouse, le blog rock et le blog rap, où des plateformes comme MySpace, Tumblr et DatPiff sont devenues les principaux vecteurs de découverte pour les fans et d'autonomie pour les artistes. Dans les années 2010, l'artiste « Internet-native » a fait son apparition : des créateurs qui n'existaient pas nécessairement au sein d'une scène physique basée dans une ville, mais plutôt en ligne, utilisant des plateformes comme SoundCloud et YouTube pour trouver des publics mondiaux. Ce genre sert de parapluie à une histoire de l'accélération numérique, où la vitesse du discours en ligne engendre et archive continuellement de nouveaux mouvements musicaux avant même qu'ils n'atteignent le grand public. Il demeure un témoignage de la puissance du réseau en tant que médium de création et scène de consommation, où l'esthétique, le son et l'identité communautaire sont inextricablement liés à l'expérience utilisateur du World Wide Web.",
+      "facts": {
+        "era": "Années 1990–Présent",
+        "origin": "Global / Espace numérique"
+      },
+      "source_sha256": "afef5e97f38edfb5944ca6ad1756b6b3ae2d69266c2efe5c7510942abc79693b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:29:05.434Z"
+    }
+  }
 }

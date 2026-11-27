@@ -120,5 +120,18 @@
       "name": "I Am Sitting in a Room"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique savante occidentale qui utilise la technologie électronique, le traitement du signal et des sons enregistrés pour manipuler les timbres et construire des compositions musicales, souvent indépendamment des conventions de performance traditionnelles.",
+      "article": "La musique électroacoustique représente une évolution transformatrice de la musique savante occidentale apparue au milieu du XXe siècle. Définie par l'intégration de la technologie d'enregistrement et du traitement du signal audio, le genre a élargi le vocabulaire de la composition musicale au-delà de l'instrumentation traditionnelle. Ses origines sont profondément liées aux expériences radicales de deux écoles fondatrices : le Groupe de Recherches Musicales (GRM) à Paris, où les praticiens de la musique concrète se concentraient sur la manipulation de sons acoustiques enregistrés, et le Studio for Electronic Music à Cologne, qui poursuivait la construction rigoureuse de sons synthétiques via des oscillateurs électroniques.\n\nCes premières méthodes, impliquant souvent la bande magnétique comme support principal de stockage et de montage, ont libéré les compositeurs des contraintes de la performance en direct. Des techniques telles que la boucle, le collage et la manipulation de la vitesse ont permis une nouvelle logique structurelle pouvant être appliquée au timbre, à la dynamique et au flux temporel. Bien qu'initialement polarisées entre l'accent « concret » sur les paysages sonores du monde réel et l'accent « électronique » sur la synthèse mathématique, ces méthodologies ont fini par converger. À la fin des années 1950, des pièces comme Gesang der Jünglinge de Karlheinz Stockhausen ont comblé ces fossés, ouvrant la voie au paysage électronique complexe et multiforme de l'ère moderne. Aujourd'hui, le genre englobe des pratiques diverses, de la musique informatique et du traitement en direct à la réutilisation créative de circuits électroniques, continuant de défier la perception du son et de l'espace chez l'auditeur.",
+      "facts": {
+        "era": "Milieu du XXe siècle à nos jours",
+        "origin": "Paris, France ; Cologne, Allemagne"
+      },
+      "source_sha256": "afbb2ddf8c562d7ffd69c55485ae75e15ddb925f84e9b1aca0c50a778211aa9e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:54:11.691Z"
+    }
+  }
 }

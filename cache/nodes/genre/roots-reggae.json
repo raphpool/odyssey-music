@@ -145,5 +145,18 @@
       "name": "Conquering Lion"
     }
   ],
-  "qid": "Q1299260"
+  "qid": "Q1299260",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de la musique reggae profondément lié au mouvement rastafari, caractérisé par son accent sur la conscience spirituelle et sociale, la résistance à l'oppression systémique et un style rythmique signature axé sur les basses.",
+      "article": "Le roots reggae est un sous-genre du reggae profondément spirituel et socialement conscient qui a émergé des Caraïbes à la fin des années 1960, atteignant son apogée créative au cours des années 1970. Profondément lié au mouvement rastafari, le genre sert de voix au « sufferer » — les communautés marginalisées vivant dans les ghettos de la Jamaïque. Musicalement, il se définit par sa dépendance lourde et hypnotique à l'ossature basse-batterie, présentant souvent le rythme distinctif « one drop », qui crée un espace méditatif et ancré pour des thèmes lyriques de résistance, de libération noire et de vénération de Jah. Contrairement au son reggae plus large, qui explore fréquemment l'amour, la culture dancehall ou la vie quotidienne, le roots reggae reste farouchement concentré sur la critique sociale, la pauvreté, l'anti-colonialisme et une aspiration spirituelle au rapatriement vers une Afrique ancestrale mythique.\n\nLe développement du genre a été stimulé par la visite de Haile Selassie en Jamaïque en 1966, qui a galvanisé la communauté rastafari et infusé la musique de l'île d'une ferveur religieuse sans précédent. Des producteurs tels que Lee \"Scratch\" Perry, Bunny Lee et Coxsone Dodd ont joué un rôle déterminant dans le façonnement de l'identité sonore du mouvement, expérimentant des techniques d'enregistrement qui ont ouvert la voie au développement du dub. Durant son âge d'or des années 1970, le roots reggae a fourni une critique culturelle puissante de « Babylon » — les systèmes du capitalisme, du fascisme et de la corruption — qui a résonné mondialement, impactant les punks à Londres et contribuant aux paysages sonores émergents du hip-hop à New York. Même lorsque le dancehall a pris le dessus dans les années 1980, la tradition « conscious » établie par des artistes comme Bob Marley, Burning Spear et Culture a perduré, influençant les générations suivantes de musiciens jamaïcains et internationaux qui continuent de porter le flambeau du roots reggae comme un vecteur de justice sociale et de réflexion spirituelle.",
+      "facts": {
+        "era": "Fin des années 1960–Présent (Apogée dans les années 1970)",
+        "origin": "Jamaïque"
+      },
+      "source_sha256": "7a79ce95c2501375d3f50fd773ddc061fcba1ba1478f8f34c54b7c414ae79242",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:35:01.631Z"
+    }
+  }
 }

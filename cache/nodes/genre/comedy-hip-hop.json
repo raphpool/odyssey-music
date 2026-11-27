@@ -79,5 +79,18 @@
       "name": "Parents Just Don't Understand"
     }
   ],
-  "qid": "Q602646"
+  "qid": "Q602646",
+  "l10n": {
+    "fr": {
+      "teaser": "Le comedy hip hop est un sous-genre de la musique hip-hop principalement caractérisé par l'utilisation de l'humour, de la satire, de la parodie ou de l'ironie pour divertir le public ou critiquer la culture hip-hop elle-même.",
+      "article": "Le comedy hip hop, souvent appelé comedy rap, est un sous-genre de la musique hip-hop défini par son intention première de divertir, de satiriser ou de parodier les conventions de la culture hip-hop dominante. Apparu dans les années 1980 comme une alternative plus légère à la scène gangsta rap en plein développement, le genre utilise l'humour pour défier les attentes, subvertir les tropes de l'hyper-masculinité ou proposer un commentaire sur la production de musique populaire. Alors que le hip-hop puriste privilégiait souvent la crédibilité de rue et la gravité sociale, le comedy hip hop a adopté l'ironie, l'esthétique du sketch et la parodie à haut concept. Le genre couvre un large spectre, allant des titres radiophoniques basés sur la narration d'artistes de la fin des années 1980 comme DJ Jazzy Jeff & The Fresh Prince, à la satire post-moderne et léchée de The Lonely Island, dont l'ascension durant la révolution de la vidéo numérique au milieu des années 2000 a cimenté le comedy hip hop comme une force puissante de la culture internet.\n\nAu-delà du simple divertissement, le comedy hip hop a historiquement fonctionné comme un vecteur d'engagement critique. En adoptant des personnages ou en créant des titres de « fake rap », les artistes peuvent exposer l'absurdité de la posture commerciale du hip-hop. Cela est évident dans le travail de pionniers satiriques comme De La Soul, dont les premiers albums jouaient avec l'obsession de l'industrie pour l'image et la dureté. À l'ère numérique, cela a évolué vers le « meme rap », un style ironique, souvent lo-fi, qui prospère grâce à la viralité et à des paroles intentionnellement stéréotypées. Malgré sa marginalisation fréquente en raison du risque perçu que la parodie du genre puisse compromettre la viabilité commerciale d'un artiste, le comedy hip hop demeure un pilier persistant et influent de la culture, comblant le fossé entre technicité musicale et théâtre performatif. Il rappelle aux auditeurs que, malgré toutes ses postures, le hip-hop est un médium doté de l'élasticité nécessaire pour englober tout ce qui va du commentaire social percutant à l'absurdité totale et impassible.",
+      "facts": {
+        "era": "1980s–present",
+        "origin": "United States"
+      },
+      "source_sha256": "b98f1f36ffacd233f528f56272aca07b1796c36db341f90b9eb89b184fb6a1df",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:41:48.015Z"
+    }
+  }
 }

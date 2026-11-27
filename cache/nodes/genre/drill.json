@@ -128,5 +128,19 @@
       "type": "track",
       "name": "Suburban"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du hip-hop caractérisé par des paroles agressives et nihilistes ainsi qu'un style de production sous tension dérivé de la trap, né à Chicago.",
+      "article": "Apparu dans les Parkway Gardens de Chicago au début des années 2010, le drill est un genre défini par des paroles sombres et nihilistes ainsi qu'une énergie conflictuelle. Des artistes pionniers comme Chief Keef, Lil Durk et Fredo Santana ont utilisé un style de production minimaliste influencé par la trap, fortement marqué par les rythmes dominés par les cloches et les cuivres synthétiques du producteur Young Chop. Contrairement aux thèmes axés sur la richesse, courants dans le hip-hop grand public de l'époque, le genre se concentre sur les réalités brutales et souvent fatalistes des rivalités entre gangs, de nombreux morceaux initiaux servant de réponses directes à la violence au sein du South Side de Chicago. La portée mondiale du sous-genre s'est étendue grâce à la scène UK drill — centrée à Brixton — où des artistes comme 67 se sont éloignés des influences centrées sur Chicago pour développer un rythme plus rapide et plus syncopé, caractérisé par des glissements de 808 et des motifs de charley accélérés. Ce changement de production unique a par la suite fortement influencé la scène de New York, où des artistes comme Pop Smoke et Fivio Foreign ont intégré l'esthétique influencée par le Royaume-Uni pour atteindre une renommée internationale. Les critiques et les sociologues continuent de débattre du rôle du genre dans la documentation du déclin sociétal, alors que les autorités aux États-Unis et au Royaume-Uni tentent fréquemment de censurer la musique drill, affirmant que son contenu lyrique explicite alimente des représailles dans le monde réel.",
+      "facts": {
+        "era": "début des années 2010 à aujourd'hui",
+        "origin": "Chicago, Illinois, États-Unis",
+        "sonic_markers": "Utilisation intensive de Roland TR-808, motifs de boîte à rythmes syncopés, cuivres synthétiques sombres et cloches, et, dans les itérations ultérieures, lignes de basse 808 glissantes."
+      },
+      "source_sha256": "869b0e0e37f46fe9678ee724cbc77230128b249859d21fb6863a4101f56cd703",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:35:58.654Z"
+    }
+  }
 }

@@ -118,5 +118,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q2687544"
+  "qid": "Q2687544",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre confrontationnel de noise music caractérisé par un volume élevé, un feedback strident, une distorsion de synthétiseurs analogiques et des prestations vocales agressives, issu de la scène industrielle britannique de la fin des années 1970.",
+      "article": "Le power electronics est un sous-genre viscéral et confrontationnel de noise music qui a émergé de la scène industrielle britannique à la fin des années 1970 et au début des années 1980. Défini par son esthétique abrasive à fort volume, le genre s'appuie fortement sur des synthétiseurs analogiques stridents, des boucles de feedback brutes et des voix dures, distordues et souvent criées. Contrairement à d'autres formes de musique électronique expérimentale qui pourraient privilégier la texture ou l'atmosphère ambiante, le power electronics est fréquemment centré sur une force sonore agressive et une provocation psychologique. Le terme lui-même a été popularisé par le groupe Whitehouse, qui a codifié cette esthétique dans ses sorties du début des années 1980, notamment sur son album de 1982 'Psychopathia Sexualis'.\n\nSur le plan culturel, le genre est notoire pour son approche transgressive de la performance et des thèmes lyriques. Les premiers praticiens puisaient souvent dans des sujets sombres, tabous et extrêmes — incluant la violence, l'extrémisme et des états psychologiques extrêmes — avec l'intention explicite de défier l'auditeur et de provoquer une réaction viscérale. Cette approche était profondément enracinée dans les sensibilités de l'art performance qui imprégnaient le mouvement industriel au sens large. Au-delà de ses origines britanniques, le genre a rapidement développé un public mondial, se ramifiant en diverses scènes régionales. Au fil de son évolution, il a donné naissance à des sous-genres apparentés tels que le death industrial, qui intègre des éléments plus sombres et atmosphériques issus de la dark ambient. À l'ère moderne, des artistes comme Puce Mary et Lingua Ignota ont ramené une reconnaissance critique au genre, démontrant la capacité continue du power electronics à servir de plateforme pour une expression avant-gardiste intense, profondément personnelle et socialement confrontante. Sa pérennité témoigne de son accent singulier sur le pouvoir de l'extrémité sonore.",
+      "facts": {
+        "era": "1979-présent",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "8adcc406d857e3c7cad1fd9500ef384a5359f7183953c2e103d2c9dc53bb77ed",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:33:56.974Z"
+    }
+  }
 }

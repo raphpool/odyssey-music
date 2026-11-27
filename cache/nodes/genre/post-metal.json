@@ -109,5 +109,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q41343"
+  "qid": "Q41343",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique expérimentale qui combine la lourdeur, le poids et la distorsion du metal avec la structure, la texture atmosphérique et la dynamique de montée en puissance lente du post-rock.",
+      "article": "Le post-metal est un mouvement musical apparu dans les années 1990 comme une expansion délibérée au-delà des frontières conventionnelles du heavy metal. En intégrant l'éthique expérimentale, la fluidité structurelle et les textures atmosphériques du post-rock — et en empruntant souvent au sludge, au doom et à la musique industrielle — les artistes de post-metal se sont éloignés de l'agressivité et des riffs rapides du heavy metal traditionnel. Ils ont plutôt privilégié les compositions longues, la répétition et une attention particulière portée au design sonore pour créer des paysages sonores étendus et émotionnellement résonnants.\n\nLe genre puise ses racines dans des groupes fondateurs comme Neurosis, dont le virage vers la texture et l'expérimentation dynamique au début des années 90, particulièrement sur des sorties séminales comme Through Silver in Blood en 1996, a établi le modèle pour le développement du genre. D'autres précurseurs, tels que le sludge-drone de Earth et les expérimentations à tendance industrielle de Godflesh, ont fourni les éléments essentiels de poids et de répétition qui allaient définir le mouvement. Avec le temps, le post-metal a évolué en un phénomène mondial, les artistes mélangeant diverses influences incluant le black metal, le shoegaze, le rock progressif et le dark ambient.\n\nMusicalement, le post-metal se définit par sa patience. Il utilise le poids lent et écrasant du sludge metal mais l'équilibre avec des mélodies délicates et claires, des paysages sonores éthérés et une emphase sur la « montée en puissance lente » — où la tension est soigneusement construite sur de longues structures de chansons avant de se résoudre en crescendos massifs et saturés. Le genre minimise l'emphase traditionnelle sur les structures pop centrées sur le chant au profit d'une instrumentation qui fonctionne comme un véhicule pour l'exploration atmosphérique. Aujourd'hui, le post-metal témoigne de la capacité de la musique extrême à s'intégrer aux traditions avant-gardistes et expérimentales, conservant ses racines lourdes tout en réinventant constamment le langage de la tension et de la libération.",
+      "facts": {
+        "era": "1990s-present",
+        "origin": "United States, United Kingdom"
+      },
+      "source_sha256": "9f2e1559629ea1896482f0879e60dbdbd7dbbbb930a1cce360d855e4d71cbe40",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:45:50.242Z"
+    }
+  }
 }

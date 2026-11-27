@@ -226,5 +226,18 @@
       "name": "Selected Ambient Works 85–92"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical mettant l'accent sur la texture atmosphérique et le timbre plutôt que sur les structures musicales traditionnelles, conçu pour créer un sentiment de lieu ou d'ambiance à travers des paysages sonores discrets.",
+      "article": "L'Ambient est un genre atmosphérique qui privilégie la texture, le timbre et l'ambiance aux structures musicales traditionnelles telles que le rythme, la mélodie et la forme chanson conventionnelle. Apparu en tant que catégorie distincte et nommée à la fin des années 1970, il puise ses racines philosophiques dans les expérimentations du début du XXe siècle — notamment le concept de « musique d'ameublement » d'Erik Satie — qui postulait que la musique pouvait exister en tant que présence environnementale plutôt qu'en tant que pièce maîtresse d'une performance. Le genre a été cristallisé par le musicien britannique Brian Eno, dont l'album séminal de 1978, Ambient 1: Music for Airports, a fourni le manifeste fondateur : une musique qui doit être « aussi ignorée qu'elle est intéressante ».\n\nContrairement à la plupart des formes musicales, l'Ambient est conçu pour exister en arrière-plan, capable de récompenser aussi bien une écoute passive et discrète qu'une immersion active et concentrée. Sa signature sonore est définie par des tons soutenus, des textures harmoniques évoluant lentement et l'utilisation créative de synthétiseurs pour émuler ou abstraire des instruments acoustiques tels que les pianos et les cordes. Le genre puise largement dans les traditions expérimentales, incluant la musique concrète, la musique minimaliste et la « kosmische musik » allemande des années 1970. Bien qu'il évite intentionnellement les contraintes rigides de la musique rythmée, l'Ambient est un genre poreux, interagissant constamment avec d'autres univers sonores ; il a alimenté divers sous-mouvements allant de l'attrait rythmique de l'ambient house et de la techno aux paysages cinématographiques austères de la dark ambient et du drone. En redéfinissant la relation entre l'auditeur, l'espace et le son lui-même, l'Ambient demeure un pilier central de la culture électronique et avant-gardiste contemporaine.",
+      "facts": {
+        "era": "1970s–present",
+        "origin": "United Kingdom / Germany"
+      },
+      "source_sha256": "2d11ac0b933b5de2d84f07c6802a1e17e63a3299221d06c0fa8f9097cce44433",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:39:51.745Z"
+    }
+  }
 }

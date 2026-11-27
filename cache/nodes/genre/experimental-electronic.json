@@ -82,5 +82,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q105763581"
+  "qid": "Q105763581",
+  "l10n": {
+    "fr": {
+      "teaser": "Une catégorie vaste et fondamentale de musique électronique qui privilégie les techniques de production non traditionnelles, la manipulation de textures sonores brutes et la subversion des structures musicales standard au détriment de la mélodie ou du rythme conventionnels.",
+      "article": "La musique Experimental Electronic représente la branche la plus ancienne et peut-être la plus fondamentale de la composition électronique, émergeant à la fin des années 1940 et au début des années 1950 comme une exploration rigoureuse du son au-delà des contraintes traditionnelles de la théorie musicale. Née en grande partie dans des environnements académiques et avant-gardistes — notamment grâce au travail de Pierre Schaeffer et du Groupe de Recherches Musicales en France — le genre était à l'origine caractérisé par la musique concrète et les premières expériences électroacoustiques. Ces pionniers, dont Hugh Le Caine, traitaient le son comme une matière brute, manipulant des bruits environnementaux enregistrés, des courants électromagnétiques et des circuits expérimentaux pour créer des textures sonores souvent déroutantes, complexes et intentionnellement non conventionnelles.\n\nAu fil des décennies, le genre a évolué depuis ses origines académiques et de laboratoire pour englober un paysage vaste et hétérogène. Il sert de terme générique pour des mouvements qui privilégient l'exploration et la subversion des structures musicales standard, allant des textures industrielles et heurtées de la fin du XXe siècle à la manipulation numérique complexe présente dans les œuvres modernes de glitch et de sampledelic. En plaçant au centre la relation entre la machine et l'auditeur, la musique Experimental Electronic remet en question les notions de ce qui constitue un son « musical », privilégiant fréquemment l'exploration de la texture, du timbre et de la spatialité plutôt que la mélodie ou le rythme. Elle demeure un catalyseur vital pour l'innovation, reconfigurant constamment la manière dont la technologie et la créativité humaine s'entrecroisent pour redéfinir les limites de l'expérience auditive.",
+      "facts": {
+        "era": "1940s–present",
+        "origin": "France"
+      },
+      "source_sha256": "f5c70a1a10b72a298a71242ac4f24a158784d88423049e62099acedbf217dd72",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:42:54.893Z"
+    }
+  }
 }

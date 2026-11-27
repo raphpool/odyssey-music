@@ -45,5 +45,18 @@
       "name": "Music for Airports"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de musique créé par le biais de systèmes — qu'ils soient mécaniques, numériques ou conceptuels — qui, une fois mis en mouvement, génèrent des motifs et des structures en évolution avec peu ou pas d'intervention continue de la part du compositeur.",
+      "article": "La generative music est un mode de composition musicale caractérisé par l'utilisation de systèmes algorithmiques basés sur des règles pour créer des paysages sonores évolutifs et non répétitifs qui continuent de se déployer au fil du temps. Plutôt que de compter sur un compositeur pour dicter chaque note d'une interprétation, la generative music implique la mise en mouvement d'un système — souvent via des boucles de bande, des algorithmes logiciels ou des patchs de synthétiseurs modulaires interconnectés — et permet à ce système de produire des résultats complexes et imprévisibles à partir d'un ensemble d'instructions relativement simple.\n\nHistoriquement, le genre est profondément enraciné dans les mouvements d'avant-garde et expérimentaux du milieu du XXe siècle. Brian Eno, qui a popularisé le terme au milieu des années 1990, en fait remonter la lignée aux pionniers minimalistes des années 1960, tels que Steve Reich et Terry Riley. La pièce fondatrice de Reich, « It's Gonna Rain », sert d'étude de cas fondamentale : en jouant deux boucles de bande identiques de la voix d'un prédicateur à des vitesses légèrement différentes, les boucles se désynchronisent lentement, créant des motifs harmoniques complexes et émergents que l'auditeur perçoit comme bien plus sophistiqués que ce que le matériau source simple pourrait suggérer. Brian Eno lui-même a étendu ces principes à son œuvre emblématique, telle que « Music for Airports », où de multiples boucles de bande indépendantes de longueurs variables sont superposées pour créer une tapisserie ambiante changeante qui ne se répète jamais exactement de la même manière.\n\nÀ la base, la generative music remet en question le rôle traditionnel du compositeur, déplaçant l'attention de l'artiste de « créateur de produits finis » à « concepteur de systèmes ». Cette philosophie a fortement influencé le développement de l'ambient music, de la conception sonore moderne et même des médias interactifs, où la synthèse audio en temps réel permet des paysages sonores qui s'adaptent à l'environnement ou aux actions de l'auditeur. En privilégiant les processus aux résultats, la generative music crée une expérience d'écoute immersive qui est à la fois stable et perpétuellement changeante, invitant le cerveau à s'habituer à la texture et à remarquer des détails minuscules et exotiques au sein du paysage sonore émergent. C'est une forme d'art qui prospère sur la tension entre la simplicité de la construction et la complexité de la perception.",
+      "facts": {
+        "era": "1960s to present",
+        "origin": "United States and United Kingdom"
+      },
+      "source_sha256": "452d5a4508eefa607b7fb525ef31a21827699f9a8a4d87d8425fb486340291d4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:43:48.650Z"
+    }
+  }
 }

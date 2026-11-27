@@ -130,5 +130,18 @@
       "name": "Mushroom"
     }
   ],
-  "qid": "Q1641839"
+  "qid": "Q1641839",
+  "l10n": {
+    "fr": {
+      "teaser": "Une catégorie vaste et diversifiée de musique rock qui rejette consciemment les structures de chansons conventionnelles et les sensibilités pop commerciales au profit de l'innovation, des textures avant-gardistes et d'une instrumentation non conventionnelle.",
+      "article": "L'Experimental rock représente l'une des branches les plus intellectuellement curieuses et les plus aventureuses sur le plan sonore de la tradition rock au sens large. Apparu à la fin des années 1960 en tant que rejet des structures rigides couplet-refrain-couplet qui définissaient la radio commerciale et la musique populaire, le genre a cherché à élargir les possibilités expressives de l'ensemble rock. En incorporant des techniques issues de la musique classique d'avant-garde, de la musique concrète, de l'improvisation jazz et des musiques du monde, les artistes de cette sphère ont effectivement traité le studio d'enregistrement comme un instrument à part entière, privilégiant la texture sonore et l'atmosphère à l'accroche mélodique traditionnelle.\n\nLa genèse de l'Experimental rock est souvent liée à la scène avant-rock de la fin des années 60, où des groupes fondateurs comme The Velvet Underground et Captain Beefheart ont commencé à démanteler les tropes fondamentaux de la musique rock, privilégiant la dissonance, le bourdonnement et la complexité rythmique. En Europe, le développement du Krautrock — mené par des groupes comme Can et Faust — a introduit une répétition hypnotique et motorik ainsi qu'une approche modulaire basée sur le studio qui allaient fondamentalement modifier la trajectoire du post-punk et de la musique électronique. Tout au long des années 1970 et 80, l'influence du genre s'est élargie grâce aux expériences art-rock de David Bowie et Brian Eno, aux déconstructions structurelles acérées de Wire et aux collages sonores en forme libre de Sonic Youth.\n\nEn fin de compte, l'Experimental rock n'est pas défini par une esthétique unique, mais par une volonté inhérente d'innover et de défier toute catégorisation. Il demeure un domaine fluide et sans frontières où l'inconventionnel est la norme. Que ce soit par l'inclusion d'une instrumentation non traditionnelle, l'utilisation de structures de chansons non linéaires ou un mépris général pour les normes de la radio commerciale, l'Experimental rock continue de servir de laboratoire essentiel pour la musique moderne, alimentant tout, du post-rock aux sons industriels et ambiants modernes. Son importance culturelle réside dans son rôle de garde-fou persistant contre la stagnation, mettant constamment les auditeurs au défi de s'engager avec la musique en tant que forme d'art évolutive et multidimensionnelle plutôt qu'en tant que marchandise jetable.",
+      "facts": {
+        "era": "1960s–present",
+        "origin": "United States, United Kingdom, and West Germany"
+      },
+      "source_sha256": "953936e6d24a4b35592251ae9d942773b122c14b99c7f50386f4a9bda10f1b82",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:42:57.055Z"
+    }
+  }
 }

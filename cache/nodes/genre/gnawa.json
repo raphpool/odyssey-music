@@ -97,5 +97,19 @@
       "type": "track",
       "name": "Night Spirit Masters"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Une tradition marocaine de chants religieux rituels et de rythmes induisant la transe, traditionnellement interprétée lors de cérémonies de guérison nocturnes appelées lilas.",
+      "article": "Apparue au Maroc aux XVIe et XVIIe siècles, la musique Gnawa représente un corpus sacré de chants et de rythmes rituels enracinés dans l'expérience historique des populations d'Afrique de l'Ouest réduites en esclavage. La tradition est centrée sur la lila, une cérémonie de guérison nocturne guidée par un maâlem, ou maître musicien, qui ancre la performance à l'aide du guembri, un luth à trois cordes. Les musiciens accompagnent ces suites rythmiques avec de lourdes castagnettes en fer appelées qraqab tout en chantant pour invoquer les mlouk, ou esprits, afin de négocier l'équilibre au sein du corps humain. Au cours des dernières décennies, le genre a migré vers des espaces profanes, notamment par le biais du Gnaoua World Music Festival à Essaouira, qui a accueilli des figures du jazz, du blues et du rock comme Randy Weston, Pharoah Sanders et The Wailers. Cette fusion entre rituel marocain indigène et styles contemporains internationaux continue de préserver la mémoire ancestrale de la communauté tout en s'adaptant à de nouveaux publics mondiaux.",
+      "facts": {
+        "era": "XVIe siècle à nos jours",
+        "origin": "Maroc, enraciné dans les traditions de la diaspora ouest-africaine",
+        "sonic_markers": "Interaction entre mesures ternaires et binaires, chants responsoriaux répétitifs, bourdon de basse du guembri, percussions métalliques qraqab et aplatissement de la hauteur vocale."
+      },
+      "source_sha256": "fb169ee2c3a3cb2d8a696e66f71773503f2eae3187f5f3bfce3a938f2406f2f1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:26:54.487Z"
+    }
+  }
 }

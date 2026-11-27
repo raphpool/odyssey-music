@@ -82,5 +82,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q2963621"
+  "qid": "Q2963621",
+  "l10n": {
+    "fr": {
+      "teaser": "Le chillstep est un sous-genre atmosphérique et downtempo du dubstep qui privilégie la mélodie, la résonance émotionnelle et un rythme détendu plutôt que l'agressivité haute énergie typique de son genre parent.",
+      "article": "Le chillstep est un sous-genre distinct de la musique électronique qui a émergé au début des années 2010 en tant qu'alternative mélodique, atmosphérique et intentionnellement détendue aux sons agressifs et chargés en basses du dubstep contemporain. Bien qu'il soit enraciné dans les structures syncopées et axées sur les basses de son genre parent, le chillstep délaisse l'énergie frénétique et discordante du « brostep » — souvent caractérisé par des synthétiseurs métalliques agressifs dans les médiums et des motifs rythmiques chaotiques — au profit de paysages sonores luxuriants, d'échantillons vocaux mélancoliques et de lignes de basse fluides et résonantes. Son identité sonore est fortement influencée par la musique ambient, la deep house et le post-dubstep, utilisant souvent les sub-basses et le synthétiseur « wobble » caractéristique de la famille dubstep élargie, mais en les appliquant de manière plus atténuée et cinématographique.\n\nLe genre a atteint son pic de popularité au début des années 2010, trouvant un public dévoué sur des plateformes comme YouTube où les « chillstep mixes » sont devenus des incontournables pour l'étude, la concentration et la relaxation. Des artistes tels que Seven Lions, Rameses B, MitiS et Skrux ont joué un rôle déterminant dans la définition de l'esthétique du genre, qui intègre fréquemment des mélodies de piano, des nappes éthérées et des rythmes downtempo. Contrairement à l'environnement rave haute énergie du dubstep traditionnel, le chillstep est conçu pour être introspectif. Sa structure est généralement plus simple et plus répétitive, permettant à l'auditeur de s'immerger dans ses textures sonores. En tant que sous-culture, il a influencé des tendances plus larges dans la musique électronique « chill-out », y compris l'essor du lofi hip-hop, en démontrant une demande culturelle massive pour une musique électronique à haute valeur de production qui privilégie l'ambiance et l'atmosphère plutôt que l'impact agressif sur la piste de danse. Bien qu'il ait décliné depuis son apogée au milieu des années 2010, il demeure un pilier fondamental de la culture électronique née sur Internet.",
+      "facts": {
+        "era": "2010s-present",
+        "origin": "United Kingdom"
+      },
+      "source_sha256": "0d03d49f55df571eb9c5f71f69fe97623bb83f6fc0cbca16dc231b8b5324f58b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:40:54.581Z"
+    }
+  }
 }

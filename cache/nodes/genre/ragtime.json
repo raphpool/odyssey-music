@@ -65,5 +65,18 @@
       "name": "The Entertainer"
     }
   ],
-  "qid": "Q185652"
+  "qid": "Q185652",
+  "l10n": {
+    "fr": {
+      "teaser": "Un style musical à la syncope entraînante apparu à la fin du XIXe siècle, caractérisé par des compositions pour piano formellement structurées qui ont servi de précurseur essentiel au jazz.",
+      "article": "Le Ragtime est un style musical typiquement américain, caractérisé par son rythme syncopé et propulsif qui a dominé le paysage populaire d'environ 1899 à 1917. Issu du jeu itinérant des pianistes de honky-tonk le long des fleuves Mississippi et Missouri à la fin du XIXe siècle, le ragtime était une synthèse dynamique d'influences culturelles diverses. Il s'est inspiré des chansons de minstrel-show, des techniques traditionnelles de banjo afro-américain et des rythmes de danse syncopés et à contretemps du cakewalk, tout en intégrant des structures dérivées de la musique classique européenne.\n\nLe genre a trouvé sa forme la plus durable et la plus reconnaissable dans les compositions pour piano, où le battement régulier, semblable à une marche, de la main gauche crée une base rythmique pour la mélodie rapide et bondissante de la main droite. Cette interaction entre la stabilité rythmique et l'irrégularité mélodique confère au genre son élan distinctif et dynamique. Scott Joplin, souvent qualifié de « King of Ragtime », a considérablement élevé le genre avec la publication en 1899 de « Maple Leaf Rag ». Joplin considérait son travail comme une branche sérieuse et permanente de la musique classique et a composé un vaste catalogue de rags, d'études et d'opéras. Bien que l'ère de domination initiale du ragtime ait été relativement brève, il a servi de précurseur crucial à la naissance du jazz à La Nouvelle-Orléans. Tout au long du XXe siècle, la musique a connu des résurgences notables, principalement dans les années 1970 grâce aux travaux de recherche de Joshua Rifkin et à la popularité du film The Sting, qui a fait découvrir à une nouvelle génération le génie des compositions de Scott Joplin. Aujourd'hui, le ragtime demeure un pilier fondamental de l'histoire de la musique américaine, célébré pour son ingéniosité structurelle et son énergie contagieuse.",
+      "facts": {
+        "era": "Fin des années 1890 à 1917 ; résurgences occasionnelles au XXe siècle.",
+        "origin": "États-Unis (régions des fleuves Mississippi et Missouri)"
+      },
+      "source_sha256": "e1b0b230b3cbff01bb5b775838d743d79e2a56d313bdc4c00a3470490bd405ce",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:34:06.081Z"
+    }
+  }
 }

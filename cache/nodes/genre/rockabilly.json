@@ -76,5 +76,19 @@
       "name": "Rockabilly Gal"
     }
   ],
-  "qid": "Q203720"
+  "qid": "Q203720",
+  "l10n": {
+    "fr": {
+      "teaser": "Une forme précoce de rock and roll originaire des États-Unis, définie par une forte influence de la musique country et un rythme swingbeat caractéristique.",
+      "article": "Le Rockabilly a émergé aux États-Unis au début des années 1950 comme l'une des premières formes de musique rock and roll. Il est défini par une synthèse distincte d'influences de musique country et de rhythm and blues, caractérisée par une énergie entraînante qui le distinguait des sons dominants de l'époque. Contrairement à la signature rythmique standard en 4/4 commune dans la musique rock ultérieure, le rockabilly est souvent remarqué pour son utilisation d'un swingbeat, qui procure un rebond rythmique essentiel au son caractéristique du genre. Le style a gagné une traction significative dans le Sud américain, particulièrement à Memphis, où des artistes ont mélangé l'instrumentation traditionnelle hillbilly avec l'intensité brute et électrifiée du rock primitif. Bien que le mouvement initial ait atteint son apogée au milieu des années 1950, il a laissé une marque indélébile sur l'histoire de la musique, influençant des générations de musiciens qui cherchaient à capturer son mélange de cran et de swing. Le genre demeure un pilier fondamental de la musique rock, célébré pour son importance historique et son rôle dans le rapprochement entre la country et le rock and roll.",
+      "facts": {
+        "era": "début des années 1950",
+        "origin": "États-Unis, particulièrement Memphis",
+        "sonic_markers": "Rythme swingbeat, instrumentation influencée par la country, énergie du rock and roll primitif"
+      },
+      "source_sha256": "7fdd176d4a8562b3ec7d915b2dbb593ca78598d8ed24a7cda0b2e81952cbbf7f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:34:59.567Z"
+    }
+  }
 }

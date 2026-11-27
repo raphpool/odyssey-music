@@ -109,5 +109,18 @@
       "name": "Alive!"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de hard rock radiophonique à la production soignée, conçu pour les grandes salles de concert, caractérisé par des refrains envolés, des power ballads et des riffs mémorables.",
+      "article": "L'Arena Rock est une variante du rock commercialement puissante et radiophonique apparue au milieu des années 1970, définie par son ambition inhérente de remplir des salles de grande capacité. Contrairement au rock plus intimiste et ancré dans le blues de la fin des années 1960, l'Arena Rock a été conçu pour le circuit des stades. Il se caractérise par une production léchée, des hooks envolés, une utilisation intensive des claviers et des refrains massifs destinés à être chantés en chœur, permettant même aux spectateurs les plus éloignés de se sentir partie prenante de l'expérience collective. La montée en puissance du genre repose sur la combinaison de l'omniprésence de la radio FM et de tournées incessantes, qui ont fait de groupes comme Journey, REO Speedwagon, Foreigner et Styx des noms familiers.\n\nLa signature sonore du genre est marquée par son mélange de punch hard rock et de concision pop-rock. Un élément essentiel du modèle Arena Rock est la « power ballad » — une composition dramatique et ample conçue pour mettre en valeur la tessiture d'un chanteur tout en évoluant d'une ouverture mélodique vers un climax explosif porté par la guitare. Cette accessibilité a permis à ces artistes de dominer à la fois les ondes et les salles de concert pendant plus d'une décennie. En privilégiant l'énergie bombastique et les refrains mémorables à la complexité du rock progressif ou à l'âpreté du blues-rock des débuts, l'Arena Rock a consolidé sa place en tant que bande-son définitive de la culture jeunesse américaine de banlieue des années 1970 et 1980. L'héritage du genre perdure non seulement dans la popularité soutenue de ses groupes clés, mais aussi dans le modèle même de l'expérience moderne des tournées en stade.",
+      "facts": {
+        "era": "Milieu des années 1970 aux années 1980",
+        "origin": "États-Unis"
+      },
+      "source_sha256": "6737a8ead05869c177ba933d93e000f0a5479fee47eeace767bb5dad7e54ef5a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:04:44.563Z"
+    }
+  }
 }

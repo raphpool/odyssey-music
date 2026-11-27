@@ -124,5 +124,18 @@
       "name": "Young Team"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le post-rock est une forme expérimentale de musique rock qui utilise des instruments rock traditionnels pour créer des compositions atmosphériques non conventionnelles, souvent caractérisées par de longs passages instrumentaux, des structures de chansons progressives et une emphase sur la texture plutôt que sur les schémas couplet-refrain standards.",
+      "article": "Le post-rock est un sous-genre de la musique rock apparu au début des années 1990, caractérisé par l'utilisation d'une instrumentation rock traditionnelle — guitares, basse, batterie — pour créer des paysages sonores non traditionnels, souvent atmosphériques ou expérimentaux. Le terme, inventé par le critique musical Simon Reynolds, décrit une musique qui transcende les conventions habituelles du rock, telles que les riffs basés sur le blues, les structures de chansons couplet-refrain et les voix prédominantes axées sur les paroles. Au lieu de cela, le genre privilégie les passages instrumentaux, les changements dynamiques, les textures complexes et des durées de morceaux étendues qui montent souvent vers des crescendos ou se dissolvent dans des états ambiants.\n\nLe mouvement puise ses racines dans des influences diverses, notamment les structures minimalistes du krautrock, les superpositions ambiantes du post-punk et la complexité du math rock. Des disques marquants comme Spiderland de Slint (1991) sont souvent cités comme fondateurs, repoussant les limites de ce qu'un groupe de rock pouvait accomplir en s'orientant vers des compositions mélancoliques, pleines de suspense et largement instrumentales. Tout au long des années 1990 et 2000, des centres comme Chicago — articulés autour de labels comme Thrill Jockey — ont favorisé une scène où des musiciens issus du jazz ou de l'expérimental, tels que Tortoise, ont redéfini les possibilités du genre. À l'échelle internationale, des groupes comme Sigur Rós en Islande et Mogwai en Écosse ont étendu la portée du genre, mêlant éléments néoclassiques, effets de guitare teintés de shoegaze et intensité émotionnelle. Le post-rock demeure un genre d'exploration, se concentrant sur le potentiel immersif de l'instrumentation plutôt que sur les accroches immédiates de l'artisanat musical traditionnel.",
+      "facts": {
+        "era": "1990s - present",
+        "origin": "United States, United Kingdom, Iceland"
+      },
+      "source_sha256": "3455df35bea94fe2afd5dec36bccabf025ad00fd3bf9b1bffd4319174f687be3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:45:50.326Z"
+    }
+  }
 }

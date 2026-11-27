@@ -113,5 +113,19 @@
       "type": "track",
       "name": "Two Pages"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre électronique né dans l'ouest de Londres, défini par des rythmes syncopés, non basés sur le quatre-au-sol, et une intégration poussée d'instrumentation jazz-funk.",
+      "article": "Apparu à la fin des années 1990 dans l'ouest de Londres, le Broken Beat — souvent appelé « bruk » — est un style axé sur le rythme, caractérisé par l'évitement délibéré des grosses caisses traditionnelles en quatre-au-sol au profit de motifs syncopés et hachés. Centré autour des studios de Ladbroke Grove, le genre a été défini par la production collective des membres de Bugz in the Attic comme Afronaut et Mark Force, aux côtés de producteurs tels que IG Culture. Musicalement, la scène a jeté un pont entre le jazz-funk des années 1970 et les sensibilités club contemporaines, intégrant souvent des accords de jazz étendus et des voicings riches. Une impulsion cruciale est venue de l'album Two Pages de 4hero en 1998, qui a aidé les producteurs à s'orienter du drum and bass vers cet expérimental plus abstrait et imprégné de fusion. Le mouvement s'est solidifié grâce à des soirées club régulières comme Co-op, qui a migré du Velvet Rooms au Plastic People, offrant un point de ralliement hebdomadaire pour la scène. Les artistes ont puisé une influence profonde dans les productions des Mizell Brothers et de Lonnie Liston Smith, aboutissant à un hybride éclectique qui samplait le funk et la soul tout en conservant une pulsation distinctement centrée sur le Royaume-Uni et riche en breaks. Au milieu des années 2000, la scène s'était développée grâce à des labels comme People Music, créant une esthétique distincte qui privilégiait l'innovation basée sur le groove plutôt que sur la quantification rigide sur grille.",
+      "facts": {
+        "era": "fin des années 1990 à la fin des années 2000",
+        "origin": "Ouest de Londres, Royaume-Uni",
+        "sonic_markers": "Rythmes syncopés, évitement du quatre-au-sol, voicings d'accords jazz-funk, utilisation intensive de samplers et d'instrumentation live."
+      },
+      "source_sha256": "1069edc562ee7d2dd1dae70f2e8f648b1a0ed747cac2718f5e41d1a8ee158f45",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:06:45.881Z"
+    }
+  }
 }

@@ -79,5 +79,17 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q1507298"
+  "qid": "Q1507298",
+  "l10n": {
+    "fr": {
+      "teaser": "Une esthétique de production musicale caractérisée par l'inclusion intentionnelle d'artefacts analogiques ou numériques — tels que le souffle de la bande, le craquement du vinyle et la distorsion harmonique — afin de créer une atmosphère de chaleur, de nostalgie ou d'intimité.",
+      "article": "Le lo-fi, abréviation de « low fidelity » (basse fidélité), décrit une esthétique de production musicale définie par l'inclusion intentionnelle d'imperfections d'enregistrement. Contrairement aux normes de haute fidélité qui privilégient la clarté sonore et une production immaculée, le lo-fi embrasse la distorsion harmonique, le souffle de la bande, le bruit ambiant et d'autres artefacts généralement supprimés dans les studios professionnels. Bien qu'il s'agisse initialement d'une nécessité pour les musiciens indépendants ayant un accès limité aux ressources, le lo-fi a évolué en un choix stylistique délibéré qui évoque la nostalgie, l'intimité et un sentiment d'authenticité brute.\n\nLes racines du lo-fi remontent aux années 1960, avec des artistes comme The Beach Boys expérimentant avec des bandes enregistrées à domicile et une distorsion délibérée. À mesure que la production indépendante devenait plus viable au cours des années 1970 et 1980, l'esthétique s'est développée parallèlement à l'essor du rock DIY et, plus tard, du grunge des années 1990. Cependant, sa saturation culturelle moderne a commencé dans les années 2000, lorsque des producteurs de hip-hop comme J Dilla et Nujabes ont commencé à incorporer des textures poussiéreuses et craquantes ainsi que des boucles lentes inspirées du jazz dans leur production. Cette approche a ouvert la voie au phénomène des « chill beats » des années 2010 et 2020, où le lo-fi est devenu une pierre angulaire de la culture Internet. Des plateformes comme YouTube ont permis l'essor de diffusions en continu 24h/24 et 7j/7, telles que l'emblématique chaîne « Lofi Girl », qui a consolidé le genre comme la bande-son définitive pour la concentration, l'étude et la relaxation à une époque de plus en plus numérique et marquée par le télétravail. Aujourd'hui, le lo-fi représente une intersection unique entre limitation technique et intention créative, transformant les « erreurs » du passé en l'atmosphère du présent.",
+      "facts": {
+        "origin": "États-Unis"
+      },
+      "source_sha256": "a38e7c868ef8409c91f60606c831a6194916c1b2d345067325475e283b6e0928",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:30:06.374Z"
+    }
+  }
 }

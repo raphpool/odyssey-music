@@ -79,5 +79,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q5510816"
+  "qid": "Q5510816",
+  "l10n": {
+    "fr": {
+      "teaser": "Le future garage est une évolution atmosphérique et introspective du UK garage et du dubstep, définie par une programmation rythmique 2-step saccadée, des sub-basses profondes et des échantillons vocaux R&B texturés, le tout inscrit dans un paysage sonore cinématographique et nocturne.",
+      "article": "Le future garage est un sous-genre électronique né au Royaume-Uni qui a émergé à la fin des années 2000, servant d'évolution introspective et atmosphérique à la lignée du UK garage et du dubstep. Alors que ses ancêtres étaient largement portés par l'énergie des clubs aux heures de pointe et la pression sonore des systèmes de diffusion, le future garage s'oriente vers une expérience plus intime, axée sur l'écoute au casque. Le genre se caractérise par des motifs de batterie 2-step saccadés — marqués par des hi-hats balancés, des caisses claires syncopées et des ghost kicks — superposés à des ondes sinusoïdales ou des sub-basses profondes et soutenues. Une signature de ce son est son esthétique nocturne et émotive, souvent obtenue grâce à des nappes ambiantes brumeuses, des fragments vocaux R&B/soul pitchés ou découpés, et l'utilisation fréquente de bruitages et d'enregistrements de terrain, tels que des craquements de vinyle, de la pluie ou des ambiances de rue, qui aident à créer un sens cinématographique du lieu.\n\nTechniquement, le genre se situe généralement autour de 130 BPM. Il penche vers les tonalités mineures, les accords suspendus et les progressions harmoniques mélancoliques à évolution lente qui contrastent avec la complexité rythmique de sa batterie. L'album « Untrue » de Burial, sorti en 2007, est largement cité comme un texte fondateur, fournissant un modèle sur la manière dont l'atmosphère urbaine, le micro-échantillonnage vocal et les rythmes dérivés du garage pouvaient être combinés en un son profondément personnel et tourné vers l'intérieur. À mesure que le genre a mûri au début des années 2010, il s'est développé grâce à des communautés sur des plateformes comme SoundCloud et YouTube, favorisant un écosystème mondial de producteurs qui privilégiaient la profondeur texturale et l'ambiance plutôt que l'utilité traditionnelle sur les pistes de danse. Son influence reste omniprésente, informant les textures du chillstep moderne, des lo-fi beats et d'expérimentations plus larges dans la bass music.",
+      "facts": {
+        "era": "2000s-present",
+        "origin": "United Kingdom"
+      },
+      "source_sha256": "3d49f791c293cd4d4373eef8a24897a3a868ea6ac6ca5b9f8724fc4a8cbabda1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:43:48.334Z"
+    }
+  }
 }

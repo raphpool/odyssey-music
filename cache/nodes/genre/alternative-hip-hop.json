@@ -95,5 +95,19 @@
       "name": "Tragic Epilogue"
     }
   ],
-  "qid": "Q438503"
+  "qid": "Q438503",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du hip-hop caractérisé par le rejet des stéréotypes traditionnels et l'intégration d'influences musicales diverses comme le jazz, le funk et la soul.",
+      "article": "L'alternative hip-hop, souvent appelée alternative rap ou backpack rap, est apparue aux États-Unis entre le milieu et la fin des années 1980 en tant que rupture stylistique avec les conventions du hip-hop grand public et du gangsta rap. En rejetant les stéréotypes traditionnels, les artistes de ce mouvement ont cherché à élargir les frontières du genre, en incorporant des influences éclectiques allant du jazz, du funk et de la soul au reggae et au rock progressif. Ce changement créatif a privilégié l'expérimentation lyrique et des techniques de production non conventionnelles, favorisant un paysage sonore plus introspectif et diversifié.\n\nLe mouvement a été considérablement propulsé par le collectif Native Tongues, un groupe d'artistes de la côte Est qui mettait l'accent sur des thèmes afrocentriques, des messages positifs et un échantillonnage sophistiqué. Des groupes tels que De La Soul et A Tribe Called Quest sont devenus des figures centrales, utilisant des rythmes teintés de jazz et une production complexe et stratifiée pour défier les attentes commerciales de l'époque. Au fil des décennies, l'alternative hip-hop a évolué pour devenir un vaste ensemble englobant divers sous-genres comme le jazz rap, le trip-hop et le lo-fi hip-hop, continuant à influencer aussi bien l'underground que le courant dominant grâce à son engagement en faveur de l'indépendance artistique.",
+      "facts": {
+        "era": "milieu des années 1980 à aujourd'hui",
+        "origin": "États-Unis, côte Est",
+        "sonic_markers": "Échantillonnage éclectique, rythmes teintés de jazz, paroles introspectives et production expérimentale utilisant des échantillonneurs et des boîtes à rythmes."
+      },
+      "source_sha256": "7f93f23e44c79f30c1f187e5cec56406c5540877e0e4bf808d235dc081d70ca3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:04:36.972Z"
+    }
+  }
 }

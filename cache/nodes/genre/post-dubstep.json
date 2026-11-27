@@ -114,5 +114,18 @@
       "type": "track",
       "name": "Hyph Mngo"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un terme générique influent et éphémère apparu à la fin des années 2000 à Londres, décrivant un éloignement des tropes agressifs et à haute énergie du dubstep vers un son électronique plus retenu, texturé et expérimental.",
+      "article": "Le Post-dubstep a émergé à la fin des années 2000 comme un mouvement transformateur au sein de la scène de musique électronique du sud de Londres. Fonctionnant moins comme un genre rigide que comme un terme générique pour des producteurs évoluant au-delà des sons établis du dubstep britannique, le mouvement a été défini par un glissement vers l'introspection, l'atmosphère et l'expérimentation sonore. Alors que le dubstep des débuts était caractérisé par des sub-basses entraînantes et une énergie distincte et agressive, les artistes de Post-dubstep ont commencé à intégrer des éléments issus d'une palette plus large et plus éclectique, incluant des textures ambiantes, une composition minimaliste, l'IDM et les sensibilités rythmiques et soul du R&B du début des années 2000.\n\nDes figures clés de cette transition, telles que James Blake, Mount Kimbie et Joy Orbison, ont déplacé l'attention de l'intensité physique du dancefloor vers une esthétique davantage tournée vers « l'écoute domestique ». Les morceaux présentaient souvent des motifs de batterie clairsemés et syncopés, des synthétiseurs éthérés et des arrangements de piano complexes, privilégiant la texture et l'ambiance à la force mécanique incessante de la bass music antérieure. Des labels comme Hyperdub et Hotflush ont fourni l'infrastructure critique permettant à ces artistes d'explorer ces nouveaux paysages sonores mélancoliques et souvent fragiles.\n\nVers 2013, le terme était largement tombé en désuétude à mesure que la scène spécifique se dissolvait et que son influence imprégnait le paysage plus large de la musique électronique. Nombre de ses marqueurs stylistiques — spécifiquement l'hybridité de la bass music britannique, les percussions expérimentales et la manipulation vocale — ont finalement été absorbés par de nouvelles itérations de la bass music britannique, du R&B alternatif et même de la production pop. Malgré sa brève existence, le mouvement Post-dubstep a joué un rôle déterminant en prouvant que les fondations du dubstep pouvaient être réutilisées pour une musique électronique plus nuancée, émotive et compositionnellement complexe.",
+      "facts": {
+        "era": "Fin des années 2000 - Début des années 2010",
+        "origin": "Londres, Royaume-Uni"
+      },
+      "source_sha256": "3b0cc1e05aadf0971c6d9d760b6b2fabf20b6ae2b0beaa2b99a4bcf9d6916478",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:45:47.997Z"
+    }
+  }
 }

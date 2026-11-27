@@ -123,5 +123,18 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "La musique folk est un genre défini par une musique traditionnelle transmise oralement, ancrée dans la culture rurale et les rituels communautaires, qui a évolué au XXe siècle en un genre contemporain caractérisé par la narration, l'instrumentation acoustique et une résonance sociale ou politique.",
+      "article": "La musique folk est une catégorie d'expression musicale vaste et culturellement fondamentale qui englobe à la fois les pratiques traditionnelles anciennes et les genres contemporains issus des renouveaux du XXe siècle. Historiquement, la musique folk a servi de réservoir à l'identité culturelle, transmise principalement par la tradition orale au sein de petites communautés soudées plutôt que par une formation institutionnelle formelle ou une notation écrite. Elle est fréquemment fonctionnelle, intégrée aux rythmes du travail quotidien, aux rituels saisonniers, aux cérémonies marquant les étapes de la vie et aux pratiques religieuses. Bien que la musique folk traditionnelle se caractérise par ses origines rurales et sa nature participative, le terme a considérablement évolué à l'époque moderne pour décrire un genre de performance distinct, particulièrement dans les Amériques et en Europe, où l'instrumentation acoustique et la narration lyrique, abordant souvent des récits sociaux, politiques ou personnels, occupent le devant de la scène.\n\nLe renouveau folk du XXe siècle, particulièrement aux États-Unis et au Royaume-Uni, a transformé le genre en une force majeure de la musique populaire. Des artistes ont commencé à recontextualiser des chansons traditionnelles, en les mêlant à des sensibilités modernes et en les utilisant souvent comme vecteurs de protestation politique et de commentaire social. Cette période a brouillé les frontières entre la tradition « amateur » et la professionnalisation de la musique. Aujourd'hui, l'étiquette folk est appliquée à un vaste spectre musical : des compositions intimistes d'auteurs-compositeurs-interprètes acoustiques comme Bob Dylan et Joni Mitchell à la préservation et à l'interprétation de styles traditionnels issus de diverses cultures autochtones à travers le monde. En fin de compte, le folk reste défini par son accent sur l'authenticité narrative, la primauté de la voix et un lien historique profond avec les communautés et les histoires qui l'ont nourri. Qu'il s'agisse de la préservation de ballades archaïques ou de la création de nouvelles chansons ancrées dans la tradition, la musique folk demeure une conversation vitale et mouvante entre le passé et le présent.",
+      "facts": {
+        "era": "Antiquité à nos jours",
+        "origin": "Mondiale (principalement rurale/basée sur la communauté)"
+      },
+      "source_sha256": "d50839d438e3d249d964cf25251a2e651c2ea9193c3bcd5dd477acc580bbec2a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:02:29.292Z"
+    }
+  }
 }

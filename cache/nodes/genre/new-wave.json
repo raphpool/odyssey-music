@@ -176,5 +176,18 @@
   ],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q187760"
+  "qid": "Q187760",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre mélodique orienté pop apparu à la fin des années 1970 comme successeur du punk, caractérisé par des sensibilités excentriques et idiosyncrasiques, un travail de guitare anguleux et l'incorporation croissante de synthétiseurs et d'éléments électroniques.",
+      "article": "La New wave est apparue au milieu et à la fin des années 1970 en tant que genre vibrant et aux multiples facettes qui a élargi les horizons sonores du punk. Alors que le punk rock était souvent caractérisé par son éthique abrasive et anti-establishment, la New wave offrait une alternative plus mélodique, adaptée à la radio et fréquemment expérimentale. Le terme lui-même, défendu par des figures de l'industrie comme Seymour Stein de Sire Records, a servi de fourre-tout pour des styles divers — allant de l'énergie saccadée et axée sur la guitare du power pop à l'utilisation naissante et avant-gardiste des synthétiseurs — qui ont prospéré après l'explosion punk initiale. Il a puisé son inspiration dans un large éventail de sources, notamment le glam rock, l'art pop, le funk, le reggae et les sensibilités intellectuelles du krautrock des années 1970.\n\nUne marque de fabrique du son New wave était son esthétique distinctive « nerveuse » ou agitée. Les musiciens employaient souvent des guitares rythmiques saccadées, des structures de chansons en stop-start et des riffs anguleux associés à des styles vocaux aigus, parfois détachés. À l'aube des années 1980, l'intégration par le genre de synthétiseurs et d'une production électronique a jeté les bases de l'explosion de la synth-pop. Culturellement, la New wave était inextricablement liée à l'ère visuelle ; le lancement de MTV en 1981 aux États-Unis a servi de catalyseur massif, privilégiant des groupes New wave britanniques visuellement distinctifs qui étaient auparavant un pilier des programmes télévisés britanniques comme Top of the Pops.\n\nBien que le genre ait connu un déclin commercial au milieu des années 1980, alors qu'il était absorbé par les mouvements « new pop » et la seconde invasion britannique, son influence sur les décennies suivantes reste profonde. Des reprises des années 1990 et 2000 à ses empreintes structurelles dans des microgenres modernes comme le bloghouse, la synthwave et la chillwave, la New wave demeure un moment de transition charnière dans l'histoire du rock — un pont entre la crudité du punk et le futur électronique et brillant de la musique pop moderne.",
+      "facts": {
+        "era": "Milieu des années 1970 au milieu des années 1980",
+        "origin": "Royaume-Uni et États-Unis"
+      },
+      "source_sha256": "09b8e59d0e129e509f9712629ebef2a66d9dfd116975ec00d07262637e7c510c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:32:04.476Z"
+    }
+  }
 }

@@ -127,5 +127,18 @@
       "name": "Destiny"
     }
   ],
-  "qid": "Q1751409"
+  "qid": "Q1751409",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du UK garage caractérisé par des motifs de batterie syncopés et irréguliers dépourvus de la traditionnelle pulsation quatre-au-sol, ce qui donne un rythme saccadé et très swingué.",
+      "article": "Le 2-step garage, communément appelé 2-step, a émergé de la scène dynamique du UK garage au milieu des années 1990 en tant que sous-genre distinct et rythmiquement complexe, s'éloignant de la pulsation quatre-au-sol standard de la house music. Centré à Londres, le genre se définissait par ses motifs de batterie saccadés et syncopés — comportant souvent deux coups de grosse caisse par mesure — qui abandonnaient la conduite répétitive et lourde de la grosse caisse du garage traditionnel. Ce « temps manquant » conférait au 2-step une sensation plus légère, plus irrégulière et plus dansante, puisant largement dans le swing du R&B, l'énergie breakbeat de la jungle et les textures riches en basses de la musique électronique contemporaine. Le style de production impliquait fréquemment d'accélérer des morceaux de garage américain importés pour atteindre des BPM plus élevés, une technique qui obligeait les producteurs à s'appuyer sur des versions dub instrumentales et sur l'échantillonnage créatif de voix et de percussions comme des rimshots et des woodblocks.\n\nÀ la fin des années 1990 et au début des années 2000, le 2-step a évolué d'un son de radio pirate de niche vers une force dominante au Royaume-Uni. Des titres comme « Never Gonna Let You Go » de Tina Moore (1997) et l'énorme succès crossover d'Artful Dodger, « Re-Rewind » (1999), avec Craig David, ont contribué à définir l'apogée commercial du genre. Au-delà de son succès dans les classements, le 2-step est devenu le rythme fondateur du « UK hardcore continuum », influençant directement et ouvrant la voie à des genres ultérieurs, plus sombres et plus expérimentaux, comme le dubstep, le grime et le breakstep. Son héritage reste gravé dans l'évolution de la musique électronique britannique, représentant un moment charnière où les voix urbaines imprégnées de soul ont rencontré l'esthétique saccadée et avant-gardiste de la culture underground des sound systems.",
+      "facts": {
+        "era": "1990s-2000s",
+        "origin": "London, England"
+      },
+      "source_sha256": "9d98292401051dafb4aff5ac5a720b6b7f1171c8b63e3992c4c8b6b0c53320f9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:39:48.575Z"
+    }
+  }
 }

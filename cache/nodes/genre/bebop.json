@@ -126,5 +126,18 @@
       "name": "Ornithology"
     }
   ],
-  "qid": "Q105513"
+  "qid": "Q105513",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du jazz des années 1940 caractérisé par des tempos rapides, une virtuosité instrumentale complexe, une dissonance harmonique et une improvisation étendue, marquant le passage d'une musique de danse à une musique savante.",
+      "article": "Le Bebop est un style révolutionnaire de jazz moderne improvisé qui a émergé au début des années 1940, marquant une rupture décisive avec les compositions structurées et orientées vers la danse de l'ère swing. Né lors des sessions de jam animées de Harlem, notamment au Minton's Playhouse, il a été mené par des musiciens afro-américains pionniers, dont Charlie Parker, Dizzy Gillespie et Thelonious Monk. Ces artistes cherchaient à réhabiliter le jazz en tant que forme d'art sérieuse destinée à une écoute attentive plutôt qu'au divertissement de masse. Le genre se définit par ses tempos rapides, ses structures harmoniques complexes, ses mélodies élaborées et une importance nouvelle accordée à l'improvisation virtuose individuelle. Contrairement aux harmonies diatoniques du jazz précédent, le bebop a adopté le chromatisme, utilisant les douze notes de la gamme pour créer une tension et une dissonance qui ont repoussé les limites du genre.\n\nTechniquement, le bebop a transformé le rôle de la section rythmique. Des batteurs comme Max Roach ont transféré les fonctions de marquage du temps de la grosse caisse vers la cymbale ride, permettant une interaction polyrythmique plus fluide entre la percussion et le soliste. Cette approche interactive et rapide a favorisé un environnement où seuls les musiciens les plus compétents pouvaient suivre le rythme, limitant de fait l'accès au style aux interprètes les moins préparés. Bien que le bebop n'ait jamais atteint la domination commerciale des grands orchestres qui l'ont précédé, il est devenu le langage essentiel du jazz moderne, jetant les bases du hard bop, du jazz modal et au-delà. Il s'agissait autant d'une déclaration culturelle que musicale, reflétant l'autonomie, la rigueur intellectuelle et l'identité artistique en évolution des musiciens noirs durant les années 1940. Son influence reste profondément ancrée dans l'ADN de la musique contemporaine, incluant le jazz moderne, le rock et le hip-hop.",
+      "facts": {
+        "era": "1940s",
+        "origin": "New York City, USA"
+      },
+      "source_sha256": "896090340069509de221d69dbf9f60cbf46a73e933c81895eedf950e34b627c7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:40:47.927Z"
+    }
+  }
 }

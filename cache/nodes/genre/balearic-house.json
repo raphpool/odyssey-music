@@ -102,5 +102,19 @@
       "type": "track",
       "name": "Aaj Shanibar"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de musique électronique éclectique et ensoleillé, défini par ses origines dans la culture club d'Ibiza des années 1980 et une philosophie « sans règles » vis-à-vis du mélange de genres disparates.",
+      "article": "Émergeant de la scène des boîtes de nuit d'Ibiza au milieu des années 1980, la Balearic House a été popularisée au club Amnesia par le DJ résident Alfredo Fiorito. Le style représente une approche éclectique du DJing plutôt qu'un genre rigide, englobant des sons variés comme les grooves indie de The Woodentops, le rock de The Waterboys et les curiosités pop de Peter Gabriel. En 1987, les DJ britanniques Paul Oakenfold et Trevor Fung ont visité Ibiza et ont importé cette philosophie musicale inclusive à Londres, tentant de lancer le style dans des lieux comme le Project Club et plus tard lors de l'événement Spectrum. Bien que souvent produite avec une boîte à rythmes Roland TR-909, les morceaux privilégiaient fréquemment des influences soul, latines et funk. Les critiques notent que le style demeure une expression par excellence de la liberté sur la piste de danse, privilégiant le mouvement du groove à la pureté du genre, un sentiment cristallisé dans un éditorial de Mixmag en 1990.",
+      "facts": {
+        "era": "milieu des années 1980 au milieu des années 1990",
+        "origin": "Ibiza, Espagne",
+        "sonic_markers": "Éclectique, décontracté, 100-120 BPM, percussions Roland TR-909, instrumentation organique"
+      },
+      "source_sha256": "5c50dcba3b8808b6710df568ffeff8e10e32ddcaa5e068eb4ba9f8f3d43a7c1b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:05:39.197Z"
+    }
+  }
 }

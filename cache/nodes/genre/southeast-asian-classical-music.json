@@ -104,5 +104,19 @@
       "type": "track",
       "name": "An Anthology of South-East Asian Music"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Une vaste catégorie de traditions musicales raffinées couvrant les nations d'Asie du Sud-Est, caractérisée par des ensembles de cour, une importance religieuse et une instrumentation régionale distincte.",
+      "article": "La musique classique d'Asie du Sud-Est englobe diverses traditions de cour et religieuses, notamment les ensembles thaïlandais comme le piphat et la musique de cour cambodgienne interprétée par The Pinpeat Orchestra. Ces traditions sont historiquement ancrées dans le bouddhisme et l'hindouisme, fonctionnant souvent comme des composantes centralisées de la vie rituelle et royale à travers la sous-région. En Thaïlande, des sous-genres tels que le khrueang sai et le piphat définissent une instrumentation et des pratiques d'exécution spécifiques. Bien que l'urbanisation moderne pose des défis à ces formes anciennes, les pays conservent des langages musicaux régionaux distincts qui reflètent des siècles de développement culturel. Des enregistrements tels que l'anthologie de 1986 de la musique d'Asie du Sud-Est, An Anthology of South-East Asian Music, documentent ces styles folkloriques et classiques spécialisés pour un public international.",
+      "facts": {
+        "era": "Pré-moderne à nos jours",
+        "origin": "Asie du Sud-Est, incluant la Thaïlande, le Cambodge, l'Indonésie et le Myanmar.",
+        "sonic_markers": "Utilisation d'ensembles de gongs, de métallophones, de textures polyphoniques complexes et de couches mélodiques hétérophoniques."
+      },
+      "source_sha256": "0c0f046cbf925099a56ad619db9c4223f31d814943d6480688942c43058344b9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:36:04.880Z"
+    }
+  }
 }

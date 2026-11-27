@@ -108,5 +108,14 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q96376113"
+  "qid": "Q96376113",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre électronique expérimental du milieu des années 2010 qui hybride les rythmes club mondiaux avec une conception sonore abrasive et industrielle pour défier les structures traditionnelles de la musique de danse.",
+      "article": "Le Deconstructed club, souvent qualifié de post-club ou d'avant-club, a émergé au milieu des années 2010 comme une évolution radicale et native d'Internet de la musique électronique de danse. Il se caractérise par l'hybridation de divers rythmes club mondiaux — tels que le trap, le ballroom, le batida, le jersey club et le grime — avec une conception sonore abrasive d'inspiration industrielle. Ce sous-genre n'est pas simplement une évolution stylistique, mais une plateforme d'expression sociopolitique, abordant fréquemment des thèmes liés à la race, au féminisme, à l'identité queer et au post-colonialisme. Les marques sonores incluent des percussions frénétiques, métalliques et souvent explosives, des changements rythmiques constants, une atonalité extrême et la réutilisation de stems vocaux pop dans des configurations de mashup « bootleg » subversives.\n\nSur le plan culturel, le genre est profondément enraciné dans la confluence des scènes musicales expérimentales et de la vie nocturne à l'ère numérique, illustrée notamment par l'influence de la soirée GHE20G0TH1K de New York et les mouvements de basse expérimentale issus de labels comme Night Slugs. L'esthétique du genre est fréquemment décrite comme un paysage sonore excessif, apocalyptique ou « distroid », repoussant les limites de ce qui constitue une musique dansable. Au cœur de la diffusion du genre se trouvent les « mixfiles » — souvent des mixtapes gratuites ou des DJ mixes qui mélangent des productions originales avec des sons club régionaux sous-représentés dans la musique électronique occidentale dominante. Des artistes comme Arca, Lotic et Elysia Crampton sont devenus des figures déterminantes, utilisant la palette de production fluide et extraterrestre du genre pour défier les notions traditionnelles des structures de musique club et pour favoriser un sentiment de « devenir-avec » au sein de leurs communautés respectives. Aujourd'hui, le Deconstructed club continue de servir d'incubateur pour la production électronique expérimentale, influençant profondément l'évolution de la hyperpop et d'autres mouvements hybrides adjacents à la pop.",
+      "source_sha256": "baf1ad3f36709129ff319df7fe62efc1140f4a388664149d9d8ca010d20382d9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:20:17.116Z"
+    }
+  }
 }

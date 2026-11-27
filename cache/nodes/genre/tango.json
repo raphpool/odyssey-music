@@ -117,5 +117,19 @@
       "type": "track",
       "name": "Adiós Nonino"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de musique et de danse enraciné en Argentine et en Uruguay au XIXe siècle, caractérisé par un rythme entraînant à 2/4 ou 4/4 et l'utilisation prédominante du bandonéon.",
+      "article": "La musique de tango a émergé à la fin du XIXe siècle en Argentine et en Uruguay, évoluant à partir d'une fusion de traditions d'immigrants européens comme la polka et la mazurka avec la milonga, le candombe et la payada locaux. Initialement associé aux maisons closes et aux classes défavorisées, le genre a trouvé une définition précoce grâce à l'ensemble « orquesta típica », comprenant généralement deux violons, un piano, une contrebasse et deux bandonéons. La composition de 1903 d'Angel Villoldo, « El Choclo », constitue l'un des premiers enregistrements fondamentaux, tandis que la marche instrumentale de 1916 « La Cumparsita » de Gerardo Matos Rodríguez demeure sa mélodie la plus largement connue. Durant l'âge d'or des années 1930 à 1950, des chefs d'orchestre comme Juan d'Arienzo et Aníbal Troilo ont affiné le rythme pour la salle de bal. Plus tard, Ástor Piazzolla a introduit le « nuevo tango » dans les années 1950, intégrant des influences jazz et d'avant-garde académique, une évolution poursuivie au XXIe siècle par des artistes de neotango comme Gotan Project et Bajofondo Tango Club qui mêlent ces traditions à une production électronique.",
+      "facts": {
+        "era": "fin du XIXe siècle à nos jours",
+        "origin": "Argentine et Uruguay",
+        "sonic_markers": "signature rythmique 2/4 ou 4/4, bandonéon dominant, violon, piano, contrebasse, rythmes syncopés"
+      },
+      "source_sha256": "d0ee34cef4f1dfdbc21c9fbfa9c2782ab4dfff8d9e4d273da5702f970e62c3d8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:37:00.067Z"
+    }
+  }
 }

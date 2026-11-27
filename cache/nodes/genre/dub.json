@@ -154,5 +154,18 @@
       "name": "Super Ape"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du reggae originaire de Jamaïque qui met l'accent sur la section rythmique, utilise des effets de studio significatifs comme l'écho et la réverbération, et propose généralement des remixes instrumentaux de morceaux existants.",
+      "article": "Le dub est un style musical pionnier qui a émergé de la culture vibrante du reggae et des sound systems de Jamaïque à la fin des années 1960 et au début des années 1970. Plutôt qu'un genre traditionnel basé uniquement sur la composition, le dub se définit par la transformation radicale d'enregistrements existants grâce à la manipulation créative de la console de mixage. Initié par des producteurs et ingénieurs visionnaires comme King Tubby, Lee 'Scratch' Perry et Scientist, le dub a élevé le studio lui-même au rang d'instrument. En utilisant des bandes multipistes, ces artistes ont supprimé les voix pour mettre en valeur le « riddim » — le noyau essentiel batterie-basse — tout en appliquant de fortes doses de délai à bande, de réverbération et d'autres effets de studio pour créer des paysages sonores spacieux, hypnotiques et imprégnés d'écho.\n\nLe terme « dub » trouve ses origines au début des années 1970, évoluant à partir de la pratique consistant à graver des « dubplates » — des disques acétates exclusifs contenant des versions instrumentales de chansons destinées aux opérateurs de sound systems pour les tester dans les dancehalls. L'immense popularité de ces « versions » a conduit les producteurs à repousser les limites de la table de mixage, faisant fréquemment entrer et sortir les voix, accentuant les fréquences basses et créant des architectures sonores complexes qui divergeaient considérablement de leur matériau d'origine. Au-delà de ses racines jamaïcaines, les innovations structurelles du dub concernant la basse, le rythme et la texture atmosphérique sont devenues un socle pour la musique électronique mondiale. Son ADN est omniprésent dans des genres allant du post-punk et du hip-hop au monde vaste de la musique bass britannique, incluant le jungle, le drum and bass et le dubstep. En traitant la musique enregistrée comme une entité fluide et malléable, le dub a fondamentalement changé la façon dont les producteurs interagissent avec la technologie de studio, laissant une marque indélébile sur le paysage de la musique populaire moderne.",
+      "facts": {
+        "era": "Fin des années 1960 à nos jours",
+        "origin": "Jamaïque"
+      },
+      "source_sha256": "7c6868bf873739bf59531ad88e087a3b14331ef9027165ab772f6e51f9e3ccde",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:36:02.529Z"
+    }
+  }
 }

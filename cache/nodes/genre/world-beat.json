@@ -62,5 +62,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q2064394"
+  "qid": "Q2064394",
+  "l10n": {
+    "fr": {
+      "teaser": "Un hybride musical interculturel qui mélange les structures de la pop et du rock occidentaux contemporains avec des styles musicaux traditionnels et indigènes de diverses régions du monde, en mettant souvent l'accent sur la synthèse rythmique.",
+      "article": "Le World beat est un genre dynamique et stylistiquement poreux apparu au milieu des années 1980, principalement en tant que synthèse des sensibilités de la pop et du rock occidentaux avec des styles musicaux traditionnels ou indigènes du monde entier. Bien qu'il soit souvent abordé comme un sous-genre ou une partie de l'ensemble plus large de la « world music », le World beat se caractérise spécifiquement par une hybridité consciente, soulignant un contraste rythmique, harmonique ou textural entre les techniques de production modernes et les éléments musicaux ethniques localisés. Le terme a gagné en popularité au milieu des années 1980, soutenu par des programmes radiophoniques comme l'émission de Dan Del Santo à Austin, au Texas, et par la portée de plus en plus mondialisée d'artistes qui intégraient activement des sons internationaux dans la conscience dominante.\n\nL'esthétique du World beat est fondamentalement intégrative. Elle repose sur la pollinisation croisée des structures pop occidentales — telles que les arrangements standard couplet-refrain et l'instrumentation rock — avec des éléments folkloriques non occidentaux, notamment les rythmes Afrobeat, les sensibilités mélodiques du highlife, l'intensité vocale du qawwali et les motifs de percussion complexes trouvés dans la samba ou la bossa nova. À mesure que le genre a mûri, il a bénéficié de manière significative de l'essor de la production numérique et de l'échantillonnage de haute qualité, permettant aux producteurs d'intégrer facilement des textures sonores indigènes. Bien que le terme ait été critiqué par des puristes qui le considèrent comme une version trop commercialisée ou diluée des traditions folkloriques « authentiques », le World beat demeure un phénomène culturel crucial, reflétant la mondialisation rapide de la musique au tournant du XXIe siècle et le dialogue complexe et continu entre l'héritage local et la culture pop mondiale. Il continue d'influencer la production musicale contemporaine, où les frontières entre le « local » et l'« international » restent fluides.",
+      "facts": {
+        "era": "Milieu des années 1980 à aujourd'hui",
+        "origin": "Royaume-Uni, États-Unis, Afrique de l'Ouest"
+      },
+      "source_sha256": "8f2c20bf99edbc8ecbe423d10c7b03a2cdf9070a7e711843b462a6b5404b0ddd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:38:01.213Z"
+    }
+  }
 }

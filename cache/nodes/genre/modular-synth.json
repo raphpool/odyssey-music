@@ -57,5 +57,18 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une pratique et une esthétique sonore fondées sur des modules interconnectés, permettant un routage infini du signal et une conception sonore complexe et hautement malléable.",
+      "article": "La synthèse modulaire désigne à la fois une technologie fondamentale de la production musicale électronique et une esthétique sonore expérimentale et expansive, ancrée dans la flexibilité du flux de signal. Contrairement aux synthétiseurs à architecture fixe traditionnels, un système modulaire se compose de modules discrets et individuels — tels que des oscillateurs, des filtres, des amplificateurs et des générateurs d'enveloppe — logés dans un châssis et connectés par des câbles de patch. Cette architecture permet à l'utilisateur de reconfigurer entièrement le chemin du signal, autorisant une modulation complexe, une conception sonore non linéaire et des processus génératifs qui vont bien au-delà de la performance musicale standard. Le genre et la pratique ont vu le jour au milieu des années 1960 avec les systèmes pionniers de Robert Moog et Don Buchla. Alors que les conceptions de Robert Moog, largement basées sur la synthèse soustractive et le contrôle par clavier, ont contribué à faire entrer le son électronique dans la conscience populaire grâce à des œuvres comme « Switched-On Bach » de Wendy Carlos, les instruments de Don Buchla privilégiaient le façonnage d'ondes et les interfaces de contrôle expérimentales, jetant les bases des explorations plus avant-gardistes du son modulaire.\n\nAprès un déclin dans les années 1970 et 1980, alors que les instruments intégrés, polyphoniques et numériques devenaient dominants, le format modulaire a connu une profonde résurgence au XXIe siècle, notamment avec la standardisation du format Eurorack. Cette renaissance a transformé la synthèse modulaire, passant d'une recherche académique de niche à une culture dynamique de constructeurs DIY, d'artistes de performance et de producteurs qui privilégient la nature tactile, imprévisible et hautement personnelle du patch. Aujourd'hui, le genre englobe un vaste spectre musical, allant des paysages sonores ambient et des textures industrielles rythmiques aux compositions algorithmiques génératives. Il se caractérise par sa profondeur sonore — impliquant souvent des timbres évolutifs, des interdépendances harmoniques complexes et une qualité « vivante » qui le différencie des enregistrements numériques statiques. En tant que force culturelle, la synthèse modulaire favorise une philosophie de « possibilité infinie », où l'instrument n'est jamais vraiment terminé, mais constamment réitéré par l'artiste.",
+      "facts": {
+        "era": "1960s–present",
+        "origin": "United States"
+      },
+      "source_sha256": "4c551dc2a95505f060b093d801f848f6e891ce6ce03e5b9a51cd9e9aece08f59",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:44:55.880Z"
+    }
+  }
 }

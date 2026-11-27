@@ -122,5 +122,19 @@
       "name": "Eve of Destruction"
     }
   ],
-  "qid": "Q186472"
+  "qid": "Q186472",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique populaire qui fusionne la profondeur lyrique, les traditions acoustiques et la conscience sociale de la musique folk avec l'instrumentation électrique, le rythme entraînant et les techniques de production de la musique rock.",
+      "article": "Le folk rock est un genre hybride déterminant qui a émergé aux États-Unis et en Grande-Bretagne au milieu des années 1960, comblant magistralement le fossé entre la pureté acoustique de la musique folk traditionnelle et le son à haute énergie et axé sur la technologie du rock 'n' roll. Alors que le renouveau de la musique folk des années 1950 et du début des années 60 atteignait un crescendo culturel, de nombreux artistes se sont sentis contraints par l'adhésion du mouvement aux instruments acoustiques et sa séparation perçue du courant commercial dominant. La fusion qui a suivi a catalysé un changement sismique dans la musique populaire, apportant le sérieux poétique et conscient du folk au paysage électrique et amplifié du rock.\n\nLe moment le plus emblématique du genre s'est produit au Newport Folk Festival de 1965, lorsque Bob Dylan est « passé à l'électrique », un acte controversé qui a annoncé la mort du purisme folk et la naissance d'un nouveau paradigme folk-électrique. Par la suite, des groupes comme The Byrds ont aidé à définir l'esthétique du genre grâce au tintement distinctif des guitares Rickenbacker 12 cordes et aux harmonies vocales sophistiquées inspirées des Beatles. Alors que la scène américaine s'est rapidement diversifiée, produisant des hymnes de « protestation » socialement conscients d'artistes comme Simon & Garfunkel, The Mamas and the Papas et Buffalo Springfield, la scène britannique — menée par des groupes comme Fairport Convention — a souvent adopté une approche plus conservatrice, mélangeant des ballades celtiques et anglaises séculaires avec une instrumentation rock contemporaine. Cette dichotomie stylistique entre le commentaire social américain et le traditionalisme britannique a cimenté le folk rock en tant que pilier polyvalent et durable de la musique moderne.",
+      "facts": {
+        "era": "Milieu des années 1960 aux années 1970 (apogée)",
+        "origin": "États-Unis et Royaume-Uni",
+        "sonic_markers": "Accent sur les guitares électriques 12 cordes, harmonies vocales complexes, hybrides d'instrumentation acoustique et électrique, et paroles axées sur la narration."
+      },
+      "source_sha256": "01756b4ef516bdb904f0b6d7a1a2b86e77130be417791305f52be03725726b5a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:08:56.474Z"
+    }
+  }
 }

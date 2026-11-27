@@ -74,5 +74,18 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un terme large et flexible pour désigner une musique électronique conçue principalement pour l'écoute plutôt que pour la danse en club, synthétisant souvent des éléments d'ambient, de downtempo et de divers genres de club.",
+      "article": "L'Electronica est une classification large et complexe de musique électronique apparue à la fin du XXe siècle, servant de terme générique pour des sons électroniques destinés davantage à l'écoute domestique ou à l'immersion ambiante qu'à la piste de danse. Bien que ses racines puissent être retracées jusqu'à l'expérimentation des années 1970 et 1980, le terme a acquis une importance considérable dans les années 1990 aux États-Unis, souvent utilisé pour combler le fossé entre la culture rave underground et l'accessibilité grand public. Sur le plan stylistique, l'Electronica agit comme une synthèse de divers sous-genres électroniques ; elle puise fréquemment dans les rythmes et les techniques de production de la techno, de la house et de la jungle, tout en filtrant ces influences à travers une esthétique plus atmosphérique, downtempo ou chill-out.\n\nCulturellement, le genre est souvent débattu en raison de sa nature expansive et amorphe. Dans de nombreux cercles, il est utilisé de manière interchangeable avec l'Intelligent Dance Music (IDM), bien que l'Electronica porte généralement une connotation plus large. Alors que des artistes comme The Chemical Brothers et The Prodigy sont souvent cités pour avoir apporté des paysages sonores électroniques à haute énergie à un public plus large, les itérations modernes du genre penchent fortement vers l'espace ambient et downtempo, illustré par des artistes contemporains comme Bonobo. En fin de compte, l'Electronica représente la démocratisation et la diversification de la musique électronique, déplaçant le synthétiseur et la boîte à rythmes des heures de pointe des clubs vers l'espace personnel de l'auditeur. Il demeure un spectre fluide plutôt qu'un ensemble rigide de règles, évoluant continuellement parallèlement aux développements des logiciels et du matériel de production.",
+      "facts": {
+        "era": "Années 1990 à aujourd'hui",
+        "origin": "Mondial (principalement popularisé aux États-Unis et au Royaume-Uni dans les années 1990)"
+      },
+      "source_sha256": "6a1a6839933c742f0aaac24b3ed92dfab008b9f1ae1e18294cec9bec64b86f1d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:54:14.508Z"
+    }
+  }
 }

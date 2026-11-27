@@ -71,5 +71,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q1092553"
+  "qid": "Q1092553",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical syncrétique qui intègre des instruments, des mélodies et des structures rythmiques celtiques traditionnels à divers styles de musique populaire moderne, allant de l'electronica et du hip-hop au rock et à la world fusion.",
+      "article": "Le Celtic fusion est un vaste ensemble musical syncrétique qui englobe tout style moderne intégrant des éléments de musique celtique traditionnelle ou une identité culturelle celtique plus large. Apparu dans les années 1970 et s'étant consolidé tout au long des années 1980 et 1990, le genre représente une collision créative entre les mélodies anciennes, souvent modales, des nations celtiques — Irlande, Écosse, Pays de Galles, Bretagne, Cornouailles et île de Man — et les sons divers de la pop mondiale moderne et de la musique expérimentale. Plutôt que d'agir comme un genre statique, le Celtic fusion fonctionne comme une tradition flexible, permettant aux artistes de tisser les bourdons distincts des uilleann pipes, les rythmes entraînants des jigs et des reels, ou les thèmes lyriques envoûtants du folk celtique dans des structures allant du heavy metal et du punk au hip-hop, au reggae et à l'electronica.\n\nAu cœur de ce mouvement se trouve un lien profond avec le mouvement panceltique et la portée étendue de la diaspora celtique. Dans le domaine du rock et du punk, des artistes comme The Pogues ont redéfini les limites des instruments traditionnels dans les années 1980, créant un son agressif et énergique qui a influencé des générations de groupes de « Celtic rock » et de « Celtic punk ». Parallèlement, les années 1990 ont connu une explosion expérimentale alors que les artistes commençaient à synthétiser des mélodies traditionnelles avec des textures électroniques émergentes. Des pionniers tels que Martyn Bennett sont devenus des figures instrumentales du « Celtic electronica », utilisant des boîtes à rythmes, des rythmes trance et le traitement en studio pour recontextualiser les sons patrimoniaux. De même, des projets comme Afro Celt Sound System ont démontré l'immense potentiel du dialogue interculturel, mélangeant les lignées musicales irlandaises et africaines en un tout rythmique cohérent. En réinterprétant constamment le passé à travers des prismes technologiques et rythmiques contemporains, le Celtic fusion assure la vitalité et l'évolution des traditions musicales celtiques à l'ère moderne.",
+      "facts": {
+        "era": "1970s–present",
+        "origin": "United Kingdom, Ireland, and United States"
+      },
+      "source_sha256": "f5f473b2d2e783d01cd6127279635be8b681562bc28c2bab094982b6f03cc848",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:40:52.277Z"
+    }
+  }
 }

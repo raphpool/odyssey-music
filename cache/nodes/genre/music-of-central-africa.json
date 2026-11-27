@@ -82,5 +82,19 @@
       "type": "track",
       "name": "La Renaissance"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un paysage musical diversifié allant des anciennes traditions polyphoniques pygmées et des rituels de trompes des Banda aux genres régionaux modernes comme le soukous.",
+      "article": "La musique traditionnelle en République centrafricaine est marquée par la polyphonie complexe et le contrepoint des traditions pygmées, qui utilisent des motifs cycliques rappelant les structures de passacaille. Les Banda people contribuent à une musique distincte basée sur les trompettes, employant des trompettes « ongo » fabriquées à partir de bois ou de cornes d'antilope pour les rites d'initiation, un style que l'UNESCO a identifié comme une découverte musicologique majeure. Les pratiques instrumentales incluent également le « mbela » des Ngbaka — un arc musical amplifié par la bouche — et le style de percussion aquatique « liquindi ». La musique populaire nationale contemporaine reflète les tendances africaines plus larges, avec une influence significative du soukous et de l'Afrobeat, tandis que l'hymne national « La Renaissance » a été composé par Herbert Pepper aux côtés du premier président du pays, Barthélémy Boganda.",
+      "facts": {
+        "era": "Précolonial à nos jours",
+        "origin": "République centrafricaine",
+        "sonic_markers": "Structures vocales polyphoniques, variations rythmiques cycliques, percussions aquatiques, ensembles de trompettes et amplification par arc musical."
+      },
+      "source_sha256": "7793adaab4b3d524f72b99b52fe84942b00e58c2c600d6581eb9f07244ccfc12",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:31:57.199Z"
+    }
+  }
 }

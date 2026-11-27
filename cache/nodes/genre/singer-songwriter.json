@@ -91,5 +91,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q89363113"
+  "qid": "Q89363113",
+  "l10n": {
+    "fr": {
+      "teaser": "Une catégorie musicale pour les artistes qui composent, écrivent les paroles et interprètent leur propre matériel musical, conservant généralement le contrôle créatif sur le processus artistique et se produisant fréquemment en solo avec un accompagnement acoustique.",
+      "article": "Le singer-songwriter est une figure musicale polyvalente qui agit à la fois comme le compositeur principal et l'interprète de son propre matériel. Bien que le terme soit entré dans l'usage courant dans les années 1960 pour décrire un mouvement d'artistes axés sur l'acoustique, le concept lui-même est profondément enraciné dans l'ancienne tradition du barde itinérant. Dans le contexte moderne, le genre représente un changement fondamental par rapport au modèle de production à la chaîne de Tin Pan Alley, où les auteurs-compositeurs et les interprètes étaient généralement des entités distinctes. Au lieu de cela, le singer-songwriter affirme son autonomie créative, assurant souvent seul l'accompagnement — généralement à la guitare acoustique ou au piano — pour des chansons qui privilégient un lyrisme intime, une introspection personnelle et une identité d'interprète distincte et « authentique ».\n\nSur le plan culturel, le rôle a subi une transformation significative pendant le renouveau de la musique folk américaine des années 1940 aux années 1960, alors que des figures comme Woody Guthrie et Pete Seeger utilisaient leurs plateformes pour des commentaires sociaux et politiques. Dans les années 1970, le « singer-songwriter » est devenu une force commerciale dans la pop et le rock, avec des artistes tels que Paul Simon et Joni Mitchell apportant un niveau de sophistication poétique et d'émotivité confessionnelle aux classements grand public. L'esthétique privilégie souvent un son dépouillé qui met l'accent sur la structure de la chanson et le contenu narratif. Même si la technologie de production a évolué, l'éthique fondamentale — l'artiste en tant qu'architecte principal de son message artistique — demeure un pilier déterminant de la musique populaire. Le rôle a continué de s'étoffer au fil du temps, englobant non seulement l'écriture et l'interprétation, mais s'étendant souvent à la production, à l'arrangement et à la gestion de la trajectoire musicale de l'artiste, comblant efficacement le fossé entre les traditions historiques des troubadours et l'artiste moderne aux multiples facettes.",
+      "facts": {
+        "era": "Années 1960 à aujourd'hui (popularisation) ; racines historiques dans la tradition folk/bardique",
+        "origin": "États-Unis (usage moderne popularisé) ; traditions folk/bardiques mondiales"
+      },
+      "source_sha256": "e0a666ca511d95e199ac5f7306af2be3cd76f691c062d4a2c025a2c1a599ba51",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:35:57.251Z"
+    }
+  }
 }

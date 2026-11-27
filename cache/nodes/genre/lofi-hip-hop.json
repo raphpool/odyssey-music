@@ -91,5 +91,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q97265899"
+  "qid": "Q97265899",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du hip-hop caractérisé par une production intentionnellement basse fidélité, des rythmes downtempo et une sonorité nostalgique et atmosphérique, largement popularisé comme musique de fond pour l'étude et la relaxation via des diffusions en direct sur Internet.",
+      "article": "Le lofi hip-hop, souvent désigné de manière interchangeable sous le nom de « chillhop », a émergé au début des années 2000 comme une confluence distinctive de hip-hop instrumental, d'électronique downtempo et de textures teintées de jazz. Enraciné dans la scène underground du beatmaking, le genre a gagné une traction significative grâce à l'utilisation de samplers matériels spécifiques, notamment le Roland SP-303 et le SP-404, qui comportaient des boutons d'effets « lo-fi » dédiés permettant aux producteurs d'imprimer une qualité audio nostalgique et dégradée — agrémentée de craquements de vinyle simulés et de souffle de bande — sur leurs rythmes. Contrairement au hip-hop grand public, le genre privilégie généralement l'atmosphère au contenu lyrique, créant un paysage sonore aux tempos lents, aux boucles de piano ou de guitare fluides et à la production brumeuse et saturée.\n\nLa trajectoire culturelle du lofi hip-hop est inextricablement liée à l'évolution des médias sur Internet. Bien que ses fondations sonores aient été posées par des producteurs influents comme J Dilla, Nujabes et le travail collaboratif de MF DOOM et Madlib, le genre a explosé en un phénomène mondial au milieu des années 2010. Des plateformes comme YouTube et SoundCloud ont permis l'essor de diffusions en direct « radio » 24h/24 et 7j/7, souvent associées à des visuels d'anime en boucle, mélancoliques ou studieux — une tendance illustrée par la chaîne « Lofi Girl » (anciennement ChilledCow). Ces flux sont passés du statut de musique de fond pour des sessions d'étude nocturnes à celui d'espaces communautaires numériques où les auditeurs se rassemblaient dans des salons de discussion pour trouver du réconfort et un sentiment d'appartenance. La pandémie de COVID-19 a davantage cimenté le rôle du lofi hip-hop en tant que compagnon sonore principal pour une génération confinée numériquement, soulignant la capacité du genre à évoquer une nostalgie intense et calme et à fournir un environnement auditif apaisant et prévisible dans un monde de plus en plus fragmenté. Malgré son omniprésence actuelle dans les listes de lecture organisées, le genre demeure un témoignage de la puissance de la production en chambre et de l'éthique DIY de l'ère numérique.",
+      "facts": {
+        "era": "Début des années 2000 - présent",
+        "origin": "États-Unis, Japon"
+      },
+      "source_sha256": "df03a67ecdba3ac00281007109fe32bd436c6b124231e4782f242a192c4cd895",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:30:57.853Z"
+    }
+  }
 }

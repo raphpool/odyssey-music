@@ -49,5 +49,17 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q17018487"
+  "qid": "Q17018487",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre diversifié de musique traditionnelle d'Écosse, caractérisé par des chansons en gaélique et en scots, des ballades narratives et des formes instrumentales de danse incluant des reels, des jigs et des strathspeys, principalement axé sur les répertoires de violon et de cornemuse.",
+      "article": "La musique folk écossaise, également largement connue sous le nom de musique traditionnelle écossaise, est un genre profond et durable enraciné dans la tapisserie culturelle complexe de l'Écosse. Il englobe un vaste éventail de formes, notamment des chansons en gaélique et en scots, des ballades narratives, des pièces instrumentales complexes pour violon et cornemuse, ainsi que des airs de danse énergiques comme les reels, les jigs et les strathspeys. L'histoire du genre remonte au Moyen Âge, avec une tradition florissante qui a réussi à persister à travers des périodes de répression religieuse, particulièrement dans les Lowlands après la Réforme. Au cœur de la tradition se trouvent les cornemuses des Highlands — plus particulièrement la Great Highland Bagpipe — et le violon, des instruments qui ont façonné le caractère rythmique et mélodique de la musique pendant des siècles.\n\nTout au long des XVIIIe et XIXe siècles, un intérêt académique pour la collecte de chansons folkloriques, illustré par les efforts de Robert Burns et de divers collectionneurs revivalistes, a aidé à préserver la tradition orale. Cet engagement savant, parallèlement à la pratique sociale persistante et dynamique de la musique lors des ceilidhs et des rassemblements communautaires, a assuré que le genre reste une force vivante et évolutive plutôt qu'une relique statique. La période d'après la Seconde Guerre mondiale a vu d'importantes vagues d'intérêt, du renouveau des clubs de folk des années 1960 mené par des figures comme Ewan MacColl, à la fusion innovante d'éléments traditionnels avec le rock, le psychédélique et les techniques de guitare fingerstyle. La musique folk écossaise moderne continue de prospérer grâce à des groupes comme Runrig et Capercaillie, qui naviguent dans l'espace entre un héritage profondément enraciné et une performance contemporaine, comblant le fossé entre l'identité locale écossaise et une diaspora celtique mondiale qui considère ces traditions musicales comme des marqueurs d'appartenance culturelle. Sa résilience est attestée par sa transformation constante, chaque génération trouvant de nouvelles façons d'intégrer des mélodies anciennes dans le paysage sonore moderne.",
+      "facts": {
+        "origin": "Écosse"
+      },
+      "source_sha256": "b5f474a08b7e1cf795b39a81a1775f16254967fafb5b57d1c932ad67da741628",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:35:05.345Z"
+    }
+  }
 }
