@@ -37,11 +37,23 @@
  *   API key and the request text from the message before it gets here.
  * - `attempts`: the manifest gives, for each translated node, the 1 or 2 translator attempts it took, and the
  *   summary counts "first attempt / second attempt" (the pilot PR has to report that split).
+ * - Resume (TRA-839, 2026-11-26): `--limit n` counts the nodes handed to the translator in one pass, so "run the
+ *   same command again" after a stop with k nodes written would translate n more, n + k in all (the pilot of
+ *   TRA-812 had a ceiling of 30). A stop on quota or on passing failures now prints the command to run with
+ *   `--limit n-k`. With `--force` no command is printed: the same one would take the k written nodes again.
+ *   After a `provider_rejected` (exit 4) no resume is offered: the cause has to be fixed first.
+ * - Interruption (TRA-839): SIGINT or SIGTERM, in `--apply`, stops the pass like a quota stop (calls in flight
+ *   finish and are written, nothing new starts, a wait for a rate slot is cut short), then the sample and the
+ *   manifest are written with what is already translated (`interrupted` in the manifest, exit 130 / 143). On
+ *   TRA-812 a pass cut by the end of the session after 21 nodes lost its manifest (usage, refusals) and its
+ *   sample, and the 21 files had to be put back and the pass replayed. A second signal is not caught: it kills
+ *   the process at once.
  * - `--sample <path>` (only with `--apply`): a Markdown file with a regular draw of `--sample-size` of the
  *   nodes translated in this pass, English then French, for a human to read before the batch is merged.
  *
  * Exit codes: 0 done, 1 done with `failed` (or an error), 2 usage, 3 stopped on quota or on passing provider
- * failures (wins over 1), 4 stopped on a permanent provider refusal (wins over 1 and 3).
+ * failures (wins over 1), 130 / 143 interrupted by SIGINT / SIGTERM (wins over 1 and 3), 4 stopped on a
+ * permanent provider refusal (wins over all).
  * Flags: see `parseCliArgs`.
  */
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -88,6 +100,17 @@ type Status = "current" | "missing" | "stale" | "ineligible";
 type Stopped = Exclude<ProviderFailureReason, "bad_request">;
 export const EXIT_STOPPED_PASSING = 3;
 export const EXIT_STOPPED_PERMANENT = 4;
+/** The signals that interrupt a pass; the exit code is the shell convention, 128 + the signal number. */
+export const EXIT_INTERRUPTED = { SIGINT: 130, SIGTERM: 143 } as const;
+export type InterruptSignal = keyof typeof EXIT_INTERRUPTED;
+const isInterruptSignal = (value: unknown): value is InterruptSignal =>
+	value === "SIGINT" || value === "SIGTERM";
+/** What `runCli` listens to: the process, or an emitter in tests. */
+export interface InterruptSource {
+	once(signal: InterruptSignal, listener: () => void): unknown;
+	off(signal: InterruptSignal, listener: () => void): unknown;
+}
+const RESUME_SAME_COMMAND = "run the same command again to resume";
 
 export interface TranslationRunOptions {
 	cacheDir: string;
@@ -103,6 +126,8 @@ export interface TranslationRunOptions {
 	rpm?: number;
 	sampleSize?: number;
 	samplePath?: string;
+	/** Aborted with the name of the signal as reason (`controller.abort("SIGTERM")`) to interrupt the pass. */
+	signal?: AbortSignal;
 	/** Clock and wait, injected by tests only. */
 	now?: () => number;
 	sleep?: (ms: number) => Promise<void>;
@@ -132,6 +157,8 @@ export interface TranslationRunManifest {
 	provider_error?: ProviderFailureDetail;
 	/** With `stopped: "provider_rejected"`: the slug(s) whose requests the provider refused, slug order. */
 	rejected_slugs?: Slug[];
+	/** The pass was cut short by this signal (TRA-839): `translated` holds what was written before. */
+	interrupted?: InterruptSignal;
 }
 
 const isPlainRecord = (value: unknown): value is Obj =>
@@ -275,6 +302,21 @@ export async function runTranslation(
 	let series: Slug[] = [];
 	// Slugs of the current run of 400 answers (TRA-837); any other result starts it again.
 	let badRequests: Slug[] = [];
+	// An interruption halts like a stop; `interruption` also cuts short a worker that waits for a rate slot,
+	// which can be a whole minute.
+	const { signal } = options;
+	if (signal?.aborted) halted = true;
+	const interruption =
+		signal === undefined
+			? undefined
+			: new Promise<void>((resolve) => {
+					const halt = () => {
+						halted = true;
+						resolve();
+					};
+					if (signal.aborted) halt();
+					else signal.addEventListener("abort", halt, { once: true });
+				});
 
 	// One worker: the apply branch below runs `concurrency` of them. A preview never calls it.
 	const work = async (): Promise<void> => {
@@ -288,7 +330,7 @@ export async function runTranslation(
 				failed.push({ slug, reason: "invalid_output", issues: [] });
 				continue;
 			}
-			await takeSlot();
+			await (interruption === undefined ? takeSlot() : Promise.race([takeSlot(), interruption]));
 			// The stop may have come while this call waited for its slot.
 			if (halted) return;
 			const outcome = await translate(file.node as unknown as NodePayload, options.locale);
@@ -398,6 +440,7 @@ export async function runTranslation(
 		}
 	}
 
+	const interrupted = options.apply && signal?.aborted ? signal.reason : undefined;
 	return {
 		tool: "translate-nodes",
 		locale: options.locale,
@@ -412,6 +455,7 @@ export async function runTranslation(
 		...(stop.reason === undefined ? {} : { stopped: stop.reason }),
 		...(stop.providerError === undefined ? {} : { provider_error: stop.providerError }),
 		...(stop.rejected === undefined ? {} : { rejected_slugs: [...stop.rejected].sort() as Slug[] }),
+		...(isInterruptSignal(interrupted) ? { interrupted } : {}),
 	};
 }
 
@@ -421,7 +465,15 @@ function describeProviderError(detail: ProviderFailureDetail | undefined): strin
 	return ` (${detail.status === undefined ? "" : `HTTP ${detail.status}: `}${detail.message})`;
 }
 
-export function formatSummary(manifest: TranslationRunManifest, manifestPath: string): string {
+/**
+ * `resume` says how to carry on after a stop or an interruption (see `resumeAdvice`); without it, the same
+ * command, which is only right for a run without `--limit` and without `--force`.
+ */
+export function formatSummary(
+	manifest: TranslationRunManifest,
+	manifestPath: string,
+	resume: string = RESUME_SAME_COMMAND,
+): string {
 	const lines = [`translate-nodes ${manifest.locale} (${manifest.applied ? "apply" : "preview"})`];
 	for (const type of NODE_TYPES) {
 		const c = manifest.counts[type];
@@ -448,8 +500,13 @@ export function formatSummary(manifest: TranslationRunManifest, manifestPath: st
 			lines.push(
 				manifest.stopped === "provider_rejected"
 					? `  STOPPED: ${why}${rejected.length > 0 ? ` for ${rejected.join(", ")}` : ""}; the provider will refuse every retry: fix the cause (model, key, setting), then run again`
-					: `  STOPPED: ${why}; run the same command again to resume`,
+					: `  STOPPED: ${why}; ${resume}`,
 			);
+		}
+		if (manifest.interrupted) {
+			const written = `${manifest.translated.length} node(s) written, sample and manifest kept`;
+			const next = manifest.stopped === "provider_rejected" ? "" : `; ${resume}`;
+			lines.push(`  INTERRUPTED: ${manifest.interrupted}, ${written}${next}`);
 		}
 	} else lines.push("  preview: no translator call, no node written (re-run with --apply)");
 	lines.push(`manifest: ${manifestPath}`);
@@ -502,11 +559,36 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	return args;
 }
 
+/** Printable as one shell word: bare when it holds nothing the shell would read, else single-quoted. */
+const shellWord = (text: string) =>
+	/^[\w@%+=:,./-]+$/.test(text) ? text : `'${text.replaceAll("'", "'\\''")}'`;
+
+/**
+ * How to carry on after a stop or an interruption that left `written` nodes in the cache (TRA-839).
+ * `--limit n` counts the nodes sent in a pass and the written ones are no longer missing, so the same command
+ * would do n more: the command given has `--limit n-written`, which keeps the total at n.
+ */
+export function resumeAdvice(argv: readonly string[], args: CliArgs, written: number): string {
+	if (args.force && written > 0) {
+		return `do not run the same command again: --force would translate the ${written} node(s) already written again; list the nodes still to do with --slugs`;
+	}
+	if (args.limit === undefined) return RESUME_SAME_COMMAND;
+	const remaining = args.limit - written;
+	if (remaining < 1) return "the --limit is reached, nothing is left to resume";
+	// The last --limit is the one `parseCliArgs` keeps.
+	const at = argv
+		.map((word, i) => (word === "--limit" && i > 0 ? i : -1))
+		.reduce((a, b) => Math.max(a, b), -1);
+	const words = argv.map((word, i) => (i === at + 1 ? String(remaining) : word));
+	return `resume with: npm run translate:nodes -- ${words.map(shellWord).join(" ")}`;
+}
+
 /** The CLI without `process`: returns the exit code. `translator` replaces Gemini (tests). */
 export async function runCli(
 	argv: readonly string[],
 	apiKey: string,
 	translator?: NodeTranslator,
+	interrupts: InterruptSource = process,
 ): Promise<number> {
 	const args = parseCliArgs(argv);
 	if (!args) {
@@ -531,14 +613,34 @@ export async function runCli(
 			: async () => {
 					throw new Error("a preview never translates");
 				});
-	const manifest = await runTranslation(args, translate);
-	await mkdir(dirname(args.manifestPath), { recursive: true });
-	await atomicWriteJson(args.manifestPath, manifest);
-	console.log(formatSummary(manifest, args.manifestPath));
-	if (args.apply && args.samplePath !== undefined) console.log(`sample: ${args.samplePath}`);
-	// The manifest is written above, before this code is returned: a stop never loses it.
-	if (manifest.stopped === "provider_rejected") return EXIT_STOPPED_PERMANENT;
-	return manifest.stopped ? EXIT_STOPPED_PASSING : manifest.failed.length > 0 ? 1 : 0;
+	// Caught from the start of the pass until the manifest is written (TRA-839): a signal in between must not
+	// cost the manifest either. Only a pass that translates listens; `once`, so a second signal kills at once.
+	const controller = new AbortController();
+	const listeners = args.apply
+		? (["SIGINT", "SIGTERM"] as const).map((name) => {
+				const listener = () => controller.abort(name);
+				interrupts.once(name, listener);
+				return { name, listener };
+			})
+		: [];
+	try {
+		const manifest = await runTranslation(
+			args.apply ? { ...args, signal: controller.signal } : args,
+			translate,
+		);
+		await mkdir(dirname(args.manifestPath), { recursive: true });
+		await atomicWriteJson(args.manifestPath, manifest);
+		const stoppedOrCut = manifest.stopped !== undefined || manifest.interrupted !== undefined;
+		const resume = stoppedOrCut ? resumeAdvice(argv, args, manifest.translated.length) : undefined;
+		console.log(formatSummary(manifest, args.manifestPath, resume));
+		if (args.apply && args.samplePath !== undefined) console.log(`sample: ${args.samplePath}`);
+		// The manifest is written above, before this code is returned: a stop never loses it.
+		if (manifest.stopped === "provider_rejected") return EXIT_STOPPED_PERMANENT;
+		if (manifest.interrupted) return EXIT_INTERRUPTED[manifest.interrupted];
+		return manifest.stopped ? EXIT_STOPPED_PASSING : manifest.failed.length > 0 ? 1 : 0;
+	} finally {
+		for (const { name, listener } of listeners) interrupts.off(name, listener);
+	}
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
