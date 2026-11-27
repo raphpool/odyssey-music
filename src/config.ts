@@ -69,9 +69,13 @@ export const pipelineConfig = {
 	fetchTopKNoWiki: envInt("PIPELINE_FETCH_TOP_K_NO_WIKI", 3),
 };
 
-// TRA-806: node translation (fr). Same Gemini model family as the writing step unless overridden.
+// TRA-806: node translation (fr).
+// TRA-838 (2026-11-26): the model is pinned here, no longer inherited from the writing model. The inherited
+// gemini-2.5-flash-lite answers 404 to new API keys, gemini-3.5-flash-lite answers 400 to the
+// `thinkingBudget: 0` the translator sets, and the TRA-812 pilot was judged in gemini-3.1-flash-lite: the
+// batch and the write-time translation (TRA-809) must both run the model that was validated.
 export const translationConfig = {
-	model: envString("GEMINI_TRANSLATION_MODEL", pipelineConfig.defaultModel),
+	model: envString("GEMINI_TRANSLATION_MODEL", "gemini-3.1-flash-lite"),
 	temperature: 0.2,
 	timeoutMs: 20_000, // one provider call
 	stepTimeoutMs: 30_000, // the whole translation step of the pipeline
@@ -85,6 +89,33 @@ export const pricingConfig = {
 		envString("GEMINI_FLASH_LITE_OUTPUT_USD_PER_MILLION", "0.30"),
 	),
 };
+
+export interface ModelPricing {
+	inputUsdPerMillion: number;
+	outputUsdPerMillion: number;
+}
+
+/**
+ * Tariff of a Gemini model by exact id, or undefined when it is not known.
+ * TRA-836 (2026-11-26): the translation step priced every model at the 2.5 tariff (`pricingConfig`), so the
+ * TRA-812 pilot on gemini-3.1-flash-lite reported $0.0060 for a real cost of about $0.028. Callers must treat
+ * undefined as "cost unknown", never fall back to another model's prices.
+ */
+export function pricingForModel(model: string): ModelPricing | undefined {
+	switch (model) {
+		case "gemini-2.5-flash-lite":
+			// Keeps the env overrides of the writing pipeline.
+			return {
+				inputUsdPerMillion: pricingConfig.geminiFlashLiteInputUsdPerMillion,
+				outputUsdPerMillion: pricingConfig.geminiFlashLiteOutputUsdPerMillion,
+			};
+		case "gemini-3.1-flash-lite":
+			// Google price page, checked 2026-11-26.
+			return { inputUsdPerMillion: 0.25, outputUsdPerMillion: 1.5 };
+		default:
+			return undefined;
+	}
+}
 
 export const cliConfig = {
 	webhookAllowlist: envString("ODYSSEY_WEBHOOK_ALLOW", "")

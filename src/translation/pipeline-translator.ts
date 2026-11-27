@@ -16,7 +16,7 @@ export function makePipelineTranslator(deps: {
 		const outcome = await translator(node, "fr");
 		// The cost does not enter the pipeline metrics (plan, TRA-809): the log is where it is traced.
 		const { inputTokens, outputTokens, costUsd } = outcome.usage;
-		const usage = `attempts=${outcome.attempts} tokens=${inputTokens}/${outputTokens} cost=$${costUsd.toFixed(5)}`;
+		const usage = `attempts=${outcome.attempts} tokens=${inputTokens}/${outputTokens} cost=${costUsd === null ? "unknown" : `$${costUsd.toFixed(5)}`}`;
 		if (outcome.ok) {
 			log(`[translate] done for ${node.slug}: ${usage}`);
 			return outcome.translation;

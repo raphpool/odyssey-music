@@ -110,5 +110,14 @@
       "type": "project",
       "name": "Apollo: Atmospheres & Soundtracks"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre sombre et souterrain de la musique ambient, la sortie de 1982 de Brian Eno dépasse le minimalisme serein de ses travaux précédents pour une exploration dense et immersive de la géographie sonore.",
+      "article": "Sorti en 1982, Ambient 4: On Land marque un tournant décisif dans la carrière de Brian Eno et dans le développement de la musique ambient en tant que genre. Contrairement à ses explorations antérieures plus structurelles comme Ambient 1: Music for Airports, qui utilisaient des cycles génératifs pour créer des environnements sereins et ouverts, On Land présente un paysage sonore plus dense, plus sombre et plus souterrain. C'est une œuvre définie par sa profondeur psychologique et son immersion environnementale, évoquant souvent des paysages à la fois étrangers et profondément ancrés dans la terre physique. Brian Eno a utilisé des techniques de studio complexes pour superposer des enregistrements de terrain naturalistes — tels que le chant des insectes ou le grondement sourd du sol en mouvement — avec des synthétiseurs traités, créant une géographie « surréaliste » qui résiste à la progression mélodique traditionnelle.\n\nL'album représente un sommet dans l'utilisation du studio d'enregistrement comme instrument, où l'agencement spatial du son — la « texture » et la « profondeur » du champ sonore — devient plus significatif que n'importe quelle note ou battement individuel. Les contributions de musiciens comme Michael Brook et Daniel Lanois ajoutent des accents mélodiques et rythmiques distincts qui émergent de l'obscurité comme des fantômes, fournissant des points de référence fragiles dans un paysage auditif largement amorphe. Ambient 4: On Land s'est avéré être un disque immensément influent, servant de modèle principal pour les développements ultérieurs du dark ambient, de l'industrial ambient et de la drone music. Il invite l'auditeur non seulement à écouter, mais à habiter les espaces que Brian Eno construit, offrant une expérience méditative qui équilibre la tranquillité avec un sentiment sous-jacent de mystère et de déplacement. Il demeure un texte fondateur de l'histoire de la musique électronique, incarnant la quête de Brian Eno pour une musique qui fonctionne comme « un lieu où être » plutôt qu'un récit à suivre.",
+      "source_sha256": "bc96a8bbc6e571a1169f1275c057e7c078d3b7189ce2426b9d77e97096afd24a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:34:57.416Z"
+    }
+  }
 }

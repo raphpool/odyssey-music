@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { pipelineConfig, translationConfig } from "../../src/config.js";
-import { createGeminiGenerateJson } from "../../src/translation/gemini-generate.js";
+import { createGeminiGenerateJson, MAX_DETAIL_LENGTH } from "../../src/translation/gemini-generate.js";
 import type { GenerateJsonRequest } from "../../src/translation/translate-node.js";
 
 // The SDK is the external boundary: it is replaced, so no test here reaches the network.
@@ -83,7 +83,7 @@ describe("createGeminiGenerateJson", () => {
 	])("retries once then gives up on %s", async (message, reason) => {
 		sdk.generateContent.mockRejectedValue(new Error(message));
 		const result = await settle(createGeminiGenerateJson("k")(REQUEST));
-		expect(result).toEqual({ ok: false, reason });
+		expect(result).toMatchObject({ ok: false, reason });
 		expect(sdk.generateContent).toHaveBeenCalledTimes(2);
 	});
 
@@ -105,7 +105,7 @@ describe("createGeminiGenerateJson", () => {
 		expect(signal.aborted).toBe(false);
 		await vi.advanceTimersByTimeAsync(1);
 		expect(signal.aborted).toBe(true);
-		expect(await settle(call)).toEqual({ ok: false, reason: "provider_unavailable" });
+		expect(await settle(call)).toMatchObject({ ok: false, reason: "provider_unavailable" });
 		expect(sdk.generateContent).toHaveBeenCalledTimes(2);
 		expect(vi.getTimerCount()).toBe(0);
 	});
@@ -119,5 +119,105 @@ describe("createGeminiGenerateJson", () => {
 		expect(JSON.stringify(result)).not.toContain(REQUEST.prompt);
 		for (const spy of spies) expect(JSON.stringify(spy.mock.calls)).not.toContain(REQUEST.prompt);
 		for (const spy of spies) spy.mockRestore();
+	});
+});
+
+// TRA-837: why the provider failed, and which failures are worth waiting for.
+
+/** What the SDK throws: an Error whose message is the API's JSON body and whose `status` is the HTTP code. */
+function apiError(status: number, message: string, extra = "") {
+	const body = { error: { code: status, message, status: "SOME_STATUS" } };
+	return Object.assign(new Error(JSON.stringify(body) + extra), { status });
+}
+const MODEL_GONE = "models/gemini-2.0-flash is no longer available to new users.";
+
+describe("provider failure detail (TRA-837)", () => {
+	it("reports a 404 as provider_rejected with its status and message, and does not retry it", async () => {
+		sdk.generateContent.mockRejectedValue(apiError(404, MODEL_GONE));
+		const result = await settle(createGeminiGenerateJson("k")(REQUEST));
+		expect(result).toEqual({
+			ok: false,
+			reason: "provider_rejected",
+			detail: { status: 404, message: MODEL_GONE },
+		});
+		expect(sdk.generateContent).toHaveBeenCalledTimes(1);
+	});
+
+	it.each([401, 403, 404])("treats HTTP %i as permanent for the whole batch", async (status) => {
+		sdk.generateContent.mockRejectedValue(apiError(status, "nope"));
+		const result = await settle(createGeminiGenerateJson("k")(REQUEST));
+		expect(result).toMatchObject({ ok: false, reason: "provider_rejected", detail: { status } });
+		expect(sdk.generateContent).toHaveBeenCalledTimes(1);
+	});
+
+	it("treats a 400 as the refusal of this request only: bad_request, with its detail, not retried", async () => {
+		sdk.generateContent.mockRejectedValue(apiError(400, "Invalid argument: thinking_budget"));
+		// Not a one-letter key: it would match inside "thinking".
+		const result = await settle(createGeminiGenerateJson("test-key-0001")(REQUEST));
+		expect(result).toEqual({
+			ok: false,
+			reason: "bad_request",
+			detail: { status: 400, message: "Invalid argument: thinking_budget" },
+		});
+		expect(sdk.generateContent).toHaveBeenCalledTimes(1);
+	});
+
+	it.each([500, 503, 504])(
+		"keeps HTTP %i as a passing failure, retried once, with its status",
+		async (status) => {
+			sdk.generateContent.mockRejectedValue(apiError(status, "try later"));
+			const result = await settle(createGeminiGenerateJson("k")(REQUEST));
+			expect(result).toEqual({
+				ok: false,
+				reason: "provider_unavailable",
+				detail: { status, message: "try later" },
+			});
+			expect(sdk.generateContent).toHaveBeenCalledTimes(2);
+		},
+	);
+
+	it("keeps a 429 as a quota failure, status included", async () => {
+		sdk.generateContent.mockRejectedValue(apiError(429, "Quota exceeded"));
+		const result = await settle(createGeminiGenerateJson("k")(REQUEST));
+		expect(result).toMatchObject({ ok: false, reason: "quota_exhausted", detail: { status: 429 } });
+		expect(sdk.generateContent).toHaveBeenCalledTimes(2);
+	});
+
+	it("has a message but no status for a failure that never got an answer", async () => {
+		sdk.generateContent.mockRejectedValue(new Error("network down: ECONNRESET"));
+		// A key that is not one letter: a one-letter key would match inside "network".
+		const result = await settle(createGeminiGenerateJson("test-key-0001")(REQUEST));
+		expect(result).toEqual({
+			ok: false,
+			reason: "provider_unavailable",
+			detail: { message: "network down: ECONNRESET" },
+		});
+	});
+
+	it("truncates a long message to one line of at most MAX_DETAIL_LENGTH characters plus an ellipsis", async () => {
+		sdk.generateContent.mockRejectedValue(apiError(404, `first line\nsecond ${"x".repeat(1000)}`));
+		const result = await settle(createGeminiGenerateJson("k")(REQUEST));
+		const message = result.ok ? "" : (result.detail?.message ?? "");
+		expect(message.startsWith("first line second xxx")).toBe(true);
+		expect(message.endsWith("…")).toBe(true);
+		expect(message).toHaveLength(MAX_DETAIL_LENGTH + 1);
+		expect(message).not.toContain("\n");
+	});
+
+	it.each([
+		["in the message", (key: string) => apiError(403, `API key ${key} is not valid`)],
+		[
+			"in the raw body, after the sentence",
+			(key: string) => apiError(400, "bad", ` url=https://x/?key=${key}`),
+		],
+		["as the first thing before a long text", (key: string) => apiError(404, `${key} ${"y".repeat(500)}`)],
+		["near the cut", (key: string) => apiError(404, `${"z".repeat(MAX_DETAIL_LENGTH - 5)}${key}`)],
+	])("never lets the API key through, %s", async (_name, make) => {
+		const key = "AIzaSyFAKE-key_0123456789abcdefghijklmnopq";
+		sdk.generateContent.mockRejectedValue(make(key));
+		const result = await settle(createGeminiGenerateJson(key)(REQUEST));
+		expect(JSON.stringify(result)).not.toContain(key);
+		// Not even the half the cut would leave.
+		expect(JSON.stringify(result)).not.toContain(key.slice(0, 12));
 	});
 });

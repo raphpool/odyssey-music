@@ -177,5 +177,14 @@
       "type": "project",
       "name": "Here Come the Warm Jets"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Le chef-d'œuvre de 1975 de Brian Eno constitue un pont définitif entre l'art-pop et l'ambient, utilisant des techniques de studio non conventionnelles pour créer un paysage sonore qui demeure aussi moderne aujourd'hui qu'à sa création.",
+      "article": "Sorti en 1975, Another Green World est le troisième album studio solo du musicien anglais Brian Eno, représentant un pont charnière entre ses premières excursions art-pop et les expériences ambient révolutionnaires pour lesquelles il deviendrait plus tard mondialement célèbre. Produit par Eno et Rhett Davies, le disque est fréquemment cité comme un chef-d'œuvre de la musique de la fin du XXe siècle, radical à son époque tout en possédant une qualité intemporelle et moderne. S'éloignant des sensibilités glam-rock de son travail avec Roxy Music et de ses deux premiers efforts solo, Eno a adopté ici une posture anti-rock, privilégiant l'intuition et l'expérimentation structurelle aux formes de chansons conventionnelles.\n\nPlutôt que de puiser dans les tropes rock établis, l'album a été conçu en utilisant des techniques non conventionnelles et des cartes d'instructions auto-conçues, qui encourageaient les contributeurs à repenser leurs instruments et leurs rôles. Ces sessions ont réuni un groupe remarquable de musiciens, dont le guitariste Robert Fripp, le bassiste Percy Jones, l'altiste John Cale et le batteur Phil Collins. La palette sonore qui en résulte, décrite par Eno avec des termes comme « snake guitar » et « uncertain piano », mélange des structures proches de la pop avec des textures abstraites et atmosphériques. Alors que des chansons comme « Sky Saw » laissent entrevoir le cœur expérimental de l'album, des titres tels que « The Big Ship » et « Becalmed » mettent en valeur l'attention harmonique expansive qui définirait le genre ambient. En équilibrant des approches radicales et expérimentales avec un sens profond de l'accessibilité et de la beauté, Another Green World s'impose comme un jalon de la production créative et introspective. Il demeure un artefact essentiel dans l'évolution de la musique électronique et art-pop moderne.",
+      "source_sha256": "f0061ecbed701264e6917d66d5fd59db564c0e61cc0629318cafba1e6c2e106c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:34:59.518Z"
+    }
+  }
 }

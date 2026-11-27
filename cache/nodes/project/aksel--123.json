@@ -136,5 +136,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« aksel » est le premier album studio évocateur du groupe stambouliote 123, sorti en 2009. Servant à la fois de collection musicale et de récit artistique, cette parution accompagne un livre de 230 pages d'illustrations de Huban Korman, tissant l'histoire d'un garçon nommé Aksel, d'un hibou et d'une baleine dans sa trame sonore. L'album met en valeur le penchant du groupe pour une indie pop atmosphérique aux genres variés, intégrant des sensibilités jazz et des arrangements organiques riches dans un projet cohérent et narratif qui les a établis au sein de la scène musicale indépendante turque.",
+      "article": "« aksel » est le premier album studio évocateur du groupe stambouliote 123, sorti le 3 novembre 2009 chez aisha records. Plus qu'une simple collection de chansons, le projet représente une vision multidisciplinaire, initialement publié sous forme de CD inséré dans un livre de 230 pages d'illustrations originales de l'artiste Huban Korman. L'album fonctionne comme un voyage narratif cohérent, explorant l'histoire fabuleuse d'un jeune garçon nommé Aksel, sa rencontre avec the owl et sa relation avec une balina. Sur le plan sonore, le projet souligne le style distinctif du groupe, qui fait le pont avec fluidité entre l'indie pop, le rock et des éléments de jazz. La production, assurée par les membres du groupe eux-mêmes aux côtés de who are we who we are, crée une atmosphère à la fois intime et cinématographique, utilisant des cordes, du vibraphone et des arrangements de guitare complexes. Des titres comme « the owl » présentent des arrangements de cordes délicats, tandis que d'autres penchent vers un swing plus percutant et jazzy, soulignant la polyvalence du groupe. Le contenu lyrique de l'album, écrit par Berke Can Özcan, ajoute une couche fantaisiste mais mélancolique à l'instrumentation sophistiquée. À sa sortie, « aksel » a attiré l'attention pour son format unique et sa profondeur artistique, établissant fermement 123 comme une voix essentielle de la communauté musicale indépendante turque à la fin des années 2000. Son attrait durable réside dans la manière dont il équilibre harmonieusement l'écriture de chansons traditionnelle et une structure narrative expérimentale, invitant l'auditeur à pénétrer dans un monde pleinement réalisé qui existe quelque part entre le folklore et les paysages sonores indie modernes. Cette parution demeure une pierre angulaire de leur discographie, marquant le début d'une période où le groupe allait expérimenter différents sons et projets narratifs, tout en conservant la chaleur et l'ambition artistique qui définissent leurs premiers travaux.",
+      "source_sha256": "76ab432ff4d3ca2882a88ca104695219d3f553e27647c0f52c811e7a35a4395b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:33:59.685Z"
+    }
+  }
 }

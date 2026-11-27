@@ -942,7 +942,24 @@ case "$url" in
 esac
 if [ -f "$FIXTURES/$f.json" ]; then cat "$FIXTURES/$f.json"; fi`,
 	);
-	tool("git", `if [ "$1" = diff ]; then printf 'src/graph.ts\\0'; fi`);
+	// TRA-841: with FAKE_L10N set, the diff is one cache node, its two sides are served by `git show` (`basesha` is the
+	// merge base), and `git merge-base` answers: what `review-gate-policy.ts l10n-only` reads.
+	tool(
+		"git",
+		`case "$1" in
+  diff)
+    if [ -n "$FAKE_L10N" ]; then
+      case "$*" in
+        *--name-status*) printf 'M\\0cache/nodes/project/a.json\\0' ;;
+        *) printf 'cache/nodes/project/a.json\\0' ;;
+      esac
+    else
+      printf 'src/graph.ts\\0'
+    fi ;;
+  merge-base) echo basesha ;;
+  show) case "$2" in basesha:*) cat "$FIXTURES/node-base.json" ;; *) cat "$FIXTURES/node-head.json" ;; esac ;;
+esac`,
+	);
 	tool("sleep", "exit 0");
 	tool("seq", "echo 1");
 	// tsx is itself a node script (`#!/usr/bin/env node`): it is started by the real node, or this shim would call itself.
@@ -960,10 +977,22 @@ if [ -f "$FIXTURES/$f.json" ]; then cat "$FIXTURES/$f.json"; fi`,
 		/** The facts of the event; the PR of the other tests by default. */
 		pr?: { number: number; baseRef: string };
 		defaultBranch?: string;
+		/** Labels of the PR (none by default). */
+		labels?: string[];
+		/** TRA-841: the diff is one cache node, served as this base and head content by the fake `git`. */
+		node?: { base: unknown; head: unknown };
 	}
 
 	/** The "Evaluate" step on simulated API answers: its exit code, its output, and the API paths it requested. */
-	async function evaluate({ api, deepChecks = [], notes = {}, pr = PR, defaultBranch = "main" }: Scenario) {
+	async function evaluate({
+		api,
+		deepChecks = [],
+		notes = {},
+		pr = PR,
+		defaultBranch = "main",
+		labels = [],
+		node,
+	}: Scenario) {
 		fixture += 1;
 		const dir = join(scratch, `tra529-${fixture}`);
 		const fx = join(dir, "fixtures");
@@ -988,7 +1017,11 @@ if [ -f "$FIXTURES/$f.json" ]; then cat "$FIXTURES/$f.json"; fi`,
 				creator: { login: "raphpool" },
 			},
 		]);
-		writeFileSync(join(fx, "labels.json"), "");
+		writeFileSync(join(fx, "labels.json"), labels.map((label) => `${label}\n`).join(""));
+		if (node !== undefined) {
+			writeFileSync(join(fx, "node-base.json"), JSON.stringify(node.base));
+			writeFileSync(join(fx, "node-head.json"), JSON.stringify(node.head));
+		}
 		for (const runId of new Set((api.jobs as { run_id: number }[]).map((j) => j.run_id))) {
 			stream(
 				join(fx, `jobs-${runId}.json`),
@@ -1020,6 +1053,7 @@ if [ -f "$FIXTURES/$f.json" ]; then cat "$FIXTURES/$f.json"; fi`,
 			BASE_REF: pr.baseRef,
 			HEAD_REF: PR.headRef,
 			HEAD_REPO: PR.headRepo,
+			...(node === undefined ? {} : { FAKE_L10N: "1" }),
 		};
 		const done = await exec("bash", ["-c", script], { env, timeout: 25_000, killSignal: "SIGKILL" }).then(
 			({ stdout }) => ({ code: 0, stdout }),
@@ -1212,6 +1246,80 @@ if [ -f "$FIXTURES/$f.json" ]; then cat "$FIXTURES/$f.json"; fi`,
 			}
 		});
 	});
+
+	// TRA-841 (2026-11-26): a tier/3 PR that only adds `l10n` blocks to cache nodes does not wait for a deep review.
+	describe("a tier/3 cache PR that only adds l10n (TRA-841)", () => {
+		const nodeBase = { id: "project:a", name: "A", year: 1969 };
+		const l10n = {
+			fr: {
+				teaser: "Un album.",
+				article: "Un long article.",
+				source_sha256: "a".repeat(64),
+				model: "m",
+				translated_at: "2026-11-26T10:00:00.000Z",
+			},
+		};
+		// `genuine` is the ordinary review: success, recorded for this PR. No `deep-review` check-run exists (skipped).
+		const gateOf = (extra: Partial<Scenario>) =>
+			evaluate({
+				api: genuine(11, 100),
+				notes: { 11: [OWN_RECORD, PATCH_RECORD] },
+				labels: ["tier/3"],
+				...extra,
+			});
+
+		it("passes on the ordinary review alone when every file only gained l10n.fr", async () => {
+			const outcome = await gateOf({ node: { base: nodeBase, head: { ...nodeBase, l10n } } });
+			expect(passes(outcome), outcome.stdout).toBe(true);
+			expect(outcome.stdout).toContain('"risk":2');
+		}, 30_000);
+
+		it.each([
+			["a field changed", { ...nodeBase, year: 1970, l10n }],
+			["a field removed", { id: "project:a", l10n }],
+			["no l10n added", nodeBase],
+		])(
+			"keeps the deep review when %s",
+			async (_label, head) => {
+				const outcome = await gateOf({ node: { base: nodeBase, head } });
+				expect(passes(outcome), outcome.stdout).toBe(false);
+				expect(outcome.stdout).toContain('"risk":3');
+				expect(outcome.stdout).toContain('"verdict":"wait"');
+			},
+			30_000,
+		);
+
+		it("keeps the deep review when the check cannot be run (the fake git has no cache node to show)", async () => {
+			const outcome = await gateOf({});
+			expect(passes(outcome), outcome.stdout).toBe(false);
+			expect(outcome.stdout).toContain('"risk":3');
+		}, 30_000);
+
+		it("does not lower anything without the tier/3 label, and still blocks on a failing ordinary review", async () => {
+			const node = { base: nodeBase, head: { ...nodeBase, l10n } };
+			expect((await gateOf({ labels: ["tier/1"], node })).stdout).toContain('"risk":1');
+			const blocking = await gateOf({
+				node,
+				notes: { 11: [OWN_RECORD, BLOCKING] },
+				api: genuine(11, 100, { conclusion: "failure" }),
+			});
+			expect(passes(blocking)).toBe(false);
+			expect(blocking.stdout).toContain('"verdict":"block"');
+		}, 60_000);
+
+		it("asks the default branch's policy, passes only the literal `true`, and sends no shortcut in the PR's reach", () => {
+			expect(code).toContain(
+				'node --experimental-strip-types --no-warnings "$RUNNER_TEMP/review-gate-policy/review-gate-policy.ts" l10n-only',
+			);
+			expect(code).toContain('[ "$l10n_only" = "true" ] || l10n_only=false');
+			expect(code).toContain('--argjson l10nOnly "$l10n_only"');
+			expect(code).toContain("l10nOnly:$l10nOnly");
+			// The shortcut never publishes a (fake) `codex-deep-review` status: the step only reads from the API.
+			expect(stepScript("Evaluate combined review policy")).not.toMatch(
+				/(-X|--method) POST|-f state=success/,
+			);
+		});
+	});
 });
 
 // TRA-754 (2026-11-16): the jobs that run the deep review (comment lines dropped, as elsewhere in this file).
@@ -1246,6 +1354,19 @@ describe("ai-review.yml: the `deep-review` jobs (TRA-754)", () => {
 		// 2026-11-16: the policy runs its CLI when argv[1] ends with its own name; a path in argv made the import throw.
 		expect(tierJob).toContain("import(process.env.POLICY)");
 		expect(tierJob).not.toContain("process.argv");
+	});
+
+	// TRA-841 (2026-11-26): a tier/3 PR that only adds `l10n` to cache nodes is tier 2 here, so the deep review is skipped.
+	it("hands the l10n-only answer of the default branch's policy to the classifier, and only the literal `true` counts", () => {
+		expect(tierJob).toContain(
+			'node --experimental-strip-types --no-warnings "$trusted/review-gate-policy.ts" l10n-only "$BASE_SHA" "$HEAD_SHA"',
+		);
+		expect(tierJob).toContain('[ "$l10n_only" = "true" ] || l10n_only=false');
+		expect(tierJob).toContain('L10N_ONLY="$l10n_only"');
+		expect(tierJob).toContain('{ l10nOnly: process.env.L10N_ONLY === "true" }');
+		// The check runs after the trusted copy is written and before the tier is computed.
+		expect(tierJob.indexOf("l10n-only")).toBeGreaterThan(tierJob.indexOf('review-gate-policy.ts" >'));
+		expect(tierJob.indexOf("l10n-only")).toBeLessThan(tierJob.indexOf("tier=$(POLICY="));
 	});
 
 	it("runs on hosted runners, with the permissions of `review`, and writes its review-base record first", () => {

@@ -84,5 +84,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Dernier chapitre de la période expérimentale « Pink Years » de Tangerine Dream, Atem est un pont atmosphérique charnière qui a défini le genre space music et capté l'attention de John Peel ainsi que celle de la scène internationale.",
+      "article": "Atem est le quatrième album studio du groupe électronique allemand pionnier Tangerine Dream, sorti en mars 1973. Représentant l'ultime entrée de la période acclamée « Pink Years » du groupe, l'album capture une transition critique alors qu'ils s'éloignaient des textures denses et expérimentales de leurs débuts vers le son plus structuré et axé sur les séquenceurs qui allait définir leur succès international ultérieur. Enregistré entre décembre 1972 et janvier 1973 au Dierks Studio, l'album présente la formation composée d'Edgar Froese, Christopher Franke et Peter Baumann.\n\nMusicalement, Atem mélange des paysages sonores atmosphériques à évolution lente avec des éclats surprenants d'énergie percussive et d'expérimentation vocale. Bien qu'il conserve l'esprit expérimental du mouvement Krautrock allemand, il est fréquemment cité comme une œuvre séminale dans le développement de la space music. L'album a bénéficié d'une exposition significative au Royaume-Uni grâce au soutien enthousiaste du légendaire animateur radio John Peel, qui l'a nommé l'un de ses albums de l'année. Cette reconnaissance a aidé Tangerine Dream à franchir le pas vers le marché international, attirant finalement l'attention de Richard Branson et menant à leur signature chez Virgin Records. La pochette frappante présente une photographie de Jerome Froese, le fils d'Edgar Froese, qui rejoindrait lui-même le groupe plus tard. Souvent décrit comme un « album de transition », Atem demeure une sortie charnière qui équilibre des textures sonores profondes et immersives avec une sensibilité mélodique qui préfigurait l'orientation future du groupe vers la musique électronique progressive.",
+      "source_sha256": "3e4d2e0bd139e442c01c50d36acac7d0dfb317dc2ba5501dbb2c92aded826ed0",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:35:59.160Z"
+    }
+  }
 }

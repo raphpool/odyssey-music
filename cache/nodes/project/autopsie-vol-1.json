@@ -102,5 +102,14 @@
       "name": "Skread"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une compilation mixtape définitive de 2005 de l'icône du rap français Booba, mettant en valeur son style hardcore à travers un mélange de titres studio, de freestyles radio et de collaborations clés.",
+      "article": "Sorti en mai 2005, Autopsie, Vol. 1 est une compilation mixtape séminale du rappeur français Booba, publiée par son propre label, Tallac Records. Le projet sert de collection exhaustive de titres, de freestyles et de collaborations qui soulignent l'esthétique hip-hop hardcore que Booba a cultivée au milieu des années 2000. En tant que double CD, la mixtape propose un mélange de matériel solo, de freestyles radio et d'apparitions de son ancien groupe, Lunatic, ainsi que de divers associés de la scène rap française. Le projet capture un son brut, orienté vers la rue, qui a joué un rôle déterminant dans la consolidation de l'influence de Booba dans le paysage hip-hop français. En mélangeant des titres studio avec des segments radio en direct, la compilation offre un regard multidimensionnel sur la prouesse technique de l'artiste et sa capacité à organiser une atmosphère granuleuse et cohérente qui a défini le début de sa carrière solo.",
+      "source_sha256": "1a20053e949a469965cfd053ac4ce1ed39234a307105dc53f1b5c0b100fd6f1a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:36:03.642Z"
+    }
+  }
 }

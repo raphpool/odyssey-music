@@ -66,5 +66,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Autoditacker est un album d'IDM séminal de 1997 par Mouse on Mars qui équilibre magistralement des textures denses et abstraites avec des grooves contagieux et ludiques. Il demeure un sommet de la scène électronique expérimentale des années 90, mêlant rythmes inspirés du krautrock et traitement numérique complexe.",
+      "article": "Autoditacker, sorti en 1997, constitue le troisième album studio du duo électronique allemand pionnier Mouse on Mars, composé de Jan St. Werner et Andi Toma. Arrivé à l'apogée des mouvements IDM et glitch du milieu des années 90, l'album a consolidé la réputation du duo pour la création de paysages sonores à la fois hautement intellectuels et irrévérencieusement amusants. Contrairement à beaucoup de leurs contemporains qui penchaient fortement vers une abstraction froide et mécanique, Mouse on Mars a insufflé à son travail un sens du rythme distinct, chaleureux et souvent bizarre, comblant le fossé entre la conception sonore cérébrale et l'electronica dansante.\n\nLe disque est largement célébré pour ses superpositions denses, où synthétiseurs gazouillants, rythmes fragmentés et effets sonores surréalistes entrent en collision dans une mosaïque structurée mais chaotique. Des morceaux tels que l'ouverture effrénée « Sui Shop » et le titre aux influences krautrock « Tamagnocchi » illustrent la capacité du duo à manipuler l'instrumentation traditionnelle parallèlement à un traitement sophistiqué du signal numérique. L'album présente également des collaborations notables, notamment le travail de F.X. Randomiz sur le traitement sonore numérique et la participation vocale de Lætitia Sadier sur le morceau « Schnick Schnack Meltmade ».\n\nCulturellement, Autoditacker demeure un document déterminant de l'expérimentation de la fin des années 90. En évitant le sérieux excessif qui affligeait souvent le genre IDM, Mouse on Mars a créé un projet intemporel et aventureux qui récompense les écoutes répétées. Des décennies après sa sortie, il continue d'être cité par les critiques comme par les fans comme une parution marquante, se classant haut dans les listes documentant l'histoire de l'IDM pour son esprit innovant et son ingénierie précise, bien que ludique. Il capture un moment où la musique numérique évoluait rapidement, offrant une leçon magistrale de texture, de rythme et de curiosité sonore.",
+      "source_sha256": "57e40eb58ef44a7160df1021991b320e0141c8afdb21e414fbc8f5aeb96a571a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:36:02.423Z"
+    }
+  }
 }

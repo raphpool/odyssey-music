@@ -64,5 +64,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Autobahn est l'album révolutionnaire de 1974 des pionniers allemands de l'électronique Kraftwerk, une exploration sonore de la route qui a efficacement comblé le fossé entre le Krautrock expérimental et la précision rythmique et léchée de la future pop électronique. En transformant la monotonie banale de la conduite en une pièce maîtresse tentaculaire de 22 minutes, Kraftwerk a redéfini le potentiel de la synthèse et des séquenceurs, créant un paysage à la fois industriel et mélodiquement humain. Son influence sur les générations suivantes — du synth-pop et de la techno au hip-hop — ne peut être surestimée, car il demeure l'un des plans architecturaux les plus significatifs de la musique électronique moderne.",
+      "article": "Autobahn est le quatrième album studio de l'influent groupe de musique électronique allemand Kraftwerk, sorti en novembre 1974. Il constitue un moment charnière de l'histoire de la musique, marquant une transition nette entre les racines expérimentales du groupe, proches du « Krautrock », et le son électronique propre, rythmé et mélodique qui allait définir leur héritage. La pièce maîtresse de l'album, le morceau-titre de 22 minutes, est un carnet de voyage sonore sur l'Autobahn allemande, utilisant des pulsations synthétiques entraînantes, des voix traitées et des textures ambiantes subtiles pour imiter l'expérience d'un voyage sur l'autoroute.\n\nProduit par les membres fondateurs Ralf Hütter et Florian Schneider dans leur studio Kling Klang, avec l'assistance technique du légendaire Conny Plank, l'album a efficacement démocratisé la musique électronique. Il a prouvé que les synthétiseurs et les boîtes à rythmes pouvaient être utilisés pour créer des compositions accessibles, orientées vers la pop, plutôt que de simples expériences académiques ou avant-gardistes. Le succès d'Autobahn sur les marchés internationaux a contribué à populariser le synthétiseur en tant qu'instrument principal de la musique contemporaine. Son influence est profondément visible dans l'évolution de la synth-pop, de la new wave, de l'électro et de la techno de Détroit. En intégrant la précision mécanique de la technologie industrielle à la capacité humaine pour la mélodie, Kraftwerk a créé un archétype durable qui continue de façonner le paysage électronique des décennies plus tard. L'album demeure un chef-d'œuvre de minimalisme conceptuel, démontrant comment une idée singulière et focalisée — l'acte de conduire — pouvait être étendue en un monde sonore massif et immersif.",
+      "source_sha256": "c4f300ef1a0f9cfc4c00d3e9caa6311dd5e00b43166fafa48f66bca2c8cbc8d6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T19:36:01.566Z"
+    }
+  }
 }

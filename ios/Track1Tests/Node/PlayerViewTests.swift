@@ -25,10 +25,12 @@ final class PlayerViewTests: XCTestCase {
 		#"{"slug":"artist:a","type":"artist","name":"\#(name)"}"#
 	}
 
-	private func node(article: String = "", teaser: String? = nil, edges: String = "") throws -> NodeDetail {
+	private func node(
+		article: String = "", teaser: String? = nil, edges: String = "", citations: String = "[]"
+	) throws -> NodeDetail {
 		let teaserJSON = teaser.map { #""\#($0)""# } ?? "null"
 		let source = """
-			{"id":"project:sample","type":"project","name":"Sample","teaser":\(teaserJSON),"article":"\(article)","citations":[],"facts":{},"edges":{\(edges)},"materialized_at":"2026-10-08T00:00:00Z","image_url":null}
+			{"id":"project:sample","type":"project","name":"Sample","teaser":\(teaserJSON),"article":"\(article)","citations":\(citations),"facts":{},"edges":{\(edges)},"materialized_at":"2026-10-08T00:00:00Z","image_url":null}
 			"""
 		let decoder = JSONDecoder()
 		decoder.dateDecodingStrategy = .iso8601
@@ -108,6 +110,16 @@ final class PlayerViewTests: XCTestCase {
 		XCTAssertEqual(stops.map { rgba($0.color)[3] }, [0, 0, 255, 255, 0, 0])
 	}
 
+	/// TRA-826 (plan player-source-link, D2 and D3): the source line under the last sentence.
+	func testTheSourceLineMeasuresAndColoursAreThePlanOnes() {
+		XCTAssertEqual(Metrics.sourceIdentifier, "player-source")
+		XCTAssertEqual(Metrics.sourceSpacing, 24)
+		XCTAssertEqual(rgba(Metrics.sourceLabelColor), [0xF6, 0xE9, 0xD8, 0xFF])
+		XCTAssertEqual(rgba(Metrics.sourceDomainColor), [0xF6, 0xE9, 0xD8, 0xCC])
+		XCTAssertEqual(Metrics.sourceDomainOpacity, 0.8)
+		XCTAssertEqual(Metrics.sourceTouchOutset, 5, "44 pt of touch on the 34 pt line of the reader role.")
+	}
+
 	// MARK: - Paragraphs
 
 	func testThereIsOneParagraphPerSentenceInTheOrderOfTheArticle() throws {
@@ -147,6 +159,31 @@ final class PlayerViewTests: XCTestCase {
 		XCTAssertEqual(node.contentLanguage, .fr)
 		XCTAssertEqual(PlayerView.paragraphs(for: node), ArticleSentences.split(french))
 		XCTAssertNotEqual(PlayerView.paragraphs(for: node), ArticleSentences.split(Self.article))
+	}
+
+	// MARK: - Source
+
+	private static let citation = #"[{"url":"https://www.pitchfork.com/reviews/x","title":"Review"}]"#
+
+	func testAnArticleWithACitationHasASource() throws {
+		let source = PlayerView.source(for: try node(article: Self.article, citations: Self.citation))
+
+		XCTAssertEqual(source?.domain, "pitchfork.com")
+	}
+
+	func testAnArticleWithoutCitationsHasNoSource() throws {
+		XCTAssertNil(PlayerView.source(for: try node(article: Self.article, citations: "[]")))
+	}
+
+	/// The reader shows `emptyMessage` there: no text, so nothing to attribute.
+	func testAnEmptyArticleWithoutATeaserHasNoSourceEvenWithACitation() throws {
+		XCTAssertNil(PlayerView.source(for: try node(article: "", teaser: nil, citations: Self.citation)))
+	}
+
+	func testAnEmptyArticleReadFromTheTeaserKeepsItsSource() throws {
+		let source = PlayerView.source(for: try node(article: "", teaser: "Un teaser.", citations: Self.citation))
+
+		XCTAssertEqual(source?.domain, "pitchfork.com")
 	}
 
 	// MARK: - Focus and scroll
