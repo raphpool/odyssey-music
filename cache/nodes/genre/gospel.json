@@ -73,5 +73,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q180268"
+  "qid": "Q180268",
+  "l10n": {
+    "fr": {
+      "teaser": "Le Gospel est un genre de musique protestante américaine issu des réveils religieux du XIXe siècle, défini par son contenu lyrique chrétien et ses traditions musicales hautement émotives qui ont évolué dans des contextes culturels noirs et blancs.",
+      "article": "La musique Gospel est un genre protestant américain fondamental caractérisé par son accent sur les thèmes chrétiens, l'expression religieuse personnelle et une longue histoire d'évolution au sein des communautés noires et blanches aux États-Unis. Issu des mouvements de réveil religieux du XIXe siècle, le genre s'est développé à partir d'une combinaison de recueils de cantiques, de spirituals et de structures musicales populaires. Alors que les traditions gospel blanches tendaient souvent vers des harmonies à quatre voix, des structures strophiques couplet-refrain et un vocabulaire harmonique en expansion influencé par la country et la musique populaire, les traditions gospel noires ont émergé comme une synthèse puissante de spirituals, de blues et d'éléments de jazz, marquées par une interprétation émotionnelle intense, des motifs d'appel et de réponse et des arrangements vocaux puissants.\n\nTout au long du XXe siècle, le gospel est devenu un pilier de la musique américaine, influençant profondément des genres profanes tels que le rhythm and blues, la soul et le rock and roll. Des figures comme Thomas A. Dorsey, souvent appelé le « père de la musique gospel », ont joué un rôle déterminant dans la définition du son gospel noir, introduisant la syncope et des textures de piano bluesy dans le répertoire sacré. Parallèlement, le genre a évolué d'un ministère basé à l'église vers une force commerciale massive grâce à la radio, la télévision et les tournées internationales. Que ce soit à travers les hymnes majestueux popularisés par des figures comme Ira D. Sankey ou les performances virtuoses et électrisantes d'icônes telles que Mahalia Jackson, la musique gospel est restée un vecteur essentiel de communication émotionnelle et spirituelle, transcendant ses racines liturgiques pour devenir une force vitale et influente dans le paysage musical mondial. Le genre continue de prospérer en tant que reflet dynamique de l'histoire culturelle américaine, adaptant constamment ses frontières sonores tout en maintenant son objectif dévotionnel fondamental.",
+      "facts": {
+        "era": "XIXe siècle à nos jours",
+        "origin": "États-Unis"
+      },
+      "source_sha256": "a43624282efc7040f5b6a356d0ceb3f42e0169651f69e8f20873f817dcf368e5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:27:55.718Z"
+    }
+  }
 }

@@ -147,5 +147,18 @@
       "name": "You've Come a Long Way, Baby"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de musique électronique basé sur le breakbeat, populaire dans les années 1990, caractérisé par des rythmes agressifs, des basses lourdes et des structures accessibles influencées par la pop.",
+      "article": "Le Big Beat est un genre de musique électronique à haute énergie qui a connu une ascension internationale au milieu et à la fin des années 1990, particulièrement au Royaume-Uni. Défini par sa forte dépendance aux breakbeats manipulés inspirés du funk, aux lignes de basse profondes et aux boucles de synthétiseurs distordues, le genre a comblé le fossé entre la culture rave underground du début des années 90 et le public pop grand public. Contrairement aux styles électroniques plus abstraits ou atmosphériques prévalant à l'époque, le Big Beat privilégiait une structure percutante, agressive et très accessible qui incorporait souvent des samples de disques classiques de hip-hop, de rock et de soul.\n\nLe genre est né de la scène club londonienne, tirant notamment son nom de la soirée « Big Beat Boutique » organisée par Norman Cook (Fatboy Slim) à Brighton. Sa signature sonore impliquait souvent des tempos modérés (120–140 BPM), une production dense et une attitude de « rock-star » qui a transformé les producteurs électroniques en têtes d'affiche de festivals grand public. Des figures clés telles que The Chemical Brothers, The Prodigy et Fatboy Slim ont été les fers de lance du mouvement, leurs albums emblématiques définissant le son des pistes de danse de la fin des années 90. L'apogée commercial du genre l'a vu dominer les classements et les bandes originales du monde entier, finissant par laisser place à des sous-genres plus spécialisés, bien que son influence reste gravée dans l'ADN de la musique de danse électronique contemporaine pour son accent sur le rythme, la production maximaliste et l'énergie cinétique pure. Malgré les critiques sur sa nature « anxieuse » ou commerciale à l'époque, le Big Beat a joué un rôle déterminant dans l'introduction de la musique électronique underground sur les stations de radio mondiales et dans les salles de concert, laissant un héritage d'hymnes massifs et chargés de basses qui résonnent encore dans la production pop et électronique moderne.",
+      "facts": {
+        "era": "années 1990",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "f3924eb2382549d03007e898f62cba60d6f441ec080103d3e22db4fda74f4cdc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:10:53.773Z"
+    }
+  }
 }

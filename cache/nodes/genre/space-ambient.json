@@ -85,5 +85,18 @@
   ],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q16625659"
+  "qid": "Q16625659",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de la musique ambient caractérisé par des paysages sonores lents, hypnotiques et expansifs conçus pour évoquer l'immensité de l'espace et favoriser des états contemplatifs.",
+      "article": "Le Space ambient, souvent désigné de manière interchangeable par « space music » ou « spacemusic », est un sous-genre évocateur de la musique ambient conçu pour évoquer un sentiment d'échelle cosmique infinie et l'immobilité du vide interstellaire. Enraciné au début des années 1970, le genre a émergé comme un mélange éclectique de textures électroniques, de paysages sonores et de sensibilités expérimentales, trouvant un terrain fertile en Allemagne et au Japon. Contrairement aux styles plus rythmés ou axés sur la mélodie, le Space ambient privilégie un sentiment de « spaciousness contemplative », utilisant des nappes à évolution lente, des réverbérations de longue durée et des drones soutenus pour créer une sensation d'apesanteur. C'est une musique qui fonctionne autant comme une carte interne de la psyché qu'en tant que représentation sonore du cosmos, fréquemment utilisée pour l'introspection, l'écoute profonde et la méditation.\n\nL'esthétique du Space ambient se caractérise par sa qualité transportante. Les auditeurs rapportent souvent des sensations de vol, de glisse ou de dérive à travers de vastes panoramas induits par le son. Parce que le genre se soucie moins des structures de chansons conventionnelles ou des rigueurs compositionnelles, il s'est historiquement tourné vers le minimalisme et les arrangements basés sur le timbre. Cette flexibilité lui permet d'incorporer des éléments acoustiques, des textures de world music et des motifs classiques, à condition qu'ils restent unifiés par un sentiment de profondeur atmosphérique. Souvent associé aux planétariums et aux bandes originales sur le thème de l'espace lointain, le genre occupe un espace culturel unique, fidèle et spécialisé, défendu par des curateurs comme Stephen Hill de l'émission de radio influente Hearts of Space. Il comble le fossé entre la fascination scientifique pour l'espace extra-atmosphérique et les traditions spirituelles et méditatives de la musique ambient et new-age.",
+      "facts": {
+        "era": "Début des années 1970 – présent",
+        "origin": "Allemagne et Japon (début des années 1970)"
+      },
+      "source_sha256": "68dcaa760b756969c7650247488dd814c603337b400b03a301c92b03dd41ec0a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:36:03.670Z"
+    }
+  }
 }

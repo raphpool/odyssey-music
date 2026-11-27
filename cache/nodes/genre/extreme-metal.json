@@ -115,5 +115,19 @@
       "type": "track",
       "name": "Welcome to Hell"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un terme générique underground désignant des sous-genres de heavy metal qui mettent l'accent sur une agression sonore extrême, des thèmes lyriques transgressifs et un rejet des structures commerciales dominantes.",
+      "article": "L'Extreme metal a émergé au début des années 1980 en tant que mouvement décentralisé à travers les États-Unis et l'Europe, défini par une rupture agressive avec les structures basées sur le blues du heavy metal traditionnel. Le groupe britannique Venom a fourni un modèle précoce pour l'esthétique du genre avec son premier album de 1981 'Welcome to Hell' et l'album de 1982 'Black Metal', qui ont introduit l'imagerie brute et occulte qui allait définir le mouvement. Les musiciens de cette scène utilisent fréquemment des techniques de haute intensité telles que les death growls, les blast beats et une batterie à double grosse caisse rapide, poussant souvent les tempos dans une plage de 150 à 250 BPM. L'ethnographe Keith Kahn-Harris identifie le genre comme « un groupe transgressif de sous-genres — principalement le death, le black, le thrash et le doom metal — qui privilégie l'authenticité et rejette l'alignement sur le courant commercial dominant ». Alors que les pionniers comme Metallica et Slayer ont aidé à codifier le son thrash metal avec des sorties fondatrices entre 1983 et 1984, le genre s'est depuis fragmenté en catégories de fusion complexes, incluant le deathgrind, le blackgaze et le funeral doom, tout en conservant sa base au sein des Independent record labels.",
+      "facts": {
+        "era": "début des années 1980 à nos jours",
+        "origin": "États-Unis et Europe",
+        "sonic_markers": "150-250 BPM, blast beats, batterie à double grosse caisse, death growls, guitares fortement saturées, structures de chansons non basées sur le blues"
+      },
+      "source_sha256": "0f71925c135b3d8c0f5c4546006cfa3e0befe0b80962d7a5dfa3b2c7c8803a3f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:02:27.095Z"
+    }
+  }
 }

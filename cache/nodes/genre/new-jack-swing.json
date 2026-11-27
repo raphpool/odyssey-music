@@ -143,5 +143,19 @@
       "type": "track",
       "name": "Remember the Time"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de fusion rythmique de la fin des années 1980 et du début des années 1990 qui a mêlé production hip hop, mélodies R&B et percussions swinguées.",
+      "article": "Inventé par l'écrivain Barry Michael Cooper dans un portrait du 18 octobre 1987 pour le Village Voice, le new jack swing a émergé aux États-Unis comme un hybride énergique de R&B, de hip hop et de funk. Des producteurs comme Teddy Riley et l'équipe composée de Jimmy Jam et Terry Lewis ont défini le genre en utilisant des synthétiseurs numériques, notamment le Yamaha DX7 et le Roland D50, associés aux motifs rythmiques syncopés et swingués de boîtes à rythmes comme la Roland TR-808. Des disques tels que le succès de 1987 de Keith Sweat, I Want Her, et My Prerogative de Bobby Brown ont établi la viabilité commerciale du genre, comblant le fossé entre la radio urbaine et les classements pop. Au-delà de son apogée à la fin des années 1980, la technique de production a influencé l'album multi-platine Dangerous de Michael Jackson et a par la suite imprégné les succès pop crossover, demeurant une base rythmique que des artistes allant d'Aaliyah à Bruno Mars ont réinterprétée.",
+      "facts": {
+        "era": "fin des années 1980 au début des années 1990",
+        "origin": "États-Unis",
+        "sonic_markers": "triolets de doubles croches, rythmes swingués, lignes de basse synthétisées, motifs de boîtes à rythmes échantillonnés, voix R&B mélodiques"
+      },
+      "source_sha256": "64e6c23c1e070945ca1082cf1da73b2bebd552d230198a5ae0d3ec23f710437f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:32:02.856Z"
+    }
+  }
 }

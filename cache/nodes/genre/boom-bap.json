@@ -93,5 +93,19 @@
       "name": "It's Yours"
     }
   ],
-  "qid": "Q529742"
+  "qid": "Q529742",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du hip-hop caractérisé par une boucle de batterie percutante, composée d'un kick et d'une caisse claire, originaire du nord-est des États-Unis.",
+      "article": "Le Boom bap est un sous-genre et un style de production fondamental du hip-hop qui a émergé dans le nord-est des États-Unis à la fin des années 1980. Défini par son intensité rythmique brute, le terme est une onomatopée pour le motif caractéristique de batterie kick-caisse claire qui ancre la musique. Le style se distingue par un échantillon de grosse caisse acoustique percutant sur les temps forts et une caisse claire acoustique sèche sur les temps faibles, souvent mixés de manière à être « directs » pour accentuer la boucle. Cette philosophie de production est devenue la marque de fabrique du son hip-hop de la côte Est durant l'âge d'or du genre.\n\nLe terme a été popularisé pour la première fois dans un contexte enregistré par T La Rock dans son morceau de 1984 « It's Yours », où il utilisait l'expression pour imiter le rythme du beat. Bien qu'il ait commencé comme un terme descriptif pour la percussion, il a évolué vers une étiquette plus large pour l'esthétique spécifique du hip-hop de la côte Est. Le son a gagné une traction culturelle significative grâce au travail de producteurs légendaires comme DJ Premier, Pete Rock et Diamond D, et a été cimenté dans la conscience publique par des sorties marquantes telles que « Return of the Boom Bap » de KRS-One.",
+      "facts": {
+        "era": "fin des années 1980 au début des années 1990",
+        "origin": "Nord-est des États-Unis, scène hip-hop de la côte Est",
+        "sonic_markers": "Échantillons de grosse caisse acoustique percutants, échantillons de caisse claire acoustique secs, boucles de batterie proéminentes et mixage audio direct et percutant."
+      },
+      "source_sha256": "e273e32d7b966ddc0346fbabce6d4e39b721ed5b547e0e1835d189d4ec70749c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:06:36.592Z"
+    }
+  }
 }

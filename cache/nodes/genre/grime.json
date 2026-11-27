@@ -90,5 +90,18 @@
       "type": "track",
       "name": "Pulse X"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre électronique rapide et syncopé à 140 BPM, originaire de l'est de Londres au début des années 2000, connu pour son son agressif et saccadé, ainsi que pour son ancrage profond dans la culture MC et la radio pirate.",
+      "article": "Le grime est un genre de musique électronique sans compromis et à haute énergie, apparu dans le paysage urbain de l'est de Londres au début des années 2000. Né comme une évolution brute et plus sombre du UK garage, le son est défini par des rythmes syncopés rapides — tournant généralement autour de 140 battements par minute — et une esthétique métallique et saccadée qui puise souvent son inspiration dans le jungle, le dancehall et le hip-hop, tout en intégrant parfois des motifs chiptune et de jeux vidéo. Contrairement au garage plus poli et influencé par le R&B de l'époque, le grime a été conçu pour la rue, profondément enraciné dans l'éthique DIY des stations de radio pirates comme Rinse FM et dans l'environnement compétitif et agressif du circuit des MC.\n\nL'ascension du genre tenait autant à son écosystème social qu'à sa signature sonore. Il a prospéré dans un paysage pré-réseaux sociaux où l'accès était contrôlé par des DJ de radio pirate, des disquaires locaux et un réseau dévoué de producteurs et de MC qui distribuaient eux-mêmes leur musique sur des dubplates. Cette infrastructure de terrain a créé une sous-culture distincte définie par la prouesse lyrique, les flows complexes et la virtuosité technique. Des figures clés comme Wiley, souvent cité comme le parrain du genre, Dizzee Rascal et Kano, ont aidé à définir le plan initial du son à travers des morceaux emblématiques et des apparitions radio incessantes. Aujourd'hui, le grime s'impose comme l'un des développements musicaux les plus significatifs de l'histoire du Royaume-Uni, ayant évolué des transmissions radio pirates underground vers une force culturelle mondiale qui continue d'influencer la production musicale contemporaine à travers le monde. Il reste célébré non seulement pour son empreinte sonore distinctive, mais aussi pour sa résilience en tant que mouvement indépendant porté par les artistes.",
+      "facts": {
+        "era": "Début des années 2000 - présent",
+        "origin": "Est de Londres, Royaume-Uni"
+      },
+      "source_sha256": "0e8fd8581ce294b1b919cfb62385506e3657bace930d548ed4aa4ffb82007039",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:27:55.494Z"
+    }
+  }
 }

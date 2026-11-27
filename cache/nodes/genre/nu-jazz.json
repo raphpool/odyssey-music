@@ -111,5 +111,19 @@
       "name": "Tourist"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre qui intègre l'improvisation jazz traditionnelle, la complexité harmonique et l'instrumentation avec la production électronique contemporaine, les rythmes de club et le design sonore.",
+      "article": "Le nu jazz, également connu sous le nom de jazztronica ou future jazz, représente une intersection charnière où l'esprit d'improvisation du jazz du XXe siècle rencontre les possibilités rythmiques et de design sonore de la musique électronique de la fin des années 90. Émergeant en tant que mouvement distinct au milieu des années 1990, le genre se différencie des formes antérieures d'acid jazz en privilégiant l'expérimentation électronique, la production complexe et l'atmosphère plutôt que la dextérité axée sur l'ensemble en direct, typique des groupes de jazz traditionnels. Il agit comme un pont entre l'âme analogique du passé et les paysages sonores numériques du futur, puisant fréquemment dans la house, le downtempo, la techno et le hip-hop pour façonner ses textures caractéristiques.\n\nL'histoire du nu jazz est profondément enracinée dans l'électronique des années 1970 et 80, en particulier dans les expériences de fusion de Miles Davis et Herbie Hancock, dont le travail avec Bill Laswell sur 'Future Shock' a préparé le terrain pour les intégrations rythmiques ultérieures. Cependant, en tant que scène cohérente, il s'est épanoui mondialement à la fin des années 90, avec des centres de gravité en Europe, au Japon et aux États-Unis. Des artistes comme St Germain, Jazzanova et Bugge Wesseltoft sont devenus des figures archétypales, l'album 'Tourist' de St Germain rencontrant un succès commercial significatif et popularisant le son de la house jazzy dans le monde entier. Aujourd'hui, le nu jazz demeure une catégorie fluide et expérimentale, s'aventurant souvent dans des textures ambiantes ou des breakbeats durs et saccadés, repoussant constamment les limites de ce qui constitue le « jazz » dans un monde moderne axé sur l'électronique. C'est un genre défini moins par un son unique que par une attitude : la conviction que la tradition du jazz n'est pas une pièce de musée, mais un langage vivant et changeant qui évolue parallèlement à la technologie.",
+      "facts": {
+        "era": "Années 1990-présent",
+        "origin": "États-Unis, Royaume-Uni, Japon, France, Allemagne, Norvège, Mexique, Brésil",
+        "sonic_markers": "Incorporation de rythmes de batterie électroniques, paysages sonores ambiants, phrases de jazz samplées, solos instrumentaux de jazz improvisés (trompette, piano), lignes de basse profondes et influence du downtempo et de la musique de club."
+      },
+      "source_sha256": "a74478c65f0842c5c0c05b1a7dc16593cd02a54de7cd016f7b235efb72c343b2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:32:59.906Z"
+    }
+  }
 }

@@ -120,5 +120,18 @@
   ],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q181010"
+  "qid": "Q181010",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du jazz des années 1950 qui a fusionné la complexité technique du bebop avec les influences rythmées et pleines d'âme du blues, du gospel et du rhythm and blues.",
+      "article": "Le hard bop est un sous-genre charnière du jazz apparu au milieu des années 1950, principalement à New York et à Détroit, en tant qu'évolution robuste et rythmiquement dynamique du bebop. Alors que le mouvement cool jazz de l'époque privilégiait souvent des esthétiques plus retenues, influencées par l'Europe, le hard bop cherchait à réaffirmer le lien du genre avec ses racines afro-américaines. En intégrant les éléments viscéraux du gospel, du blues et du rhythm and blues, les musiciens ont développé un son « plus dur » caractérisé par des mélodies terreuses, des structures d'accords plus simples mais percutantes, et une impulsion rythmique entraînante et « funky ».\n\nLe développement du genre est inextricablement lié aux efforts de figures clés comme le batteur Art Blakey et le pianiste Horace Silver, dont le groupe, The Jazz Messengers, est devenu l'archétype du son hard bop. Leur approche était délibérée : ils visaient à s'éloigner des jam sessions informelles du début des années 1950 — qui reposaient souvent sur des interprétations spontanées de standards familiers — pour aller vers une esthétique plus disciplinée et planifiée qui privilégiait des compositions plus courtes et mémorables. Cette concentration sur l'accessibilité et le groove profond a aidé à revitaliser le public du jazz, comblant efficacement le fossé entre la complexité de la grande musique et l'attrait populaire de la musique émergeant des ghettos urbains.\n\nLes musiciens de ce mouvement, incluant des légendes comme Clifford Brown, Sonny Rollins, Lee Morgan et Hank Mobley, ont repoussé les limites techniques de leurs instruments tout en conservant ce grain essentiel et plein d'âme. Les bassistes ont gagné plus de liberté, dépassant le rôle de simples gardiens du temps, et les saxophonistes ont souvent utilisé un son plus large et plus urgent. Bien que le terme « hard bop » ait été inventé par des critiques, il a capturé un véritable changement culturel. À la fin des années 1960, l'influence du style s'est ramifiée en diverses formes dérivées, dont le soul jazz et le post-bop, cimentant son statut comme l'un des chapitres les plus influents et durables de l'histoire du jazz.",
+      "facts": {
+        "era": "années 1950-1960",
+        "origin": "New York et Détroit, États-Unis"
+      },
+      "source_sha256": "cceb32f5a04702a31e2494380529ede84f971a80dae3afdd74c1f8e834e02d86",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:13:54.534Z"
+    }
+  }
 }

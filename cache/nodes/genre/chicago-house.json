@@ -142,5 +142,18 @@
       "type": "track",
       "name": "Acid Tracks"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style séminal de musique électronique de danse originaire de Chicago au début des années 1980, caractérisé par son rythme house répétitif en 4/4, ses percussions électroniques brutes et une utilisation intensive de synthétiseurs et de boîtes à rythmes en tant que successeur du disco.",
+      "article": "La Chicago house est le genre fondateur de la musique électronique de danse moderne, émergeant de la culture club underground vibrante et marginalisée de Chicago au début des années 1980. Née d'une réinvention radicale du disco à la suite du contrecoup de la « Disco Demolition Night » de 1979, elle a été façonnée par des DJ noirs et latinos dans des espaces queer comme The Warehouse, où le DJ résident Frankie Knuckles a contribué à faire découvrir ce son. En réutilisant des boîtes à rythmes comme les Roland TR-808 et TR-909, des synthétiseurs comme le TB-303, et en créant des montages sur bande innovants de disques d'Italo-disco, d'electro et de post-punk, ces producteurs ont remplacé l'orchestration riche et organique du disco par un rythme 4/4 brut, dépouillé et répétitif, conçu spécifiquement pour induire des états de transe sur la piste de danse.\n\nBien plus qu'un simple style musical, la Chicago house représentait une nouvelle économie de la performance centrée sur le DJ plutôt que sur le groupe live, permettant aux producteurs locaux de créer leurs propres morceaux pour leurs pistes de danse spécifiques. Des labels comme Trax Records et DJ International sont devenus centraux, diffusant des morceaux comme « On and On » de Jesse Saunders, souvent cité comme l'un des premiers disques de house, vers le monde entier. L'accent mis par le genre sur l'inclusivité, la répétition et l'expérimentation électronique est devenu le modèle pour les mouvements de danse mondiaux ultérieurs, notamment l'acid house, la Detroit techno et l'EDM à grande échelle d'aujourd'hui. Malgré ses racines profondes dans l'histoire socioculturelle spécifique de la ville, son ADN sonore demeure le langage universel de la culture club mondiale.",
+      "facts": {
+        "era": "Début des années 1980 à aujourd'hui",
+        "origin": "Chicago, États-Unis"
+      },
+      "source_sha256": "a1d5ddafc3a3e9772340b2d7aabcef95ad2a1ff8fef7025d9fce24ecdd98b1e6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:59:25.472Z"
+    }
+  }
 }

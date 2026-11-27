@@ -95,5 +95,19 @@
       "name": "I Hear a New World"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du rock caractérisé par des paysages sonores atmosphériques, électroniques et expérimentaux, comportant des passages instrumentaux étendus et des thèmes liés à l'espace, à la science-fiction et au cosmos.",
+      "article": "Le Space rock a émergé à la fin des années 1960 en tant que ramification spécialisée et atmosphérique du rock psychédélique et progressif, définie par son obsession pour le cosmos, la science-fiction et les thèmes non terrestres. Musicalement, il se caractérise par des passages instrumentaux étendus induisant la transe, l'utilisation intensive des premiers synthétiseurs, des effets sonores électroniques et des guitares noyées dans la réverbération, conçues pour simuler le silence vaste et dérivant de l'espace extra-atmosphérique. Bien que ses racines soient souvent retracées jusqu'à la conception sonore imaginative de l'album I Hear a New World de Joe Meek en 1959, le genre a trouvé son langage sonore définitif à travers les premières explorations expérimentales de Pink Floyd et les rituels psychédéliques lourds et agressifs de Hawkwind. Le mouvement a trouvé un parallèle puissant dans la scène « Kosmische Musik » d'Allemagne de l'Ouest — souvent confondue avec le Krautrock — où les artistes privilégiaient les textures ambiantes et abstraites aux structures de chansons rock traditionnelles. Le Space rock n'est pas simplement une collection de sons mais une expérience immersive, fréquemment accompagnée de spectacles de lumière élaborés et de mises en scène théâtrales. Son influence est profondément ancrée dans l'ADN des genres ultérieurs, fournissant le plan fondamental pour la répétition hypnotique du shoegaze, les architectures balayantes du post-rock et les paysages sonores méditatifs de la musique ambient moderne. En déplaçant l'attention du terrestre vers le céleste, le Space rock demeure un pilier fondamental de l'histoire du rock expérimental.",
+      "facts": {
+        "era": "Fin des années 1960 à nos jours",
+        "origin": "Royaume-Uni et Allemagne de l'Ouest",
+        "sonic_markers": "Structures de chansons étendues, utilisation prédominante de synthétiseurs, réverbération/délai marqués, effets sonores abstraits, thèmes lyriques cosmiques et de science-fiction."
+      },
+      "source_sha256": "c05418842fd883625ab3b9e3b87af5640cea161d65583ef6cc6c811ac5105bf7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:36:05.906Z"
+    }
+  }
 }

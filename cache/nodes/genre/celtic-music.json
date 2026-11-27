@@ -51,5 +51,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q854451"
+  "qid": "Q854451",
+  "l10n": {
+    "fr": {
+      "teaser": "Un regroupement large et diversifié de genres musicaux issus des traditions folkloriques des nations celtiques, allant des styles acoustiques traditionnels aux hybrides contemporains.",
+      "article": "La musique celtique représente un regroupement large et diversifié de genres issus du folklore, émergeant des traditions des nations celtiques du nord-ouest de l'Europe, plus précisément l'Irlande, l'Écosse, le Pays de Galles, la Bretagne, les Cornouailles, l'île de Man et des régions comme la Galice en Espagne. Plutôt qu'un son unique et statique, le terme englobe un spectre allant de mélodies anciennes transmises oralement à des formes hybrides modernes hautement produites, connues sous le nom de « Celtic fusion ». Bien que souvent regroupés en raison de racines historiques et culturelles partagées entre les peuples celtiques, ces styles présentent des variations régionales uniques influencées par la langue, la géographie et le développement des instruments.\n\nAu cœur de la tradition se trouvent des instruments qui ont fini par définir le son « celtique » : la qualité mélodique et envoûtante du violon, la pulsation rythmique du bodhrán (un tambour sur cadre), la résonance perçante des uilleann pipes et des Great Highland bagpipes, ainsi que les tons cristallins de la harpe celtique. Les tin whistles, les concertinas et des adaptations plus récentes comme le bouzouki irlandais jouent également des rôles essentiels dans l'arrangement des reels, des jigs et des complaintes. Les traditions sont vaguement divisées par l'histoire linguistique en Q-celtique (gaélique : irlandais, écossais, mannois) et P-celtique (brittonique : breton, gallois, cornique), des musiciens comme Alan Stivell notant des différences clés dans l'utilisation des gammes ; la musique gaélique favorisant souvent la gamme pentatonique pure et des étendues mélodiques plus larges, tandis que la musique brittonique utilise fréquemment des gammes plus compressées.\n\nL'empreinte mondiale de cette musique s'est considérablement étendue parallèlement aux diasporas irlandaise et écossaise, particulièrement en Amérique du Nord. Des régions telles que le Canada atlantique, notamment le Cap-Breton et Terre-Neuve, sont devenues des bastions du genre, préservant des nuances stylistiques plus anciennes comme les accompagnements violon-piano qui ont parfois disparu dans le « vieux pays ». De plus, les rythmes fondamentaux et les structures mélodiques de la musique celtique ont laissé une marque indélébile sur le développement de la musique folk, du bluegrass et de la country américaine, illustrant comment ces traditions anciennes sont restées résilientes et évolutives à travers les siècles.",
+      "facts": {
+        "era": "De l'Antiquité à l'époque moderne",
+        "origin": "Nord-ouest de l'Europe (nations celtiques)"
+      },
+      "source_sha256": "058ccf0e7bee187f7ca2d17c030c54ac8b8f8670f97cb48f3c04e358b9e5d997",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:59:23.818Z"
+    }
+  }
 }

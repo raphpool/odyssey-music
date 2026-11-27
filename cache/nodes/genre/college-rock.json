@@ -99,5 +99,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q783097"
+  "qid": "Q783097",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du rock alternatif apparu dans les années 1980, porté par sa popularité sur les stations de radio universitaires américaines et caractérisé par une éthique DIY, des guitares tintantes et des sensibilités introspectives et anti-commerciales.",
+      "article": "Le College rock est un mouvement charnière de l'histoire de la musique nord-américaine, représentant l'émergence d'un rock alternatif indépendant axé sur la guitare, qui a trouvé sa première source de vie sur les stations de radio universitaires au cours des années 1980. Apparu en réaction aux sons polis et commercialisés qui dominaient la radio rock grand public à l'époque, le College rock a prospéré grâce à une éthique DIY. Il se caractérisait par une production brute, souvent non raffinée, par le recours à des textures de guitare tintantes ou dissonantes, et par des paroles introspectives, parfois cryptiques.\n\nLe genre a servi de pont essentiel entre les explosions punk/new wave de la fin des années 1970 et l'explosion mondiale du rock alternatif au début des années 1990. Des artistes comme R.E.M., The Replacements, Pixies et Sonic Youth ont défini ce son, utilisant le réseau naissant des radios de campus gérées par les étudiants pour contourner les gardiens des grandes maisons de disques. Cette infrastructure a permis à un mélange plus éclectique d'influences de se rencontrer, allant des sensibilités mélodiques et sincères de R.E.M. au noise-rock expérimental de Sonic Youth. Pour cette raison, le College rock était moins un genre stylistique rigide qu'un marqueur sonore pour une musique qui privilégiait l'authenticité, la curiosité intellectuelle et l'indépendance régionale. Son succès a contribué à cultiver l'industrie musicale indépendante moderne, prouvant qu'un groupe pouvait maintenir son intégrité, construire un circuit de tournée national et atteindre des publics importants sans sacrifier son identité unique et souterraine aux pressions de l'appareil musical corporatif. Au début des années 1990, l'étiquette « College rock » s'est effacée, largement supplantée par le terme plus large et plus commercialement viable de « rock alternatif », mais son impact fondamental demeure le socle de la musique indie moderne.",
+      "facts": {
+        "era": "années 1980 – début des années 1990",
+        "origin": "États-Unis (et Canada)"
+      },
+      "source_sha256": "6e21dbdd65a23d9ea215a1e04dcc29b44bee4c40133603881ef8f5fe66afef8f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:11:01.534Z"
+    }
+  }
 }

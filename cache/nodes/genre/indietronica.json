@@ -98,5 +98,19 @@
       "name": "Give Up"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre hybride fusionnant l'écriture, l'éthique DIY et l'instrumentation éclectique de l'indie rock avec les techniques de production de la musique électronique, privilégiant souvent des sensibilités pop tout en évitant les structures des clubs grand public.",
+      "article": "L'Indietronica — souvent appelée « indie electronic » ou « lap-pop » — est un genre hybride tentaculaire apparu comme une synthèse créative entre l'éthique de l'indie rock et les textures vastes et évolutives de la production électronique. Caractérisé par une approche DIY de la création musicale, il privilégie des mélodies accessibles, souvent influencées par la pop, tout en intégrant une instrumentation éclectique qui comble le fossé entre la performance live traditionnelle et la synthèse informatique. Émergeant de la scène underground dans les années 1990, le genre a été initialement nourri par des labels indépendants tels que Too Pure et Duophonic au Royaume-Uni, qui ont offert un foyer à des artistes expérimentant avec du matériel analogique et les premiers outils d'édition numérique.\n\nAu début des années 2000, des labels comme Morr Music en Allemagne sont devenus cruciaux pour formaliser l'esthétique, popularisée davantage par des compilations telles que Indietronica: Pop + Electronica en 2002. À sa base, le genre évite la structure typique orientée club de la musique dance grand public, préférant se tourner vers une sensibilité plus texturale, souvent intime et parfois expérimentale. Les influences sont vastes, puisant dans la synth-pop, le post-rock, l'ambient pop et même la glitch music. À mesure que le mouvement a mûri, il a gagné une large audience grâce à des artistes indépendants majeurs — allant de la pop avant-gardiste et émotive de Björk aux innovations indie-dance de The Postal Service, LCD Soundsystem et MGMT. Le genre demeure un paysage vibrant et évolutif, pratiquant une pollinisation croisée continue avec des mouvements underground contemporains comme le post-dubstep et le chillwave, témoignant du dialogue durable entre l'artisanat de la chanson rock et l'expérimentation électronique.",
+      "facts": {
+        "era": "Années 1990 - Présent",
+        "origin": "Royaume-Uni, États-Unis, Allemagne, Japon",
+        "sonic_markers": "Approche de production DIY, mélange d'instruments live et de synthèse numérique, structures indie-pop mélodiques, textures électroniques, emphase sur l'arrangement plutôt que sur la conception de rythmes destinés aux clubs."
+      },
+      "source_sha256": "a19fd68783add36b75f2859fea7ab127fe1dbbee1ff03c4ee80b69ebe7d7c70a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:29:03.138Z"
+    }
+  }
 }

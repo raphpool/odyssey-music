@@ -132,5 +132,19 @@
       "type": "track",
       "name": "Death Bed (Coffee for Your Head)"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Une fusion de hip hop, de production trap et d'emo, caractérisée par des paroles confessionnelles et émotionnellement brutes, ainsi que par l'utilisation fréquente d'échantillons de pop punk ou d'indie rock.",
+      "article": "Apparu au milieu des années 2010 via la scène rap en ligne SoundCloud, l'emo rap synthétise la programmation de batterie propre à la trap avec les thèmes lyriques angoissés et confessionnels de l'emo et du pop punk des années 2000. Le genre est fréquemment construit sur des échantillons de morceaux axés sur la guitare, une technique popularisée par les premiers pionniers tels que Bones, le collectif GothBoiClique et Black Kray. Des artistes comme Lil Peep, XXXTentacion et Juice Wrld ont propulsé le style vers le grand public en centrant leur interprétation vocale sur des thèmes comme la dépression, l'abus de substances et le nihilisme existentiel. Bien que les critiques identifient souvent le mouvement par son mélange de chant-rap et d'esthétique rock-indie, des figures comme Slug d'Atmosphere affirment avoir inventé le terme dès 1997. L'ascension du style a connu un succès sans précédent dans les classements en 2018, année où le genre a été identifié comme celui connaissant la croissance la plus rapide sur Spotify, aboutissant à la signature par des labels majeurs d'artistes de la seconde vague comme 24kGoldn et The Kid Laroi.",
+      "facts": {
+        "era": "milieu des années 2010 au début des années 2020",
+        "origin": "États-Unis, scène rap SoundCloud",
+        "sonic_markers": "Rythmes de style trap, chant-rap, refrains mélodiques, échantillons de pop punk/emo des années 2000, instrumentation axée sur la guitare"
+      },
+      "source_sha256": "4e9e6090cfd040b519e4b81c4a41e327fe58a287c61f2d76a474a67ba444e8af",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:02:19.564Z"
+    }
+  }
 }

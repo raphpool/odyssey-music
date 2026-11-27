@@ -100,5 +100,14 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q30632022"
+  "qid": "Q30632022",
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de funk qui privilégie les synthétiseurs et les boîtes à rythmes aux arrangements de cuivres traditionnels, aboutissant à un son épuré, futuriste et orienté vers la danse.",
+      "article": "Le synth-funk est une évolution distincte du funk traditionnel apparue à la fin des années 1970 et au début des années 1980, définie par l'intégration prédominante de synthétiseurs, de boîtes à rythmes et d'une palette sonore plus futuriste et épurée. Alors que le funk traditionnel reposait largement sur des sections de cuivres, des arrangements complexes et des textures de section rythmique organiques, le synth-funk a déplacé l'attention vers la polyvalence du synthétiseur. Cette transition a permis des grooves plus serrés et précis ainsi qu'une esthétique de production plus propre, souvent plus froide, reflétant la technologie électronique en progression rapide de l'époque. Parfois qualifié de « naked funk » en raison de ses arrangements minimalistes et dépouillés, le genre associait souvent ces textures électroniques au lyrisme audacieux, voire risqué, et aux styles de performance flamboyants hérités du mouvement funk au sens large.\n\nL'essor du genre a coïncidé avec le déclin de l'ère disco et le développement naissant du R&B contemporain. Son influence fut vaste, comblant le fossé entre le rythme traditionnel imprégné de soul et la musique de danse électronique qui allait dominer la fin du XXe siècle. Des pionniers clés comme Zapp (dirigé par Roger Troutman, dont l'utilisation de la talk box est devenue une marque de fabrique du synth-funk), The Gap Band et Prince — qui a synthétisé son propre mélange unique à travers le « Minneapolis sound » — ont repoussé les limites de ce que pouvait être la musique de danse. Des légendes établies telles que Rick James et Cameo se sont également tournées vers ce son, rencontrant un succès renouvelé en adoptant des arrangements plus tranchants et riches en synthétiseurs. Au-delà de son impact historique direct, le synth-funk a fourni un modèle fondamental pour des sous-genres électroniques ultérieurs, notamment le modern funk, l'electro-funk et divers courants de funktronica post-millénaire. Son héritage reste visible dans la production contemporaine, où la fusion de la syncope de la basse organique et de la mélodie synthétisée continue de faire vibrer les pistes de danse du monde entier.",
+      "source_sha256": "1d1a693769d136a33da60f8a63322254783e634aa4f928532a2b302efcd30a48",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:36:57.134Z"
+    }
+  }
 }

@@ -128,5 +128,17 @@
       "name": "In C"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "La musique expérimentale est une approche vaste et philosophique du son et de la performance qui remet délibérément en question la structure, l'instrumentation et la composition musicales conventionnelles pour privilégier l'innovation et le processus plutôt que l'adhésion commerciale ou stylistique.",
+      "article": "La musique expérimentale n'est pas tant un genre stylistique spécifique qu'une approche philosophique large de la composition et du son qui défie intentionnellement les frontières traditionnelles. Émergeant sous sa forme reconnue au milieu du XXe siècle, le mouvement privilégie la découverte, l'indétermination et la remise en question des conventions musicales — telles que le rythme, la mélodie et le timbre — plutôt que l'adhésion à des normes établies. Ancré dans l'avant-garde de l'après-guerre, le terme a été popularisé par des compositeurs comme Pierre Schaeffer, qui utilisait cette étiquette pour classer les débuts de la musique concrète, et John Cage, qui a défendu avec ferveur une musique sans résultats prédéterminés.\n\nAu cœur de l'éthique expérimentale se trouve le désir de briser les attentes de l'auditeur. Cela est souvent réalisé par des techniques radicales : l'utilisation d'objets non musicaux comme instruments, l'emploi de processus aléatoires (basés sur le hasard) et la manipulation de supports d'enregistrement pour créer des paysages sonores entièrement nouveaux. Bien qu'elle soit souvent associée à la musique classique moderne et aux cercles académiques, l'esprit d'expérimentation a infusé pratiquement tous les recoins de la carte musicale, du free jazz et du minimalisme au noise rock, à l'ambient et à la musique électronique contemporaine. Que ce soit à travers le phasing minimaliste de Steve Reich ou les textures ambient de Brian Eno, la tradition expérimentale demeure une force vitale et changeante qui recalibre continuellement la manière dont nous définissons ce que peut être la musique. En rejetant la marchandisation du son et en se concentrant sur le processus de création lui-même, la musique expérimentale sert de laboratoire au monde sonore.",
+      "facts": {
+        "origin": "États-Unis et France, milieu du XXe siècle"
+      },
+      "source_sha256": "02bb28bd4d3e73ad047e08c3b5f584a189563add047d4e9a21908583ed980900",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:02:23.018Z"
+    }
+  }
 }

@@ -86,5 +86,18 @@
       "name": "Spirit Of Eden"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un descripteur vaste pour la musique électronique qui privilégie l'expérimentation, la conception sonore complexe et les structures non linéaires plutôt que les tropes conventionnels liés aux genres.",
+      "article": "Abstract Electronic est une classification large et englobante dans le paysage musical, utilisée principalement pour identifier des compositions électroniques qui défient les frontières traditionnelles des genres ou les normes structurelles conventionnelles. Plutôt que d'être défini par un tempo, un motif rythmique ou une palette timbrale spécifiques, « Abstract » fonctionne comme un terme générique pour une musique qui privilégie l'exploration sonore, la synthèse expérimentale et les arrangements non conventionnels. Il agit comme un point de convergence pour divers sous-genres avant-gardistes, notamment l'IDM, le glitch, le drone, la musique concrète et l'électronique leftfield.\n\nHistoriquement, les racines du style remontent aux mouvements de musique électronique expérimentale et d'avant-garde du milieu du XXe siècle, tels que les travaux de John Cage et David Tudor, qui ont repoussé les limites de ce qui constituait un instrument et une performance musicale. À mesure que la technologie de synthèse est devenue plus accessible, le genre a évolué pour englober les œuvres texturales, atmosphériques et souvent non linéaires d'artistes comme Autechre, dont les approches algorithmiques complexes représentent le sommet technique de la production abstract electronic. Le genre se caractérise par sa volonté d'abandonner la structure pop au profit d'une composition « axée sur le son ». Que ce soit à travers les paysages numériques fragmentés et saccadés du glitch, ou les drones denses et immersifs de l'expérimentation ambient, la musique Abstract Electronic force l'auditeur à aborder le médium sonore comme un objet d'investigation plutôt que comme un simple vecteur de mélodie ou de danse. Dans la musique contemporaine, cette qualité « abstraite » imprègne divers domaines, de la composition de bandes originales et du design sonore au hip-hop expérimental et à l'avant-pop, ce qui en fait l'un des concepts les plus influents et les plus fluides de l'art sonore moderne.",
+      "facts": {
+        "era": "Années 1950 à aujourd'hui",
+        "origin": "Musique électronique expérimentale, musique d'avant-garde, musique concrète"
+      },
+      "source_sha256": "6e23ab55036c13fda43cfcf0dbc6f7dea08f7ccef7d3202ca8b7981dbbaf5e3c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:03:37.352Z"
+    }
+  }
 }

@@ -167,5 +167,18 @@
       "name": "American Football"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de rock issu du punk hardcore des années 1980, qui s'est développé en un spectre sonore diversifié défini par une intensité mélodique et des paroles introspectives et confessionnelles.",
+      "article": "L'emo, abréviation de « emotional hardcore » ou « emocore », est un genre de rock apparu au milieu des années 1980 au sein de la scène punk hardcore de Washington, D.C. Issu de la sous-culture post-hardcore de la ville, le genre s'est défini par son pivotement, s'éloignant de la colère pure et agressive du punk hardcore traditionnel pour adopter une approche plus introspective, mélodique et confessionnelle. Des groupes pionniers comme Rites of Spring et Embrace ont jeté les bases en insufflant à l'énergie brute du punk des paroles hautement personnelles et des structures musicales moins rigides et plus expressives.\n\nTout au long de la fin des années 1980 et durant les années 1990, le son a connu une évolution significative, dépassant ses racines de D.C. Des groupes du Maryland comme Moss Icon ont aidé à combler le fossé vers un style plus émotif qui reposait moins sur l'agression punk pure. Au milieu des années 1990, le mouvement « Midwest emo » — mené par des groupes comme American Football, The Get Up Kids et Cap'n Jazz — a affiné cette esthétique pour en faire un son distinctement atmosphérique et influencé par l'indie. Cette époque a consolidé la réputation de l'emo pour son travail de guitare complexe, ses structures de chansons dynamiques et ses interprétations vocales sincères, souvent vulnérables.\n\nDans les années 2000, le genre a atteint une domination grand public. Des groupes comme Jimmy Eat World et Dashboard Confessional ont amené l'emo mélodique et l'emo-pop à la radio et sur MTV, menant finalement au succès massif de groupes comme My Chemical Romance et Fall Out Boy. Cette période a également apporté une sous-culture visuelle distincte et, par la suite, un contrecoup public important qui a conduit certains artistes à se distancier de l'étiquette. Le « revival emo » des années 2010 a vu un retour aux racines du son des années 1990, tandis que des itérations ultérieures — telles que l'« emo rap » — ont démontré l'influence durable du genre sur la musique moderne, prouvant sa capacité à s'adapter et à se connecter avec les auditeurs à travers son éthique fondamentale d'honnêteté émotionnelle.",
+      "facts": {
+        "era": "des années 1980 à nos jours",
+        "origin": "Washington, D.C., États-Unis"
+      },
+      "source_sha256": "c3fce6f783b50f2095f67757fa3ac06251e8e4d12a96892df90b298d128003e9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:54:15.312Z"
+    }
+  }
 }

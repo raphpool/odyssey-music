@@ -79,5 +79,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q2662148"
+  "qid": "Q2662148",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du folk rock qui fusionne les formes musicales celtiques traditionnelles — telles que les jigs irlandaises et les reels écossais — avec l'instrumentation et l'énergie de la musique rock.",
+      "article": "Le Celtic rock est un sous-genre dynamique du folk rock apparu à la fin des années 1960 et au début des années 1970, caractérisé par la fusion de la musique traditionnelle des nations celtiques — spécifiquement l'Irlande, l'Écosse, le pays de Galles et la Bretagne — avec l'instrumentation amplifiée, les structures et l'attitude de la musique rock. Émergeant dans le sillage du renouveau folk rock plus large qui a vu des groupes anglais comme Fairport Convention et Steeleye Span expérimenter avec du matériel traditionnel, le Celtic rock a appliqué de manière unique cette approche hybride aux jigs, reels et structures rythmiques de la tradition celtique. En incorporant des violons, des mandolines et des whistles dans des formations de groupes de rock standard comprenant des guitares électriques, une basse et une batterie, les artistes de ce genre ont créé un son à haute énergie qui a comblé le fossé entre l'héritage musical ancien et la musique populaire contemporaine.\n\nLe genre est peut-être mieux défini par ses premiers pionniers, notamment le groupe irlandais Horslips. Formé en 1970, Horslips a joué un rôle déterminant dans la formalisation du genre, utilisant des thèmes mythologiques irlandais anciens — comme on peut l'entendre sur leur album concept phare The Táin — et les mélangeant avec des riffs rock qui restent emblématiques de l'histoire musicale irlandaise, tels que ceux trouvés sur « Dearg Doom ». Bien que le genre soit parfois débattu pour son application élastique du terme « Celtic », son importance culturelle est indéniable. Il a transformé le paysage musical en Irlande, s'éloignant du modèle de showband traditionnel de l'époque vers un son rock plus aventureux et axé sur l'identité. D'autres artistes, dont Thin Lizzy (dans leur incorporation précoce de motifs folk) et plus tard des groupes comme The Pogues, ont aidé à élargir les frontières du son, démontrant comment l'ornementation mélodique traditionnelle pouvait survivre et même prospérer au sein de la distorsion de la production rock. Cette synthèse continue d'influencer les artistes folk et rock qui cherchent à articuler un sens du lieu et une continuité historique à travers des outils sonores modernes.",
+      "facts": {
+        "era": "depuis les années 1970",
+        "origin": "Irlande, Écosse et Royaume-Uni"
+      },
+      "source_sha256": "964754a71e82b0d29eb6158c334ba83eeb08aa34d72a213248011d3d8040f14c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:10:58.139Z"
+    }
+  }
 }

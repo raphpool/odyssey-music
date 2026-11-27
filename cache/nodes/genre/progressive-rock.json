@@ -136,5 +136,19 @@
       "name": "The Dark Side of the Moon"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de la musique rock caractérisé par des compositions complexes, une virtuosité technique et une ambition d'élever le rock au rang de grand art, intégrant souvent des éléments de musique classique, de jazz et de musique expérimentale.",
+      "article": "Le rock progressif, souvent abrégé en « prog », a émergé à la fin des années 1960 comme une tentative audacieuse d'élever la musique rock au-delà de ses racines blues vers une forme plus sophistiquée et consciente de son statut artistique. Né principalement au Royaume-Uni, le genre a cherché à repousser les limites de la structure typique de la chanson pop, en puisant une profonde inspiration dans la musique classique, le jazz et l'avant-garde expérimentale. Les musiciens ont commencé à abandonner le format du single de trois minutes au profit de compositions tentaculaires en plusieurs mouvements, de signatures rythmiques complexes et de passages instrumentaux techniquement exigeants.\n\nL'intégration de nouvelles technologies a été essentielle au développement du genre, notamment le Mellotron et divers synthétiseurs précoces, qui ont permis aux claviéristes de créer des textures orchestrales riches. Les albums conceptuels sont devenus une marque de fabrique du mouvement, les groupes tissant des récits lyriques complexes autour de thèmes littéraires ou philosophiques. Des groupes tels que King Crimson, Yes, Genesis et Pink Floyd ont défini cette époque, créant des albums phares qui traitaient le rock comme un médium pour une déclaration artistique sérieuse plutôt que comme un simple divertissement léger. Bien que son pic de popularité se soit sans doute produit au début et au milieu des années 1970, le rock progressif a laissé un héritage durable, influençant tout, de la précision technique du metal moderne aux expérimentations atmosphériques du post-rock contemporain. Il demeure un genre défini par l'esprit d'une curiosité incessante, où la virtuosité technique et l'ambition compositionnelle sont tenues pour les vertus ultimes.",
+      "facts": {
+        "era": "Fin des années 1960 à aujourd'hui ; pic de popularité dans les années 1970.",
+        "origin": "Royaume-Uni",
+        "sonic_markers": "Signatures rythmiques complexes, structures de chansons en plusieurs mouvements, utilisation de synthétiseurs et de Mellotrons, virtuosité musicale, albums conceptuels."
+      },
+      "source_sha256": "013c1449a1b97c5047dfe39bca44b466284ff2c40fd8ded01b88bb3c2edf002b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:33:59.766Z"
+    }
+  }
 }

@@ -79,5 +79,14 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q5151495"
+  "qid": "Q5151495",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical conçu pour provoquer le rire, la satire ou l'amusement, utilisant des techniques telles que la parodie, l'absurde et la subversion musicale à travers un large éventail de styles.",
+      "article": "La comedy music est un genre vaste et étendu, défini non pas par une texture sonore spécifique, mais par son intention première : provoquer le rire, la satire ou un amusement léger. Bien que souvent rejeté comme une simple curiosité, le genre possède une lignée qui remonte aux festivals dionysiaques de la Grèce antique, en passant par les bouffons de cour de la période médiévale, jusqu'à l'esprit raffiné de l'opera buffa du XVIIIe siècle. En utilisant des techniques telles que la parodie musicale, les jeux de mots et la juxtaposition déconcertante d'éléments sérieux et absurdes, la comedy music démantèle efficacement les attentes de l'auditeur, subvertissant les tropes musicaux pour créer des réponses psychologiques et émotionnelles qui reflètent la structure du théâtre comique traditionnel. À l'époque contemporaine, le genre a trouvé sa place dans la musique populaire, allant des parodies méticuleusement conçues de \"Weird Al\" Yankovic au folk-rock satirique de Tenacious D, en passant par la comédie musicale absurde et impassible de Flight of the Conchords. Le genre sert souvent de vecteur à la contre-culture, offrant aux artistes une plateforme subversive pour critiquer les normes sociétales sous couvert de divertissement. Que ce soit par le faste théâtral d'une pièce musicale, le mordant d'une chanson politique humoristique ou la nature virale du hip-hop comique moderne, la comedy music demeure un pilier essentiel, bien que souvent sous-estimé, de l'expression musicale qui privilégie l'esprit ludique sur la pureté technique. Sa longévité est enracinée dans son attrait humain fondamental : l'expérience partagée de l'humour, qui lui permet de transcender les modes musicales changeantes et de rester un élément permanent du discours culturel.",
+      "source_sha256": "640e59aa0ae90d67729929616557440056ce3ce9fdefcb8cc861be1c11454b22",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T17:12:29.892Z"
+    }
+  }
 }

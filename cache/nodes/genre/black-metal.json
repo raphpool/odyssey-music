@@ -106,5 +106,19 @@
       "type": "track",
       "name": "Black Metal"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de metal extrême caractérisé par des voix criées aiguës, des riffs en trémolo et un style de production brut et atmosphérique ancré dans l'underground des années 1980.",
+      "article": "Émergeant de l'underground du début des années 1980, le Black Metal s'est cristallisé en tant que sous-genre extrême défini par des voix criées, des guitares en trémolo et une esthétique lo-fi délibérée. Le terme provient de l'album « Black Metal » de Venom sorti en 1982, qui a établi le modèle de l'imagerie blasphématoire et des thèmes transgressifs du genre. Au début des années 1990, la seconde vague s'est concentrée sur la scène norvégienne, menée par des groupes comme Mayhem, Burzum et Darkthrone. Cette époque a défini l'éthique du genre, célèbre pour son association avec le magasin de disques Helvete à Oslo, fondé par Euronymous. Les caractéristiques musicales incluent des blast beats, une distorsion de guitare aiguë et un rejet des structures de chansons traditionnelles au profit d'une intensité atmosphérique. Alors que les pionniers comme Bathory et Hellhammer ont posé les fondations, la scène a acquis une notoriété mondiale par son opposition militante à la religion institutionnelle, qui s'est manifestée à la fois par l'innovation musicale et par les incendies controversés d'églises norvégiennes au cours des années 1990.",
+      "facts": {
+        "era": "début des années 1980 à aujourd'hui",
+        "origin": "Angleterre et Scandinavie",
+        "sonic_markers": "BPM jusqu'à 300 ; guitares saturées avec beaucoup d'aigus, trémolo picking, blast beats, double pédale de grosse caisse, qualité d'enregistrement lo-fi."
+      },
+      "source_sha256": "5dd2c10a2317eab0abd3f5429e3f336d4262a72b77278133093e86fdbb792854",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:05:44.432Z"
+    }
+  }
 }

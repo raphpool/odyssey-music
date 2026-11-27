@@ -139,5 +139,18 @@
       "type": "track",
       "name": "Get Low"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de musique électronique à haute énergie qui fusionne le vocabulaire rythmique et percussif du hip-hop du Sud avec les tropes structurels et les techniques de production maximalistes de l'EDM.",
+      "article": "Le Trap (EDM) a émergé au début des années 2010 comme une synthèse à haute énergie de la production hip-hop du Sud des États-Unis et de l'esthétique agressive de la musique électronique moderne. Alors que la musique trap traditionnelle se définit par son accent lyrique et ses beats atmosphériques et minimalistes, la variante influencée par l'EDM — souvent appelée simplement « Festival Trap » — réinvente ces marqueurs sonores pour les systèmes de sonorisation massifs. Elle conserve les signatures 808 sub-bass, les roulements de hi-hat rapides et les frappes de caisse claire nettes du genre original, mais intègre les grands tropes structurels de l'EDM, tels que des séquences de montée en tension méticuleuses et des drops explosifs et riches en basses.\n\nCette hybridation a gagné une traction culturelle significative vers 2012, propulsée par des producteurs comme Baauer, Flosstradamus et RL Grime aux États-Unis, aux côtés de la production influente de producteurs français tels que UZ et DJ Snake. La percée commerciale du genre a été cimentée par des phénomènes mondiaux comme « Harlem Shake » de Baauer, qui a démontré le potentiel des beats dérivés de la trap à dominer la culture pop et les scènes de festival. Tout au long de la décennie, le style s'est fragmenté en de nombreux sous-genres, notamment le Hybrid Trap, qui met l'accent sur une conception sonore complexe proche du dubstep moderne, et le Hard Trap, qui intègre l'esthétique du hardcore et du hardstyle. L'influence du genre a fini par dépasser largement ses racines initiales en club, devenant un élément incontournable de la production pop contemporaine, y compris une intégration notable dans la K-pop. En tant que force culturelle, le Trap (EDM) représente l'un des exemples les plus réussis d'un son hip-hop régional réinventé en un langage électronique mondial axé sur les festivals.",
+      "facts": {
+        "era": "2011–présent",
+        "origin": "États-Unis et France"
+      },
+      "source_sha256": "e49271e610bb6198abb4e7fd38ea51dd7062c9e13aa25aba331dd29e1f3b264c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:54:08.920Z"
+    }
+  }
 }

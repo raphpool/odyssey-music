@@ -156,5 +156,19 @@
       "type": "track",
       "name": "Arnold Layne"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de musique rock populaire à la fin des années 1960, fortement influencé par les drogues psychédéliques et la contre-culture, défini par son utilisation expérimentale d'effets de studio, de larsen et de structures d'improvisation étendues.",
+      "article": "Le Psychedelic rock est un sous-genre transformateur de la musique rock apparu au milieu des années 1960, servant de manifestation sonore au mouvement hippie de contre-culture et à l'expérimentation généralisée de l'époque avec des substances hallucinogènes comme le LSD et la marijuana. Caractérisé par sa recherche d'expériences « d'expansion de l'esprit », le genre s'est détaché des structures standard de la pop contemporaine, privilégiant les improvisations étendues, les formes de chansons non conventionnelles et une palette de sons riche et expérimentale. Les marqueurs sonores du genre incluent l'utilisation proéminente du larsen, une forte distorsion, un volume amplifié et l'incorporation d'éléments musicaux non occidentaux — plus particulièrement le sitar — aux côtés des premiers effets électroniques et de la manipulation en studio.\n\nLe genre a trouvé ses premières racines sur la côte ouest des États-Unis, en particulier dans la région de la baie de San Francisco, où des groupes comme Grateful Dead et Jefferson Airplane ont fourni la bande originale des événements « Acid Test » de Ken Kesey. Alors que la scène américaine penchait vers des sons bruts, teintés de blues et parfois frénétiques — typifiés par l'« acid rock » de 13th Floor Elevators — la scène britannique offrait une interprétation plus fantaisiste, surréaliste et improvisée. Menée par des visionnaires tels que Syd Barrett de Pink Floyd, la psychédélie britannique s'inspirait souvent de la Beat poetry et des influences jazz, prospérant dans des lieux underground londoniens comme le UFO Club. Des artistes établis comme The Beatles et The Beach Boys ont également intégré ces textures expérimentales à leur propre travail, cimentant l'influence du genre sur la trajectoire plus large de l'histoire du rock. Bien que de nombreux groupes psychédéliques aient eu une existence éphémère, l'impact du mouvement fut monumental, ouvrant la voie au rock progressif, au heavy metal, au Krautrock et à un large éventail de styles musicaux expérimentaux et alternatifs ultérieurs. Son héritage reste gravé dans l'évolution de la mode, de l'art de la performance et du concept même du studio en tant qu'instrument.",
+      "facts": {
+        "era": "Fin des années 1960",
+        "origin": "États-Unis et Royaume-Uni",
+        "sonic_markers": "Larsen, sitar, improvisation étendue, effets de studio, paroles surréalistes, distorsion fuzz, expérimentation modale"
+      },
+      "source_sha256": "9be1606a677ff7b084296151406f7787fcb197e8ee0137f1f458705e554d25cb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:34:02.391Z"
+    }
+  }
 }

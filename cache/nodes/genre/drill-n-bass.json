@@ -116,5 +116,19 @@
       "type": "track",
       "name": "Get Your Head Down"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre hyperkinétique de musique électronique caractérisé par la déconstruction agressive des breakbeats jungle en motifs erratiques, complexes et virtuoses.",
+      "article": "Le Drill 'n' bass a émergé au milieu des années 1990 comme une ramification à haut indice d'octane et rythmiquement complexe de la musique électronique, comblant le fossé entre l'énergie frénétique de la jungle et les sensibilités avant-gardistes de l'Intelligent Dance Music (IDM). Contrairement aux structures répétitives axées sur le club du drum and bass traditionnel, le Drill 'n' bass traite les breaks de batterie comme une matière première hyper-malléable. Les producteurs de cette scène, souvent armés des premières stations de travail audio numériques et d'échantillonneurs, ont déconstruit des breakbeats classiques en fragments microscopiques, les reséquençant en motifs complexes, imprévisibles et souvent discordants. Ces rythmes étaient fréquemment superposés à une conception sonore erratique, des textures glitch et des changements rythmiques soudains qui défiaient délibérément la danse, privilégiant une expérience d'écoute cérébrale, dense et virtuose.\n\nLe genre s'est solidifié en tant que mouvement distinct grâce à l'expérimentation d'artistes associés à des labels comme Rephlex et Planet Mu. Des figures telles que µ-Ziq, Squarepusher, Luke Vibert et Aphex Twin ont repoussé les limites du tempo et de la complexité, évoluant souvent à des vitesses qui défiaient la logique conventionnelle de la musique de danse. Tout au long de la fin des années 1990 et jusqu'aux années 2000, le style s'est étendu mondialement, trouvant de nouvelles itérations dans le travail d'artistes comme Venetian Snares, dont la fusion agressive de Drill 'n' bass avec des esthétiques hardcore et industrielles a mis en évidence la capacité du genre à une expression technique extrême. Bien que le terme lui-même ait été inventé en partie par plaisanterie en clin d'œil à la scène drum and bass existante, il en est venu à représenter un moment charnière de la musique électronique où les capacités de production numérique ont permis aux artistes de dépasser les limites du matériel analogique, transformant le break de batterie en un terrain de jeu pour les mathématiques sonores pures. Son héritage persiste dans la production contemporaine de glitch, de breakcore et de musique électronique expérimentale, où l'ethos du rythme « cassé » demeure une technique fondamentale.",
+      "facts": {
+        "era": "milieu des années 1990 - début des années 2000",
+        "origin": "Royaume-Uni",
+        "sonic_markers": "Breakbeats découpés et reséquencés, BPM hyper-rapides, traitement lourd en glitch, absence de structure de danse 4/4 traditionnelle, utilisation agressive d'échantillonneurs."
+      },
+      "source_sha256": "18cd09f47e919b9231e8f7bd9b6d41ead74a62f930e95676ee0fc4a1973c3e27",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:35:59.141Z"
+    }
+  }
 }

@@ -113,5 +113,18 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Genre fondateur de la musique populaire apparu aux États-Unis à la fin des années 1940 et au début des années 1950, synthétisant des styles musicaux afro-américains comme le rhythm and blues, le gospel et le jazz avec la country et le boogie-woogie. Caractérisé par un rythme de danse énergique, un backbeat marqué et la domination progressive de la guitare électrique, il est devenu une force transformatrice de la culture mondiale et un précurseur de la musique rock moderne.",
+      "article": "Le rock and roll a émergé aux États-Unis à la fin des années 1940 et au début des années 1950, représentant un changement sismique dans le paysage culturel et musical. Né de la rencontre entre des traditions afro-américaines — spécifiquement le rhythm and blues, le gospel, le jazz et le boogie-woogie — et des éléments de country et de folk, le genre a synthétisé un nouveau son à haute énergie qui a transcendé les barrières raciales dans une société ségréguée. Il se définit par son rythme de danse contagieux, présentant généralement un backbeat accentué sur la caisse claire, et par l'adoption des progressions d'accords du blues en douze mesures comme structure fondamentale.\n\nÀ ses débuts, le rock and roll était souvent porté par le piano ou le saxophone, la guitare électrique devenant progressivement l'instrument principal définitif vers le milieu des années 1950. L'ascension rapide de cette musique a été largement favorisée par des figures comme le disc-jockey Alan Freed, qui a popularisé le terme et aidé à faire découvrir cette musique aux publics noirs comme blancs. Au-delà des innovations techniques, le rock and roll a profondément influencé la culture adolescente, la mode et les attitudes sociales, fournissant une bande-son essentielle au début de l'ère des droits civiques et établissant un modèle pour presque toute la musique populaire qui a suivi. Vers le milieu des années 1960, le terme a évolué pour englober un spectre plus large de styles connus sous le nom de rock music, mais l'esprit brut et rebelle du rock and roll original des années 1950 demeure une pierre angulaire de la culture populaire moderne.",
+      "facts": {
+        "era": "Fin des années 1940 au milieu des années 1960",
+        "origin": "États-Unis"
+      },
+      "source_sha256": "73e5670e380c42c9a72268de77b7e523886a8a25bc91949f6a05819d6a0becdb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:34:59.644Z"
+    }
+  }
 }

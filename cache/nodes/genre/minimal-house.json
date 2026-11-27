@@ -75,5 +75,17 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q750811"
+  "qid": "Q750811",
+  "l10n": {
+    "fr": {
+      "teaser": "La minimal house est un sous-genre de la house music mettant l'accent sur une esthétique dépouillée, caractérisée par des rythmes 4-on-the-floor, une conception sonore clairsemée mais de haute qualité, et des progressions hypnotiques et graduelles.",
+      "article": "La minimal house est un sous-genre de la house music défini par sa philosophie « moins, c'est mieux », caractérisé par des compositions répétitives et dépouillées qui privilégient la qualité sonore, l'agencement spatial et une progression subtile et graduelle plutôt que des arrangements denses. Partageant souvent une lignée avec la minimal techno, le genre se distingue par ses percussions et ses lignes de basse plus groovy et marquées par le swing, oscillant généralement entre 115 et 130 BPM. Il utilise souvent des sons de boîtes à rythmes épurés — notamment ceux des unités 707, 808 et 909 de Roland — entremêlés de leads de synthétiseurs bouclés et spatiaux, de nappes science-fiction et d'effets sonores panoramiques. L'esthétique qui en résulte est celle d'une immersion hypnotique, futuriste ou méditative, conçue pour plonger l'auditeur dans un état de transe sur la piste de danse.\n\nLe genre est polyvalent et englobe plusieurs « saveurs » distinctes. Celles-ci incluent la « dark minimal house » menaçante, qui présente des paysages sonores sinistres inspirés de l'horreur et des basses profondes et distordues ; et la « deep minimal house », qui s'appuie sur des éléments soul, jazzy et des structures d'accords émotionnelles avancées. D'autres variations intègrent une instrumentation ethnique, tribale ou organique, chevauchant parfois des scènes comme la « Playa Tech ». Bien que les racines de l'esthétique minimaliste soient liées aux premières expérimentations de la techno de Détroit des années 1990 et au mouvement minimaliste au sens large, la minimal house a affiné ces concepts en un groove spécifiquement orienté vers la house. Au fil des décennies, elle a suscité un suivi mondial occulte et dévoué, avec des figures clés allant des pionniers comme Larry Heard et Frankie Knuckles aux pourvoyeurs contemporains tels que Nicolas Lutz et Quest, qui continuent de repousser les limites de ce qui est possible dans le cadre minimaliste.",
+      "facts": {
+        "origin": "Influence de Détroit/Chicago, évolution mondiale"
+      },
+      "source_sha256": "330d1feaad1c1069aff8b438ca3cf041142a38f7ad7876f8710390b988363d67",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:31:02.329Z"
+    }
+  }
 }

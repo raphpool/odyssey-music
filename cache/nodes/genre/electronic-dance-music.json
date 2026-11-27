@@ -203,5 +203,18 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "L'Electronic Dance Music (EDM) est une catégorie vaste et inclusive regroupant une gamme diversifiée de genres musicaux synthétiques et percutants, principalement produits pour les boîtes de nuit, les raves et les festivals.",
+      "article": "L'Electronic Dance Music (EDM) est un terme générique vaste et aux multiples facettes englobant une large gamme de genres de musique électronique percutants, fondamentalement conçus pour l'environnement social et rythmique des boîtes de nuit, des raves et des festivals. Plutôt qu'une entité stylistique unique, l'EDM fonctionne comme un raccourci culturel et industriel pour le continuum de musique synthétique et rythmée qui a atteint une importance mondiale à la fin du XXe siècle. Ses racines sont profondément liées à l'évolution de la culture club, initiée par les techniques de production innovantes du disco, le pouls mécanique incessant de la Detroit techno et les fondations soul et rythmiques de la Chicago house.\n\nCulturellement, l'EDM est synonyme de l'expérience centrée sur le DJ. Le principal vecteur du genre est le mix DJ, une fusion fluide et énergique de morceaux conçus pour maintenir une dynamique cinétique pendant des heures de performance. Cette tradition remonte aux techniques de studio créatives des pionniers du dub jamaïcain comme King Tubby et Lee \"Scratch\" Perry, qui traitaient la console de mixage comme un instrument pour déconstruire et recontextualiser le son, ainsi qu'aux expériences visionnaires de synth-pop de groupes comme Kraftwerk. À la fin des années 1980 et au début des années 1990, la convergence des synthétiseurs accessibles, de la radio pirate et de la culture rave a transformé ces expériences localisées en un phénomène grand public en Europe et au Japon. Bien que le courant dominant américain ait été initialement hésitant à adopter la vague de la culture rave, le boom mondial de l'EDM au début des années 2010 a solidifié le terme comme le descripteur définitif de l'écosystème expansif de la dance-pop, de la house, de la trance, de la drum and bass et de leurs innombrables sous-genres. L'EDM demeure un paysage vivant et changeant où l'hybridation constante conduit à l'émergence de nouveaux sons, portés par l'expérience viscérale et partagée de la piste de danse.",
+      "facts": {
+        "era": "depuis les années 1970",
+        "origin": "Mondial (racines aux États-Unis, en Jamaïque et en Europe)"
+      },
+      "source_sha256": "e856206d96ff2b3865e55ef50d95890584615766cfd3ec36dd62af46f5ee8e78",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:12:54.642Z"
+    }
+  }
 }

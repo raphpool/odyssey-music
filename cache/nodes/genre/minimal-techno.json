@@ -153,5 +153,18 @@
       "name": "Bleep"
     }
   ],
-  "qid": "Q1430587"
+  "qid": "Q1430587",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de la techno caractérisé par une esthétique épurée, des arrangements clairsemés et une forte dépendance aux grooves répétitifs et hypnotiques plutôt qu'à la progression mélodique traditionnelle.",
+      "article": "La minimal techno est un sous-genre raffiné et épuré de la techno qui a émergé au début des années 1990 en réaction aux sons de plus en plus maximalistes et rapides de la musique électronique contemporaine. Pionnier principalement grâce à des artistes basés à Détroit comme Robert Hood et Daniel Bell, le genre a réduit la musique électronique de danse à ses composants les plus essentiels : une grosse caisse régulière, une ligne de basse précise et quelques textures percutantes ou sonores clairsemées et soigneusement sélectionnées. En évitant les breakdowns, les montées et les structures mélodiques lourdes conventionnelles de la musique de danse grand public, la minimal techno s'appuie sur une répétition hypnotique, des micro-changements subtils de timbre et des grooves rythmiques complexes pour créer une expérience induisant la transe chez l'auditeur.\n\nLe genre a trouvé un second foyer important et a poursuivi son évolution en Europe, particulièrement au sein de la scène des clubs de Berlin, où des labels tels que M-nus, Kompakt et Bpitch Control ont aidé à affiner et à populariser cette esthétique. Des artistes comme Richie Hawtin (sous son alias Plastikman) et Ricardo Villalobos ont élargi la palette sonore du genre, incorporant des éléments plus profonds, plus expérimentaux et parfois influencés par la microhouse. Bien que la définition de « minimal » ait évolué au fil des décennies — suscitant souvent des débats parmi les puristes concernant ses itérations modernes — l'héritage du genre est défini par son engagement envers l'économie sonore. Il demeure une forme sophistiquée de musique de danse qui valorise l'espace et la retenue délibérée, où l'absence de son est aussi cruciale que le son lui-même. Son accent mis sur le « groove » plutôt que sur le spectacle garantit qu'il reste un pilier essentiel de l'histoire de la musique électronique underground.",
+      "facts": {
+        "era": "depuis les années 1990",
+        "origin": "Détroit, États-Unis"
+      },
+      "source_sha256": "d33e4700b123c880ac7dc92b1dfa3ff0ecd568f2ee971e4b5b3ca87c47153691",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:14:56.469Z"
+    }
+  }
 }

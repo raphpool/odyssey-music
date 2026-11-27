@@ -85,5 +85,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q837837"
+  "qid": "Q837837",
+  "l10n": {
+    "fr": {
+      "teaser": "Le power pop est un sous-genre du rock défini par une synthèse des mélodies de la British Invasion des années 1960, des harmonies vocales et des guitares cristallines, alliées à un style d'interprétation énergique et percutant qui fait le pont entre la pop et le hard rock.",
+      "article": "Le power pop est un sous-genre du rock énergique et axé sur les mélodies accrocheuses qui a émergé aux États-Unis et au Royaume-Uni à la fin des années 1960 et au début des années 1970. Inventé par Pete Townshend de The Who en 1967 pour décrire le son de son propre groupe, le terme a acquis une plus grande reconnaissance critique à la fin des années 1970. Sur le plan stylistique, le power pop synthétise l'intensité percutante et hard-rock de The Who avec le mélodisme doux et sophistiqué de The Beatles et The Beach Boys, souvent recouvert par les textures de guitare tintantes et résonnantes dont The Byrds ont été les pionniers. Au fond, le genre est défini par « des airs accrocheurs avec une attitude » — un mélange d'optimisme propre à la sunshine pop dans ses harmonies vocales et ses arrangements, contrastant avec un courant lyrique sous-jacent de désir, de nostalgie ou de désespoir tranquille.\n\nBien que les racines du son se trouvent dans la British Invasion du milieu des années 60, le genre a trouvé ses bases formelles avec des groupes comme Badfinger, Raspberries et Big Star. Ces groupes ont préservé la rigueur mélodique des années 60 à une époque où le rock se dirigeait vers le prog lourd ou l'abstraction expérimentale. À la fin des années 1970, alors que l'énergie brute du punk et les lignes épurées de la new wave gagnaient en importance, le power pop a connu un bref apogée commercial avec des groupes comme Cheap Trick, The Knack et The Romantics. Bien que souvent rejeté par certains critiques comme dérivé ou « mou » au cours des années suivantes, le genre a conservé un public culte durable et a profondément influencé le développement du rock alternatif des années 1990 et l'essor ultérieur du pop-punk, qui a distillé les sensibilités structurelles du power pop dans un cadre plus rapide, plus agressif et imprégné d'ironie. Il demeure une référence stylistique définitive pour toute musique basée sur la guitare qui privilégie les mélodies parfaites, une production impeccable et l'intersection de la joie et de la mélancolie.",
+      "facts": {
+        "era": "Milieu des années 1960 – Présent",
+        "origin": "États-Unis, Royaume-Uni"
+      },
+      "source_sha256": "f1bf3b05b689963620c9146e50a070f8127c54675d86b418135c73980acedd50",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:33:58.053Z"
+    }
+  }
 }

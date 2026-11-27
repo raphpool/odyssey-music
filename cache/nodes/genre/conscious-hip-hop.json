@@ -107,5 +107,19 @@
       "type": "track",
       "name": "Alright"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du hip-hop caractérisé par des paroles axées sur des questions sociales, politiques et économiques visant à remettre en cause les récits culturels dominants.",
+      "article": "Le Conscious hip-hop, souvent désigné sous le nom de hip-hop socialement conscient ou de rap conscient, est un sous-genre distinct du hip-hop qui privilégie un contenu lyrique centré sur le commentaire social, politique et philosophique. Émergeant comme un puissant moyen d'expression, le genre défie les structures culturelles et économiques dominantes, utilisant la plateforme de la musique rap pour aborder des problèmes systémiques et plaider en faveur d'une prise de conscience. Contrairement au hip-hop grand public qui peut privilégier l'évasion ou les thèmes commerciaux, le Conscious hip-hop se définit par son engagement envers la critique sociale et l'exploration de la condition humaine au sein de cadres sociétaux complexes.\n\nLe genre maintient une lignée solide d'artistes qui utilisent leur musique comme un outil d'éducation et d'activisme. En se concentrant sur des thèmes comme la pauvreté, l'inégalité raciale et la corruption institutionnelle, les artistes de Conscious hip-hop comblent souvent le fossé entre le divertissement et le plaidoyer social. Le style est profondément enraciné dans la tradition hip-hop plus large mais se distingue par son intentionnalité et le poids de son message, influençant des générations d'auditeurs et d'artistes à s'engager de manière plus critique avec le monde qui les entoure.",
+      "facts": {
+        "era": "fin des années 1980 à aujourd'hui",
+        "origin": "États-Unis",
+        "sonic_markers": "BPM variable, production riche en samples, accent sur la clarté lyrique et la narration."
+      },
+      "source_sha256": "57ccaf596bd59304a122a9581da924122d691060eec1b787475da0868d287aac",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T17:12:31.581Z"
+    }
+  }
 }

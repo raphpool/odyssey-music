@@ -122,5 +122,19 @@
       "type": "track",
       "name": "Dembow"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un éventail diversifié de traditions musicales issues des régions hispanophones et lusophones des Amériques, caractérisé par un profond syncrétisme entre racines indigènes, africaines et européennes.",
+      "article": "Ancrée dans la confluence du XVIe siècle entre traditions indigènes, héritage rythmique africain et influences coloniales ibériques, la musique d'Amérique latine définit un paysage vaste et syncrétique de styles régionaux. Le genre capture le développement spécifique de rythmes localisés comme le cajón afro-péruvien, le siku andin et le bandonéon argentin, qui a émergé des cercles d'immigrants du XIXe siècle pour devenir central au tango. La reconnaissance mondiale contemporaine est portée par des mouvements urbains comme le reggaeton popularisé à Porto Rico dans les années 1990, construit sur le rythme Dembow jamaïcain initié par le producteur Bobby 'Digital' Dixon. Au-delà de ceux-ci, le paysage s'étend du merengue vénézuélien — distinct de son homonyme dominicain — aux traditions folkloriques expansives et multi-zones de Colombie. De la Nueva canción axée sur la contestation au Chili dans les années 1970 au funk carioca brésilien moderne, ces traditions s'adaptent continuellement, fusionnant l'instrumentation locale avec des éléments de jazz, de rock et de production électronique.",
+      "facts": {
+        "era": "Du XVIe siècle à nos jours",
+        "origin": "Amérique latine",
+        "sonic_markers": "Hautement syncrétique, inclut des polyrythmies complexes, une syncope, l'utilisation de percussions indigènes, des paroles en espagnol/portugais et une instrumentation variée comme le bandonéon, le cajón et le marimba."
+      },
+      "source_sha256": "bdc6f9613da71ebed4fc152fce62b8875df1989f280959ff2a3ec04b7577e9b3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:31:57.358Z"
+    }
+  }
 }

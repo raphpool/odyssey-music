@@ -94,5 +94,18 @@
   ],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q1100989"
+  "qid": "Q1100989",
+  "l10n": {
+    "fr": {
+      "teaser": "Le Glitch est un genre de musique électronique expérimentale qui utilise les sons d'erreurs numériques, de dysfonctionnements matériels et de distorsion du signal comme éléments de composition primaires, traitant souvent l'imperfection technique comme une pierre angulaire esthétique.",
+      "article": "Le Glitch est un genre de musique électronique expérimentale apparu dans les années 1990, défini par l'esthétique de la défaillance technique. Plutôt que de rechercher la fidélité immaculée communément associée à la production de musique électronique, les artistes de Glitch utilisent intentionnellement les sons de technologies défaillantes — artefacts numériques, sauts de CD, bruits de bit-crushing, matériel circuit-bent et clics erratiques de circuits en panne — comme les briques rythmiques et mélodiques fondamentales de leurs compositions. En élevant ces sons d'erreur système au rang d'instruments de musique, le genre remet en question les notions traditionnelles de composition, de structure et de timbre « musical ».\n\nHistoriquement, le genre s'est développé au sein des scènes expérimentales et IDM (Intelligent Dance Music) plus larges, repoussant souvent les limites de ce qui pouvait être considéré comme écoutable. Si certaines compositions de Glitch sont abstraites et non linéaires, d'autres trouvent un juste milieu en ancrant leurs textures numériques dans les structures minimalistes de la micro-techno ou du downtempo, rendant la dissonance sonore accessible grâce à une pulsation et un rythme stables, bien que fragmentés. Le genre représente une célébration post-moderne de l'imperfection, où la beauté d'une composition se trouve dans l'instable, le brisé et l'accidentellement généré, transformant les limites du matériel numérique en un ensemble d'outils créatifs. Son influence a imprégné divers sous-genres, donnant naissance à des hybridations distinctes telles que le Glitch Hop, qui marie ces textures fracturées à des fondations rythmiques, et le Glitch Pop, qui intègre l'esthétique glitch dans des structures d'écriture plus conventionnelles. Au fil des décennies, le Glitch a évolué d'un mouvement expérimental de niche vers une technique fondamentale utilisée à travers divers paysages de musique électronique.",
+      "facts": {
+        "era": "Années 1990–Présent",
+        "origin": "Mondial, principalement Europe et Amérique du Nord"
+      },
+      "source_sha256": "1e17e55f7248a71742636c69e810052600fa2ab22245a267112153713e783b2a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:26:54.808Z"
+    }
+  }
 }

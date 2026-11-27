@@ -95,5 +95,18 @@
       "name": "Lifeforms"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de musique électronique apparu au Royaume-Uni à la fin des années 1980, caractérisé par le mélange de la pulsation rythmique de la house music avec les textures atmosphériques et expansives de la musique ambient.",
+      "article": "L'Ambient House est un sous-genre atmosphérique pivot de la musique électronique qui a émergé à la fin des années 1980 et au début des années 1990 en tant que dérivé créatif de la scène acid house en plein essor au Royaume-Uni. Il a servi de premier marqueur catégoriel pour les artistes qui cherchaient à aller au-delà des impératifs de la musique de danse, centrée sur les clubs et à haute énergie, en privilégiant plutôt des paysages sonores hypnotiques et oniriques souvent destinés à une écoute domestique plutôt qu'à la piste de danse. Bien qu'il ait emprunté les fondations rythmiques de la house — spécifiquement des battements mid-tempo en quatre-sur-le-plancher — il les a fortement subverties en intégrant des nappes de synthétiseurs luxuriantes, une conception sonore expansive et spatiale, et des échantillons vocaux non conventionnels, souvent longs. Cette fusion a créé une expérience d'écoute qui était autant une évolution de l'expérimentation ambient qu'une réaction à la dynamique répétitive de la culture rave.\n\nL'essor du genre a été largement alimenté par des pionniers tels que The Orb, dont l'album phare 'The Orb's Adventures Beyond the Ultraworld' demeure une référence incontournable, et The KLF, dont 'Chill Out' a redéfini le potentiel de la narration ambient dans un contexte électronique. D'autres figures instrumentales incluent The Future Sound of London et The Irresistible Force. En mettant l'accent sur l'immersion sonore, ces artistes ont ouvert la voie aux « chill-out rooms » dans les raves, offrant un sanctuaire serein aux fêtards épuisés. Bien que le terme 'Ambient House' ait finalement été supplanté ou complexifié par une prolifération de sous-classifications plus spécifiques, son héritage persiste comme le pont essentiel entre l'énergie cinétique de la house music et la nature introspective et illimitée de la conception sonore ambient. Il a transformé la perception de la musique électronique synthétisée, passant d'un simple outil de danse fonctionnel à un médium atmosphérique profond.",
+      "facts": {
+        "era": "Fin des années 1980 – milieu des années 1990",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "a6f9e2d02e98b86fdae569383ad4db8f38c993a5394e2659f7061c4d1708d91f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:09:57.804Z"
+    }
+  }
 }

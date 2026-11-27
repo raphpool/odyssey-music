@@ -165,5 +165,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q272167"
+  "qid": "Q272167",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de l'indie rock caractérisé par des textures de guitare fortement superposées, distordues et atmosphériques, mettant souvent en avant des voix éthérées ou indistinctes noyées dans le mixage.",
+      "article": "Le Shoegaze est un sous-genre de l'alternative et de l'indie rock apparu au Royaume-Uni et en Irlande à la fin des années 1980, défini par son paysage sonore immersif, éthéré et fortement traité. Le genre est principalement caractérisé par son approche « mur de son », qui utilise des couches en cascade de guitares distordues et chargées de larsen, souvent traitées par des chaînes d'effets complexes, de la réverbération et du délai. Le nom « shoegaze » provient de la tendance de la presse à décrire les groupes comme « fixant leurs chaussures » pendant leurs prestations, un sous-produit visuel de la concentration intense des musiciens sur la gestion de leurs pédaliers complexes et de leurs configurations d'effets lors des concerts.\n\nAu cœur de l'esthétique shoegaze se trouve une subversion délibérée des hiérarchies traditionnelles du rock. Les voix sont fréquemment mixées profondément au sein de l'instrumentation, traitées davantage comme une couche atmosphérique supplémentaire plutôt que comme le point focal du morceau. Cela crée souvent un contraste saisissant avec une interprétation vocale délicate et mélodique, notamment chez des artistes comme Rachel Goswell et Miki Berenyi. Bien que My Bloody Valentine soit largement considéré comme le porte-étendard du genre—en grande partie grâce aux techniques pionnières de Kevin Shields comme la manipulation du vibrato « glide guitar » entendue sur l'album phare 'Loveless'—la scène englobait une gamme variée de sons, allant des inclinaisons dream-pop de Cocteau Twins aux bords noise-rock plus distordus de groupes comme The Jesus and Mary Chain et Dinosaur Jr., dont l'album 'Psychocandy' a été une influence majeure.\n\nBien que son pic de popularité initial ait été relativement éphémère au début des années 1990, souvent éclipsé par le mouvement grunge naissant puis par l'essor de la Britpop, l'influence du genre a été profonde et durable. Le Shoegaze a connu un renouveau critique et culte significatif dans les années 2000 et 2010, avec les mouvements « nu-gaze » et blackgaze élargissant encore ses frontières. Son héritage reste ancré dans la musique indépendante contemporaine, où ses textures caractéristiques continuent d'inspirer des groupes qui privilégient l'ambiance, l'immersion et l'expérimentation sonore par rapport aux structures de chansons conventionnelles.",
+      "facts": {
+        "era": "Fin des années 1980–Présent",
+        "origin": "Royaume-Uni / Irlande"
+      },
+      "source_sha256": "5639be2acd9c1131811c4779c93391051a3a06de0636a76a004da06ce3ad50e9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:35:07.398Z"
+    }
+  }
 }

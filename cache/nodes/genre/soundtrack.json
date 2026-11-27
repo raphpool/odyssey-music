@@ -89,5 +89,18 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un enregistrement audio de musique figurant dans et synchronisé avec un support visuel, tel qu'un film, une émission de télévision ou un jeu vidéo, souvent compilé dans un album disponible dans le commerce.",
+      "article": "Une bande originale est un enregistrement audio qui accompagne et est synchronisé avec les images d'un film, d'une émission de télévision, d'un jeu vidéo ou d'autres supports visuels. Bien que « soundtrack » désigne techniquement la composante audio d'un film — souvent une piste composite contenant des dialogues, de la musique et des effets sonores — le terme a considérablement évolué dans le sens commercial. Dans l'industrie musicale, une « bande originale » désigne couramment un album commercialisé contenant de la musique figurant dans une production, servant à la fois d'outil fonctionnel pour la narration et de forme unique de curation conceptuelle.\n\nL'histoire de l'album de bande originale commercial a débuté en 1938 avec la sortie de la musique de « Snow White and the Seven Dwarfs » de Walt Disney. Par la suite, les grands studios de cinéma ont commencé à commercialiser la musique de leurs productions pour tirer parti de la popularité des films, faisant de l'« original motion picture soundtrack » (OMPS) un incontournable des disquaires au milieu du XXe siècle. Ces albums se répartissent généralement en plusieurs catégories : les partitions orchestrales dédiées aux films, les collections de chansons pop sous licence (souvent appelées « compilation soundtracks ») et les albums hybrides qui combinent les deux. Dans le contexte de l'ère numérique et moderne, la bande originale a transcendé la simple promotion, devenant un support clé pour faire découvrir au public des textures expérimentales, des paysages ambiants et des collaborations défiant les genres qui, autrement, resteraient confinés à des marchés de niche. Qu'il s'agisse de capturer les orchestrations thématiques et grandioses d'une épopée de science-fiction ou l'esthétique soigneusement élaborée d'un drame indépendant, la bande originale demeure une intersection vitale entre la composition musicale et la narration, fonctionnant comme un pont entre les mondes visuel et auditif. Bien que les puristes puissent débattre pour savoir si la « bande originale » constitue un style musical distinct ou simplement un contenant fonctionnel, son importance culturelle en tant que cadre vaste et hautement éclectique pour la consommation musicale est incontestée.",
+      "facts": {
+        "era": "Années 1930-présent",
+        "origin": "Mondial (industrie cinématographique)"
+      },
+      "source_sha256": "e9c766e8f02321e9c1c1342e82e3d0e551c40832ba30c6c7332a90741cf27cbf",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:36:01.809Z"
+    }
+  }
 }

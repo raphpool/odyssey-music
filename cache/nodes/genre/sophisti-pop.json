@@ -85,5 +85,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q264289"
+  "qid": "Q264289",
+  "l10n": {
+    "fr": {
+      "teaser": "Le sophisti-pop est un style de pop/rock raffiné aux influences jazz du milieu des années 80, caractérisé par une production sophistiquée, des arrangements urbains et une fusion d'influences soul, synth-pop et jazz.",
+      "article": "Le sophisti-pop a émergé au milieu des années 1980 comme une évolution raffinée et urbaine de la pop, caractérisée par sa production léchée, ses arrangements complexes et un mélange stylistique de jazz, de soul et d'esthétique New Wave. Se distinguant de l'énergie brute du punk ou de l'agressivité manifeste des débuts de l'industriel, le sophisti-pop a privilégié la compétence technique et un son « adulte » poli qui a prospéré à la fois dans les formats radio adult contemporary et quiet storm. Musicalement, le genre est marqué par l'utilisation de textures de synthétiseurs luxuriantes, de sections de saxophone et de cuivres de bon goût, et de progressions d'accords sophistiquées dérivées du jazz, souvent posées sur des sections rythmiques nettes et discrètes.\n\nLe genre était principalement centré au Royaume-Uni, où les artistes cherchaient à combiner la rigueur intellectuelle de l'écriture de chansons avec une identité visuelle élégante et avant-gardiste. L'esthétique faisait autant partie de l'expérience que la musique elle-même, privilégiant des sensibilités minimalistes et de haute couture qui contrastaient avec les tendances pop plus criardes de l'époque. Bien que le mouvement n'ait jamais atteint la domination culturelle massive et singulière de ses pairs pop contemporains, il a laissé une empreinte durable grâce au travail d'artistes phares comme Sade, Prefab Sprout, The Blue Nile et The Style Council. Au début des années 1990, le mouvement s'était largement dispersé, bien que son engagement envers une production atmosphérique et de haute fidélité reste une référence pour les développements ultérieurs du chill-out, du downtempo et de la synth-pop moderne. Sa dépendance à la « fluidité » et au perfectionnisme en studio l'a positionné comme un sommet ambitieux, bien que parfois critiqué, de l'art commercial des années 1980.",
+      "facts": {
+        "era": "Milieu des années 1980 au début des années 1990",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "89a2af4d30f657492798388f78ee4be1be83afe311111cfa7ca5320f1aa34ca9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:35:59.664Z"
+    }
+  }
 }

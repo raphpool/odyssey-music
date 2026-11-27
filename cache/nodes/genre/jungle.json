@@ -190,5 +190,18 @@
       "type": "track",
       "name": "Brown Paper Bag"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique électronique à haute énergie originaire du Royaume-Uni au début des années 1990, caractérisé par des breakbeats rapides et complexes, des sub-bass profondes et de fortes influences de la culture sound system reggae et dub des Caraïbes.",
+      "article": "Le jungle est un sous-genre pionnier de la musique électronique de danse qui a émergé de la culture rave et sound system dynamique du Royaume-Uni au début des années 1990. Enraciné à Londres et à Bristol, il représente une évolution charnière du breakbeat hardcore, défini par ses breakbeats frénétiques et syncopés — souvent échantillonnés à partir de disques classiques de funk et de soul — et ses lignes de sub-bass profondes et lourdes. Le genre est inextricablement lié à l'influence des Caraïbes, puisant largement dans le reggae, le dancehall et la musique dub, qui ont fourni à la fois les sensibilités rythmiques et l'esthétique atmosphérique qui ont donné au jungle son caractère distinct et souvent brut.\n\nMusicalement, le jungle se caractérise par son tempo élevé, tournant généralement autour de 160 battements par minute, ce qui a permis aux producteurs de tisser des rythmes complexes et superposés en utilisant des breakbeats emblématiques tels que le « Amen Break ». En intégrant ces motifs de batterie agressifs et découpés au poids des basses influencées par le dub et aux nuances mélodiques de la musique électronique synthétique, les producteurs ont créé un son à la fois chaotique et profondément soul. Cette fusion unique a permis au jungle d'agir comme un pont entre des mondes musicaux disparates, réunissant des éléments de hip-hop, de R&B et de musique électronique de danse dans un environnement multiculturel à haute énergie.\n\nÀ mesure que la scène a mûri au milieu des années 1990, l'influence du jungle s'est étendue mondialement, atteignant son apogée commercial avant d'évoluer vers des formes ultérieures, notamment le drum and bass. Bien que le genre ultérieur ait adopté des tempos plus rapides et une complexité de production accrue, les innovations fondamentales du jungle — la dépendance à l'échantillonnage, l'accent mis sur la pression des sub-bass et le traitement complexe des breakbeats — continuent de soutenir une grande partie de la musique de danse contemporaine. Son héritage persiste dans la production électronique moderne, avec de nouvelles générations d'artistes continuant à revisiter et à réoutiller son son caractéristique.",
+      "facts": {
+        "era": "années 1990",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "4a1c31ccc933cde450cc4675dc057e87b493b966cb882d0daac8acfe75f2edfc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:14:52.141Z"
+    }
+  }
 }

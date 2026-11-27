@@ -119,5 +119,18 @@
       "name": "Causers Of This"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le Chillwave est un sous-genre de musique électronique lo-fi et riche en synthétiseurs apparu à la fin des années 2000, défini par sa production rêveuse et nostalgique ainsi que par son statut de premier mouvement majeur à naître et à se diffuser via Internet.",
+      "article": "Le Chillwave, genre emblématique de la fin des années 2000, représente le premier mouvement musical majeur à avoir été principalement favorisé et distribué par Internet. Apparu vers 2009, le genre se caractérise par son esthétique brumeuse, nostalgique et lo-fi, utilisant souvent des synthétiseurs vintage, des boîtes à rythmes et une production fortement saturée par l'usage de bandes magnétiques. Sa palette sonore rappelle fréquemment la texture de la pop, du R&B et du soft-rock des années 1980, restituée à travers un prisme mélancolique et « sédaté » qui a trouvé un écho auprès d'une génération atteignant l'âge adulte durant une période d'incertitude économique et politique mondiale.\n\nLe terme lui-même a été inventé en 2009 par le blogueur Carlos Perez sur le site Hipster Runoff, en référence spécifique à la musique de Washed Out. L'ascension rapide du genre fut étroitement liée aux méthodes de distribution numériques, privilégiant des plateformes comme Bandcamp, SoundCloud et les réseaux sociaux plutôt que les salles de concert traditionnelles ou les stations de radio. Les figures clés du mouvement comprenaient Ernest Greene (Washed Out), Alan Palomo (Neon Indian), Chaz Bundick (Toro y Moi) et Matthew Mondanile (Ducktails). Ces artistes ont créé un son distinctement produit en chambre, s'appuyant souvent sur des techniques d'enregistrement lo-fi qui privilégiaient l'amateurisme plutôt que le fini professionnel.\n\nBien que souvent critiqué par les institutions musicales contemporaines comme étant dérivatif ou « de mauvais goût », le Chillwave a laissé une empreinte culturelle durable en ouvrant la voie au modèle de formation des genres basés sur Internet. Son influence a préparé le terrain pour des sous-cultures ultérieures, notamment le vaporwave, qui a poussé les sensibilités rétro-futuristes et riches en samples du genre vers une conclusion plus extrême et ironique. Le Chillwave demeure un « son Internet » par excellence, documentant un moment précis où la technologie personnelle et la nostalgie collective ont convergé pour remodeler le paysage de la musique électronique indépendante.",
+      "facts": {
+        "era": "fin des années 2000 - début des années 2010",
+        "origin": "États-Unis"
+      },
+      "source_sha256": "69c7bcab99181bce5664df9d48504aca946168194cec203b4a0b0ee992c38acc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:59:27.366Z"
+    }
+  }
 }

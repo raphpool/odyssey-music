@@ -128,5 +128,18 @@
       "name": "Hungry For The Power (Jamie Jones Ridge Street Mix)"
     }
   ],
-  "qid": "Q598593"
+  "qid": "Q598593",
+  "l10n": {
+    "fr": {
+      "teaser": "La Tech House est un genre de musique électronique de danse caractérisé par la fusion des éléments groovy et soul de la house avec les motifs rythmiques précis et les lignes de basse rugueuses de la techno.",
+      "article": "La Tech House est un genre hybride de musique électronique de danse apparu dans les années 1990, forgé par une fusion de l'énergie rythmique de la house et de la conception sonore élégante et précise de la techno. Né dans la scène club dynamique du Royaume-Uni, plus précisément au sein de lieux londoniens tels que The Wiggle, The End et The Drop, le genre s'est défini par sa capacité à combler le fossé entre les qualités soul et groovy de la house classique et les percussions rugueuses et industrielles de la techno inspirée de Détroit. Il présente généralement des lignes de basse syncopées, des Loop contagieuses et des techniques de production propres et minimales, intégrant souvent des éléments comme les sons de la Roland TB-303 de l'Acid house pour ajouter une profondeur texturale. Le nom lui-même est célèbre pour être attribué à une classification de disquaire, popularisée par des labels et des magasins comme Swag Records à Croydon, qui est devenu un centre névralgique pour le développement du sous-genre.\n\nTout au long de son histoire, la Tech House a connu des vagues d'évolution et de résurgence grand public. Après une domination initiale dans les années 1990, elle a reculé pendant l'ascension de la progressive house et de la minimal techno au milieu des années 2000, pour revenir avec une force nouvelle dans les années 2010. Au cours de ce renouveau, des figures clés comme Jamie Jones et son label Hot Creations ont joué un rôle crucial dans la modernisation du son pour un public mondial à l'ère du streaming. Cette époque a cimenté la Tech House comme une force dominante dans les festivals et sur les pistes de danse d'Ibiza, caractérisée par un standard de production raffiné et une forte dépendance aux accroches vocales. Aujourd'hui, le genre s'impose comme l'un des sons les plus reconnaissables et les plus répandus de la musique électronique moderne, équilibrant ses racines underground avec un attrait massif, prêt pour les festivals, porté par des producteurs et DJ comme Marco Carola, John Summit et Fisher. Son succès durable est lié à sa nature fonctionnelle : un son conçu spécifiquement pour la piste de danse, construit sur une base de Loop, de groove et d'énergie à fort impact.",
+      "facts": {
+        "era": "depuis les années 1990",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "0216d408af7caebfe2818b8c8eab177cb9dc7699da45bc02a559c4c348574172",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:16:52.460Z"
+    }
+  }
 }

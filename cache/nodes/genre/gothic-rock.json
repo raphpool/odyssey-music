@@ -99,5 +99,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q485395"
+  "qid": "Q485395",
+  "l10n": {
+    "fr": {
+      "teaser": "Une ramification sombre et atmosphérique du post-punk apparue à la fin des années 1970, définie par son instrumentation mélancolique chargée de réverbération et ses thèmes de désir existentiel et de macabre.",
+      "article": "Le Gothic rock est un mouvement musical apparu au Royaume-Uni à la fin des années 1970, évoluant des cendres de l'explosion post-punk. Il représente une rupture spectaculaire avec l'énergie directe et agressive du punk traditionnel, optant plutôt pour un paysage sonore caractérisé par des lignes de basse lourdes et réverbérées, des claviers atmosphériques et des textures de guitare lunatiques et introspectives. Culturellement, le genre est profondément redevable à la littérature gothique, au romantisme et au macabre, avec des paroles explorant souvent des thèmes d'angoisse existentielle, d'isolement, de désespoir et des recoins les plus sombres de l'expérience humaine.\n\nLe genre a été défini par des groupes pionniers tels que Bauhaus, dont le single séminal de 1979 « Bela Lugosi’s Dead » est largement considéré comme un moment fondateur pour la scène, et Siouxsie and the Banshees, qui ont apporté une sensibilité avant-gardiste au mouvement. Les paysages sonores austères et glacés de Joy Division, tels qu'on peut les entendre sur leur album Unknown Pleasures, ont également fourni un modèle critique pour la profondeur atmosphérique du genre. Tout au long des années 1980, le son s'est étendu vers des territoires plus diversifiés, The Sisters of Mercy introduisant une approche plus rythmique et axée sur les boîtes à rythmes qui influencerait les itérations futures. L'esthétique associée au Gothic rock — intégrant souvent des vêtements noirs, un maquillage dramatique et une imagerie théâtrale — est devenue une sous-culture culturelle importante à part entière. Au fil des décennies, l'influence du Gothic rock a imprégné divers autres styles, notamment l'émergence du gothic metal dans les années 1990 et les facettes les plus sombres du rock alternatif moderne. Son héritage reste préservé non seulement dans la musique, mais aussi dans la sous-culture gothique durable qui continue de puiser son inspiration dans l'accent mis par le mouvement sur le non-conformisme, la mélancolie intellectuelle et la beauté trouvée dans l'ombre.",
+      "facts": {
+        "era": "fin des années 1970 – présent",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "77fce0a9a48fce9c836ba1e83c3ab5e545003c24963e7d66812bd66b5eb6844d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:27:55.194Z"
+    }
+  }
 }

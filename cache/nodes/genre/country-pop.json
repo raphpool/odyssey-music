@@ -113,5 +113,14 @@
       "name": "Back Home Again"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de fusion qui intègre des éléments de musique country à une production pop grand public afin d'atteindre une large audience, souvent caractérisé par un son poli et haute fidélité ainsi qu'une écriture contemporaine.",
+      "article": "Le country pop est un sous-genre transformateur de la musique country apparu dans les années 1960, porté par une volonté délibérée des cadres et producteurs des studios de Nashville d'élargir l'attrait commercial des disques country à un public de masse. En adoucissant les traits traditionnels de la musique country — notamment en réduisant ou en supprimant la dépendance aux violons et aux banjos — et en incorporant des techniques de production riches, des sections de cordes et des sensibilités pop contemporaines, le genre a efficacement comblé le fossé entre la musique rurale traditionnelle et la pop dominante à la radio de l'époque. Ce changement stylistique a été ancré par des pionniers comme Chet Atkins et Owen Bradley dans ce qui est devenu connu sous le nom de « Nashville Sound » ou « Countrypolitan ».\n\nÀ mesure que le genre a évolué au cours des années 1970 et au-delà, il s'est défini par son haut degré de viabilité crossover, permettant aux artistes de figurer simultanément dans les classements Hot Country et Top 40 pop de Billboard. Des icônes telles que Patsy Cline, Glen Campbell et John Denver ont apporté une esthétique polie et accessible qui a attiré des auditeurs qui auraient autrement ignoré la musique country. Bien qu'il ait périodiquement suscité les critiques de puristes traditionalistes déplorant la perte des racines country « authentiques », le country pop a continué à se réinventer, passant des textures orchestrales des années 70 aux penchants pop-rock et adult contemporary des années 90, pour finalement intégrer des productions hip-hop et électroniques dans les années 2010. Son importance durable réside dans son rôle de cadre flexible et adaptatif qui a maintenu la musique country commercialement vitale dans les paysages changeants de la culture populaire mondiale.",
+      "source_sha256": "a549e77d53123f1c4e32890f952b416677c09f55170debbde8331b870e33bfa8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T17:12:37.990Z"
+    }
+  }
 }

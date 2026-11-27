@@ -70,5 +70,14 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q492264"
+  "qid": "Q492264",
+  "l10n": {
+    "fr": {
+      "teaser": "Une musique de film est une œuvre originale écrite spécifiquement pour accompagner un film, un programme télévisé ou un jeu vidéo, composée de segments orchestraux ou instrumentaux minutés pour renforcer la narration dramatique et l'impact émotionnel de l'œuvre.",
+      "article": "La musique de film représente l'architecture musicale essentielle conçue spécifiquement pour accompagner les récits cinématographiques, servant de pilier au rythme émotionnel et narratif de l'histoire. Contrairement à une bande originale standard, qui peut incorporer des chansons populaires préexistantes ou de la musique diégétique (son entendu par les personnages dans l'univers du film), une musique de film est une composition originale écrite pour renforcer l'arc dramatique, définir les motifs des personnages et manipuler l'engagement du public. Historiquement ancré dans les grandes traditions de l'orchestration classique et romantique tardive, le médium a considérablement évolué depuis l'ère de l'accompagnement en direct pour les films muets. Aujourd'hui, la partition moderne est un paysage hybride et polyvalent où les orchestres symphoniques traditionnels s'intègrent harmonieusement à la synthèse électronique, au design sonore ambiant et aux techniques d'avant-garde.\n\nLe processus créatif, appelé « spotting », implique une collaboration étroite entre le compositeur et le réalisateur, où des segments musicaux spécifiques sont minutés pour correspondre aux événements visuels. Des compositeurs tels que John Williams ont maîtrisé l'art du leitmotiv — ces thèmes mélodiques récurrents qui s'attachent aux personnages ou à des concepts abstraits — fournissant ainsi une carte émotionnelle inconsciente au spectateur. À l'inverse, des figures comme Ennio Morricone ou Hans Zimmer ont remis en question les normes structurelles en privilégiant la texture, l'instrumentation d'avant-garde ou des flux de travail collaboratifs où le film est parfois monté pour s'adapter à la musique. Avec les progrès de la technologie numérique, l'accessibilité de l'échantillonnage sophistiqué et du séquençage MIDI a brouillé les pistes entre le « son hollywoodien » traditionnel et les paysages sonores expérimentaux, permettant un contrôle sans précédent sur l'atmosphère sonore du film. Des épopées orchestrales grandioses aux textures minimalistes et synthétisées, la musique de film demeure un genre vital et en constante mutation qui traduit l'expérience visuelle en une mémoire auditive viscérale.",
+      "source_sha256": "b987326ae50669fdb73e075fda23fd45dfe4bf761e4cc2d23e6dc6308dac7c5f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:02:28.770Z"
+    }
+  }
 }

@@ -151,5 +151,19 @@
       "type": "track",
       "name": "Bad and Boujee"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du hip-hop défini par son approche lyrique brute du trafic de drogue et un style de production ancré dans les boîtes à rythmes 808, les charleys syncopés et les mélodies synthétiques.",
+      "article": "Originaire d'Atlanta, en Géorgie, durant les années 1990, la trap tire son nom du terme local désignant un lieu de vente de drogue. Le son fondamental du genre a évolué à partir des scènes gangsta rap et Southern hip-hop des années 1990, avec des pionniers comme DJ Spanish Fly, DJ Paul, Juicy J et Mannie Fresh établissant sa dépendance à la boîte à rythmes Roland TR-808. En 2003, le rappeur T.I. a publié son album Trap Muzik, contribuant à codifier l'accent mis par le genre sur les récits liés au trafic de drogue. Des producteurs tels que Lex Luger et Zaytoven ont plus tard modernisé le son en incorporant des charleys rapides, des basses 808 profondes et des envolées de synthétiseurs orchestraux. L'influence du genre a explosé dans les années 2010, alors que des artistes comme Future, Migos et Travis Scott dominaient les classements Billboard, et que des producteurs comme Metro Boomin et 808 Mafia affinaient son esthétique caractéristique. La trap a depuis lors pénétré la musique pop, avec des succès d'Ariana Grande et Katy Perry, et a suscité des sous-genres mondiaux incluant la Latin trap, la drill et la rage.",
+      "facts": {
+        "era": "Années 1990 à aujourd'hui",
+        "origin": "Atlanta, Géorgie, États-Unis",
+        "sonic_markers": "50-88 BPM (souvent programmés en mi-temps), grosses caisses TR-808, subdivisions rapides de charleys, forte présence de synthétiseurs, motifs mélodiques de cuivres et de cordes."
+      },
+      "source_sha256": "b129ac70907530d6e8f7e76d40df11b5c990d4d277b266d73eb1fec84d438dd3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:37:04.260Z"
+    }
+  }
 }

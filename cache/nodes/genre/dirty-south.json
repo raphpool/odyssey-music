@@ -109,5 +109,19 @@
       "type": "track",
       "name": "Dirty South"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du hip-hop américain apparu à la fin des années 1980, caractérisé par une production régionale distincte, des basses lourdes et des rythmes de club à haute énergie.",
+      "article": "Émergeant d'une culture orientée vers les clubs à la fin des années 1980 aux États-Unis, le hip-hop du Sud a développé un son régional distinct caractérisé par une production riche en basses et un vernaculaire spécifique. Le style a gagné une traction significative au cours des années 1990, alors que des pôles comme Atlanta et Miami définissaient l'esthétique. Des artistes tels que Goodie Mob ont aidé à codifier la scène, avec des titres comme « Dirty South » capturant l'énergie brute de la sous-culture. Les producteurs privilégiaient souvent des basses électroniques lourdes, des rythmes influencés par l'electro et des beats crunk qui contrastaient avec la domination de la côte Est et de la côte Ouest à cette époque. Le son reste défini par son accent rythmique et ses arrangements de club à haute énergie, influençant des décennies de production rap qui privilégiaient la danse et la fierté locale.",
+      "facts": {
+        "era": "fin des années 1980 à aujourd'hui",
+        "origin": "États-Unis, particulièrement Atlanta et la région du Sud",
+        "sonic_markers": "Basses électroniques lourdes, motifs de batterie pilotés par la 808, éléments crunk et arrangements de club à tempo élevé."
+      },
+      "source_sha256": "da11fa53b5b564260002c95e0843a9827ecc7bde0d37933ca190b82fce8c8024",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:20:21.860Z"
+    }
+  }
 }

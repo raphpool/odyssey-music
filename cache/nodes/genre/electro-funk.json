@@ -112,5 +112,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q1325963"
+  "qid": "Q1325963",
+  "l10n": {
+    "fr": {
+      "teaser": "L'electro-funk est un genre hybride qui actualise le funk traditionnel par une production sonore électronique, caractérisé par l'usage de boîtes à rythmes (notamment la TR-808), de synthétiseurs, de vocodeurs et par une esthétique résolument futuriste et robotique.",
+      "article": "L'electro-funk a émergé à la fin des années 1970 et a prospéré tout au long des années 1980 en tant que sous-genre transformateur, synthétisant les grooves syncopés et riches en basses du funk traditionnel avec le potentiel sonore naissant de la technologie musicale électronique. Alors que les groupes de funk cherchaient à moderniser leur son dans un contexte technologique en mutation rapide, ils ont progressivement remplacé les sections de cuivres et les lignes de basse jouées en direct par la puissance froide et précise des synthétiseurs, des boîtes à rythmes et des séquenceurs. La Roland TR-808 est devenue un instrument fondamental, fournissant une base synthétique profonde qui allait influencer les trajectoires du hip-hop et de la techno.\n\nSur le plan culturel, l'electro-funk était une manifestation de l'ère post-soul, avec ses esthétiques futuristes et ses textures robotiques offrant une évasion technologique face aux incertitudes économiques de l'époque. Le genre était défini par plusieurs marqueurs stylistiques clés : l'usage agressif de talkboxes et de vocodeurs pour manipuler les timbres vocaux, des lignes de basse synthétiques angulaires et des structures polyrythmiques conçues pour faire danser les foules. Des pôles géographiques comme Dayton, dans l'Ohio — berceau de pionniers tels que Zapp & Roger — et Minneapolis, où des innovateurs comme Prince et les producteurs Jimmy Jam et Terry Lewis ont redéfini l'intersection entre R&B et funk, ont été cruciaux pour l'évolution du genre. Contrairement à la nature organique et collective du funk des années 1970, l'electro-funk a embrassé l'artificiel, créant un paysage sonore élégant et futuriste qui privilégiait un rythme répétitif et mécanique tout en conservant l'âme mélodique de ses ancêtres. Son impact demeure profond, servant de pont vital entre les traditions centrées sur le groove du canon de la musique noire et les révolutions de la musique électronique de danse qui ont suivi.",
+      "facts": {
+        "era": "Fin des années 1970–1980",
+        "origin": "États-Unis (notamment Dayton, Ohio et Minneapolis, Minnesota)"
+      },
+      "source_sha256": "15aa7dc5d5f94333868843414a6b5404f75066876e58518fd9030ccf3b03f41d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:54:09.228Z"
+    }
+  }
 }

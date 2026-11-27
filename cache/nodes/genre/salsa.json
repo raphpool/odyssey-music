@@ -136,5 +136,19 @@
       "type": "track",
       "name": "La Gozadera"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style vibrant de musique de danse apparu à New York dans les années 1970, fusionnant des rythmes afro-cubains comme le son montuno avec diverses influences caribéennes pour former une identité pan-latino unificatrice.",
+      "article": "La Salsa s'est cristallisée à New York dans les années 1970 en tant que phénomène culturel pan-latino, fondamentalement ancré dans les traditions du son montuno afro-cubain d'Arsenio Rodríguez et dans les arrangements de cuivres de l'ère du Palladium Ballroom. Les cofondateurs de Fania Records, Johnny Pacheco et Jerry Masucci, ont popularisé le label pour commercialiser une gamme variée de sons caribéens, incluant la bomba, la plena, le mambo et la rumba, sous une seule bannière commerciale. Au cœur de la structure du genre se trouve le rythme de la clave, généralement joué avec des bâtons en bois, qui dicte l'interaction rythmique entre les congas, les timbales et la basse. L'évolution du son comprend l'expansion des années 1980 vers la salsa romántica, marquée par l'album de 1984 de José Alberto 'El Canario' intitulé Noches Calientes, et l'essor ultérieur de la scène timba à Cuba, qui a modernisé le genre grâce à une complexité harmonique influencée par le funk et le jazz, que l'on retrouve dans le travail de NG La Banda et Los Van Van.",
+      "facts": {
+        "era": "Années 1960 à aujourd'hui",
+        "origin": "New York (États-Unis), La Havane (Cuba), Porto Rico",
+        "sonic_markers": "160-220 BPM, percussions basées sur la clave (congas, timbales, bongos), sections de cuivres, sections montuno en appel et réponse"
+      },
+      "source_sha256": "deaf49dc5fbc1e042e4efaff4fe8833ac6dba513b54322f55af3fa45b5283f3b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:35:01.708Z"
+    }
+  }
 }

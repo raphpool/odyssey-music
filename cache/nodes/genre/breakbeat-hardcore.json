@@ -136,5 +136,18 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre rave britannique à haute énergie du début des années 1990 qui fusionne des motifs de batterie breakbeat intenses avec des synthés acid-house, des leads hoover et des breakdowns mélodiques euphoriques.",
+      "article": "Le Breakbeat hardcore est un style rave britannique du début des années 1990 qui a synthétisé l'énergie frénétique et rapide de la techno et de l'acid house naissantes avec la polyvalence rythmique des breakbeats dérivés du hip hop. Opérant souvent entre 140 et 155 BPM, le genre est devenu le son par excellence de la culture rave émergente du Royaume-Uni, résonnant dans les fêtes en entrepôt caverneuses et sur les ondes des stations de radio pirates. Il se caractérise par son utilisation intensive de breaks de batterie découpés et échantillonnés — notamment les breaks « Amen », « Think » et « Apache » — qui étaient souvent superposés, pitch-shiftés ou étirés dans le temps pour créer une base percussive dense et syncopée.\n\nAu-delà de son travail de batterie distinctif, le Breakbeat hardcore est défini par un ensemble spécifique de textures sonores qui signalent son époque : le lead « hoover » emblématique (dérivé du Roland Alpha Juno), les pianos house du Korg M1, les hits orchestraux et les courts hooks vocaux anthémiques. Ces éléments étaient organisés en structures adaptées aux DJ, présentant des breakdowns mélodiques extatiques qui pivotaient vers des drops explosifs et chargés en basses. Ce son a capturé l'esprit hédoniste et communautaire du continuum rave britannique. Au fil des années 1990, l'ADN du genre a divergé : ses explorations plus sombres et plus agressives des basses et du rythme ont jeté les bases des scènes jungle et drum and bass en plein essor, tandis que ses tendances plus ensoleillées et mélodiques ont aidé à cristalliser le happy hardcore. Son héritage demeure l'un des chapitres les plus significatifs de l'évolution de la musique électronique de danse, représentant un moment charnière où la culture du sampling et la mécanique du dancefloor sont entrées en collision pour forger une esthétique distincte à haute intensité.",
+      "facts": {
+        "era": "Années 1990 (début)",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "c8e2982f3885badf1d8d8f3291cd07ba677b0062c58c8146b18769d62351e96c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:06:41.892Z"
+    }
+  }
 }

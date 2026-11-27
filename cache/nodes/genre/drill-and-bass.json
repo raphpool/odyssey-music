@@ -101,5 +101,19 @@
       "type": "track",
       "name": "Plug 1: Visible Crater Funk"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un dérivé du drum and bass du milieu des années 1990 qui a réutilisé des éléments de jungle pour en faire des compositions électroniques complexes et non dansantes.",
+      "article": "Apparu au Royaume-Uni au milieu des années 1990, le drill and bass est un sous-genre du drum and bass défini par des artistes IDM expérimentant avec des textures jungle et breakbeat. Les producteurs utilisaient des logiciels audio numériques pour séquencer des rythmes frénétiques et irréguliers qui rejetaient souvent l'accessibilité traditionnelle des pistes de danse. Le critique Simon Reynolds a décrit le style comme de la « jungle faite par des non-junglists pour des non-junglists », caractérisée par un collage sampladelic et des lignes de basse mutantes. Luke Vibert a été le pionnier de ce son avec ses EP de 1995 sous le pseudonyme Plug, en commençant par la sortie de Plug 1: Visible Crater Funk. Aphex Twin a fait progresser le style avec les EP AFX de 1995 intitulés Hangable Auto Bulb, tandis que Squarepusher a contribué avec le LP de 1996 Feed Me Weird Things. Le genre inclut également l'album de μ-Ziq de 1997, Lunatic Harness, que The Quietus a identifié comme un exemple immaculé de cette approche expérimentale. À la fin des années 1990, le style s'était largement dissipé, contribuant finalement à engendrer le breakcore, plus frénétique.",
+      "facts": {
+        "era": "milieu des années 1990",
+        "origin": "Royaume-Uni",
+        "sonic_markers": "Breakbeats frénétiques et irréguliers, sous-basses lourdes, collage sampladelic, manipulation numérique expérimentale."
+      },
+      "source_sha256": "e23488164291b221d877abdb886bbfac108a9d87112422926d65b1ebc1b37250",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:35:58.172Z"
+    }
+  }
 }

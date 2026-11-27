@@ -215,5 +215,19 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique pop apparu à la fin des années 1970, caractérisé par le synthétiseur comme instrument dominant, remplaçant l'instrumentation traditionnelle du groupe de rock par des textures synthétisées, des rythmes programmés et des séquençages électroniques.",
+      "article": "La Synth-pop est un genre séminal de musique électronique qui a fait passer le synthétiseur de la périphérie du rock progressif et de l'expérimentation en studio au centre de la scène musicale populaire. Apparu à la fin des années 1970 en Allemagne, au Japon et au Royaume-Uni, il a défini un nouveau paysage sonore enraciné dans les possibilités du synthétiseur, de la boîte à rythmes et du séquenceur. Les premiers pionniers se sont largement inspirés de la rigueur structurelle du Krautrock allemand — notamment Kraftwerk — et des textures électroniques de l'art rock et du disco, créant une musique qui évitait souvent intentionnellement l'instrumentation rock traditionnelle et les styles de jeu virtuoses. Au lieu de cela, la Synth-pop a privilégié des « textures synthétiques » et une forme de « rigidité robotique » qui contrastait fortement avec les fondations organiques basées sur le blues du rock précédent.\n\nL'évolution du genre était inextricablement liée à la démocratisation technologique. À mesure que les synthétiseurs polyphoniques devenaient plus abordables et que la norme MIDI fournissait un langage commun permettant aux instruments de communiquer, la Synth-pop est entrée dans un âge d'or commercial au début des années 1980. Des groupes comme The Human League, Depeche Mode et Gary Numan ont transformé ce qui était autrefois considéré comme un expérimental « étrange » et « stérile » en un langage pop vibrant et en tête des classements. Ce phénomène a été encore accéléré par la seconde invasion britannique et l'essor des plateformes de clips vidéo comme MTV, qui ont amplifié l'accent mis par le genre sur l'esthétique et le style. Au milieu des années 1980, la Synth-pop était devenue une force culturelle dominante, se ramifiant en une dance-pop sophistiquée et influençant les scènes house et techno émergentes à Détroit et à travers l'Europe. Malgré les critiques initiales concernant son prétendu manque de profondeur émotionnelle ou de « vraie » musicalité, la Synth-pop a intégré de façon permanente la synthèse électronique dans l'ADN de la musique pop mondiale, ouvrant la voie à pratiquement tous les genres orientés vers la danse qui ont suivi.",
+      "facts": {
+        "era": "Fin des années 1970–années 1980 (Âge d'or) ; années 2000–présent (Revivals)",
+        "origin": "Allemagne, Japon et Royaume-Uni",
+        "sonic_markers": "Utilisation prédominante de synthétiseurs, de boîtes à rythmes et de séquenceurs ; rejet des structures de guitare basées sur le blues ; textures synthétiques ; rythmes programmés et répétitifs ; styles de production minimalistes ; interprétation vocale robotique ou stérile."
+      },
+      "source_sha256": "6f5324fee31ceb497bcba5cd94807549206f2e06b59ac29277e46bce31cac63b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:36:58.200Z"
+    }
+  }
 }

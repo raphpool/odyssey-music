@@ -112,5 +112,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q727803"
+  "qid": "Q727803",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du rock progressif originaire de l'Angleterre de la fin des années 1960, caractérisé par un mélange idiosyncrasique de jazz-fusion, de psychédélisme et de pop avant-gardiste fantaisiste, défini par des membres de groupes hautement fluides et interconnectés.",
+      "article": "La Canterbury Scene, souvent désignée sous le nom de « Canterbury Sound », est un mouvement musical très influent, bien que vaguement défini, qui a émergé de la ville de Canterbury, dans le Kent, en Angleterre, à la fin des années 1960. Bien qu'il ne soit pas strictement lié à cette situation géographique — de nombreux participants clés ayant déménagé à Londres ou ailleurs au début de leur carrière —, le terme sert de raccourci essentiel pour une intersection esthétique spécifique du rock progressif, du jazz-fusion, du psychédélisme et de la composition avant-gardiste. Musicalement, la scène est réputée pour son mélange idiosyncrasique de sensibilités pop fantaisistes et surréalistes avec des signatures rythmiques complexes, souvent asymétriques, et une improvisation jazz virtuose.\n\nAu cœur de la Canterbury Scene se trouvait un réseau incroyablement fluide de musiciens, les membres migrant constamment entre les groupes, créant une atmosphère collaborative et familiale qui a persisté pendant des décennies. Ce chevauchement de personnel — impliquant des figures clés telles que Robert Wyatt, Kevin Ayers, Daevid Allen et Dave Stewart — a abouti à un « ADN » musical cohérent caractérisé par une production claire, une utilisation fréquente des claviers (en particulier l'orgue et le piano électrique) et une approche unique de l'harmonie qui évitait souvent les tropes standards du blues-rock au profit de structures jazz modales plus exigeantes. Souvent décrite comme un coin « livresque » ou « excentrique » du monde du rock progressif britannique, le mouvement reposait autant sur la juxtaposition du sérieux et de l'absurde que sur la prouesse technique. L'héritage de la scène est immense, non seulement pour les albums phares produits par des groupes comme Soft Machine, Caravan et Gong, mais aussi pour son rôle fondateur dans le développement du Rock in Opposition (RIO) et du paysage avant-progressif plus large. Bien que certains participants aient historiquement rejeté l'étiquette « Canterbury » comme une simplification journalistique excessive, le terme reste le moyen le plus durable de catégoriser ce collectif de visionnaires progressifs remarquablement créatif et interconnecté.",
+      "facts": {
+        "era": "fin des années 1960 au milieu des années 1970",
+        "origin": "Canterbury, Kent, Angleterre"
+      },
+      "source_sha256": "dcecc5e37f1a1cb44cdcd6114ff2eb2cc61fa554a5016aeb216594ea970fed17",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:59:23.294Z"
+    }
+  }
 }

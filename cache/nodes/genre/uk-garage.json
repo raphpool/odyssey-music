@@ -143,5 +143,18 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique électronique originaire du Royaume-Uni apparu à la fin des années 1990, connu pour ses motifs de batterie syncopés 2-step, ses basses profondes et ses échantillons vocaux R&B découpés.",
+      "article": "Le UK Garage, souvent abrégé en UKG, est un genre séminal de musique électronique apparu au Royaume-Uni au milieu et à la fin des années 1990. Né de la fascination de la scène rave britannique pour les versions instrumentales accélérées des morceaux de « garage house » américains, le son a rapidement évolué vers un style distinct défini par sa complexité rythmique et ses fondations axées sur les basses. Au tournant du millénaire, le UK Garage était devenu une force dominante de la culture populaire britannique, caractérisé par ses motifs de batterie 2-step emblématiques — où la grosse caisse et la caisse claire sont retirées du rythme house traditionnel à quatre temps — ses charleys syncopés et ses échantillons vocaux R&B découpés et pitchés vers le haut.\n\nÀ mesure que le genre a mûri, sa palette sonore s'est élargie, fortement influencée par les scènes vibrantes de jungle et de drum and bass du Royaume-Uni, menant à l'incorporation de lignes de basse profondes de type « Reese » et « Dred ». Cette évolution a créé une tension unique entre les éléments mélodiques et soul empruntés au R&B et l'énergie brute et agressive de la musique rave. Bien que le pic commercial du genre ait eu lieu vers 2000, son influence s'est avérée durable. À mesure que la scène s'est fragmentée, elle a fourni l'ADN musical essentiel à plusieurs genres ultérieurs, notamment le grime, le dubstep et la bassline house. Aujourd'hui, l'héritage du UK Garage persiste en tant que pilier fondamental de la musique dance britannique, célébré à la fois pour son impact historique sur l'underground londonien et pour ses innovations techniques dans la programmation des rythmes.",
+      "facts": {
+        "era": "Années 1990-2000",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "c5bb6783d58600f64ea1be6b44ee12dc1735503d85f5a41c39116dc2b4fef9bc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:16:55.054Z"
+    }
+  }
 }

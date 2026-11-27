@@ -102,5 +102,19 @@
       "type": "track",
       "name": "Na Pavuna"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Genre musical et style de danse brésiliens fondamentaux, ancrés dans les percussions afro-brésiliennes et les rythmes ruraux, devenus un symbole culturel majeur à Rio de Janeiro au début du XXe siècle.",
+      "article": "Issu des communautés afro-brésiliennes de Bahia à la fin du XIXe siècle, la samba s'est transformée en un genre musical urbain moderne dans le Rio de Janeiro des années 1920. La chanson « Pelo Telefone », enregistrée par Baiano en 1917, est largement reconnue comme le début marquant de la samba dans l'industrie discographique brésilienne. À la fin des années 1920, des musiciens du quartier d'Estácio, dont Ismael Silva, ont innové avec une structure rythmique syncopée souvent décrite par l'onomatopée « bum bum paticumbum pugurumdum ». Ce paradigme d'Estácio a remplacé le style « samba-maxixe » antérieur et a établi les bases des écoles de samba modernes. L'instrumentation traditionnelle comprend le pandeiro, la cuíca, le tamborim, le ganzá et le surdo, souvent complétés par la guitare classique et le cavaquinho. En 2005, l'UNESCO a déclaré la « samba de roda » régionale patrimoine culturel immatériel de l'humanité, tandis que le gouvernement brésilien a accordé plus tard un statut similaire à la samba carioca et à ses sous-variantes, telles que le partido-alto et la samba de enredo.",
+      "facts": {
+        "era": "fin du XIXe siècle à nos jours",
+        "origin": "Bahia et Rio de Janeiro, Brésil",
+        "sonic_markers": "mesure à 2/4, rythme syncopé, instrumentation incluant surdo, pandeiro, cuíca, tamborim, cavaquinho et guitare classique."
+      },
+      "source_sha256": "b7949af2a165cd00ece1d06388b92ff1238a0a1c1212f6e71734c9cf78870e46",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:35:03.254Z"
+    }
+  }
 }

@@ -106,5 +106,19 @@
       "type": "track",
       "name": "Contradanza"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Une vaste catégorie de musique latine rythmique et axée sur la danse, originaire des Caraïbes hispanophones et des régions environnantes.",
+      "article": "Définie au milieu du XXe siècle, la Tropical Music englobe un large éventail de styles rythmiques axés sur la danse, originaires des Caraïbes hispanophones et de ses territoires côtiers environnants. Le genre a émergé en tant que catégorie commerciale destinée à regrouper des styles caribéens comme la cumbia et le son cubano, distincts de la musique folklorique intérieure telle que le norteño. Ancrée à la fois dans les traditions européennes et africaines, elle se caractérise par la binarisation des rythmes ternaires, un processus développé pour la première fois à Cuba qui a fini par influencer le paysage musical latino-américain dans son ensemble. L'instrumentation se concentre souvent sur un mélange d'instruments d'origine européenne comme le piano et la trompette avec des éléments d'ascendance africaine tels que les congas et les bongos. Bien que des fondations acoustiques traditionnelles définissent son histoire — remontant à la popularité de la Contradanza cubaine au XIXe siècle — les praticiens contemporains utilisent de plus en plus de synthétiseurs et de boîtes à rythmes pour moderniser le son. Le format demeure un pilier de la radio latine, avec des variations régionales servant de piliers à l'identité culturelle dans des pays allant de la République dominicaine à la Colombie.",
+      "facts": {
+        "era": "XIXe siècle à nos jours",
+        "origin": "Caraïbes hispanophones, incluant Cuba, Porto Rico, la République dominicaine et la côte colombienne",
+        "sonic_markers": "Polyrhythmes syncopés, battements ternaires binarisés, tempos axés sur la danse ; l'instrumentation inclut congas, bongos, tres, piano, trompette, et de plus en plus de synthétiseurs/boîtes à rythmes."
+      },
+      "source_sha256": "856f45aba87b7a40f0b0994dce51d08e1a25a9f99e3cc82672ca435500517ede",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:37:05.808Z"
+    }
+  }
 }

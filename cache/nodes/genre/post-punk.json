@@ -241,5 +241,18 @@
       "type": "track",
       "name": "Damaged Goods"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Le post-punk est une évolution expérimentale et artistique du punk rock apparue à la fin des années 1970, caractérisée par des textures plus sombres et atmosphériques, une complexité rythmique et l'incorporation de genres tels que le funk, le dub et la musique électronique.",
+      "article": "Le post-punk est apparu à la fin des années 1970 en tant que ramification transformatrice et expérimentale de l'explosion initiale du punk rock. Alors que le punk se définissait par sa simplicité brute et agressive ainsi que par son esprit anti-établissement, le post-punk a cherché à démanteler ces mêmes frontières, troquant les structures traditionnelles à trois accords pour des textures atmosphériques, avant-gardistes et souvent mélancoliques. Le genre a agi comme un laboratoire sonore, absorbant des influences du dub, du funk, du disco, de la musique électronique et du krautrock pour créer un son plus sombre, plus intellectuel et nettement plus complexe sur le plan rythmique que son prédécesseur.\n\nPrincipalement centré au Royaume-Uni, mais avec des racines essentielles dans des villes comme New York, le mouvement a poussé la musique dans un état « post- » où les règles du rock étaient réécrites en temps réel. Les groupes adoptaient souvent une perspective lyrique sardonique ou cynique, s'éloignant des slogans politiques explicites pour se tourner vers l'introspection, l'aliénation et les récits surréalistes. Des groupes emblématiques tels que Joy Division, Siouxsie and the Banshees, The Fall et Gang of Four ont illustré la polyvalence du mouvement, du minimalisme glacial et austère de Joy Division aux critiques sociales angulaires et imprégnées de funk de Gang of Four. Le genre se caractérisait également par son éthique « do-it-yourself », l'esprit d'indépendance hérité du punk ayant alimenté l'essor de labels indépendants influents et d'un réseau de production créative qui allait influencer le rock alternatif et indépendant pendant des décennies. Vers 1984, la vague initiale s'était dissipée, mais son ADN, défini par des rythmes lourds de basse, des superpositions de guitares atmosphériques et un refus d'être catégorisé, demeure une influence fondamentale sur les artistes modernes de l'indie, de l'industriel et du dance-punk.",
+      "facts": {
+        "era": "Fin des années 1970 – Milieu des années 1980",
+        "origin": "Royaume-Uni et États-Unis"
+      },
+      "source_sha256": "28d66bc287de5961054b9e8a30ad8e0e1d30957ea55a180da9b7a6d4132a98fe",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:33:05.587Z"
+    }
+  }
 }

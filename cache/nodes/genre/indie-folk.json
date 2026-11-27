@@ -136,5 +136,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q1317816"
+  "qid": "Q1317816",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical alternatif polyvalent qui mêle une instrumentation acoustique ancrée dans le folk et une narration traditionnelle aux sensibilités DIY, expérimentales et introspectives de l'indie rock.",
+      "article": "L'indie folk, également largement connu sous le nom d'alternative folk, est un genre musical vaste et souvent nébuleux qui a émergé dans les années 1990 en tant qu'hybride de l'éthique expérimentale de l'indie rock et de la narration traditionnelle axée sur l'acoustique de la musique folk. Plutôt que de s'en tenir strictement aux racines préservationnistes du folk traditionnel, les musiciens d'indie folk intègrent fréquemment des techniques de production lo-fi, des structures d'écriture contemporaines et une perspective lyrique distinctement introspective, souvent émotionnellement brute. Le genre se caractérise par son utilisation d'instruments acoustiques — mettant fréquemment en vedette des guitares, des banjos, des mandolines et des ukulélés — réimaginés à travers une sensibilité rock alternative. Il puise une profonde inspiration chez les auteurs-compositeurs-interprètes des années 1960 et 1970 tels que Bob Dylan, Neil Young et Joni Mitchell, tout en penchant simultanément vers l'expérimentalisme brut associé à des artistes comme The Velvet Underground et, dans les années 1990, l'artisanat musical influent et vulnérable d'Elliott Smith.\n\nL'histoire de l'indie folk s'étend sur plusieurs vagues. Elle a commencé avec des artistes des années 1990 qui ont apporté une touche alternative plus granuleuse à la musique acoustique, tels qu'Ani DiFranco et Will Oldham. Dans les années 2000, des labels spécialisés comme Saddle Creek, Barsuk et Sub Pop ont fourni l'infrastructure qui a permis au genre de prospérer, menant au succès grand public de groupes comme Fleet Foxes et Mumford & Sons. Alors que la seconde moitié des années 2000 et le début des années 2010 ont vu une montée du son « stomp and holler » ou « stomp clap hey », le genre a continué d'évoluer. Ces dernières années, des artistes incluant Phoebe Bridgers, Julien Baker et Taylor Swift ont revitalisé le profil du genre, mettant l'accent sur une écriture intime et très littéraire qui reflète les anxiétés contemporaines et des récits profondément personnels. L'indie folk demeure un espace vital pour les artistes qui privilégient la narration authentique et la vulnérabilité sonore plutôt qu'une production léchée, consolidant sa place en tant que pierre angulaire du paysage alternatif moderne.",
+      "facts": {
+        "era": "depuis les années 1990",
+        "origin": "États-Unis et Royaume-Uni"
+      },
+      "source_sha256": "81e02684b7e9ec4d278639644aa1538f4a13713af3ab65d61a2b1391698cc3df",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:13:59.788Z"
+    }
+  }
 }

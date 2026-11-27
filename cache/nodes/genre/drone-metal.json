@@ -123,5 +123,18 @@
       "name": "Feedbacker"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de heavy metal qui mélange les tempos lents et écrasants ainsi que la lourdeur extrême du doom metal avec les tonalités soutenues et de longue durée de la musique drone minimaliste.",
+      "article": "Le drone metal, souvent appelé drone doom, est un style de heavy metal distinct et hautement spécialisé qui fusionne le poids écrasant et au ralenti du doom metal avec les explorations tonales soutenues et hypnotiques de la musique drone minimaliste. Apparu au début des années 1990 dans le nord-ouest du Pacifique américain, le genre se caractérise par son évitement des motifs rythmiques traditionnels, privilégiant plutôt un feedback de guitare massif et saturé de réverbération, des structures de chansons allongées et un sentiment écrasant d'intensité physique des sub-basses. Les musiciens dans ce domaine traitent souvent leurs instruments davantage comme des sculpteurs sonores ou des architectes que comme des auteurs-compositeurs traditionnels, construisant des paysages atmosphériques tentaculaires que les auditeurs décrivent souvent comme étant à la fois méditatifs et physiquement punitifs.\n\nLa genèse du genre est largement attribuée au groupe Earth, fondé par Dylan Carlson à Olympia, dans l'État de Washington. En dépouillant le doom metal traditionnel de ses clichés basés sur le blues et en adoptant les théories minimalistes d'artistes comme La Monte Young et Terry Riley, Earth a établi un modèle sonore qui influencerait des décennies de metal expérimental. Tout au long de la fin des années 1990 et des années 2000, le genre s'est développé à l'international grâce aux efforts de groupes influents comme Sunn O))), dont le volume monumental et la présentation théâtrale ont propulsé le drone metal dans le domaine de l'art sonore d'avant-garde, et du groupe japonais Boris, qui a exploré les limites extérieures du feedback et de la profondeur texturale.\n\nAu-delà de ses racines musicales, le drone metal s'engage fréquemment dans des mouvements artistiques contemporains plus larges. Les collaborations entre des artistes comme Stephen O'Malley et le sculpteur Banks Violette ont établi des parallèles directs entre l'esthétique du genre et le minimalisme de Donald Judd ou de Richard Serra. L'expérience d'écoute, telle que décrite par des critiques comme John Wray, peut donner l'impression moins d'entendre une chanson conventionnelle que de subir un lent déplacement tectonique du son. En privilégiant la pression sonore soutenue sur la mélodie ou les formes couplet-refrain standard, le drone metal demeure un sous-genre vital, bien que difficile, qui continue de brouiller les pistes entre musique lourde, composition ambient et art d'installation.",
+      "facts": {
+        "era": "depuis les années 1990",
+        "origin": "Olympia, Washington, États-Unis"
+      },
+      "source_sha256": "214d72c0b928347a0358d5c55707c77af5a4847da3d9e19c1d5e355fb65bcce1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:12:00.667Z"
+    }
+  }
 }

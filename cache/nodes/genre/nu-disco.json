@@ -95,5 +95,18 @@
       "name": "Metro Area"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un mouvement de musique de danse moderne qui fait revivre l'esthétique du disco des années 1970 et de l'Euro-disco des années 1980 grâce à une production contemporaine soignée et des structures de composition traditionnelles.",
+      "article": "Le Nu-disco est un genre de musique de danse du XXIe siècle défini par une synthèse contemporaine du disco de la fin des années 1970, de l'Euro-disco des années 1980 et de la musique électronique de danse du début des années 1990. Apparu au milieu des années 1990, particulièrement au Royaume-Uni, le mouvement est né de la culture underground des disco edits, où les DJ utilisaient des bandes magnétiques et des ciseaux pour étendre les sections propices à la danse de morceaux classiques de funk et de disco. Bien que le genre partage son ADN avec la house music, il se distingue de styles comme la French house par son recours à une instrumentation originale programmée ou jouée en direct plutôt qu'à un échantillonnage intensif, et par une structure de composition qui intègre souvent des éléments pop traditionnels tels que des couplets, des refrains et des breakdowns.\n\nLes pionniers du genre, incluant des artistes britanniques comme les Idjut Boys et Faze Action, ont puisé une grande inspiration dans les sonorités post-disco et dub du début des années 1980. Tout au long des années 2000, le terme a gagné en popularité alors que des artistes comme Todd Terje et des labels tels que Nuphonic Records et l'influent Razor-N-Tape ont aidé à combler le fossé entre la révérence pour l'esthétique rétro et la production club moderne. Contrairement à la nature constante et répétitive de la disco house, le Nu-disco préserve la sensibilité dynamique et mélodique de la musique qui l'a inspiré, intégrant souvent des synthétiseurs, des lignes de basse funky et des techniques de production haute fidélité soignées qui assurent sa pertinence sur les pistes de danse modernes. L'album éponyme de 2002 de Metro Area est largement considéré comme une œuvre fondatrice qui a solidifié l'esthétique du genre, mélangeant des sensibilités deep house avec un son de revival disco sophistiqué et riche en sonorités analogiques.",
+      "facts": {
+        "era": "Années 2000-présent",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "51005fdd79a65d836218a304e577c381b13b66027e77c1a16d5a9a7d38e02dc4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:32:57.417Z"
+    }
+  }
 }

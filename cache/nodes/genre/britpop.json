@@ -75,5 +75,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q189045"
+  "qid": "Q189045",
+  "l10n": {
+    "fr": {
+      "teaser": "La Britpop était un mouvement rock britannique des années 1990 qui s'inspirait des mélodies pop-guitare des années 1960, évoluant en un phénomène culturel généralisé connu sous le nom de « Cool Britannia ». On se souvient surtout de ce mouvement pour ses riffs de guitare accrocheurs, ses thèmes lyriques centrés sur le Royaume-Uni et la rivalité intense, alimentée par les médias, entre des groupes de premier plan comme Oasis et Blur.",
+      "article": "La Britpop fut un mouvement déterminant de la musique rock britannique dans les années 1990, caractérisé par un retour conscient aux traditions d'écriture mélodique axées sur la guitare, établies par les Beatles et la British Invasion des années 1960. Émergeant comme un contre-mouvement dynamique face aux scènes grunge et rock alternatif qui dominaient les États-Unis, la Britpop est devenue un pilier central du moment culturel « Cool Britannia ». Il s'agissait rarement d'un son monolithique ; c'était plutôt une affiliation libre de groupes partageant une fixation sur des thèmes, une mode et des attitudes distinctement britanniques. À son apogée au milieu des années 1990, le mouvement était dominé par une rivalité très médiatisée entre Oasis et Blur, qui a captivé l'imagination du public et rempli les gros titres nationaux.\n\nOasis, originaire de Manchester, représentait une approche plus ouvrière et anthémique qui privilégiait une assurance rock-and-roll brute et des refrains classiques à reprendre en chœur. À l'inverse, Blur, avec ses origines dans la scène des écoles d'art londoniennes, a infusé sa sensibilité pop d'ironie, de récits axés sur les personnages et d'un sens du « camp » qui faisait référence à diverses histoires musicales britanniques, des Kinks au glam rock. D'autres groupes essentiels, tels que Pulp, ont ajouté de l'esprit intellectuel et des commentaires sociaux au mélange, prouvant que le mouvement concernait autant l'identité sociétale que la musique. Bien que le genre se soit largement estompé à la fin des années 1990 à mesure que les groupes évoluaient ou se séparaient, son influence reste fondamentale dans le canon du rock alternatif britannique, liant durablement l'héritage de la pop des années 1960 à l'ère moderne.",
+      "facts": {
+        "era": "années 1990",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "084fb06c53c319b636e12451e1acde0dc3abe429f8d8f191e014f2e5f59438b9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:10:56.486Z"
+    }
+  }
 }

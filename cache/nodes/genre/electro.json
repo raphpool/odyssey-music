@@ -184,5 +184,18 @@
       "type": "track",
       "name": "Nunk"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "L'electro est un genre pionnier de musique électronique de danse apparu au début des années 1980, caractérisé par l'utilisation prédominante de la boîte à rythmes Roland TR-808, une synthèse analogique lourde et une esthétique futuriste et robotique intégrant souvent des voix traitées au vocodeur.",
+      "article": "L'electro a émergé au début des années 1980 en tant que genre transformateur de musique électronique de danse, né à l'intersection du hip-hop, du funk et des capacités naissantes de la synthèse analogique. Développé principalement dans des villes comme New York et Detroit, le genre s'est distingué par une esthétique austère et mécanique qui s'éloignait de la chaleur organique du disco de la fin des années 1970. Au cœur du son electro se trouve la présence lourde et emblématique de la boîte à rythmes Roland TR-808. La 808 a fourni une base rythmique caractérisée par des grosses caisses syncopées et des claps nets et tranchants qui sont devenus l'architecture sonore de tout le mouvement. Les producteurs ont utilisé cette boîte à rythmes peu coûteuse et facilement disponible pour générer des fréquences basses massives capables de faire trembler les systèmes de sonorisation des boîtes de nuit, créant une expérience physique essentielle au succès de la musique.\n\nAu-delà de la pulsation rythmique, le genre a adopté une texture futuriste, souvent inspirée par la science-fiction. L'instrumentation reposait largement sur des synthétiseurs analogiques, utilisant des lignes de basse séquencées, des riffs en arpèges et des effets sonores manipulés pour évoquer un sentiment d'exploration mécanique. Les voix, lorsqu'elles étaient présentes, étaient fréquemment traitées par des vocodeurs ou des talkboxes, renforçant encore la qualité robotique et déshumanisée qui est devenue une marque de fabrique du style. Des titres tels que « Planet Rock » d'Afrika Bambaataa et « Clear » de Cybotron servent de textes fondateurs au genre, mêlant l'urgence rythmique du hip-hop à la profondeur synthétique et atmosphérique de l'électronique inspirée par Kraftwerk. Bien que le genre ait connu un déclin au milieu des années 1980 alors que le rap s'orientait vers des esthétiques plus dures et plus riches en samples, son ADN est resté omniprésent, influençant le développement de la techno, de la house et de la bass music moderne. Au cours des décennies suivantes, des résurgences intermittentes ont solidifié le statut de l'electro en tant que pilier fondamental de la culture de la musique électronique, démontrant comment une innovation technologique dans les boîtes à rythmes au début des années 1980 a créé un modèle sonore durable pour l'avenir.",
+      "facts": {
+        "era": "depuis les années 1980",
+        "origin": "New York, Detroit, Tokyo"
+      },
+      "source_sha256": "76c153e555da641b963377e0cab08f9de153343456dd6cf73639efdc5f55b6fd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:12:52.565Z"
+    }
+  }
 }

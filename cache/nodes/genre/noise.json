@@ -161,5 +161,19 @@
       "name": "20 Jazz Funk Greats"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical expérimental vaste, caractérisé par l'utilisation intentionnelle de sons discordants, non traditionnels et abrasifs pour défier les structures de chansons conventionnelles, la tonalité et la binarité entre musique et bruit.",
+      "article": "Le Noise est un genre qui rejette les conventions musicales traditionnelles, s'imposant comme une pratique sonore définie par son refus de la mélodie, de l'harmonie et de la structure de chanson au profit des textures, de la distorsion et d'une production sonore extrême. Plutôt qu'un ensemble statique de règles formelles, le Noise fonctionne comme une position de résistance, brouillant souvent la distinction entre performance musicale intentionnelle et son incident. Historiquement, ses racines remontent aux mouvements d'avant-garde du début du XXe siècle comme le futurisme italien — notamment le manifeste « Art of Noises » de Luigi Russolo — et aux développements ultérieurs de la musique concrète, qui a ouvert la voie à l'incorporation de sons non musicaux dans la composition. Dans les années 1970 et 1980, le genre s'est solidifié en tant que force culturelle distincte, puisant son influence dans les textures abrasives de la musique industrielle, l'art de la performance transgressif de figures comme Throbbing Gristle et l'énergie anarchique du punk.\n\nLe Noise moderne est un domaine vaste et hétérogène qui englobe tout, de la « réduction brutale » de l'onkyo (expérimentalisme japonais caractérisé par des ondes sinusoïdales subtiles et le silence) aux assauts maximalistes et à haut décibel de « mur de son » d'artistes comme Merzbow. Au fond, le Noise défie la réception passive de l'auditeur, exigeant un engagement actif avec la matérialité du son. Que ce soit par le larsen, la synthèse électronique dure ou la manipulation de sons trouvés, le genre fonctionne comme une interrogation de l'« industrie culturelle » et des limites de ce qui est considéré comme une forme musicale acceptable, évoluant continuellement en embrassant les sons mêmes que la musique traditionnelle cherche à exclure.",
+      "facts": {
+        "era": "Début du XXe siècle à aujourd'hui",
+        "origin": "Mondial, avec des développements significatifs en Italie (futurisme), en France (musique concrète) et au Japon.",
+        "sonic_markers": "Volume extrême, distorsion dure, larsen, atonalité, absence de mesure traditionnelle, textures statiques et enregistrements de terrain."
+      },
+      "source_sha256": "177b2b476f5875cc160efb71e764cdd78c5c86d45f9995cb0fc7f6dc02b5fca3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:32:05.669Z"
+    }
+  }
 }

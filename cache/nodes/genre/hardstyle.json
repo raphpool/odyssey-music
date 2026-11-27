@@ -110,5 +110,19 @@
       "type": "track",
       "name": "Eriel"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique électronique caractérisé par des grosses caisses distordues et transposées, ainsi que des rythmes rapides ancrés dans le hard trance et le hardcore de la fin des années 90.",
+      "article": "Le Hardstyle a émergé à la fin des années 1990 aux Pays-Bas, en Belgique et en Italie, se développant à partir d'un mélange de hard trance, de techno et de hardcore. Le genre est défini par une grosse caisse distordue, utilisant souvent la technique du « reverse bass » où la grosse caisse elle-même est superposée et égalisée pour créer une tonalité de basse distincte et soutenue. Les premiers morceaux étaient produits à 140 BPM, bien que les productions contemporaines atteignent fréquemment 150 à 160 BPM. Le développement clé de l'industrie a été porté par la société néerlandaise Q-dance, qui a organisé l'événement inaugural Qlubtempo à Zaandam en 2000 et le premier Qlimax en 2001. Au début des années 2000, des labels tels que Fusion Records — foyer de DJ Zany — et Scantraxx de Dov Elkabas sont devenus centraux pour la distribution de la scène. Vers 2010, le son s'est ramifié en « euphoric hardstyle », connu pour ses mélodies émotives, et en « rawstyle », qui privilégie des textures plus sombres influencées par l'industriel et des « screeches » agressifs.",
+      "facts": {
+        "era": "Fin des années 1990 à aujourd'hui",
+        "origin": "Pays-Bas, Belgique et Italie",
+        "sonic_markers": "140-160 BPM, grosses caisses saturées avec lignes de basse transposées, synthétiseurs « screech » dissonants, échantillons vocaux."
+      },
+      "source_sha256": "b4858663805c2205573e19f9e4159fd5de55629c0e10533404758f2a0512da83",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:28:01.660Z"
+    }
+  }
 }

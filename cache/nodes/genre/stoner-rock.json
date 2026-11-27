@@ -122,5 +122,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q617240"
+  "qid": "Q617240",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de fusion rock lourd et psychédélique défini par des tempos lents à modérés, des riffs de guitare accordés bas et saturés, et un son hypnotique axé sur le groove, fortement influencé par le doom et l'acid rock des années 1970.",
+      "article": "Le stoner rock, un genre de fusion qui s'est cristallisé au début des années 1990 au sein de la scène du désert californien, représente une réinvention lourde et psychédélique du rock et du metal. À sa base, le genre est défini par un tempo lent à modéré, des guitares accordées bas et un son massif, imprégné de fuzz, qui privilégie le groove à la vitesse technique. Il tire une lignée stylistique importante de l'acid rock et du doom metal des années 1970, en particulier des innovations centrées sur le riff de pionniers comme Black Sabbath et Blue Cheer. Le surnom « stoner », souvent contesté par les artistes eux-mêmes, reflète l'atmosphère détendue et hypnotique du genre ainsi que son association fréquente avec la culture du cannabis.\n\nDes groupes comme Kyuss et Sleep sont largement considérés comme les piliers fondateurs du genre. Kyuss, originaire de Palm Desert, a été le pionnier de l'esthétique « desert rock » — une approche du hard rock aride et brûlée par le soleil qui privilégiait les longues improvisations et une production naturelle et brute. Sleep, à l'inverse, s'est davantage penché vers le côté doom metal du spectre, produisant des morceaux monolithiques et éprouvants qui repoussaient les limites de la durée et du volume. Bien que le genre se soit développé mondialement et se soit fragmenté en divers sous-styles — croisant souvent le sludge, le garage punk et le metal progressif — il reste ancré par son attachement aux valeurs de production « rétro », à l'amplification lourde et à une vénération pour le riff de guitare emblématique et écrasant. Que les groupes individuels acceptent ou non l'étiquette, le genre persiste comme une célébration des racines primales et hypnotiques de la musique rock, actualisée pour une expérience d'écoute moderne et souvent transcendante.",
+      "facts": {
+        "era": "depuis les années 1990",
+        "origin": "Californie, États-Unis"
+      },
+      "source_sha256": "fecf5029d29e7250dbcd664b2e70be3fd21040604d717b95f55b0e6d1e738be5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:16:00.776Z"
+    }
+  }
 }

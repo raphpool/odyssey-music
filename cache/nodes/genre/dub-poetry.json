@@ -80,5 +80,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q1113204"
+  "qid": "Q1113204",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de poésie performée ancré dans le reggae jamaïcain et la musique dub, caractérisé par des textes déclamés de manière rythmique et axés sur le commentaire politique et social.",
+      "article": "Le Dub poetry est une forme puissante d'art performatif ancrée dans la diaspora caribéenne, émergeant dans les années 1970 à l'intersection de la musique dub et de la conscience politique. Initialement en plein essor à Kingston, en Jamaïque, et trouvant une expression profonde au sein des communautés immigrées de Londres et de Toronto, le genre sert de vecteur rythmique et parlé pour la critique sociale. Contrairement à la nature spontanée et improvisée du toasting dancehall, le Dub poetry se caractérise par des textes préparés et hautement rythmiques, souvent déclamés avec une intention dramatique. Bien que de nombreux poètes de Dub poetry se produisent sur des pistes d'accompagnement reggae soigneusement élaborées, le genre honore également la tradition a cappella, où la voix du poète — chargée d'accentuation, de cadence et de nuances gestuelles — sert d'instrument principal.\n\nAu cœur du genre se trouve un outil pour articuler la lutte, l'héritage et la réalité sociopolitique de l'expérience noire. Des artistes comme Linton Kwesi Johnson, qui a inventé le terme en 1976, ont transformé le paysage avec des œuvres séminales comme Dread Beat an' Blood, établissant un précédent pour l'intellectualisation du rythme reggae en tant que fondement de la poésie. Des figures telles que Oku Onuora, Benjamin Zephaniah et Lillian Allen ont encore élargi la portée du genre, prouvant que le médium pouvait combler le fossé entre l'activisme de rue et la performance littéraire de haut niveau. La musique intègre souvent des techniques de studio intrinsèques au dub — telles que l'écho, la réverbération et des lignes de basse lourdes et atmosphériques — créant un environnement immersif et hypnotique qui amplifie le message du poète. Aujourd'hui, le Dub poetry demeure un pilier culturel vital, mettant l'accent sur la voix collective, le défi politique et le pouvoir durable de la parole face à l'injustice.",
+      "facts": {
+        "era": "Années 1970–Présent",
+        "origin": "Kingston, Jamaïque"
+      },
+      "source_sha256": "b30c4365d06bfabf71646748401e29f68edec14e23c0fe27ee990ba8d8e3b920",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:36:03.781Z"
+    }
+  }
 }

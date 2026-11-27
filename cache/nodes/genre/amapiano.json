@@ -138,5 +138,19 @@
       "type": "track",
       "name": "Trust Fund"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre électronique sud-africain qui mélange deep house, jazz et kwaito, caractérisé par des mélodies de piano proéminentes et une ligne de basse distinctive à base de percussions log drum.",
+      "article": "Émergeant des townships sud-africains comme Pretoria et Soweto au milieu des années 2010, l'Amapiano est un hybride de kwaito, de deep house, de jazz et de soul, défini par ses lignes de basse larges et percutantes au log drum. Le mot lui-même se traduit de l'isiZulu par « pianos », reflétant l'utilisation fondamentale des touches de synthétiseur mélodiques dans le genre. Des producteurs comme Kabza De Small et MDU aka TRP sont au cœur de son développement, ce dernier étant largement crédité pour avoir popularisé le son électronique caractéristique du log drum. Le genre s'est depuis fragmenté en variantes comme le « Private School Piano » empreint de soul, défendu par Kelvin Momo, et l'« Afropiano » aux influences nigérianes. Son rayonnement international s'est considérablement étendu suite au succès viral du titre « Water » de Tyla en 2023, qui a propulsé le genre dans le Billboard Hot 100.",
+      "facts": {
+        "era": "milieu des années 2010 à aujourd'hui",
+        "origin": "Afrique du Sud (Johannesburg/Pretoria/Soweto)",
+        "sonic_markers": "Log drum électronique (ligne de basse), mélodies de piano, synthétiseurs, shakers, rythmes deep house"
+      },
+      "source_sha256": "1f8728c8590f5c7a014bce3d2f58f7c5edca01fba7e811c85978ac32ae39617f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:04:39.424Z"
+    }
+  }
 }

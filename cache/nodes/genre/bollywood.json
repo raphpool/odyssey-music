@@ -132,5 +132,19 @@
       "type": "track",
       "name": "Yaad Aa Raha Hai"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "La musique de Bollywood est un genre mondialement influent de chansons et de numéros de danse intégrés aux films, qui constitue le fondement de l'industrie de la musique populaire en Inde.",
+      "article": "La musique de Bollywood désigne les chansons présentes dans le cinéma hindi, un pilier central de la culture populaire indienne qui englobe des séquences chantées et dansées intégrées aux films. Apparue avec le premier film parlant indien, « Alam Ara », en 1931, cette forme utilise traditionnellement des chanteurs de playback qui enregistrent des pistes que les acteurs miment ensuite à l'écran. Les directeurs musicaux de cette industrie conservent un rôle créatif étendu, composant souvent la musique, produisant les pistes et sélectionnant des éléments sous licence pour les films. Le genre a évolué à travers des influences diverses, incluant la tradition ghazal de la poésie ourdoue, la fusion rock durant les années 1970 et une importante vague disco électronique au début des années 1980. Des producteurs tels que Biddu et Bappi Lahiri ont joué un rôle déterminant dans l'intégration des synthétiseurs et des rythmes disco, l'album de 1982 de Charanjit Singh, « Synthesizing: Ten Ragas to a Disco Beat », anticipant de manière célèbre les sonorités de l'acid house. Aujourd'hui, l'industrie est largement dominée par des labels comme T-Series et Sony Music India, les bandes originales représentant environ 80 % des revenus de la musique en Inde.",
+      "facts": {
+        "era": "1931 à nos jours",
+        "origin": "Inde, cinéma hindi",
+        "sonic_markers": "Utilise le chant en playback, des arrangements orchestraux riches, des influences linguistiques diverses (hindi, ourdou, hinglish) et une fusion fréquente de ragas traditionnels avec la production disco, électronique et pop."
+      },
+      "source_sha256": "be20e4e29930776d91e3b09e0779f00846f8fdfad060667e6ade239bcaba4bc1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:06:36.989Z"
+    }
+  }
 }

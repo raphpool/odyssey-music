@@ -133,5 +133,18 @@
       "name": "Zeit"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre minimaliste défini par l'utilisation de sons, de tonalités ou de clusters soutenus, souvent caractérisé par une absence de progression rythmique ou mélodique traditionnelle afin de mettre l'accent sur le timbre et la résonance.",
+      "article": "La musique Drone est un genre minimaliste profond centré sur la puissance esthétique du son soutenu. Émergeant des scènes d'avant-garde et expérimentales américaines des années 1960, il formalise l'utilisation de notes tenues, de clusters de notes et de changements harmoniques lents pour créer des paysages sonores immersifs, méditatifs ou abrasifs. Bien que le concept de « drone » — une hauteur de son constante et sous-jacente — existe depuis des millénaires dans des traditions mondiales comme la musique classique hindoustanie indienne, la cornemuse écossaise et le jeu du didgeridoo australien, le genre occidental moderne du Drone a été catalysé par des pionniers tels que La Monte Young et son Theatre of Eternal Music. Ces premiers praticiens se sont éloignés des structures développementales occidentales traditionnelles, choisissant plutôt d'explorer les effets psychoacoustiques des fréquences pures et de la résonance harmonique. En abandonnant la mélodie et le rythme conventionnels, la musique drone force l'auditeur à s'engager avec le timbre, la texture et la physique du son lui-même. L'influence du genre a imprégné divers mouvements underground, se ramifiant dans le dark ambient, le drone metal et des compositions électroniques expérimentales plus larges. Sa capacité à être simultanément méditative et écrasante demeure sa marque de fabrique, remettant en question la définition traditionnelle de la musique comme une progression de notes et la rétablissant comme un phénomène de vibration. Grâce à l'influence de figures fondatrices comme Phill Niblock et à l'évolution du genre au sein des cercles d'avant-garde, le drone continue de servir de pont critique entre l'art sonore académique et la musique expérimentale contemporaine.",
+      "facts": {
+        "era": "depuis les années 1960",
+        "origin": "États-Unis"
+      },
+      "source_sha256": "011b77ee1b6a6cc00f79aaa23ce182d0bb7d2eff91717921b3785d5c895a18da",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:12:00.395Z"
+    }
+  }
 }

@@ -139,5 +139,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q211781"
+  "qid": "Q211781",
+  "l10n": {
+    "fr": {
+      "teaser": "Un style révolutionnaire et expérimental d'improvisation jazz apparu à la fin des années 1950, qui rejette les conventions traditionnelles du jazz telles que les changements d'accords fixes, les structures de chansons standard et les tempos réguliers au profit d'une expression collective spontanée.",
+      "article": "Le Free Jazz, également connu sous le nom de jazz libre, a émergé à la fin des années 1950 et au début des années 1960 comme une rupture radicale avec les conventions établies du bebop et du jazz modal. En abandonnant les progressions d'accords fixes, les mesures régulières et les formes de chansons préétablies, les praticiens du Free Jazz ont cherché à maximiser le rôle de l'improvisation spontanée. Le nom du genre est souvent attribué à l'album de Ornette Coleman de 1960, 'Free Jazz: A Collective Improvisation', qui illustrait l'accent mis par le mouvement sur l'interaction collective et non linéaire. Musicalement, le Free Jazz privilégie le timbre, l'intensité émotionnelle et la variation mélodique, utilisant souvent des techniques de flux de conscience qui rappellent les expériences pionnières des premiers artistes d'avant-garde.\n\nL'essor du Free Jazz était profondément lié au climat sociopolitique des États-Unis, en particulier au mouvement des droits civiques et aux affirmations croissantes de l'identité et de la résistance noires. Les critiques et les historiens établissent fréquemment des parallèles entre la libération impliquée dans le nom du genre et la quête plus large d'équité raciale et d'autodétermination au cours des années 1960. Au-delà de ses racines américaines, le mouvement était un phénomène mondial, les scènes européennes adoptant le terme « free improvisation » pour souligner l'accent mis par la pratique sur le son pour lui-même plutôt que sur l'adhésion structurelle. En intégrant des éléments de traditions musicales non occidentales — notamment des techniques rythmiques et instrumentales africaines, asiatiques et indiennes — le Free Jazz a élargi les possibilités sonores de l'avant-garde, laissant un héritage qui a influencé des mouvements ultérieurs tels que la no wave, le post-rock et la free improvisation moderne.",
+      "facts": {
+        "era": "Fin des années 1950 – présent",
+        "origin": "États-Unis"
+      },
+      "source_sha256": "125d35ae11c097ece7b47f140fcae2b24a22b8ef7adfbfa374850e31ed2686af",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:08:56.154Z"
+    }
+  }
 }

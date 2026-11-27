@@ -148,5 +148,18 @@
       "name": "Compro"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre hybride de musique électronique qui fusionne les fondations rythmiques répétitives de la techno avec les paysages sonores éthérés et texturés de l'ambient, conçu principalement pour une écoute domestique plutôt que pour la piste de danse.",
+      "article": "L'Ambient techno est un sous-genre de musique électronique apparu à la fin des années 1980 et au début des années 1990 comme une alternative réfléchie, destinée à l'écoute domestique, à la techno de club de plus en plus intense de l'époque. En mélangeant les structures rythmiques mécaniques et répétitives caractéristiques de la Detroit techno avec les paysages sonores spacieux et riches en textures initiés par des artistes ambient comme Brian Eno, le genre a fait sortir la musique électronique de l'environnement moite des raves pour l'emmener vers un espace plus introspectif et cérébral. Caractérisée par des tempos plus lents, des nappes de synthétiseurs analogiques plus chaleureuses et des percussions subtiles et discrètes, l'Ambient techno a privilégié l'ambiance et l'atmosphère plutôt que la propension à la danse aux heures de pointe.\n\nLe genre a trouvé son foyer intellectuel au Royaume-Uni, où des labels comme Warp ont célèbrement défendu le mouvement à travers leur série de compilations phare « Artificial Intelligence » en 1992. Cette sortie a aidé à définir l'esthétique de la « intelligent techno », qui cherchait à se distancier des sons hardcore plus durs et plus rapides qui gagnaient du terrain dans les clubs britanniques. Les premiers pionniers, dont Aphex Twin, The Black Dog, B12 et Autechre, ont aidé à codifier le son, naviguant entre mélodies émotives et textures complexes et extraterrestres. Au fil des années 1990, l'influence du genre s'est étendue à l'Allemagne, où des producteurs comme Pete Namlook et des groupes comme Basic Channel ont utilisé des techniques de production inspirées du dub et des esthétiques minimalistes pour faire évoluer le son vers des styles distincts comme la dub techno. Des arrangements de synthétiseurs luxuriants des classiques britanniques des années 90 aux boucles hypnotiques et austères des minimalistes berlinois, l'Ambient techno demeure une branche vitale et influente de la musique électronique qui a élevé le producteur de techno au rang d'auteur, prouvant que la musique dérivée de la danse pouvait être tout aussi efficace dans un salon que sur une piste de danse éclairée par des stroboscopes.",
+      "facts": {
+        "era": "années 1990",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "6c5bbb5346f8c3c1f77a72e13f3a3b9dc31d3e44f32b8710ecaa53f3a7c3dfc9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:04:43.462Z"
+    }
+  }
 }

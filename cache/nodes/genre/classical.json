@@ -112,5 +112,18 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une vaste tradition de longue date de musique savante occidentale caractérisée par une composition formelle complexe, une notation écrite et une exécution technique rigoureuse, s'étendant de la période médiévale à l'époque contemporaine.",
+      "article": "La musique classique est une tradition profonde et étendue de musique savante occidentale qui a évolué sur plus d'un millénaire, des chants grégoriens médiévaux du IXe siècle aux pratiques diverses et expérimentales de l'ère contemporaine. Bien plus qu'un ensemble statique de compositions, il s'agit d'une tradition écrite — reposant sur des systèmes de notation sophistiqués — qui met l'accent sur des formes musicales complexes, des structures harmoniques élaborées et une compétence technique rigoureuse. Son histoire est inextricablement liée au mécénat de l'Église européenne et des cours royales, qui ont favorisé le développement de genres fondamentaux tels que la messe, le motet, et plus tard la symphonie, le concerto et l'opéra.\n\nLa tradition est largement classée en plusieurs périodes stylistiques clés qui définissent sa progression : les premiers développements de la polyphonie à la Renaissance, la tonalité standardisée et les structures ornées du Baroque, l'équilibre formel de la période classique, et l'expansion émotionnelle, nationaliste et virtuose de l'ère romantique. Alors que des compositeurs comme Johann Sebastian Bach, Wolfgang Amadeus Mozart et Ludwig van Beethoven demeurent ses figures les plus emblématiques, la lignée se poursuit aux XXe et XXIe siècles à travers des mouvements allant du modernisme et du sérialisme au minimalisme et au spectralisme. Aujourd'hui, la musique classique s'impose comme une forme d'art mondiale, définie non seulement par ses chefs-d'œuvre historiques mais aussi par ses pratiques théoriques en évolution et sa présence continue dans l'interprétation et la recherche modernes. Elle se distingue des traditions populaires et folkloriques par son accent mis sur la composition formelle et la préservation d'un répertoire profond et canonisé avec lequel le public continue d'interagir par le biais de concerts et d'enregistrements d'archives.",
+      "facts": {
+        "era": "IXe siècle–présent",
+        "origin": "Europe"
+      },
+      "source_sha256": "205dad1169482418776952c97dd89b10ea6559775e90524cd10d3955ba51eb2c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:11:00.795Z"
+    }
+  }
 }

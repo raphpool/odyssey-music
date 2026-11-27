@@ -164,5 +164,18 @@
       "name": "Heavy Weather"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre hybride apparu à la fin des années 1960, combinant la complexité harmonique et l'improvisation du jazz avec l'instrumentation, les rythmes et la dynamique énergique du rock et du funk.",
+      "article": "Le Jazz-Fusion, également largement connu sous le nom de jazz-rock, est apparu à la fin des années 1960 comme un mouvement transformateur qui a jeté un pont entre les mondes du jazz et de la musique populaire. En intégrant l'harmonie du jazz, l'improvisation avancée et la sophistication rythmique à l'esthétique énergique du rock, du funk et du rhythm and blues, le genre a fondamentalement modifié la trajectoire du jazz. Alors que la révolution rock prenait de l'ampleur et que le jazz traditionnel voyait son public grand public diminuer, des musiciens avant-gardistes ont commencé à adopter les instruments électriques — guitares électriques, basses, synthétiseurs et pianos électriques — qui définissaient les sons pop et rock de l'époque, s'éloignant ainsi des fondements acoustiques du bebop et du cool jazz.\n\nLe mouvement est indélébilement lié à la production expérimentale de Miles Davis, en particulier ses enregistrements de la fin des années 1960 et du début des années 1970 comme In a Silent Way et Bitches Brew. Ces disques ont servi de catalyseur, utilisant la manipulation en studio et l'improvisation longue pour briser les structures conventionnelles. Suite à cette percée, un groupe d'anciens collaborateurs de Davis — dont Herbie Hancock, Chick Corea, Joe Zawinul et John McLaughlin — a formé certains des groupes les plus emblématiques du genre, tels que Weather Report, Return to Forever et le Mahavishnu Orchestra. Ces ensembles ont repoussé les limites de la technicité musicale, employant fréquemment des signatures rythmiques impaires, des solos virtuoses et des arrangements complexes qui rivalisaient avec la complexité du rock progressif.\n\nTout au long des années 1970, le jazz-fusion a prospéré en tant que force commerciale majeure, caractérisée par une volonté incessante d'expansion sonore et d'intégration électronique. Bien que les années 1980 aient vu le genre diverger vers un territoire plus poli et adapté à la radio, comme le smooth jazz, l'héritage de la fusion reste vital. Son éthique — le refus d'accepter les frontières stylistiques — a fourni un modèle pour des générations d'artistes travaillant dans le rock expérimental, le funk et la musique contemporaine d'avant-garde, cimentant sa position en tant que carrefour charnière dans l'évolution de la musique moderne.",
+      "facts": {
+        "era": "Fin des années 1960 aux années 1980",
+        "origin": "États-Unis"
+      },
+      "source_sha256": "bbea58cdf6c3d6a4c72c9ccdc56c44da69ec99620c19bb7e46a68892dc4fa76a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:29:59.651Z"
+    }
+  }
 }

@@ -150,5 +150,19 @@
       "type": "track",
       "name": "Funky Drummer"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style étendu de musique électronique défini par son utilisation de boucles de batterie échantillonnées et syncopées — les « breaks » — issues de disques de funk et de soul, qui s'écartent des structures rythmiques standard en 4/4.",
+      "article": "Le Breakbeat est un genre et une technique rythmique fondamentaux de la musique électronique, définis par l'utilisation de boucles de batterie échantillonnées — ou « breaks » — qui s'écartent de la signature rythmique rigide et droite en 4/4 caractéristique de la house et de la techno standard. Le terme provient de la pratique consistant à isoler la section de solo de batterie d'enregistrements de funk, de jazz et de R&B, illustrée de manière célèbre par l'« Amen break » issu du morceau « Amen, Brother » de The Winstons. Apparu dans les années 1970 via le turntablism hip-hop aux États-Unis, des pionniers comme DJ Kool Herc et Grandmaster Flash utilisaient deux platines pour boucler ces segments percussifs, offrant une base dynamique aux danseurs et aux MC. À la fin des années 1980 et au début des années 1990, le concept a évolué d'un outil de production hip-hop vers un genre de musique électronique de danse distinct, trouvant une seconde vie au sein de la scène rave britannique. Alors que les producteurs commençaient à manipuler ces échantillons avec la technologie, le genre s'est ramifié en sous-genres agressifs et complexes, notamment le breakbeat hardcore, le jungle et le drum and bass. Contrairement à la nature répétitive et hypnotique de la musique house contemporaine, le breakbeat se caractérise par ses motifs de batterie syncopés et en constante évolution. Tout au long des années 1990, le son a atteint une popularité grand public significative grâce au phénomène « big beat », mené par des groupes comme The Prodigy et The Chemical Brothers, qui ont fusionné l'esthétique granuleuse et riche en échantillons avec l'énergie du rock et des sensibilités pop. Son héritage persiste dans la production moderne, influençant tout, de la pop britannique contemporaine aux rythmes complexes du dubstep.",
+      "facts": {
+        "era": "Années 1970–Présent",
+        "origin": "États-Unis (Hip-hop) / Royaume-Uni (Rave)",
+        "sonic_markers": "Boucles de batterie syncopées, utilisation intensive de l'échantillonnage, textures de batterie organiques (origines funk/jazz), motifs de percussion complexes, généralement entre 110 et 175 BPM."
+      },
+      "source_sha256": "c7e4e8807b0e50946ddb9b39c9e4cdc5e3f7b175b9efd3a136de63805e595813",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:06:39.141Z"
+    }
+  }
 }

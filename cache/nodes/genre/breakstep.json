@@ -84,5 +84,19 @@
       "name": "I Don't Smoke"
     }
   ],
-  "qid": "Q1987980"
+  "qid": "Q1987980",
+  "l10n": {
+    "fr": {
+      "teaser": "Le breakstep est un sous-genre du UK garage qui délaisse les influences R&B soul habituelles du style au profit de rythmes plus sombres, plus agressifs et minimalistes, portés par des breakbeats. Apparu à la fin des années 1990, il a servi de point de transition crucial entre la scène 2-step garage et les premiers développements du dubstep.",
+      "article": "Le breakstep, souvent appelé breakbeat garage, est apparu à Londres vers 1999 en tant que ramification directe et mutation de la scène UK garage en plein essor. Alors que le UK garage traditionnel de l'époque se caractérisait par des échantillons vocaux R&B soul et une production léchée, le breakstep a cherché à supprimer ces éléments au profit d'une esthétique plus brute, plus minimaliste et plus agressive. Le genre a agi comme un pont entre les rythmes syncopés et sautillants du 2-step garage et les breakbeats intenses, influencés par l'industriel, du techstep et du nu skool breaks. En adoptant le tempo du 2-step mais en remplaçant ses percussions légères par des motifs de breakbeat rugueux, proches du drum and bass, le breakstep s'est taillé une niche qui privilégiait le poids du sound system plutôt que l'attrait commercial de la pop.\n\nLe genre a été déterminant dans l'évolution de la musique dance britannique, notamment en tant que précurseur clé du dubstep. Des titres pionniers comme « 138 Trek » de DJ Zinc — qui a appliqué avec succès la sensibilité rythmique du drum and bass à un tempo garage — et le succès retentissant de Deekline, « I Don't Smoke », ont défini le modèle du son : des sub-basses profondes, des arrangements minimalistes et une attention portée à une programmation de batterie technique et rugueuse. Bien que l'élan initial du genre dans le courant dominant ait diminué vers 2002, à mesure que la scène garage évoluait et que le mouvement dubstep naissant commençait à s'imposer, le breakstep est resté une influence underground vitale. Son héritage a persisté dans l'ADN de la bass music, et ces dernières années, les producteurs ont de plus en plus revisité son esthétique syncopée aux teintes sombres, en la mélangeant à des techniques de production contemporaines pour combler le fossé entre l'histoire classique du garage et l'expérimentation électronique moderne.",
+      "facts": {
+        "era": "1999–2002 (ère initiale) ; après 2020 (renouveau)",
+        "origin": "Londres, Royaume-Uni",
+        "sonic_markers": "Motifs de batterie breakbeat syncopés, plage de tempo de 138-140 BPM, arrangements minimalistes, utilisation intensive de sub-basses, atmosphère clairsemée et sombre."
+      },
+      "source_sha256": "80823087796633c0f691b34624612cc9a7232fef95ba5f678db3a4fab0e48889",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:06:44.343Z"
+    }
+  }
 }

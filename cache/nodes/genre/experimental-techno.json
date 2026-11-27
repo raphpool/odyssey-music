@@ -86,5 +86,18 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de la techno qui privilégie l'exploration sonore et l'innovation structurelle à la fonctionnalité pour le dancefloor, caractérisé par des textures abstraites, des rythmes complexes ou brisés et un traitement intensif du signal numérique.",
+      "article": "L'Experimental Techno est un sous-genre vaste et non conformiste de la musique électronique qui privilégie l'exploration sonore et l'innovation structurelle aux exigences utilitaires du dancefloor traditionnel. Bien qu'ancré fermement dans le vocabulaire rythmique de la techno, le genre déconstruit fondamentalement le modèle standard du « four-on-the-floor », intégrant fréquemment des textures abstraites, des structures brisées ou polyrythmiques, et une forte dépendance au traitement du signal numérique, à la synthèse modulaire et à la manipulation sonore granulaire. Émergeant en tant qu'esthétique distincte dans les années 1990 et 2000, il fonctionne comme un pont entre l'attraction hypnotique répétitive de la musique de club et le paysage cérébral et non conventionnel de la composition d'avant-garde.\n\nLe genre puise une lignée stylistique profonde dans des mouvements historiques tels que l'industrial, qui a fourni le modèle pour les timbres abrasifs et le grain mécanique, et les expériences sur bande de la musique concrète, qui mettaient l'accent sur la transformation de paysages sonores bruts et réels. L'évolution du genre est étroitement liée à des changements technologiques distincts : des premières expériences IDM (Intelligent Dance Music) au Royaume-Uni qui privilégiaient l'écoute domestique, aux écoles minimalistes allemandes comme Basic Channel qui ont dépouillé la techno jusqu'à ses essentiels dub, et enfin à l'ère « Clicks & Cuts » du début des années 2000, qui a élevé les erreurs numériques et les artefacts sonores microscopiques au rang d'éléments rythmiques primaires. Aujourd'hui, l'Experimental Techno existe dans un environnement fluide, post-club, utilisant souvent des systèmes génératifs pour créer des paysages sonores complexes et évolutifs qui favorisent des expériences d'écoute tactiles, immersives et souvent stimulantes plutôt que la viabilité commerciale. Il demeure un laboratoire vital pour les producteurs cherchant à repousser les limites de ce qui est possible dans un cadre musical basé sur la machine.",
+      "facts": {
+        "era": "des années 1990 à aujourd'hui",
+        "origin": "Royaume-Uni et Allemagne"
+      },
+      "source_sha256": "bfc35b7dd0bb7e26c9a35cc9994fa549ddf24c11e0e9ffa314e6f794afbb1df8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:13:01.095Z"
+    }
+  }
 }

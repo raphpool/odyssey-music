@@ -122,5 +122,19 @@
       "type": "track",
       "name": "It Was a Good Day"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du gangsta rap défini par sa production mélodique riche en samples, ses basses profondes et son recours important aux sonorités synthétiques du P-Funk des années 1970.",
+      "article": "Le G-Funk a émergé de la scène hip-hop de la West Coast au début des années 1990, défini par son recours au funk des années 1970, et plus particulièrement au son riche en synthétiseurs de Parliament-Funkadelic. Dr. Dre, qui a produit des pierres angulaires comme « Niggaz4Life » (1991) de N.W.A., est souvent crédité comme l'architecte de l'esthétique du genre, qui utilise fréquemment des musiciens live pour rejouer des disques samplés plutôt que d'en faire des copies directes. Musicalement, le G-Funk se caractérise par un tempo situé entre 90 et 100 BPM, une ligne de synthétiseur à onde en dents de scie avec portamento aigu et des lignes de basse profondes. Les jalons commerciaux majeurs incluent « The Chronic » (1992) de Dr. Dre, « Doggystyle » (1993) de Snoop Dogg et « All Eyez on Me » (1996) de Tupac Shakur, qui ont solidifié l'identité mélodique fluide et décontractée du genre, en contraste avec la scène hardcore rap agressive de la côte Est de la même époque. Bien qu'il s'agisse principalement d'un mouvement californien, le son a été adopté par des artistes régionaux tels que Bone Thugs-n-Harmony de l'Ohio et les Geto Boys de Houston.",
+      "facts": {
+        "era": "début des années 1990 à la fin des années 1990",
+        "origin": "West Coast, Californie",
+        "sonic_markers": "90-100 BPM, samples de P-Funk, leads de synthétiseur à onde en dents de scie avec portamento, basses profondes, chœurs féminins"
+      },
+      "source_sha256": "a30df40dba7d396a90d25604cf80420c1e2432cd9387cf388d8b4439bca1118a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:09:00.098Z"
+    }
+  }
 }

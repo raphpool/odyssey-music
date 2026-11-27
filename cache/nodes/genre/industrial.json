@@ -148,5 +148,18 @@
       "name": "Kollaps"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre hybride transgressif mêlant rock et électronique qui utilise des synthétiseurs, des échantillonneurs et des textures abrasives rappelant des machines pour créer une musique exigeante et souvent provocatrice.",
+      "article": "L'Industrial est un genre transgressif et technologique apparu à la fin des années 1970, défini par sa synthèse abrasive d'instrumentation rock, d'expérimentation électronique et de préoccupations thématiques transgressives. Issu du label britannique Industrial Records — formé pour publier les œuvres de Throbbing Gristle — le genre cherchait à briser les frontières de la musique conventionnelle en incorporant des enregistrements de terrain de machines, de la manipulation de bandes magnétiques et des textures atonales rudes. Il était conçu comme une forme d'art de performance avant-gardiste, explicitement destiné à être provocateur, macabre et socialement conflictuel.\n\nÀ mesure que le genre a évolué au cours des années 1980 et 1990, il s'est divisé en plusieurs voies stylistiques distinctes. Alors que les pionniers comme Cabaret Voltaire et SPK se concentraient sur le bruit industriel et la texture électronique, le genre est devenu de plus en plus hybride. En Europe et en Amérique du Nord, des groupes ont commencé à fusionner les sensibilités industrielles avec des rythmes de piste de danse, menant à l'essor de l'Electronic Body Music (EBM) avec des groupes comme Front 242 et Nitzer Ebb. Parallèlement, aux États-Unis, des labels comme Wax Trax! Records à Chicago sont devenus un point focal pour le développement de l'« industrial rock » et de l'« industrial metal », où les guitares agressives et saturées ainsi que les percussions tonitruantes du metal étaient intégrées à la programmation et à l'échantillonnage. Cette évolution a atteint son apogée commercial dans les années 1990 grâce à des artistes comme Nine Inch Nails, dont les albums multi-platine ont porté les atmosphères sombres et gothiques de l'Industrial à un public grand public mondial. Le genre demeure une pierre angulaire de l'histoire de la musique électronique, reconnu pour son adoption inébranlable de la technologie moderne et son refus de reculer devant des sujets sombres et souvent dérangeants.",
+      "facts": {
+        "era": "depuis les années 1970",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "48284c188a8b6ad5e2f080d01af0bc5c50a29bae44b45311faa1dc7a1403a5ff",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:14:00.777Z"
+    }
+  }
 }

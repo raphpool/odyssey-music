@@ -102,5 +102,19 @@
       "type": "track",
       "name": "Douni El Bladi"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Une tradition géographiquement et culturellement vaste couvrant le Maghreb et l'Égypte, mêlant des racines berbères, andalouses et soufies anciennes à des influences mondiales contemporaines.",
+      "article": "La musique d'Afrique du Nord englobe un éventail diversifié de traditions, allant des styles classiques d'origine andalouse du Maghreb aux scènes pop égyptienne et Raï prédominantes. Le Raï algérien, un style urbain apparu au début du XXe siècle à Oran, a acquis une portée internationale significative à la fin des années 1980, particulièrement en France. L'interprétation traditionnelle met souvent en vedette des instruments comme la raïta, la gasba et le bendir. En Tunisie, l'ancienne tradition du ma'luf, dérivée de la musique andalouse introduite dans la région au XVe siècle, est préservée grâce à un soutien organisationnel formel depuis les années 1930. Le canon populaire distinct de l'Égypte comprend les œuvres classiques d'artistes comme Umm Kulthum et Abdel Halim Hafez, aux côtés de genres modernes tels que le Shaabi et el Gil. Par ailleurs, dans la Tunisie post-2000, des artistes tels que Weld El 15 ont utilisé le hip hop comme vecteur de critique politique pendant le processus de démocratisation suivant la révolution tunisienne.",
+      "facts": {
+        "era": "Du XVe siècle à nos jours",
+        "origin": "Afrique du Nord, incluant l'Algérie, le Maroc, la Tunisie, la Libye et l'Égypte.",
+        "sonic_markers": "Gammes modales, motifs rythmiques complexes, utilisation d'instruments traditionnels comme le bendir et la gasba, et fusion avec des éléments électroniques, hip hop et reggae."
+      },
+      "source_sha256": "ffeeb59de65fb26178ac35fd29306e3ecda2455938a2de653a92e22e76f4ead8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:31:59.186Z"
+    }
+  }
 }

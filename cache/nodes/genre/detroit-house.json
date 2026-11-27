@@ -126,5 +126,14 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q108610706"
+  "qid": "Q108610706",
+  "l10n": {
+    "fr": {
+      "teaser": "La Detroit House est une évolution régionale de la house music caractérisée par une esthétique introspective, influencée par la technologie et souvent empreinte de soul, qui la distingue du son plus explosif et gospel de la Chicago house.",
+      "article": "La Detroit House est un sous-genre de la house music qui a émergé parallèlement à la scène Detroit Techno, plus connue, dans les années 1980 et 1990. Bien qu'elle soit souvent éclipsée par les pionniers de la techno de premier plan — Juan Atkins, Derrick May et Kevin Saunderson — le son house originaire de la Motor City a développé sa propre identité distincte et introspective. Contrairement au « jack » de la Chicago house, souvent ouvertement joyeux et imprégné de gospel, la Detroit house intègre fréquemment une qualité plus retenue, futuriste et mélancolique. Elle partage la même palette fondamentale de boîtes à rythmes et de synthétiseurs que sa cousine techno, ce qui donne une musique qui semble souvent fonctionnelle, précise et détachée, tout en étant profondément émotionnelle.\n\nLe son de la Detroit house est fréquemment défini par son utilisation de nappes de synthétiseurs profondes et riches, de lignes de basse complexes de style Moog et de rythmes qui privilégient une cadence roulante et implacable, semblable à une chaîne de montage, plutôt que les percussions très swinguées typiques du style de Chicago. Des producteurs comme Moodymann, Theo Parrish et Rick Wilhite sont devenus synonymes d'une esthétique « brute » et soul spécifique dans les années 1990, mélangeant des samples de jazz, de funk et de disco avec une sensibilité sombre et post-industrielle propre à Detroit. D'autres artistes fondamentaux, dont Mike Huckaby, K-Hand et Omar S, ont encore affiné ce son, créant un pont entre la rigidité fonctionnelle de la musique produite par des machines et les textures chaleureuses et improvisées du jazz et de la deep house. Ce mouvement demeure une composante essentielle de la tapisserie musicale de Detroit, représentant un pendant plus intime et axé sur le dancefloor du canon électronique futuriste plus large de la ville. Contrairement à la nature instrumentale et axée sur le culte de la machine de nombreux morceaux de Detroit techno, la Detroit house crée souvent un espace plus large pour l'expression soul, même si cette expression est marquée par la retenue émotionnelle caractéristique de la ville.",
+      "source_sha256": "c4915124ebf5c4ab68b649fd40afa82530518bec579e8252321beb503167cb4f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:20:19.368Z"
+    }
+  }
 }

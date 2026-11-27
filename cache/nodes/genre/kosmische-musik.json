@@ -110,5 +110,18 @@
       "name": "Electronic Meditation"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre visionnaire de rock expérimental et de musique électronique apparu en Allemagne de l'Ouest à la fin des années 1960, caractérisé par des synthétiseurs atmosphériques, des rythmes motorik et un abandon des structures conventionnelles couplet-refrain.",
+      "article": "La Kosmische Musik, souvent synonyme du terme générique « Krautrock », est apparue en Allemagne de l'Ouest à la fin des années 1960 et au début des années 1970 comme une rupture radicale avec les structures de chansons traditionnelles et les sensibilités pop anglo-américaines. Après la dévastation culturelle de la Seconde Guerre mondiale, une nouvelle génération de musiciens allemands a cherché à forger une identité authentique et tournée vers l'avenir, rejetant à la fois la musique « Schlager » conservatrice de leurs parents et l'imitation du rock occidental. En mélangeant expérimentation électronique d'avant-garde, improvisation jazz, rock psychédélique et collages sonores, ces artistes ont créé un nouveau langage sonore défini par des rythmes hypnotiques, des passages instrumentaux étendus et une utilisation pionnière des synthétiseurs et des boucles de bande.\n\nLe mouvement était largement concentré dans des centres comme Berlin et Düsseldorf, avec des institutions telles que le Zodiak Free Arts Lab servant de terreau fertile pour des expérimentateurs comme Tangerine Dream et Ash Ra Tempel. Le terme « Kosmische Musik » (musique cosmique) a été célèbrement utilisé par le producteur Rolf-Ulrich Kaiser pour décrire les paysages sonores atmosphériques et planants de groupes comme Tangerine Dream, en particulier autour de leur album de 1971 Alpha Centauri. Cette branche « cosmique » a divergé du son plus motorik et percutant de la scène de Düsseldorf — incarné par Neu! et Kraftwerk — qui a finalement jeté les bases de l'electronica moderne, de la synth-pop et de la techno. Des producteurs comme Conny Plank ont été des architectes essentiels de cette époque, servant de lien entre diverses communautés artistiques et définissant l'éthique méticuleuse du studio comme instrument propre à la scène. En fin de compte, la Kosmische Musik représente une ère d'une profonde audace créative, où les musiciens ont privilégié l'exploration artistique à la sécurité commerciale, influençant directement des générations d'artistes ambient, industriels et expérimentaux dans le monde entier.",
+      "facts": {
+        "era": "De la fin des années 1960 à la fin des années 1970",
+        "origin": "Allemagne de l'Ouest"
+      },
+      "source_sha256": "e24bc6d5f6434a3396dff24b5af465398cf4dc2ca2e8fa3330320d29cc5a0bd2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:14:54.586Z"
+    }
+  }
 }

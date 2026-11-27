@@ -134,5 +134,19 @@
       "type": "track",
       "name": "Ginseng Strip 2002"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du hip-hop caractérisé par une production éthérée et chargée en réverbération, des textures ambiantes et une esthétique onirique, apparu au sein de la scène hip-hop du Sud des États-Unis basée sur Internet.",
+      "article": "Le Cloud Rap est apparu à la fin des années 2000, ancré dans le Sud des États-Unis et défini par l'esthétique de production d'artistes comme Lil B et du producteur Clams Casino. Le terme a été inventé en 2010 par le blogueur Walker 'Walkmasterflex' Chambliss pour décrire la musique de Squadda B de Main Attrakionz, puis consolidé par la compilation 3 Years Ahead: The Cloud Rap Tape. Caractérisé par des paysages sonores éthérés et chargés en réverbération, le genre intègre des échantillons découpés provenant de sources disparates comme la J-pop, l'anime et la musique de jeux vidéo. Les premiers partisans tels que SpaceGhostPurrp et Friendzone ont contribué à bâtir un mouvement centré sur la distribution par Internet via des plateformes comme SoundCloud. Le son a gagné une reconnaissance plus large en 2011 avec la première mixtape de A$AP Rocky, Live. Love. ASAP, qui comprenait des collaborations avec Clams Casino et Main Attrakionz. Dans les années 2010, des collectifs comme Sad Boys, mené par Yung Lean, et Seshollowaterboyz ont fait évoluer le genre, mélangeant sa production douce et atmosphérique avec des thèmes d'aliénation. L'influence du Cloud Rap s'est ensuite étendue à des styles natifs du numérique comme l'emo rap, le digicore et la rage.",
+      "facts": {
+        "era": "fin des années 2000 à 2010",
+        "origin": "Sud des États-Unis",
+        "sonic_markers": "beats chargés en réverbération, échantillons vocaux éthérés, batteries de style trap, synthétiseurs ambiants distordus, traitement lo-fi"
+      },
+      "source_sha256": "bac3032f5bbdc4b76aed01dd7638ca765c3f911a3cfd6d16e7c81d206f2792a8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:59:30.906Z"
+    }
+  }
 }

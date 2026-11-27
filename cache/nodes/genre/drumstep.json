@@ -106,5 +106,19 @@
       "name": "Lost in Sound"
     }
   ],
-  "qid": "Q24876318"
+  "qid": "Q24876318",
+  "l10n": {
+    "fr": {
+      "teaser": "Le Drumstep est un genre de musique électronique hybride qui fusionne l'énergie rapide et axée sur les breakbeats du Drum and Bass avec la conception sonore agressive, riche en basses et le rythme caractéristique du Dubstep et du Brostep.",
+      "article": "Le Drumstep a émergé à la fin des années 2000 et au début des années 2010 comme une fusion à haute énergie de deux piliers de la bass music : le Drum and Bass (spécifiquement les textures frénétiques et agressives du Jump-Up) et les wobbles métalliques et lourds du Dubstep moderne (particulièrement le Brostep). Alors que le Drum and Bass évolue généralement à un rythme effréné de 170-175 battements par minute (BPM), le Dubstep est traditionnellement plus lent, tournant autour de 140 BPM avec une sensation distincte de half-time. Le Drumstep comble ce fossé en appliquant les structures rythmiques et la palette de conception sonore du Dubstep — caractérisé par ses patchs de basse abrasifs et ses synthés agressifs — à la toile de fond plus rapide et dynamique du Drum and Bass.\n\nLe genre se définit par sa polyvalence. Il maintient l'énergie rapide requise pour les pistes de danse à haut tempo tout en utilisant la manipulation complexe des fréquences médiums qui a fait du Brostep un phénomène mondial au début des années 2010. En raison de sa flexibilité, le son a rapidement engendré diverses ramifications, notamment le Melodic Drumstep, qui intègre davantage de nappes atmosphériques et de découpages vocaux éthérés, ainsi que des variantes hybrides empruntant aux percussions métalliques et complexes du Neurofunk. En combinant la sensation « half-time » du Dubstep avec la vitesse cinétique pure du DnB, le Drumstep a fourni une passerelle pour les fans des deux styles, devenant un incontournable du circuit des festivals au milieu des années 2010. Il demeure un son définitif pour les producteurs cherchant à maximiser l'impact dynamique par un contraste entre des batteries à haute vitesse et des lignes de basse lourdes et modulées. Son évolution souligne la tendance plus large du mélange des genres à l'ère numérique, où les producteurs empruntent librement l'ADN rythmique à travers des territoires de BPM disparates pour créer des morceaux hybrides intenses destinés aux pistes de danse.",
+      "facts": {
+        "era": "Fin des années 2000 - Présent",
+        "origin": "Royaume-Uni / International",
+        "sonic_markers": "Tempos rapides (170-175 BPM), structures rythmiques half-time, patchs de basse métalliques ou modulés, conception sonore agressive, percussions à haute énergie."
+      },
+      "source_sha256": "c1c94424ad9133fc556c4fdfe181da3db766810fcffc1e0e0ac4a9e3c101ed00",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:36:02.200Z"
+    }
+  }
 }

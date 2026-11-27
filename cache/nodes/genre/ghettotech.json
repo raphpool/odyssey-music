@@ -101,5 +101,19 @@
       "type": "track",
       "name": "Ass-N-Titties"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de danse électronique brut et rapide originaire de Detroit, caractérisé par des rythmes agressifs et des accroches vocales explicites et répétitives.",
+      "article": "Émergeant de la scène underground de Detroit au début des années 1990, la ghettotech — également connue sous le nom de Detroit club — fusionne les rythmes rapides « four-on-the-floor » de la techno locale avec le débit vocal répétitif et explicite de la ghetto house. Le genre a été cultivé par des figures influentes comme DJ Assault et DJ Funk, qui ont puisé leur inspiration dans les émissions de radio éclectiques de The Electrifying Mojo et dans le turntablism technique de Jeff Mills. Les morceaux tournent généralement entre 145 et 160 BPM, privilégiant des textures de boîte à rythmes brutes et non polies plutôt qu'une production studio raffinée. Au-delà de la musique, le genre est intrinsèquement lié au style de danse « jit », une forme de jeu de jambes à grande vitesse qui trouve ses origines dans la culture jitterbug de Detroit des années 1970.",
+      "facts": {
+        "era": "Début des années 1990 à aujourd'hui",
+        "origin": "Detroit, Michigan, États-Unis",
+        "sonic_markers": "145-160 BPM, kicks four-on-the-floor, synthèse brute, samples vocaux pornographiques, turntablism rapide."
+      },
+      "source_sha256": "e54b66046828edd40a0d79bb8f0454cb9a09c2359ec54e6a8d8b46f48696f2af",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:26:52.641Z"
+    }
+  }
 }

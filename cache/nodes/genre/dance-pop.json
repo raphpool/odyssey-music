@@ -113,5 +113,18 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le Dance-pop est un genre au tempo rapide, influencé par l'électronique, qui combine les structures rythmées et conçues pour les clubs de la dance music avec l'écriture de chansons accrocheuses et centrées sur la mélodie de la pop grand public.",
+      "article": "Le Dance-pop est un genre dynamique de musique électronique, porté par les producteurs, qui a émergé à l'intersection du disco, du synth-pop et de la pop grand public à la fin des années 1970 et au début des années 1980. Conçu pour les deux environnements que sont les boîtes de nuit bondées et les radios musicales contemporaines, le Dance-pop comble le fossé entre les grooves répétitifs et hypnotiques de la culture underground des pistes de danse et l'attrait structuré et axé sur les refrains de la pop radiophonique. Au cœur de sa sonorité se trouve un rythme « four-on-the-floor » entraînant et rapide, souvent soutenu par des synthétiseurs, des séquenceurs et des techniques de production nettes qui mettent l'accent sur l'accessibilité rythmique et la clarté vocale.\n\nHistoriquement, le genre s'est cristallisé alors que la popularité du disco déclinait, se transformant en des sons plus orientés vers l'électronique et les synthétiseurs. Des artistes comme Madonna sont devenus des figures déterminantes, popularisant le genre en intégrant sa vision artistique distincte dans l'environnement brillant et axé sur la production du Dance-pop des années 1980. Au fil des décennies, la malléabilité du genre lui a permis d'absorber des influences du new jack swing, de la house, du R&B contemporain et, plus récemment, de l'electropop et de la trance. Dans les années 1990 et 2000, le Dance-pop est devenu la force dominante de la musique grand public mondiale, fournissant le cadre pour l'ascension de chanteurs majeurs et de superstars mondiales comme Michael Jackson, Britney Spears, Kylie Minogue ou Lady Gaga. Il reste caractérisé par sa haute valeur de production, son énergie incessante et sa capacité à réinventer constamment son son en incorporant les tendances émergentes issues à la fois de la scène électronique underground et du paysage plus large de la musique populaire moderne.",
+      "facts": {
+        "era": "Fin des années 1970 à nos jours",
+        "origin": "États-Unis et Royaume-Uni"
+      },
+      "source_sha256": "68929ce23b43d6996665b104aa8732c77a96066ad0f00d4bed4d509bb0f9940b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:20:11.000Z"
+    }
+  }
 }

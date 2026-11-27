@@ -312,5 +312,18 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un mouvement culturel et musical né dans le New York des années 1970, caractérisé par une diction rythmique (le rap) et une production axée sur le beat, historiquement construit sur les piliers du DJing, du MCing, du breaking et du graffiti.",
+      "article": "Le Hip-Hop est un mouvement artistique et culturel transformateur apparu dans le Bronx, à New York, au cours des années 1970. Né de la culture des block parties des jeunes Noirs, Latinos et Caribéens, il a fondamentalement redéfini la musique populaire à travers quatre piliers fondateurs : le DJing, le MCing (rap), le breakdance et le graffiti. Les premiers pionniers comme DJ Kool Herc ont utilisé des techniques de platine innovantes, telles que l'isolation et la mise en boucle du « break » percussif de disques de funk et de soul, créant ainsi une nouvelle toile pour la performance vocale. Cette base s'est rapidement développée en 1979 avec le succès grand public de « Rapper's Delight » de Sugarhill Gang, faisant passer la forme artistique des rassemblements locaux à une force commerciale mondiale.\n\nTout au long des années 1980 et 1990 — souvent qualifiées d'« âge d'or » du genre — le hip-hop s'est diversifié dans de nombreuses voies stylistiques. Des artistes « New School » comme Run-DMC et les Beastie Boys ont introduit un minimalisme dirigé par des boîtes à rythmes et un commentaire socio-politique, s'éloignant des origines centrées sur la fête. Parallèlement, l'essor du gangsta rap a articulé les réalités vécues de la vie dans les quartiers défavorisés, tandis que des sous-genres comme le conscious hip-hop ont utilisé le médium pour la critique politique. Au XXIe siècle, l'adaptabilité inhérente du hip-hop lui a permis de s'intégrer aux sensibilités électroniques, indépendantes et pop. L'explosion de la distribution sur Internet et du streaming a davantage démocratisé le genre, consolidant sa place comme l'un des phénomènes culturels les plus significatifs et influents de l'histoire moderne, évoluant constamment grâce à de nouvelles techniques de production, des stratégies d'échantillonnage et l'innovation lyrique.",
+      "facts": {
+        "era": "depuis les années 1970",
+        "origin": "Le Bronx, New York, États-Unis"
+      },
+      "source_sha256": "dce348b3d25d521f46c1e6dbb63ce3e1063c09007581362aced81aeb67bc0fd1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:13:58.495Z"
+    }
+  }
 }

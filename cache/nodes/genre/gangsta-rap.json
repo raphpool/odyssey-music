@@ -121,5 +121,19 @@
       "type": "track",
       "name": "6 n the Mornin'"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de la musique hip hop caractérisé par des paroles et des thèmes qui soulignent les réalités du mode de vie gangsta et de la culture urbaine de rue.",
+      "article": "Le Gangsta rap, souvent qualifié de reality rap par ses interprètes, est un sous-genre du hip hop qui a émergé pour dépeindre les environnements sociaux difficiles et les réalités criminelles de la vie urbaine américaine. Le mouvement a gagné une visibilité significative à la fin des années 1980, particulièrement à travers la scène de la West Coast, en se concentrant sur des paroles qui soulignent l'activité liée aux gangs et la survie dans la rue. La profondeur thématique du genre explore souvent le cycle de la pauvreté et les conséquences de la négligence systémique dans les communautés des centres-villes. Des musiciens comme Ice-T ont aidé à définir le son, qui repose sur une programmation de batterie percutante et des samples qui penchent vers une esthétique plus sombre et plus conflictuelle. Bien que l'étiquette « gangsta » ait été appliquée à diverses sorties commerciales, le cœur du genre reste ancré dans les récits de première main de ses artistes qui offrent une perspective localisée, souvent brute, sur la vie en dehors des normes sociétales dominantes.",
+      "facts": {
+        "era": "fin des années 1980 à aujourd'hui",
+        "origin": "États-Unis, principalement la scène hip hop de la West Coast",
+        "sonic_markers": "Utilisation intensive de samples, sub-bass, débit lyrique agressif et structures rythmiques mid-tempo."
+      },
+      "source_sha256": "90ef63738ce5e21beaf8c58d57381fc17509c9c0b4f7a70843ba7735e929f803",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:09:01.604Z"
+    }
+  }
 }

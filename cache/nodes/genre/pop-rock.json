@@ -106,5 +106,18 @@
       "name": "Born to Run"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le pop rock est un genre fusion qui combine une instrumentation basée sur le rock — typiquement guitare, basse et batterie — avec les structures accessibles et mélodiques caractéristiques de la musique pop grand public. Il se définit par l'accent mis sur une écriture soignée, des accroches concises et des arrangements adaptés à la radio.",
+      "article": "Le pop rock est un style musical dynamique qui occupe l'intersection entre les sensibilités de la pop grand public et l'énergie du rock and roll. Apparu historiquement avec la naissance du rock and roll dans les années 1950, le pop rock fait office de pont, intégrant le grain des guitares électriques, de la basse et de la batterie dans des structures de chansons accessibles et radiophoniques. Alors que le rock traditionnel peut privilégier l'expérimentation instrumentale ou des esthétiques brutes et abrasives, le pop rock se définit par l'accent mis sur des formes de chansons concises, des accroches mélodiques mémorables et des performances vocales de haute qualité. Cette attention portée à l'artisanat garantit que le genre reste un pilier pérenne des classements mondiaux, faisant évoluer son son au fil des décennies pour refléter les changements technologiques et culturels de l'industrie musicale.\n\nTout au long des années 1960 et 1970, des groupes comme The Beatles et The Beach Boys ont jeté les bases du genre, mêlant avec succès ambition artistique et attrait commercial massif. Le genre s'est depuis révélé remarquablement durable, assimilant avec succès des éléments d'époques diverses — allant des expérimentations aux synthétiseurs de la new wave des années 1980 aux explosions du rock alternatif et du pop-punk des années 1990. Même au XXIe siècle, alors que l'hégémonie de la musique rock a reculé au profit du hip-hop et du R&B, le pop rock continue d'exercer une influence à travers des artistes modernes qui intègrent sélectivement des idiomes rock dans une production contemporaine. Sa nature durable réside dans cette adaptabilité ; en privilégiant les principes fondamentaux de la « chanson », le pop rock garantit que même si l'instrumentation passe du pur analogique à l'hybride électronique-organique, la connexion émotionnelle essentielle avec l'auditeur reste intacte. Que ce soit à travers les guitares tintantes des groupes indie des années 1980 ou les hymnes soignés des groupes de stade grand public, le pop rock s'impose comme le socle de l'histoire de la musique populaire, se réinventant continuellement tout en conservant son attrait fondamental en tant que pont entre le niche et l'universel.",
+      "facts": {
+        "era": "depuis les années 1950",
+        "origin": "États-Unis et Royaume-Uni"
+      },
+      "source_sha256": "13f8ada7cf786fabf9f2565b68db0afbefa9d6e8d5cbaa0c7a3a6e6a85a6a779",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:15:01.825Z"
+    }
+  }
 }

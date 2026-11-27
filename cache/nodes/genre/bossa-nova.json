@@ -134,5 +134,19 @@
       "type": "track",
       "name": "Garota de Ipanema"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical brésilien développé à la fin des années 1950 qui a réinventé la samba grâce à un style de guitare décontracté et syncopé ainsi qu'à des progressions harmoniques sophistiquées influencées par le jazz.",
+      "article": "Émergeant de la zone sud de Rio de Janeiro à la fin des années 1950, la Bossa Nova s'est développée comme une synthèse du rythme de la samba et d'harmonies complexes teintées de jazz. Le guitariste João Gilberto a été le pionnier de la technique de guitare centrale du style — une réduction du rythme de batucada de la samba — capturée pour la première fois sur l'enregistrement de 1958 de 'Chega de Saudade' par Elizeth Cardoso. Le mouvement s'est consolidé avec l'album éponyme de João Gilberto en 1959 et la collaboration du compositeur Antônio Carlos Jobim et du parolier Vinicius de Moraes. Ces compositions ont dépassé l'intensité rythmique de la samba traditionnelle, privilégiant une interprétation calme et syncopée ainsi qu'un style vocal nasal caractéristique inspiré de la tradition folklorique caboclo. Le genre a acquis une reconnaissance mondiale à la suite d'un concert au Carnegie Hall en 1962, qui a contribué à propulser des morceaux influencés par le jazz comme 'Desafinado' dans le répertoire standard. Bien que le mouvement initial se soit essoufflé au milieu des années 1960 avec l'essor de la Música popular brasileira, plus axée sur la politique, son influence reste omniprésente, imprégnant les travaux pop ultérieurs d'artistes comme Billie Eilish, Laufey et SZA.",
+      "facts": {
+        "era": "fin des années 1950 aux années 1960",
+        "origin": "Rio de Janeiro, Brésil",
+        "sonic_markers": "Motifs de guitare syncopés dérivés de la samba, guitare classique à cordes en nylon, progressions d'accords non conventionnelles, tempo modéré, interprétation vocale intime"
+      },
+      "source_sha256": "d7424958476bdc51e7432589fe071a5c7ca1bb63d55f85a8981abb0be395e4e0",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:06:39.141Z"
+    }
+  }
 }

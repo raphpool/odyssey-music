@@ -137,5 +137,14 @@
       "name": "Emerge"
     }
   ],
-  "qid": "Q861823"
+  "qid": "Q861823",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de musique électronique de danse apparu à la fin des années 1990, caractérisé par un renouveau de l'electro, de la new wave et du synth-punk des années 1980 combiné à une production techno moderne, mettant souvent en avant des voix impassibles et une esthétique trash hautement stylisée.",
+      "article": "L'Electroclash est un sous-genre distinctif de musique électronique de danse apparu à la fin des années 1990 et ayant atteint son apogée au début des années 2000. Issu des scènes de New York, de Détroit, ainsi que d'Allemagne et des Pays-Bas, le genre se définit par son revivalisme délibéré des codes des années 1980 — puisant spécifiquement dans l'electro, la new wave, la synth-pop et le synth-punk — et par leur fusion avec les valeurs de production contemporaines et agressives de la techno. Le terme lui-même a été inventé par le DJ Larry Tee, qui cherchait à capturer l'esthétique d'un mouvement qui semblait à la fois futuriste et profondément redevable aux synthétiseurs minimaux et palpitants ainsi qu'aux textures robotiques du passé.\n\nMusicalement, l'Electroclash se caractérise par l'utilisation de synthétiseurs analogiques vrombissants et low-tech, un usage intensif du vocodeur et des lignes de basse marquées et entraînantes. Les interprétations vocales sont fréquemment monotones, impassibles ou à moitié parlées, renforçant la personnalité « robotique » et détachée souvent adoptée par ses praticiens. Au-delà de la musique, le genre était indissociable de sa culture visuelle spécifique, qui privilégiait une image hautement sexualisée, fétichiste et délibérément trash, faisant souvent référence au cinéma de science-fiction des années 1980 comme le film Liquid Sky. Cette combinaison de paysages sonores rétro-futuristes et d'art de la performance transgressif et camp a positionné l'Electroclash comme un contre-mouvement au sérieux perçu de la musique de danse grand public de l'époque. Les figures clés du mouvement comprenaient I-F, Miss Kittin & The Hacker, Peaches et Fischerspooner, dont le morceau « Emerge » demeure un jalon de cette ère. Bien que le genre ait connu un déclin de l'attention médiatique après le milieu des années 2000, son influence a persisté à travers l'ère du bloghouse et a finalement été revisitée dans les années 2020 dans le cadre du renouveau « Indie Sleaze ».",
+      "source_sha256": "da42dcd71fb7ad5495debf4662fe3ccf146465a278988ea2605fbae2dfe88dbd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:54:12.744Z"
+    }
+  }
 }

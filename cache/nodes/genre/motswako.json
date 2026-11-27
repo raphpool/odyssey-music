@@ -95,5 +95,19 @@
       "type": "track",
       "name": "Bakae"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du hip hop sud-africain caractérisé par le mélange fluide de setswana, d'anglais et d'autres langues indigènes sur des rythmes stables et décontractés.",
+      "article": "Originaire de Mafikeng, en Afrique du Sud, au milieu des années 1990, le Motswako est un style de hip hop défini par le mélange linguistique du setswana et de l'anglais. Le genre tire son nom du mot setswana signifiant « mélange » ou « fusion », reflétant sa pratique fondamentale consistant à associer les langues indigènes locales au rap contemporain. Les premiers pionniers comme Stoan Seate et le groupe Bongo Maffin ont intégré la danse et la poésie traditionnelles tswana, contribuant à établir une perspective hip hop centrée sur l'Afrique. HHP, souvent appelé Jabba, a accédé à la notoriété après avoir été conseillé par le producteur Chicco Twala de rapper en setswana, une décision qui a transformé sa carrière. Musicalement, le genre s'appuie sur des rythmes stables, utilisant parfois des rythmes four-on-the-floor ou des éléments de drum and bass pour servir de toile de fond à des prestations axées sur les paroles. Les thèmes vont du commentaire socio-politique et de la fierté locale aux célébrations de la richesse et de la romance. Bien que l'Afrique du Sud serve de base principale, le Botswana accueille également une communauté importante d'artistes de Motswako, incluant des groupes comme Cashless Society.",
+      "facts": {
+        "era": "milieu des années 1990 à aujourd'hui",
+        "origin": "Mafikeng, Afrique du Sud",
+        "sonic_markers": "Prestation de rap fluide, rythmes four-on-the-floor, rythmes influencés par le reggae, textures électroniques minimalistes, lignes de basse chaleureuses."
+      },
+      "source_sha256": "3a9adc1e0264b1087f575abdb7457000d9e4d3f2793c54d817bc81053e674217",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:31:05.772Z"
+    }
+  }
 }

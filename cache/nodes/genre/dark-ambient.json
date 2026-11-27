@@ -72,5 +72,14 @@
       "name": "Zeit"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre post-industriel défini par des paysages sonores inquiétants, dissonants et bourdonnants qui privilégient la profondeur atmosphérique, l'isolement et la tension psychologique plutôt que la mélodie ou le rythme.",
+      "article": "Le Dark ambient est un sous-genre de la musique post-industrielle caractérisé par ses atmosphères inquiétantes, monumentales et souvent catacombales. Émergeant des scènes industrielles expérimentales et ambient des années 1970 et du début des années 1980, le genre subvertit délibérément les structures musicales traditionnelles, privilégiant les bourdonnements dissonants et tentaculaires ainsi que les résonances profondes et troublantes plutôt que le rythme ou la mélodie. Bien que les premiers précurseurs puissent être retracés jusqu'aux disques expérimentaux de Tangerine Dream et des pionniers industriels Throbbing Gristle, le terme a été officiellement inventé au début des années 1990 par Roger Karmanik, le fondateur du label séminal Cold Meat Industry, pour classer le travail d'artistes tels que Raison d’être.\n\nSur le plan sonore, le Dark ambient repose sur la manipulation de la texture et de l'espace. Les artistes utilisent fréquemment des enregistrements de terrain traités, des oscillations à basse fréquence et des échantillons traités d'instruments acoustiques — souvent déformés au point d'être méconnaissables — pour construire des paysages sonores immersifs et sombres. Le genre est profondément enraciné dans des thèmes d'isolement, de mélancolie et de rituel. Son chevauchement esthétique avec l'occultisme et la magie est significatif, en particulier dans l'aile « ambient industrial » du genre, où le son est utilisé comme un outil pour créer des états psychologiques intenses et surnaturels. Du bruit rituel de Lustmord et Zoviet France à la dissonance cinématographique écrasante de producteurs modernes comme Thomas Köner, le Dark ambient sert d'espace sonore vital pour explorer le liminal et l'inconfortable. Son influence s'est propagée bien au-delà de ses origines post-industrielles, trouvant sa place dans la composition classique contemporaine, le black metal et la conception sonore cinématographique.",
+      "source_sha256": "b8c0d554ac19a9c47754a365bf5e7f5eb826b75d5ef8208bd73b426587623483",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:20:13.308Z"
+    }
+  }
 }

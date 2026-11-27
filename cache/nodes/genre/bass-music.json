@@ -130,5 +130,19 @@
       "type": "track",
       "name": "Scary Monsters and Nice Sprites"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un terme générique pour les genres électroniques et hip hop définis par une emphase marquée sur les fréquences sub-basses et une production axée sur les basses.",
+      "article": "Bass music fonctionne comme un terme générique étendu pour les genres électroniques et hip hop apparus à partir des années 1980, caractérisés par leur concentration sur des lignes de basse proéminentes ou des percussions à basse fréquence. Les producteurs utilisent fréquemment la boîte à rythmes Roland TR-808 ou des synthétiseurs logiciels comme Xfer Serum pour façonner ces textures graves. Le terme englobe un large éventail de styles, allant du Miami bass sur la scène hip hop américaine aux mouvements nés au Royaume-Uni comme le UK garage et le drum and bass. Les critiques modernes et les acteurs de la scène utilisent souvent cette étiquette pour souligner le poids des sub-fréquences, couvrant divers sous-genres tels que le dubstep, le Gqom, le footwork et le moombahton.",
+      "facts": {
+        "era": "Années 1980 à aujourd'hui",
+        "origin": "États-Unis et Royaume-Uni",
+        "sonic_markers": "Sub-basses lourdes, boîtes à rythmes Roland TR-808, rythmes syncopés, focalisation sur les sub-basses"
+      },
+      "source_sha256": "d6cdce8d1123ad18921ea4e0c28879f8dbc2bbcb60721f6bd59e46a2b50889b9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:05:41.307Z"
+    }
+  }
 }

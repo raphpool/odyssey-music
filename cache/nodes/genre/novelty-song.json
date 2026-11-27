@@ -74,5 +74,18 @@
       "type": "track",
       "name": "Disco Duck"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Une novelty song est un enregistrement populaire qui capte l'attention du public grâce à des éléments sonores uniques, souvent comiques, absurdes ou hautement distinctifs, qui le différencient de la musique dominante de son époque.",
+      "article": "La novelty song est un phénomène musical distinctif, souvent éphémère, défini par sa capacité à se démarquer du paysage radiophonique conventionnel par l'humour, l'absurde ou des caractéristiques sonores très inhabituelles. Comme l'a formulé le chercheur culturel Simon Frith, une novelty song est soit consciemment construite pour son impact comique ou accrocheur — une tradition remontant à l'époque du music-hall britannique —, soit elle devient une « novelty » en raison de son retrait de son contexte original, ce qui la rend étrange ou particulière pour un public grand public. Bien qu'elles soient souvent rejetées comme de simples « disques de blague » triviaux, les novelty songs ont historiquement fonctionné comme des baromètres culturels vitaux, servant parfois de véhicule d'introduction pour que des styles musicaux nouveaux, exotiques ou avant-gardistes atteignent un public plus large. Par exemple, des genres comme le ska, le disco et le hip-hop ont été initialement introduits dans le courant pop dominant sous des formats simplifiés, souvent teintés d'humour, tels que « My Boy Lollipop » de Millie Small ou « Rapper’s Delight » du Sugarhill Gang. À l'inverse, les disques de novelty peuvent mettre en évidence des avancées technologiques, comme on le voit dans les textures électroniques du succès de 1962 « Telstar » par The Tornados. Bien que le sommet commercial des disques de « blague » dédiés se soit sans doute produit au cours des années 1950, la novelty song demeure un outil puissant pour la satire, comme l'a perfectionné des figures telles que « Weird Al\" Yankovic. En fin de compte, bien que des morceaux de novelty individuels puissent disparaître du discours populaire une fois que l'étincelle initiale de singularité s'est estompée, la catégorie continue de jouer un rôle important en tant que point d'entrée pour permettre au public de s'acclimater à de nouveaux langages musicaux.",
+      "facts": {
+        "era": "Fin du XIXe siècle à nos jours",
+        "origin": "Traditions de la musique populaire occidentale, incluant le music-hall britannique."
+      },
+      "source_sha256": "0d0a2c0462a5e8e45a4945597943c417e0a17f6049fca7c8205935c3ce2762fb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:32:57.646Z"
+    }
+  }
 }

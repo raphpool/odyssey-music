@@ -155,5 +155,18 @@
       "name": "All Killer No Filler"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de fusion combinant l'instrumentation rapide et pleine d'énergie ainsi que les thèmes anti-establishment du punk rock avec les structures de composition accessibles et mélodiques de la pop et de la power pop des années 1960.",
+      "article": "Le Pop Punk, souvent appelé punk pop, est un genre de musique rock dynamique apparu à la fin des années 1970 en fusionnant l'énergie brute et l'éthique DIY du punk rock avec les mélodies accessibles, les structures et le savoir-faire riche en accroches de la pop et de la power pop des années 1960. Bien que de nombreux genres reposent sur une origine régionale spécifique, le Pop Punk s'est développé simultanément aux États-Unis et au Royaume-Uni, en tirant une inspiration significative des sensibilités harmoniques de The Beatles, The Kinks et The Beach Boys. Ce mélange aboutit à une signature sonore définie par des tempos rapides, des power chords saturés et des refrains contagieux adaptés à la radio, qui contrastent souvent fortement avec des paroles axées sur l'angoisse adolescente, la rébellion contre la banalité suburbaine et les complexités du début de l'âge adulte.\n\nTout au long de son histoire, le genre a connu plusieurs phases distinctes. Ses racines à la fin des années 1970 et dans les années 1980 ont été consolidées par des groupes fondateurs tels que The Ramones, les Buzzcocks, et plus tard, les Descendents et Bad Religion, qui ont fait le pont entre le punk plus dur et l'art de la composition mélodique. Le début des années 1990 a vu une prolifération massive du son, alimentée par des labels indépendants comme Lookout! Records, qui a incubé des groupes tels que Green Day et The Mr. T Experience. Le genre a atteint son apogée en termes d'ubiquité culturelle grand public au milieu des années 1990 et au début des années 2000, porté par le succès commercial massif de groupes comme Blink-182 et The Offspring, et davantage propulsé par l'influent Warped Tour. Au milieu des années 2000, les frontières entre le Pop Punk et l'emo sont devenues de plus en plus poreuses, aboutissant au phénomène emo-pop mené par Fall Out Boy et Paramore. Bien que sa domination grand public ait fluctué dans les années 2010, le genre a maintenu une scène underground robuste avant de connaître un regain de nostalgie généralisé au début des années 2020, soulignant sa place durable dans le canon du rock alternatif.",
+      "facts": {
+        "era": "Fin des années 1970 – Présent",
+        "origin": "États-Unis et Royaume-Uni"
+      },
+      "source_sha256": "80347cd4e465a7423aa9c090e1a845ba36fd65b9a80265870aa5ea9e921e6051",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:33:02.098Z"
+    }
+  }
 }

@@ -87,5 +87,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q341395"
+  "qid": "Q341395",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de la techno caractérisé par l'utilisation prédominante et modulée du synthétiseur de basse Roland TB-303, aboutissant à un son distinctement résonnant et grinçant associé à des rythmes intenses et répétitifs.",
+      "article": "L'Acid Techno a émergé à la fin des années 1980 et au début des années 1990 comme une évolution intense et mécanique du mouvement acid house. Alors que l'acid house, né à Chicago, a jeté les bases en popularisant le Roland TB-303, l'Acid Techno a emmené ce son vers des territoires plus durs, plus frénétiques et souvent plus sombres. Elle représente une convergence transatlantique : le « squelch » acide du 303 — obtenu en poussant sa résonance de filtre et en manipulant sa fréquence de coupure — a été combiné aux grosses caisses entraînantes et répétitives ainsi qu'aux percussions métalliques de la techno, de la rave et du hardcore européens. Cette fusion a créé un son défini par ses qualités hypnotiques et trance, souvent caractérisé par des motifs mélodiques rapides et gargouillants qui faisaient office à la fois de lignes de basse et de leads.\n\nSur le plan culturel, le genre est devenu profondément lié aux scènes rave DIY des années 1990, particulièrement à Londres et à travers l'Europe. Contrairement aux styles électroniques commerciaux plus polis, l'Acid Techno était souvent la bande-son de fêtes clandestines et de la culture free-rave. L'instabilité sonore du 303 permettait une sensation brute et improvisée qui résonnait avec l'esthétique granuleuse de l'époque. Des figures clés comme Richie Hawtin, à travers son alias Plastikman, ont joué un rôle vital dans l'évolution du son, tout comme des groupes européens fondateurs tels que Hardfloor et des pionniers basés à Londres comme D.A.V.E. The Drummer et The Geezer. La compilation de 1997 « It's Not Intelligent…And It's Not From Detroit…But It's F**king 'Avin It » a servi de jalon culturel critique, cimentant l'identité de la scène Acid Techno underground spécifique de Londres et solidifiant la réputation du genre en tant que force viscérale et implacable de la musique électronique.",
+      "facts": {
+        "era": "Fin des années 1980 – Présent",
+        "origin": "Royaume-Uni, États-Unis, Allemagne"
+      },
+      "source_sha256": "32ec4cf5bc20541a5b6cd61c6e6c4b26c753697072a9915bc8d58adc1e694b7b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:03:41.303Z"
+    }
+  }
 }

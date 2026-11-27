@@ -51,5 +51,14 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q1045756"
+  "qid": "Q1045756",
+  "l10n": {
+    "fr": {
+      "teaser": "La musique microtonale est toute musique qui utilise des intervalles plus petits que le demi-ton standard du tempérament égal à douze tons occidental, englobant à la fois les systèmes traditionnels non occidentaux et les compositions expérimentales ou d'avant-garde occidentales.",
+      "article": "La musique microtonale désigne une approche musicale diversifiée et vaste qui utilise des intervalles plus petits que le demi-ton standard du système familier de tempérament égal à douze tons occidental. Bien que le terme « microtonal » ait gagné en importance dans la musicologie occidentale au début du XXe siècle, la pratique consistant à employer des micro-intervalles est profondément ancrée dans de nombreuses traditions musicales mondiales, notamment celles de l'Inde, du Moyen-Orient, de l'Asie du Sud-Est et de diverses cultures africaines. Pour ces traditions, la microtonalité n'est pas une déviation expérimentale mais une composante fondamentale de l'expression mélodique, souvent réalisée par le biais de systèmes d'accord complexes comme le śruti indien ou diverses gammes de gamelan.\n\nDans le contexte de la musique savante et de la composition d'avant-garde occidentales des XXe et XXIe siècles, la microtonalité a émergé comme une méthode permettant aux compositeurs de s'affranchir des contraintes de l'accord standard du piano. En explorant les quarts de ton, l'intonation juste ou d'autres divisions de l'octave, des figures comme Charles Ives, Julián Carrillo, puis plus tard des compositeurs minimalistes et expérimentaux, ont cherché à élargir les possibilités harmoniques et expressives de leur travail. Ce mouvement sonore comble le fossé entre les pratiques culturelles anciennes et la théorie contemporaine de pointe, mettant les auditeurs au défi de percevoir la hauteur non pas comme un ensemble rigide de douze touches, mais comme un spectre sonore continu et nuancé pouvant être subdivisé en niveaux de détail quasi infinis. Son impact persiste aujourd'hui dans la musique électronique, la composition contemporaine et l'art sonore, les outils numériques ayant rendu l'exploration microtonale plus accessible que jamais. En réévaluant la nature physique et acoustique du son, ce genre encourage une connexion plus profonde avec la physique de l'harmonie et un départ de l'hégémonie du piano.",
+      "source_sha256": "f3064378023b120ba9e8a296ad07a7d9a52ed921d2e164460909072798630f40",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:31:01.779Z"
+    }
+  }
 }

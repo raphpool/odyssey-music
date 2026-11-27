@@ -119,5 +119,18 @@
       "name": "The Velvet Underground & Nico"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un terme rétrospectif désignant la musique rock brute et non conventionnelle des années 1960 et du début des années 1970 qui a préfiguré les thèmes, l'esthétique et le son du mouvement punk rock.",
+      "article": "Le proto-punk désigne la musique rock diversifiée, éparse et brute qui a émergé au cours des années 1960 et du début des années 1970, bien avant que le terme « punk rock » n'existe en tant que mouvement ou sous-culture défini. Il s'agit d'une étiquette rétrospective utilisée par les critiques et les historiens pour classer les artistes qui ont anticipé l'énergie brute, l'attitude agressive et les structures simplistes qui définiraient finalement l'explosion punk de 1976 et 1977. Parce que le proto-punk n'a jamais été un mouvement cohérent ou organisé de manière centrale, ses racines sont profondément hétérogènes, puisant dans le garage rock du milieu des années 1960, les sensibilités théâtrales du glam rock et la scène pub rock brute du Royaume-Uni.\n\nMusicalement, les groupes proto-punk étaient souvent unis par une sensibilité défiante de type « do-it-yourself ». Ils étaient généralement en décalage avec la contre-culture dominante de l'époque, optant pour une production dépouillée et primitive ainsi que pour des styles de performance viscéraux et souvent conflictuels. Le centre de gravité du proto-punk américain se situait en grande partie à Detroit, où des groupes comme The Stooges et MC5 ont poussé l'esthétique garage rock jusqu'à sa conclusion logique et chaotique. Parallèlement, dans les scènes underground de New York, de Cleveland et de l'Ohio, des artistes expérimentaient des sons minimalistes tout aussi discordants. En Grande-Bretagne, les précurseurs du punk ont souvent émergé sous les bannières du glam ou du pub rock, en mettant l'accent sur un retour aux bases du rock and roll. En fin de compte, le proto-punk sert de lien vital entre le rock précoce à haute énergie influencé par le R&B des années 1950 et l'intensité idéologique du mouvement punk qui a suivi.",
+      "facts": {
+        "era": "années 1960-1970",
+        "origin": "États-Unis / Royaume-Uni"
+      },
+      "source_sha256": "0af7b75a49869b050b50cfc79f960aefb288b0d55a6f4e1358131505bdb8c943",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:15:54.250Z"
+    }
+  }
 }

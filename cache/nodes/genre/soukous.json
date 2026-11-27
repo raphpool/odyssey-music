@@ -155,5 +155,19 @@
       "type": "track",
       "name": "Suzana Coulibaly"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique de danse congolaise à haute énergie dérivé de la rumba, connu pour ses solos de guitare électrique rapides et sa section instrumentale culminante appelée « sebene ».",
+      "article": "Le Soukous est apparu dans les années 1960 comme une évolution au tempo rapide de la rumba congolaise, originaire de la République démocratique du Congo et de la République du Congo. Le genre se définit par des solos de guitare électrique complexes et arpégés ainsi que par une mesure vive à 4/4 ou 12/8 qui privilégie le « sebene », cette section instrumentale improvisée et culminante. Au cours des années 1980, le style a acquis une renommée internationale lorsque les musiciens de Kinshasa se sont installés à Paris et à Bruxelles, intégrant souvent des synthétiseurs et des boîtes à rythmes. Des groupes pionniers comme Zaïko Langa Langa ont popularisé le rythme « cavacha » et le rôle de l'« atalaku » ou animateur, un maître de cérémonie devenu un élément incontournable des concerts. La musique utilise fréquemment des progressions d'accords I-IV-V, les guitaristes solistes naviguant dans les registres aigus du manche pour produire des motifs énergiques et répétitifs. Au-delà de ses racines en Afrique centrale, le genre a considérablement influencé les styles régionaux, notamment le benga au Kenya et la champeta en Colombie, cette dernière ayant prospéré après que des mécaniciens ont importé des disques 45 tours congolais dans les années 1970.",
+      "facts": {
+        "era": "Années 1960 à nos jours",
+        "origin": "République démocratique du Congo et République du Congo",
+        "sonic_markers": "Mesure 12/8 ou 4/4, improvisation proéminente à la guitare électrique, rythme de percussion cavacha, lignes de basse syncopées"
+      },
+      "source_sha256": "b0e3d3fc2ee0cbbbedf74cd6d154627fb77ccba3f3ba45ab67b3ae759a3961ce",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:36:00.115Z"
+    }
+  }
 }

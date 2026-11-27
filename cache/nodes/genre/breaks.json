@@ -122,5 +122,19 @@
       "type": "track",
       "name": "Apache"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un style de musique électronique défini par l'utilisation de breaks de batterie échantillonnés et syncopés, issus à l'origine de disques de funk et de soul.",
+      "article": "Émergeant de la production hip-hop du milieu des années 1970 aux États-Unis et évoluant en un genre de musique électronique distinct à la fin des années 1980, le breakbeat repose sur des boucles rythmiques extraites de disques de funk, de jazz et de R&B. Des DJ comme Grandmaster Flash ont été les pionniers de la technique consistant à boucler ces sections, tandis que des artistes tels que The Winstons ont fourni du matériel source essentiel comme le « Amen, Brother ». Au cours des années 1990, le style s'est ramifié en diverses formes, notamment le big beat, défendu par The Chemical Brothers et The Prodigy, et le progressive breaks, caractérisé par des nappes de synthétiseurs influencées par la trance et des leads atmosphériques. Des producteurs andalous en Espagne ont développé une scène régionale, utilisant une structure spécifique de pré-breaks et de drops qui a alimenté des festivals comme le Winter Festival. Le genre demeure polyvalent, des artistes contemporains comme PinkPantheress intégrant ces rythmes échantillonnés et syncopés dans des compositions pop.",
+      "facts": {
+        "era": "milieu des années 1970 à nos jours",
+        "origin": "États-Unis et Royaume-Uni",
+        "sonic_markers": "110-175 BPM, boucles de batterie syncopées, forte dépendance à l'échantillonnage, breakbeats et manipulation percussive."
+      },
+      "source_sha256": "a35e8aa5ee9c0fd94aaec70eb953e959e87c15309a79fb938216bbdb5ffa4436",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:06:41.893Z"
+    }
+  }
 }

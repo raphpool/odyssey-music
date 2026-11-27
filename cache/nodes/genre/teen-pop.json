@@ -103,5 +103,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q739138"
+  "qid": "Q739138",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de musique pop spécifiquement conçu pour et commercialisé auprès d'un public de préadolescents et d'adolescents, caractérisé par une écriture accessible, riche en accroches, et par de fortes associations avec des plateformes culturelles axées sur la jeunesse.",
+      "article": "Le Teen pop est un sous-genre dynamique et durable de la musique populaire, défini non pas par une signature sonore unique, mais par son objectif principal : capter l'attention, les aspirations et le pouvoir de consommation des préadolescents et des adolescents. Bien que l'esthétique du genre ait radicalement évolué depuis ses racines du milieu du XXe siècle — passant des mélodies influencées par le swing des années 1940 et 1950 aux infusions de dance-pop, de R&B et de hip-hop de la fin du XXe et du début du XXIe siècle — les principes fondamentaux restent constants. La musique est souvent marquée par des refrains simples, répétitifs et contagieux, des paroles qui naviguent dans les paysages émotionnels archétypaux de la jeunesse, et une production léchée conçue pour dominer la radio et la télévision grand public.\n\nHistoriquement, le Teen pop a fonctionné comme un moteur commercial massif, reliant la musique à des écosystèmes médiatiques plus larges. De l'ère « bubblegum » des années 1960 définie par des groupes comme The Monkees et The Partridge Family à l'explosion des années 1980 et 1990 des boys bands et des girls groups comme New Kids on the Block et les Spice Girls, le genre a prospéré en tirant parti du marketing centré sur les adolescents. Cela implique fréquemment une synergie avec des magazines, des films destinés aux adolescents, des séries télévisées et, finalement, l'influence massive de l'appareil musical de Disney dans les années 2000, qui a aidé à lancer les carrières de personnalités comme Miley Cyrus et Justin Bieber. Loin d'être seulement un style musical, le Teen pop sert de média crucial de passage à l'âge adulte, agissant souvent comme un miroir des tendances sociales et des angoisses culturelles des générations qu'il cible. Que ce soit par le biais de stars en solo ou de dynamiques de groupe soigneusement élaborées, le genre reste l'expression ultime de la relation symbiotique entre la musique pop, la célébrité et la construction de l'identité adolescente.",
+      "facts": {
+        "era": "depuis les années 1940",
+        "origin": "États-Unis"
+      },
+      "source_sha256": "5e79f04d5345f818c24959fcc64ca217924fff55c52260f6e8218b7b5c3f6d75",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:16:51.795Z"
+    }
+  }
 }

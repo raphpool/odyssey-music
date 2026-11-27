@@ -103,5 +103,19 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q196999"
+  "qid": "Q196999",
+  "l10n": {
+    "fr": {
+      "teaser": "Le Zeuhl est un sous-genre avant-gardiste distinct du rock progressif, caractérisé par ses voix opératiques, ses structures rythmiques complexes et répétitives, et une fusion intense de jazz-rock et d'influences classiques, né du travail conceptuel du groupe français Magma.",
+      "article": "Celestial Force. Le Zeuhl est un sous-genre du rock progressif hautement spécialisé et intensément dramatique qui a émergé en France à la fin des années 1960 et au début des années 1970. Le terme a été inventé par le légendaire groupe français Magma, dirigé par le batteur et compositeur Christian Vander, et est dérivé de leur langue inventée, le kobaïen, dans laquelle « Zeuhl Ẁortz » se traduit par « Force céleste ». À sa base, le genre représente une fusion de jazz avant-gardiste, de musique classique occidentale moderne — souvent comparée aux compositions de Carl Orff — et de rock lourd et hypnotique. Le paysage sonore du Zeuhl est défini par ses sections rythmiques imposantes et souvent répétitives, caractérisées par des lignes de basse électrique entraînantes et des percussions dynamiques et complexes. Les voix occupent un rôle central, souvent opératique ; elles peuvent aller d'arrangements choraux polyphoniques obsédants rappelant « Carmina Burana » à des solos de jazz improvisés et perçants, livrés avec une intensité qui reflète les thèmes narratifs sombres et mythiques du genre. Au-delà de la musique elle-même, le Zeuhl est souvent lié à l'univers conceptuel kobaïen créé par Vander, offrant une expérience esthétique globale qui transcende les structures de chansons traditionnelles. Bien qu'initialement confiné à la scène underground française, le Zeuhl a fini par influencer un mouvement mondial de musiciens avant-progressifs, notamment au Japon avec des groupes comme Kōenjihyakkei, et demeure un coin distinct et farouchement intransigeant du spectre du rock progressif. Sa longévité et son influence témoignent de la puissance d'une vision artistique, transformant un concept de niche auto-mythifié en un sous-genre musical respecté et durable qui continue de défier les auditeurs par sa finesse technique et son énergie viscérale.",
+      "facts": {
+        "era": "Fin des années 1960 à aujourd'hui",
+        "origin": "France",
+        "sonic_markers": "Lignes de basse hypnotiques et répétitives, voix opératiques et chorales polyphoniques, polyrythmies complexes, thèmes narratifs sombres et mythiques, fusion d'improvisation jazz et de drame orchestral."
+      },
+      "source_sha256": "bca8769091e7df551b1e3c53496c5c77bc879b4ccde2a8873fee1d1b158f755a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:46:57.847Z"
+    }
+  }
 }

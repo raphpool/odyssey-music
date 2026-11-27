@@ -102,5 +102,18 @@
       "name": "Chronic Town"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de la musique rock caractérisé par l'accent mis sur des sonorités de guitare électrique claires et cristallines, une écriture mélodique inspirée des années 1960 et une sensibilité indépendante DIY.",
+      "article": "Le Jangle pop est un sous-genre du pop rock et de l'alternative rock apparu à la fin des années 1970 et au début des années 1980, défini par ses textures de guitare brillantes et tintantes. Le genre tire son nom du son distinctif « jangly » produit par des guitares électriques au son clair, utilisant souvent des micros à simple bobinage et des guitares à 12 cordes pour créer une tonalité nette et scintillante. Musicalement, le Jangle pop marie les sensibilités mélodiques de la pop et du folk-rock des années 1960 — notamment le travail de The Byrds — avec une esthétique DIY post-punk qui privilégiait l'authenticité amateur au poli des studios.\n\nHistoriquement, le genre est devenu une pierre angulaire de la scène college rock américaine dans les années 1980, R.E.M. en étant le vulgarisateur le plus éminent. Bien que centré dans les villes universitaires, le mouvement était géographiquement diversifié, se manifestant par des saveurs régionales uniques telles que le Paisley Underground à Los Angeles — qui mélangeait le jangle avec le psychedelic rock — et le Dunedin sound en Nouvelle-Zélande, qui apportait une sensibilité plus lo-fi et angulaire à l'esthétique. Tout au long de son évolution, le genre a maintenu un accent sur les mélodies en tonalité majeure, les lignes de guitare complexes et arpégées, et des paroles qui penchaient fréquemment vers le cryptique ou l'introspectif.\n\nLoin d'être une simple note de bas de page historique, le Jangle pop est resté un fil conducteur vital de la musique indépendante. Son influence persiste dans l'indie pop et le dream pop contemporains, maintenue en vie par des labels comme Slumberland Records et des artistes qui continuent d'exploiter le revivalisme des années 60 qui a défini le genre à ses débuts. Le vocabulaire sonore du Jangle pop — reposant sur la résonance organique et non compressée des guitares — sert de point de repère pérenne pour les musiciens cherchant à capturer un sens de la mélodie intemporelle et accessible à travers un prisme indépendant, en dehors du courant dominant.",
+      "facts": {
+        "era": "Fin des années 1970 à nos jours",
+        "origin": "États-Unis et Royaume-Uni"
+      },
+      "source_sha256": "7956960f2b1096f6b1537bd1027f60f27dbb05410c5e7a984883568ab010433c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:29:57.555Z"
+    }
+  }
 }

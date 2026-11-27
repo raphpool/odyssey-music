@@ -97,5 +97,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q2579417"
+  "qid": "Q2579417",
+  "l10n": {
+    "fr": {
+      "teaser": "Une classification géographique et culturelle large englobant les diverses pratiques du jazz développées au sein des nations européennes, souvent caractérisée par une fusion des fondements du jazz américain avec des traditions folkloriques, classiques et avant-gardistes locales.",
+      "article": "Le European Jazz désigne le paysage diversifié de la musique jazz créé et développé à travers le continent européen du début du XXe siècle à nos jours. Bien que le jazz soit né aux États-Unis, l'Europe est devenue un site secondaire pivot pour la croissance du genre, favorisée par un afflux initial d'interprètes afro-américains et une génération ultérieure de musiciens européens qui ont intégré leurs propres sensibilités culturelles, folkloriques et avant-gardistes. Loin d'être un sous-genre monolithique, le European Jazz est défini davantage par sa géographie et l'interaction complexe des traditions nationales, allant du lyrisme expansif du jazz nordique aux robustes mouvements d'avant-garde en Europe centrale et occidentale.\n\nTout au long du XXe siècle, l'évolution du European Jazz a été profondément influencée par les conditions socio-économiques locales, les traumatismes historiques et un rejet des hiérarchies rigides souvent présentes dans les modèles américains antérieurs. À la fin du XXe siècle, des labels européens tels que ECM ont joué un rôle transformateur, défendant un « son européen » — souvent caractérisé par une production cristalline, des influences classiques et une concentration sur une musique atmosphérique et improvisée qui divergeait des esthétiques swing et bebop ancrées dans le blues des États-Unis. Des chercheurs et des organisations, tels que le Europe Jazz Network, ont travaillé à structurer ce développement comme un récit culturel distinct, soulignant les archives interconnectées du continent et la synthèse unique de l'héritage musical indigène — tel que les traditions tziganes et juives — avec l'improvisation moderniste. Aujourd'hui, le European Jazz demeure un réseau vital et polycentrique de festivals, de collectifs et d'artistes qui continuent de remodeler le langage mondial du jazz à travers des perspectives locales.",
+      "facts": {
+        "era": "Du début du XXe siècle à nos jours",
+        "origin": "Europe"
+      },
+      "source_sha256": "5e35283a5a25db82f885d1788e423817c95c8ec27ceb45bf1ca0f7cc88ab6da9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:12:57.406Z"
+    }
+  }
 }

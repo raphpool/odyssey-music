@@ -184,5 +184,18 @@
       "name": "Dirt"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le grunge est un genre de rock alternatif du milieu des années 1980 originaire de l'État de Washington, défini par une fusion de l'énergie brute du punk rock et du son de guitare distordu et lourd du heavy metal. Il a servi de son emblématique du début des années 1990, caractérisé par des paroles angoissées et introspectives et un virage vers une esthétique authentique et non polie.",
+      "article": "Le grunge, initialement surnommé le « Seattle Sound », est un sous-genre déterminant du rock alternatif qui s'est cristallisé dans le nord-ouest du Pacifique au milieu et à la fin des années 1980. Émergeant des scènes musicales underground de Seattle et d'Olympia, dans l'État de Washington, le genre a synthétisé l'énergie abrasive et brute du punk rock avec les riffs accordés bas et lourds du heavy metal. Cette hybridation sonore — souvent caractérisée par des guitares électriques distordues, une production boueuse et un penchant pour un jeu « ultra-loose » — était autant le produit d'une nécessité économique qu'un choix esthétique. De nombreux premiers groupes de la région manquaient de fonds pour une production en studio haute fidélité, optant plutôt pour un son granuleux et non poli qui allait devenir la marque de fabrique du genre.\n\nL'éthos du grunge était profondément introspectif et souvent cynique, résonnant avec une génération — souvent associée à la « Generation X » — qui se sentait de plus en plus aliénée par les excès des années 1980. Sur le plan lyrique, le genre s'est tourné vers des thèmes d'isolement social, de traumatisme, de doute de soi et de trahison émotionnelle. Grâce au marketing stratégique de labels indépendants comme Sub Pop, la scène a gagné en visibilité, mais c'est le succès retentissant du début des années 1990 d'albums comme 'Nevermind' de Nirvana, 'Ten' de Pearl Jam et 'Badmotorfinger' de Soundgarden qui a propulsé le son dans le courant dominant mondial. Au milieu des années 90, le grunge avait fondamentalement modifié le paysage du rock, poussant la musique alternative introspective et axée sur la guitare au premier plan de la culture populaire avant que la proéminence du genre ne commence à décliner suite à la mort tragique de Kurt Cobain et à la fragmentation éventuelle de ses groupes clés. Son héritage, cependant, reste durable, ayant jeté les bases du rock alternatif moderne et du post-grunge.",
+      "facts": {
+        "era": "Milieu des années 1980 au milieu des années 1990",
+        "origin": "Seattle, Washington, États-Unis"
+      },
+      "source_sha256": "1b036f3b86c17581b2a9fb1077e951a6605494d623a2b095bc7b2143d9e701f5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:13:52.197Z"
+    }
+  }
 }

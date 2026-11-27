@@ -108,5 +108,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q104842028"
+  "qid": "Q104842028",
+  "l10n": {
+    "fr": {
+      "teaser": "La musique satirique est un mode lyrique et performatif qui utilise l'ironie, la parodie et le contraste musical pour critiquer les institutions sociales, politiques et culturelles, en réutilisant souvent des styles musicaux familiers avec un commentaire subversif et plein d'esprit.",
+      "article": "La musique satirique n'est pas un genre sonore unique mais plutôt un mode d'expression intergenres défini par son utilisation de l'ironie, de la parodie et d'un commentaire social mordant pour critiquer les normes culturelles, les institutions et les folies humaines. Plutôt que d'adhérer à des structures rythmiques ou harmoniques spécifiques, la musique satirique fonctionne comme une boîte à outils performative qui peut se manifester dans divers formats, notamment le théâtre musical, le folk, le rock, le hip-hop et le cabaret. Sa force principale réside dans la tension entre sa surface musicale — souvent entraînante, familière ou joyeuse — et la nature caustique de son contenu lyrique, ce qui crée une expérience déconcertante mais percutante pour l'auditeur. Ce mode d'expression repose largement sur des procédés rhétoriques tels que l'hyperbole, la litote, l'utilisation de narrateurs peu fiables et l'imitation de styles populaires (pastiche) pour exposer les absurdités de sa cible.\n\nHistoriquement, le genre s'inspire fortement de la tradition de l'opéra-ballade anglais du XVIIIe siècle, comme The Beggar's Opera de John Gay, qui a établi le modèle consistant à réutiliser des airs populaires avec des textes subversifs et pleins d'esprit pour se moquer de la corruption politique. Tout au long des XIXe et XXe siècles, il a évolué à travers le cabaret européen et le music-hall britannique, trouvant un foyer vif et urbain dans le « Kabarett » de l'époque de Weimar. La période d'après-guerre a vu la satire s'épanouir entre les mains d'artistes comme Tom Lehrer, qui utilisait une précision mathématique pour tourner en dérision les angoisses de la guerre froide, et Frank Zappa, qui employait le pastiche complexe et la virtuosité pour disséquer les impulsions consuméristes de la scène rock américaine. À l'ère contemporaine, la portée de la musique satirique s'est étendue grâce aux médias numériques, permettant à des artistes comme The Lonely Island et Flight of the Conchords de déployer des parodies à haute production et à réponse rapide qui continuent de mêler comédie, sophistication musicale et critique sociale. En adoptant des personnages exagérés ou en s'attaquant aux cibles systémiques, la musique satirique demeure un médium vital et adaptable pour la réflexion culturelle.",
+      "facts": {
+        "era": "Années 1720–présent",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "54ce2738e437a6563e4e2117aeea07dad70ab33d574b4892a6d62c6e2807eecf",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:35:04.465Z"
+    }
+  }
 }

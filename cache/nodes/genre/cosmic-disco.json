@@ -116,5 +116,19 @@
       "type": "track",
       "name": "I Feel Space"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du disco caractérisé par des thèmes de science-fiction, une utilisation intensive de synthétiseurs et des paysages sonores électroniques, souvent instrumentaux.",
+      "article": "Le Cosmic Disco a gagné en importance en Europe au milieu des années 1970, s'appuyant sur l'esthétique de la science-fiction et l'expérimentation axée sur les synthétiseurs de l'époque. Le mouvement a émergé parallèlement à des sorties telles que Star Wars Theme/Cantina Band de Meco en 1977 et Automatic Lover de Dee D. Jackson en 1978, qui utilisaient des arpégiateurs et une imagerie futuriste sur le thème de l'espace. En tant que sous-ensemble des tendances de danse européennes plus larges, le genre présente un mélange de compositions instrumentales et d'un travail intensif sur les synthétiseurs. Des figures clés telles que Didier Marouani et son groupe Space ont été fondamentales, tandis que des groupes italiens comme I Signori della Galassia ont exploré ces thèmes avec des visuels de science-fiction distincts influencés par le glam. Le genre maintient un lien avec la production électronique moderne grâce au travail d'artistes contemporains tels que Hans-Peter Lindstrøm, dont le morceau I Feel Space sorti en 2008 a fait revivre cette esthétique. Critiquement associé au « space disco » et à la musique « Afro/cosmic », le style met l'accent sur les textures synthétiques et les concepts extraterrestres plutôt que sur les récits amoureux traditionnels que l'on trouve dans le pop-disco standard. Des labels modernes, notamment Bear Funk et Full Pupp de Prins Thomas, ont préservé l'héritage du genre en publiant de nouveaux matériaux qui font référence à ces premières racines du disco expérimental.",
+      "facts": {
+        "era": "milieu des années 1970 à aujourd'hui",
+        "origin": "Europe, principalement la France et l'Italie",
+        "sonic_markers": "Arpégiateurs, utilisation intensive de synthétiseurs, vocodeurs, effets sonores sur le thème de l'espace, batteries électroniques, rythmes de danse généralement mid-tempo."
+      },
+      "source_sha256": "2360616fe60e834a0ecc74e9f771c5b51b4a08f134ec3246b4861d938482d6d9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T17:12:36.108Z"
+    }
+  }
 }

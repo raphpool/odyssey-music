@@ -99,5 +99,19 @@
       "type": "track",
       "name": "Babygirl"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du hip-hop qui intègre des influences électroniques, industrielles et punk non conventionnelles pour déconstruire les structures et la production traditionnelles des morceaux de rap.",
+      "article": "Le experimental hip-hop est un sous-genre défini par l'intégration de textures électroniques peu orthodoxes et de techniques de production non traditionnelles dans les fondations du rap. Souvent associé à la sortie en 2026 de l'album Experimental Rap de JPEGMafia, le genre prospère grâce à l'échantillonnage subversif et aux structures de chansons erratiques qui remettent en question les conventions du flow et de la mélodie. Les critiques comme les artistes définissent le style par sa volonté d'incorporer des éléments de punk, d'ambient et de musique industrielle, allant au-delà des arrangements boom-bap standard. Les points de repère influents pour la scène incluent des albums comme Yeezus de Kanye West, The Money Store de Death Grips et Atliens de Outkast, qui utilisent fréquemment une forte distorsion, des synthétiseurs dissonants et un débit vocal fragmenté pour créer des paysages sonores déroutants qui privilégient le risque artistique sur l'accessibilité grand public.",
+      "facts": {
+        "era": "fin des années 2000 à aujourd'hui",
+        "origin": "États-Unis ; scène mondiale de fusion électronique et rap",
+        "sonic_markers": "Structures de chansons irrégulières, échantillonnage dissonant, forte distorsion industrielle, textures vocales manipulées et fusion de sous-genres électroniques."
+      },
+      "source_sha256": "0119ed1e39b837433d9cba43fb556c324b7a707a719fc0dc6407b3676e22b570",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:02:24.234Z"
+    }
+  }
 }

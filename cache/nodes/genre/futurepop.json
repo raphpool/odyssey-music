@@ -83,5 +83,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q828243"
+  "qid": "Q828243",
+  "l10n": {
+    "fr": {
+      "teaser": "Une fusion mélodique et dansante de synth-pop, d'EBM et de trance apparue en Europe à la fin des années 1990, définie par ses valeurs de production élevées et son esthétique pop prête pour les clubs.",
+      "article": "Le Futurepop est un genre de musique électronique apparu en Europe occidentale à la fin des années 1990 en tant que fusion sophistiquée de synth-pop, d'EBM et de trance. Le style est principalement défini par ses structures pop « technoid » orientées vers la danse et l'incorporation d'accroches mélodiques contagieuses communes à la synth-pop, superposées aux rythmes de danse pulsés et agressifs caractéristiques de la trance et de la techno. Se distinguant de la trance pure par son adhésion aux structures traditionnelles couplet-refrain et aux performances vocales, le futurepop cherchait à dépasser les limites plus sombres et plus rudes des scènes EBM et industrielles contemporaines.\n\nConceptualisé par des figures telles que Ronan Harris de VNV Nation et Stephan Groth de Apoptygma Berzerk, le terme « futurepop » a été inventé à l'origine pour éloigner leur son évolutif à haute production des perceptions stagnantes ou trop « goth-centric » de la presse industrielle de l'époque. Le genre est rapidement devenu un pilier des clubs de danse alternatifs et des festivals à travers l'Allemagne, tels que Wave Gotik Treffen et M'era Luna, et est devenu intrinsèquement lié à la sous-culture cybergoth. Bien que certains artistes aient exprimé des sentiments mitigés à propos de l'étiquette, le genre a laissé une marque indélébile sur la culture club du début des années 2000, prouvant que la musique électronique pouvait simultanément conserver un côté alternatif et industriel et un poli haute fidélité compatible avec les classements.",
+      "facts": {
+        "era": "Fin des années 1990–2000",
+        "origin": "Europe occidentale"
+      },
+      "source_sha256": "a67d2ff527aa16ec01a9612568f9a7fd76d689188371843745878e7ba8ed5cd3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:08:58.121Z"
+    }
+  }
 }

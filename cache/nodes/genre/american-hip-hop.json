@@ -145,5 +145,19 @@
       "type": "track",
       "name": "King Tim III (Personality Jock)"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical afro-américain fondamental caractérisé par le rap, le turntablisme et l'échantillonnage, né des fêtes de quartier new-yorkaises des années 1970.",
+      "article": "Né des fêtes de quartier du début des années 1970 dans le Bronx, l'American hip-hop s'est structuré comme une réponse culturelle à la marginalisation des communautés afro-américaines et afro-caribéennes. La fête organisée par DJ Kool Herc le 11 août 1973 au 1520 Sedgwick Avenue est fréquemment citée comme son moment fondateur, où il utilisa deux platines pour isoler et prolonger les breaks instrumentaux de disques de disco et de funk. L'évolution du genre a été portée par l'innovation régionale, allant du boom bap new-yorkais aux scènes du Sud à Atlanta, Houston et Memphis. La commercialisation précoce est arrivée avec le succès de 1979 de The Sugarhill Gang, Rapper's Delight, suivi par The Breaks (1980) de Kurtis Blow, le premier single de rap certifié disque d'or. Au-delà de la musique, la scène a intégré le turntablisme, le breakdance et l'art du graffiti, avec des artistes comme Grandmaster Flash perfectionnant les techniques de manipulation de disque qui sont devenues fondamentales pour la production hip-hop. Les changements technologiques des années 1980, notamment l'adoption de la boîte à rythmes Roland TR-808, ont encore diversifié le son, permettant l'essor de l'electro et l'âge d'or qui a suivi entre le milieu des années 1980 et le milieu des années 1990.",
+      "facts": {
+        "era": "début des années 1970 à aujourd'hui",
+        "origin": "Le Bronx, New York, États-Unis",
+        "sonic_markers": "Turntablisme, scratching, beatbox, séquençage de boîte à rythmes, échantillonnage intensif, rap vocal"
+      },
+      "source_sha256": "f0dbb7f2d9b56ed582135381519efb8c9077e822e29b6f6a223a14de4b94bdba",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:04:43.778Z"
+    }
+  }
 }

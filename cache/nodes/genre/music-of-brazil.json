@@ -129,5 +129,19 @@
       "type": "track",
       "name": "Atraente"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un paysage musical diversifié façonné par la synthèse des cultures européenne, africaine et amérindienne, englobant tout, des traditions classiques et folkloriques aux genres influents à l'échelle mondiale comme la samba et la bossa nova.",
+      "article": "La musique brésilienne puise ses racines dans la rencontre entre les explorateurs portugais, les populations indigènes et les traditions africaines, une fusion qui a donné naissance à des styles fondamentaux comme la samba et le choro. En 1808, l'arrivée de la famille royale portugaise à Rio de Janeiro a accéléré la formalisation des institutions classiques, menant à l'émergence de compositeurs comme José Maurício Nunes Garcia et, plus tard, aux symphonies nationalistes de Heitor Villa-Lobos. Au début du XXe siècle, la samba est devenue le pouls de la nation, catalysée par la radio et son rôle central lors du Carnaval. Après le coup d'État de 1964, le mouvement MPB est apparu comme un front culturel, mêlant la sophistication de la bossa nova à l'engagement folklorique. La diversité régionale demeure une marque de fabrique, allant du technobrega du Nord-Est des années 2000 à la scène metal des années 1980 menée par Sepultura.",
+      "facts": {
+        "era": "Du XVIe siècle à nos jours",
+        "origin": "Brésil",
+        "sonic_markers": "Percussions polyrythmiques, motifs de guitare syncopés, influence des traditions du Candomblé, instrumentation variée incluant le berimbau, le cavaquinho et le bandonéon."
+      },
+      "source_sha256": "c434ea37a6183e6461b7dd6dcc107321420790842a4d1c017b27af013cbae8c3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:31:56.583Z"
+    }
+  }
 }

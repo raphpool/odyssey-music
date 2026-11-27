@@ -98,5 +98,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q1530455"
+  "qid": "Q1530455",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du jazz où la voix humaine est utilisée comme un instrument d'improvisation, caractérisé par l'usage du scat, un phrasé conversationnel et des racines profondes dans les traditions vocales afro-américaines.",
+      "article": "Le vocal jazz, ou chant jazz, est un genre sophistiqué au sein de la tradition jazz plus large où la voix humaine est traitée comme un instrument fondamental. Apparu au début du XXe siècle, ses racines plongent profondément dans l'histoire de la musique afro-américaine, incluant les field hollers, les chants de travail et les traditions spirituelles qui permettaient une expression émotionnelle profonde et une coordination. À la fin des années 1920, le genre a commencé à se cristalliser en une forme distincte, propulsé de manière significative par le travail innovant de Louis Armstrong, dont l'enregistrement de 1926 « Heebie Jeebies » est célèbre pour avoir introduit le scat — une technique révolutionnaire où les chanteurs utilisent des syllabes absurdes pour imiter le phrasé, le rythme et la tonalité des improvisateurs instrumentaux.\n\nAlors que le jazz mûrissait durant les années 1940 jusqu'à l'ère bebop, des chanteuses comme Ella Fitzgerald, Sarah Vaughan et Billie Holiday sont passées du travail avec des big bands au statut de solistes emblématiques à part entière. Ces artistes ont défini l'âge d'or du genre, mêlant précision technique et une interprétation profondément conversationnelle et improvisée. Contrairement aux styles choraux traditionnels qui mettent l'accent sur le vibrato et le legato, le vocal jazz privilégie un phrasé plus court et plus flexible, des inflexions de hauteur nuancées et une émission douce et sensible des consonnes, utilisant souvent le microphone comme un outil essentiel pour l'intimité. Le répertoire est largement ancré dans le Great American Songbook, bien qu'il demeure une tradition vivante qui exige une immense flexibilité technique et la capacité de naviguer dans le langage harmonique complexe de l'improvisation jazz. De l'esthétique cool et décontractée des années 1950 aux interprétations modernes, le vocal jazz demeure un pilier de la musique américaine, célébrant la voix comme l'instrument ultime de l'expression jazz.",
+      "facts": {
+        "era": "depuis les années 1920",
+        "origin": "États-Unis"
+      },
+      "source_sha256": "1458fbf028ca3c8408c5572a2e22f3faa6d741a0105fff1a6fea479e00980869",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:16:56.754Z"
+    }
+  }
 }

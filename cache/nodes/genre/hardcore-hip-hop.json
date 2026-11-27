@@ -101,5 +101,19 @@
       "type": "track",
       "name": "Insane in the Brain"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre du hip-hop caractérisé par une production agressive et brute, des samples sombres et une narration réaliste, souvent violente, ancrée dans la rue.",
+      "article": "Le Hardcore hip-hop se définit par une esthétique brute et agressive, construite sur des rythmes de batterie percutants, des techniques de sampling sombres et un lyrisme urbain sans concession. Apparu comme un sous-genre distinct du rap à la fin des années 1980, il se concentre sur des thèmes liés à la lutte urbaine, notamment les activités criminelles, la culture de la drogue et la violence. Des groupes comme Cypress Hill, originaires de South Gate, en Californie, sont devenus des figures centrales du genre en mêlant une production brute et psychédélique à des récits intransigeants. Discogs identifie ce style par ses beats au son intentionnellement sale et son interprétation conflictuelle. Si les bases ont été posées à la fin des années 80, le sous-genre a acquis une notoriété généralisée dans les années 1990, les artistes privilégiant le réalisme et le grain au détriment de formats plus polis et radiophoniques. Des formations comme House of Pain ou des artistes comme Rawcotiks, souvent associés au label Ruffhouse Records, ont contribué à définir cette identité sonore, avec des titres emblématiques tels que How I Could Just Kill a Man ou Insane in the Brain.",
+      "facts": {
+        "era": "fin des années 1980 à nos jours",
+        "origin": "États-Unis",
+        "sonic_markers": "Batteries percutantes et lourdes en basses, sampling sombre/psychédélique, interprétation vocale agressive et textures lo-fi brutes."
+      },
+      "source_sha256": "3852a0b93975219243a4598fcd74242f37224adbc67d9da6d3ff7696063c0d68",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:27:59.935Z"
+    }
+  }
 }

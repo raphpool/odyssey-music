@@ -101,5 +101,14 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q1995980"
+  "qid": "Q1995980",
+  "l10n": {
+    "fr": {
+      "teaser": "Un microgenre et mouvement esthétique britannique du milieu des années 2000 qui a fusionné l'indie rock avec l'electronica et le dance-punk, connu pour ses visuels néon et son son énergique adapté aux clubs.",
+      "article": "Le New Rave, un microgenre et mouvement culturel de courte durée mais très visible, a émergé au Royaume-Uni au milieu des années 2000 comme une fusion vibrante d'indie rock, d'electronica et de dance-punk. Caractérisée par une éthique DIY pleine d'énergie, la scène a servi de réaction agressive et imprégnée de néon aux tendances indie rock plus introspectives et sensibles qui dominaient le début des années 2000. Bien que la production musicale — mettant souvent en vedette des synthétiseurs, des lignes de basse entraînantes et des rythmes orientés vers la danse — fût au cœur de son identité, le genre était peut-être tout autant défini par son esthétique : un amalgame chaotique et psychédélique de bâtons lumineux, de vêtements fluorescents et d'un flair visuel intense rappelant la culture rave originale des années 1990.\n\nLe terme lui-même est né de manière quelque peu ironique ; Jamie Reynolds du groupe Klaxons aurait inventé le terme « new rave » comme un descripteur ironique destiné à se moquer des tendances des médias à étiqueter et à compartimenter les scènes émergentes. Malgré les tentatives fréquentes des artistes pour rejeter ou présenter l'étiquette comme une blague, la presse musicale britannique — notamment le NME — s'est emparée du terme, l'institutionnalisant efficacement pour capturer un moment précis en 2006 et 2007 où les clubs indie ont commencé à adopter l'énergie cinétique de la musique dance. Ce mouvement a largement chevauché les scènes émergentes du « bloghouse » et du « blog rock » de l'époque, comblant le fossé entre les structures de groupe traditionnelles et les paysages sonores électroniques contemporains. Fin 2008, le consensus médiatique a déclaré la tendance « terminée », laissant derrière elle un héritage en tant que note de bas de page flamboyante et à haut indice d'octane dans l'histoire musicale britannique qui a brièvement uni les sensibilités du club rock et de la rave en entrepôt. Malgré sa courte durée de vie, son influence a imprégné le paysage esthétique de la culture pop de la fin des années 2000, ouvrant la voie à une expérimentation grand public accrue avec la pop électronique.",
+      "source_sha256": "ac0f84087f9530efc53bb4aa13e96f349658596b7b2835e0d983b27d33d78223",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:32:03.671Z"
+    }
+  }
 }

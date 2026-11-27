@@ -118,5 +118,19 @@
       "type": "track",
       "name": "Cumbia Cumbia"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un rythme musical et une tradition de danse folklorique latino-américains fondamentaux, caractérisés par une structure percussive en 2/4 et une fusion interculturelle diversifiée.",
+      "article": "Originaire de la région côtière de la Colombie, la cumbia est apparue comme une fusion d'éléments culturels autochtones américains, africains et espagnols durant l'époque coloniale. Le genre se concentre traditionnellement sur une mesure en 2/2 ou 2/4, utilisant une section de percussions définie par les tambours tambora, tambor alegre et llamador, aux côtés du rythme signature « chu-chucu-chu » de la guacharaca. Les textures mélodiques sont généralement fournies par la gaita hembra, la gaita macho et la flauta de millo, bien que l'instrumentation se soit considérablement élargie au cours des années 1950 pour inclure des sections de cuivres et le piano. Bien qu'ancrée dans les traditions funéraires des communautés afro-colombiennes, la musique a évolué pour devenir une danse de salon et de rue populaire, caractérisée par des couples exécutant une cour amoureuse, souvent symbolique. Tout au long du XXe siècle, le genre s'est étendu à travers l'hémisphère, menant à des adaptations régionales distinctes comme la cumbia villera née dans les bidonvilles en Argentine, la chicha influencée par le psychédélisme au Pérou, et la tecnocumbia infusée d'électronique. Malgré une baisse de popularité durant les années 1970 due à la montée de la salsa, la cumbia s'est révélée très adaptable, absorbant les influences locales au Mexique, au Texas et à travers l'Amérique centrale pour rester une colonne vertébrale musicale latino-américaine vitale.",
+      "facts": {
+        "era": "de l'époque coloniale à nos jours",
+        "origin": "Colombie et Panama",
+        "sonic_markers": "mesure en 2/2 ou 2/4, percussion guacharaca, flûtes gaita, tambours tambora"
+      },
+      "source_sha256": "313905200f8d596825902ff085c47ec14a2d6438951f7a6002bab64b1c1b5b0d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:20:11.308Z"
+    }
+  }
 }

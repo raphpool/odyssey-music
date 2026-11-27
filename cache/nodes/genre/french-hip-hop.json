@@ -92,5 +92,19 @@
       "name": "Le crime paie"
     }
   ],
-  "qid": "Q138020"
+  "qid": "Q138020",
+  "l10n": {
+    "fr": {
+      "teaser": "Un style prédominant de musique hip hop développé dans les pays francophones, caractérisé par une gamme variée d'approches lyriques allant de la narration poétique à la critique sociale agressive.",
+      "article": "Le French hip hop, également connu sous le nom de rap français, représente le style distinct de musique hip hop développé au sein des pays francophones, la France étant le deuxième marché mondial pour ce genre. Apparue au début des années 1980 grâce à des émissions de radio comme « Rapper Dapper » et « Funk à Billy », la scène a été renforcée par le New York City Rap Tour de 1982. Le genre a consolidé sa présence culturelle dans les années 1990, MC Solaar devenant sa première star majeure et le premier à atteindre le statut de disque de platine avec son premier album en 1991. La langue française s'est révélée particulièrement adaptée aux complexités rythmiques du rap, permettant une évolution lyrique unique qui équilibre expression poétique et commentaire social.\n\nÀ mesure que le genre a mûri, il a divergé vers deux voies esthétiques principales. Une faction, menée par des figures comme MC Solaar, Dee Nasty et Lionel D, a privilégié un son plus doux et optimiste. À l'inverse, des groupes tels que Suprême NTM et Assassin ont été les pionniers d'un style plus dur et plus agressif qui a fréquemment suscité la controverse. Cette esthétique hardcore reflétait souvent les thèmes trouvés dans le gangsta rap américain, abordant des questions d'oppression systémique, de racisme et de vie dans les communautés marginalisées. Malgré ces développements locaux, le genre reste profondément lié à ses racines américaines, qui continuent de fournir un cadre à l'identité rebelle et contre-culturelle exprimée par de nombreux artistes de French hip hop.",
+      "facts": {
+        "era": "début des années 1980 à aujourd'hui",
+        "origin": "France, pays francophones",
+        "sonic_markers": "Production diversifiée allant du boom-bap influencé par le jazz aux beats agressifs et percutants, avec un accent lyrique mis sur les jeux de mots en langue française."
+      },
+      "source_sha256": "41f80813fc4768c7a69dc31eac496b0b04ec8118964b7a76f7ea200fc28e6eb0",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:08:55.865Z"
+    }
+  }
 }

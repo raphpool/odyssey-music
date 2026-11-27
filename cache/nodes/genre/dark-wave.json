@@ -150,5 +150,18 @@
     }
   ],
   "landmark_tracks": [],
-  "qid": "Q3840596"
+  "qid": "Q3840596",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre né à la fin des années 1970, mêlant post-punk et new wave à des textures électroniques et des thèmes sombres, introspectifs et atmosphériques.",
+      "article": "La Dark wave est un genre musical sombre et atmosphérique apparu à la fin des années 1970 et au début des années 1980 en tant que synthèse mélancolique de post-punk, de new wave et de musique électronique. Caractérisé par l'utilisation de tonalités mineures, de paroles introspectives et poétiques, et par un mélange de production froide et riche en synthétiseurs avec l'aspect sombre et axé sur la guitare du gothic rock, le genre évoque une esthétique distinctement maussade, cinématographique et souvent plus austère. Le terme est apparu dans la presse musicale européenne pour décrire cette variante plus sombre des scènes électroniques et post-punk en plein essor à l'époque, capturant un son qui privilégiait l'exploration émotionnelle introspective aux sensibilités pop plus lumineuses et optimistes souvent présentes dans la new wave grand public.\n\nÀ sa base, la Dark wave se définit par sa capacité à équilibrer les textures organiques et numériques. Elle utilise fréquemment des guitares noyées dans la réverbération, des boîtes à rythmes pulsées et des couches de synthétiseurs luxuriantes et obsédantes, souvent accompagnées de voix douces, éthérées ou dramatiques. Les thèmes du genre traversent couramment l'existentialisme, le romantisme, le mysticisme et les complexités de la condition humaine, souvent livrés avec un sentiment d'isolement ou une profonde mélancolie. Au fil des décennies, il a considérablement évolué, se ramifiant en divers sous-styles tels que l'ethereal wave, la neoclassical dark wave et le « Neue Deutsche Todeskunst », théâtral et axé sur la poésie, tout en conservant un fort esprit DIY et underground qui continue de résonner mondialement à travers des scènes et des festivals dédiés. Son influence s'étend bien au-delà de son apogée original des années 1980, façonnant les paysages sonores de la musique électronique, indépendante et alternative moderne.",
+      "facts": {
+        "era": "depuis les années 1970",
+        "origin": "Royaume-Uni et Europe"
+      },
+      "source_sha256": "a8bce5430f5188bfea442beef89ed3f0f7dcfcbb5f9ba836a1dda5d359af0e3a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:11:56.466Z"
+    }
+  }
 }

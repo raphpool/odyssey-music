@@ -218,5 +218,18 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique populaire caractérisé par son accent sur l'attrait de masse, les mélodies accrocheuses, les hooks et une production soignée, généralement structuré autour du single plutôt que de l'album.",
+      "article": "La musique pop, ou simplement « pop », est un genre de musique populaire qui a vu le jour sous sa forme moderne au milieu des années 1950 aux États-Unis et au Royaume-Uni. Bien que le terme plus large de « musique populaire » puisse englober tout style commercialement réussi, la « pop » en tant que genre spécifique désigne un ensemble d'œuvres conçues pour un attrait de masse, généralement caractérisé par l'accent mis sur des mélodies accrocheuses, une production soignée et une accessibilité structurelle. Contrairement aux genres qui privilégient les déclarations artistiques de la longueur d'un album ou l'authenticité sous-culturelle, la pop est fréquemment centrée sur le single comme unité d'expression principale.\n\nLa signature sonore de la pop est définie par sa capacité caméléon à absorber des éléments d'autres styles — allant du rock et du rhythm and blues à la musique électronique de danse, au hip hop et à la country — pour maintenir un son contemporain qui résonne auprès d'un public large, souvent orienté vers la jeunesse. Les caractéristiques communes incluent des refrains répétés, des hooks mémorables et la structure classique couplet-refrain, le tout conçu pour assurer une mémorisation maximale. Tout au long de son histoire, la pop a servi de pont entre l'expérimentation artistique de haut niveau et la viabilité commerciale, menant souvent à la naissance de sous-genres tels que la synth-pop, la dance-pop et l'art pop. Par nature, la pop est éphémère et en constante évolution, reflétant les avancées technologiques de l'industrie du disque et l'évolution des goûts sociaux de la classe moyenne urbaine mondiale. Son pouvoir culturel durable réside dans sa capacité à être à la fois un reflet du moment présent et un langage mélodique universel.",
+      "facts": {
+        "era": "Années 1950–présent",
+        "origin": "États-Unis et Royaume-Uni, milieu des années 1950"
+      },
+      "source_sha256": "c7354807f926d2ddd606d9330f42eb8e40f81396b2ebe742f2d881834993c094",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:33:01.678Z"
+    }
+  }
 }

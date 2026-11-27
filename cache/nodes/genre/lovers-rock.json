@@ -131,5 +131,19 @@
       "name": "Caught You in a Lie"
     }
   ],
-  "qid": "Q1872505"
+  "qid": "Q1872505",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre romantique du reggae apparu au milieu des années 1970 à Londres, caractérisé par l'accent mis sur des paroles traitant de l'amour, des harmonies vocales douces et une fusion entre rythmes jamaïcains et sensibilités soul et R&B américaines.",
+      "article": "Le Lovers rock est un style de reggae romantique distinct, issu de la vibrante culture des sound systems du sud de Londres au milieu des années 1970. Bien que les thèmes romantiques aient longtemps été présents dans le rocksteady jamaïcain et le reggae des débuts, le Lovers rock a raffiné ces éléments en une esthétique spécifique adaptée à l'expérience des populations noires britanniques. Il a fonctionné comme un contrepoint apolitique et intime au reggae « conscient » militant des Rastafari dominant en Jamaïque, en mettant l'accent sur une interprétation vocale douce et des arrangements mélodiques riches, fortement inspirés de la soul et du R&B américains. Le nom du genre a été consolidé par la création du label Lover's Rock par le producteur Dennis Harris, travaillant aux côtés de figures comme John Kpiaye et Dennis Bovell.\n\nLe mouvement a été défini de manière unique par son important contingent de jeunes chanteuses, dont Louisa Mark et Janet Kay, cette dernière ayant remporté un succès historique avec le tube de 1979 « Silly Games », qui a atteint la deuxième place du UK Singles Chart. Bien que les stars féminines aient été au cœur de son identité initiale, le genre a également accueilli des artistes solo masculins et des groupes vocaux. Tout au long de la fin des années 1970 et des années 1980, le style s'est élargi pour inclure le sous-genre « conscious lovers », initié par des groupes comme Brown Sugar, qui a fait le pont entre les paroles romantiques et les thèmes sociaux. Le Lovers rock demeure un pilier essentiel de l'histoire de la musique britannique, représentant une évolution sophistiquée et locale du reggae qui a trouvé un écho profond au sein de la diaspora et a fini par influencer la pop grand public grâce à des succès crossover comme Maxi Priest.",
+      "facts": {
+        "era": "Milieu des années 1970 à aujourd'hui",
+        "origin": "Londres, Angleterre",
+        "sonic_markers": "Arrangements vocaux doux, accroches mélodiques, influence soul, lignes de basse reggae, thèmes romantiques apolitiques, inclut souvent des sections de cuivres et un accompagnement doux au clavier."
+      },
+      "source_sha256": "62ffc7b8473e7fdfd9fda8cedb84002691a70a0fa2494ed920956884dd0951d5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:30:58.601Z"
+    }
+  }
 }

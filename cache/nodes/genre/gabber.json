@@ -141,5 +141,19 @@
       "type": "track",
       "name": "Chosen Anthem (Against Racism)"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de hardcore techno à haute énergie et saturé, originaire de Rotterdam dans les années 1990, caractérisé par des BPM incessants et une sous-culture jeunesse distinctive.",
+      "article": "Apparu au début des années 1990 à Rotterdam, le gabber a défini la scène hardcore néerlandaise par des tempos agressifs allant de 140 à 190 BPM et des grosses caisses lourdes et saturées. Pionnière grâce à des producteurs comme Paul Elstak et Marc Acardipane, la musique a trouvé ses premiers foyers sur des labels tels que Rotterdam Records et Mokum Records. Des morceaux comme la sortie de 1991 de Rotterdam Termination Source, « Anasthasia », ont fourni les premières bases structurelles du style, qui intégrait souvent des échantillons de films avec des breakbeats de style house. La sous-culture a développé ses propres marqueurs visuels distincts, notamment les survêtements de la marque Australian, les Nike Air Max et la danse hakken, tout en devenant un mouvement massif grâce à des événements comme Thunderdome d'ID&T. Bien que le genre ait été associé à des éléments marginaux d'extrême droite, des labels comme Mokum ont activement réagi avec des sorties telles que « Chosen Anthem (Against Racism) » de DJ Chosen Few. En 1997, le magazine Billboard a identifié le gabber comme la première culture jeunesse locale des Pays-Bas, même si sa popularité a conduit à des parodies commercialisées comme « Hakke & Zage » de Gabber Piet.",
+      "facts": {
+        "era": "début des années 1990 à aujourd'hui",
+        "origin": "Rotterdam, Pays-Bas",
+        "sonic_markers": "140-190 BPM, grosses caisses fortement saturées, synthétiseurs rapides, production riche en échantillons, intégration de breakbeats."
+      },
+      "source_sha256": "5d5d9e5f46d3bba072363fc3d404f7a9ed2766209a915dce64f1903501db6f7e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:09:00.020Z"
+    }
+  }
 }

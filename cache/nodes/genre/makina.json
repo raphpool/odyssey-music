@@ -105,5 +105,19 @@
       "type": "track",
       "name": "Streamline"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de musique électronique au tempo rapide originaire d'Espagne, caractérisé par des mélodies bondissantes et euphoriques et des rythmes de 150 à 180 BPM.",
+      "article": "La Mákina a émergé au début des années 1990 à Valence, en Espagne, en tant qu'évolution au tempo rapide de la scène locale bakalao, mêlant des éléments de bouncy techno, de hard trance et d'Eurodance. Les producteurs utilisent fréquemment des synthétiseurs, des séquenceurs et des échantillonneurs pour atteindre son énergie caractéristique de 150 à 180 BPM. Le genre a connu un succès commercial en Espagne au milieu des années 1990 avec des tubes comme l'hymne de 1991 de Chimo Bayo, « Así me gusta a mí », et les singles classés en tête des ventes d'EX-3, « Extres » et « Ex-P-Cial ». Bien qu'ancré dans la culture club méditerranéenne, le son a connu une transplantation culturelle distincte vers le Royaume-Uni, devenant un pilier des scènes rave du nord-est de l'Angleterre et de l'Écosse. Sa visibilité internationale s'est encore accrue lorsque le morceau « Streamline » de Newton a été utilisé dans une publicité télévisée Pepsi de 2006 mettant en vedette Jimmy Fallon.",
+      "facts": {
+        "era": "début des années 1990 à aujourd'hui",
+        "origin": "Valence, Espagne",
+        "sonic_markers": "150-180 BPM, riche en synthétiseurs, mélodies joyeuses excessives, influence hard trance"
+      },
+      "source_sha256": "05327d7b8205269a0bb8a9164d5c67ffae27367dde4ffc3d11c14a0263dfa3f6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:30:57.321Z"
+    }
+  }
 }

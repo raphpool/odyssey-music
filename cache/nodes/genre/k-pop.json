@@ -130,5 +130,19 @@
       "type": "track",
       "name": "Abracadabra"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Une forme de musique populaire sud-coréenne définie par la culture des groupes d'idoles, des chorégraphies synchronisées et des compositions pop hybrides à haute valeur de production.",
+      "article": "Originaire de Corée du Sud au début des années 1990, la K-pop a émergé en tant que sous-culture jeunesse distincte suite aux débuts de Seo Taiji and Boys en 1992 lors d'une émission de talents sur MBC. Le trio a introduit des conventions de rap, de techno et de hip-hop à l'américaine qui ont modernisé l'industrie musicale locale, jetant les bases du système de formation d'idoles plus tard institutionnalisé par le fondateur de SM Entertainment, Lee Soo-man. Caractérisé par des structures pop mélodiques combinées à des chorégraphies complexes et synchronisées dites « point », le genre repose sur une supervision managériale intense et une formation rigoureuse des interprètes. Tout au long des années 2010, la portée internationale s'est accélérée via la vague coréenne et les réseaux sociaux, établissant des entreprises comme YG Entertainment, JYP Entertainment et Hybe Corporation comme des forces dominantes de l'industrie. La production musicale intègre fréquemment des influences mondiales — allant du R&B et de la dance électronique à l'Afrobeats — employant souvent des auteurs-compositeurs internationaux aux côtés de producteurs nationaux pour créer des paysages sonores hybrides adaptés à un marché mondialisé.",
+      "facts": {
+        "era": "Années 1990 à aujourd'hui",
+        "origin": "Corée du Sud",
+        "sonic_markers": "Dance-pop, R&B, hip-hop et rythmes électroniques ; met l'accent sur une production de haute qualité, des accroches mélodiques et des performances vocales et chorégraphiques synchronisées."
+      },
+      "source_sha256": "55422a1eadc1da27fb4d5f4736638bf1124c7c60786034122a78f0193bc95950",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:30:01.226Z"
+    }
+  }
 }

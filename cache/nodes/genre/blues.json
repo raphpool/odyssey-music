@@ -118,5 +118,18 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Genre vocal et instrumental profane originaire du Sud des États-Unis, caractérisé par sa structure en douze mesures, son schéma lyrique AAB et l'utilisation de « blue notes » pour exprimer une profonde émotion personnelle et la lutte.",
+      "article": "Le blues est un genre fondateur de la musique américaine, né des expériences des Afro-Américains dans le Sud profond à la fin du XIXe siècle et au début du XXe siècle. Issu d'un mélange complexe de chants de travail, de cris de champs, de spirituals et de traditions orales populaires à l'époque suivant la guerre de Sécession, le blues a fourni un exutoire profane pour exprimer les épreuves, la résilience et les tribulations personnelles de la vie des Noirs. Il s'agit essentiellement d'une forme centrée sur la voix, définie par son immédiateté émotionnelle plutôt que par une narration structurée, avec des paroles souvent organisées selon le schéma classique de strophes AAB. Musicalement, le blues est ancré dans la progression de douze mesures et caractérisé par des « blue notes » — des inflexions de hauteur microtonales qui s'écartent de la gamme diatonique occidentale standard, conférant à la musique sa qualité mélancolique et nostalgique caractéristique. Des instruments tels que la guitare, le piano et l'harmonica sont centraux, utilisant souvent des techniques comme le tiré de corde ou le slide pour imiter les contours expressifs de la voix humaine. Historiquement rejeté par certains comme la « musique du Diable » en raison de son association avec les juke joints et les thèmes profanes, le blues est finalement devenu le moteur principal de la musique populaire du XXe siècle. Son langage harmonique et ses sensibilités rythmiques ont directement catalysé le développement du jazz, du rhythm and blues, du rock and roll et de la country, cimentant son statut de pilier inégalé du patrimoine musical mondial. Tout au long du milieu du XXe siècle, la migration des Afro-Américains vers des centres urbains comme Chicago a transformé le blues acoustique rural du Delta en une forme électrique amplifiée plus forte, assurant son évolution continue et son influence profonde sur des générations de musiciens dans le monde entier.",
+      "facts": {
+        "era": "Années 1890-présent",
+        "origin": "Sud profond, États-Unis"
+      },
+      "source_sha256": "803be942bebb6b0d8feb6b6d6d59785f1ec608d0a066ffdad5d066ad9afceb09",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:05:45.384Z"
+    }
+  }
 }

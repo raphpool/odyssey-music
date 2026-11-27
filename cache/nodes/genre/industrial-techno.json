@@ -131,5 +131,18 @@
       "name": "Birth of a Devil"
     }
   ],
-  "qid": "Q29480448"
+  "qid": "Q29480448",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de techno caractérisé par des rythmes agressifs et distordus, des textures métalliques et une atmosphère dystopique, puisant une forte influence stylistique dans l'industrial, l'EBM et le power noise.",
+      "article": "L'industrial techno est un sous-genre viscéral et conflictuel de musique électronique apparu au début des années 1990 à l'intersection de la techno traditionnelle et de l'éthique abrasive et mécanique du mouvement industrial. Alors que la techno grand public mettait souvent l'accent sur des boucles hypnotiques et répétitives ainsi que sur un optimisme futuriste, l'industrial techno a introduit une palette de grosses caisses distordues, de textures métalliques et une atmosphère dystopique, canalisant l'esthétique du déclin post-industriel. Le genre a trouvé un terrain fertile dans les scènes de warehouse de Détroit, Berlin et Birmingham, au Royaume-Uni, où les producteurs cherchaient à dépouiller la musique électronique commerciale de son vernis poli en faveur d'une expérience sonore brutaliste, brute et physiquement exigeante.\n\nLa signature sonore du genre se caractérise par une attention sans compromis portée à la texture et au timbre plutôt qu'à la mélodie. Les praticiens utilisent souvent du matériel classique comme la Roland TR-909, bien que traité à travers des chaînes agressives de bit-crushing, de compression lourde et de distorsion pour obtenir un son qui imite le fracas incessant d'un atelier d'usine. Cela est complété par des enregistrements de terrain, des synthétiseurs atonaux et des paysages sonores dissonants qui évoquent un sentiment d'effroi mécanique. Des pionniers clés tels que Surgeon et Regis, figures centrales de l'influent « Birmingham Sound », ont aidé à codifier l'esthétique du genre à travers des labels séminaux comme Downwards Records, établissant une norme pour une musique de danse hypnotique, percutante et teintée d'influences industrielles qui continue de résonner à travers les circuits de clubs underground du monde entier. L'évolution contemporaine au sein de la scène a vu le genre se ramifier en divers courants, allant des explorations plus atmosphériques et axées sur le drone du dark ambient industrial à la férocité maximaliste et au tempo élevé de la hard industrial techno. Tout au long de son histoire, le genre est resté un pilier essentiel de l'underground techno, servant de vecteur de catharsis grâce à son énergie incessante et sa beauté abrasive et provocante.",
+      "facts": {
+        "era": "depuis les années 1990",
+        "origin": "Détroit, Berlin, Birmingham"
+      },
+      "source_sha256": "b9db5a3d3012f17f4511dbade5d87506167345f8c9d008b67c9bf1b3c29144dd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:14:02.170Z"
+    }
+  }
 }

@@ -103,5 +103,18 @@
   ],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q3613770"
+  "qid": "Q3613770",
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre de fusion qui combine les textures atmosphériques et expansives de l'ambient avec les basses lourdes, l'espace rythmique et les techniques de production imprégnées d'écho du dub jamaïcain.",
+      "article": "L'Ambient Dub est un sous-genre hypnotique et expérimental apparu au début des années 1990, principalement au Royaume-Uni. Il représente une synthèse fondamentale de deux mondes apparemment disparates : l'éthique du studio-comme-instrument, caverneuse et riche en basses, du dub jamaïcain et les paysages sonores expansifs et sans battements de la musique électronique ambient. En appliquant les techniques « dubwise » — telles que l'utilisation extrême de réverbérations à ressort, de délais à bande et de filtrage manipulé en direct — aux textures synthétiques de l'ambient et de l'ambient house, les producteurs ont créé un style à la fois profondément immersif et physiquement résonnant. La musique se caractérise par son accent sur « l'espace négatif », où de longues nappes de synthétiseurs étirées, des enregistrements de terrain et des fragments vocaux sont superposés à des motifs de sous-basses simples et chaleureux.\n\nHistoriquement, le genre s'est cristallisé alors que les artistes cherchaient à dépasser les exigences énergétiques de la musique de danse contemporaine, se tournant plutôt vers les « chill-out rooms » de la culture club britannique pour trouver l'inspiration. Des labels et des compilations influents, tels que la série *Ambient Dub* de Beyond, ont aidé à définir l'esthétique au cours des années 90. Au fil de la décennie, l'ADN du genre a infusé divers autres styles électroniques, agissant comme un pont crucial entre les sons influencés par le reggae et l'émergence du dub techno à Berlin et Detroit, ainsi que les sons plus expérimentaux et granuleux de l'illbient. Parce que le genre repose davantage sur des techniques de mixage basées sur la performance que sur une composition rigide, il demeure un point de référence essentiel pour les producteurs modernes explorant une musique électronique minimale et méditative qui conserve un lien tangible et tactile avec ses racines. Son héritage persiste dans la musique contemporaine à travers l'importance continue de la conception spatiale et le pouvoir transformateur de la console de mixage.",
+      "facts": {
+        "era": "Début des années 1990–présent",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "3f1dc0cf637e71aa3a346327b6065ace9c1185da40f04af75166037fc02e94c4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:04:41.930Z"
+    }
+  }
 }

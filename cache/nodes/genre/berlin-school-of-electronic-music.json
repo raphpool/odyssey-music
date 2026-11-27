@@ -96,5 +96,18 @@
       "name": "Timewind"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de musique électronique défini par des compositions longues basées sur des séquenceurs, des textures de synthétiseurs atmosphériques et l'évitement intentionnel des rythmes traditionnels percutants au profit de paysages sonores hypnotiques et évolutifs. Apparu à Berlin-Ouest au début des années 1970, il constitue un développement charnière de la musique électronique progressive, profondément lié à l'éthique expérimentale du mouvement Krautrock au sens large.",
+      "article": "La Berlin school of electronic music a émergé au début des années 1970 en tant que mouvement fondateur au sein du paysage plus large de la musique expérimentale ouest-allemande, chevauchant fréquemment la scène plus éclectique du « Krautrock ». Centré à Berlin, ce genre se définit par son approche révolutionnaire de l'instrumentation électronique, s'appuyant fortement sur des synthétiseurs analogiques modulaires et des séquences sur bande plutôt que sur des structures de chansons conventionnelles ou des percussions. Les artistes de ce mouvement — notamment Tangerine Dream, Klaus Schulze et Manuel Göttsching (à travers son travail sous le nom d'Ashra) — ont été les pionniers d'un style caractérisé par des paysages sonores vastes et multicouches qui privilégiaient la texture et l'évolution plutôt que le rythme.\n\nUne composition quintessentielle de la Berlin school se déploie souvent comme un voyage long et immersif, où des impulsions répétitives générées par des séquenceurs créent une base hypnotique sur laquelle sont tissées des mélodies principales délicates et improvisées. Contrairement aux formes électroniques contemporaines qui privilégiaient les rythmes stricts et répétitifs du début du disco ou de la pop, la Berlin school cherchait à explorer l'« espace intérieur » du son, créant atmosphère et drame par la manipulation des résonances de filtres et la modulation évolutive des synthétiseurs. Cette esthétique, immortalisée sur des albums phares tels que « Phaedra » de Tangerine Dream et « Timewind » de Klaus Schulze, a non seulement établi le modèle de la musique ambient et trance moderne, mais a également fourni un plan sophistiqué de ce que la musique électronique pouvait accomplir en tant que forme d'art purement expressive et non narrative. Son influence demeure profonde, continuant de résonner à travers la musique ambient contemporaine, la space music et la conception sonore électronique expérimentale.",
+      "facts": {
+        "era": "Années 1970",
+        "origin": "Berlin-Ouest, Allemagne"
+      },
+      "source_sha256": "ee3d63a4cda25afea17691d0df277877f7c5a8ac64fdcb369bc5d39999bc3ec6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:10:51.718Z"
+    }
+  }
 }

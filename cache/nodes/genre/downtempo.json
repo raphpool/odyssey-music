@@ -93,5 +93,18 @@
       "name": "Mezzanine"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de musique électronique caractérisé par des tempos plus lents (90–110 BPM), des textures atmosphériques et une fusion d'ambiances ambient avec des grooves rythmiques influencés par le hip-hop ou le dub.",
+      "article": "Le downtempo est un sous-genre polyvalent de musique électronique défini par son rythme détendu, l'accent mis sur les textures atmosphériques et une production orientée vers le groove. Se situant généralement dans une plage de 90 à 110 BPM, le genre sert de pont auditif entre les domaines introspectifs et sans forme de la musique ambient et la structure rythmique du trip-hop et du hip-hop instrumental. Sa signature sonore se caractérise par des harmonies chaleureuses, souvent influencées par le jazz, une programmation de batterie complexe et une esthétique de production spacieuse et « luxueuse » qui privilégie l'ambiance à l'énergie incessante de la musique de danse traditionnelle. Bien que son histoire soit quelque peu fluide, le genre a gagné une importance significative au milieu et à la fin des années 1990, évoluant parallèlement à la culture chillout d'Ibiza et au mouvement « electronica » plus large qui a commencé à dominer les espaces de musique électronique alternative au cours de cette période. Il est souvent décrit comme possédant une part de mysticisme, de nombreux artistes pionniers puisant une profonde inspiration dans des sonorités mondiales, notamment des motifs musicaux asiatiques et moyen-orientaux, pour créer des paysages sonores évocateurs et immersifs. Historiquement, le downtempo fonctionne à la fois comme une bande-son domestique pour les humeurs introspectives et comme une sélection essentielle pour les fins de nuit ou les débuts de matinée dans les clubs, servant de nettoyant sonore réparateur après des sets à haute intensité. Des figures clés comme Bonobo, Thievery Corporation, Massive Attack et Tycho ont contribué à définir l'attrait durable du genre, façonnant un son qui reste aussi pertinent dans les playlists lo-fi et chillout modernes qu'il l'était dans l'underground de la fin des années 90. Son influence persiste à travers divers créneaux électroniques contemporains, démontrant le pouvoir durable des rythmes lents axés sur la mélodie.",
+      "facts": {
+        "era": "Milieu des années 1990 à aujourd'hui",
+        "origin": "Europe (Royaume-Uni et Ibiza) et Amérique du Nord (États-Unis)"
+      },
+      "source_sha256": "797e5c29aac20ad7bb4a610e3c58802cfbaeaf1b35897a8773df41aeecb956c8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:35:56.809Z"
+    }
+  }
 }

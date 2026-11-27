@@ -144,5 +144,19 @@
       "type": "track",
       "name": "Project II Trance"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de trance au tempo élevé, défini par des riffs de synthétiseurs psychédéliques superposés et une ligne de basse incessante et entraînante.",
+      "article": "La Psytrance est issue de la scène Goa trance des années 1990 en Inde, évoluant à travers l'intégration de la musique électronique de danse dans la culture festive régionale. Des producteurs comme Martin Freeland (Man With No Name) et Hallucinogen ont contribué à définir ce son sur les premières compilations comme Project II Trance en 1993. Les morceaux sont structurés avec des lignes de basse constantes et percutantes ainsi que des rythmes complexes et superposés qui changent toutes les huit mesures, s'étendant souvent entre six et dix minutes. Le genre s'est diversifié en de nombreuses branches, notamment la Dark psytrance, apparue en Allemagne et en Russie après 2003 avec une esthétique influencée par l'occulte, et la Full-on, connue pour ses pics d'énergie élevés entre 140 et 148 BPM. Des festivals mondiaux comme le Boom Festival au Portugal et l'Ozora Festival en Hongrie servent de centres principaux pour cette scène, qui est étroitement liée aux arts psychédéliques multimédias.",
+      "facts": {
+        "era": "début des années 1990 à aujourd'hui",
+        "origin": "Goa, Inde et Europe",
+        "sonic_markers": "125-150 BPM, basse constante et entraînante, cycles rythmiques de 8 mesures, superposition atmosphérique"
+      },
+      "source_sha256": "78432a7ee047ba1d414197b8b33d7a591ff830f8806f348e3e04522f5c8c7920",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:34:03.551Z"
+    }
+  }
 }

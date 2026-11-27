@@ -93,5 +93,19 @@
       "name": "Body Music"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le sound art est une forme d'expression créative interdisciplinaire qui utilise le son comme médium principal, privilégiant souvent l'interaction spatiale, conceptuelle et environnementale aux structures musicales traditionnelles comme la mélodie et le rythme.",
+      "article": "Le sound art est une pratique créative interdisciplinaire qui positionne le son comme médium principal, brouillant fréquemment les frontières entre expérience auditive, art visuel et exploration conceptuelle. Émergeant comme une discipline distincte à la fin du 20e siècle, le sound art diverge de la musique traditionnelle en privilégiant l'environnement acoustique, l'interaction spatiale et les processus génératifs plutôt que les structures conventionnelles comme la mélodie, le rythme ou le développement harmonique. Il se manifeste souvent sous forme d'installations in situ, de sculptures sonores ou d'automates autonomes qui invitent l'auditeur à interagir avec son environnement de manière non linéaire et souvent ouverte. Alors que la musique traditionnelle est généralement interprétée et écoutée dans une fenêtre temporelle fixe, le sound art fonctionne souvent comme une expérience ambiante continue où l'auditeur détermine la durée et l'orientation de son engagement. Cette approche s'appuie fortement sur une conception sonore aléatoire ou générative, où les phénomènes naturels, l'interaction mécanique ou les variables environnementales — tels que le vent, les champs électromagnétiques ou la résonance architecturale — servent de matériau source à la composition. La pratique est intrinsèquement liée aux traditions expérimentales, s'inspirant de techniques issues de l'enregistrement de terrain, de la musique concrète et de la sculpture moderne. Les praticiens opèrent fréquemment dans des galeries, des espaces publics et des environnements spécifiques, positionnant leur travail comme une interaction sculpturale avec l'espace acoustique plutôt que comme une performance destinée à une salle de concert. Des figures clés telles que David Tudor, Harry Bertoia et Alvin Lucier ont joué un rôle déterminant dans la définition de cet espace, utilisant des instruments sur mesure ou des systèmes environnementaux pour remettre en question la manière dont nous percevons la physicalité du son lui-même. À travers ces méthodologies, le sound art fournit un cadre pour reconsidérer nos paysages sonores, s'éloignant de la consommation passive vers une écoute active et spatialisée.",
+      "facts": {
+        "era": "Fin du 20e siècle à nos jours",
+        "origin": "Scène artistique contemporaine internationale/occidentale",
+        "sonic_markers": "Structures aléatoires, conception acoustique in situ, son génératif, composition non linéaire, enregistrements de terrain environnementaux, intégration à la sculpture, utilisation d'objets non musicaux."
+      },
+      "source_sha256": "e8952cdd087ba716f9003aecefbb4c869a81c2564e91fa26aa8d93f75f642969",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:36:01.922Z"
+    }
+  }
 }

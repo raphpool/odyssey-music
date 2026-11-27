@@ -60,5 +60,14 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q685884"
+  "qid": "Q685884",
+  "l10n": {
+    "fr": {
+      "teaser": "Une vaste catégorie musicale où la voix humaine est l'instrument principal, allant du chant solo et de la performance a cappella aux œuvres chorales de grande envergure et aux genres contemporains portés par la voix.",
+      "article": "La musique vocale demeure peut-être la forme d'expression artistique la plus fondamentale et la plus intime de la culture humaine, définie principalement par l'utilisation de la voix humaine comme instrument premier. Elle transcende la simple catégorisation, englobant tout, des chants liturgiques monophoniques préservés dans les manuscrits médiévaux aux compositions polyphoniques complexes et aux traditions pop mondiales modernes. Contrairement à la musique instrumentale, où le son est produit par des moyens mécaniques externes, la musique vocale repose sur l'appareil biologique du chanteur, permettant une transmission incroyablement directe de l'émotion, du langage et de la narration. Historiquement, la tradition occidentale de la musique vocale — documentée de manière exhaustive par la notation sur portée depuis le Xe siècle — était profondément ancrée dans l'Église. Le chant grégorien, avec sa complexité évolutive allant des mises en musique syllabiques de la prière aux célébrations liturgiques ornées et mélismatiques, a formé le socle fondamental d'une grande partie de la polyphonie occidentale. Au-delà des contextes sacrés, la période médiévale a également vu l'essor des chansons monophoniques profanes des troubadours, trouvères et minnesingers, qui exploraient les thèmes de la chevalerie et de l'amour courtois, déplaçant progressivement le mécénat musical de la noblesse vers le grand public. Bien que le terme « musique vocale » soit souvent utilisé pour décrire des traditions spécifiques de mélodies classiques ou de chœurs, son essence est universelle, existant dans chaque culture comme un vecteur de narration, de pratique spirituelle et de lien communautaire. Elle continue d'être définie par l'interaction délicate entre la clarté lyrique et l'élaboration mélodique, reliées à jamais par le timbre unique de la voix humaine.",
+      "source_sha256": "3e5a1563007e5326e65dc48e4bcbd4fc631b470080036b001a29d71acb207da8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:37:59.358Z"
+    }
+  }
 }

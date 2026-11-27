@@ -131,5 +131,18 @@
       "name": "Burial (Leviticus song)"
     }
   ],
-  "qid": "Q2710523"
+  "qid": "Q2710523",
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre de la jungle défini par l'intégration massive d'éléments de dancehall, de reggae et de dub jamaïcains, caractérisé par des breakbeats rapides, des sub-bass profondes et des échantillons vocaux ragga proéminents.",
+      "article": "Le Ragga Jungle représente la fusion la plus directe entre la culture rave britannique et les traditions des sound systems jamaïcains, émergeant comme un sous-genre dynamique de la jungle au début des années 1990. Bien que la « jungle », en tant que terme générique, englobe divers styles électroniques basés sur le breakbeat ayant évolué à partir du hardcore, le préfixe « ragga » désigne spécifiquement l'incorporation massive d'échantillons vocaux de dancehall et de reggae, de toasting et de lignes de basse imprégnées de dub. C'est une musique définie par son intensité polyrythmique ; des breakbeats rapides et découpés (le plus célèbre étant l'Amen break) sont superposés à des fréquences graves tonitruantes et riches en sub-bass, souvent accompagnés par le patois vocal agressif ou exaltant caractéristique de la scène dancehall jamaïcaine.\n\nCe genre est devenu l'épicentre culturel de l'expérience noire britannique au milieu des années 90, agissant comme une « musique dub postmoderne » qui a comblé le fossé entre les scènes de radio pirate underground et le marché grandissant de la musique de danse commerciale. Des labels comme V Recordings et des producteurs tels que Rebel MC (X Project) ont été fondamentaux pour faire passer le son des fondations expérimentales du breakbeat hardcore vers cette esthétique plus définie et imprégnée de reggae. Ce n'était pas seulement un choix stylistique ; pour beaucoup, c'était un espace politisé, une confluence de la diaspora noire atlantique qui plaçait l'expérience du sound system au cœur du paysage électronique londonien. Le genre a atteint son apogée entre 1994 et 1995, se heurtant fréquemment à l'essor simultané de la drum and bass tout en le façonnant. Alors que cette dernière a souvent adouci les aspérités de la jungle, le style imprégné de ragga est resté, et reste encore, le son brut et définitif de l'underground londonien, célébré pour son énergie rebelle et ses racines historiques profondes dans le rythme jamaïcain.",
+      "facts": {
+        "era": "Début des années 1990 – milieu des années 1990",
+        "origin": "Royaume-Uni"
+      },
+      "source_sha256": "ed58916e83ea84e93757c50aa8d6678bb14dfbb7ae323b0a88e738575cc8de17",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:34:05.425Z"
+    }
+  }
 }

@@ -120,5 +120,18 @@
       "name": "Fabriclive.37"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un dérivé du dubstep à haute intensité, orienté EDM, caractérisé par une modulation agressive des basses fréquences médiums, une production léchée et des structures de morceaux axées sur le drop.",
+      "article": "Le Brostep est une ramification polarisante et intense du genre dubstep apparue à la fin des années 2000, transformant fondamentalement le son de la bass music. S'éloignant des racines nocturnes, atmosphériques et centrées sur les sub-basses du dubstep britannique original, le Brostep a mis l'accent sur des leads de synthétiseurs atonaux et agressifs dans les fréquences médiums, des montées dramatiques et des drops lourds conçus pour les arènes. Bien qu'à l'origine utilisé comme un terme péjoratif — censé décrire une version de la musique « adaptée aux bros » ou plus orientée vers les fraternités étudiantes — il est devenu un descripteur de l'explosion du genre dans le courant dominant américain entre 2010 et 2014. Le mouvement a été largement porté par un changement stylistique vers des techniques de production proches de l'EDM, où la prouesse technique dans la conception sonore, en particulier avec des timbres de basse agressifs et « robotiques », a pris le pas sur la subtilité rythmique traditionnelle.\n\nBien que des précurseurs puissent être trouvés dans le travail de producteurs britanniques comme Rusko, Caspa et Coki, qui ont commencé à expérimenter avec des leads plus accrocheurs et orientés vers la fête, le son s'est pleinement cristallisé en Amérique du Nord. Des artistes comme Skrillex sont devenus le visage commercial du mouvement, apportant des textures de basse complexes et distordues à un public mondial massif. L'expansion du genre a donné naissance à une multitude de sous-variantes et de ramifications stylistiques, notamment le « drumstep » infusé de drum-and-bass, le « deathstep » distordu et le « briddim » riche en triolets. Malgré un examen minutieux et les critiques des puristes de la scène britannique primitive — qui le considéraient souvent comme une version vidée de sa substance par rapport à l'original — le Brostep a été une force culturelle indéniable qui a redéfini la palette sonore de la musique de danse des années 2010, influençant tout, de l'electro house au future bass et à la trap. Aujourd'hui, bien qu'il ait été largement réintégré dans des définitions plus larges de la musique électronique, son empreinte demeure un élément permanent et hautement reconnaissable de la sphère de la bass music.",
+      "facts": {
+        "era": "Fin des années 2000 – Présent",
+        "origin": "Royaume-Uni / Amérique du Nord"
+      },
+      "source_sha256": "9af0c268d533ed217a412fe58de70a8283fe75edc1c19b5dc9cb88ea50493ce0",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:06:47.449Z"
+    }
+  }
 }

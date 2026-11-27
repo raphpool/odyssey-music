@@ -130,5 +130,18 @@
       "name": "Appetite for Destruction"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un sous-genre bruyant et agressif de la musique rock qui se concentre sur des riffs de guitare saturés, des refrains anthémiques et des performances à haute énergie, servant de pont entre le blues-rock des années 1960 et le metal plus lourd.",
+      "article": "Le hard rock est un genre fondamental de la musique populaire moderne, apparu au milieu des années 1960 de la collision entre le blues-rock et les débuts de la psychédélie. Défini par une transition vers des sons plus lourds, plus agressifs et axés sur la guitare, le hard rock s'est éloigné du swing et de la fluidité du blues traditionnel vers une puissance plus rigide et percutante. Il se caractérise par l'utilisation de guitares électriques saturées — jouant souvent des progressions d'accords anthémiques basées sur des riffs — soutenues par une batterie tonitruante et des voix expressives à haute énergie. Contrairement à son cousin plus intense et plus sombre, le heavy metal, le hard rock a historiquement conservé un esprit exubérant, tourné vers la fête, et une prédilection pour des accroches entraînantes prêtes pour la radio.\n\nLe genre a solidifié son identité au début des années 1970, avec des groupes pivots comme Led Zeppelin, Deep Purple et les Rolling Stones établissant un modèle pour le rock remplissant les stades. Tout au long de la décennie, l'esthétique s'est élargie pour inclure les démonstrations de guitare virtuoses de Van Halen, l'excès théâtral d'Alice Cooper et Kiss, et les riffs percutants et dépouillés d'AC/DC. Alors que les années 1980 ont vu le genre se transformer en un son plus poli de pop-metal et d'arena rock, des artistes tels que Guns N' Roses ont maintenu un lien plus brut avec les racines du genre. Malgré les courants changeants des époques alternative et grunge dans les années 1990, les valeurs fondamentales du hard rock — refrains fédérateurs, machisme fanfaron et le frisson viscéral d'une performance à haute amplification — demeurent une influence omniprésente sur la musique de guitare contemporaine.",
+      "facts": {
+        "era": "depuis les années 1960",
+        "origin": "États-Unis et Royaume-Uni"
+      },
+      "source_sha256": "02d0b974d5b2fb54558d313bc8517d72e8f09b3d2266a88db59f11e7afe870b8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:13:55.163Z"
+    }
+  }
 }

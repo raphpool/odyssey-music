@@ -151,5 +151,19 @@
       "type": "track",
       "name": "Fallin'"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical populaire hybride qui synthétise le rhythm and blues avec la pop, le hip-hop et des techniques de production électronique.",
+      "article": "Le Contemporary R&B a émergé en Amérique du Nord à la fin des années 1970 et au début des années 1980, mêlant le rhythm and blues aux textures de la pop, du funk et de la musique électronique. Michael Jackson et Quincy Jones ont été les pionniers d'une esthétique plus fluide et orientée vers la danse sur l'album Off the Wall en 1979, s'éloignant du disco pour se tourner vers un son plus synthétique. Au milieu des années 1980, l'album Control de Janet Jackson, produit par Jimmy Jam et Terry Lewis, a introduit une fusion de funk et de disco avec une sensibilité rap distincte. Le mouvement new jack swing de Teddy Riley a par la suite davantage intégré les structures rythmiques du hip-hop à la production du genre. Dans les années 1990, des artistes comme Boyz II Men et Mariah Carey ont établi une domination commerciale incluant des collaborations marquantes, telles que le remix de Fantasy de Mariah Carey avec Ol' Dirty Bastard. Des critiques comme Robert Christgau ont noté que le style privilégie la texture et l'ambiance, mettant souvent l'accent sur des arrangements voix-son plutôt que sur les structures de chansons traditionnelles. Depuis les années 2010, le genre a évolué pour intégrer des influences trap et des textures électroniques, tandis que des artistes comme Bryson Tiller et Beyoncé ont utilisé le genre pour explorer des paysages sonores de plus en plus hybrides.",
+      "facts": {
+        "era": "fin des années 1970 à aujourd'hui",
+        "origin": "Amérique du Nord, scènes musicales afro-américaines",
+        "sonic_markers": "Production soignée, rythmes soutenus par des boîtes à rythmes, chant mélismatique, synthétiseurs et intégration de rythmes hip-hop."
+      },
+      "source_sha256": "86d3e3f530671755be29438a1c66045a92ff983f3fe967ef0f315fa044b86b49",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T17:12:34.785Z"
+    }
+  }
 }

@@ -117,5 +117,18 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "La dance music est une vaste catégorie musicale englobant toute composition spécifiquement conçue pour faciliter ou accompagner le mouvement physique et la danse sociale. Elle s'étend des traditions folkloriques anciennes et des suites de cour baroques à la culture club électronique moderne et aux hymnes populaires en tête des classements.",
+      "article": "La dance music est l'une des formes d'expression musicale les plus anciennes et les plus fondamentales, définie non pas par une signature sonore unique, mais par sa fonction première : faciliter et synchroniser le mouvement du corps humain. À travers l'histoire, les sociétés du monde entier se sont appuyées sur une musique rythmée — souvent ancrée dans les percussions, les cordes ou, plus tard, les synthétiseurs électroniques — pour favoriser la cohésion sociale, célébrer les rituels culturels et fournir un cadre à l'expression physique. Des danses de cour complexes de l'époque baroque, comme le menuet et la sarabande, aux valses de la période romantique, la musique occidentale possède une longue histoire de codification du rythme en structures chorégraphiques spécifiques.\n\nÀ l'ère moderne, l'évolution de la dance music s'est accélérée parallèlement aux changements technologiques et sociaux. Le XXe siècle a vu une transition de la musique de danse orchestrale ou d'ensemble jouée en direct vers les formats de musique populaire enregistrée qui ont dominé les salles de bal, les dancings et, finalement, la scène club mondiale. Des genres comme le swing, le rock and roll, la soul et le R&B ont tous fonctionné comme la dance music prééminente de leurs époques respectives, influençant la sensibilité rythmique de millions de personnes. Cependant, le changement de paradigme le plus profond s'est produit avec l'essor du disco dans les années 1970 et la naissance ultérieure de l'electronic dance music (EDM). En utilisant des synthétiseurs, des boîtes à rythmes et, finalement, une production assistée par ordinateur, ce mouvement a transformé la dance music en une expérience profondément immersive, répétitive et centrée sur les systèmes de sonorisation. Aujourd'hui, la dance music englobe un vaste écosystème allant du folklore traditionnel et des styles ethniques mondiaux aux genres électroniques hautement produits, riches en basses et consommés mondialement, qui définissent la vie nocturne contemporaine. Son pouvoir durable réside dans sa capacité à transcender la langue, créant des expériences viscérales partagées sur la piste de danse.",
+      "facts": {
+        "era": "De l'Antiquité à l'époque contemporaine",
+        "origin": "Monde entier/Civilisations anciennes"
+      },
+      "source_sha256": "a1311cd656fb3bb0bbffca29e38d1f13d60ed1025ce5caf34c04ec7be1b69cef",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T18:20:11.306Z"
+    }
+  }
 }

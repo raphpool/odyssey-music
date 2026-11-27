@@ -39,5 +39,17 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q286080"
+  "qid": "Q286080",
+  "l10n": {
+    "fr": {
+      "teaser": "Un mode de production musicale caractérisé par des instruments qui créent du son par vibration mécanique physique sans amplification électronique.",
+      "article": "« Acoustic » est une classification sonore fondamentale en musique, désignant des performances qui reposent sur des instruments produisant du son par des moyens mécaniques naturels — tels que des cordes vibrantes, des membranes ou des colonnes d'air — sans l'aide d'une amplification électronique. Enraciné dans le mot grec « akoustikos », qui se rapporte à l'audition, le terme englobe une vaste gamme d'instruments, de la voix humaine et des bois classiques aux guitares et percussions orientées folk. Bien qu'il s'agisse techniquement d'un mode de production sonore plutôt que d'un genre unique, « acoustic » sert de marqueur culturel et esthétique crucial dans la musique moderne. Il signale un mouvement vers l'intimité, la clarté et la connexion humaine brute et sans artifice entre l'interprète et le public.\n\nHistoriquement, toute musique était acoustique jusqu'au XXe siècle. Cependant, à mesure que l'amplification électrique est devenue la norme dans le jazz, le blues, le rock et finalement la pop, « acoustic » est passé d'un état par défaut à un choix stylistique spécifique. Dans le paysage contemporain, l'esthétique « acoustic » — souvent associée à des genres comme le folk, le singer-songwriter et le bluegrass — est fréquemment utilisée pour offrir un contrepoids aux textures électroniques saturées de la musique populaire. Elle a prospéré dans des lieux allant des cafés intimes aux séries de concerts « Unplugged », où des artistes comme Jack Johnson, Jewel ou Chris Thile dépouillent les couches de production pour révéler le cœur fondamental de leur écriture. Cette préférence pour l'organique ne concerne pas seulement le matériel ; c'est une philosophie esthétique qui privilégie la performance, la résonance physique et la dynamique nuancée de la projection sonore en temps réel. Le pouvoir durable de la musique acoustique réside dans cette sincérité palpable, offrant aux auditeurs une expérience sensorielle qui semble tangible, ancrée et profondément humaine.",
+      "facts": {
+        "origin": "Universelle (origines pré-électriques)"
+      },
+      "source_sha256": "e0c2acf5094e10963ab43065fa4de04afd3cc3e0c448700db03a328dc806374a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:03:43.435Z"
+    }
+  }
 }

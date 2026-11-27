@@ -123,5 +123,19 @@
       "type": "track",
       "name": "Mayonaka no Door (Stay with Me)"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre pop japonais des années 1970 et 80 qui mêle funk, jazz fusion et AOR, reflétant le boom économique de l'époque avec une atmosphère urbaine et sophistiquée.",
+      "article": "La City Pop a émergé au Japon au milieu des années 1970 en tant que forme de musique urbaine aux contours flous, atteignant son apogée tout au long des années 1980. Le genre est fréquemment associé à l'ère de prospérité économique du Japon, reflétant les modes de vie des citadins aisés à travers un mélange opulent de pop, funk, disco, R&B, AOR et soft rock. Des producteurs et compositeurs tels que Tatsuro Yamashita et Toshiki Kadomatsu ont utilisé des techniques d'arrangement sophistiquées, incluant des accords teintés de jazz comme les septièmes majeures, pour créer un son distinctif et soigné. La musique était portée par la technologie, intégrant souvent des instruments électroniques comme le Yamaha CS-80, le Roland TR-808 et le Casio CZ-101, parallèlement à l'accessibilité généralisée offerte par le Walkman et les systèmes stéréo de voiture. Bien que le genre ait connu un déclin de sa popularité auprès du grand public après les années 1980, étant souvent qualifié de musique jetable par les générations suivantes, il a connu un regain d'intérêt mondial à l'ère numérique à partir de 2010 environ. L'intérêt en ligne, alimenté par les algorithmes de YouTube et les blogs de partage de musique, a fait découvrir des titres comme le single de 1979 de Miki Matsubara « Mayonaka no Door (Stay with Me) » et « Plastic Love » de Mariya Takeuchi à de nouveaux publics internationaux. Ce renouveau a consolidé la City Pop comme une référence essentielle pour des microgenres modernes basés sur le sampling tels que la vaporwave et la future funk.",
+      "facts": {
+        "era": "milieu des années 1970 à la fin des années 1980",
+        "origin": "Japon (Tokyo)",
+        "sonic_markers": "Accords de septième majeure, arrangements luxuriants, synthétiseurs proéminents, grooves funk/disco, plage de 90-120 BPM"
+      },
+      "source_sha256": "e64480ecb9ab0f79625b55cf98c9df55f01fbf1d9b86520d7340dc44d5177aee",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:59:29.170Z"
+    }
+  }
 }

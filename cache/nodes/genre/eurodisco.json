@@ -124,5 +124,18 @@
       "name": "Take the Heat off Me"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "l10n": {
+    "fr": {
+      "teaser": "L'Eurodisco est une forme mélodique de musique de danse électronique, riche en synthétiseurs, apparue en Europe au milieu des années 1970 comme une évolution électronique et sophistiquée du son disco américain.",
+      "article": "L'Eurodisco, également souvent désigné sous le nom de « Euro disco », est apparu au milieu des années 1970 comme une interprétation distinctement européenne du phénomène disco qui avait vu le jour aux États-Unis. Bien qu'ancré dans les principes fondamentaux du disco — un rythme orienté vers la danse, des lignes de basse inspirées du funk et des arrangements énergiques — l'Eurodisco s'est distingué par une dépendance accrue à l'instrumentation électronique, aux synthétiseurs et à des valeurs de production hautement polies, souvent grandioses. Plutôt que de se concentrer strictement sur les influences blues ou R&B prédominantes dans le disco américain, l'Eurodisco a synthétisé ces rythmes avec des structures pop européennes traditionnelles, aboutissant à un son souvent plus mélodique, fédérateur et accessible aux publics internationaux. Les architectes clés de ce son, tels que Giorgio Moroder, Frank Farian et Michael Kunze, ont contribué à exporter cette approche sophistiquée et axée sur les synthétiseurs de la musique de danse, créant des succès pour des artistes comme Boney M., Donna Summer et Silver Convention. Tout au long de la fin des années 1970 et des années 1980, le genre a évolué rapidement, engendrant de nombreux sous-genres et variations, notamment le « space disco » inspiré de la science-fiction, l'« Italo disco » centré sur l'Italie et le « hi-NRG » au tempo élevé. À mesure que le son arrivait à maturité, il s'est éloigné de ses origines disco organiques vers une esthétique plus purement électronique, ouvrant la voie au développement de la synth-pop et, finalement, de l'Eurodance dans les années 1990. Au-delà de son statut de bande originale déterminante de l'époque, l'influence de l'Eurodisco a persisté à l'échelle mondiale, façonnant les techniques de production pop pendant des décennies et conservant un public culte massif en Europe de l'Est et dans certaines parties de l'Asie. Son héritage est ancré dans l'ADN de la musique de danse contemporaine, de l'éthique « retour aux sources » de la French house à la popularité durable des hymnes de danse en tonalité majeure portés par les synthétiseurs.",
+      "facts": {
+        "era": "années 1970–années 1980",
+        "origin": "Europe"
+      },
+      "source_sha256": "226972cf13348888e4ad27790ae41c116134a816b13bdd49f3360ba1324d9396",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:12:58.663Z"
+    }
+  }
 }

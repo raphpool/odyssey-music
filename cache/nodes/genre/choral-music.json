@@ -65,5 +65,18 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q1076513"
+  "qid": "Q1076513",
+  "l10n": {
+    "fr": {
+      "teaser": "La musique chorale désigne toute composition écrite pour et interprétée par un groupe de chanteurs, allant d'ensembles de chambre intimes à des forces symphoniques chorales massives. Le genre se caractérise par l'utilisation de multiples parties vocales, où les lignes individuelles sont soutenues par plusieurs chanteurs, et peut être interprété a cappella ou avec un accompagnement instrumental.",
+      "article": "La musique chorale est un mode fondamental de l'expression musicale humaine, définie comme une musique écrite pour et interprétée par un groupe de chanteurs — un chœur ou une chorale — où chaque partie vocale est généralement soutenue par deux voix ou plus. Ce genre englobe une immense étendue historique et stylistique, trouvant son origine dans les premières traditions monophoniques telles que le chant grégorien et évoluant vers les arrangements polyphoniques complexes qui ont défini le canon classique occidental. Tout au long des périodes médiévale et de la Renaissance, le chœur est devenu le principal vecteur de l'expression liturgique. Les compositeurs de la Renaissance, tels que ceux écrivant pour la messe latine, ont affiné la structure vocale standard à quatre parties (soprano, alto, ténor, basse), établissant un modèle pour l'harmonie vocale qui reste dominant aujourd'hui.\n\nL'évolution du genre est marquée par des relations changeantes entre la voix et l'instrumentation. Bien qu'une part importante du répertoire choral soit a cappella — chantée sans accompagnement instrumental — l'intégration d'un soutien orchestral est devenue de plus en plus prédominante à partir de la période baroque. Des œuvres telles que la cantate, le motet et l'oratorio à grande échelle illustrent la capacité du genre à porter une narration dramatique et une puissance collective. De la solennité sacrée des œuvres chorales de Johann Sebastian Bach aux forces vocales expansives et massives utilisées à l'époque romantique par des compositeurs comme Mahler, la musique chorale a constamment servi de médium tant pour la réflexion spirituelle intime que pour la déclaration publique monumentale. Sa pertinence durable réside dans son accent inhérent sur la voix humaine en tant qu'instrument d'unité, reflétant les changements sociétaux, religieux et artistiques à travers des siècles de développement mondial.",
+      "facts": {
+        "era": "Antiquité à nos jours",
+        "origin": "Europe (traditions liturgiques)"
+      },
+      "source_sha256": "90786a9cdf1def36d96048d8123308f6cc17f12c61c70ebe5dd5f51d88cb9814",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:59:29.016Z"
+    }
+  }
 }

@@ -75,5 +75,17 @@
   "key_labels": [],
   "landmark_projects": [],
   "landmark_tracks": [],
-  "qid": "Q507246"
+  "qid": "Q507246",
+  "l10n": {
+    "fr": {
+      "teaser": "Une technique de composition caractérisée par l'utilisation d'une série ordonnée d'éléments (notamment la hauteur) comme base génératrice de la structure musicale, remplaçant efficacement la hiérarchie tonale traditionnelle.",
+      "article": "Le Serialism est une approche profonde et révolutionnaire de la composition musicale qui a émergé au début du XXe siècle, remettant fondamentalement en question les hiérarchies établies de la musique tonale occidentale. À sa base, le Serialism est une méthodologie où une série fixe et ordonnée d'éléments — le plus souvent les douze hauteurs de la gamme chromatique — agit comme principe structurel fondamental d'une composition. En organisant systématiquement ces éléments (la « série »), les compositeurs ont cherché à remplacer la dépendance traditionnelle envers les centres tonaux et l'harmonie fonctionnelle par une nouvelle logique où toutes les notes sont traitées avec un poids égal, théoriquement dépourvues de l'attraction gravitationnelle d'une tonalité de référence. Bien qu'il soit souvent associé aux contraintes de la technique dodécaphonique d'Arnold Schoenberg, le Serialism a considérablement évolué dans l'après-guerre. Des compositeurs tels que Pierre Boulez ont élargi le concept, appliquant l'ordonnancement sériel non seulement à la hauteur, mais aussi à d'autres paramètres musicaux, notamment le rythme, la dynamique et même l'articulation. Ce Serialism total ou « intégral » représentait un changement esthétique vers des structures organisationnelles rigoureuses et objectives, aboutissant souvent à une musique d'une immense complexité et d'une beauté austère et anguleuse. Malgré les critiques selon lesquelles cette méthodologie serait trop mathématique ou déconnectée de l'émotion humaine, le Serialism demeure un développement majeur de la musique savante, exerçant une influence profonde sur le modernisme, les traditions classiques d'avant-garde et l'histoire intellectuelle plus large du XXe siècle. Son impact se fait sentir dans les œuvres de la Seconde école de Vienne — Arnold Schoenberg, Alban Berg et Anton Webern — et s'étend jusqu'aux expérimentations de l'école de Darmstadt, où il est devenu un point focal pour l'avant-garde européenne du milieu du siècle. La diversité des résultats produits par les techniques sérielles — allant des textures denses et expressionnistes d'Alban Berg à la précision pointilliste d'Anton Webern — prouve que le Serialism est un outil de libération autant qu'un système de contrainte.",
+      "facts": {
+        "origin": "Autriche, Allemagne et France"
+      },
+      "source_sha256": "56aefb6f61bb248c60ee029449f6a9d797f12a4a56b9593c1bc6eecb648c869c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:35:06.065Z"
+    }
+  }
 }

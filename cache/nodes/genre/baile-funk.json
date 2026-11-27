@@ -121,5 +121,19 @@
       "type": "track",
       "name": "São Paulo"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un genre musical brésilien issu des favelas de Rio de Janeiro qui mêle hip hop, Miami bass et rythmes électroniques locaux.",
+      "article": "Né dans les favelas de Rio de Janeiro au milieu des années 1980, le Baile Funk a émergé comme un genre distinct, influencé par le hip-hop et façonné par la disponibilité de disques américains comme le single Planet Rock d'Afrika Bambaataa sorti en 1982. Les premières compositions étaient construites sur des boucles de batteries électroniques issues de la Miami bass et de disques de freestyle, intégrant finalement le rythme signature tamborzão comme battement fondamental du genre. Des artistes comme DJ Marlboro ont aidé à documenter la scène dès ses débuts, laquelle utilise souvent des échantillons de cuivres et des accords d'accordéon. Le mouvement s'est étendu mondialement au début des années 2000 grâce à des labels européens et des compilations, notamment Slum Dunk Presents Funk Carioca mixé par Tetine en 2004 et les sorties du label berlinois Man Recordings. Les itérations modernes se sont fragmentées en sous-genres tels que le rave funk à haut BPM, le funk mandelão brut et minimaliste, et le funk bruxaria agressif influencé par l'horreur.",
+      "facts": {
+        "era": "milieu des années 1980 à aujourd'hui",
+        "origin": "Rio de Janeiro, Brésil",
+        "sonic_markers": "Utilisation intensive de boîtes à rythmes, d'échantillonneurs et de boucles rythmiques, allant des battements classiques de Miami bass à 150 BPM et des textures métalliques expérimentales."
+      },
+      "source_sha256": "ac1ae3529f8ae8f67f22703bcf53f18f970444a3287cede3ca931cda36b88b42",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T16:05:38.733Z"
+    }
+  }
 }

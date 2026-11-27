@@ -105,5 +105,19 @@
       "type": "track",
       "name": "Light Years Away"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "La première ère de la musique hip-hop enregistrée commercialement, originaire du Bronx des années 1970, caractérisée par des reprises de breakbeats jouées par des groupes en live et des flows lyriques axés sur la fête.",
+      "article": "Émergeant dans le Bronx, à New York, au début des années 1970, le old-school hip-hop représente l'ère fondatrice du genre, traditionnellement définie par la période entre 1973 et 1983. Initialement appelé disco-rap, le style utilisait fréquemment des groupes en live pour interpréter des reprises de breaks populaires des années 1970, une technique célèbre documentée sur le succès de 1979 de The Sugarhill Gang, « Rapper's Delight ». Suite à la sortie en 1982 de « Planet Rock » d'Afrika Bambaataa, la production s'est orientée vers des sons électroniques, intégrant la boîte à rythmes Roland TR-808 et des thèmes afrofuturistes. Le rap durant cette ère était caractérisé par un débit direct et des sujets centrés sur la fête, bien que des morceaux comme la chanson de 1982 de Grandmaster Flash and the Furious Five, « The Message », aient introduit le commentaire social dans le format. Le battle rap a également joué un rôle crucial dans le développement du MC, notamment lors de l'affrontement de décembre 1981 entre Kool Moe Dee et Busy Bee Starski, qui a marqué un tournant, passant de l'humour destiné à plaire à la foule vers la narration et la complexité lyrique.",
+      "facts": {
+        "era": "1973 à 1983",
+        "origin": "Le Bronx, New York City",
+        "sonic_markers": "Tempo modéré, techniques de rimes simples, instrumentation par des groupes en live, percussions électroniques précoces de la TR-808 et forte dépendance aux breaks disco et funk."
+      },
+      "source_sha256": "c6f55777638fa2c24317dfba67a7e3df517f1cf393622d5cc90b715328910c46",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T20:10:59.697Z"
+    }
+  }
 }

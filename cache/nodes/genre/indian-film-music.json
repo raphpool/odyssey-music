@@ -135,5 +135,19 @@
       "type": "track",
       "name": "Yaad Aa Raha Hai"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un élément fondamental de la culture populaire indienne, caractérisé par des chansons intégrées directement aux intrigues des films et aux séquences de danse.",
+      "article": "La musique de film indienne, souvent appelée musique de Bollywood, remonte au film sonore de 1931 « Alam Ara », qui comprenait sept chansons enregistrées par le label Saregama. Ces compositions agissent comme un ressort narratif central plutôt que comme de simples interludes musicaux occidentaux, servant régulièrement à accentuer des ambiances ou des monologues intérieurs. Au-delà de leur rôle cinématographique, ces morceaux ont façonné la culture populaire du pays, les bandes originales représentant environ 80 % des revenus de l'industrie musicale en Inde. L'industrie s'est historiquement appuyée sur la poésie ghazal en ourdou et sur des formes classiques, tandis que la production moderne intègre de plus en plus le Hinglish et diverses influences mondiales comme le disco électronique. Les années 1980 ont été marquées par des expérimentations significatives, telles que l'album de 1982 de Charanjit Singh, « Synthesizing: Ten Ragas to a Disco Beat », qui utilisait les Roland TR-808 et TB-303 pour jeter un pont entre les ragas traditionnels et les premières structures house.",
+      "facts": {
+        "era": "1931 à nos jours",
+        "origin": "Inde, principalement au sein de l'industrie cinématographique de Bollywood",
+        "sonic_markers": "Instrumentation éclectique allant des ragas traditionnels, sitars et tablas aux synthétiseurs, boîtes à rythmes et éléments de disco électronique."
+      },
+      "source_sha256": "23db99f7b0ed73669de10a85f0d9378fb5aede0a32755978778584d28e966604",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T19:28:58.958Z"
+    }
+  }
 }
