@@ -95,7 +95,10 @@ struct GenresTabView: View {
 	let recentNodes: RecentNodesStore
 	let analytics: AnalyticsClient
 	/// nil when the app has neither a catalog fixture nor an API client: the tab then reads as unavailable.
-	let loadCatalog: (@Sendable () async -> APIResult<Catalog>)?
+	///
+	/// 2026-11-25: the tab read the whole catalog (`GET /mobile/v1/catalog`) on every launch and showed a
+	/// spinner for seconds. It now reads the snapshot on disk; only a launch without one downloads.
+	let genreCatalog: GenreCatalogStore?
 	let profileWasSaved: (Profile) -> Void
 	let profileWasCleared: () -> Void
 
@@ -276,23 +279,24 @@ struct GenresTabView: View {
 		// Coming back to the tab must neither fetch again nor lose the tree already held to a failed request.
 		if case .ready = catalog { return }
 		guard let profile = profileState.profile else { return }
-		guard let loadCatalog else {
+		guard let genreCatalog else {
 			catalog = .failed
 			return
 		}
-		switch await loadCatalog() {
-		case .success(let loaded, _):
-			// A degraded catalog has no editorial taxonomy: the tab reads as unavailable, like a failed request.
-			if let taxonomy = EditorialGenreTaxonomy(catalog: loaded) {
-				let model = GenreSelectionModel(taxonomy: taxonomy, editing: profile)
-				savedGenres = model.selectedGenres
-				catalog = .ready(
-					LoadedCatalog(
-						model: model, genreIDs: loaded.nodes.filter { $0.type == .genre }.map(\.identity)))
-			} else {
+		switch await genreCatalog.load() {
+		case .ready(let snapshot, let source):
+			// A stored snapshot always has an editorial taxonomy; without one the tab reads as unavailable.
+			guard let taxonomy = snapshot.taxonomy else {
 				catalog = .failed
+				return
 			}
-		case .failure, .notModified:
+			let model = GenreSelectionModel(taxonomy: taxonomy, editing: profile)
+			savedGenres = model.selectedGenres
+			catalog = .ready(LoadedCatalog(model: model, genreIDs: snapshot.genreIDs))
+			// Revalidated once, in the background and out of this view task, which a tab change cancels. Its
+			// result is never applied to the editor that is open: the next launch serves the new revision.
+			if source == .disk { Task { _ = await genreCatalog.refresh() } }
+		case .unavailable:
 			catalog = .failed
 		}
 	}
