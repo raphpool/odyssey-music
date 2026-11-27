@@ -54,5 +54,14 @@
   "producers": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "The Beatles étaient un groupe de rock anglais emblématique dont les albums studio et les singles innovants entre 1962 et 1970 ont révolutionné l'industrie musicale mondiale.",
+      "article": "The Beatles étaient un groupe de rock anglais fondamental qui a profondément remodelé le paysage de la musique populaire durant leurs années d'activité de 1962 à 1970. Émergeant de Liverpool, le groupe a publié 12 albums studio au Royaume-Uni et 63 singles dans le monde entier, passant des premières sensibilités pop de leurs sorties chez Parlophone aux compositions expérimentales et complexes de leurs travaux ultérieurs sur le label Apple. Leur influence s'est étendue bien au-delà de leur Royaume-Uni natal, leurs sorties nord-américaines étant souvent reconfigurées par Capitol Records avant que le groupe n'obtienne finalement un catalogue international standardisé.\n\nTout au long de leur carrière, The Beatles ont maintenu une production prolifique qui comprenait des albums live, des compilations et des EP, parallèlement à leurs albums studio principaux. L'évolution du groupe est marquée par des jalons significatifs tels que la sortie en 1967 de Sgt. Pepper's Lonely Hearts Club Band et le double album de 1968 The Beatles, communément appelé le White Album. Après leur dissolution, leur héritage enregistré a été préservé et remastérisé, le catalogue principal de 217 titres demeurant une pierre angulaire de l'histoire du rock.",
+      "source_sha256": "d1df5f3b051a86fa85a8089402a872a27ccc2c467dd8d2113c9b459049015068",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:50:24.330Z"
+    }
+  }
 }

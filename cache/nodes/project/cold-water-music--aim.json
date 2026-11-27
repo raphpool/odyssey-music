@@ -150,5 +150,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un disque de trip-hop fondateur qui a contribué à définir le son de Manchester à la fin des années 90, mêlant une production hip-hop chaleureuse, des samples cinématographiques et des ambiances électroniques introspectives.",
+      "article": "Cold Water Music, sorti en 1999, constitue le premier album studio du musicien britannique Aim (Andy Turner) et demeure une parution phare pour le label emblématique basé à Manchester, Grand Central Records. Émergeant de la scène trip-hop et downtempo britannique de la fin des années quatre-vingt-dix, l'album synthétise avec brio des atmosphères cinématographiques, une production hip-hop boom-bap et un éventail éclectique de samples puisés dans des sources disparates telles que des bandes originales de films d'horreur classiques et des documentaires sportifs.\n\nMusicalement, Cold Water Music se définit par ses textures chaudes et organiques ainsi que par une esthétique nocturne et mélancolique caractéristique. Le style de production d'Aim évite les aspérités numériques de la musique électronique contemporaine au profit d'une approche décontractée influencée par le lounge. La liste des titres est variée, incluant des collaborations avec des chanteurs et rappeurs comme Kate Rogers et YZ, aux côtés d'instrumentaux mélancoliques comme le morceau-titre, qui incorpore un sample célèbre du film Psycho III. Grâce à sa capacité à équilibrer des superpositions studio complexes avec des mélodies accessibles et soul, l'album a contribué à consolider le son de Grand Central, offrant une interprétation raffinée et profondément personnelle du mouvement électronique « chill-out » en plein essor au Royaume-Uni au tournant du millénaire. Il demeure une référence saluée par la critique de son époque, trouvant plus tard une seconde vie grâce à son inclusion dans des médias de premier plan comme la bande originale de Tony Hawk's Pro Skater.",
+      "source_sha256": "7da53e6d6aac8dace6106641db7bb79b408d5b1e3515c37254d509ab1a7c0de6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:20:16.096Z"
+    }
+  }
 }

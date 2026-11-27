@@ -133,5 +133,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Loud Ambient est une sortie charnière de 2025 du légendaire groupe électronique britannique The Black Dog, marquant un retour délibéré à leurs racines techno fondamentales tout en les infusant de textures expérimentales contemporaines. Inspiré par les peintures évocatrices de champs colorés de Mark Rothko, l'album explore l'interaction entre l'échelle, l'ambiance et une conception sonore intense et immersive, aboutissant à un projet à la fois physiquement puissant et profondément méditatif.",
+      "article": "Sorti en 2025, Loud Ambient constitue un ajout significatif à la discographie historique de The Black Dog. Avec ce projet, le groupe a revisité les principes fondamentaux de ses premiers travaux électroniques, dépouillant les complexités modernes pour embrasser le potentiel brut des boîtes à rythmes analogiques et des paysages sonores atmosphériques. Le cadre conceptuel du disque a été fortement influencé par le travail du peintre expressionniste abstrait Mark Rothko. Le groupe a cherché à refléter la technique de peinture en champs colorés de Rothko — où de grandes zones de couleurs saturées créent une expérience immersive, presque spirituelle pour le spectateur — en construisant des paysages sonores qui reposent sur une superposition profonde, des changements de ton subtils et des textures massives et résonnantes.\n\nLe résultat est un album qui, paradoxalement, est à la hauteur de son titre : il possède les qualités spacieuses et non intrusives caractéristiques de la musique ambient, tout en portant le poids physique, la précision rythmique et l'intensité motrice de la techno. Des morceaux comme They Came for My Head et Double Drop Nightmares illustrent cet équilibre, démontrant une maîtrise du rythme qui invite à la fois à une écoute active et à une contemplation immersive. En puisant dans leur propre histoire en tant que pionniers de la scène intelligent dance music (IDM) britannique et en la réinterprétant à travers le prisme de l'art conceptuel, The Black Dog a réussi à revigorer son son pour une nouvelle ère, prouvant la vitalité durable de sa vision électronique.",
+      "source_sha256": "41f335b162328256c474cfd34de84546abd823695e179f679d86e72471fae06c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:20.443Z"
+    }
+  }
 }

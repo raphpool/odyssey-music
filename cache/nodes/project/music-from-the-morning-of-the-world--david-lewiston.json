@@ -102,5 +102,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Cette parution phare de 1967 a fait découvrir au public mondial les rythmes précis et imbriqués du gamelan balinais par le biais de la Nonesuch Explorer Series.",
+      "article": "Publié en 1967 dans le cadre de la Nonesuch Explorer Series, Music from the Morning of the World constitue le premier enregistrement stéréophonique de musique traditionnelle de gamelan balinais. Produit par David Lewiston, le projet capture des sonorités variées de l'île de Bali, mettant en vedette des interprétations d'ensembles régionaux. La collection a joué un rôle déterminant dans l'initiation des auditeurs occidentaux aux rythmes imbriqués complexes et aux textures orchestrales de la musique percussive indonésienne. En tant qu'entrée centrale du catalogue Nonesuch, les enregistrements démontrent la précision technique des orchestres balinais, la bibliothèque de morceaux soulignant la clarté sonore rendue possible par les techniques d'enregistrement de terrain en stéréo à la fin des années 1960.",
+      "source_sha256": "e9559b58e740b853350588d3e9f0562fa6f18df2df0f536f4a7c752909921d49",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:29:13.152Z"
+    }
+  }
 }

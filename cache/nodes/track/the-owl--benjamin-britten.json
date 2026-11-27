@@ -37,5 +37,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« The Owl » est une composition musicale du compositeur anglais Benjamin Britten, écrite en 1929.",
+      "article": "« The Owl » est une composition musicale du compositeur anglais Benjamin Britten, écrite en 1929. Mettant en musique la poésie d'Alfred Lord Tennyson, cette œuvre représente un pan restreint mais intrigant de la production créative précoce de Britten. Composée alors que Britten n'avait que quinze ans, la pièce démontre son intérêt précoce pour l'intégration du canon littéraire anglais à la composition vocale, une préoccupation qui définira sa carrière ultérieure à travers des cycles de mélodies et des opéras majeurs.\n\nBien qu'elle ne soit pas aussi largement interprétée que ses œuvres de maturité comme « Les Illuminations » ou ses divers arrangements de chansons folkloriques, « The Owl » offre une fenêtre sur les années de formation de l'un des compositeurs les plus importants du XXe siècle. Elle demeure une étude pour les chercheurs et les chanteurs intéressés par l'évolution du langage mélodique de Britten et ses premières approches de la narration atmosphérique au sein d'une structure de chanson. Sa préservation dans les archives historiques souligne l'importance de cartographier même les entrées mineures du catalogue d'un compositeur pour comprendre son arc artistique complet. La brièveté de la pièce et la maturité juvénile de sa composition témoignent du talent précoce de Britten, reflétant la sensibilité au texte qui deviendra sa marque de fabrique à l'âge adulte. En analysant de telles œuvres, on obtient une appréciation plus nuancée de la manière dont un jeune musicien commence à synthétiser les influences de la tradition classique et la cadence rythmique de la poésie. Britten demeure une figure fondamentale de la musique britannique du XXe siècle, connu pour son travail dans les genres Classical, Opera et Vocal music. Sa discographie comprend des œuvres célèbres telles que le « War Requiem » et « Peter Grimes », établissant son héritage en tant que titan du genre. Sa vie artistique était profondément liée à des collaborateurs comme le ténor Peter Pears, qui a influencé de manière significative l'écriture vocale de nombreux projets de Britten. Son impact sur la composition musicale moderne demeure profond, comblant le fossé entre les formes traditionnelles et l'exploration avant-gardiste contemporaine.",
+      "source_sha256": "a0c49044e6d4c81eb01b2b3753f196107fc99ada2326fd128909c7e9188e9b37",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:16.237Z"
+    }
+  }
 }

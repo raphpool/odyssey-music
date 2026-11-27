@@ -59,5 +59,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Reg » est un morceau du projet électronique collaboratif Mike & Rich, présent sur leur album culte de 1996 « Expert Knob Twiddlers ». Publié sur le label influent Rephlex Records, le projet a réuni deux maîtres de la musique électronique expérimentale : Mike Paradinas (μ-Ziq) et",
+      "article": "« Reg » est un morceau du projet électronique collaboratif Mike & Rich, présent sur leur album culte de 1996 « Expert Knob Twiddlers ». Publié sur le label influent Rephlex Records, le projet a réuni deux maîtres de la musique électronique expérimentale : Mike Paradinas (μ-Ziq) et Richard D. James (Aphex Twin). « Expert Knob Twiddlers » est largement considéré comme une entrée ludique et légèrement irrévérencieuse dans le canon de l'IDM (Intelligent Dance Music), marquée par une programmation de batterie erratique, une synthèse analogique acide et une approche fantaisiste qui s'écartait des paysages sonores plus sérieux et cérébraux souvent associés au genre à l'époque.\n\n« Reg » s'inscrit lui-même dans le paysage sonore excentrique et downtempo de l'album. Bien que la nature collaborative de l'album ait souvent conduit les fans et les critiques à débattre de quel producteur a pris les devants sur des passages spécifiques, « Reg » incarne l'esprit caractéristique de « knob twiddling » qui définissait l'esthétique Rephlex du milieu des années 90, mêlant prouesses techniques et un sens du plaisir décalé propre au studio de chambre. Le morceau, comme une grande partie de l'album, oscille entre des rythmes hypnotiques et des lignes de synthé imprévisibles et ludiques qui reflètent la chimie créative entre Paradinas et James. Malgré sa réputation quelque peu polarisée parmi les fans inconditionnels des deux artistes, l'album et le morceau « Reg » restent des pièces importantes du puzzle IDM, capturant un moment où les pionniers du genre expérimentaient consciemment avec l'absurde et la composition informelle. La sortie originale de « Expert Knob Twiddlers » était une affaire limitée, acquérant finalement un statut culte qui a culminé avec sa remastérisation et son extension en 2016, cimentant davantage sa place dans l'histoire de la musique électronique underground.",
+      "source_sha256": "502ef7420bbeb3388547e9efdd0a430a9a0ac2f21f51bf156650ce5ea6daaac2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:19.370Z"
+    }
+  }
 }

@@ -58,5 +58,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Call Me » est un hymne new wave séminal sorti par le groupe américain Blondie en 1980.",
+      "article": "« Call Me » est un hymne new wave séminal sorti par le groupe américain Blondie en 1980. Initialement commandé comme chanson thème du film « American Gigolo », le morceau fut un succès international massif, atteignant la première place du Billboard Hot 100 pendant six semaines consécutives et dominant les classements au Royaume-Uni et au Canada. La chanson est le résultat d'une collaboration créative entre la chanteuse de Blondie, Debbie Harry, et l'influent producteur de disco italien Giorgio Moroder. Moroder a initialement fourni à Harry une démo instrumentale brute intitulée « Man Machine », la chargeant de composer les paroles et la mélodie. Harry, qui a écrit les paroles en pensant à l'imagerie d'une conduite le long de la côte californienne, a réussi à synthétiser son esthétique new wave teintée de punk avec la production disco électronique léchée et énergique de Moroder. Le morceau fini est remarquable pour son rythme propulsif et entraînant ainsi que pour le pont, dans lequel Harry chante « call me » en italien et en français, une touche qui a contribué à son attrait mondial. Consolidant son statut comme l'une des chansons définitives du début des années 1980, « Call Me » est devenu le plus grand succès commercial du groupe et demeure un sommet pour l'intersection entre la new wave et la dance-pop, reconnu par son inclusion dans de nombreuses listes des plus grandes chansons de tous les temps.",
+      "source_sha256": "166c01efab5f6e9ab05ee031d304e9b7ec4ee0edae8b2571d3b149e9f57fb417",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:15.382Z"
+    }
+  }
 }

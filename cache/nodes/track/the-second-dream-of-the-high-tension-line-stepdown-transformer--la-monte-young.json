@@ -53,5 +53,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« The Second Dream of The High-Tension Line Stepdown Transformer » est une œuvre séminale du compositeur minimaliste américain influent La Monte Young.",
+      "article": "« The Second Dream of The High-Tension Line Stepdown Transformer » est une œuvre séminale du compositeur minimaliste américain influent La Monte Young. Conçue à l'origine dans le cadre de sa série « The Four Dreams of China » en 1962, cette pièce représente l'une des explorations les plus rigoureuses et soutenues de l'intonation juste et des relations de fréquence au XXe siècle. Young, souvent considéré comme le père fondateur du minimalisme, a utilisé cette œuvre pour créer un environnement sonore où l'auditeur est immergé dans des textures harmoniques complexes et changeantes dérivées d'un ensemble spécifique de fréquences.\n\nL'œuvre est remarquable par sa nature performative, souvent réalisée par des groupes comme le Theater of Eternal Music, et par sa dépendance à des tons soutenus et bourdonnants qui évoluent sur une durée prolongée. En se concentrant sur le phénomène du son lui-même — les motifs de « battements » qui émergent entre les ajustements microtonaux et la résonance de l'espace acoustique — la piste remet en question les notions conventionnelles de progression musicale. Il ne s'agit pas simplement d'une composition à écouter au sens traditionnel, mais d'une expérience destinée à altérer la perception du temps et de l'espace chez l'auditeur. Le titre lui-même suggère une fascination pour l'industriel et le métaphysique, contrastant le banal « stepdown transformer » avec la qualité éthérée et onirique des sons cristallins prolongés générés par l'ensemble. Elle demeure une pierre angulaire du canon minimaliste électronique et classique expérimental, exerçant une influence profonde sur la musique ambient, drone et avant-gardiste.",
+      "source_sha256": "e70c78391ad121f777741ee09c352a2486934c58b0ba8526a7a4b04e880e71b5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:20.781Z"
+    }
+  }
 }

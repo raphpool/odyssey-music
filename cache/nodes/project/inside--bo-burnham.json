@@ -101,5 +101,14 @@
       "type": "project",
       "name": "Make Happy"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Inside de Bo Burnham est un voyage musical profondément personnel et novateur, créé dans un isolement total pendant la pandémie de COVID-19, capturant l'angoisse existentielle, l'obsession numérique et la santé mentale fracturée d'un monde confiné.",
+      "article": "Inside de Bo Burnham est un artefact culturel singulier de l'ère de la pandémie de COVID-19, un spectacle de Comedy musical à la fois claustrophobe et expansif, accompagné d'un album qui a capturé l'anxiété collective de l'isolement mondial. Créé entièrement par Burnham dans une chambre d'amis de sa maison de Los Angeles entre 2020 et 2021, le projet sert de méditation profondément personnelle sur la santé mentale, la performativité numérique et la nature paradoxale de la célébrité à l'ère d'Internet. Délaissant le format traditionnel du stand-up, Burnham utilise une approche dense et multicouche de l'écriture de chansons et de la production visuelle, passant rapidement des tropes satiriques de la culture des influenceurs — tels que l'esthétique vide de « White Woman's Instagram » — à des aveux profondément vulnérables concernant ses propres luttes contre la dépression et les crises de panique. Le projet a marqué le retour de Burnham sur scène après une pause de plusieurs années suivant son spectacle de 2016, Make Happy, et il a recueilli un large succès critique pour sa précision technique et sa résonance émotionnelle. Inside documente une période transformatrice de la vie de l'artiste, retraçant le passage physique du temps à travers son apparence changeante et le ton évolutif, de plus en plus frénétique, de la musique. Musicalement, l'œuvre est très variée, incorporant des éléments de synth-pop, de folk satirique et de Comedy avant-gardiste, soulignés par une vision du monde tranchante, cynique et finalement humaniste. Son impact a été profond, des titres comme « All Eyes On Me » devenant des hymnes, et le spectacle lui-même remportant plusieurs Primetime Emmy Awards et un Grammy. En tournant l'objectif vers l'intérieur à une époque où le monde était contraint de faire de même, Burnham a créé un portrait définitif d'une génération prise entre connectivité numérique et aliénation physique.",
+      "source_sha256": "dc8d349602c310d535d846dee513d0fe8eee3c7cf7290931b58744f8f6062c36",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:22.633Z"
+    }
+  }
 }

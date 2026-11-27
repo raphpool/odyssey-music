@@ -40,5 +40,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon du punk américain, le premier album studio de X s'impose comme le document brut et définitif de la scène underground de Los Angeles de la fin des années 1970, produit par le légendaire Ray Manzarek.",
+      "article": "Los Angeles est le premier album studio, paru en 1980, de l'influent groupe de punk rock américain X, publié par le label indépendant séminal Slash Records. Produit par Ray Manzarek de The Doors, l'album est largement considéré comme une pierre angulaire du mouvement punk de la côte Ouest, capturant l'énergie brute et désespérée de la scène des clubs de Los Angeles à la fin des années 1970. Le disque présente la formation centrale composée d'Exene Cervenka et John Doe au chant, Billy Zoom à la guitare et D.J. Bonebrake à la batterie, une configuration qui leur a permis de transcender les limites typiques du punk grâce à une écriture sophistiquée et un travail de guitare aux accents rockabilly.\n\nThématiquement, Los Angeles canalise l'aliénation et la volatilité de la vie urbaine, cimentées par le morceau-titre qui définit la ville et le frénétique « Johnny Hit and Run Paulene ». La production de Manzarek a aidé à combler le fossé entre les sensibilités punk agressives et un son rock plus durable, créant une qualité intemporelle qui a permis au groupe d'éviter les pièges stylistiques de nombre de leurs contemporains. Avec des chansons explorant la décomposition urbaine, le dysfonctionnement romantique et le délitement personnel, l'album est devenu un modèle pour le rock underground américain. Des décennies après sa sortie, il demeure un favori de la critique, apparaissant fréquemment sur les listes des plus grands albums de tous les temps, et servant de document définitif pour un groupe qui a redéfini les possibilités du punk rock. Son succès a établi X comme le chef de file de la scène underground californienne en plein essor, préparant le terrain pour leurs expérimentations ultérieures, plus orientées vers les racines, sur Under the Big Black Sun et au-delà. À travers l'interaction vocale austère de Cervenka et Doe, et la section rythmique implacable et entraînante, Los Angeles s'impose comme une réalisation monumentale et viscérale qui continue d'influencer des générations d'artistes de rock alternatif.",
+      "source_sha256": "aefe6e94e8ebbe35edd6684046d377ef8926a977622b398c4da2312286240b60",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:19.591Z"
+    }
+  }
 }

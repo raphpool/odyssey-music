@@ -66,5 +66,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "L'introduction atmosphérique et axée sur le crate-digging de l'album « Liquid Hip Hop » de DJ Cam, sorti en 2004, capture l'essence du style de production downtempo urbain et imprégné de jazz caractéristique de l'artiste.",
+      "article": "« The Sound Of The Street (Intro) » est le morceau d'ouverture atmosphérique de l'album « Liquid Hip Hop » sorti en 2004 par le producteur français de trip-hop et turntablist DJ Cam. Servant de lever de rideau à un projet qui mêle textures urbaines granuleuses et esthétique brumeuse teintée de jazz, commune à la scène downtempo des années 1990 et du début des années 2000, le morceau installe l'ambiance d'un album profondément ancré dans le crate-digging, la composition basée sur des boucles et l'expérimentation rythmique. DJ Cam, figure séminale de l'underground électronique français, utilisait souvent le format « intro » sur ses albums pour créer un paysage sonore ; dans ce cas précis, il évoque le sentiment d'une déambulation nocturne à travers les rues métropolitaines. Le morceau présente le scratch lourd, les boucles de batterie lo-fi et l'échantillonnage cinématographique qui caractérisaient le style de production de Cam, le positionnant aux côtés de pairs contemporains comme DJ Krush ou du mouvement hip-hop abstrait de l'époque. Malgré une réception critique polarisée concernant l'album « Liquid Hip Hop » dans son ensemble, cette introduction demeure une représentation concise de l'accent mis par l'artiste sur la texture et l'atmosphère plutôt que sur la progression mélodique traditionnelle, agissant comme un pont stylistique entre ses premiers travaux salués dans le genre trip-hop et ses explorations hip-hop plus expérimentales du milieu des années 2000. Le morceau capture efficacement un moment de mélancolie urbaine synonyme de l'esthétique de Cam, soulignant le poids et le grain du hip-hop tout en conservant les textures riches et échantillonnées que l'on trouve dans les arrangements trip-hop classiques. Il sert de point d'entrée essentiel, bien que bref, dans le paysage tentaculaire et parfois clivant du disque « Liquid Hip Hop », démontrant comment un producteur du calibre de Cam pouvait utiliser une durée limitée pour établir un monde sonore complet.",
+      "source_sha256": "1f4547bd54f351d92e922a9beb3cdfea89a6f31fb5d3a24dd4530c54de3460d0",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:23.176Z"
+    }
+  }
 }

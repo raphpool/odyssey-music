@@ -146,5 +146,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Sorti en 2013 sur le label Monkeytown, Enthusiast constitue un sommet pour la marque unique d'electronica éclectique et multi-genre de Siriusmo, mêlant énergie chaotique et production méticuleuse. Couvrant le disco house, l'electro-pop, le hip-hop et le UK bass, l'album capture un moment de transition créative et de raffinement pour l'artiste basé à Berlin.",
+      "article": "Sorti le 14 juin 2013 via le label influent Monkeytown Records de Modeselektor, Enthusiast s'impose comme un projet phare pour le producteur berlinois Siriusmo (Moritz Friedrich). Après une période d'exploration créative intense et un récit ironique impliquant le rejet d'un projet d'enregistrement orchestral « outrageusement coûteux », Enthusiast est arrivé comme une déclaration audacieuse d'indépendance artistique et d'étendue stylistique. Le disque est une exploration tentaculaire de 13 titres qui refuse de se cantonner à un seul genre, choisissant plutôt de tisser ensemble du néo-disco, de l'electro-pop, des beats hip-hop complexes et une conception sonore lourde influencée par le UK bass.\n\nCe qui définit Enthusiast, c'est son énergie frénétique et ludique, un trait caractéristique du style de production de Siriusmo. Les morceaux ressemblent souvent à des expériences sonores, passant brusquement mais fluidement de hooks prêts pour le dancefloor à des passages d'écoute denses et idiosyncrasiques. En évitant les pièges d'une palette sonore homogène, Siriusmo a créé un projet qui résonne aussi bien auprès des auditeurs axés sur le club que de ceux en quête de compositions électroniques sophistiquées. Enthusiast a solidifié la réputation de Siriusmo au sein de la scène électronique allemande en tant qu'artiste capable de marier une production de haut niveau avec un enthousiasme brut et non filtré, prouvant que le raffinement ne doit pas se faire au détriment de l'idiosyncrasie propre à l'artiste. L'album demeure un exemple déterminant de la production avant-gardiste du label au début des années 2010.",
+      "source_sha256": "572d0660ab5307970fc3ea0ef775d5c006123a7d88b73a6e243905979a292e70",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:22:19.924Z"
+    }
+  }
 }

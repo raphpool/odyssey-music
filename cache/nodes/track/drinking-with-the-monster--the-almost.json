@@ -50,5 +50,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« DRINKING WITH THE MONSTER » est une interprétation erronée courante des paroles d'ouverture du morceau « Monster Monster » du groupe de rock américain The Almost.",
+      "article": "« DRINKING WITH THE MONSTER » est une interprétation erronée courante des paroles d'ouverture du morceau « Monster Monster » du groupe de rock américain The Almost. Le groupe, mené par Aaron Gillespie — qui s'est fait connaître en tant que batteur et chanteur du groupe de metalcore influent Underoath — a sorti la chanson en 2009 en tant que morceau-titre de son deuxième album studio. La chanson est un hymne rock alternatif dynamique et riche en guitares qui explore les thèmes de l'autodestruction, de la lutte intérieure et d'un désir désespéré d'échapper à ses propres vices.\n\nLes paroles réelles, « I'm sick of drinking poison / I'm sick of worrying », sont souvent confondues par les auditeurs avec l'expression « drinking with the monster ». Ce « monstre » métaphorique représente le poids psychologique et émotionnel que porte le narrateur. Produit par Aaron Sprinkle, le morceau illustre le virage de The Almost vers un son hard rock mature aux accents du Sud, les distinguant des origines post-hardcore de ses membres. Le morceau reste une pièce centrale de la discographie du groupe, illustrant la transition de Gillespie vers un rock mélodique et introspectif. En extériorisant le tumulte personnel sous la forme d'un « monstre », la chanson atteint une énergie cathartique qui résonne auprès des auditeurs s'identifiant à la lutte pour la rédemption personnelle. Elle sert de rappel de l'écriture brute et honnête qui a défini la présence de The Almost sur la scène rock alternative de la fin des années 2000, transformant le titre mal entendu en un crochet durable, bien qu'officieux.",
+      "source_sha256": "e69d39083d313975c4130054ff5202dd0d8ede682a024b89c18e6474b3b5131d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:41:17.864Z"
+    }
+  }
 }

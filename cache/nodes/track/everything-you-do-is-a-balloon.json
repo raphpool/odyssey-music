@@ -36,5 +36,14 @@
     }
   ],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre emblématique et progressif des débuts de l'IDM qui superpose des textures analogiques chaleureuses et des mélodies mélancoliques dans un paysage sonore hypnotique.",
+      "article": "« Everything You Do Is a Balloon » s'impose comme l'une des compositions les plus évocatrices et célébrées de la première discographie du duo électronique écossais Boards of Canada. Apparu pour la première fois sur leur EP de 1996 « Hi Scores », puis sur la compilation de 1996 « BoC Maxima », le morceau illustre le mélange caractéristique du groupe fait de synthèses analogiques nostalgiques et texturées, et de motifs rythmiques subtils et mélancoliques. D'une durée d'environ sept minutes, le morceau est réputé pour sa structure à progression lente, où des couches complexes sont introduites par des indices percussifs délicats — comme un roulement de caisse claire ou un étouffement de charleston — créant une atmosphère hypnotique et évolutive qui semble simultanément pastorale et hantologique.\n\nLe duo, composé des frères Michael Sandison et Marcus Eoin, a décrit le titre énigmatique comme provenant d'une réalisation personnelle vécue dans une forêt des années avant la sortie du morceau. Ce récit d'un moment solitaire et profond s'aligne avec le caractère sonore de la musique : un paysage sonore brumeux, chaleureux et profondément introspectif qui a défini l'esthétique initiale du duo. La production se caractérise par son utilisation intensive de la saturation de bande et d'équipement vintage, conférant au morceau une qualité usée et onirique. Notamment, le fondu de fin du morceau intègre un échantillon de guitare tiré de la pièce « Timeless » du guitariste de jazz John Abercrombie, un clin d'œil subtil à leur large éventail d'influences. Au fil des décennies, le morceau a conservé un statut culte parmi les fans d'IDM et d'electronica ambiante, servant d'exemple marquant de la manière dont le duo utilisait l'improvisation sur matériel pour capturer des émotions fugaces et insaisissables. Il demeure une expérience d'écoute essentielle pour ceux qui cherchent à comprendre l'ADN fondamental du son de Boards of Canada : une architecture fragile construite à partir de mémoire, de texture et de décomposition organique.",
+      "source_sha256": "5fefd04c54e0425287a74e41d67f77b13f1016b85c3c85613af385fc17e771c5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:41:24.735Z"
+    }
+  }
 }

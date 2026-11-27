@@ -74,5 +74,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pièce maîtresse de l'intelligent dance music (IDM) du début des années 90, « Telefone 529 » de B12 est un modèle de conception sonore électronique atmosphérique, mélodique et cérébrale.",
+      "article": "« Telefone 529 » est une œuvre séminale de l'intelligent dance music (IDM) du début des années 90, signée par le duo londonien B12 et parue initialement sur leur premier album influent de 1993, Electro-Soma. En tant que pilier de la scène électronique britannique en plein essor au début des années 1990, B12 — composé de Mike Golding et Steve Rutter — a contribué à définir un son qui s'éloignait des textures plus dures et répétitives du rave et du hardcore pour s'orienter vers quelque chose de plus mélodique, atmosphérique et techniquement complexe.\n\nLe morceau incarne en lui-même le « son B12 » caractéristique : un mélange de nappes de synthétiseurs chaleureuses et en cascade, une programmation de batterie précise et une esthétique de science-fiction détachée, presque mélancolique, devenue synonyme de l'ère « Artificial Intelligence » de Warp Records. Ses couches rythmiques complexes et ses progressions d'accords amples ont démontré que la musique électronique de danse pouvait fonctionner comme une expérience d'écoute cérébrale plutôt que comme un simple outil fonctionnel pour les clubs. En privilégiant la profondeur émotionnelle et une conception sonore complexe, « Telefone 529 » et l'album Electro-Soma ont contribué à consolider la réputation de Warp Records en tant que label avant-gardiste de la musique électronique expérimentale, influençant d'innombrables producteurs qui repousseraient plus tard les limites de la techno et de l'IDM vers des territoires inexplorés. Le morceau demeure une référence nostalgique du mouvement ambient-techno du début des années 90, capturant un moment précis où la musique électronique destinée à l'écoute domestique a véritablement trouvé sa voix.",
+      "source_sha256": "5915f41d675ef3eaec8350cf9e1a8e61fb7ea0bb5932842d1d4d3cdd6248466b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:50:19.118Z"
+    }
+  }
 }

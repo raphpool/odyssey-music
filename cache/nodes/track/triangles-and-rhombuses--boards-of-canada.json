@@ -70,5 +70,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un interlude envoûtant d'une minute, extrait du chef-d'œuvre inaugural de Boards of Canada, qui capture parfaitement leur mélange caractéristique de chaleur analogique et de mystère nostalgique.",
+      "article": "« Triangles & Rhombuses » est une courte pièce interstitielle évocatrice du duo électronique écossais Boards of Canada, publiée dans le cadre de leur premier album phare de 1998, Music Has The Right To Children (Warp Records). Servant de l'un des nombreux interludes brefs et texturés qui définissent l'atmosphère hantologique de l'album, le morceau résume l'approche caractéristique du groupe en matière de conception sonore : une synthèse délicate et floue de textures de synthétiseurs vintage, de boucles de bandes analogiques dégradées et d'un sentiment nostalgique, presque étrange, d'intimité domestique.\n\nD'une durée inférieure à deux minutes, « Triangles & Rhombuses » démontre la maîtrise du minimalisme par le duo. Plutôt que de s'appuyer sur des structures complexes, le morceau se concentre sur la superposition de mélodies déformées et nostalgiques qui évoquent des souvenirs de documentaires éducatifs du milieu du siècle ou de programmes pour enfants poussiéreux. Son inclusion dans la liste des titres de Music Has The Right To Children est essentielle au succès de l'album en tant que projet cohérent et immersif ; il offre une pause nécessaire entre les morceaux plus rythmés et influencés par le hip-hop, permettant à l'auditeur de s'immerger plus profondément dans le paysage électronique pastoral unique de l'album. Il demeure un exemple favori des fans de la manière dont le duo pouvait évoquer des mondes émotionnels entiers à partir de simples fragments sonores, consolidant leur statut d'architectes des sous-genres IDM et ambient. Boards of Canada est célèbre pour son association avec le label Warp Records et la scène électronique écossaise. Leur influence s'étend sur plusieurs décennies de production de musique électronique. La production de l'album a bénéficié du travail fondamental de Michael Sandison et Marcus Eoin, qui créent ensemble l'esthétique singulière reconnue mondialement sous le nom de Boards of Canada. Le morceau lui-même reflète l'esthétique brumeuse et saturée que l'on retrouve sur des labels comme Warp et Skam.",
+      "source_sha256": "38c2b7ecb02e70e439998c077a79fdaaf140bf888cbdd9d7cb0d7085833ead9e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:16.551Z"
+    }
+  }
 }

@@ -126,5 +126,14 @@
       "mbid": "0ba72ec8-64eb-47ff-97e0-ef5b402fd8d7"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un instantané définitif du mouvement hip house de Chicago de la fin des années 80, mené par le producteur Tyree Cooper et mettant en vedette le rappeur Kool Rock Steady.",
+      "article": "Publié en 1989 par CBS, Nation of Hip House met en lumière le rôle central du producteur de Chicago Tyree Cooper dans le développement du mouvement hip house. L'album présente les contributions du rappeur Kool Rock Steady, qui avait précédemment collaboré avec Tyree sur le single à succès de 1988 Turn Up The Bass. Ce projet rassemble divers morceaux qui ont fait le pont entre le son house émergent de Chicago et l'esthétique hip-hop contemporaine. Parmi le contenu de l'album figurent des titres comme Let the Music Take Control et Hip House Is a Style, qui reflètent l'engagement du label à faire progresser ce genre crossover. Tyree, qui a fait ses débuts dans l'industrie avec sa sortie de 1986 I Fear the Night, utilise ce disque pour consolider son influence sur la scène dance de la fin des années 1980.",
+      "source_sha256": "4c4d9adb65cb2fb6e4171a546a78b3b2a2fc4a6fe4bab81cf843ff0c01dfef83",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:29:16.948Z"
+    }
+  }
 }

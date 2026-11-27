@@ -47,5 +47,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Dripsody », composé en 1955 par le physicien, inventeur et compositeur canadien Hugh Le Caine, demeure une œuvre séminale dans l'histoire de la musique électroacoustique et de la musique concrète.",
+      "article": "« Dripsody », composé en 1955 par le physicien, inventeur et compositeur canadien Hugh Le Caine, demeure une œuvre séminale dans l'histoire de la musique électroacoustique et de la musique concrète. Créée dans son studio à Ottawa, la pièce est un cours magistral sur les possibilités créatives du magnétophone, un instrument que Hugh Le Caine a contribué à développer et à perfectionner. Au cœur de la composition se trouve une source unique et modeste : le son d'une goutte d'eau.\n\nGrâce à un travail manuel minutieux — le montage physique, la mise en boucle et le réenregistrement de bande magnétique — Hugh Le Caine a transformé cet événement singulier et éphémère en un paysage sonore rythmique et mélodique complexe. En faisant varier la vitesse de lecture de la bande, il a pu modifier la hauteur des gouttes, créant un éventail kaléidoscopique de « drips » qui oscillent et dansent à travers le champ stéréo. Le résultat est une œuvre qui semble remarquablement moderne, même des décennies plus tard, démontrant une maîtrise précoce du timbre et de la spatialisation qui influencera des générations de producteurs de musique électronique et de concepteurs sonores. Au-delà de son ingéniosité technique, « Dripsody » est célébré pour sa musicalité ludique et organique, prouvant que même la manipulation sonore la plus clinique, issue d'un laboratoire, pouvait produire un art profondément expressif et résonnant. Il sert de pont essentiel entre les expériences d'avant-garde du milieu du XXe siècle et les techniques de production numérique qui allaient finir par dominer le paysage sonore.",
+      "source_sha256": "55a8e017d1980d3a284ebdc96e95d3ff1c726930f9344fc8ebb513d03481e429",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:41:19.218Z"
+    }
+  }
 }

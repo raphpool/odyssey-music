@@ -56,5 +56,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une composition atmosphérique marquante d'Aphex Twin, célèbre pour sa structure évoquant une cathédrale et pour une réorchestration acclamée par la légende du minimalisme Philip Glass.",
+      "article": "« Icct Hedral » est une pièce séminale de composition électronique par l'énigmatique producteur britannique Aphex Twin, célèbre pour avoir été réorchestrée par le pionnier du minimalisme Philip Glass. Apparaissant à l'origine sur l'album de 1995 « I Care Because You Do », le morceau illustre la maîtrise de Richard D. James en matière d'atmosphères mélancoliques superposées et de motifs rythmiques complexes et fracturés. La collaboration avec Glass, intitulée « Icct Hedral (Phillip Glass Orchestration) », a transformé le morceau original en une œuvre symphonique obsédante, marquant une intersection de haut niveau entre les mondes de la musique électronique expérimentale et du minimalisme classique contemporain. Le morceau est réputé pour ses accords menaçants évoquant une cathédrale et un sens de la structure architecturale qui semble à la fois étranger et profondément émotif. La collaboration est née lorsque Glass, reconnaissant la sophistication du travail de James, a choisi d'arranger la pièce, validant ainsi le statut du producteur électronique en tant que compositeur sérieux au sein du canon avant-gardiste. La pièce demeure un point central dans les discussions entourant le mouvement « intelligent dance music » (IDM) des années 1990, démontrant comment les textures électroniques pouvaient posséder la même profondeur et la même résonance émotionnelle que les arrangements orchestraux traditionnels. Que ce soit dans sa forme studio originale ou dans sa réorchestration ample et émotive, « Icct Hedral » sert de document historique de l'expérimentalisme du milieu des années 90. La pièce continue d'influencer les producteurs qui comblent le fossé entre la conception sonore de haut niveau et l'arrangement classique, restant l'une des entrées les plus reconnaissables et les plus discutées par la critique dans la vaste discographie d'Aphex Twin.",
+      "source_sha256": "5e935731f26ce654ad0d05a6d35f9755e3f771aed776163ae13461d8598ebb84",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:44:13.479Z"
+    }
+  }
 }

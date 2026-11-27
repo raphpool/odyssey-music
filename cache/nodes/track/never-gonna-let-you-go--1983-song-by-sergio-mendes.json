@@ -63,5 +63,14 @@
   ],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le succès de 1983 de Sérgio Mendes constitue un sommet de la ballade soft-rock, célèbre pour sa complexité harmonique complexe et ses performances vocales expertes.",
+      "article": "« Never Gonna Let You Go » est une ballade pop emblématique des années 1980 qui a atteint un statut légendaire grâce à l'arrangement et à la production du chef d'orchestre brésilien Sérgio Mendes. Écrite à l'origine par le duo d'auteurs-compositeurs prolifiques Barry Mann et Cynthia Weil, la chanson a été enregistrée pour la première fois par Dionne Warwick et Stevie Woods en 1982. Cependant, c'est la version de 1983, publiée sur l'album Sérgio Mendes (1983 album), qui a capturé l'air du temps et est devenue un succès commercial massif, atteignant la quatrième place du Billboard Hot 100 et le sommet du classement Adult Contemporary. Mettant en vedette les performances vocales de Joe Pizzulo et Leeza Miller, le morceau a apporté la ballade « change of pace » que Mendes estimait nécessaire pour son album par ailleurs festif.\n\nSur le plan culturel et musical, le morceau est devenu un sujet de fascination pour les musiciens comme pour les théoriciens. Il a acquis une notoriété renouvelée dans les années 2020 lorsque le producteur Rick Beato l'a analysé, le qualifiant de « the most complex pop song of all time » en raison de sa structure harmonique dense. La chanson se caractérise par une série sophistiquée et rapide de changements de tonalité, des inversions d'accords complexes et des progressions avancées qui se cachent sous une performance vocale soft-rock soignée. Ce mariage entre une complexité musicale de haut niveau et une esthétique pop grand public radiophonique définit l'héritage durable de la chanson. Elle sert de pont rare entre l'écriture de chansons de haute facture des années 1970 et le son brillant et axé sur la production du début des années 1980. Son succès aux États-Unis et à l'étranger — notamment au Brésil, où elle figurait en bonne place dans le feuilleton Final Feliz — a cimenté sa place en tant que standard mondialement reconnu du genre adult contemporary.",
+      "source_sha256": "214ccb259d1af541712af2322ee9baa7802c2a72d90b8fb6431a3786ac974bae",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:46:21.849Z"
+    }
+  }
 }

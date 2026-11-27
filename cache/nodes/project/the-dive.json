@@ -45,5 +45,14 @@
       "name": "Raffael Seyfried"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "The Dive (Original Motion Picture Soundtrack) est une partition cinématographique saisissante composée par Volker Bertelmann et Raffael Seyfried pour le thriller de survie de 2023. Son paysage sonore équilibre avec maîtrise une atmosphère de haute tension et des motifs délicats et mélancoliques, reflétant la lutte désespérée des protagonistes du film piégés sous l'eau.",
+      "article": "The Dive (Original Motion Picture Soundtrack) est la partition collaborative évocatrice de 2023 composée par Volker Bertelmann — souvent connu sous son pseudonyme Hauschka — et Raffael Seyfried pour le thriller de survie allemand 'The Dive'. Publié par Needlewood Records, le projet capture l'urgence claustrophobe et mortelle d'une histoire centrée sur deux sœurs piégées sous l'eau lors d'une excursion de plongée. Tout au long des dix-sept pistes, Bertelmann et Seyfried utilisent une palette instrumentale clairsemée et expérimentale pour refléter l'isolement physique et la panique grandissante des protagonistes. La musique repose sur des dynamiques changeantes, passant des textures éthérées et fluides des premières pistes aux rythmes percutants et saccadés qui signifient les tentatives désespérées des sœurs pour communiquer et survivre. La partition se distingue par la manière dont elle évite les tropes cinématographiques traditionnels du suspense à haute intensité, optant plutôt pour une exploration psychologique plus profonde de la peur et de l'espoir grâce à une conception sonore subtile. Elle constitue une entrée significative dans le travail de bande originale moderne, démontrant la capacité des compositeurs à créer un monde immersif et plein de suspense qui fonctionne efficacement à la fois comme une aide narrative au film et comme une expérience ambiante indépendante et texturée. L'œuvre renforce davantage la réputation de Bertelmann pour ses partitions innovantes, suite à ses contributions acclamées à des films comme 'All Quiet on the Western Front', et souligne son partenariat réussi avec Seyfried dans la construction de mondes sonores complexes et émotionnellement résonnants. En déconstruisant l'environnement sonore de l'océan, le projet crée un sentiment d'effroi qui reste palpable même en dehors du contexte du film, mettant en valeur la précision technique de ses créateurs.",
+      "source_sha256": "77d64356ca184bacef62d34ed4714645a056c1ff96407c747489c3e4896df7f3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:34:24.815Z"
+    }
+  }
 }

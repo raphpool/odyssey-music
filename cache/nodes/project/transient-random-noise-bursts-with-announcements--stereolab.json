@@ -97,5 +97,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Transient Random-Noise Bursts with Announcements est le deuxième album studio du groupe anglo-français influent Stereolab, sorti en 1993.",
+      "article": "Transient Random-Noise Bursts with Announcements est le deuxième album studio du groupe anglo-français influent Stereolab, sorti en 1993. Émergeant de la scène rock expérimentale londonienne, l'album constitue un point de bascule déterminant dans la trajectoire initiale du groupe. Il est peut-être mieux connu pour ses textures sonores agressives, caractérisées par une utilisation intensive de guitares saturées, de larsen omniprésent et d'un jeu de clavier dissonant et entraînant qui puise largement dans les rythmes motorik du Krautrock allemand. Ce disque a marqué les débuts des membres de longue date Mary Hansen et du batteur Andy Ramsay, dont les contributions ont été essentielles pour façonner l'esthétique imbriquée et axée sur le rythme, devenue la signature du groupe.\n\nConceptuellement et musicalement, l'album est un chef-d'œuvre de pop intellectualisée, mêlant esthétique bruitiste d'avant-garde et mélodies à la fois accrocheuses et austères. La pochette distinctive de l'album était un hommage direct à un disque de test hi-fi de 1969, un choix qui souligne la fascination du groupe pour la technologie audio vintage et les éphémères de la culture pop, des thèmes qui allaient continuer à traverser leur catalogue. Transient Random-Noise Bursts occupe un espace entre l'expérimentation brute de leurs débuts et les orchestrations plus raffinées et luxuriantes de leurs travaux du milieu des années 90, s'imposant comme une entrée pivot, plus sombre et plus persistante dans leur discographie. Son héritage est assuré par son approche intransigeante de la composition et sa synthèse de sensibilités pop avec une palette sonore expérimentale, souvent abrasive. Le disque se compose de dix titres, dont Jenny Ondioline, qui demeure l'une de leurs compositions les plus célèbres pour sa pulsation motorik et son arrangement baigné de larsen. L'album témoigne de l'ambition créative précoce du groupe et de son rôle fondateur dans les mouvements post-rock et indie expérimentaux des années 1990.",
+      "source_sha256": "aac80b2ee76ffb8606953e843f5d518062af59d82f7c29228eae71823e3bbe88",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:36:13.680Z"
+    }
+  }
 }

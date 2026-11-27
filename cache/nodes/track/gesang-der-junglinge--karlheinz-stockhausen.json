@@ -53,5 +53,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Gesang der Jünglinge (1955–56), intitulé « Song of the Youths », est sans doute la réalisation la plus significative de l'histoire de la musique électronique du XXe siècle.",
+      "article": "Gesang der Jünglinge (1955–56), intitulé « Song of the Youths », est sans doute la réalisation la plus significative de l'histoire de la musique électronique du XXe siècle. Réalisée par le compositeur allemand Karlheinz Stockhausen au studio électronique de la Westdeutscher Rundfunk (WDR) à Cologne, la composition représente une synthèse monumentale de deux écoles sonores jusqu'alors incompatibles : l'elektronische Musik allemande, qui reposait sur des signaux électroniques purs tels que des ondes sinusoïdales, et la musique concrète française, qui utilisait des sons acoustiques enregistrés. Karlheinz Stockhausen y est parvenu en intégrant la voix d'un jeune soprano — enregistrée et fortement traitée — à des éléments purement synthétiques comme des ondes sinusoïdales, des impulsions et du bruit blanc. En faisant correspondre les résonances des formants de la voix avec des sons électroniques et en construisant des phonèmes de manière synthétique, Karlheinz Stockhausen a créé un paysage sonore homogène où l'élément humain et le processus mécanique ne sont plus distinguables.\n\nLe texte, tiré du Livre de Daniel (l'histoire de Shadrach, Meshach et Abednego dans la fournaise ardente), est présenté selon une échelle changeante de compréhensibilité linguistique, allant de mots intelligibles à des textures abstraites basées sur le texte. Cette approche structurelle, influencée par les recherches en phonétique de Werner Meyer-Eppler, a repoussé les limites de ce qui pouvait être considéré comme de la « musique vocale ». L'impact culturel de l'œuvre s'est étendu bien au-delà du monde classique d'avant-garde ; dans les années 1960, son utilisation pionnière de la manipulation sur bande et du son spatial a servi d'inspiration directe à des musiciens populaires tels que The Beatles, influençant la production de titres comme « Tomorrow Never Knows » et « Revolution 9 ». En tant que chef-d'œuvre précoce de l'audio spatialisé — conçu à l'origine pour une performance sur cinq canaux —, Gesang der Jünglinge demeure une référence pour la composition expérimentale et le design sonore, incarnant un moment charnière où le laboratoire du studio électronique est devenu un espace d'expression spirituelle et artistique authentique.",
+      "source_sha256": "295140dd0243c83f0fd5b11afdf126cb53b46e0c4c0b287c1b870034cebb0dfa",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:43:13.904Z"
+    }
+  }
 }

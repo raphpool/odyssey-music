@@ -86,5 +86,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre tectonique axé sur la voix, signé par le pionnier du dark ambient Lustmord, mêlant drones électroniques poignants et performances évocatrices d'invités tels que Maynard James Keenan et Jarboe.",
+      "article": "The Word As Power, paru en 2013 sur le label Blackest Ever Black, représente une évolution significative dans la longue carrière du pionnier du dark ambient Lustmord (Brian Williams). Marquant son tout premier projet axé sur la voix, l'album associe les paysages sonores électroniques caverneux caractéristiques de Williams — caractérisés par des basses abyssales, des textures de drones et des vides sonores méticuleusement conçus — aux performances envoûtantes de cinq vocalistes différents. Parmi les contributeurs figurent des personnalités notables telles que Maynard James Keenan de Tool et Puscifer, et l'énigmatique Jarboe, aux côtés d'Aina Skinnes Olsen, dont la voix éthérée agit comme un point focal principal tout au long du disque.\n\nD'une durée d'environ 75 minutes, l'album est un exercice de patience et de profondeur atmosphérique. La production est architecturale et dynamique, Williams manipulant les prises de voix pour interagir avec ses machines d'une manière qui suggère une composition fluide, presque vivante. Des titres comme « Abaddon » et « Chorazin » démontrent la tension centrale du disque : une lutte entre les basses fréquences étouffantes et lourdes de l'électronique de Williams et l'élément humain, qui est tour à tour célébré, distordu et intégré au paysage sonore comme un chœur fantomatique. L'album est accompagné d'une illustration de couverture dense et complexe signée Simon Fowler, qui reflète la nature complexe et stratifiée de la musique elle-même. C'est une œuvre conçue pour une écoute profonde et répétée, révélant de nouvelles subtilités selon les environnements d'écoute, et qui témoigne de la capacité de Lustmord à innover au sein de la tradition dark ambient après plus de trois décennies de métier.",
+      "source_sha256": "4d7357c03b453f8661db930fe16826e49c21cdd10e64e100bc2a747d0b77b794",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:35:20.642Z"
+    }
+  }
 }

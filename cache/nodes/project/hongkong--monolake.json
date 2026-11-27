@@ -68,5 +68,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre fondateur de la techno berlinoise des années 90, « Hongkong » de Monolake est un album immersif et riche en textures qui demeure un exemple définitif de dub techno expérimentale profonde.",
+      "article": "Hongkong est un album de musique électronique séminal du projet Monolake, sorti en 1997. Souvent cité comme une œuvre définissant le « Basic Channel sound » ou la minimal techno berlinoise, le disque est célébré pour sa conception sonore complexe, son profond sens de l'atmosphère et son utilisation magistrale d'enregistrements de terrain. Plutôt que de s'appuyer sur les formules techno standard basées sur des boucles, Robert Henke et Gerhard Behles — le duo derrière Monolake à l'époque — ont façonné un paysage sonore immersif qui reflétait la texture des environnements urbains, évoquant spécifiquement le pouls frénétique mais rythmé de la ville qui a donné son nom à l'album.\n\nTechniquement révolutionnaire, Hongkong a comblé le fossé entre l'expérimentalisme avant-gardiste et la musique de club orientée vers le dancefloor. La production utilise des techniques logicielles et matérielles personnalisées que Henke développera plus tard grâce à la création d'Ableton Live, dont il est le cofondateur. Des morceaux comme « Mass Transit Railway » sont fréquemment mis en avant pour leur capacité à transformer des enregistrements de terrain banals en textures profondes et résonnantes, créant une architecture rythmique qui semble à la fois organique et artificielle. Pour beaucoup, Hongkong demeure une référence en matière de dub techno, influente pour sa patience, sa conscience spatiale et son héritage en tant que cours magistral précoce à l'intersection de la synthèse sonore numérique et du groove centré sur le club. Il continue d'être revisité par les auditeurs des décennies plus tard, loué pour sa profondeur durable et sa capacité à conserver une fraîcheur qui s'estompe rarement. Il demeure une pièce essentielle du canon électronique.",
+      "source_sha256": "9c2f246b120d807134f148a50f58fd4141bb92d57179a06f048df7328d5138a1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:22.096Z"
+    }
+  }
 }

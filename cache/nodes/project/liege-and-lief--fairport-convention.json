@@ -101,5 +101,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le chef-d'œuvre séminal de 1969 qui a défini le folk rock britannique, mêlant ballades traditionnelles anciennes, instrumentation électrique moderne et arrangements de violon virtuoses.",
+      "article": "Liege & Lief, sorti en décembre 1969, est le quatrième album studio séminal des pionniers du folk rock britannique Fairport Convention. Souvent considéré comme le moment fondateur du genre folk rock britannique, le disque a réussi à combler le fossé entre les structures des chansons folk traditionnelles britanniques/celtiques et l'instrumentation électrique contemporaine. Contrairement à leurs efforts antérieurs, plus éclectiques et fortement inspirés par le matériel des auteurs-compositeurs-interprètes américains, Liege & Lief a vu le groupe pivoter radicalement vers la préservation et la réinterprétation de matériel britannique indigène. Ils ont largement puisé dans les collections d'archivistes folk comme Cecil Sharp, insufflant une nouvelle vie à des ballades anciennes telles que « Matty Groves » et « Tam Lin » grâce à des arrangements complexes influencés par le rock.\n\nLa création de l'album a été marquée par une période de répétitions intenses dans le village rural de Farley Chamberlayne, une période transformatrice pour le groupe qui a vu l'arrivée du violoniste virtuose Dave Swarbrick et du batteur Dave Mattacks. Ces ajouts, aux côtés de la légendaire Sandy Denny au chant et de Richard Thompson à la guitare, ont créé une signature sonore unique qui équilibrait la dynamique rythmique du rock avec les mélodies modales complexes des airs de violon anglais traditionnels. Malgré le départ de membres clés, Denny et le fondateur Ashley Hutchings, peu avant sa sortie, l'impact de l'album fut immédiat et durable, établissant le modèle pour tout le mouvement folk-rock britannique. En 2006, il a été élu « Most Influential Folk Album of All Time » par les auditeurs lors des BBC Radio 2 Folk Awards, cimentant son statut de pierre angulaire de l'histoire musicale britannique. Sa fusion de l'étrangeté du passé avec l'urgence du rock de la fin des années 60 continue d'influencer des générations de musiciens qui cherchent à s'approprier les répertoires traditionnels.",
+      "source_sha256": "0cf42b883e7ed31120206046ef68c3a68960dc719ab23fbb31760eeec0fea4cb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:17.203Z"
+    }
+  }
 }

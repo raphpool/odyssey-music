@@ -135,5 +135,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un album de hardcore punk charnière de 1995 qui a mêlé agressivité mélodique et philosophie spirituelle du mouvement Hare Krishna, établissant un son définitif pour le sous-genre Krishnacore.",
+      "article": "Mantra est l'album studio séminal de 1995 du groupe de hardcore punk new-yorkais Shelter, marquant leur transition vers le label Roadrunner Records. Œuvre définitive du sous-genre « Krishnacore », l'album sert de vecteur à l'engagement profond du chanteur Ray Cappo envers la philosophie religieuse Hare Krishna et à ses commentaires sociaux critiques. Musicalement, le disque conserve la base agressive et pleine d'énergie du hardcore punk tout en affinant les sensibilités mélodiques que le groupe développait alors.\n\nSur le plan des paroles, l'album est réputé pour son intellectualisme au sein de la scène hardcore, incluant même un manifeste imprimé intitulé « Supersoul » dans l'édition physique originale, écrit par Cappo. Des titres comme « Message of the Bhagavat » ouvrent l'album avec une lecture de la Bhagavad Gita, signalant l'intention du groupe d'utiliser sa plateforme pour propager des messages spirituels plutôt que de simplement s'engager dans la dissidence punk traditionnelle. Bien que certains critiques rétrospectifs l'aient qualifié de disque de rock « sage » comparé aux recoins les plus bruts du hardcore, à sa sortie, Mantra a été largement reconnu pour sa livraison polie et articulée de pensée transcendantale sur un solide rythme 4/4, cimentant le rôle de Shelter en tant que porte-parole polarisants mais intègres de leur pan spécifique de la scène new-yorkaise. L'album demeure une pierre angulaire pour les amateurs de hardcore mélodique qui apprécient des paroles remettant en question les valeurs laïques occidentales conventionnelles.",
+      "source_sha256": "ea43ba88c7458d17c5f12cef0bbeacbfdce0c85ec9b377e64c8c6fbb3fac6274",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:28:13.411Z"
+    }
+  }
 }

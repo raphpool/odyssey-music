@@ -57,5 +57,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une rétrospective numérique massive de 303 titres documentant l'intégralité de la production solo du pionnier de la musique électronique Wolfgang Voigt durant les années 1990, capturant l'évolution chaotique et transformatrice de la techno allemande à travers ses divers alias influents.",
+      "article": "« EARQUAKE – Wolfgang Voigt 1991 – 1999 » est un coffret rétrospectif complet et monumental publié par le label de Cologne Kompakt en 2019. Il sert de chronique exhaustive de la production musicale solo de Wolfgang Voigt, figure séminale de la musique électronique allemande, durant les années 1990. Le projet, disponible exclusivement via la plateforme en ligne du label, a rassemblé presque tous les morceaux solo que Voigt a produits sous son vaste réseau d'alias au cours de cette décennie, totalisant 303 titres individuels, dont 75 étaient inédits. Il incluait également l'album de 1995, Mit Maschinen Sprechen, jusqu'alors inédit.\n\nLa collection témoigne de l'énergie créative incessante de Voigt et de son rôle dans la définition du son de la techno des années 90. Traversant des phases de hardcore acid, de gabber et d'expérimentations dadaïstes, les titres de « EARQUAKE » démontrent sa maîtrise de l'échantillonneur, qu'il utilisait comme un outil pour un « expressionnisme pop-art par la citation ». En échantillonnant tout, du Schlager et de la Polka à la musique classique et au jazz, Voigt a déconstruit et reconstitué les sons de la culture populaire en un paysage numérique continu imprégné de techno. Cette rétrospective monumentale couvre son travail sous divers projets comme Mike Ink, Love Inc., M:I:5, Wassermann, Studio 1 et Freiland, cartographiant une décennie caractérisée à la fois par un discours minimaliste et une expérimentation maximaliste. Le projet exclut notamment son travail ambient sous le nom de GAS ainsi que d'autres collaborations, se concentrant plutôt sur ses explorations solo centrées sur la techno qui ont défini l'éthos du début de l'ère Kompakt et de son précurseur, Profan. En tant qu'étude couvrant toute une carrière, il offre une vue d'ensemble d'un producteur visionnaire qui a contribué à orienter le développement de la techno minimaliste et abstraite en Allemagne.",
+      "source_sha256": "1ac8fcd0fa3a0c4605daed3f49f2d1262daad26d282773c0c19ad42650e0cb4c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:22.327Z"
+    }
+  }
 }

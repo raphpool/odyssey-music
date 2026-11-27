@@ -52,5 +52,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Bug in the Bassbin », sorti à l'origine en 1992, est largement considéré comme un chef-d'œuvre fondateur de la scène techno de Détroit et un précurseur essentiel au développement du drum and bass.",
+      "article": "« Bug in the Bassbin », sorti à l'origine en 1992, est largement considéré comme un chef-d'œuvre fondateur de la scène techno de Détroit et un précurseur essentiel au développement du drum and bass. Produit par la sommité de la musique électronique Carl Craig sous son pseudonyme Innerzone Orchestra, le morceau se définit par ses breakbeats frénétiques et syncopés ainsi que par ses lignes de basse profondes et subaquatiques. Sa superposition complexe de percussions et sa fusion d'une atmosphère influencée par le jazz avec des textures industrielles ont repoussé les limites de ce que la techno pouvait être au début des années 90.\n\nSur le plan culturel, le morceau est souvent cité comme le « chaînon manquant » entre les racines futuristes et pleines d'âme de la techno de Détroit et les sons émergents du jungle et du drum and bass qui prenaient forme au Royaume-Uni à la même époque. Son utilisation innovante d'une programmation de batterie rapide et d'une conception sonore complexe a influencé d'innombrables producteurs de la scène rave britannique. Bien que Carl Craig soit connu pour sa production polyvalente à travers divers styles de musique électronique, « Bug in the Bassbin » demeure l'une de ses contributions les plus emblématiques et respectées, capturant l'esprit expérimental et l'ambition technique qui caractérisaient la deuxième vague de producteurs techno de Détroit. À travers ses diverses rééditions et compilations rétrospectives — comme son inclusion dans la collection « Sessions » —, le morceau continue d'être étudié et célébré pour son rôle fondamental dans l'évolution de la musique de danse axée sur le breakbeat.",
+      "source_sha256": "af884ea0dca1b9a46b35fb4815d92928b4d96db9031ab952a9d344d559831b29",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:13.264Z"
+    }
+  }
 }

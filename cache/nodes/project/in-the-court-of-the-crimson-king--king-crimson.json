@@ -77,5 +77,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon du rock progressif, le premier album de King Crimson a mêlé jazz, musique classique et hard rock en un chef-d'œuvre symphonique obsédant qui demeure l'un des disques les plus influents de la fin des années 1960.",
+      "article": "Sorti en octobre 1969, In the Court of the Crimson King est largement considéré comme la pierre angulaire du genre rock progressif. King Crimson, mené par le guitariste Robert Fripp, a façonné un son qui défiait les frontières des tendances psychédéliques et blues-rock de l'époque. L'album se caractérise par ses changements dynamiques, allant de l'intensité frénétique et dissonante de 21st Century Schizoid Man à la beauté mélancolique et symphonique de la chanson-titre.\n\nLe succès du disque repose en grande partie sur les contributions virtuoses de ses membres, notamment la voix puissante et la basse de Greg Lake, ainsi que le jeu de batterie fluide et complexe de Michael Giles. Au-delà de la maîtrise technique, l'album est célèbre pour sa pochette obsédante et emblématique peinte par Barry Godber, qui correspond à l'atmosphère souvent sombre et introspective de l'album. En intégrant des mellotrons, des improvisations inspirées du jazz et des structures complexes, le groupe a établi un modèle pour le rock symphonique qui allait influencer d'innombrables artistes au cours des décennies suivantes. Il demeure un document essentiel de l'ère de la contre-culture, représentant un bond audacieux vers la musique expérimentale qui résonne encore aujourd'hui auprès des auditeurs.",
+      "source_sha256": "a1f44b69645f4dd458a2113adc6b14a9630095cf94c0af0c44d9a9db5fe836e3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:21.334Z"
+    }
+  }
 }

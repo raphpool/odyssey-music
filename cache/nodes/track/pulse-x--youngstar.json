@@ -52,5 +52,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Pulse X » du producteur Youngstar (du crew Musical Mob) est largement considéré comme le document fondateur, l'« an zéro » du genre grime.",
+      "article": "« Pulse X » du producteur Youngstar (du crew Musical Mob) est largement considéré comme le document fondateur, l'« an zéro » du genre grime. Sorti pour la première fois en vinyle 12 pouces au début de l'année 2002, le morceau marquait une rupture radicale avec les sonorités UK garage et 2-step qui dominaient alors l'underground londonien. Avec son minimalisme agressif et dépouillé — construit sur une boucle récurrente de 16 mesures alternant entre des motifs 2-step et un rythme sec et brutaliste de grosse caisse et caisse claire — le morceau créait un espace vide essentiel qui permettait aux MC de s'imposer sur le devant de la scène. Contrairement aux productions garage denses et riches en voix qui l'avaient précédé, « Pulse X » offrait une toile vierge et squelettique qui allait bientôt définir la culture des raves grime et des radios pirates centrée sur les MC. Son impact sur l'évolution de la musique électronique londonienne ne peut être surestimé ; il a influencé une décennie de producteurs et demeure un hymne séminal de la scène. Souvent cité par des pairs comme Bok Bok comme un chef-d'œuvre de « génie simpliste et brutaliste », le morceau a réussi à déplacer le centre de gravité sonore de la musique de danse underground britannique, laissant un héritage durable qui continue de résonner à travers la bass music et les nouvelles vagues du grime.",
+      "source_sha256": "fa4696971541d3c893e687c53d3aa8fb31551bc9f45e51239710e99342e3b087",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:15.776Z"
+    }
+  }
 }

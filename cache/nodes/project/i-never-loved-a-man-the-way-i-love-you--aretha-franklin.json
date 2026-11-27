@@ -84,5 +84,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon transformateur de la musique soul, I Never Loved a Man the Way I Love You a marqué la percée commerciale d'Aretha Franklin, associant sa maîtrise vocale inégalée au son brut et authentique de la section rythmique de Muscle Shoals.",
+      "article": "Publié le 10 mars 1967 par Atlantic Records, I Never Loved a Man the Way I Love You constitue la percée définitive pour Aretha Franklin et une pierre angulaire de la musique soul américaine. Après une période chez Columbia Records qui a peiné à trouver une identité cohérente pour son immense talent, le passage de Franklin chez Atlantic sous la direction du producteur Jerry Wexler a marqué un tournant décisif vers la puissance brute et émotive de la soul du Sud. L'album a été enregistré au cours d'une période de friction créative et de découverte intenses, avec des sessions partagées entre les célèbres FAME Studios de Muscle Shoals, en Alabama, et les Atlantic Recording Studios de New York. Cet environnement unique a produit un son défini par la synergie entre le piano virtuose de Franklin, son style vocal profondément ancré dans le gospel et l'instrumentation serrée et granuleuse de la section rythmique de Muscle Shoals.\n\nL'album est ancré par deux titres transformateurs : la chanson-titre brûlante et la version définitive de « Respect » d'Otis Redding, qui allait devenir l'une des chansons les plus emblématiques de l'histoire de la musique populaire. I Never Loved a Man the Way I Love You a non seulement propulsé Franklin vers une célébrité internationale, atteignant la deuxième place du Billboard 200, mais il a aussi fondamentalement redéfini l'intersection du R&B, de la soul et de la pop. Son impact culturel n'a fait que s'approfondir avec le temps, étant fréquemment cité comme l'un des plus grands albums de tous les temps dans diverses réévaluations critiques, notamment son classement important dans les listes des « 500 Greatest Albums » de Rolling Stone. Il demeure un témoignage de la capacité de Franklin à synthétiser les complexités de l'expérience humaine à travers une interprétation vocale inégalée qui continue de résonner des décennies plus tard.",
+      "source_sha256": "701b5aa323fee7d7d14f97fde7a407e0ddb14b64a4fea98d50c3773f75d8d5a8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:15.458Z"
+    }
+  }
 }

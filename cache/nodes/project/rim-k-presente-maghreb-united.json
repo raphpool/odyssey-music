@@ -156,5 +156,14 @@
       "name": "Skread"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une compilation marquante de 2009, dirigée par Rim'K, qui jette un pont entre le hip-hop français et les traditions musicales nord-africaines à travers un éventail varié de collaborations.",
+      "article": "Rim'k Presente Maghreb United est une compilation marquante de 2009 dirigée par le rappeur français Rim'K, membre éminent du collectif hip-hop Mafia K'1 Fry et du groupe 113. Sorti en France, le projet sert de pont collaboratif entre le hip-hop français et les traditions musicales nord-africaines. L'album présente une liste étendue d'artistes, mêlant couplets rap et influences raï et maghrébines traditionnelles pour explorer les thèmes de l'identité, de l'héritage et des expériences partagées de la diaspora. En réunissant des voix diverses de la scène urbaine française, Rim'K a créé une déclaration culturelle cohérente qui souligne l'interconnexion de ces mondes musicaux. La production, assurée par Rim'K lui-même aux côtés de collaborateurs comme Stéphane Holtz et Trackavelic, offre une toile de fond sonore cohérente qui équilibre les rythmes modernes avec des mélodies régionales, faisant de ce projet une entrée significative dans la discographie de Rim'K.",
+      "source_sha256": "d4fb6a83b1e76c0e4e09e58edd37b755c742c00045501de4748df34b97fd45b2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:32:12.789Z"
+    }
+  }
 }

@@ -40,5 +40,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un effet sonore expérimental des années 1960, rendu célèbre par la lecture à l'envers d'enregistrements de guitare solo au sein des productions des The Beatles.",
+      "article": "Morphing Leadgitarre Rückwärts est une expérience technique et musicale qui s'inscrit dans le contexte des productions des The Beatles durant les années 1960. Au cours de cette ère, les The Beatles ont utilisé des techniques d'enregistrement innovantes pour élargir leur palette sonore, la lecture à l'envers des bandes magnétiques jouant un rôle central. Cette technique, consistant à enregistrer une guitare solo puis à la diffuser en sens inverse, a créé un effet caractéristique de type morphing qui a marqué de manière significative le son du groupe. La nature expérimentale de ces enregistrements reflète le processus créatif qui s'est déroulé entre 1963 et 1968, période durant laquelle le groupe a publié ses albums aussi bien en mono qu'en stéréo, explorant constamment de nouvelles possibilités sonores au sein de la production musicale, notamment sur l'album Revolver.",
+      "source_sha256": "d70f75f862d6df5bccb2113ed1b834a14c7c947dde485eac6d1def4c548e9d95",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:46:12.884Z"
+    }
+  }
 }

@@ -41,5 +41,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« FULL ON MORNING » est un morceau de musique électronique produit par le producteur brésilien Duoon (Antonio Carlos Neto).",
+      "article": "« FULL ON MORNING » est un morceau de musique électronique produit par le producteur brésilien Duoon (Antonio Carlos Neto). Actif à la fin des années 2000 et au début des années 2010 au sein de la scène underground brésilienne, Duoon s'est fait connaître pour ses productions électroniques énergiques, penchant souvent vers des influences psytrance et progressive dance music. Le morceau « FULL ON MORNING » reflète le style à tempo élevé et à haute énergie qui a défini une grande partie du paysage électronique indépendant des débuts dans des villes comme Rio de Janeiro, où les plateformes de distribution de musique numérique comme SoundCloud ont commencé à remodeler fondamentalement la manière dont les producteurs indépendants atteignaient des publics locaux et internationaux. En tant que l'une des œuvres les plus écoutées de Duoon dans ses archives numériques, le morceau sert de capsule temporelle pour cette époque spécifique de la culture club brésilienne, caractérisée par une fusion de motifs rythmiques intenses et de mélodies synthétiques qui ont peuplé l'aube de la génération DJ-producteur centrée sur Internet. Bien que la discographie de Duoon reste largement hébergée au sein de ces espaces numériques éphémères, la présence de tels morceaux souligne la prolifération des talents de production amateurs et semi-professionnels qui ont émergé de la démocratisation des logiciels de musique au milieu des années 2000. La longévité du morceau sur les plateformes de streaming, par rapport à ses pairs, souligne son rôle dans les étapes formatrices de la scène électronique locale qui allait plus tard favoriser des figures de renommée mondiale comme Vintage Culture. À travers des travaux de remix et des compositions indépendantes, Duoon a contribué à un réseau plus large et interconnecté de producteurs de dance music, naviguant dans la transition de la distribution physique vers l'ère dominante du streaming.",
+      "source_sha256": "b0617d9f6c8b907e38bd2de80aeca31469474f989b3a08d5521d871e33e46b77",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:42:23.128Z"
+    }
+  }
 }

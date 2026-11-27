@@ -28,5 +28,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier album d'Interpol sorti en 2002 est un chef-d'œuvre de post-punk revival atmosphérique, combinant des mélodies entraînantes et imbriquées avec une intensité urbaine et mélancolique qui a défini le son rock indépendant new-yorkais des années 2000.",
+      "article": "Turn on the Bright Lights est le premier album studio du groupe de rock new-yorkais Interpol, publié le 19 août 2002 chez Matador Records. Enregistré aux Tarquin Studios à Bridgeport, dans le Connecticut, sous la direction du producteur Peter Katis, l'album est devenu un pilier fondamental du renouveau post-punk du début des années 2000. Son son se caractérise par une esthétique élégante et mélancolique, définie par des lignes de guitare imbriquées, une basse entraînante et le chant baryton détaché de Paul Banks. Bien que les chansons aient été écrites avant les attentats du 11 septembre, la tension sombre et atmosphérique ainsi que l'anxiété urbaine du disque ont trouvé un écho profond dans le paysage post-11 septembre, contribuant à consolider son statut d'œuvre séminale de cette époque.\n\nLe processus de création a été marqué par une concentration intense et des frictions personnelles entre les membres du groupe — Paul Banks, Daniel Kessler, Carlos Dengler et Sam Fogarino — alors qu'ils cherchaient à capturer leur énergie électrique de concert sur bande. L'album comprend des titres emblématiques comme « Obstacle 1 », « PDA » et le mélancolique « NYC », qui a donné son titre à l'album. En mélangeant avec succès l'influence des piliers du post-punk des années 1980 comme Joy Division et The Chameleons avec une sensibilité new-yorkaise distincte, Interpol a forgé un son à la fois révérencieux et original. L'influence durable de l'album sur le rock indépendant persiste des décennies plus tard, sa réédition pour le dixième anniversaire en 2012 ayant mis en lumière la profondeur des sessions initiales du groupe et leur immense impact sur la culture musicale alternative. Il reste largement célébré par les critiques et les fans comme l'un des premiers albums les plus cohérents et atmosphériques du XXIe siècle.",
+      "source_sha256": "f885a1d18c325bb522a6d188c1d869c1a6356b02cdaae56efc051cb85d0c963e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:36:17.227Z"
+    }
+  }
 }

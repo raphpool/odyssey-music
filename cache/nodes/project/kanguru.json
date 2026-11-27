@@ -19,5 +19,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Troisième album studio des pionniers du Krautrock Guru Guru, Känguru capture le trio à la croisée des chemins, équilibrant leur chaos expérimental et psychédélique caractéristique avec un sens de l'humour nouveau et une musicalité structurée, le tout produit par Conny Plank.",
+      "article": "Känguru, sorti en 1972 sur le label Brain, constitue le troisième album studio du trio Krautrock allemand séminal Guru Guru. Faisant suite à leurs efforts précédents, plus chaotiques, UFO et Hinten, Känguru représente un moment charnière dans l'histoire du groupe, illustrant une transition vers une identité musicale plus structurée tout en conservant l'esprit expérimental qui définissait la scène Krautrock naissante. Produit par le légendaire Conny Plank, l'album réunit la formation classique composée de Mani Neumeier à la batterie et au chant, Ax Genrich à la guitare et au chant, et Uli Trepte à la basse et au chant.\n\nLe disque se compose de quatre compositions étendues, dépassant chacune dix minutes : « Oxymoron », « Immer Lustig », « Baby Cake Walk » et « Ooga Booga ». Musicalement, l'album voit le groupe intégrer un sens de l'humour et une légèreté inédits — évidents dans les performances vocales excentriques de Neumeier et les segments parlés — contrebalancés par des sections de grooves psychédéliques profonds. Bien que les critiques notent parfois que le passage vers des structures plus serrées et un style de production plus léché, guidé par Plank, dilue occasionnellement l'agression brute et débridée de leurs débuts, l'album demeure un exemple par excellence du rock progressif et expérimental allemand du début des années 1970. Il capture un groupe en transition, tempérant son anarchie musicale par une approche technique raffinée qui influencera des générations de musiciens de space rock et d'avant-garde. Après cette sortie, le groupe a connu des changements de formation, marquant la fin d'une ère spécifique pour le groupe. Aujourd'hui, il est considéré comme une entrée essentielle dans le canon du Krautrock, comblant le fossé entre l'expérimentation underground et les mouvements de rock progressif plus structurés de l'époque.",
+      "source_sha256": "36e0cd940b058b1c39a323c9353d1cd5af78254ed5e32ba99e6b5f05d91d4624",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:17.195Z"
+    }
+  }
 }

@@ -154,5 +154,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Véritable masterclass du post-punk, le premier album de Gang of Four paru en 1979, Entertainment!, a démantelé les conventions de la musique rock avec ses guitares angulaires aux influences funk, sa production dépouillée et ses paroles profondément incisives inspirées par le marxisme. Il demeure un texte fondateur de l'époque, influençant profondément des générations d'artistes art-punk et dance-punk en prouvant que la piste de danse pouvait être un lieu d'agitation politique.",
+      "article": "Sorti en septembre 1979, le premier album de Gang of Four, Entertainment!, est une œuvre marquante du mouvement post-punk, servant de déconstruction viscérale tant de la forme musicale que de la complaisance sociale. Originaire de Leeds, en Angleterre, le groupe — composé de Andy Gill, Jon King, Dave Allen et Hugo Burnham — a utilisé l'album pour interroger la nature omniprésente de l'idéologie, de l'aliénation et du capitalisme. Musicalement, l'album a rejeté les clichés blues-rock standards de l'époque en faveur d'une intensité rythmique disjointe. Le jeu de guitare saccadé et percutant de Andy Gill ainsi que la section rythmique étroitement liée, inspirée par le funk, de Dave Allen et Hugo Burnham, ont créé un environnement sonore qui semblait constamment instable, tout en étant immaculé dans sa maîtrise. Cette synthèse, souvent décrite comme du dance-punk ou du funk-punk, a transformé l'énergie du punk en une expérience plus analytique et cérébrale.\n\nSur le plan lyrique, l'album est célèbre pour être saturé des préoccupations politiques du groupe, inspirées par la gauche et le situationnisme. Le chant de Jon King — délivré avec un mélange de détachement et d'urgence — abordait des thèmes allant de la manipulation médiatique et la marchandisation de la vie quotidienne à la subversion des tropes de la chanson d'amour. Des titres comme Natural's Not in It et Damaged Goods demeurent des exemples parfaits de leur capacité à rendre le personnel intensément politique. La pochette saisissante de l'album, qui présente une image traitée d'un cow-boy et d'une personne autochtone accompagnée d'un texte cynique sur l'exploitation, résume parfaitement l'intention du groupe de provoquer et d'éduquer plutôt que de simplement divertir. En dépouillant la musique rock de son ego et en la réassemblant avec une critique marxiste, Entertainment! a profondément modifié la trajectoire du rock alternatif, influençant d'innombrables groupes du début des années 80 jusqu'à nos jours. Sa puissance durable réside dans son refus d'offrir à l'auditeur un confort facile, exigeant au contraire un engagement actif et critique envers le monde.",
+      "source_sha256": "b5071ab5ef62255347eb33edd81d481184097ef2e0d9b1b6e450878b8581ebfd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:22:19.819Z"
+    }
+  }
 }

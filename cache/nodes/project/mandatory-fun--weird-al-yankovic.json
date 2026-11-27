@@ -70,5 +70,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon de la musique humoristique, Mandatory Fun est devenu le premier album comique à atteindre la première place du Billboard 200, marquant le dernier album studio définitif de la légende de la parodie \"Weird Al\" Yankovic.",
+      "article": "Sorti le 15 juillet 2014, Mandatory Fun s'impose comme le quatorzième et dernier album studio traditionnel de la légende américaine de la parodie \"Weird Al\" Yankovic. Arrivé trois ans après son précédent disque, Alpocalypse, l'album a marqué un moment culturel significatif en devenant le premier album comique à débuter à la première place du classement Billboard 200, un exploit qui a souligné la pertinence durable de Yankovic après trois décennies dans l'industrie. Le projet a été autoproduit et publié via RCA Records, remplissant ainsi les dernières obligations du contrat d'enregistrement de longue date de Yankovic, l'incitant à s'orienter vers une stratégie de sortie de singles et d'EP plutôt que d'albums longue durée dans les années qui ont suivi.\n\nL'album représente un cours magistral de parodie et de pastiche modernes, adoptant une approche hybride qui mêle parodies de chansons d'actualité et compositions originales écrites dans le style de divers artistes légendaires. Yankovic a méticuleusement élaboré des parodies de succès de stars contemporaines comme Pharrell Williams, Robin Thicke, Iggy Azalea et Lorde, tandis que ses pastiches originaux rendaient hommage à des icônes musicales incluant les Pixies, Cat Stevens et les Foo Fighters. En choisissant délibérément d'écrire ses pastiches originaux en premier et ses parodies en dernier, Yankovic s'est assuré que ses parodies restaient opportunes et culturellement résonnantes lors de leur sortie. Notamment, la stratégie de lancement de l'album a contourné le single traditionnel au profit d'une campagne numérique d'une semaine, lançant huit clips vidéo distincts qui ont cimenté son statut de pionnier du contenu vidéo viral. Mandatory Fun a finalement reçu le prix du meilleur album comique lors de la 57e cérémonie annuelle des Grammy Awards, solidifiant sa place en tant que chapitre final triomphal de sa carrière dans les sorties d'albums studio traditionnels. L'album présente une liste d'invités et de sujets de parodie, incluant les Pixies, dont le style a influencé le morceau original \"First World Problems\", et des collaborateurs comme Amanda Palmer qui a fourni des chœurs pour cette même chanson. D'autres entités notables impliquées dans l'esprit ou la création de l'album incluent Imagine Dragons, qui a été consulté sur sa parodie, et Cat Stevens, dont le travail a informé le paysage sonore des compositions originales du projet.",
+      "source_sha256": "971dc9696f1204ac35cb57a6a4207fb9b892397b540f2f89a85c3becacd115ca",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:28:13.635Z"
+    }
+  }
 }

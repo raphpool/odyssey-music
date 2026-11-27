@@ -142,5 +142,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une œuvre séminale de la musique électronique expérimentale de la fin des années 90 qui a redéfini les possibilités des micro-rythmes et de la conception sonore numérique.",
+      "article": "Interstate, sorti en 1999, s'impose comme une pierre angulaire de la scène électronique allemande, représentant une ultime collaboration de haut vol entre les membres de Monolake, Robert Henke et Gerhard Behles. Produit à une époque où les frontières de la techno étaient repoussées avec agressivité, l'album fait office de cours magistral en matière de conception sonore « semi-organique ». Ses textures complexes et changeantes, ainsi que son architecture rythmique microscopique et précise, transcendent les conventions traditionnelles de la musique de danse, offrant une expérience d'écoute immersive qui s'adapte aussi bien aux clubs qu'à l'environnement domestique.\n\nLe disque est largement célébré pour ses techniques de production innovantes, notamment l'utilisation de la synthèse granulaire et de lignes de retard complexes, qui n'en étaient alors qu'à leurs balbutiements dans les applications grand public. En tissant ensemble des éléments texturaux disparates pour former un tout atmosphérique et cohérent, Henke et Behles ont créé un modèle sonore qui allait profondément influencer la trajectoire de la conception sonore dans la musique électronique pour les décennies à venir. En tant que document séminal de l'esthétique techno minimaliste et expérimentale de l'époque, Interstate demeure à la fois techniquement impressionnant et émotionnellement évocateur, cimentant son statut de point de repère essentiel pour les amateurs de sons électroniques conçus avec précision. Le projet capture un moment charnière où la précision mécanique de la technologie a rencontré l'intuition créative de deux producteurs visionnaires, aboutissant à un album qui semble aussi contemporain aujourd'hui qu'il l'était lors de sa sortie initiale. Le disque a été réexaminé et préservé à juste titre par des labels comme Field Records, reconnaissant son importance historique dans le développement des paysages sonores dub-techno et influencés par le glitch qui ont dominé le tournant du millénaire. En se concentrant sur l'interaction entre des basses profondes et caverneuses et des fréquences aiguës cristallines et tranchantes, Interstate continue d'être une étude profonde de l'équilibre et de la profondeur texturale au sein du médium de la composition électronique.",
+      "source_sha256": "1480d7c74f457c90f87f920da9033b26ed5964554a6aceaebe77b644758de11a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:13.600Z"
+    }
+  }
 }

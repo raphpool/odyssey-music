@@ -42,5 +42,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un morceau de heavy pop propulsif de 2016 par le groupe florentin God of the Basement, mêlant échantillonnage old-school et énergie distordue aux accents desert rock.",
+      "article": "« CINGHIALE » est un morceau propulsif du groupe de « heavy pop » italien God of the Basement, sorti en 2016. Originaire de Florence, en Italie, le groupe façonne une identité sonore distincte qu'ils décrivent comme « rétro-futuriste », mêlant des grooves serrés et contagieux à des techniques d'échantillonnage old-school et une instrumentation lourde et distordue. Le morceau illustre leur approche consistant à équilibrer des sensibilités pop modernes avec une esthétique à la fois urbaine et évocatrice.\n\nMusicalement, la chanson s'appuie sur le penchant du groupe pour la superposition de rythmes à haute énergie avec des textures rock alternatif granuleuses. Comme pour une grande partie de leur production, « CINGHIALE » (qui se traduit par « sanglier » en italien) ressemble à une exploration du contraste, juxtaposant des mélodies accrocheuses à des sons plus lourds influencés par le stoner. Enregistré et mixé au Nardo Relaxo Studio, le morceau représente l'exploration artistique précoce du groupe dans la création de paysages sonores cinématographiques et légèrement chaotiques, reflétant leur philosophie plus large d'une « explosion de son et de vision ». À travers leur travail, God of the Basement s'est imposé dans un créneau qui fait le pont entre expérimentation électronique, desert rock et pop alternative urbaine, conservant un esprit DIY mis en évidence par leur sortie indépendante sur STOCK-A Arts&Records. Le morceau demeure un exemple par excellence de leur son du milieu des années 2010.",
+      "source_sha256": "7aae38b4ab6b59566f4ac29780d5c07315e05da6b0a274fd315c68c5d630928d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:18.516Z"
+    }
+  }
 }

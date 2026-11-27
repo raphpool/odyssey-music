@@ -54,5 +54,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Raum » est un morceau électronique hypnotique et énergique du duo allemand Digitalism, présent sur leur EP de 2018 « Zdar C1u6 ». Le titre mélange des textures de synthétiseurs expansives avec un rythme propulsif taillé pour les clubs, fidèle à l'esthétique dancefloor caractéristique du duo.",
+      "article": "« Raum » est un morceau électronique atmosphérique et entraînant du duo allemand Digitalism, figurant sur leur EP de 2018, Zdar C1u6. Connus pour leur synthèse d'electro-house, d'indie-dance et de textures synth-pop agressives, Digitalism — composé de Jens Moelle et İsmail Tüfekçi — a livré avec « Raum » une pièce qui résume leur dépendance caractéristique aux hooks répétitifs et hypnotiques, équilibrés par une dynamique dancefloor à haute énergie. Le morceau est caractéristique des travaux ultérieurs du duo, s'appuyant fortement sur une conception sonore atmosphérique tout en conservant la percussion propulsive qui les a propulsés sur le devant de la scène internationale au milieu des années 2000. Le titre de la chanson, le mot allemand pour « pièce » ou « espace », se reflète dans le champ stéréo large et expansif ainsi que dans les synthétiseurs tourbillonnants et arpégés qui définissent son esthétique centrale. Bien que Digitalism ait émergé comme l'un des piliers de l'ère blog-house, « Raum » démontre leur longévité, prouvant leur capacité à tisser des paysages sonores complexes et mélancoliques dans une musique de danse accessible. En se débarrassant d'une grande partie de la structure vocale pop évidente présente dans leurs premiers succès, « Raum » invite l'auditeur dans un environnement plus immersif et centré sur le club, mettant en valeur la précision technique qui est restée une constante tout au long de leur carrière de plusieurs décennies. En tant que partie de l'EP Zdar C1u6, il fonctionne comme un pont entre l'intensité electro-crunch des débuts du duo et leurs sensibilités de production en studio plus raffinées et modernes.",
+      "source_sha256": "ea182c107cc9722d81267b70adf60c9b5c5fa1e817e911013a55798a7a088e21",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:19.297Z"
+    }
+  }
 }

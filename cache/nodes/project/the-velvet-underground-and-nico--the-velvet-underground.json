@@ -114,5 +114,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre séminale de l'art rock, The Velvet Underground & Nico a défié l'optimisme ensoleillé des années 1960 avec des explorations granuleuses et avant-gardistes de la vie urbaine, de la dépendance et du désir. Produit par Andy Warhol, le paysage sonore sombre et dissonant de l'album ainsi que l'écriture provocatrice de Lou Reed ont jeté les bases du punk, de la new wave et du rock alternatif.",
+      "article": "Sorti en mars 1967, The Velvet Underground & Nico demeure l'un des premiers albums les plus culturellement significatifs et influents de l'histoire du rock. Souvent appelé « the banana album » en raison de sa pochette emblématique conçue par Andy Warhol, le disque a capturé une alternative brute et granuleuse à la psychédélie dominante du milieu des années soixante. Sous la direction de Warhol, le groupe — composé de Lou Reed, John Cale, Sterling Morrison et Maureen Tucker — aux côtés de la chanteuse allemande Nico, a façonné un son qui équilibrait une pop fragile et onirique avec des textures abrasives et avant-gardistes.\n\nSur le plan lyrique, l'album avait des décennies d'avance sur son temps, explorant des sujets sombres et tabous, notamment la dépendance aux drogues, le sado-masochisme et l'aliénation urbaine. Des titres tels que « Heroin » et « Venus in Furs » ont marqué une rupture audacieuse avec les thèmes lyriques habituels de l'époque, tandis que des chansons comme « Sunday Morning » et « I'll Be Your Mirror » ont mis en évidence la capacité du groupe à créer des mélodies d'une beauté obsédante. Bien qu'il se soit initialement mal vendu et ait été largement ignoré par les critiques contemporains, son impact a crû de façon exponentielle au cours des décennies suivantes. L'album est désormais cité comme une influence fondamentale sur un vaste spectre de genres, du proto-punk et du glam au noise et à l'indie rock. Sa puissance durable réside dans son honnêteté sans faille et dans la vision artistique radicale et sans compromis de ses créateurs, qui ont effectivement démantelé les conventions de la musique pop pour ouvrir la voie à des générations d'artistes alternatifs.",
+      "source_sha256": "16b585f3c09e42ed7c43b136647e18acdd0529d4071aaa715523c4f995025010",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:35:19.123Z"
+    }
+  }
 }

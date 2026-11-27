@@ -66,5 +66,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Pinwheel Herman » est un morceau marquant de l'album Niun Niggung, sorti en 1999 par le duo électronique allemand influent Mouse On Mars.",
+      "article": "« Pinwheel Herman » est un morceau marquant de l'album Niun Niggung, sorti en 1999 par le duo électronique allemand influent Mouse On Mars. Publié à une période où le duo — composé de Andi Toma et Jan St. Werner — repoussait les limites de la musique électronique, le morceau illustre leur style caractéristique : un paysage sonore ludique, saccadé et profondément stratifié qui brouille les pistes entre IDM, electronica expérimentale et pop abstraite. La composition présente la programmation de batterie complexe et hyperactive propre au duo, ainsi qu'une utilisation inventive de textures électroniques, tout en intégrant simultanément des instruments organiques comme des cordes et une clarinette basse qui ajoutent un contraste chaleureux et ancré à leurs manipulations numériques.\n\nNiun Niggung est largement considéré comme l'un des albums déterminants de la discographie de Mouse On Mars, salué pour son humour, son inventivité et son refus de rester statique. « Pinwheel Herman » met spécifiquement en valeur la capacité du groupe à créer une tension par le biais de motifs rythmiques changeants, engendrant un son qui semble à la fois fragile et robuste. En intégrant des instruments traditionnels aux côtés de sons synthétisés sur mesure, Mouse On Mars a contribué à combler le fossé entre l'ambient techno du début des années 90 et l'electronica avant-gardiste, plus orientée vers le glitch, qui allait fleurir au début des années 2000. Le morceau demeure une étude de cas parfaite de leur prouesse technique et de leur engagement envers la fantaisie musicale face au paysage souvent austère et dépouillé de la musique électronique expérimentale de la fin du XXe siècle. Il constitue un moment charnière dans un album que les fans décrivent souvent comme l'un des disques électroniques les plus délicieux et les plus amusants de son époque.",
+      "source_sha256": "5b9a3e4d7a357589a279fdd4c13da6c6eb2824b38852a78fba038869ae5e3299",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:47:22.978Z"
+    }
+  }
 }

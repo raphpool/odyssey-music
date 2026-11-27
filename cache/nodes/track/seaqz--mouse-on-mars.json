@@ -77,5 +77,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Seaqz » est le morceau de clôture de l'album « Parastrophics » de Mouse on Mars, sorti en 2012, marquant un retour triomphal et très attendu du duo électronique allemand Jan St.",
+      "article": "« Seaqz » est le morceau de clôture de l'album « Parastrophics » de Mouse on Mars, sorti en 2012, marquant un retour triomphal et très attendu du duo électronique allemand Jan St. Werner et Andi Toma. Après une pause de six ans sans sortie d'album studio, « Parastrophics » a vu le duo renouer avec sa marque de fabrique faite d'IDM erratique et énergique, tout en intégrant des sensibilités pop plus larges à son son. « Seaqz » agit comme un microcosme de l'éthique globale du disque, équilibrant une programmation rythmiquement complexe et frénétique avec des moments de grâce mélodique. Le morceau est célébré pour son « ébats frénétique » — caractérisé par des percussions entraînantes et le son caractéristique des synthétiseurs 303 inspirés de l'acid-house — qui est efficacement contrebalancé par des lignes de synthé luxuriantes et ondulantes. En gérant habilement ces forces opposées de chaos et de contrôle, « Seaqz » souligne la maturité et les techniques de production évoluées du duo, cimentant la réputation de l'album comme l'un de leurs travaux les plus aboutis et imaginatifs. Sorti sur le label Monkeytown Records de Modeselektor, le morceau capture l'essence de la musique électronique expérimentale du début des années 2010, où l'héritage de la synthèse classique rencontre un style de production moderne et hyper-cinétique. Le morceau témoigne de la capacité du duo à rester ludique et expérimental tout en démontrant une maîtrise inégalée de l'arrangement, garantissant que le chaos ne devienne jamais totalement incontrôlé. Son inclusion en tant que pièce finale du disque offre une résolution définitive à la narration sonore de l'album, soulignant la confiance avec laquelle Mouse on Mars est revenu sur la scène internationale après leur longue pause à la fin des années 2000. Il reste un favori des fans pour son élan cinétique et sa production riche et texturée.",
+      "source_sha256": "85d7248e96b2cf14b0942a5c0f55e154ec3d3acc8861ac1b37a47fc7f47a2146",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:49:13.370Z"
+    }
+  }
 }

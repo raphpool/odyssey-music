@@ -140,5 +140,14 @@
       "type": "project",
       "name": "Pink Moon"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Bryter Layter est le deuxième album sophistiqué et teinté de jazz de l'auteur-compositeur-interprète anglais Nick Drake, caractérisé par les arrangements complexes de Robert Kirby et les contributions de l'invité John Cale. Il capture un son plus expansif et coloré par rapport à l'intimité dépouillée de ses débuts, s'imposant comme un sommet du mouvement folk-rock britannique de la fin des années 1960.",
+      "article": "Sorti en novembre 1970, Bryter Layter est le deuxième album studio de l'énigmatique auteur-compositeur-interprète anglais Nick Drake. Alors que son premier opus, Five Leaves Left, présentait au monde son style folk feutré et mélancolique, Bryter Layter s'est imposé comme une œuvre plus aboutie et ambitieuse sur le plan instrumental. Produit une fois de plus par Joe Boyd, l'album s'est éloigné de l'intimité folk singulière de son prédécesseur pour adopter un son pop baroque sophistiqué, enrichi par les arrangements orchestraux précis de Robert Kirby.\n\nLes contributions de John Cale, ancien membre de The Velvet Underground, sont essentielles au caractère distinctif de l'album. Cale a apporté ses talents multi-instrumentaux — notamment au piano, au célesta et à l'orgue — sur des titres pivots tels que le sublime « Northern Sky », offrant un contrepoint mélodique chaleureux au jeu de guitare délicat et à l'écriture introspective de Drake. L'ensemble comprenait également des membres de Fairport Convention, notamment le bassiste Dave Pegg et le batteur Dave Mattacks, dont la participation a permis d'ancrer les arrangements dans un groove folk-rock léger et jazzy. Malgré l'inclusion de ces textures musicales plus larges, l'album reste fondamentalement centré sur la voix poétique et pleine de désir de Drake ainsi que sur ses accordages de guitare acoustique complexes et idiosyncrasiques. Bien qu'il ait connu des difficultés commerciales à sa sortie, Bryter Layter est aujourd'hui largement considéré comme l'un des disques les plus influents et les plus beaux de son époque, s'imposant comme une leçon magistrale d'équilibre entre la vulnérabilité de l'auteur-compositeur-interprète et une production studio de haut niveau. Il demeure un document définitif du son folk-rock britannique de la fin des années 60, offrant une alternative plus légère et plus enjouée — bien que toujours profondément mélancolique — aux traditions folk de l'époque.",
+      "source_sha256": "c26eafc4dab551414fb2ce51b1188879b93a9cb803fc00753b22f1cc15069bca",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:19:19.116Z"
+    }
+  }
 }

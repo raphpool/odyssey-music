@@ -108,5 +108,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un EP fondateur qui a servi de pont entre les premières productions en autoproduction de Boards of Canada et leur chef-d'œuvre électronique définitif, Music Has the Right to Children. Il capture le mélange caractéristique du duo fait de chaleur analogique, de mélancolie nostalgique et de structures rythmiques complexes influencées par l'IDM.",
+      "article": "Hi Scores est un EP charnière de 1996 du duo électronique écossais Boards of Canada (Mike Sandison et Marcus Eoin). Première sortie largement disponible du duo, il est paru sur le label Skam Records, marquant une étape significative hors de la scène underground culte vers une reconnaissance plus large dans le monde de la musique électronique. Pour de nombreux auditeurs, cet EP fut la première introduction à l'univers sonore unique du duo, un paysage caractérisé par des textures de synthétiseurs rétro-futuristes, des boucles de bandes analogiques dégradées et un sentiment profond et obsédant de nostalgie enfantine.\n\nMusicalement, l'EP s'inscrit fermement dans le canon IDM (Intelligent Dance Music) du milieu des années 90, tout en se distinguant par une approche de la production résolument pastorale et organique. La collection de six titres démontre une tension sophistiquée entre précision rythmique et dérive mélodique. Des morceaux comme « Turquoise Hexagon Sun » illustrent la capacité du groupe à tisser des rythmes complexes et saccadés avec des synthétiseurs brumeux et émotionnels, un son qui deviendra le modèle de leur premier album séminal, Music Has the Right to Children (1998). La production a été entièrement assurée par Sandison et Eoin dans leur studio « Hexagon Sun », cimentant l'esthétique privée et insulaire qui définirait toute leur discographie.\n\nÀ sa sortie, Hi Scores n'a pas seulement offert une poignée de titres ; il a introduit une atmosphère qui a résonné profondément au sein de l'underground électronique. Il sert d'artefact historique fascinant, comblant le fossé entre leurs travaux antérieurs, plus difficiles à trouver (comme l'EP Twoism de 1995), et leur reconnaissance ultérieure. La puissance durable de Hi Scores réside dans la manière dont il a parfaitement capturé un espace liminal : entre l'énergie du dancefloor et l'écoute en chambre, entre l'expérimentation numérique et la mémoire analogique chaleureuse. Sa remastérisation et sa réédition ultérieures en 2014 ont souligné son statut continu d'œuvre quintessentielle et fondamentale dans le développement de la musique ambient et électronique moderne.",
+      "source_sha256": "c55a192175753039623da42b9959ee9be33439033726d71315ba29cde8b05629",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:21.698Z"
+    }
+  }
 }

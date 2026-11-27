@@ -142,5 +142,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Dots and Loops, sorti en 1997, demeure un album phare dans la discographie du groupe de pop expérimentale anglo-français Stereolab.",
+      "article": "Dots and Loops, sorti en 1997, demeure un album phare dans la discographie du groupe de pop expérimentale anglo-français Stereolab. Produit par le groupe aux côtés de John McEntire (de Tortoise) et Andi Toma (de Mouse on Mars), le disque a marqué un tournant stylistique significatif pour la formation. Alors que leurs travaux précédents étaient profondément ancrés dans les mouvements post-rock et krautrock, Dots and Loops s'est tourné vers une esthétique futuriste et léchée, synthétisant bossa nova, pop swingante des années 1960 et production électronique méticuleuse. En intégrant des arrangements sophistiqués de cuivres et de cordes à une batterie complexe basée sur des boucles — souvent inspirée par les rythmes motorik de Neu! et Klaus Dinger — Stereolab a créé un son à la fois organique et hautement manufacturé.\n\nAcclamé par la critique pour son approche légère et intellectuelle de la pop, l'album reste un exemple par excellence du son « rétro-futuriste » du groupe. Les valeurs de production, caractérisées par une superposition nette et une conception sonore précise, ont aidé à combler le fossé entre rock alternatif et musique électronique expérimentale. Des titres tels que « Brakhage » et « Miss Modular » démontrent la capacité du groupe à combiner des mélodies fredonnables avec des textures avant-gardistes, consolidant Dots and Loops comme l'un des disques les plus influents des années 1990. Son héritage durable réside dans sa réussite à apporter des sensibilités expérimentales, nourries par le krautrock, à un public plus large et plus orienté vers la pop, sans compromettre son intégrité artistique.",
+      "source_sha256": "faeebac427b7f1865043db14aa94d87c3aac546f4fb28ea1d9a41cf14a9f8ff8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:18.108Z"
+    }
+  }
 }

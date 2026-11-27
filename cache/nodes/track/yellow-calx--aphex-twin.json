@@ -49,5 +49,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Yellow Calx » est un morceau marquant du chef-d'œuvre de 1996 Richard D.",
+      "article": "« Yellow Calx » est un morceau marquant du chef-d'œuvre de 1996 Richard D. James Album, signé par l'énigmatique producteur de musique électronique britannique Aphex Twin (Richard D. James). Publié sur le label emblématique Warp Records, le titre est célèbre pour son mélange caractéristique de programmations de batterie complexes et hyperactives — une marque de fabrique des explorations drill 'n' bass de James — superposées à des mélodies mélancoliques et obsédantes qui offrent un contraste saisissant avec le bégaiement rythmique agressif.\n\nLe morceau démontre la maîtrise de James en matière de tension sonore, utilisant des textures métalliques et abrasives qui oscillent avec des montages soudains et précis. Les auditeurs remarquent souvent la structure distinctive du morceau et son outro abrupte en boucle, qui laisse l'auditeur dans un état d'animation suspendue. Dans le contexte plus large de Richard D. James Album, « Yellow Calx » sert de pont entre les penchants acid-techno plus abrasifs de l'artiste et la sensibilité mélodique profondément émotionnelle qui allait définir ses œuvres plus introspectives. Il demeure un favori des fans et un exemple par excellence de l'ère « IDM » (Intelligent Dance Music) qui a façonné le paysage de la musique électronique des années 1990. La capacité du morceau à rester à la fois rythmiquement stimulant et mélodiquement accessible souligne l'aptitude unique de James à tisser le chaos et la beauté en une composition cohérente et intemporelle.",
+      "source_sha256": "3851719bdef9c7e6bc14d093365f6cd05cfc68e9212cd762a90b28cabd4afc19",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:53:25.256Z"
+    }
+  }
 }

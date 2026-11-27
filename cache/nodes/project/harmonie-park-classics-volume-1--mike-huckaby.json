@@ -57,5 +57,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Témoignage définitif de la deep house sophistiquée émanant de Détroit, « Harmonie Park Classics Volume 1 » rassemble des œuvres intemporelles du regretté et légendaire Mike Huckaby. Avec le chef-d'œuvre atmosphérique « Radiance », cet EP demeure une pierre angulaire pour les collectionneurs de house music et les amateurs de l'esthétique profonde et imprégnée de dub qui a défini le label.",
+      "article": "Publié en 2002 sur le label Deep Transportation, « Harmonie Park Classics Volume 1 » est un EP essentiel du producteur et pédagogue de Détroit Mike Huckaby. Le projet met en lumière le son house profond, soul et aux textures complexes pour lequel Huckaby était mondialement vénéré. Couvrant trois titres — « Disco Time », « Radiance » et « Luv Time » — l'EP sert de vitrine à la maîtrise de l'atmosphère et du groove de Huckaby, soulignant les éléments percussifs subtils et le travail luxuriant sur les synthétiseurs qui sont devenus les marques de fabrique du son deep house de Détroit de la fin des années 90 et du début des années 2000.\n\n« Radiance », en particulier, est fréquemment cité par les fans et les collègues DJ comme un titre déterminant dans la discographie de Huckaby. Ses nappes hypnotiques et balayantes ainsi que ses rythmes méticuleusement conçus illustrent pourquoi il était considéré comme un maître de son art, capable de créer une musique qui semblait à la fois intemporelle et profondément ancrée dans l'esprit de sa ville natale, Détroit. Le projet tire son nom de l'influent label Harmonie Park — fondé par Rick Wade — qui fut un débouché essentiel pour les producteurs de la ville. En compilant ces titres, Huckaby a non seulement offert un foyer à son son classique, mais a également réaffirmé son statut de figure centrale dans la lignée de la musique électronique moderne. L'EP a connu de multiples rééditions, dont une remastérisation en 2013, reflétant son héritage durable et son statut continu d'incontournable pour les collectionneurs de vinyles comme pour les historiens de la house music. Au-delà de ses qualités sonores, le disque représente un instantané d'une époque spécifique de la musique dance underground, où l'accent restait mis sur la résonance émotionnelle de la musique plutôt que sur les tendances commerciales.",
+      "source_sha256": "c03a64b362e1f16f1fc00f178380d41ec2c81738700c64d2a316fa217f5d9764",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:17.215Z"
+    }
+  }
 }

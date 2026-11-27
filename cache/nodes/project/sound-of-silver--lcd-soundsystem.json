@@ -117,5 +117,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pierre angulaire de la scène indie des années 2000, Sound of Silver fusionne l'énergie post-punk avec une écriture électronique introspective, portée par l'hymne « All My Friends ».",
+      "article": "Sound of Silver, publié en 2007 par le groupe de dance-punk new-yorkais LCD Soundsystem, s'impose comme un monument déterminant de la scène indie-électronique des années 2000. Produit par James Murphy et l'équipe de production DFA Records, l'album comble parfaitement le fossé entre l'énergie frénétique et anguleuse du renouveau post-punk et les structures hypnotiques et répétitives de la musique électronique classique et du krautrock. On se souvient peut-être surtout de lui pour sa profondeur émotionnelle ; contrairement à beaucoup de ses contemporains qui penchaient vers l'ironie et le détachement, Sound of Silver a embrassé une introspection sincère, abordant des thèmes tels que le vieillissement, la perte d'amitiés et la nature douce-amère de la vie urbaine, incarnés par le chef-d'œuvre final de l'album, « New York, I Love You but You're Bringing Me Down ».\n\nLa palette sonore de l'album est une fusion méticuleusement élaborée de synthétiseurs analogiques vintage, de batteries live entraînantes et du chant distinctif, presque parlé, de Murphy. Des titres comme « All My Friends » demeurent des références culturelles, célébrés pour leur élan implacable porté par le piano qui culmine dans un final cathartique et anthémique. Grâce à son succès critique et à son influence étendue, Sound of Silver a contribué à consolider le statut de DFA Records en tant que prescripteur de la décennie, prouvant que la musique de danse pouvait être tout aussi intellectuellement rigoureuse et émotionnellement résonnante que les albums rock les plus vénérés de son époque. Il demeure une déclaration définitive de la transition de l'underground du milieu des années 2000 vers le courant dominant de l'indie mondial.",
+      "source_sha256": "f086dc4b9167c7a8a69e4431c0580277a918ba21c30cbfb62b8df5ec46e0b1af",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:33:16.224Z"
+    }
+  }
 }

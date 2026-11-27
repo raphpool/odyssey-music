@@ -113,5 +113,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Véritable masterclass de techno moderne et émotive, le premier album de Skee Mask sorti en 2016, « Shred », a imposé le producteur munichois comme une voix essentielle du catalogue Ilian Tape, mêlant dynamisme breakbeat et paysages sonores profonds et caverneux.",
+      "article": "Sorti en 2016 sur Ilian Tape, le label munichois acclamé des Zenker Brothers, « Shred » constitue le premier album studio de l'énigmatique producteur de musique électronique allemand Skee Mask. Le projet est arrivé comme un moment déterminant pour le son du label, longtemps caractérisé par une approche de la techno avant-gardiste et immersive qui défie souvent toute catégorisation rigide. À travers douze titres, Skee Mask navigue dans un paysage sonore complexe qui semble à la fois profondément ancré dans la tradition club et remarquablement visionnaire.\n\nLa force de l'album réside dans sa polyvalence ; il passe sans transition de morceaux agressifs et chargés de breakbeats comme « Shred 08 » et « Shady Jibbin’ » à l'atmosphère vaste et caverneuse de « Backcountry ». Dans ces compositions, Skee Mask révèle une maîtrise du rythme et de la texture, superposant fréquemment des synthétiseurs luxuriants d'inspiration analogique qui ancrent les morceaux dans un espace ambiant et onirique, même lorsque les percussions les propulsent sur la piste de danse. Les critiques et les auditeurs ont souvent noté la parenté de l'album avec les premières productions exploratoires de labels comme Warp Records, trouvant un équilibre entre l'urgence fonctionnelle de la techno et la chaleur introspective de l'IDM. « Shred » a non seulement consolidé la réputation de Skee Mask en tant que producteur de premier plan, mais a également servi de pierre angulaire au catalogue d'Ilian Tape, renforçant le rôle du label dans le façonnement de la scène underground électronique européenne moderne. Il demeure un disque qui invite à la fois à une écoute active et concentrée et au mouvement immersif, capturant une esthétique sombre et spécifique qui semble intemporelle dans son exécution.",
+      "source_sha256": "1f13a492445f8725dacfddba389f9ab3040715100f2202895c3de4214fa43bd4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:32:23.999Z"
+    }
+  }
 }

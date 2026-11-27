@@ -172,5 +172,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un double album tentaculaire de 2001 par Alec Empire qui juxtapose le digital hardcore à haute intensité et l'électronique ambiante expérimentale, marquant sa renaissance en tant qu'artiste solo après Atari Teenage Riot.",
+      "article": "Sorti en 2001, Intelligence and Sacrifice constitue une étape décisive dans la carrière du polymathe de la musique électronique allemande Alec Empire. Suite à la dissolution très médiatisée des pionniers révolutionnaires du digital hardcore, Atari Teenage Riot, Empire a cherché à réinventer son son, décrivant le disque comme son premier « vrai » album solo. Le projet a été publié par son influent label Digital Hardcore Recordings et s'est distingué par sa structure ambitieuse et tentaculaire en double disque, qui a permis à Empire d'explorer deux facettes distinctes de son identité sonore.\n\nLe premier disque fonctionne en grande partie dans le cadre du digital hardcore à haute énergie et politiquement chargé qui définissait ses travaux précédents, mêlant l'énergie punk agressive à des breakbeats écrasants et des lignes de synthétiseur distordues. En revanche, le second disque, désigné sous le nom de « CD² », représente un changement marqué, se concentrant sur une électronique expérimentale dense et riche en textures ainsi que sur des compositions à tendance ambiante qui évitent les structures de chansons traditionnelles et les voix. Cette juxtaposition a mis en évidence la polyvalence d'Empire, à la fois interprète de scène conflictuel et producteur de studio méticuleux. L'album est fortement caractérisé par son utilisation d'échantillonnages de force industrielle, incluant des clins d'œil à des piliers du heavy metal comme Slayer, Napalm Death et Pantera, aux côtés d'indices sonores cinématographiques, cimentant la réputation du disque en tant qu'assaut mélangeant les genres qui a capturé les angoisses de la scène underground du tournant du millénaire. Au-delà de son innovation stylistique, le disque demeure un document critique sur la manière dont les artistes électroniques commençaient à concilier la physicalité brute du punk avec les possibilités illimitées des outils de production numérique durant cette époque.",
+      "source_sha256": "74a24e7bb2b41b1330e0ff691000b9244db88aeb2fcdb00b23ad06c9d959ba27",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:13.524Z"
+    }
+  }
 }

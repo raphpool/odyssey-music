@@ -78,5 +78,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier album définitif de 1992 qui a redéfini l'indie rock, mêlant charme lo-fi, paroles cryptiques et accroches noise-pop inventives en un chef-d'œuvre durable de la scène underground.",
+      "article": "Sorti le 20 avril 1992, le premier album studio de Pavement, Slanted and Enchanted, s'impose comme une pierre angulaire définitive de l'indie rock américain des années 1990. Enregistré avec un budget serré lors de sessions à Stockton, en Californie, et à Brooklyn, dans l'État de New York, l'album a capturé l'énergie brute et inventive de Stephen Malkmus et Scott Kannberg avant que le groupe ne se stabilise en une formation de tournée complète. L'album est profondément associé au mouvement lo-fi, caractérisé par sa production distordue et fracassante, son charme de souffle de bande magnétique et une esthétique distincte de détachement intellectuel et décontracté.\n\nMusicalement, Slanted and Enchanted oscille entre une noise-pop saturée de larsen — illustrée par des titres comme « Trigger Cut » — et des chansons plus introspectives et mélodiques aux accents folk comme « Here ». Le caractère unique de l'album découle de l'interaction entre les paroles cryptiques et pleines d'esprit de Malkmus et la batterie libre et idiosyncrasique de Gary Young, seul membre original à figurer sur ce disque spécifique. Son influence sur le paysage musical underground a été profonde, codifiant efficacement un nouveau vocabulaire sonore pour l'indie rock qui privilégiait les structures de chansons idiosyncrasiques et le rejet d'une production studio léchée. Au fil des décennies, il a été constamment cité par les critiques musicaux comme l'un des albums les plus importants de son époque, marquant un pont entre les expérimentations DIY des années 1980 et la notoriété commerciale de l'indie rock à la fin des années 90. Au-delà du disque original, la réédition augmentée Luxe & Reduxe a par la suite offert un regard exhaustif sur cette période, cimentant sa place dans le canon de la musique alternative américaine.",
+      "source_sha256": "65874c24277839300e5222eef006cf04d2c92d8927a94279b0febf78ee448fb1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:32:24.729Z"
+    }
+  }
 }

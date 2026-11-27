@@ -70,5 +70,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Classique électronique définitif de Boards of Canada, Roygbiv mêle des synthétiseurs analogiques chaleureux à d'obscurs échantillons d'archives pour évoquer un sentiment nostalgique et solaire propre à l'hantologie.",
+      "article": "Roygbiv est l'un des morceaux les plus reconnaissables et les plus appréciés du duo électronique écossais Boards of Canada, figurant comme une pièce maîtresse de leur album séminal de 1998, Music Has the Right to Children. D'une durée de 2:31, le titre illustre l'approche caractéristique du groupe en matière de musique électronique, mêlant des textures de synthétiseurs analogiques chaleureuses à des échantillons minutieusement choisis pour susciter la nostalgie. Son titre — un acronyme pour les couleurs de l'arc-en-ciel — suggère l'atmosphère fantaisiste, éducative et légèrement inquiétante que le duo crée, s'inspirant fortement de l'esthétique de la télévision publique et des programmes pour enfants de la fin des années 1970 et du début des années 1980.\n\nLe morceau est largement cité pour sa cadence rythmique unique et ses choix de production distincts, qui incluent un trille mélodique échantillonné et un extrait vocal d'un enfant disant « Lake », tiré d'un épisode de Sesame Street. Ce penchant pour le réemploi de matériel audio d'archives est au cœur du son de Boards of Canada, évoquant souvent un sentiment d'« hantologie » — un désir pour un passé qui semble à la fois familier et inaccessible. Roygbiv a transcendé ses origines de morceau d'album électronique pour devenir un classique culte, référencé dans divers médias et ayant même engendré un remix étendu « Alphaquest ». Pour de nombreux auditeurs, le morceau demeure un artefact définitif de la scène intelligent dance music (IDM) de la fin des années 1990, capturant une mélancolie poignante et solaire que peu d'artistes ont réussi à reproduire depuis. Sa simplicité structurelle dissimule la profondeur émotionnelle complexe et la précision artisanale de la production qui ont défini les premiers travaux du duo.",
+      "source_sha256": "87652ffda682eb20c2ae62e14557caeaec788fb4311446c641506c60358db503",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:22.496Z"
+    }
+  }
 }

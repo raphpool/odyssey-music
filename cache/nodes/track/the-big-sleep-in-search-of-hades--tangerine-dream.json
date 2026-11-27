@@ -71,5 +71,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« The Big Sleep in Search of Hades » est le deuxième morceau de l'album phare de Tangerine Dream sorti en 1976, Stratosfear.",
+      "article": "« The Big Sleep in Search of Hades » est le deuxième morceau de l'album phare de Tangerine Dream sorti en 1976, Stratosfear. Pièce marquante de l'atmosphère électronique des débuts, le morceau capture la période de transition du quintette, où ils ont commencé à mélanger leurs paysages sonores électroniques avant-gardistes de longue durée avec des motifs mélodiques plus structurés, pilotés par des séquenceurs, et une instrumentation teintée de rock. Composé par Edgar Froese et Christopher Franke, le morceau sert de pont essentiel au sein de la structure dynamique de l'album. Sur le plan sonore, la pièce se caractérise par ses textures de mellotron obsédantes et mélancoliques, ainsi que par une qualité délicate et éthérée qui s'éloigne de l'expérimentation plus rude et abstraite de leurs premières productions chez Virgin Records. Il représente une évolution vers une esthétique plus cinématographique et progressive qui allait définir leur son tout au long de la fin des années 1970. L'atmosphère du morceau, souvent décrite comme « inquiétante mais sereine », utilise des vagues de synthétiseurs amples et des éléments percussifs précis pour créer un sentiment d'espace vaste et surnaturel, l'ancrant fermement dans le style de la Berlin School. Son inclusion sur Stratosfear a contribué à consolider le statut de l'album comme un chef-d'œuvre de l'époque, marquant une évolution dans la capacité du groupe à équilibrer complexité technique et puissance émotionnelle. La composition souligne le virage du groupe vers un standard de production plus soigné, influencé par leur maîtrise croissante du studio au milieu des années 1970, qui deviendrait une marque de fabrique de leur héritage influent dans la musique ambient et électronique. Son statut de morceau emblématique au sein de leur discographie est solidifié par son mélange unique d'électronique progressive et d'arrangement évocateur, presque cinématographique, ce qui en fait une écoute essentielle pour ceux qui explorent l'évolution du genre électronique de la Berlin School.",
+      "source_sha256": "16c3d3c9febf214dfebdf3c454c7d692621dee1ed8350fe75619325b31712132",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:50:25.028Z"
+    }
+  }
 }

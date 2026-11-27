@@ -70,5 +70,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Kontakte » (1958-1960) constitue une réalisation monumentale dans l'histoire de la musique d'avant-garde du XXe siècle, composée par le visionnaire allemand Karlheinz Stockhausen.",
+      "article": "« Kontakte » (1958-1960) constitue une réalisation monumentale dans l'histoire de la musique d'avant-garde du XXe siècle, composée par le visionnaire allemand Karlheinz Stockhausen. Réalisée à l'origine au studio de musique électronique de la WDR à Cologne, l'œuvre représente un moment charnière dans le développement de la musique électronique, comblant le fossé entre les compositions sur bande purement synthétiques et la performance en direct. Bien que Stockhausen ait précédemment exploré les textures électroniques dans des œuvres comme « Gesang der Jünglinge », « Kontakte » a poussé ces innovations plus loin en introduisant des instrumentistes en direct dans l'environnement électronique. Le titre lui-même, signifiant « Contacts », fait référence à l'interaction complexe entre trois domaines distincts : l'interaction entre les familles de sons synthétiques et acoustiques (métal, bois et peau), la spatialisation sophistiquée du son autour de l'auditeur et les « moments » structurels qui forment la progression non linéaire de la pièce.\n\nStructurellement, « Kontakte » est réputé pour son application de la « forme moment », une stratégie compositionnelle où la pièce est divisée en sections indépendantes et autonomes qui ne reposent pas sur un développement thématique traditionnel pour assurer leur cohésion. Cette approche non linéaire a permis à Stockhausen de traiter le son comme un matériau plastique et malléable. En intégrant des techniques sérielles précises à des éléments aléatoires — spécifiquement dans l'interaction entre la bande électronique et le piano et les percussions joués en direct — Stockhausen a créé un paysage sonore profondément immersif qui a défié les limites de la forme musicale traditionnelle. La pièce demeure un point de référence séminal pour la musique électronique, démontrant l'immense potentiel de la synthèse électronique lorsqu'elle est combinée à la performance humaine pour créer une expérience d'écoute véritablement tridimensionnelle et spatialisée. Son influence persiste, informant le travail de générations de compositeurs qui explorent l'intersection du son acoustique et électronique, de l'audio spatial et des structures narratives non linéaires.",
+      "source_sha256": "c644e534398e7866ae97fc3e76a4e7a2257789b5c3a73425dedba722bcbb082d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:13.610Z"
+    }
+  }
 }

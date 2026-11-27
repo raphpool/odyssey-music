@@ -52,5 +52,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Véritable joyau indie-pop propulsif et empreint d'anxiété signé Cherry Glazerr, « Soft Drink » utilise l'image d'une boisson secouée pour capturer le sentiment étourdissant et instable d'un nouvel intérêt amoureux.",
+      "article": "« Soft Drink » est un morceau indie rock de 2021 du groupe Cherry Glazerr, basé à Los Angeles. Sortie sur le label indépendant Secretly Canadian, la chanson est un exemple par excellence de la capacité de Clementine Creevy à mêler vulnérabilité et énergie contagieuse et dansante. Sur le plan lyrique, le morceau explore les thèmes de l'anxiété sociale, du désir de connexion et de la maladresse liée à l'intérêt amoureux, utilisant la métaphore d'une boisson gazeuse que l'on secoue pour décrire le sentiment intérieur d'être submergé ou « secoué » par la présence de quelqu'un d'autre.\n\nMusicalement, la chanson est construite sur une section rythmique mélodique et entraînante qui s'appuie sur le mélange caractéristique du groupe, fait de rugosité garage rock et de sensibilités pop. La production est nette et précise, mettant en valeur le chant conversationnel de Creevy. La chanson s'inscrit parfaitement dans le paysage indie-pop moderne, équilibrant des paroles introspectives et légèrement anxieuses avec un refrain conçu pour le mouvement et la catharsis. Le clip vidéo, réalisé par Jessica Calleiro, capture cette dualité, reflétant le tempo dynamique du morceau avec une esthétique visuelle à la fois intime et légèrement surréaliste, renforçant la réputation du groupe pour son expression artistique originale et réfléchie. Avec « Soft Drink », Cherry Glazerr prouve son évolution continue, passant de ses origines lo-fi à un son plus poli et nuancé qui conserve néanmoins l'esprit brut de ses premiers enregistrements.",
+      "source_sha256": "70a182f4ebfc8fde4827bc9cc36f730e8775711e49ba752ee60656ba6e44dbe8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:49:17.361Z"
+    }
+  }
 }

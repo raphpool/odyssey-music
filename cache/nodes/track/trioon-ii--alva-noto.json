@@ -71,5 +71,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Exploration minimaliste déterminante du piano et de la synthèse glitch, « Trioon II » est un chef-d'œuvre expansif de dix minutes issu de la première collaboration entre Alva Noto et Ryuichi Sakamoto, Vrioon.",
+      "article": "« Trioon II » est une pièce maîtresse de la collaboration minimaliste entre le pionnier de l'électronique allemand Alva Noto (Carsten Nicolai) et le légendaire compositeur japonais Ryuichi Sakamoto. Publié sur l'album « Vrioon » en 2002 — première entrée de leur série acclamée V.I.R.U.S. — le morceau illustre la fusion méticuleuse entre synthèse numérique et chaleur acoustique qui définit leur travail commun. D'une durée de près de dix minutes, « Trioon II » est une leçon de conception sonore réductionniste, où le phrasé pianistique délicat et squelettique de Sakamoto est tissé dans une tapisserie scintillante de glitches microtonaux et de textures statiques de Nicolai.\n\nLa composition navigue dans un paysage de tension silencieuse, où le silence est un élément sonore tout aussi important que les fréquences elles-mêmes. À l'instar des autres titres de « Vrioon », le morceau évite le développement mélodique traditionnel au profit d'une immersion atmosphérique et statique. Il exige une écoute active et patiente, récompensant l'auditeur par une exploration évolutive du timbre et de la dégradation numérique. Son importance culturelle réside dans son rôle de jalon pour la musique ambient et glitch moderne, contribuant à établir l'esthétique du label Noton. « Vrioon » a finalement été honoré du titre d'album de l'année par le magazine The Wire en 2004, consolidant l'importance de cette palette sonore spécifique dans le canon de la musique électronique du début des années 2000. L'héritage durable de « Trioon II » persiste non seulement comme un sommet des premiers travaux du duo, mais aussi comme l'exemple de la manière dont deux approches artistiques distinctes — le minimalisme classique et le glitch numérique — peuvent exister dans une symbiose parfaite et sublime.",
+      "source_sha256": "ec8816406c11f5116d33e05bc816de82b2c0f06bde9c90307df02ffaa9187895",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:18.790Z"
+    }
+  }
 }

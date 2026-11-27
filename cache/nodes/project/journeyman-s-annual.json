@@ -46,5 +46,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Journeyman’s Annual » est le cinquième album du producteur électronique canadien Deadbeat, offrant une leçon magistrale de dub numérique diversifié qui repousse les limites du rythme et de l’atmosphère. Combinant une pression de basse lourde avec des textures microscopiques et tranchantes, l’album demeure une parution phare de la scène électronique underground du milieu des années 2000.",
+      "article": "Publié en 2007 sur le prestigieux label ~scape de Stefan Betke, « Journeyman’s Annual » représente un tournant créatif décisif pour Scott Monteith, le producteur basé à Montréal plus connu sous le nom de Deadbeat. En tant que cinquième album studio, il témoigne d’un éloignement du dub-techno strictement conventionnel vers un son plus expansif et stylistiquement aventureux. Monteith mélange habilement le poids fondamental du dub jamaïcain avec les textures méticuleuses et inspirées du glitch qui caractérisaient les laboratoires de musique électronique expérimentale du milieu des années 2000.\n\nL’album se définit par sa résonance émotionnelle et sa diversité rythmique. Des titres tels que « Refund Me », avec MC Bubbz, mettent en avant une énergie granuleuse influencée par le dancehall, caractérisée par des basses insistantes et un fracas percussif, tandis que « Lost Luggage » plonge dans les atmosphères plus sombres et austères associées à la scène dubstep naissante de l’époque. Ailleurs, des morceaux comme « Loneliness and Revelry » soulignent la capacité de Monteith à tisser des oscillations obsédantes aux accents industriels avec des détails atmosphériques délicats. « Journeyman’s Annual » s’impose comme le document d’un producteur repoussant les limites de son art, intégrant avec succès des influences disparates dans une expérience d’écoute cohérente, profondément atmosphérique et chargée d’émotion, qui a élevé le statut de Deadbeat au sein du circuit international de la musique électronique.",
+      "source_sha256": "687ecb43cf96af81978a4de049d6b2e85cc33df520531082e739020fc2006c58",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:15.400Z"
+    }
+  }
 }

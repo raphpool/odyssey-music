@@ -44,5 +44,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Universal Band Silhouette représente une intersection aux multiples facettes de collectifs d'artistes et de labels opérant sous le nom de Silhouette.",
+      "article": "Universal Band Silhouette est une entité musicale associée au contexte plus large du label Silhouette et de divers groupes d'artistes opérant sous le nom de Silhouette. Bien que le nom apparaisse dans divers contextes au sein de la base de données Discogs, il est souvent lié à l'héritage de labels tels que Silhouette Music, basé à Brooklyn, ou au groupe de pop norvégien connu sous le nom de Silhouette (13). Le nom reflète un motif récurrent dans la production musicale et l'image de marque des labels qui a persisté à travers différentes régions et genres, allant des sensibilités pop des collectifs basés à Oslo au catalogage spécifique de labels indépendants. Le terme demeure un point d'intérêt pour les collectionneurs explorant les diverses discographies associées au nom de Silhouette, qui englobe à la fois des projets d'artistes individuels et des identités de labels institutionnels ayant façonné des marchés de niche spécifiques au fil des ans.",
+      "source_sha256": "57e21b390b840b85b6baa42546307bed9454490c15b0111dd0ad2e99a53f6d99",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:20.722Z"
+    }
+  }
 }

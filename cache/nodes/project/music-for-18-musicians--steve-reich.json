@@ -43,5 +43,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre séminal du minimalisme qui a transformé le paysage de la musique classique moderne avec ses cycles harmoniques luxuriants et sa vitalité rythmique.",
+      "article": "Music for 18 Musicians est une composition phare du compositeur américain Steve Reich, largement considérée comme l'une des œuvres les plus significatives du mouvement minimaliste du XXe siècle. Composée entre 1974 et 1976 et créée à New York en 1976, la pièce a marqué un tournant distinct dans l'approche esthétique de Reich. Alors que ses premières œuvres étaient souvent caractérisées par une focalisation rigoureuse, austère et mécanique sur le déphasage, Music for 18 Musicians a embrassé une « luxuriance » nouvelle, une richesse harmonique et une qualité lyrique que Reich lui-même décrivait comme visant à créer une « belle musique ».\n\nL'œuvre est méticuleusement structurée autour d'un cycle de onze accords qui fournit la base thématique pour toute sa durée, environ 60 minutes. Ces accords sont introduits dans la section d'ouverture, puis explorés à travers une série de pulsations et de motifs rythmiques répétitifs portés par un ensemble de marimbas, pianos, xylophones et vibraphones. L'instrumentation comprend également des clarinettes, un violon, un violoncelle et des voix de femmes, qui se mélangent pour créer une texture sonore hypnotique, dense et éthérée. La pièce est régie par une mesure à 12 temps qui puise son influence dans les complexités rythmiques des percussions traditionnelles d'Afrique de l'Ouest, en particulier les motifs atsiagbekor.\n\nDepuis son premier enregistrement sur ECM Records en 1978, la pièce a été enregistrée par de nombreux ensembles, dont la version de 1997 chez Nonesuch qui a remporté un Grammy Award. Elle demeure une pierre angulaire du répertoire classique contemporain, ayant profondément influencé non seulement la trajectoire de la composition minimaliste, mais aussi le développement de la musique ambient, électronique et expérimentale moderne. Les critiques et les chercheurs désignent souvent Music for 18 Musicians comme le point culminant définitif de la période intermédiaire de Reich, démontrant sa capacité à synthétiser la précision formelle et la résonance émotionnelle.",
+      "source_sha256": "ef248430c97f91307887cde952eed8be7a55343e5b3be32a6908164f6cdca5c8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:28:22.442Z"
+    }
+  }
 }

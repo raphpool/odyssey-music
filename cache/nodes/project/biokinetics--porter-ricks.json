@@ -102,5 +102,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Publié sur le légendaire label Chain Reaction en 1996, Biokinetics est une œuvre fondatrice de techno minimale aux influences dub qui crée un paysage sonore monochrome et immersif, ayant considérablement influencé le développement de la techno ambient et de la musique électronique expérimentale.",
+      "article": "Biokinetics est le premier album studio du duo de musique électronique allemand Porter Ricks, composé des producteurs Thomas Köner et Andy Mellwig. Sorti en 1996 sur l'influent label Chain Reaction — une émanation de Basic Channel fondée par Moritz von Oswald et Mark Ernestus — l'album fait figure de leçon magistrale de production techno minimale et dub. Son paysage sonore se définit par ses réverbérations profondes et caverneuses, ses textures atmosphériques crépitantes et une précision rythmique à la fois glaciale et propulsive.\n\nLe projet est largement considéré comme une sortie charnière dans l'histoire de la techno expérimentale. En dépouillant la musique de ses structures pop conventionnelles pour se concentrer sur la qualité tactile du son, Porter Ricks a créé un sentiment d'espace à la fois industriel et aquatique, faisant écho à la thématique maritime de titres comme « Port Gentil » et « Nautical Zone ». Biokinetics ne se contente pas d'offrir une expérience pour le dancefloor ; il enveloppe l'auditeur dans un environnement soutenu et immersif qui a ouvert la voie au succès ultérieur d'artistes comme Gas (Wolfgang Voigt), qui explorera plus avant une musique électronique monochrome et conceptuelle similaire. Son impact durable est visible à travers les diverses rééditions prestigieuses de l'album dans les années 2010 et au-delà, consolidant sa place en tant que texte essentiel dans l'évolution de la techno ambient et dub moderne.",
+      "source_sha256": "6020931a39a555e4f652f235e0ee0d57464efe285e38847ce1bc2c9f6abd05a2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:19:16.419Z"
+    }
+  }
 }

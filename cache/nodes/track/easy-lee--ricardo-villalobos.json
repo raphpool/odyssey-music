@@ -57,5 +57,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre séminale de la minimal techno, « Easy Lee » de Ricardo Villalobos est célébré pour ses percussions hypnotiques, son traitement vocal unique et son statut de morceau pilier de l'album phare de 2003, Alcachofa.",
+      "article": "« Easy Lee » est l'un des morceaux les plus vénérés de la discographie du producteur d'origine chilienne Ricardo Villalobos, initialement publié comme pièce maîtresse de son chef-d'œuvre de 2003, l'album Alcachofa. Hymne définitif de la minimal techno du début des années 2000, le morceau illustre l'étrange capacité de Villalobos à fusionner une programmation électronique froide et précise avec un sens du rythme chaleureux, presque organique. Caractérisé par ses percussions hypnotiques et entraînantes ainsi que par un crochet vocal distinctif, au pitch modifié et aux sonorités extraterrestres, « Easy Lee » crée un environnement sonore immersif qui semble tout aussi adapté à l'obscurité nocturne d'un club underground qu'à l'écoute attentive à domicile.\n\nSa signification culturelle durable réside dans son refus de se conformer aux structures rigides et répétitives courantes dans la techno de son époque. Au lieu de cela, Villalobos façonne un paysage sonore tentaculaire et complexe qui ressemble à une conversation entre l'homme et la machine, riche en changements subtils et en micro-détails qui récompensent les écoutes répétées. Au fil des décennies, il est devenu une référence de la scène minimal, fréquemment cité par les DJ comme par les fans comme un exemple intemporel de la manière dont une complexité rythmique subtile peut animer un dancefloor aussi efficacement que le plus percutant des morceaux de pointe. Qu'il soit découvert dans le contexte de son album original ou lors de rééditions vinyles ultérieures — comme l'association avec « Dexter » en 2015 — « Easy Lee » demeure une entrée essentielle dans le canon de la musique électronique de danse moderne, représentant le sommet de la vision créative d'un artiste singulier.",
+      "source_sha256": "ae403810da01bb971062605323902c8faa7646e948d74893da674cd0666f6b12",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:41:21.206Z"
+    }
+  }
 }

@@ -112,5 +112,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Réussite monumentale du rock des années 1980, The Joshua Tree mêle une envergure cinématographique et hymnique à un commentaire social profond, définissant pour toujours le son et l'héritage de U2.",
+      "article": "Sorti en mars 1987, The Joshua Tree est le cinquième album studio emblématique du groupe de rock irlandais U2. Produit par Brian Eno et Daniel Lanois, le disque a marqué une transition charnière dans la trajectoire du groupe, l'éloignant des textures ambiantes de ses travaux précédents pour l'orienter vers un son plus direct, axé sur les chansons, mais toujours cinématographique. L'album est profondément enraciné dans une fascination pour la culture américaine — ou plus précisément, dans le contraste entre la perception qu'a le groupe d'une « Amérique mythique » faite d'opportunités et les dures réalités des franges sociales et politiques du pays. Cette exploration thématique a été fortement influencée par les nombreux voyages du chanteur Bono, par la littérature et par le statut grandissant du groupe en tant qu'interprètes mondiaux.\n\nEnregistrées dans divers lieux, notamment Danesmoate House et les Windmill Lane Studios, les sessions de l'album ont été remarquables pour l'accent mis sur la création d'une atmosphère créative et détendue. La collection de titres qui en a résulté, tels que With or Without You, I Still Haven't Found What I'm Looking For et Where the Streets Have No Name, est devenue l'hymne définitif de la fin des années 1980. Le succès de The Joshua Tree a été sans précédent, atteignant le sommet des classements dans plus de 20 pays et valant au groupe deux Grammy Awards, dont celui de l'Album of the Year en 1988. Au-delà de son triomphe commercial immédiat, l'album est largement reconnu comme l'une des œuvres les plus significatives de son époque, capturant l'esprit et la conscience d'une décennie, et cimentant la position de U2 en tant que l'un des premiers groupes de rock au monde. Il demeure un incontournable des listes des plus grands albums de tous les temps et a été intronisé au U.S. National Recording Registry pour son impact culturel durable.",
+      "source_sha256": "62cbd8ac7646e190a78b5efcf19940cc49044e6c2136edc4ee57025754c09c89",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:35:13.786Z"
+    }
+  }
 }

@@ -64,5 +64,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une reprise pop-reggae fluide sortie en 1990 par UB40, caractérisée par leur production soignée et leur style vocal imprégné de soul.",
+      "article": "« Impossible Love » est un single de 1990 du groupe de reggae britannique UB40, publié sur leur propre label DEP International. S'inscrivant dans le prolongement de la série de projets à grand succès « Labour of Love » du groupe, le morceau est une reprise d'un original de 1973 de Honeyboy Keith Williams. L'interprétation d'UB40 conserve leur son reggae poli et orienté pop, caractéristique de leur succès grand public tout au long des années 1980 et 1990.\n\nLe single a été publié sous divers formats, notamment en vinyle 7 pouces, vinyle 12 pouces et CD single, consolidant la capacité du groupe à maintenir une production constante de singles adaptés à la radio durant cette période. La pochette de la sortie présente une peinture célèbre de Barry Kamen. Le morceau lui-même reflète l'approche curatoriale établie d'UB40, où ils réinterprétaient des classiques de la soul et du reggae, en les filtrant à travers leurs arrangements distincts pour atteindre un large public mondial. Bien qu'il ne soit pas aussi emblématique que certains de leurs succès mondiaux massifs comme « Red Red Wine » ou « Can't Help Falling in Love », « Impossible Love » demeure un exemple par excellence du travail de fin de carrière du groupe, mettant en valeur le mélange fluide d'une production soignée, de la voix reconnaissable d'Ali Campbell et des arrangements de cuivres luxuriants qui ont fini par définir leur apogée commercial. À ce stade de leur carrière, le groupe était devenu maître de la reprise reggae, et cette sortie souligne leur dévouement à l'héritage du genre tout en opérant simultanément dans le cadre de la musique populaire des charts britanniques.",
+      "source_sha256": "db322d554186ec5e35ebe299a4aee8128835892ad707e3fb983991956cb13d11",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:18.019Z"
+    }
+  }
 }

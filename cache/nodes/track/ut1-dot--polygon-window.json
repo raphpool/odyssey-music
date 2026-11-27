@@ -69,5 +69,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« UT1-Dot » est un morceau d'IDM séminal du projet Polygon Window de Richard D. James, célèbre pour figurer sur l'album *Surfing on Sine Waves* paru en 1993 chez Warp Records.",
+      "article": "« UT1-Dot » est un morceau électronique pionnier de Richard D. James, publié sous son pseudonyme Polygon Window sur l'album *Surfing on Sine Waves* en 1993. Apparu au début des années 1990 au sein de l'avant-garde de la scène intelligent dance music (IDM), le morceau témoigne de la capacité singulière de James à mêler une programmation rythmique complexe et saccadée à des textures synthétiques riches et émotives. Le morceau est largement reconnu pour sa complexité structurelle, où des percussions frénétiques sont équilibrées par des nappes éthérées et enveloppantes qui créent un sentiment d'espace profond et mélancolique.\n\nEn tant que point fort de l'album *Surfing on Sine Waves* — qui fut l'une des premières parutions de l'influente série « Artificial Intelligence » de Warp Records — « UT1-Dot » a contribué de manière significative à définir le son de l'expérimentation électronique du début des années 90. Alors que nombre de ses pairs se concentraient sur l'hédonisme incessant de la rave music, James explorait une approche du séquençage plus introspective et cérébrale. L'héritage durable du morceau est attesté par son inclusion dans des bandes originales de films, comme le classique culte *Blade* en 1998, cimentant davantage son statut de pièce emblématique de la musique électronique qui transcende les contraintes habituelles du dancefloor. Il demeure un cours magistral de production, démontrant une attention méticuleuse à la conception sonore qui a influencé des générations de producteurs électroniques.",
+      "source_sha256": "fef6ba632b4d0d36151030b61a155b8df0f2f9464af1fa6f7942cd4955f22603",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:24.779Z"
+    }
+  }
 }

@@ -147,5 +147,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "www.thug.com est le deuxième album studio définitif de l'icône du hip-hop de Miami Trick Daddy, marquant une étape importante dans l'expansion du rap du Sud à la fin des années 1990. Sorti en 1998, l'album contient son succès retentissant « Nann Ni**a » et capture l'esprit brut et sans complexe de la vie de rue à Miami, contribuant à élever le label Slip-N-Slide et la scène hip-hop de Floride au rang de notoriété nationale.",
+      "article": "Sorti en septembre 1998, www.thug.com constitue un moment charnière dans la trajectoire du hip-hop du Sud. En tant que deuxième album studio du rappeur de Miami Trick Daddy, le disque a joué un rôle déterminant dans la création d'une identité sonore distincte pour la Floride sur la scène nationale, dépassant l'ombre des scènes rap de New York et de Los Angeles. Le titre de l'album, utilisant le format d'une adresse web, capturait l'ère numérique naissante tout en restant fermement ancré dans les récits de rue crus du quartier de Liberty City à Miami. À travers ce projet, Trick Daddy a présenté un mélange de basse du Sud agressive, de production brute et d'un débit authentique et conversationnel qui a trouvé un écho profond auprès de son public local et a fini par captiver les auditeurs à l'échelle nationale.\n\nAu cœur du succès de l'album se trouvait le single explosif « Nann Ni**a », avec un premier couplet de Trina. Ce morceau a fait bien plus que se classer dans les charts ; il a changé le paysage pour les rappeuses du Sud et a établi un partenariat créatif qui définirait une grande partie de la carrière ultérieure de Trick Daddy. L'album fait office de masterclass dans l'esthétique « Dirty South », équilibrant des morceaux orientés vers la fête avec des commentaires introspectifs au niveau de la rue. Sous la direction du label alors montant Slip-N-Slide Records, www.thug.com n'a pas simplement servi de collection de chansons, mais de manifeste culturel qui a projeté la réalité de la scène hip-hop underground de Miami au monde entier. Des décennies plus tard, il reste un texte fondateur dans le canon du rap de Floride, mémorable pour sa valeur de production brute, son rôle dans le développement de légendes locales et sa fierté régionale sans complexe. Le projet demeure une écoute incontournable pour quiconque s'intéresse aux années fondatrices de l'évolution du hip-hop moderne du Sud, marquant le moment où Miami a fermement revendiqué sa place dans l'histoire du genre.",
+      "source_sha256": "b66203e642e5e5d983e4d709af6cbb42cacd95e28d664459c2a0374214679516",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:37:18.180Z"
+    }
+  }
 }

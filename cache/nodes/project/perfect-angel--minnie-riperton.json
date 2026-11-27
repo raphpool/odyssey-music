@@ -117,5 +117,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre soul-rock marquant de 1974, Perfect Angel met en lumière l'époustouflante tessiture de cinq octaves de Minnie Riperton et contient le tube emblématique « Lovin' You », produit par Stevie Wonder sous le pseudonyme El Toro Negro.",
+      "article": "Publié en 1974 par Epic, Perfect Angel constitue le deuxième album, déterminant pour sa carrière, de la chanteuse soul américaine Minnie Riperton. Sortant d'une période de semi-retraite en Floride, Riperton fut découverte par un stagiaire de Epic et emmenée à Los Angeles, où elle collabora avec la légende de la musique Stevie Wonder. En raison des obligations contractuelles de Wonder envers Motown, il produisit le disque sous le pseudonyme « El Toro Negro » aux côtés du mari de Riperton, Richard Rudolph. Le résultat est un chef-d'œuvre lumineux qui défie les genres et jette des ponts entre le folk-rock, le R&B et la pop avec un sentiment de « spiritualité sensuelle ».\n\nMusicalement, Perfect Angel est célébré pour sa production éclectique, qui utilise la synthèse caractéristique de Wonder et l'ingénierie experte de Malcolm Cecil et Robert Margouleff pour créer un paysage sonore chaleureux et invitant. L'album est peut-être plus célèbre pour sa piste finale, « Lovin' You », une tendre berceuse que Riperton avait écrite à l'origine pour sa fille, Maya Rudolph, et qui devint un succès international numéro 1 inattendu. Au-delà du succès dans les classements, le disque est estimé pour mettre en valeur la remarquable tessiture vocale de cinq octaves de Riperton et sa capacité à tisser des émotions complexes dans une écriture accessible. Avec son mélange de charme « bucolique » et de soul sophistiquée, Perfect Angel demeure une pierre angulaire de la soul des années 1970 et continue d'influencer des artistes néo-soul modernes comme Erykah Badu. Il reste le seul album certifié disque d'or de la carrière de Riperton, cimentant son héritage en tant que figure emblématique de l'histoire de la musique soul.",
+      "source_sha256": "65c05052a5177605d6b3225417f52538dc5bac3bae6241081c93408d34eae851",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:30:21.130Z"
+    }
+  }
 }

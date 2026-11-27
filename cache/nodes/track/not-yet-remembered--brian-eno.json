@@ -55,5 +55,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une composition obsédante, dépouillée et éthérée menée au piano, issue de la collaboration ambient classique de 1980 entre Brian Eno et Harold Budd.",
+      "article": "« Not Yet Remembered » est une pièce séminale de musique ambient, publiée en 1980 dans le cadre de l'album collaboratif historique Ambient 2: The Plateaux Of Mirror par le visionnaire électronique anglais Brian Eno et le compositeur minimaliste américain Harold Budd. Le morceau constitue un témoignage profond de l'esthétique de la première musique ambient, caractérisé par des mélodies de piano clairsemées et délicates qui semblent suspendues dans un vaste espace résonnant. Grâce à une application minutieuse des techniques de production, Eno enveloppe l'interprétation au piano de Budd dans une scène sonore résonnante, brouillant les frontières entre la composition traditionnelle et la conception sonore atmosphérique.\n\nHistoriquement, la collaboration a émergé du désir d'Eno d'explorer « the plateaux of mirror » — un environnement sonore tranquille, contemplatif et physiquement évocateur. L'œuvre qui en a résulté, incluant « Not Yet Remembered », s'est avérée très influente dans le façonnement du genre ambient, démontrant comment des textures instrumentales limitées pouvaient créer des paysages émotionnels profonds. Le morceau ne repose pas sur une structure de chanson traditionnelle ; il fonctionne plutôt comme un environnement sonore, permettant à l'auditeur de dériver à travers son arrangement dépouillé. Il demeure un pilier du canon ambient des années 1980, capturant un moment où le traitement électronique expérimental rencontrait la nature ancrée et introspective du minimalisme moderne pour piano. Son héritage durable réside dans sa simplicité, prouvant qu'un mouvement minimal peut évoquer des résonances profondes et persistantes.",
+      "source_sha256": "7b1062692932b32616ff7f454a526103dda300b36944d60b2203496c13477d70",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:46:24.627Z"
+    }
+  }
 }

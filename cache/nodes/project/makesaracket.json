@@ -116,5 +116,14 @@
       "name": "Mike Paradinas"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Makesaracket est le premier album du prolifique producteur de musique électronique Mike Paradinas sous son alias Jake Slazenger, offrant une exploration ludique et teintée de jazz de l'IDM qui diverge de ses productions plus intenses sous le nom de µ-Ziq. Sorti en 1995 sur Clear, le disque capture un moment précis de la musique électronique britannique où la précision mécanique du genre a commencé à embrasser le swing et la chaleur des samples de funk et de soul.",
+      "article": "Sorti en 1995 sur le label séminal Clear, Makesaracket constitue une entrée vibrante et rythmique dans la vaste discographie du musicien électronique britannique Mike Paradinas. Opérant sous le pseudonyme de Jake Slazenger — un personnage spécifiquement conçu pour ses expérimentations plus humoristiques, axées sur le funk et structurellement libres — Paradinas façonne un paysage sonore qui comble le fossé entre les textures froides et cérébrales de l'IDM du début des années 90 et les grooves souples et swinguants du jazz et du funk. Contrairement aux arrangements souvent denses, abstraits et frénétiques trouvés dans son travail sous le nom de µ-Ziq, Makesaracket semble remarquablement tactile et accueillant. L'album se caractérise par son utilisation ludique des breakbeats et une sensibilité mélodique entraînante, souvent menée par des claviers fantaisistes.\n\nLe projet témoigne de la polyvalence de Paradinas au milieu des années 90, une période définie par une explosion d'expérimentations créatives au sein de la scène électronique britannique. En incorporant des influences issues de l'electro et du nu-jazz, les morceaux — tels que le titre phare « Megaphonk » — affichent un équilibre magistral entre rythme mécanique et sensation organique, évitant la rigidité qui affectait souvent la musique électronique contemporaine de l'époque. Bien qu'il soit périodiquement négligé au profit de ses projets plus « sérieux », Makesaracket demeure un favori culte parmi les auditeurs qui apprécient le côté plus jovial de l'electronica. Il capture un artiste s'amusant avec ses outils, refusant de prendre trop au sérieux l'atmosphère solennelle de l'IDM de l'époque, tout en maintenant les standards de production de haut niveau et la complexité technique pour lesquels il est renommé. C'est une écoute essentielle pour ceux qui s'intéressent à la pollinisation croisée entre la musique électronique breakbeat et les motifs de jazz vintage.",
+      "source_sha256": "dccb929e91bac89d02a0e3548d565f398fba296e3aaafa2f93cfbd07900d6996",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:22.850Z"
+    }
+  }
 }

@@ -44,5 +44,14 @@
   "producers": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Original Nuttah », sorti en 1994, s'impose comme l'un des hymnes les plus emblématiques de l'explosion jungle au Royaume-Uni.",
+      "article": "« Original Nuttah », sorti en 1994, s'impose comme l'un des hymnes les plus emblématiques de l'explosion jungle au Royaume-Uni. Produit par le légendaire Shy FX et porté par les voix pleines d'énergie et teintées de dancehall de UK Apachi, le morceau a capturé l'effervescence frénétique et multiculturelle de la scène rave londonienne durant une année charnière pour le genre. La chanson se caractérise par ses breakbeats contagieux, un sample du film Les Affranchis et le style vocal rapide et distinctif de UK Apachi.\n\nLes origines de « Original Nuttah » remontent aux premiers concepts lyriques de UK Apachi, développés des années avant sa rencontre avec Shy FX. En entendant le rythme « Gangsta Kid », Apachi a compris qu'il s'agissait du véhicule idéal pour ses idées de longue date. La session de studio qui en a résulté fut remarquablement efficace, la performance vocale finale ayant été enregistrée en seulement deux prises. Le morceau a rapidement transcendé le circuit rave underground, atteignant le Top 40 britannique et s'imposant comme une référence culturelle célébrée, remixée et samplée au cours des décennies suivantes.\n\nAu-delà de son impact sonore, « Original Nuttah » est le produit d'un environnement spécifiquement britannique et multiculturel. UK Apachi a puisé dans ses expériences au sein de la culture sound system londonienne, cherchant à apporter une approche de l'écriture inspirée du reggae dans l'espace jungle en pleine mutation. Malgré des complications concernant les droits et la reconnaissance dans l'industrie — qui ont souvent vu le producteur crédité plus largement que le chanteur — le morceau demeure une collaboration monumentale qui a défini l'identité « junglist » pour toute une génération. Il a comblé le fossé entre l'énergie brute de la rue et le succès dans les classements nationaux, assurant son héritage en tant que classique incontesté et définitif du genre, véritable Sound of the Underground.",
+      "source_sha256": "6606e9c24c488b99db7387e209037c31d37088647013a242d63af55d6de977f9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:47:13.372Z"
+    }
+  }
 }

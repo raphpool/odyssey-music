@@ -73,5 +73,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un interlude instrumental bref, mélancolique et saturé de bande magnétique issu du premier album acclamé de Boards of Canada en 1998, Music Has The Right To Children.",
+      "article": "Kaini Industries est une pièce instrumentale brève et évocatrice du duo électronique écossais Boards of Canada, publiée en tant que huitième piste de leur premier album studio séminal de 1998, Music Has The Right To Children. D'une durée d'un peu moins d'une minute, le morceau sert d'interlude délicat et atmosphérique au sein de la vaste tapisserie d'electronica nostalgique et saturée de bande magnétique qui compose l'album. Contrairement aux morceaux plus rythmiques et axés sur les percussions qui définissent une grande partie des premières productions du duo — tels que Roygbiv ou Telephasic Workshop — Kaini Industries se concentre sur une mélodie brumeuse et mélancolique qui semble suspendue dans le temps, caractéristique de la signature sonore de Boards of Canada.\n\nLe morceau capture l'intérêt caractéristique du duo pour la synthèse analogique, la texture environnementale et un sentiment de « hauntology », où les artefacts audio et les tonalités synthétisées évoquent des souvenirs d'enfance à moitié oubliés. Son placement sur Music Has The Right To Children souligne la maîtrise du séquençage par le duo, offrant un moment de calme et d'introspection au milieu de la programmation complexe des batteries et des complexités rythmiques qui caractérisent l'album. Bien que bref, Kaini Industries est fréquemment cité par les fans et les critiques comme un élément essentiel de l'univers cohérent et immersif du disque, démontrant la capacité du duo à susciter une résonance émotionnelle profonde par des moyens minimaux. Le morceau demeure un exemple par excellence des styles downtempo et IDM (Intelligent Dance Music) qui ont prospéré à la fin des années 1990 sous l'égide de Warp Records. Il reste un favori des fans, souvent loué pour sa capacité à transmettre une atmosphère profonde en une durée extrêmement courte. En intégrant ces esquisses fugaces et émotives à des paysages sonores expansifs, le duo a consolidé sa place de pionnier de la musique électronique atmosphérique de la fin des années 90, influençant des générations de producteurs qui continuent d'explorer les intersections entre mémoire, technologie et mélodie.",
+      "source_sha256": "2ffbf6f7d90cfb25b082ba92f7953c09913137bb42acd9bd2a2a1d3019210b68",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:44:22.786Z"
+    }
+  }
 }

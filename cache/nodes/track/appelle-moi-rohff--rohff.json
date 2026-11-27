@@ -45,5 +45,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier maxi single du rappeur français Rohff, produit par DJ Mehdi et sorti en 1998 en tant que précurseur de son premier album studio.",
+      "article": "Appelle-moi Rohff est le premier maxi single du rappeur français Rohff, sorti le 16 avril 1998 sous les labels Espionnage, Phénomène Records et Chronowax. Cette sortie fondatrice a servi de précurseur à son premier album studio, Le Code de l'honneur, qui a suivi en 1999. Le maxi bénéficie de la production de l'influent DJ Mehdi, qui a fourni les paysages sonores tant pour le titre éponyme que pour la face B, Despee. Bien que les deux morceaux aient été inclus sur la version vinyle, seul le titre éponyme a été sélectionné pour figurer sur l'album studio ultérieur. La sortie est notable pour une erreur orthographique mineure sur la pochette du vinyle, où le titre a été écrit avec une faute de conjugaison. Il demeure un artefact significatif de la discographie précoce de Rohff, marquant son entrée sur la scène rap française à la fin des années 1990.",
+      "source_sha256": "2ef5b9f43fd725c0e70cf484a1d0b3084b823d78d35a91764a1612dc84134972",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:38:12.983Z"
+    }
+  }
 }

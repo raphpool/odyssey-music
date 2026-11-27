@@ -24,5 +24,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "EP emblématique de 1999 des pionniers allemands Mouse on Mars, « Diskdusk » mêle textures glitch abstraites et structures de chansons inventives et ludiques, agissant comme un pont sonore vital vers leur album classique « Niun Niggung ».",
+      "article": "« Diskdusk » est un EP influent du duo électronique allemand Mouse on Mars, sorti en 1999. Servant de pont crucial entre leurs racines IDM abstraites et les explorations mélodiques et rythmiques présentes sur leur album phare « Niun Niggung », cet EP capture le duo au sommet de sa créativité de la fin des années 90. Produit par Andi Toma et Jan St. Werner au St. Martin Tonstudio, le projet met en valeur l'esthétique glitch caractéristique du duo, marquée par des percussions nerveuses, des textures synthétiques ludiques et une approche imprévisible, proche du collage, dans la construction des morceaux.\n\nL'EP se distingue par son refus de s'inscrire dans un genre unique, oscillant avec fluidité entre techno expérimentale, électronique ambiante et sensibilité pop. Le morceau-titre, « Diskdusk », donne le ton avec sa conception sonore aux couches complexes, tandis que des titres ultérieurs comme « Presenter » et « Stammtick » soulignent davantage la capacité du duo à équilibrer complexité technique et sens de l'amusement et de l'absurde. Pour les auditeurs de la scène électronique underground de la fin des années 90, « Diskdusk » demeure un artefact essentiel qui reflète l'esprit novateur du label Sonig et de la scène électronique allemande au sens large, consolidant la réputation de Mouse on Mars en tant que pionniers de la composition non linéaire et de l'expérimentation sonore. Sa courte durée dément son impact, offrant une expérience dense et gratifiante qui constitue un élément vital pour comprendre la discographie du duo.",
+      "source_sha256": "561da9450e507e9d0afb3a01415f260ededb42c472f269544297441671c0b5c6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:17.780Z"
+    }
+  }
 }

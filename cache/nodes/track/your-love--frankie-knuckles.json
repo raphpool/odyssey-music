@@ -48,5 +48,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Your Love » est un morceau fondateur dans l'histoire de la musique électronique, servant d'hymne définitif de la house de Chicago.",
+      "article": "« Your Love » est un morceau fondateur dans l'histoire de la musique électronique, servant d'hymne définitif de la house de Chicago. Conçu par Frankie Knuckles dans la cabine de DJ du Power Plant, le morceau a été créé avec une boîte à rythmes empruntée à Derrick May et présente la voix de Jamie Principle. Sa signature sonore est marquée par une ligne de synthétiseur arpégée emblématique associée à une ligne de basse analogique épaisse, des éléments qui capturent l'esprit des débuts de l'acid house et continuent d'influencer la production de musique dance des décennies plus tard. Au-delà de son rôle sur la scène de Chicago, la chanson est devenue une pierre angulaire culturelle majeure, reconnue internationalement comme un hymne pour le Summer of Love britannique de 1989. Sa longévité culturelle est attestée par son influence étendue, ayant été samplée par des artistes comme Animal Collective et reprise ou réinterprétée sous diverses formes par beaucoup d'autres. Souvent décrit comme un équilibre entre spiritualité soul et énergie sexuelle plus sombre, « Your Love » demeure un disque essentiel qui a transcendé la piste de danse pour devenir un élément permanent de l'histoire de la musique moderne. Frankie Knuckles, largement considéré comme le « parrain de la house », a utilisé sa sensibilité de production unique pour créer un morceau qui défie la date de péremption typique de la musique de club, assurant sa place de classique indémodable dans la culture électronique.",
+      "source_sha256": "5f04775622bf77e345c7d7329a3006d48f95d5ce68d78eac1d9ea5fb43835fc2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:54:13.034Z"
+    }
+  }
 }

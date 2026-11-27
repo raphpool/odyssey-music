@@ -36,5 +36,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« scriptures. » est un morceau de hip-hop/rap épuré de deux minutes sorti en 2025 par l'artiste db., soulignant le style de production direct et prolifique emblématique de sa production moderne.",
+      "article": "« scriptures. » est un single hip-hop/rap de 2025 de l'artiste connu sous le nom de db., sorti le 31 janvier 2025. Le morceau, qui dure deux minutes et dix-huit secondes, a émergé dans le cadre de la production prolifique de l'artiste au milieu des années 2020, une période marquée par une série de singles et de projets tels que « Grime Sessions ». Dans le contexte plus large de l'œuvre de l'artiste, « scriptures. » met en valeur l'approche épurée et directe de la production et de l'interprétation vocale caractéristique de sa production contemporaine. En se concentrant sur la brièveté et l'impact, le morceau reflète le modèle de distribution rapide et numérique des scènes hip-hop et grime modernes. Le titre de la chanson, écrit en minuscules avec un point — un choix stylistique courant parmi les artistes électroniques et hip-hop contemporains — pointe vers une esthétique ancrée dans la présentation à l'ère d'Internet et une image de marque discrète. Il sert d'exemple concis de la capacité de l'artiste à maintenir un flux constant de matériel pour un public engagé sur les plateformes de streaming et les sous-genres de niche en évolution. L'œuvre est représentative d'une époque où les morceaux isolés agissent comme la monnaie principale pour maintenir la visibilité et la connexion avec le public. Cette chanson fait partie du mouvement rap indépendant plus large qui met l'accent sur les sorties à haute fréquence et l'identité individuelle au sein du paysage du streaming. Tout au long de cette période, db. a consolidé sa réputation en livrant un contenu cohérent et rythmé qui résonne auprès des fans de rap underground moderne et d'esthétiques adjacentes à la grime. La durée et la structure de la chanson en font une étude idéale de l'efficacité des techniques de production modernes, où chaque seconde est utilisée pour établir une ambiance et une cadence spécifiques, laissant peu de place au remplissage inutile. Il s'agit d'un moment charnière dans la discographie de l'artiste, comblant le fossé entre ses premiers travaux expérimentaux et ses sorties rap plus ciblées que l'on trouve dans des projets comme « Grime Sessions ».",
+      "source_sha256": "74f36c78518c0ccb99bd951bcb6bae6ba308f0c9d92b1585d16b22a16b33639b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:25.325Z"
+    }
+  }
 }

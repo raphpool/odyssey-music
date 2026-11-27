@@ -61,5 +61,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Hymne fondateur de l'IDM, « µ-Ziq Theme » est la déclaration d'ouverture du premier album de Mike Paradinas en 1993, Tango N'Vectif, illustrant une fusion unique de rythmes breakbeat et d'expérimentalisme mélodique.",
+      "article": "« µ-Ziq Theme » sert de déclaration d'ouverture fondatrice au premier album de Mike Paradinas sous le nom de µ-Ziq, Tango N'Vectif, sorti en 1993 sur le label pionnier Rephlex Records de Richard D. James. En tant que l'une des premières explorations longue durée du son IDM (Intelligent Dance Music), le morceau établit l'équilibre caractéristique du projet entre des textures expérimentales infusées de glitch et une sensibilité rythmique profondément ancrée dans le breakbeat et la techno. Paradinas, opérant au sein de la scène électronique underground britannique, a façonné ici un son à la fois complexe et accessible, des qualités qui allaient définir non seulement sa carrière, mais aussi la production de son futur label, Planet Mu.\n\nMusicalement, « µ-Ziq Theme » représente un moment charnière de la production électronique du début des années 90, signalant un éloignement de la techno standard orientée vers les clubs au profit de compositions plus aventureuses, destinées à une écoute domestique. Le morceau utilise des couches de mélodies synthétiques et une programmation rythmique complexe qui défient l'auditeur tout en conservant un noyau mélodique cohérent. Son inclusion sur Tango N'Vectif a contribué à consolider la réputation du label Rephlex en tant que plaque tournante pour des artistes novateurs défiant les genres, refusant de se conformer aux attentes conventionnelles des pistes de danse. En mélangeant l'énergie frénétique du breakbeat britannique contemporain avec une approche singulièrement mélodique, presque fantaisiste, de la programmation de synthétiseurs, le morceau encapsule l'essence du projet µ-Ziq, illustrant la capacité de Paradinas à créer des paysages sonores électroniques immersifs et personnels qui demeurent influents des décennies après leur sortie initiale. À travers ce morceau, les auditeurs pénètrent dans un monde où la musique produite par des machines est imprégnée d'une curiosité humaine distincte.",
+      "source_sha256": "92923bec13ee2c7f3a6a186d879219e9c1e239de74d125e3132fc64a6b5c43a9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:54:13.272Z"
+    }
+  }
 }

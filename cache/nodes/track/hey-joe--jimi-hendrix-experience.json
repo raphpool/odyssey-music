@@ -71,5 +71,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Hey Joe » est l'un des standards les plus reconnaissables et les plus durables de l'ère rock des années 1960, une chanson dont le récit de désespoir et de fuite a été réinterprété par d'innombrables artistes.",
+      "article": "« Hey Joe » est l'un des standards les plus reconnaissables et les plus durables de l'ère rock des années 1960, une chanson dont le récit de désespoir et de fuite a été réinterprété par d'innombrables artistes. Au fond, le morceau raconte une histoire austère et glaçante : un homme a abattu sa femme infidèle et se prépare frénétiquement à fuir au Mexique pour échapper à la justice. Ce récit folk de style « question-réponse », profondément ancré dans les traditions du blues américain et des ballades de meurtres, a acquis une dynamique culturelle massive pendant l'explosion du garage rock au milieu des années 1960. Bien qu'officiellement déposée par le musicien folk Billy Roberts en 1962, la provenance de la chanson reste un sujet de débat historique, avec des fils conducteurs de sa mélodie et de sa structure thématique pouvant être retracés jusqu'à des œuvres traditionnelles plus anciennes comme « Little Sadie ».\n\nLa trajectoire de la chanson vers le canon du rock a commencé sur la scène musicale de Los Angeles au milieu des années 1960, où elle a été rapidement adoptée et enregistrée par une multitude de groupes, dont The Leaves, The Byrds et The Surfaris. Cependant, la transformation définitive de « Hey Joe » en une pièce monumentale de l'histoire du rock s'est produite avec Jimi Hendrix. L'enregistrement de 1966 de Hendrix, son premier single avec le Jimi Hendrix Experience, a redéfini la chanson grâce à son approche révolutionnaire de la guitare électrique, fusionnant le grain du blues avec une sensibilité avant-gardiste qui a marqué l'arrivée d'une nouvelle époque musicale. La version de Hendrix, célèbre pour son tempo régulier et menaçant ainsi que pour ses solos incandescents aux allures d'improvisation, a cimenté la chanson comme une pierre angulaire des genres psychédélique et hard rock. L'attrait durable de « Hey Joe » ne réside pas seulement dans sa progression d'accords circulaire et accrocheuse, mais dans sa qualité sombre et cinématographique : un conte de violence et de transgression qui reste aussi captivant aujourd'hui qu'il l'était lorsqu'il a imprégné les ondes pour la première fois dans les années 1960.",
+      "source_sha256": "df3b642da6be134ddaeaf1a9db39ece55d9e1a6a41c13a96e5b1ca86e70650d8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:43:21.045Z"
+    }
+  }
 }

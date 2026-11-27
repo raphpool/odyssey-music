@@ -56,5 +56,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une collaboration contemplative et atmosphérique entre le violoncelliste Peter Gregson et le pianiste Lambert, mêlant profondeur classique moderne et textures de piano minimalistes.",
+      "article": "« The Dive » est un morceau instrumental collaboratif sorti en 2020 par le célèbre violoncelliste et compositeur britannique Peter Gregson et l'énigmatique pianiste allemand Lambert. Représentant une intersection délicate entre les sensibilités classique moderne et ambient, la pièce prospère sur l'interaction conversationnelle entre le violoncelle riche et émotif de Gregson et le phrasé de piano minimaliste et percussif de Lambert.\n\nPublié via le label von der haardt, le morceau sert d'exemple parfait du dialogue minimaliste piano-violoncelle qui a caractérisé une grande partie de la scène classique contemporaine du milieu à la fin des années 2010. La collaboration reflète les signatures artistiques distinctes des deux créateurs : l'engagement de Gregson à explorer les frontières traditionnelles du violoncelle à travers des traitements électroniques subtils, et la personnalité emblématique de Lambert, portant un masque, qui souligne l'anonymat et la pureté de l'instrument. « The Dive » ne vise pas les grands sommets mais occupe plutôt un espace contemplatif et intérieur, construisant une atmosphère sonore qui semble simultanément intime et vaste. C'est une œuvre qui capture l'essence de la capacité de la musique « neo-classical » à fournir un paysage sonore méditatif aux auditeurs dans un monde de plus en plus numérique et distrait. Les deux artistes ont maintenu des carrières prolifiques, Gregson étant célébré pour ses réinterprétations des suites de Bach et Lambert pour ses œuvres pour piano distinctement mélancoliques, faisant de leur rare collaboration un point de convergence notable au sein du paysage instrumental européen contemporain.",
+      "source_sha256": "b1a126c2940357da6ae97da127922ccd57411c9fe8661318bce4833ff11d77fc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:14.799Z"
+    }
+  }
 }

@@ -93,5 +93,14 @@
       "type": "project",
       "name": "Electric Café"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Sorti en 1981, 'Computer World' constitue un jalon définitif de la musique électronique, cartographiant conceptuellement l'intersection entre l'humanité et l'ère numérique naissante à travers une synthèse cristalline et minimaliste. Il demeure un chef-d'œuvre d'architecture sonore qui a prédit l'omniprésence de l'informatique moderne tout en démontrant le potentiel émotionnel des machines.",
+      "article": "'Computer World' (en allemand : 'Computerwelt'), sorti en 1981, est le huitième album studio du groupe électronique allemand pionnier Kraftwerk. Enregistré dans leur légendaire studio Kling Klang à Düsseldorf, l'album était une œuvre conceptuelle tournée vers l'avenir qui étudiait l'essor de la technologie informatique, de la communication numérique et l'évolution du paysage social à l'aube de l'ère de l'information. Malgré son orientation numérique, la production de l'album était entièrement analogique, s'appuyant sur des équipements et des séquenceurs conçus sur mesure pour façonner la précision glaciale et rythmique qui allait définir l'héritage du groupe et influencer tout, du synth-pop et de l'electro au hip-hop primitif et à la techno.\n\nL'album est un portrait équilibré d'un « computer world », oscillant entre l'enthousiasme pour le progrès technologique et des avertissements subtils sur le contrôle social et la surveillance. Des chansons comme « Pocket Calculator » et le titre éponyme « Computer World » traitent les machines à la fois comme des jouets et des outils, tandis que « Computer Love » a introduit un élément humain étonnamment mélancolique dans les arrangements électroniques froids. Sa palette sonore — une évolution raffinée des structures établies sur 'The Man-Machine' — est caractérisée par des voix robotiques, un séquençage staccato et des mélodies contagieuses aux lignes épurées.\n\nÀ sa sortie, l'album a été accompagné d'une tournée mondiale ambitieuse qui a consolidé le statut de figures visionnaires de Kraftwerk. Les singles, dont le succès classé numéro 1 au Royaume-Uni « Computer Love » (dans sa sortie ultérieure en double face A), ont porté leur esthétique rythmique austère auprès du grand public. Plus de quatre décennies plus tard, 'Computer World' est reconnu non seulement pour son innovation technique, mais comme un document artistique prémonitoire qui a capturé avec précision les premières anxiétés et les possibilités d'une société sur le point d'être entièrement connectée par la technologie informatique. Son influence demeure incommensurable, résonnant à travers les fondations de pratiquement tous les genres de musique électronique modernes. La pochette minimaliste de l'album, présentant un terminal Hazeltine 1500, demeure l'une des images les plus emblématiques de l'histoire de la musique électronique.",
+      "source_sha256": "ecc7e8670e71bfb86a49ab7953f5d4beb7f7ad0300bc9e115fe02f2c4b064cdf",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:20:18.327Z"
+    }
+  }
 }

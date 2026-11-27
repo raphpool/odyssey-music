@@ -73,5 +73,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« The Beach Stop » est le morceau d'ouverture de l'album « Parastrophics » paru en 2012, une sortie charnière dans la discographie du duo électronique allemand Mouse on Mars.",
+      "article": "« The Beach Stop » est le morceau d'ouverture de l'album « Parastrophics » paru en 2012, une sortie charnière dans la discographie du duo électronique allemand Mouse on Mars. Publié sur le label Monkeytown Records, le morceau illustre l'approche caractéristique du duo en matière de musique électronique complexe et ludique, un style qui intègre fréquemment des esthétiques glitch, des rythmes fragmentés et un sens de l'invention hyper-cinétique. Dans le contexte de l'album « Parastrophics », « The Beach Stop » agit comme un manifeste sonore, établissant un ton de synthèse modulaire imprévisible et d'agilité rythmique qui a défini le retour au premier plan de Mouse on Mars au début des années 2010.\n\nLe duo, composé de Andi Toma et Jan St. Werner, est une pierre angulaire de la scène électronique allemande depuis le milieu des années 1990, évoluant de ses racines IDM vers un projet plus vaste et brouillant les pistes entre les genres. Sur « The Beach Stop », les auditeurs découvrent les marques de cette évolution : un style de production dense et stratifié qui demeure pourtant aérien et accessible. Au moment de la sortie de ce morceau en 2012, le groupe avait consolidé sa réputation de maître du design sonore, capable d'équilibrer l'abstraction cérébrale avec une énergie propulsive qui a résonné profondément au sein de la scène électronique underground. Le morceau demeure un point d'entrée essentiel pour les auditeurs cherchant à explorer la période ultérieure du duo, hautement raffinée en matière d'expérimentation en studio, démontrant comment ils ont continué à innover tout en conservant la curiosité contagieuse qui caractérisait leurs premiers travaux. L'album a été produit par Andi Toma et Jan St. Werner et a été distribué via Monkeytown Records. En tant que morceau de l'album, il met en valeur le son signature de Mouse on Mars à cette époque. D'autres artistes associés au genre incluent Autechre, Boards of Canada et Aphex Twin, qui ont tous exploré des paysages sonores électroniques expérimantaux similaires au cours de leur carrière, fournissant un contexte culturel à cette sortie.",
+      "source_sha256": "4a30482ae99ca34f4c5e0da52422c7cd40ebdb351b99def1d60b1f4135b41fae",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:50:23.355Z"
+    }
+  }
 }

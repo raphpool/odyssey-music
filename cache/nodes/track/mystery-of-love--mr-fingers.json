@@ -44,5 +44,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre séminal de la house music de Chicago, le classique de 1985 de Larry Heard a défini la texture profonde et émotionnelle qui est devenue la marque de fabrique du genre.",
+      "article": "« Mystery of Love » est un hymne fondateur de la deep house, sorti à l'origine en 1985 par Larry Heard sous son alias séminal, Mr. Fingers. Souvent cité comme l'un des piliers essentiels du son house de Chicago, le morceau a émergé de la scène club florissante de la ville, se distinguant par une palette sonore mélancolique, émotive et sophistiquée qui défiait les tropes plus agressifs et axés sur la batterie de la première house music. En privilégiant des synthétiseurs riches et lunatiques ainsi qu'une ligne de basse profonde et entraînante plutôt que la simple répétition percussive, Heard — aux côtés de collaborateurs comme le trio Fingers Inc. — a élaboré un modèle qui a effectivement donné naissance au genre « deep house ». L'importance du morceau s'étend bien au-delà de sa sortie initiale ; il a agi comme un catalyseur pour l'expansion mondiale de la musique électronique de danse, démontrant que la house pouvait transmettre une profondeur émotionnelle et une texture atmosphérique profondes. Sa sortie sur Alleviated Records en 1985, suivie d'une large distribution via D.J. International Records en 1986, a solidifié son statut de classique immuable. Des décennies plus tard, « Mystery of Love » demeure une pièce maîtresse du genre, fréquemment référencée et samplée, et servant de pierre de touche pour des générations de producteurs qui continuent d'explorer l'intersection entre rythmes générés par des machines et âme humaine. La capacité de Larry Heard à équilibrer les limites techniques du matériel des années 1980 avec une approche musicale hautement intuitive a assuré la pertinence durable du morceau, le marquant non pas simplement comme un outil de piste de danse, mais comme une pièce marquante de la composition musicale moderne.",
+      "source_sha256": "1ee1d1a532f565e2dc86f0e0f576f40fdd7c5d369d270652a40efc73200b0192",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:46:17.614Z"
+    }
+  }
 }

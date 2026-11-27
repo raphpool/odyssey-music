@@ -55,5 +55,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une pièce pour piano mélancolique et magnifique issue de l'album Syro d'Aphex Twin, célèbre pour son titre formé en inversant le prénom de sa femme.",
+      "article": "aisatsana [102] est une composition pour piano délicate et mélancolique du producteur électronique Aphex Twin, servant de morceau de clôture poignant à son album studio de 2014, Syro. Bien qu'Aphex Twin soit mondialement reconnu pour son travail pionnier, souvent abrasif et complexe dans les domaines de l'IDM, de l'ambient techno et de l'acid, cette pièce représente un écart marqué vers les sphères de la musique classique moderne et du piano minimaliste. Le titre lui-même agit comme un hommage subtil, étant le prénom de la femme de l'artiste, Anastasia, épelé à l'envers.\n\nLe morceau se caractérise par ses mélodies de piano simples et lyriques, superposées à de légers enregistrements de terrain ambiants d'oiseaux, qui confèrent à la composition une atmosphère contemplative et champêtre. Ses origines remontent à 2012, deux ans avant la sortie de Syro, lorsqu'il a été initialement composé et interprété sur un piano mécanique suspendu pour une installation artistique au Barbican Centre de Londres. Contrairement aux rythmes frénétiques et à la conception sonore expérimentale qui définissent une grande partie du catalogue d'Aphex Twin, aisatsana [102] met en valeur sa capacité pour une simplicité émotive et une composition impressionniste et retenue, cimentant son statut comme l'un de ses morceaux les plus aimés et durables parmi les fans qui apprécient son côté plus doux et vulnérable. Il demeure un moment marquant de la discographie de l'artiste, comblant le fossé entre son héritage électronique et une sensibilité musicale plus traditionnelle et intime. La chanson souligne la capacité de Richard D. James à transcender les frontières génériques, prouvant que son génie technique est égalé par une profonde aptitude à communiquer une émotion humaine brute à travers des arrangements minimalistes. Elle sert de contrepoint émotionnel aux textures électroniques complexes de l'album, laissant l'auditeur dans un état de réflexion tranquille.",
+      "source_sha256": "05ec70cb3be436a196f2838cc9bd1afeed622a2e26344eba4fc3111080cb36e0",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:37:23.025Z"
+    }
+  }
 }

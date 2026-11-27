@@ -48,5 +48,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Right in the They/Thems » est une composition musicale satirique de format court de l'artiste Chat Music, sortie en avril 2025.",
+      "article": "« Right in the They/Thems » est une composition musicale satirique de format court de l'artiste Chat Music, sortie en avril 2025. Émergeant d'un paysage centré sur Internet fait de productions audio rapides et proches des mèmes, le morceau sert de commentaire bref et incisif, souvent caractéristique de la scène musicale « internet-humor ». D'une durée inférieure à une minute, la pièce incarne l'ère du contenu « snackable », où les clips courts et la viralité des réseaux sociaux dictent les formats de production et les modes de consommation. Faisant partie d'un calendrier de sorties prolifique de Chat Music — qui maintient une production constante de morceaux tout aussi concis et aux titres provocateurs — cette sortie met en lumière une tendance contemporaine où les artistes utilisent une brièveté extrême et des sujets ironiques pour capter l'attention au sein des moteurs de recommandation musicale algorithmiques. Bien que le sujet du morceau s'inscrive dans le discours culturel, son empreinte culturelle principale réside dans son statut d'artefact de la culture créative native du numérique, où la frontière entre expression musicale et vidéo de réaction sur les réseaux sociaux est de plus en plus floue. Il représente un segment spécifique et hautement jetable de la culture pop des années 2020, conçu pour une circulation rapide et une consommation immédiate plutôt que pour un développement artistique de longue haleine. Le morceau, qui souligne sa propre brièveté, reflète la production plus large de Chat Music, un projet profondément lié à l'environnement rapide et riche en contexte des plateformes de streaming modernes. En s'appuyant sur des titres provocateurs et des micro-formats, le projet capte efficacement l'engagement d'audiences à la recherche de contenus numériques humoristiques, hautement identifiables et facilement partageables à une époque de bruit médiatique constant. Sa sortie sur le label Chat Music Records cimente davantage sa place dans ce coin en évolution rapide de l'écosystème musical indépendant et piloté par les algorithmes.",
+      "source_sha256": "c5c43379bd10599d57854e9f77fb9b6490216b10bfec45146fdd069fab048f9e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:21.151Z"
+    }
+  }
 }

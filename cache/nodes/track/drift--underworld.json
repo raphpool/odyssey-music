@@ -59,5 +59,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Drift » est un projet expérimental marquant de 2018-2019 mené par les pionniers britanniques de l'électronique Underworld, englobant une vaste série de sorties audio, visuelles et littéraires sur une année.",
+      "article": "« Drift » est un projet expérimental marquant de 2018-2019 mené par les pionniers britanniques de l'électronique Underworld, englobant une vaste série de sorties audio, visuelles et littéraires sur une année. Plutôt que de s'en tenir au cycle traditionnel album-tournée, Karl Hyde et Rick Smith se sont engagés dans un calendrier « téméraire » consistant à publier chaque semaine de nouvelles musiques accompagnées de vidéos, visant à capturer une énergie créative instinctive et immédiate. Le projet a effectivement bouleversé le flux de travail habituel du groupe, remplaçant la sécurité des cycles de trois ans par une échéance hebdomadaire implacable qui a contraint le duo à un état de production continue et sans filtre.\n\nLe travail qui en résulte est une archive tentaculaire et multiforme de musique électronique qui oscille sans effort entre textures ambient, jazz-fusion expérimental et techno entraînante. Les collaborations ont été au cœur de ce processus, mettant en vedette un éventail éclectique d'artistes tels que le groupe d'avant-garde australien The Necks, le producteur Ø [Phase] et des membres du groupe post-punk Black Country, New Road. Le titre lui-même sert à la fois de clin d'œil à la culture du drift — reflétant la nature spontanée et à haute vitesse de la production — et de description littérale de l'évolution fluide du projet, alors que les morceaux étaient publiés, remixés et recontextualisés à travers cinq épisodes massifs et le coffret final « Drift Series 1 ». En documentant leur processus en temps réel, Underworld a transformé l'acte de création en une performance publique, privilégiant l'honnêteté et le défi artistique à la perfection studio polie et prévisible. Le projet témoigne de la curiosité durable du groupe et de sa capacité à réinventer son propre paysage sonore après des décennies passées au premier plan de la culture électronique mondiale.",
+      "source_sha256": "45eed9367702e1dfaf63110a440139cd5827a28ba1e12ec92e2c0374fb565aab",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:41:16.275Z"
+    }
+  }
 }

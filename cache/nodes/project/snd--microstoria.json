@@ -114,5 +114,14 @@
       "type": "project",
       "name": "Reprovisers"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Album de glitch-ambient séminal de 1996 par Microstoria (Jan St. Werner et Markus Popp), « Snd » est une exploration essentielle des artefacts numériques, de la texture sonore et de la composition déconstructiviste.",
+      "article": "« Snd » est le premier album studio de 1996 du projet électronique expérimental Microstoria, une collaboration entre les musiciens allemands Jan St. Werner (connu pour son travail avec Mouse on Mars) et Markus Popp (l'architecte d'Oval). Publié par le label électronique influent Mille Plateaux — et simultanément sur Thrill Jockey aux États-Unis — l'album s'impose comme un document séminal du mouvement « clicks and cuts » du milieu des années 90, un micro-genre caractérisé par l'esthétisation des artefacts numériques, du glitch et des détritus sonores.\n\nMusicalement, « Snd » évite les structures mélodiques ou rythmiques traditionnelles, optant plutôt pour un paysage de fragments pulsés, de bulles polyphoniques tremblantes et de textures de synthétiseurs chaleureuses. Son éloignement de l'electronica conventionnelle axée sur le rythme lui a permis de servir de pont entre les textures ambient de l'IDM du début des années 90 et l'approche rigoureuse et déconstructiviste qui définirait plus tard le mouvement glitch. Le poids conceptuel du disque se reflète dans sa production froide et précise, qui traite les glitches numériques non pas comme des erreurs, mais comme des blocs de construction intentionnels et malléables. L'influence durable de l'album est soulignée par son compagnon de remix ultérieur, « Reprovisers », qui a invité d'autres artistes électroniques à déconstruire davantage son matériau. Pour les auditeurs naviguant dans l'évolution du design sonore expérimental, « Snd » demeure une exploration pivot de la beauté inhérente à l'imperfection numérique.",
+      "source_sha256": "765f5b32323eaa499c90a20d0ebc0fb1a4aee1afdb13419198cb0ef5aaf9b849",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:32:24.730Z"
+    }
+  }
 }

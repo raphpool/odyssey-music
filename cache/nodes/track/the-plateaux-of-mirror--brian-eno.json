@@ -53,5 +53,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« The Plateaux of Mirror » est la pièce-titre de l'album ambient phare de 1980 du même nom, un chef-d'œuvre collaboratif entre le pionnier de l'avant-garde Brian Eno et le pianiste minimaliste Harold Budd.",
+      "article": "« The Plateaux of Mirror » est la pièce-titre de l'album ambient phare de 1980 du même nom, un chef-d'œuvre collaboratif entre le pionnier de l'avant-garde Brian Eno et le pianiste minimaliste Harold Budd. Enregistré à Hamilton, en Ontario, le morceau résume la philosophie centrale de l'album : un dialogue délicat et méditatif entre les improvisations pianistiques lyriques et dépouillées de Budd et les traitements studio transformateurs d'Eno. Eno a décrit le processus d'enregistrement comme le fait de faire jouer Budd dans un « monde sonore » qu'il avait spécifiquement cultivé, utilisant le studio lui-même comme un outil de composition.\n\nMusicalement, le morceau repose sur une structure minimaliste, où les notes de Budd sont traitées par des effets de délai et de chorus d'une manière très peu conventionnelle pour l'époque. Plutôt que d'utiliser ces effets pour une amélioration standard, Eno les a traités comme des textures sonores intégrales, permettant aux notes de piano de s'estomper et de résonner dans un espace scintillant et éthéré. Le résultat est une pièce qui existe dans un état d'animation suspendue — un paysage fragile et lumineux qui récompense à la fois l'écoute attentive et l'atmosphère périphérique. En tant que pièce maîtresse de l'album, « The Plateaux of Mirror » représente un moment charnière dans le développement du genre ambient, démontrant comment l'instrumentation organique pouvait être fusionnée de manière transparente avec l'expérimentation électronique pour créer une œuvre d'une résonance émotionnelle profonde et intemporelle. Son héritage durable demeure un témoignage de la facilité intuitive et « fantomatique » avec laquelle Budd et Eno ont combiné leurs sensibilités musicales distinctes pour concevoir l'un des enregistrements les plus évocateurs de la fin du XXe siècle.",
+      "source_sha256": "35fce493715c8ff5374d3b5d013afec57f1b166c4cb01e9502f6a1cb16ab5c3a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:18.965Z"
+    }
+  }
 }

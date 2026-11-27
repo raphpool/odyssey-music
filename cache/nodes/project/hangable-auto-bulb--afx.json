@@ -58,5 +58,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Publié en 1995 sous la forme de deux EP distincts puis compilé, Hangable Auto Bulb saisit Richard D. James à un tournant décisif, alors qu'il fait figure de pionnier du son hyper-cinétique et saturé de glitch qui deviendra connu sous le nom de drill 'n' bass. Il demeure un cours magistral sur la tension entre des rythmes complexes et fracturés et les sensibilités mélodiques envoûtantes et magnifiques qui définissent son œuvre.",
+      "article": "Hangable Auto Bulb s'impose comme une parution marquante dans l'évolution de la musique électronique, saisissant Richard D. James — sous son pseudonyme AFX — durant une période hautement expérimentale en 1995. Publié à l'origine sous la forme de deux EP 12 pouces distincts, ce projet a marqué une rupture radicale avec les textures sombres et analogiques de ses travaux antérieurs, tels que ...I Care Because You Do. Au lieu de cela, James a tourné son attention vers la scène drum and bass en plein essor, et plus particulièrement vers le travail du producteur cornouaillais Luke Vibert (Plug). Le son qui en a résulté, caractérisé par des breakbeats hyper-accélérés et arrangés par ordinateur, des échantillons étirés dans le temps et des motifs percussifs complexes, a effectivement codifié le sous-genre drill 'n' bass.\n\nAu-delà de ses innovations techniques, le projet est remarquable pour son approche ludique et énigmatique de l'intitulé et de la production. Le titre lui-même est une anagramme de « Analogue Bubblebath », en référence à sa série d'EP précédente, et plusieurs morceaux présentent des anagrammes complexes en guise de titres, notamment « Laughable Butane Bob » et « Arched Maid Via RDJ » (une référence à son propre nom). Sur le plan sonore, le projet oscille entre une programmation rythmique discordante et volatile et des mélodies délicates et éthérées, une dichotomie qui allait devenir une marque de fabrique du style Aphex Twin. Des décennies plus tard, Hangable Auto Bulb demeure un document vital aux sonorités extraterrestres qui a redéfini ce qui était possible en matière d'arrangement rythmique électronique, influençant toute une génération de producteurs. En mêlant ces rythmes fracturés et agités à une subtile chaleur mélodique, James a créé un modèle pour l'IDM et l'électronique expérimentale qui continue de paraître frais et techniquement audacieux aux oreilles modernes.",
+      "source_sha256": "f55932cb9f683772622ede0c3886a5325aef4829691c2635e0a92d4f31c55907",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:15.870Z"
+    }
+  }
 }

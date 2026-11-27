@@ -70,5 +70,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« data.vertex » est une composition charnière de l'artiste électronique japonais Ryoji Ikeda, figurant sur son album très influent de 2005, Dataplex.",
+      "article": "« data.vertex » est une composition charnière de l'artiste électronique japonais Ryoji Ikeda, figurant sur son album très influent de 2005, Dataplex. Publié sur le prestigieux label expérimental allemand Raster-Noton, le morceau constitue un exemple par excellence de l'esthétique « micro-sound » d'Ikeda, qui privilégie les textures brutes et cristallines des données numériques et les plages de fréquences extrêmes. Dans le contexte de l'album — qui explore les frontières entre le son, l'information et le matériel utilisé pour lire un tel audio — « data.vertex » est souvent cité pour son profil sonore agressif.\n\nTechniquement, le morceau repousse les limites de la reproduction audio standard, utilisant des transitoires haute fréquence intenses et des profondeurs de sub-bass qui mettent au défi les capacités de nombreux systèmes de sonorisation. Les critiques et les auditeurs ont fréquemment noté l'impact physique du morceau, le décrivant comme une expérience immersive qui crée une sensation de claustrophobie ou de pression intense. Il s'impose comme un jalon de la musique électronique du milieu des années 2000, comblant le fossé entre une conception sonore clinique et mathématique et une musique de club viscérale et avant-gardiste. En se concentrant sur l'interaction entre les « données » numériques et le « vertex » physique du son, Ikeda façonne un environnement qui semble à la fois entièrement synthétique et physiquement écrasant. La composition demeure une référence pour les discussions concernant l'intersection de l'art axé sur les données, de l'erreur numérique et de l'esthétique du silence et du bruit.",
+      "source_sha256": "3ab19b77d6f5ac88a728ec868799e8127695da922042d4fef32f91ec332a2d5b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:40:21.943Z"
+    }
+  }
 }

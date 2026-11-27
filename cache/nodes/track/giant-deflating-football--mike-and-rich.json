@@ -59,5 +59,14 @@
     }
   ],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Giant Deflating Football » est un morceau marquant de l'album collaboratif de 1996 Expert Knob Twiddlers, l'unique projet longue durée de Mike & Rich, un duo composé des titans de la musique électronique Mike Paradinas (μ-Ziq) et Richard D. James.",
+      "article": "« Giant Deflating Football » est un morceau marquant de l'album collaboratif de 1996 Expert Knob Twiddlers, l'unique projet longue durée de Mike & Rich, un duo composé des titans de la musique électronique Mike Paradinas (μ-Ziq) et Richard D. James (Aphex Twin). Publiée sur Rephlex Records, cette collaboration constitue une intersection ludique, chaotique et virtuose entre les approches distinctes des deux artistes en matière d'IDM, de breakcore et d'ambient techno.\n\nLe morceau est caractéristique de l'esthétique excentrique de l'album, équilibrant des percussions complexes et erratiques avec des échantillons mélodiques inattendus et un sens de l'humour irrévérencieux. Utilisant un échantillon du morceau de 1963 de Dennis Farnon « Goodbye to the Blues », la chanson met en valeur la capacité du duo à transformer des éléments pop-orchestraux vintage en paysages sonores nerveux et à haute fréquence qui ont défini la scène underground électronique britannique du milieu des années 90. « Giant Deflating Football » résume l'esprit des sessions d'Expert Knob Twiddlers : un terrain de jeu collaboratif où la prouesse technique rencontre un refus de prendre trop au sérieux la nature expérimentale de la musique. Il demeure un favori culte pour les fans de l'ère Rephlex de la fin des années 90, soulignant l'alchimie entre deux des figures les plus influentes de la production électronique.",
+      "source_sha256": "55264aa281dc4c5c9c5c12a7989abd7479af2a6d55abb34fe7c4be4add9b673f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:43:15.476Z"
+    }
+  }
 }

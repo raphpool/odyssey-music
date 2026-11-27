@@ -72,5 +72,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Réimagination art-pop obsédante de la saga de Major Tom, « Ashes to Ashes » fait office à la fois de comptine mélancolique pour les années 1980 et d'adieu puissant et désabusé au passé de David Bowie.",
+      "article": "« Ashes to Ashes », sorti en août 1980 en tant que premier single de l'album de David Bowie Scary Monsters (And Super Creeps), constitue un moment charnière de la carrière de l'artiste, fermant définitivement le livre sur les années 1970 et ses expérimentations glam et de l'ère berlinoise. Produit par Bowie aux côtés de son collaborateur de longue date Tony Visconti, le morceau est peut-être plus célèbre pour sa subversion du récit de héros folk établi dans le succès de 1969 de Bowie, « Space Oddity ». En revisitant le personnage de Major Tom onze ans plus tard, Bowie transforme le pionnier autrefois optimiste en une figure désabusée et toxicomane se décomposant dans le vide de l'espace.\n\nMusicalement, « Ashes to Ashes » se caractérise par une mélodie obsédante inspirée d'une comptine — Bowie a reconnu l'influence de la chanson des années 1950 « The Inch Worm » — superposée à une boucle innovante de trois mesures et à des textures de synthétiseur scintillantes. Cette esthétique sonore, associée à ses paroles d'une noirceur implacable, a consolidé le statut du morceau en tant que chef-d'œuvre de la new wave et de l'art-pop de la fin de l'époque. Les paroles, notamment le pont « I never done good things / I never done bad things / I never did nothing out of the blue », offrent un moment glaçant et révélateur qui suggère à la fois un regret profond et un détachement existentiel. Le morceau demeure une pierre angulaire culturelle pour son clip vidéo révolutionnaire et sa volonté de confronter le désenchantement de l'ère moderne, marquant un tournant définitif vers les sons expérimentaux qui allaient définir la transition artistique de Bowie vers la nouvelle décennie.",
+      "source_sha256": "86ede4ae84eb361093078b62cc47bbe49e63d4ac3dc04e232dc2d91742c93d44",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:38:16.154Z"
+    }
+  }
 }

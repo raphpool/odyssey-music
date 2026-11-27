@@ -130,5 +130,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une œuvre séminale du noise numérique et du hardcore des années 1990, capturant l'énergie frénétique d'une génération élevée aux médias saturés, publiée par le légendaire label Mille Plateaux.",
+      "article": "Generation Star Wars est une œuvre séminale de l'innovateur électronique allemand Alec Empire, publiée à l'origine au milieu des années 1990 comme un document essentiel du mouvement « Digital Hardcore ». Tout au long du disque, Empire explore les intersections sonores du noise industriel, du breakcore et de la techno hardcore, créant un paysage sonore chaotique mais méticuleusement conçu qui définit une ère spécifique de la musique expérimentale européenne. L'album a été publié par le label allemand influent Mille Plateaux, qui servait à l'époque de plateforme critique pour les artistes repoussant les limites de la musique électronique vers des territoires plus abrasifs, politiquement chargés et technologiquement fracturés.\n\nTout au long du projet, Empire canalise les anxiétés culturelles et numériques de la fin du XXe siècle. Son style de production sur le disque est marqué par des textures sévères et distordues, une programmation rythmique incessante et un sentiment d'énergie agressive et anarchique qui lie clairement ses racines dans la scène punk berlinoise au monde naissant de la production numérique. En mélangeant ces influences, Generation Star Wars s'impose comme une pièce vitale de l'histoire électronique des années 1990. Il demeure un texte fondateur pour ceux qui explorent l'évolution de la musique de danse extrême, représentant un pont entre l'agression brute et rapide du hardcore des années 90 et la conception sonore complexe et expérimentale qui allait définir les scènes IDM et glitch. Son héritage continue d'influencer les producteurs qui cherchent à fusionner la complexité structurelle avec l'intensité viscérale de l'industriel lourd et du punk, maintenant son statut de classique culte au sein du catalogue de Mille Plateaux et de la vaste discographie d'Alec Empire.",
+      "source_sha256": "ce16a1be38269aa22fb3ece758a5d16666caa8b4bcba8e208bb84067cff35a58",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:23:21.690Z"
+    }
+  }
 }

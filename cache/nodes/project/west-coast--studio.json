@@ -81,5 +81,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Publié à l'origine en 2006, West Coast est un premier album séminal du duo suédois Studio qui mêle avec brio des influences Balearic, dub, disco et Krautrock dans un paysage sonore hypnotique et baigné de soleil. Il demeure un classique culte pour sa capacité unique à évoquer un romantisme lointain à travers une production minimaliste axée sur le groove.",
+      "article": "West Coast, le premier album publié en 2006 par le duo suédois Studio (composé des diplômés d'école d'art Dan Lissvik et Rasmus Hägg), s'impose comme une œuvre déterminante de la musique électronique underground du milieu des années 2000. Sorti à l'origine sur le label Information du groupe, le disque a reçu un accueil critique enthousiaste pour sa palette sonore unique, que les journalistes ont décrit comme évoquant « d'impossibles visions de Can réalisant un album hommage aux Happy Mondays ou de The Cure accompagnés par Fela Kuti ». L'album fonctionne comme un flux hypnotique et fluide de Balearic house, dub, disco et krautrock, caractérisé par des structures répétitives axées sur le groove et une atmosphère détendue et ensoleillée qui dément ses origines de Göteborg, en Suède.\n\nCultivant une aura de mystère et de détachement, Studio a évité les techniques de production pop standard au profit d'une approche minimaliste privilégiant la texture et le rythme. Des titres comme « West Side » et « Life's A Beach! » illustrent le style caractéristique du groupe : un équilibre délicat entre instrumentation organique et séquençage électronique subtil qui semble à la fois nostalgique et tourné vers l'avenir. Bien qu'aucune suite officielle à West Coast n'ait jamais vu le jour, son héritage a continué de croître grâce aux compilations Yearbook 1 et 2, qui ont cimenté l'influence de Studio sur les scènes chill-wave et indie-electronic au sens large. Début 2025, l'album a été réédité via Ghostly International, bénéficiant enfin d'une sortie numérique et physique plus large qui a fait découvrir son son singulier de « front froid rencontrant un front chaud » à une nouvelle génération d'auditeurs, renforçant son statut de monument de la pop atmosphérique du XXIe siècle.",
+      "source_sha256": "1b65ae336efb711c1113ba1d01f9630eab24c2d6476af374116edaee90103ebc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:37:13.616Z"
+    }
+  }
 }

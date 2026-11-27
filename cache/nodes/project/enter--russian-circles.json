@@ -89,5 +89,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Enter est le formidable premier album studio du trio de post-metal instrumental de Chicago Russian Circles, sorti en 2006. Il a établi le mélange caractéristique du groupe, fait de poids rythmique écrasant et de mélodie cinématographique portée par la guitare.",
+      "article": "Sorti en 2006, Enter est le premier album studio du trio de post-metal instrumental basé à Chicago, Russian Circles. Enregistré dans les légendaires studios Electrical Audio, l'album a imposé le groupe comme une force puissante au sein des scènes post-rock et post-metal en plein essor au milieu des années 2000. Le trio, composé du guitariste Mike Sullivan, du bassiste Colin DeKuiper et du batteur Dave Turncrantz, façonne un son à la fois techniquement précis et émotionnellement résonnant. Contrairement à beaucoup de leurs contemporains qui penchaient fortement vers des paysages sonores ambiants éthérés et tentaculaires, Russian Circles a ancré ses compositions dans une base rythmique musclée, plus redevable au heavy rock et au metal qu'aux textures post-rock traditionnelles.\n\nL'identité sonore de l'album est définie par son utilisation intelligente de mélodies de guitare imbriquées et par la capacité du trio à construire une tension à travers des changements dynamiques, employant efficacement un flux continu entre les morceaux, ponctué par de fréquents fondus qui créent un sentiment de progression constante. Des titres comme « Death Rides a Horse » et le morceau éponyme « Enter » soulignent la maîtrise du groupe à construire des arrangements complexes à partir de phrases mélodiques en boucle relativement simples. En fusionnant la dextérité technique du math-rock avec le volume écrasant du metal, le groupe a créé un son distinctif et entraînant qui demeure une référence du genre. Enter a consolidé la réputation de Russian Circles, préparant le terrain pour une carrière prolifique définie par une croissance technique et une intensité cinématographique. Il reste un document essentiel pour ceux qui s'intéressent à l'évolution de la musique heavy instrumentale.",
+      "source_sha256": "e69fa7a0ec87f0efc2e14d121dc0c2991e3afdbbeb9629ea8912b6aad960f8c6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:22:19.252Z"
+    }
+  }
 }

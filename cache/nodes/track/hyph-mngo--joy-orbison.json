@@ -58,5 +58,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Sorti en 2009, « Hyph Mngo » du producteur britannique Joy Orbison est un morceau phare qui a servi de pont entre les sonorités sombres et lourdes en basses du dubstep et les textures plus lumineuses et mélodiques du post-dubstep et du future garage.",
+      "article": "Sorti en 2009, « Hyph Mngo » du producteur britannique Joy Orbison est un morceau phare qui a servi de pont entre les sonorités sombres et lourdes en basses du dubstep et les textures plus lumineuses et mélodiques du post-dubstep et du future garage. En tant que premier single de Joy Orbison, le morceau a immédiatement fait sensation sur la scène dance underground britannique, circulant dans les clubs et les émissions de radio avant sa sortie officielle sur Hotflush Recordings.\n\nSa production se caractérise par une sensibilité « glorieusement épique » et euphorique, mêlant des rythmes garage propulsifs à des lignes de synthétiseurs atmosphériques et spacieuses qui se distinguaient de l'esthétique plus sombre dominant une grande partie du paysage dubstep de l'époque. Le morceau a été largement salué pour sa capacité à équilibrer résonance émotionnelle et fonctionnalité sur le dancefloor, acquérant rapidement le statut d'« hymne » auprès des DJ. Son influence fut immense, souvent cité par les critiques musicaux comme un tournant décisif ayant ouvert de nouvelles possibilités sonores aux producteurs électroniques au début des années 2010, signalant un changement sismique vers une musique dance plus hybride et expérimentale. Des critiques et des publications comme Fact et Pitchfork l'ont salué comme l'un des morceaux déterminants de son époque, marquant l'arrivée de l'une des voix les plus innovantes de la musique électronique moderne.",
+      "source_sha256": "f3d3cafead2dee2f48cb5096a433f5a16e0cf7d6b9282733317a4732f61963a0",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:43:24.770Z"
+    }
+  }
 }

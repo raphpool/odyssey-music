@@ -61,5 +61,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pierre angulaire du dubstep de 2008, cette collaboration entre Plastician et Skepta mêle des rythmes minimalistes et nets à l'intensité brute et percutante du grime londonien des débuts.",
+      "article": "« Intensive Snare » est un morceau de dubstep séminal du producteur britannique Plastician, avec la participation vocale de l'icône du grime Skepta. Sorti en 2008 comme un titre phare du premier album de Plastician, « Beg To Differ », le morceau fait office d'artefact pivot du paysage électronique britannique de la fin des années 2000, jetant un pont entre les sensibilités agressives et angulaires du grime des débuts et le poids profond et riche en basses du son dubstep.\n\nLe morceau se définit par sa production austère et minimale — une signature du travail de Plastician à l'époque — centrée autour d'un rythme de caisse claire net et claquant qui donne son nom à la chanson. Le débit vocal de Skepta est tendu et affirmé, naviguant dans le mix spacieux avec le flux rythmique précis qui allait définir l'esthétique des MC grime. « Intensive Snare » est largement considéré comme un classique de l'ère du label Terrorhythm, capturant un moment spécifique de la culture musicale underground londonienne où les genres se pollinisaient de manière fluide dans des espaces de club exigus. Son influence reste audible dans la bass music contemporaine, en particulier dans l'accent mis sur la conception sonore et les structures rythmiques squelettiques qui maintiennent un impact maximal en club. La sortie a solidifié le statut de Plastician en tant qu'architecte clé du versant mélodique et plus sombre du dubstep et a mis en lumière la polyvalence de Skepta durant les années formatrices de son ascension vers la célébrité internationale.",
+      "source_sha256": "aa19b373115b9db27ed10917a18409d4fabdc92544f23b6c2cc538839bc5fde8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:44:17.612Z"
+    }
+  }
 }

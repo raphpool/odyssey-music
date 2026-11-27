@@ -72,5 +72,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon du post-hardcore des années 2000, le deuxième album de Mclusky est un classique du noise-rock, cinglant, sardonique et produit avec expertise, qui capture le trio gallois au sommet absolu de sa puissance cinétique et abrasive.",
+      "article": "Sorti en 2002 sur le label Too Pure, Mclusky Do Dallas s'impose comme l'œuvre décisive du trio post-hardcore gallois Mclusky. Enregistré au studio Electrical Audio de Steve Albini à Chicago, l'album est une leçon magistrale du mélange caractéristique du groupe : noise rock explosif, esprit sardonique et sensibilités pop acérées. Le chant distinctif d'Andy Falkous, alternant entre cris maniaques et cynisme impassible, ancre une collection de chansons qui parviennent à être simultanément abrasives et profondément mélodiques. Le titre du disque est un clin d'œil provocateur au film pour adultes de 1978 Debbie Does Dallas, donnant le ton à un projet qui refuse de se prendre trop au sérieux tout en livrant l'une des musiques les plus intenses et précises des années 2000.\n\nMusicalement, Mclusky Do Dallas se caractérise par ses « dynamiques déchaînées », comme l'ont décrit les critiques de l'époque. Il capture la tension d'un groupe à son apogée créatif, maniant des guitares saturées et des rythmes frénétiques qui frappent avec la force d'un train de marchandises. Des titres comme les emblématiques To Hell with Good Intentions et Lightsabre Cocksucking Blues illustrent la capacité du groupe à équilibrer mordant lyrique et accroches contagieuses. Bien qu'il ait eu du mal à gagner une audience grand public à sa sortie, l'album a bénéficié d'une réévaluation critique massive au fil des décennies, apparaissant fréquemment dans les listes des meilleurs disques des années 2000. Il demeure une référence essentielle pour les amateurs de noise rock et de post-hardcore, célébré pour sa combinaison unique d'humour noir, d'énergie fulgurante et de rigueur structurelle. C'est, comme beaucoup de critiques l'ont noté, l'un des disques rock les plus vitaux de son époque, servant à la fois d'exercice cathartique de thérapie par les décibels et de brillante pièce d'écriture satirique.",
+      "source_sha256": "9f8841927f04359c859a570cf1d6ea976515ed84ac680b56eafe45eb7394e844",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:28:15.922Z"
+    }
+  }
 }

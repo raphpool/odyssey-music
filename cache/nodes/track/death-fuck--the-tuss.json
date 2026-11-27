@@ -70,5 +70,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Death Fuck » est un morceau marquant de l'album Rushup Edge paru en 2007, publié par The Tuss sur le label électronique emblématique Rephlex.",
+      "article": "« Death Fuck » est un morceau marquant de l'album Rushup Edge paru en 2007, publié par The Tuss sur le label électronique emblématique Rephlex. Il est largement admis par les passionnés de musique et les critiques que The Tuss est un pseudonyme de Richard D. James (Aphex Twin), bien que le projet ait conservé une part de mystère lors de sa sortie. Le morceau en lui-même est une leçon de musique électronique agressive, complexe et pleine d'énergie, caractéristique de la palette sonore que James a explorée au milieu des années 2000, une période fortement influencée par son travail sur la série Analord et un regain d'intérêt pour les synthétiseurs matériels et les boîtes à rythmes.\n\nSur le plan musical, « Death Fuck » se définit par ses percussions distordues et incessantes ainsi que par ses motifs rythmiques complexes et changeants qui repoussent les limites du drill 'n' bass et de l'IDM. Sa production viscérale, marquée par des kicks percutants et des textures mélodiques tourbillonnantes, capture un sentiment de chaos sonore qui semble à la fois méticuleusement construit et spontanément brut. Pour les auditeurs, le morceau demeure un point central dans le discours entourant le mythe Aphex Twin, souvent cité pour son énergie « brutale » et sans compromis. Il se situe à l'intersection de la prouesse technique de production et de l'éthique expérimentale qui a défini l'ère Rephlex, consolidant sa place en tant que titre significatif au sein de l'héritage plus large de la musique électronique des années 2000. La réputation durable du morceau découle de sa capacité à équilibrer une agression intense aux accents industriels avec la sensibilité mélodique complexe et multicouche devenue synonyme des pseudonymes les plus énergiques de James.",
+      "source_sha256": "c613e623c49a74aedb53e7855d9aa2cd2f8c82158848ad8091d6841943b695db",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:40:23.061Z"
+    }
+  }
 }

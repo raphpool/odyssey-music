@@ -129,5 +129,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Sorti en 2012, Parastrophics est une leçon de chaos maîtrisé signée Mouse on Mars, distillant parfaitement leur esthétique glitch-pop caractéristique dans une collection de morceaux agités et rythmiquement inventifs.",
+      "article": "Parastrophics, sorti en 2012 sur Monkeytown Records, s'impose comme un album charnière du duo électronique allemand Mouse on Mars, composé de Andi Toma et Jan St. Werner. Après une période de calme relatif, ce disque a marqué un retour sophistiqué pour le duo, mêlant leur esthétique glitch erratique et découpée à des rythmes plus structurés imprégnés de funk et à des sensibilités pop. L'album se caractérise par son approche de la production kaléidoscopique et pleine d'énergie, où des couches denses de synthèse, des échantillons fragmentés et des percussions décalées convergent vers un paysage sonore cohérent, bien qu'agité.\n\nÀ travers les treize titres, incluant des moments forts comme The Beach Stop, Syncropticians et Baku Hipster, Mouse on Mars démontre une maîtrise de la contradiction sonore, équilibrant des textures mélodiques délicates face à un bruit numérique abrasif. Parastrophics capture la capacité du duo à faire muter des idiomes musicaux familiers en quelque chose d'entièrement étranger mais contagieux, cimentant leur réputation d'architectes essentiels de la musique électronique expérimentale. Sa sortie sur Monkeytown, le label fondé par Modeselektor, a souligné la pertinence continue du duo au sein de la scène électronique berlinoise, comblant le fossé entre la complexité de l'IDM et la physicalité de la musique orientée club. Il demeure une déclaration définitive sur l'évolution du duo et son influence durable sur la production expérimentale contemporaine.",
+      "source_sha256": "f4307a0a3dea6743a7caa20e67685ce3f6047e9d893d486fc70a429abd931ded",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:30:19.212Z"
+    }
+  }
 }

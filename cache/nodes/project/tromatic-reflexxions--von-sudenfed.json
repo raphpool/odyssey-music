@@ -139,5 +139,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Collision entre les avant-gardistes électroniques allemands Mouse on Mars et Mark E. Smith de The Fall, Tromatic Reflexxions est une expérience post-punk revigorante et riche en glitch qui équilibre l'abstraction sonore synthétique avec l'esprit inimitable et abrasif de Smith.",
+      "article": "Tromatic Reflexxions est le premier album studio de 2007 de Von Südenfed, un projet collaboratif réunissant les expérimentateurs électroniques allemands Mouse on Mars et le légendaire provocateur post-punk Mark E. Smith. Publié par Domino, l'album constitue une collision fascinante entre la production électronique avant-gardiste et orientée glitch d'Andi Toma et Jan St. Werner et le débit lyrique acerbe et en flux de conscience pour lequel Smith est mondialement reconnu en tant que leader de The Fall. L'enregistrement a eu lieu en 2006, suite à l'apparition de Smith en 2005 sur un morceau de Mouse on Mars, ce qui a déclenché l'alchimie créative menant à ce projet complet. Le disque qui en résulte est défini par ses rythmes électroniques erratiques et polyrythmiques, ses synthétiseurs abrasifs et les assauts verbaux distinctement cyniques et non sequitur de Smith. C'est une œuvre qui occupe un espace singulier, incarnant simultanément l'énergie erratique du post-punk et l'esthétique imprévisible et changeante de l'électronique proche de l'IDM des années 2000. Des chansons comme « Fledermaus Can’t Get It » et « The Rhinohead » illustrent ce mariage, équilibrant les textures synthétiques du duo allemand avec l'esprit singulier et conflictuel de Smith. Bien qu'il défie toute catégorisation facile, Tromatic Reflexxions demeure un document définitif de l'une des collaborations les plus aventureuses de l'époque, témoignant de la volonté des deux parties de démanteler leurs héritages sonores respectifs en faveur de quelque chose d'agressivement nouveau. Il n'a pas connu un succès massif dans les classements, mais a recueilli des critiques largement positives pour son audace pure et sa volonté d'expérimenter.",
+      "source_sha256": "386b2853262d59666dacddd581640b33bdcfa7e2ba444cb8cc48e821af080efc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:36:16.178Z"
+    }
+  }
 }

@@ -73,5 +73,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« data.simplex » est une composition austère et précise de l'acclamé artiste électronique japonais Ryoji Ikeda, figurant comme deuxième piste sur son album très influent de 2005, dataplex.",
+      "article": "« data.simplex » est une composition austère et précise de l'acclamé artiste électronique japonais Ryoji Ikeda, figurant comme deuxième piste sur son album très influent de 2005, dataplex. Publié sur le label allemand séminal Raster-Noton, le morceau illustre l'esthétique centrale de l'album : l'élévation d'artefacts numériques, d'erreurs binaires et d'ondes sinusoïdales cliniques en une forme de minimalisme de haute volée. D'une durée d'un peu plus d'une minute, « data.simplex » fonctionne comme une étude sonore de la pureté computationnelle, utilisant l'interaction de bips à haute fréquence et de silences méticuleusement agencés pour défier la perception de la « musique » chez l'auditeur.\n\nDataplex a été conçu par Ikeda comme une déconstruction de l'architecture des données, et « data.simplex » sert de pilier précoce et essentiel à cette exploration. En isolant le bruit numérique et en dépouillant les structures mélodiques ou harmoniques traditionnelles, Ikeda force le public à se confronter aux propriétés physiques du son. Le morceau est réputé pour sa clarté extrême et sa plage dynamique, qui sont devenues une marque de fabrique du travail d'Ikeda au milieu des années 2000. Il s'impose comme une pièce maîtresse du « glitch » et du « micro-sound », reflétant une époque où la frontière entre l'informatique et la composition musicale devenait de plus en plus poreuse. Pour les auditeurs comme pour les producteurs, le morceau demeure un témoignage de la puissance du réductionnisme extrême, prouvant que les textures minimalistes — lorsqu'elles sont exécutées avec une précision clinique — peuvent porter autant de poids émotionnel et intellectuel que les arrangements orchestraux les plus complexes. C'est une entrée quintessentielle dans le catalogue de l'électronique expérimentale contemporaine.",
+      "source_sha256": "8f3e70989321253c900b56334950f69d2caafcbdca697049c6750ff57f0ef965",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:40:19.134Z"
+    }
+  }
 }

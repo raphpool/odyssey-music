@@ -111,5 +111,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Classique de l'underground de la fin des années 90, Nu Romantix est un album définitif de DMX Krew qui mêle machines électro vintage, voix au vocodeur chargées d'émotion et mélodies synth-pop irrésistiblement accrocheuses.",
+      "article": "Nu Romantix est un album électronique marquant du prolifique producteur britannique DMX Krew, sorti initialement en 1998. Émergeant à une époque où la musique synthétique rétro-futuriste trouvait une voix renouvelée, le projet s'impose comme une exploration définitive de l'électro, de la synth-pop riche en vocodeur et de rythmes dance entraînants axés sur le plaisir. DMX Krew, le projet principal d'Ed Upton, mélange avec maîtrise l'esthétique brute et mécanique de l'électro classique avec une sensibilité humaine et mélodique qui semble à la fois nostalgique et tournée vers l'avenir.\n\nTout au long du disque, Upton utilise des synthétiseurs analogiques et des voix passées au vocodeur pour créer un son à la fois techniquement précis et émotionnellement résonnant. Des titres comme Come to Me et Place Called Love illustrent la capacité de l'artiste à fusionner des textures robotiques avec des accroches aux structures pop. L'album a remarquablement bien vieilli, gagnant auprès des passionnés de musique électronique la réputation d'être l'une des meilleures œuvres de DMX Krew, saluée pour sa clarté, son charme et son exécution technique. Réédité plus tard pour une nouvelle génération d'auditeurs, Nu Romantix demeure une pierre angulaire de la scène électro underground de la fin des années 90, capturant l'esprit d'un producteur qui a aidé à combler le fossé entre la fonctionnalité du dancefloor et la composition musicale idiosyncratique. C'est un artefact par excellence de son époque, incarnant un type spécifique de romantisme synthétique haute fidélité inspiré des années 80 qui a défini le projet DMX Krew.",
+      "source_sha256": "015058ee9b4bdd64f4f777223cb6491364ba66ed0c2bb01ec763355c6be7a0eb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:30:13.296Z"
+    }
+  }
 }

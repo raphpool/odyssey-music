@@ -99,5 +99,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une exploration précoce et déterminante de l'electro-jazz et de la techno expérimentale influencée par le lounge, publiée sur le légendaire label Rephlex Records en 1995.",
+      "article": "Publié en 1995 sur l'influent label électronique britannique Rephlex Records, « Polyester » est un projet charnière de la musicienne et productrice électronique allemande Lisa Carbon. Évoluant dans le paysage de la musique électronique expérimentale du milieu des années 90, Carbon — souvent associée à l'artiste Jan Jelinek — a conçu un album qui défie notoirement les classifications de genre rigides, fusionnant les possibilités structurelles de la techno avec la chaleur fluide et improvisée du jazz et de la musique lounge. Le projet constitue un exemple majeur de l'hybridité « electro-jazz » qui caractérisait certaines poches de la scène expérimentale européenne de cette époque, marquée par un travail de synthétiseurs délié et des sections rythmiques oscillant entre des beats orientés club et des paysages sonores aux influences bossa nova. Bien qu'il soit sorti avec plus d'un an de retard sur son calendrier initial, l'album demeure une entrée distincte dans le catalogue Rephlex, soulignant une approche ludique et cérébrale du design sonore qui privilégiait l'ambiance et l'expérimentation plutôt que les sonorités plus agressives souvent associées au label à l'époque. Des titres tels que « Jazz Device » et « Jambient » illustrent ce pont, démontrant la capacité de Carbon à maintenir une haute qualité de production tout en explorant les textures sonores de claviers vintage et de motifs rythmiques non conventionnels. L'album, qui comprend des morceaux comme « Soft Drink » et « Corazon Loco », reste une relique recherchée par les amateurs d'intelligent dance music des années 90 et de curiosités électroniques expérimentales.",
+      "source_sha256": "7fb8b0d35d694f4a3950356c86438c01dfa99dde85efca485a723e7e397d970f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:31:13.539Z"
+    }
+  }
 }

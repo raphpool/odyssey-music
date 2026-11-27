@@ -62,5 +62,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Beep Street » est un morceau emblématique de l'album « Hard Normal Daddy » paru en 1997, marquant l'arrivée du musicien électronique anglais Tom Jenkinson — enregistrant sous le nom de Squarepusher — sur le label influent Warp Records.",
+      "article": "« Beep Street » est un morceau emblématique de l'album « Hard Normal Daddy » paru en 1997, marquant l'arrivée du musicien électronique anglais Tom Jenkinson — enregistrant sous le nom de Squarepusher — sur le label influent Warp Records. Largement considéré comme l'un des moments déterminants des scènes « drill 'n' bass » et IDM de la fin des années 1990, le morceau illustre la capacité unique de Jenkinson à fusionner une programmation de batterie agressive et hyper-cinétique avec des sensibilités mélodiques et lyriques.\n\nContrairement à beaucoup de ses contemporains qui misaient sur la pure provocation par la vitesse rythmique, « Beep Street » présente un équilibre nuancé entre des percussions à haute vélocité et un noyau mélodique profond et soul. La signature sonore du morceau est définie par ses rythmes complexes et changeants — souvent décrits comme de la drum 'n' bass « déformée » — juxtaposés à des textures de synthétiseurs fluides et évocatrices ainsi qu'au jeu de basse fretless caractéristique de Jenkinson. Cette fusion crée un paysage qui semble à la fois futuriste et ancré dans le jazz-funk des années 1970 et les thèmes de séries policières, que Jenkinson a cités comme influences sur son travail durant cette période.\n\n« Beep Street » demeure une référence pour sa profondeur émotionnelle et sa précision technique, servant de pilier à « Hard Normal Daddy », un album fréquemment cité comme un chef-d'œuvre du genre. Son attrait durable réside dans sa capacité à paraître à la fois artificiel et organique, démontrant comment une programmation électronique complexe pouvait être exploitée pour exprimer une mélancolie profonde, presque cinématographique. Comme la presse spécialisée en musique électronique — incluant des publications telles que The Wire et Pitchfork — l'a noté rétrospectivement, le morceau sert de pont charnière entre l'énergie frénétique de la scène rave britannique des années 90 et les directions plus cérébrales et expérimentales de l'IDM. Il demeure aujourd'hui un témoignage de la virtuosité de Jenkinson et de la production innovante et avant-gardiste du catalogue Warp durant une décennie transformatrice pour la musique électronique.",
+      "source_sha256": "1a08569f70a34fd93a3f10b8d9e5ed5d04a91905e975677c8f8c0109d10465d6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:38:23.281Z"
+    }
+  }
 }

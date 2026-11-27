@@ -145,5 +145,14 @@
       "type": "project",
       "name": "Cool Boppin’"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Une compilation marquante de 1957 capturant les sessions révolutionnaires du Miles Davis Nonet de 1949-1950, qui ont défini l'esthétique du Cool Jazz à travers des orchestrations riches et soigneusement arrangées.",
+      "article": "Publié en 1957 par Capitol Records, Birth of the Cool est une compilation de jazz fondamentale qui rassemble des enregistrements réalisés par le Miles Davis Nonet entre 1949 et 1950. Dirigé par le trompettiste Miles Davis, l'ensemble présentait une configuration unique — deux saxophones, quatre instruments de cuivre (trompette, trombone, cor d'harmonie, tuba) et une section rythmique de trois musiciens — qui omettait délibérément le saxophone ténor, alors un élément standard des combos de jazz. Cette orchestration délibérée, conçue par Davis aux côtés de l'arrangeur Gil Evans et du saxophoniste baryton Gerry Mulligan, s'éloignait de l'intensité frénétique du bebop pour une esthétique plus détendue, harmoniquement dense et équilibrée.\n\nEn se concentrant sur des sonorités pré-arrangées et superposées, et en privilégiant les textures d'ensemble plutôt que l'improvisation virtuose individuelle et spontanée, le projet est devenu une pierre angulaire du genre Cool Jazz. Les sessions aux WOR Studios de New York ont produit des titres tels que Boplicity, Jeru et Moon Dreams, qui ont illustré une approche révolutionnaire de l'arrangement jazz. Bien que les morceaux aient été initialement publiés en tant que singles, leur impact collectif, consolidé par l'album de 1957, a fondamentalement modifié la trajectoire du jazz moderne. Le disque demeure une œuvre charnière, servant de pont vital entre l'ère bebop et l'évolution ultérieure de mouvements de jazz plus froids et cérébraux. Son influence durable sur l'orchestration et l'expérimentation tonale au sein du genre continue d'être étudiée comme un exemple primordial d'innovation musicale.",
+      "source_sha256": "ad8d0e1b796378d5ceb94fb18e8bdc24b80719febd31a47dab086c6aa8ad8acf",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:19:16.283Z"
+    }
+  }
 }

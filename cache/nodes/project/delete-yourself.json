@@ -75,5 +75,14 @@
       "name": "David Harrow"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Delete Yourself! est le premier album viscéral, chaotique et politiquement engagé qui a effectivement donné naissance au genre « digital hardcore », mêlant l'éthique punk abrasive au chaos breakbeat et à l'idéologie radicale de gauche. Produit par Alec Empire et David Harrow, il demeure un artefact déterminant de la contre-culture des années 1990, utilisant la distorsion et des BPM élevés comme des armes pour livrer un assaut incessant contre le néonazisme et le conformisme systémique.",
+      "article": "Sorti en 1995, Delete Yourself! s'impose comme le manifeste fondateur du digital hardcore, le sous-genre féroce dont le collectif allemand Atari Teenage Riot a été le pionnier. Initialement publié sous le titre 1995, l'album constitue une collision volatile entre l'esprit DIY et anti-autoritaire du punk rock et les extrémités sonores de la culture rave des années 1990, notamment la techno, le breakbeat et la gabber. Mené par Alec Empire, Hanin Elias et le regretté Carl Crack, le groupe a utilisé le studio comme une arme, superposant des voix hurlantes et distordues à des breakbeats programmés de manière agressive et à des rafales électroniques chaotiques. L'album est profondément ancré dans le climat sociopolitique de l'Allemagne post-réunification, ses paroles confrontant explicitement la montée du néonazisme et la surveillance étatique. Des titres comme « Hetzjagd Auf Nazis! » (« Chasse aux nazis ! ») soulignent la position militante du groupe, tandis que le rythme effréné de chansons comme « Speed » met en évidence leur engagement envers la surcharge sonore. Au-delà de son impact politique immédiat, Delete Yourself! a joué un rôle déterminant dans l'effacement des frontières entre des scènes underground disparates, prouvant que la musique électronique pouvait porter le même niveau d'énergie brute et anarchique que les disques de crust-punk ou d'industriel les plus brutaux. La production de l'album, dirigée par Alec Empire et David Harrow, maintient une esthétique lo-fi et viscérale qui privilégie l'impact au détriment du polissage, consolidant sa place de classique de la musique électronique rebelle. Il demeure un document essentiel de la contre-culture de l'époque, comblant le fossé entre la culture rave underground et la scène punk avec une intensité implacable.",
+      "source_sha256": "e0adadbb3415613297741feff5d06a6f96fd32e64190ec8a69f5fc2f40e0011e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:15.257Z"
+    }
+  }
 }

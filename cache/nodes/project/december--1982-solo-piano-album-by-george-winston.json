@@ -46,5 +46,14 @@
       "type": "project",
       "name": "Winter into Spring"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre définitive pour piano solo qui a redéfini l'album de saison, 'December' de George Winston est un chef-d'œuvre de piano folk minimaliste aux accents ambiants. Mêlant chants traditionnels et compositions originales évocatrices, il s'impose comme l'un des disques instrumentaux les plus réussis de l'histoire.",
+      "article": "Sorti fin 1982, 'December' est le quatrième album studio pour piano solo du pianiste américain George Winston. Faisant suite à sa précédente parution de 1982, 'Winter into Spring', 'December' a consolidé la réputation de Winston en tant que pilier des mouvements New Age et folk ambiant alors en plein essor. Enregistré aux studios Different Fur à San Francisco, l'album fait office d'hommage poignant à la saison hivernale plutôt que de simple collection de succès de fin d'année. Son succès fut monumental pour le label Windham Hill Records, contribuant à rehausser le profil et la distribution internationale de l'ensemble du catalogue du label.\n\nLa signature sonore de 'December' est définie par l'approche singulière et minimaliste de Winston au piano. Il dépouille les fioritures ostentatoires souvent présentes dans les interprétations classiques ou pop des chants de Noël, privilégiant un style contemplatif, spacieux et hautement atmosphérique. Des morceaux comme sa version du Canon de Pachelbel ou le traditionnel 'Carol of the Bells' sont devenus les marques de fabrique de cette esthétique, équilibrant une profondeur émotionnelle saisissante avec un sentiment de calme serein. L'album s'est révélé remarquablement durable, atteignant le statut de triple disque de platine aux États-Unis et restant un pilier des classements Billboard des années après sa sortie initiale. Son héritage durable réside dans la manière dont il a comblé le fossé entre les traditions folk, le répertoire classique et la scène émergente du piano ambiant, créant un modèle que d'innombrables musiciens ont tenté de reproduire au cours des décennies suivantes. C'est une œuvre qui demeure à la fois profondément personnelle et universellement résonnante, marquant un moment charnière dans l'histoire de la musique instrumentale. Cette collection musicale continue d'être définie par son intimité tranquille et sa profonde portée émotionnelle, s'imposant comme l'un des enregistrements instrumentaux solo les plus essentiels jamais produits, démontrant que le piano minimaliste pouvait capter l'attention d'un public mondial massif tout en restant profondément ancré dans des influences folk, jazz et classiques. Il a effectivement établi le modèle du son Windham Hill Records et a consacré George Winston comme une voix clé de la musique new age américaine.",
+      "source_sha256": "7b2c3c3cd73982486c75187937eeb3daf0d926f41900c228e0f022110e67b6b7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:13.541Z"
+    }
+  }
 }

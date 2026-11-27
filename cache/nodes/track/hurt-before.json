@@ -63,5 +63,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Hurt Before » est un morceau du groupe de pop celtique irlandais The Corrs, présent sur leur album studio à succès commercial de 2000, « In Blue ». Écrite par les quatre membres du groupe — Andrea, Caroline, Jim et Sharon Corr — la chanson met en valeur le mélange caractéristique du groupe entre instrumentation traditionnelle irlandaise et pop contemporaine.",
+      "article": "« Hurt Before » est un morceau du groupe de pop celtique irlandais The Corrs, présent sur leur album studio à succès commercial de 2000, « In Blue ». Écrite par les quatre membres du groupe — Andrea, Caroline, Jim et Sharon Corr — la chanson met en valeur le mélange caractéristique du groupe entre instrumentation traditionnelle irlandaise, notamment le tin whistle d'Andrea Corr, et une production pop-rock contemporaine. Le morceau fait office de ballade réfléchie au tempo modéré, s'inscrivant dans le paysage sonore riche et radiophonique qui a défini le pic de popularité mondiale du groupe au tournant du millénaire.\n\nSur le plan musical, « Hurt Before » illustre les arrangements soignés et multicouches qui caractérisaient « In Blue », un album enregistré dans divers studios avec des producteurs tels que Mitchell Froom et les membres du groupe eux-mêmes. Le morceau utilise une esthétique pop propre et entraînante — intégrant programmation et synthétiseurs — tout en s'ancrant dans les harmonies vocales et l'interaction instrumentale au cœur du groupe familial. En tant que chanson, elle capture un sentiment de vulnérabilité émotionnelle et de résignation, des thèmes courants dans leur écriture à cette époque. Son inclusion sur « In Blue » fut significative, car l'album marquait un tournant stylistique pour le groupe vers un son plus grand public et adulte contemporain, ce qui a contribué à les propulser vers une célébrité internationale. La qualité professionnelle de la production, impliquant des vétérans de l'industrie comme l'ingénieur de mastering Bob Ludwig, souligne l'approche à gros budget adoptée par Atlantic Records pour assurer le succès du groupe auprès d'un large public. Même des années plus tard, le morceau demeure une référence pour les auditeurs de pop-rock de la fin des années 90 et du début des années 2000, représentant un pont entre leurs racines celtiques et le marché mondial de la pop.",
+      "source_sha256": "5c483c2c2224cc16cb287146d1b64f11ec2ce38ab288a9ba485d1a289d72c39f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:43:23.044Z"
+    }
+  }
 }

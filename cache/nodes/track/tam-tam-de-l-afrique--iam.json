@@ -41,5 +41,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un morceau classique de 1991 des pionniers du hip-hop français IAM, incluant un remix notable du producteur américain Easy Mo Bee.",
+      "article": "Sorti en 1991, Tam Tam de l'Afrique est un morceau séminal du groupe de hip-hop français influent IAM. Émergeant de la scène rap marseillaise, le titre témoigne de l'engagement précoce du groupe envers des paroles conscientes et une production innovante. La sortie est particulièrement remarquable pour sa collaboration internationale, présentant un remix important du célèbre producteur de hip-hop américain Easy Mo Bee, qui a aidé à combler le fossé entre les esthétiques rap française et américaine au début des années 1990. La chanson demeure une pierre angulaire de la discographie de IAM, reflétant leur intérêt thématique pour l'identité africaine et le commentaire social qui ont défini le début de leur carrière. À travers ses diverses itérations, incluant le Home Remix et le Easy Mo Bee Mix, le morceau démontre la polyvalence du groupe et son rôle pivot dans l'établissement du hip-hop français en tant que force artistique sérieuse et mondiale durant sa décennie formative.",
+      "source_sha256": "b841269f19b2544ce4b3073b78eb9b43a12e9a5e34e472a12e2fbbac9b6a8f48",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:50:15.511Z"
+    }
+  }
 }

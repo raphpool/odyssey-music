@@ -88,5 +88,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Blues for the Red Sun est l'album studio séminal de 1992 du groupe de rock américain Kyuss, un disque largement crédité pour avoir défini le modèle sonore du stoner rock et du desert rock.",
+      "article": "Blues for the Red Sun est l'album studio séminal de 1992 du groupe de rock américain Kyuss, un disque largement crédité pour avoir défini le modèle sonore du stoner rock et du desert rock. Enregistré aux légendaires Sound City Studios à Van Nuys, en Californie, et produit par le groupe aux côtés de Chris Goss, l'album a capturé une atmosphère lourde et singulière issue de la scène musicale de Palm Desert. Caractérisé par l'utilisation innovante par Josh Homme de guitares accordées bas et branchées dans des amplificateurs de basse, le disque a atteint une distorsion massive et boueuse qui semblait ancrée de manière unique dans son environnement aride et isolé.\n\nBien que l'album n'ait pas connu un succès commercial significatif lors de sa sortie initiale — vendant environ 39 000 unités — son impact culturel a crû de manière exponentielle au cours des décennies suivantes. Il s'impose comme un cours magistral de musique lourde axée sur le groove, équilibrant des riffs écrasants à la Sabbath avec des sections instrumentales psychédéliques et improvisées. Des titres comme Green Machine sont devenus des hymnes underground, mettant en valeur l'interaction rythmique serrée du groupe. L'album fut le dernier à présenter le bassiste original Nick Oliveri, marquant un point de transition charnière dans l'histoire courte mais incroyablement influente du groupe.\n\nBlues for the Red Sun a servi de texte fondateur pour une nouvelle vague de musique lourde, influençant d'innombrables groupes tout au long du 21e siècle. Les critiques comme les musiciens l'ont loué pour son atmosphère « stoned », son énergie sans compromis dans les basses fréquences et sa capacité à synthétiser le hard rock, le heavy metal et le rock psychédélique en un tout cohérent et atmosphérique. Son héritage est cimenté par la dévotion des fans et son statut de pilier incontournable du canon du desert rock.",
+      "source_sha256": "878dc066ae03095afce09ca54d9d2b14db101d50235777cc30932c081e9eeb10",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:19:17.467Z"
+    }
+  }
 }

@@ -181,5 +181,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre définitif de la fin de carrière de B12 qui comble le fossé entre la techno intelligente classique des années 90 et une conception sonore électronique moderne et sophistiquée.",
+      "article": "Last Days of Silence est un album studio du duo électronique britannique séminal B12, sorti en 2008 sur leur propre label B12 Records. Considéré comme une marque de fabrique de leur production tardive, le projet réaffirme la contribution fondamentale du duo au mouvement « intelligent techno » du début des années 1990 tout en présentant une approche mature et raffinée de la conception sonore électronique. À travers ses dix-huit titres, l'album synthétise des rythmes complexes et précis avec des mélodies de synthétiseurs riches et émotives, une signature stylistique qui a défini le « B12 sound ». Au moment de sa sortie, le duo, composé de Mike Golding et Steven Rutter, s'était imposé depuis longtemps comme les architectes d'une branche spécifique de la techno britannique qui privilégiait une atmosphère éthérée inspirée de la science-fiction plutôt que les percussions agressives courantes dans la musique rave de l'époque. Last Days of Silence fonctionne à la fois comme une continuation de cet héritage et comme une œuvre autonome d'ambient-techno sophistiquée, équilibrant des textures numériques froides et cliniques avec des moments d'une chaleur profonde et planante. L'album est remarquable pour ses arrangements délibérés et patients, reflétant une maîtrise de la programmation rythmique qui permet une expérience d'écoute contemplative. Il témoigne de la longévité du projet B12 et demeure une référence pour les auditeurs attirés par les intersections intellectuelles et mélodiques de l'underground électronique britannique. La présence de remixes, tels que ceux de Digitonal, replace davantage l'album dans le paysage plus large des artistes influencés par le travail pionnier du duo sur des labels comme Warp Records au début des années 1990. En tant que projet, il encapsule un tournant de milieu de carrière pour Golding et Rutter, prouvant que leur exploration du sublime technologique était loin d'être épuisée.",
+      "source_sha256": "3d304ff48fe3fe6c322a708d0881871d836c25892d194f2b3e7038747500fdd4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:13.701Z"
+    }
+  }
 }

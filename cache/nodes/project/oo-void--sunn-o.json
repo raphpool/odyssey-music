@@ -65,5 +65,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre séminale du drone metal américain, ce premier album paru en 2000 a établi le paysage sonore caractéristique de Sunn O))), fait de poids acoustique saturé de larsen et de lenteur.",
+      "article": "ØØ Void, sorti en 2000, s'impose comme le premier album studio emblématique des pionniers américains influents du drone metal, Sunn O))). Enregistré aux Grandmaster Studios à Hollywood, l'album a marqué une montée en puissance significative de l'ambition sonore du groupe, succédant à l'esthétique brute et lo-fi de leurs premières démos, The Grimmrobe Demos. Les membres principaux Stephen O’Malley et Greg Anderson ont utilisé un format de bande 2 pouces 24 pistes pour capturer les couches immenses et tectoniques de larsen et de distorsion amplifiée qui allaient définir le genre drone metal.\n\nL'album comprend quatre titres expansifs et rituels qui explorent les limites du volume et du sustain, incluant une interprétation d'une chanson obscure des Melvins, 'Rabbits' Revenge'. Le processus d'enregistrement a également bénéficié des contributions de musiciens invités, dont le bassiste Scott Reeder, le chanteur Pete Stahl et la violoniste Petra Haden, qui ont aidé à ajouter une texture nuancée et obsédante à ces monolithes sonores. Bien qu'initialement publié via Hydra Head aux États-Unis et Rise Above en Europe, ØØ Void a connu diverses rééditions, notamment une version japonaise par Daymare Recordings qui l'associait à une collaboration avec le groupe expérimental/industriel Nurse with Wound, intitulée 'The Iron Soul of Nothing'. L'album demeure un texte fondateur de la musique expérimentale lourde, démontrant la capacité du duo à manipuler la physique des amplificateurs pour créer une expérience immersive et transcendante. Son héritage durable est cimenté par sa réévaluation critique et son statut d'entrée définitive dans la discographie de Sunn O))), comblant le fossé entre l'expérimentation brute des débuts et les compositions de drone orchestral denses qui allaient suivre au cours de la décennie suivante.",
+      "source_sha256": "a3095ee60c39e607786b735c77635922c8f46156db40c678864e6d65650c6322",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:30:17.041Z"
+    }
+  }
 }

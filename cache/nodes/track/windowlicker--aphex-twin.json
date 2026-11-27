@@ -64,5 +64,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Windowlicker », sorti en 1999, demeure l'un des morceaux les plus significatifs et reconnaissables de la discographie de Richard D.",
+      "article": "« Windowlicker », sorti en 1999, demeure l'un des morceaux les plus significatifs et reconnaissables de la discographie de Richard D. James, opérant sous son pseudonyme Aphex Twin. En tant qu'artiste ayant fréquemment repoussé les limites de la musique électronique — du frénétisme abrasif du drill-and-bass de ses premières œuvres aux paysages sonores ambiants de ses albums —, « Windowlicker » a marqué un tournant vers quelque chose à la fois plus accessible et profondément troublant. Le morceau est construit sur un motif mélodique obsédant et distordu, superposé à la propre voix de James, qu'il traite et dont il modifie la hauteur pour créer une présence vocale désorientante, presque hallucinatoire.\n\nLa composition est célèbre pour sa structure rythmique complexe et changeante, qui évolue d'un groove stable et dansant vers des motifs de percussions de plus en plus élaborés, hachés et ralentis, qui exigent l'attention de l'auditeur. Au-delà de ses innovations sonores, le morceau est défini par sa campagne promotionnelle emblématique, en particulier le clip vidéo réalisé par Chris Cunningham. La vidéo, qui présente le visage de James superposé aux corps de mannequins, sert de parodie surréaliste des tropes que l'on trouvait dans les clips de hip-hop de la fin des années 90. Cette préoccupation thématique pour la manipulation de l'identité et de la forme humaine est un fil conducteur persistant dans l'art d'Aphex Twin. De plus, le morceau possède un héritage technique, notamment grâce à l'image en spirale cachée dans les dernières secondes du fichier audio, découvrable uniquement via un spectrogramme — un témoignage du penchant de James pour les détails cryptiques et dissimulés. En tant que marqueur culturel, « Windowlicker » ne fut pas seulement un succès commercial ; il est devenu un hymne de l'expérimentation électronique de l'époque, s'assurant l'adoration tant de la scène underground que de la presse musicale grand public comme NME, tout en continuant d'influencer des producteurs de tous genres.",
+      "source_sha256": "4e578ac2bfdcdf136871664471aaa7f245a4fb7dd85a858eeacf8ad456d424a7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:53:21.127Z"
+    }
+  }
 }

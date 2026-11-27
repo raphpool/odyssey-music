@@ -92,5 +92,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un album rock éponyme de 1993 du groupe malaisien Visa, comprenant des titres comme « Ilustrasi Mimpi » et « Untukmu Selamanya », qui reflète les tendances soft-rock mélodiques de son époque.",
+      "article": "L'album éponyme de 1993 Visa du groupe malaisien Visa constitue une entrée notable dans le paysage pop-rock d'Asie du Sud-Est du début des années 1990. Publié sous le label Happy (13), l'album encapsule les sensibilités mélodiques et l'esthétique de production prévalentes sur la scène musicale malaisienne de cette époque. Il mélange des éléments de soft rock et de pop, caractérisés par des voix émouvantes et une instrumentation accessible qui a trouvé un public réceptif sur le marché local.\n\nComposé de dix titres, le disque inclut des chansons marquantes telles que « Ilustrasi Mimpi », « Untukmu Selamanya » et « Alpa ». La structure de l'album suit la convention des sorties de l'ère des cassettes, qui constituaient le format principal de consommation de musique dans la région à cette période. Le son du groupe sur ce projet équilibre l'attrait commercial avec une identité mélodique distincte, contribuant à un corpus d'œuvres qui reflète les tendances culturelles et artistiques de la musique malaisienne des années 1990. Malgré le passage du temps, le projet demeure un artefact documenté d'un moment spécifique de l'histoire de la musique populaire locale, soulignant le rôle du groupe dans la production musicale dynamique du début des années quatre-vingt-dix en Malaisie. L'inclusion de chansons comme « Suata Masa » et « Sinar Suria » démontre davantage l'étendue et la cohérence stylistique que Visa a cherché à cultiver à travers cette collection de dix titres, consolidant sa place dans la discographie du rock malaisien des années 1990.",
+      "source_sha256": "dadcc5809a0f1a9d29251d8a955a3586a4a37f8b59bb6bf757c2c70febafdeb8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:36:21.134Z"
+    }
+  }
 }

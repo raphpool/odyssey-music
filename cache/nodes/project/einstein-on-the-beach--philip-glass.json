@@ -126,5 +126,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre définitif du minimalisme du XXe siècle, cet opéra non narratif de cinq heures de Philip Glass et Robert Wilson a transformé les possibilités de la scène grâce à des structures répétitives et une vision formaliste.",
+      "article": "Einstein on the Beach est un opéra monumental qui défie les genres, structuré en quatre actes, et qui a fondamentalement modifié la trajectoire de l'art de la performance au XXe siècle. Composée par Philip Glass et conçue par le metteur en scène visionnaire Robert Wilson, l'œuvre a été créée en 1976 au Festival d'Avignon en France. Elle constitue le premier volet de l'influente « Portrait Trilogy » de Glass, qui comprend également Satyagraha (1979) et Akhnaten (1983), des opéras centrés sur des figures historiques ayant transformé la pensée humaine par la puissance de leurs idées. Malgré son titre, l'opéra ne propose pas de récit sur Albert Einstein ; il utilise plutôt l'image du scientifique comme symbole de l'ingéniosité humaine. Wilson a structuré l'œuvre à travers une série de storyboards formalistes, évitant la narration linéaire traditionnelle au profit de paysages visuels et sonores abstraits, répétitifs et fascinants. La musique, interprétée par le Philip Glass Ensemble, est un chef-d'œuvre définitif du minimalisme. D'une durée d'environ cinq heures, la représentation est réputée pour mettre à l'épreuve l'endurance des interprètes comme celle du public, qui est autorisé à se déplacer pendant le spectacle. Le processus de composition fut une collaboration unique : Glass a composé la musique en réponse directe aux esquisses visuelles de Wilson, créant un paysage sonore qui reflète la rigidité et la beauté changeante des mouvements sur scène. Des textes écrits par Christopher Knowles, Samuel M. Johnson et la chorégraphe Lucinda Childs sont superposés à la partition, souvent récités sous forme de répétitions rythmiques non linéaires qui soulignent la logique interne de l'œuvre plutôt que l'intrigue. Son impact sur l'avant-garde fut immédiat et durable, remettant en question la définition même de l'opéra et comblant le fossé entre le grand art et le minimalisme postmoderne. Tout au long de son histoire, l'œuvre a été régulièrement reprise avec un grand succès, consolidant son statut de l'une des réalisations artistiques les plus importantes du siècle dernier.",
+      "source_sha256": "79c9f45b9cca602d152c20a92739d784368967ba020b1c7cc7a7684b3efce720",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:22:13.527Z"
+    }
+  }
 }

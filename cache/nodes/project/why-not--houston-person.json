@@ -77,5 +77,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Why Not! capture le saxophone ténor chaleureux et soul de Houston Person dans une collaboration vibrante avec un jeune Joey DeFrancesco, illustrant un mélange fluide de blues, de ballades et de standards enregistré au célèbre Van Gelder Studio.",
+      "article": "Why Not! est un album studio de 1991 de l'acclamé saxophoniste de jazz Houston Person, publié sur le label Muse Records. Enregistré le 5 octobre 1990 au légendaire Van Gelder Studio à Englewood Cliffs, dans le New Jersey, l'album documente un moment charnière de la carrière de Person, marquant le début d'un partenariat musical fructueux avec le jeune et prodigieux organiste Joey DeFrancesco. Connu pour sa sonorité de saxophone ténor chaleureuse et robuste ainsi que pour sa capacité naturelle à swinguer, Person s'était depuis longtemps imposé comme un maître de l'idiome jazz soul teinté de blues.\n\nLe projet est remarqué pour son interprétation cohérente et élégante d'un répertoire varié, allant du blues profond à des lectures sensibles de standards classiques. L'orgue Hammond de DeFrancesco offre le contrepoint textural parfait au saxophone de Person, créant une alchimie que les critiques ont louée pour sa fluidité technique et sa sincérité émotionnelle. La liste des titres comprend des originaux soul comme le morceau-titre « Why Not » et « Joey's Blues », aux côtés de matériel intemporel tel que « As Time Goes By » et « Where Is Love? ». Soutenant le duo principal, l'ensemble comprend Philip Harper à la trompette, Randy Johnston à la guitare, Winard Harper à la batterie et Sammy Figueroa aux percussions, complétant un son à la fois intime et profondément enraciné dans le vocabulaire jazz traditionnel. L'album témoigne de la constance de Person et de son talent singulier pour favoriser des environnements collaboratifs vibrants qui insufflent une nouvelle vie au répertoire standard.",
+      "source_sha256": "d899ea708543f0e58ca3da92bf3346ecd1728bb42f338130a79edf26142d680d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:37:16.017Z"
+    }
+  }
 }

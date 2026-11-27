@@ -63,5 +63,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Mélange magistral de breakbeats complexes et syncopés et de paysages sonores atmosphériques, « Muk FM » est un moment fort incontournable de l'album séminal de Skee Mask, « Compro », paru en 2018.",
+      "article": "« Muk FM » est un morceau marquant de l'album acclamé par la critique « Compro », paru en 2018 et signé par le producteur électronique allemand Skee Mask sur le label influent basé à Munich, Ilian Tape. En tant que pierre angulaire de la scène IDM et breakbeat contemporaine, le morceau résume le style de production caractéristique de Skee Mask : une fusion sophistiquée de paysages sonores texturés et atmosphériques avec des rythmes breakbeat percutants et syncopés. La production, magistralement exécutée par Bryan Müller (l'artiste derrière le pseudonyme Skee Mask), démontre une attention méticuleuse aux détails, tissant des éléments de conception sonore complexes — allant de mélodies de synthétiseurs cristallines à des lignes de basse profondes et résonnantes — en une composition électronique cohérente et émotionnellement forte.\n\nDepuis sa sortie sur « Compro », « Muk FM » a été largement reconnu comme un morceau déterminant de son époque, marquant l'arrivée de Skee Mask en tant que voix prééminente de la musique électronique moderne. Le morceau témoigne de l'esthétique du label Ilian Tape, qui privilégie souvent les percussions complexes et les paysages sonores avant-gardistes aux tropes conventionnels du dancefloor. Les auditeurs comme les critiques ont loué le morceau pour sa capacité à équilibrer une impulsion rythmique énergique avec un sentiment d'introspection contemplative, une dualité devenue la marque de fabrique de la vaste discographie de Bryan Müller. Son héritage continue de croître alors qu'il demeure un incontournable des sets de DJ pointus et un point de référence fréquent dans les discussions concernant l'évolution de la techno et de la musique breakbeat imprégnée d'ambient.",
+      "source_sha256": "d49a2d0ab7a0812d205b60c462f46036e65c29a9ed0017dbb1cda3d354ade412",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:46:16.182Z"
+    }
+  }
 }

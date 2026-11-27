@@ -20,5 +20,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Compilation fondamentale de l'excellence du dub-techno berlinois, l'album éponyme de 2001 de Rhythm & Sound capture la synergie minimaliste, lourde en basses et imprégnée d'échos entre les prouesses de production du duo et les voix de chanteurs de reggae légendaires.",
+      "article": "Rhythm & Sound, le projet studio emblématique de Mark Ernestus et Moritz von Oswald, représente une réussite majeure à la croisée du dub-techno berlinois et de la culture sound system jamaïcaine. Actif tout au long de la fin des années 1990 et au début des années 2000, le duo — déjà célèbre sous le nom de Basic Channel — a distillé les textures lourdes et caverneuses de ses travaux précédents dans une esthétique distincte et squelettique. Leur compilation éponyme de 2001, « Rhythm & Sound », sert de document définitif de cette époque, rassemblant des morceaux vocaux clés initialement publiés sur leur label Burial Mix.\n\nMusicalement, le projet se caractérise par son engagement sans compromis envers le minimalisme, mettant en avant des lignes de basse profondes et résonnantes, des échos numériques fragmentés et des éléments percussifs clairsemés qui créent un sentiment d'espace vaste et immergé. En invitant des chanteurs de reggae fondamentaux comme Tikiman (Paul St. Hilaire), Cornell Campbell et Jennifer Lara dans leur studio, Ernestus et von Oswald ont comblé le fossé entre le roots reggae traditionnel et l'électronique avant-gardiste de la scène underground berlinoise. Cet album ne se contente pas d'imiter le dub ; il traite les techniques de production dub — la table de mixage comme instrument, l'accent mis sur la basse et l'espace — comme un langage vivant à faire évoluer grâce à des outils numériques contemporains. Son influence sur les générations suivantes de musique électronique, notamment dans le développement du dubstep et de l'ambient techno, demeure profonde, prouvant que la musique la plus puissante réside souvent dans les moments les plus calmes et les plus disciplinés.",
+      "source_sha256": "6b207667b80b78ef7a2400d3424bfaffb8913561521f1d21cd29cf8ac75d1180",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:31:21.674Z"
+    }
+  }
 }

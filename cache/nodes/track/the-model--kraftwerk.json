@@ -75,5 +75,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« The Model » (publié à l'origine sous le titre « Das Model » en allemand) est l'un des morceaux les plus emblématiques du groupe électronique pionnier Kraftwerk.",
+      "article": "« The Model » (publié à l'origine sous le titre « Das Model » en allemand) est l'un des morceaux les plus emblématiques du groupe électronique pionnier Kraftwerk. Sortie initialement en 1978 sur leur album studio influent The Man-Machine, la chanson incarne la transition du groupe vers un son synth-pop plus accessible et mélodique, tout en conservant son esthétique mécanique et détachée caractéristique. Écrit par les membres du groupe Ralf Hütter et Karl Bartos avec le collaborateur Emil Schult, le morceau fait office d'observation froide et distante du monde de la mode, un thème central de leur ère The Man-Machine, qui explorait l'intersection entre l'humanité et la technologie.\n\nMusicalement, la chanson est construite sur un motif de clavier hypnotique et faussement simple qui capture parfaitement le style « robotique » mais émotionnellement résonnant qui allait définir la pop électronique. Bien qu'il ait reçu une attention modérée lors de sa sortie initiale en 1978, le titre a connu un regain de popularité massif lors de sa réédition en single en 1981, atteignant finalement la première place du UK Singles Chart. Ce succès commercial a contribué à cimenter l'influence de Kraftwerk sur les scènes New Wave et synth-pop naissantes du début des années 1980. Un détail notable de la production inclut un échantillon d'un serveur d'une boîte de nuit de Düsseldorf, dont l'exclamation « Korrekt! » a été capturée et intégrée à la chanson, soulignant le penchant du groupe pour l'incorporation de curiosités sonores trouvées dans leurs compositions électroniques soigneusement calculées. Le morceau demeure un hymne définitif de la musique électronique du XXe siècle, fréquemment cité pour son influence sur des générations de musiciens à travers les genres synth-pop, rock et industriel.",
+      "source_sha256": "d7ef3085028ab66ffbae53b80eff36529e51e18f8adcbfd37ec950ad4b67f603",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:15.756Z"
+    }
+  }
 }

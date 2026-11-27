@@ -18,5 +18,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Sheet One est le premier album séminal de 1993 du projet Plastikman de Richie Hawtin, un chef-d'œuvre influent de minimal et d'acid techno défini par ses paysages sonores hypnotiques et spatiaux, ainsi que par sa célèbre pochette inspirée par le LSD.",
+      "article": "Sorti en 1993, Sheet One demeure un monument fondateur de l'histoire de la musique électronique, servant de premier album studio au producteur canadien Richie Hawtin sous son alias séminal Plastikman. Émergeant du paysage vibrant et expérimental de la techno du début des années 1990, l'album a été publié par NovaMute, consolidant la réputation de Hawtin en tant que pionnier du mouvement minimal techno. Sheet One est célébré non seulement pour sa musique — une exploration tentaculaire et hypnotique d'acid techno qui évitait l'énergie frénétique de l'époque pour une approche plus patiente et intérieure — mais aussi pour sa présentation visuelle iconique et provocatrice. La pochette originale était intentionnellement perforée pour ressembler à une feuille de buvards de LSD, un choix esthétique audacieux qui a tristement conduit à des ennuis judiciaires pour au moins un auditeur lorsque celle-ci a été mal interprétée par les forces de l'ordre. Musicalement, des titres comme Plasticity et Plasticine définissent le son Plastikman : des lignes de basse profondes et bouillonnantes, des arrangements minimaux et un sens de l'espace qui était révolutionnaire à l'époque. Au fil des décennies, il est apparu régulièrement dans les listes des « meilleurs albums de tous les temps » de la musique dance, reflétant son influence durable sur les producteurs de techno du monde entier. L'album sert de pont entre l'intensité brute et matérielle du début des années 90 et les styles de production sophistiqués et atmosphériques qui allaient définir le genre pour les années à venir. Il reste un cours magistral sur la manière de construire la tension et l'atmosphère par des moyens minimaux, prouvant que l'espace et le silence sont autant des instruments que les synthétiseurs qui alimentent le disque.",
+      "source_sha256": "a293080ea15e0787b68793c3ff05ac95f0d9070693eaaf940718eb2ae97d80a7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:32:19.778Z"
+    }
+  }
 }

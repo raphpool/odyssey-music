@@ -104,5 +104,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre définitive de musique électronique minimaliste et glitch, Kosmischer Pitch démontre la maîtrise de Jan Jelinek en matière de paysages sonores basés sur des boucles et de production atmosphérique.",
+      "article": "Kosmischer Pitch est un album électronique séminal du producteur allemand Jan Jelinek, publié à l'origine en 2005 sur le label ~scape. Enregistré et produit au G. Guillaume Studio à Berlin entre 2004 et 2005, l'album représente une évolution sophistiquée du style caractéristique de Jelinek, mêlant glitch, techno minimale et textures ambient. L'œuvre se caractérise par sa construction complexe basée sur des boucles et une palette sonore organique, souvent brumeuse, qui a consolidé la réputation de Jelinek en tant que figure clé de la scène électronique expérimentale du milieu des années 2000.\n\nL'album comprend huit titres, dont une composition cachée à la fin du dernier morceau, « Morphing Leadgitarre Rückwärts ». Tout au long du disque, Jelinek emploie une approche méticuleuse de la conception sonore, utilisant des manipulations sonores subtiles pour créer une expérience d'écoute cohérente et immersive. La sortie a été accueillie avec une appréciation critique pour sa profondeur et sa précision technique, et elle demeure une référence pour les amateurs de musique électronique abstraite et minimale. En 2025, l'album a été réédité sur le label Faitiche, avec un remastering par Giuseppe Ielasi.",
+      "source_sha256": "c3a8dfc504a520a091b9372f18600a2e7a09ee3d201ce19e037761a4e0dfa557",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:20.829Z"
+    }
+  }
 }

@@ -25,5 +25,14 @@
   "producers": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Prism » est le morceau final de l'album studio de 2023 du même nom du duo anglais vétéran d'ambient house, The Orb.",
+      "article": "« Prism » est le morceau final de l'album studio de 2023 du même nom du duo anglais vétéran d'ambient house, The Orb. D'une durée de plus de neuf minutes, la pièce sert d'ancre méditative à un projet qui explore davantage la fusion, vieille de plusieurs décennies, du groupe entre dub, paysages sonores ambient, expérimentation électronique et thèmes fantaisistes de science-fiction. Tout au long du morceau, les auditeurs sont guidés à travers une série de couches luxuriantes et atmosphériques et de motifs rythmiques caractéristiques de la collaboration continue entre le membre fondateur Alex Paterson et Michael Rendall.\n\nSorti sur Cooking Vinyl, l'album Prism — et par extension sa composition finale éponyme — continue de souligner la capacité de The Orb à rester pertinent au sein du paysage électronique en mélangeant des techniques de production sophistiquées avec un sens de l'émerveillement psychédélique et ludique. Le morceau reflète l'approche signature de « dub doctor » du duo, équilibrant des arrangements spacieux avec des textures complexes influencées par le glitch qui caractérisent une grande partie de leurs travaux ultérieurs. Pour les fans de downtempo et d'ambient house, « Prism » témoigne de l'énergie créative durable de The Orb, encapsulant leur penchant pour les voyages sonores de longue durée qui invitent à l'introspection. Sa sortie a marqué une nouvelle étape dans la vaste discographie du groupe, démontrant comment ils continuent de manipuler l'espace et le son pour créer des environnements auditifs immersifs qui défient toute classification simple. Le morceau s'inscrit dans la lignée établie de la discographie de The Orb, renforçant leur rôle d'architectes du dub ambient moderne.",
+      "source_sha256": "c1f2168e8c8251bf8f2840b4006aa7303b69544289b0c4436931f6987c58b386",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:13.057Z"
+    }
+  }
 }

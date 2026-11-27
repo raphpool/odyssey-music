@@ -76,5 +76,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Sorti en 1976, Stratosfear saisit Tangerine Dream à un tournant crucial, équilibrant leurs fondations électroniques expérimentales avec un sens naissant de la structure mélodique et de l'intégration acoustique. Il demeure une pierre angulaire du son de la Berlin School et marque la dernière collaboration en studio de la formation classique du trio des années 1970.",
+      "article": "Stratosfear est le septième album studio du groupe électronique allemand séminal Tangerine Dream, sorti en octobre 1976 chez Virgin Records. Enregistré à Berlin aux Audio Studios, l'album représente un moment de transition charnière pour le groupe, marquant la dernière apparition en studio du trio « classique » composé d'Edgar Froese, Christopher Franke et Peter Baumann. Tout en conservant l'éthique atmosphérique portée par les synthétiseurs qui a défini le mouvement précoce de la Berlin School, Stratosfear présente un virage notable vers une composition plus mélodique et une intégration plus serrée d'instruments acoustiques comme le piano à queue et la flûte, particulièrement évidente sur des titres comme « Invisible Limits ».\n\nL'histoire de la production de l'album est notable pour un mixage abandonné, réalisé à l'origine par Nick Mason de Pink Floyd aux studios Hansa by the Wall en avril 1976, conséquence de relations tendues entre le groupe et leur label à l'époque. Malgré ces tensions en coulisses, l'album a connu un succès commercial significatif pour un projet expérimental, atteignant la 39e place des classements britanniques et obtenant finalement une certification argent. Les critiques ont souvent souligné le morceau-titre, « Stratosfear », comme un point culminant, louant sa progression hypnotique de synthétiseurs. Bien que certains contemporains aient trouvé son orientation vers l'accessibilité déconcertante par rapport aux improvisations plus intransigeantes des débuts du groupe, l'histoire l'a qualifiée d'évolution nécessaire qui a aidé à définir le son signature du groupe, préparant le terrain pour leurs travaux ultérieurs et leur influence sur la musique ambient et électronique. Son héritage est préservé à travers de nombreuses rééditions, dont une remastérisation de 2019 qui a élargi la liste des titres avec de rares montages de singles promotionnels. Tout au long de l'album, l'interaction entre le travail percussif au Moog de Franke et les superpositions de guitares texturées de Froese fournit un modèle pour les paysages sonores expansifs qui allaient dominer la décennie.",
+      "source_sha256": "ac217695f238a954a971fd12017fec04336d0bf88bba1515baf05ca32b0b6678",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:33:24.977Z"
+    }
+  }
 }

@@ -23,5 +23,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre tentaculaire et ambitieux de minimal techno, Dependent and Happy capture Ricardo Villalobos dans ce qu'il a de plus expérimental, utilisant une évolution rythmique sur la durée et des échantillonnages audio inattendus pour créer une expérience d'écoute immersive et avant-gardiste.",
+      "article": "Dependent and Happy est une œuvre monumentale de minimal techno publiée en 2012 par le producteur chilien-allemand Ricardo Villalobos. Troisième album studio en solo, le projet est paru sur le label berlinois respecté Perlon, reflétant l'engagement de ce dernier envers les textures électroniques avant-gardistes et les structures de morceaux étendues et non conventionnelles. L'album est célèbre pour son ampleur, ayant été initialement publié sous la forme d'un coffret de six vinyles capturant Villalobos au sommet de son ambition, entremêlant des rythmes complexes de micro-house, de glitch et de techno cérébrale. La version CD, sortie en septembre 2012, offre une perspective plus resserrée et organisée de l'œuvre, mixée par Villalobos en un flux continu qui souligne la nature hypnotique, et souvent déconcertante, de son style de production.\n\nTout au long de la collection, Villalobos emploie sa technique caractéristique consistant à superposer de longues séquences évolutives qui privilégient la texture et l'atmosphère aux codes traditionnels du club. Le morceau « Koito » constitue un moment marquant de l'album, échantillonnant largement « (Holon) Slo Motion » d'Atom Heart, tandis que « Two Kids Set Off » intègre des enregistrements audio d'archives obsédants liés au massacre du lycée de Columbine, illustrant la tendance de l'artiste à intégrer des commentaires sociaux profonds, et souvent troublants, dans des paysages sonores immersifs. Les collaborations avec Max Loderbauer — notamment sur « Grumax » et « Die schwarze Massai » — enrichissent encore la palette sonore, ajoutant des couches de chaleur analogique à la production. L'absence délibérée de sortie numérique de l'album, associée à son déploiement physique complexe, souligne son statut de classique house « outsider », cimentant sa place en tant que document charnière, bien que difficile, de la musique électronique expérimentale des années 2010. Son héritage persiste comme un témoignage du pouvoir du format long à transporter l'auditeur par la patience, la précision et un détail sonore profond.",
+      "source_sha256": "991a1b1e1dd289349877beaf9ef4731bf9176f8f69f87443649ca66e3536963d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:16.170Z"
+    }
+  }
 }

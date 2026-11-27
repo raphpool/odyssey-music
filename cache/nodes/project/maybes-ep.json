@@ -24,5 +24,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier EP du duo électronique britannique Mount Kimbie, sorti début 2009, a servi de document fondateur au mouvement post-dubstep, mêlant conception sonore atmosphérique et sensibilités rythmiques expérimentales.",
+      "article": "Sorti en janvier 2009, le Maybes EP constitue la déclaration inaugurale du duo électronique britannique Mount Kimbie, composé de Dominic Maker et Kai Campos. Publiée par le label influent Hotflush Recordings de Scuba, cette collection de quatre titres a agi comme un catalyseur pour ce qui serait finalement qualifié de « post-dubstep » — une étiquette qui capturait la fusion aventureuse et exploratoire du projet, mêlant les basses cinétiques de la bass music à la délicatesse atmosphérique de l'ambient et de l'IDM. Contrairement aux textures plus dures et agressives du dubstep contemporain, Mount Kimbie a introduit une palette définie par des enregistrements de terrain, des mélodies douces et un sentiment de « flottement sans forme », tel que décrit par les critiques de l'époque. Des morceaux comme le titre éponyme « Maybes » et les suivants « William » et « Vertical » témoignent d'une maîtrise précoce d'une conception sonore non conventionnelle et d'une texture rythmique, mélangeant un sentiment de « chaos léger » avec une ambition mélodique claire. L'EP a suscité l'acclamation de la critique dès sa sortie, des médias comme Resident Advisor soulignant la capacité du duo à équilibrer flair imaginatif et précision technique, les désignant comme l'une des nouvelles perspectives les plus excitantes du paysage électronique britannique de l'époque. En s'éloignant de la « morosité omniprésente » du circuit des clubs, le Maybes EP a établi un modèle pour un son électronique plus introspectif, cimentant son héritage en tant que sortie charnière dans l'évolution précoce du post-dubstep et préparant le terrain pour le premier album acclamé du groupe, Crooks & Lovers, l'année suivante.",
+      "source_sha256": "889102086bb2c36b42e8c4f398381997f67ac8ffa1c2e2a8e83bfa86bd6d9a7f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:28:15.223Z"
+    }
+  }
 }

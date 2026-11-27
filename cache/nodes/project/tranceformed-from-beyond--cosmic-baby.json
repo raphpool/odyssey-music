@@ -211,5 +211,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Tranceformed From Beyond », publié en 1992 sur le label allemand influent MFS, constitue un document séminal de la scène trance émergente de Francfort au début des années 90.",
+      "article": "« Tranceformed From Beyond », publié en 1992 sur le label allemand influent MFS, constitue un document séminal de la scène trance émergente de Francfort au début des années 90. Plus qu'une simple compilation, ce projet — compilé et mixé par le duo légendaire composé de Cosmic Baby et Mijk van Dijk — a été conçu pour présenter l'évolution du son MFS, qui s'éloignait de l'acid house traditionnelle pour se diriger vers des paysages sonores plus atmosphériques, mélodiques et épiques qui finiraient par définir le genre trance. En sélectionnant et en remixant les premiers singles de MFS de 1990 et 1991, les producteurs ont créé un voyage cohérent qui a capturé l'esprit de la « Berlin/Frankfurt School » de la musique électronique, comblant le fossé entre l'expérimentation techno underground et l'explosion commerciale de la trance qui allait suivre plus tard dans la décennie.\n\nLe projet présente des contributions d'acteurs clés de la scène, notamment des projets comme The Visions Of Shiva, Neutron 9000 et Microglobe. Le mixage par Cosmic Baby et Mijk van Dijk est crucial ; il transforme des morceaux disparates en un récit auditif fluide qui reflète l'intensité des soirées en club de l'époque. L'accent mis par le disque sur une synthèse profonde et émotive ainsi que sur des textures atmosphériques a contribué à consolider la réputation de MFS en tant que bastion de la musique de danse intelligente et innovante. Pour les auditeurs retraçant l'histoire de la trance, « Tranceformed From Beyond » demeure un point de repère essentiel, représentant un moment où le genre formait encore son identité, caractérisé par l'exploration sonore et l'enthousiasme authentique et pionnier de ses architectes. Son héritage est préservé non seulement dans sa sortie originale de 1992 mais aussi dans les rééditions ultérieures, signalant son importance durable pour l'histoire de la musique électronique.",
+      "source_sha256": "551ced5012d75cafdf36163adfd24c8e9b8e96323a486c0a7f55324f81432c13",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:35:26.925Z"
+    }
+  }
 }

@@ -19,5 +19,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un jalon séminal de la techno de 1992 qui a jeté un pont entre Berlin et Détroit, livrant un assaut industriel axé sur les boucles qui a redéfini l'intensité et la fonctionnalité du genre.",
+      "article": "Sorti en 1992 sur le label berlinois séminal Tresor, Waveform Transmission, Vol. 1 de Jeff Mills est un chef-d'œuvre fondateur de la techno aux influences industrielles. Il marque un moment charnière dans l'histoire du genre, signalant un éloignement de la techno primitive plus mélodique et ancrée à Détroit vers une esthétique plus froide, plus agressive et centrée sur les boucles qui définirait le son des raves en entrepôt européennes pendant des décennies. Comprenant huit titres qui poussent le tempo et l'intensité de la musique de danse, l'album est célébré pour son « attaque vautour », mariant une percussion implacable et pointue comme un diamant à une palette sonore métallique de force industrielle.\n\nContrairement à une grande partie de ses productions antérieures, qui penchaient souvent vers les sensibilités mélodiques de la techno de Détroit ou la puissance collective d'Underground Resistance, ce premier album solo de Mills semble entièrement singulier et sans compromis. Des titres comme « Phase 4 » ont établi une nouvelle norme de férocité, contournant les structures traditionnelles d'« écoute à domicile » pour un assaut fonctionnel prêt pour le dancefloor. Pourtant, Mills n'abandonne pas la musicalité ; il maintient un sens du funk sous-jacent, souvent caché, démontrant une ingéniosité rythmique que ses imitateurs ont souvent eu du mal à reproduire. Grâce à une utilisation sophistiquée des filtres, à une évolution constante des boucles et à une production précise qui confère au disque sa masse et sa densité caractéristiques, Mills a créé un modèle pour les générations futures de producteurs de techno, de la scène industrielle britannique à la musique de club européenne moderne des heures de pointe. L'héritage du disque est immense, cimentant l'axe Berlin-Détroit et établissant Mills comme l'un des architectes les plus vitaux et avant-gardistes de la musique électronique.",
+      "source_sha256": "951e8dde937961d0ea78dc5607f3b70b8120f5872b46b275ab493d9d74f809e5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:36:24.978Z"
+    }
+  }
 }

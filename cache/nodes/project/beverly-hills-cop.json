@@ -93,5 +93,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "La bande originale de 1984 pour Beverly Hills Cop est devenue un artefact définitif de la culture pop des années 1980, portée par un tube synth-pop emblématique de l'époque et une collection de pop et de R&B contemporains à haute énergie. Elle s'impose comme une curation commerciale par excellence de son temps, capturant le son brillant et néon de l'Hollywood du milieu des années 80.",
+      "article": "La bande originale du film à succès de 1984 Beverly Hills Cop sert de capsule temporelle par excellence de la culture pop des années 1980, mêlant la domination émergente de la synth-pop à un R&B élégant et prêt pour la radio. Bien qu'officiellement intitulée bande originale du film, la collection fonctionne largement comme une compilation à haute intensité, mettant en vedette le célèbre morceau instrumental « Axel F. » de Harold Faltermeyer. Le thème dirigé par le synthétiseur de Faltermeyer est devenu un phénomène culturel incontournable, incarnant l'esthétique de production élégante et high-tech qui définissait les partitions des comédies d'action du milieu des années 80.\n\nAu-delà de la contribution de Faltermeyer, l'album est une puissance de la pop commerciale, comprenant des succès majeurs tels que « New Attitude » de Patti LaBelle et « The Heat Is On » de Glenn Frey. Le succès de l'album fut immense, se vendant à des millions d'exemplaires dès sa première année et consolidant sa place dans l'histoire de la musique pop liée au cinéma. Notamment, la collection inclut des titres qui n'apparaissaient pas dans le film lui-même, reflétant une pratique courante de l'industrie à cette époque où les sorties de bandes originales étaient traitées comme des vitrines organisées pour des stars de la pop établies et montantes plutôt que comme des accompagnements musicaux strictement diégétiques. Ce mélange de musique thématique et de singles radio en tête des classements a établi un modèle pour les bandes originales de blockbusters qui allaient dominer le reste de la décennie.",
+      "source_sha256": "2716543dd0972ae0b287f7d3a86ba8490102e04f685915112dcb1fe1b87ef3b9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:19:14.847Z"
+    }
+  }
 }

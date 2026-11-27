@@ -24,5 +24,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon de la musique électronique des années 90, ce premier album fait le pont entre l'énergie brute du dancefloor et les paysages sonores ambiants éthérés, définissant le modèle de l'IDM.",
+      "article": "Selected Ambient Works 85–92 s'impose comme le premier album studio définitif de l'énigmatique producteur électronique britannique Richard D. James, opérant sous son alias le plus célèbre, Aphex Twin. Sorti le 9 novembre 1992 chez Apollo Records, une filiale du label belge influent R&S Records, l'album a servi de pont entre le monde intense et énergique du rave et de la techno et l'expérience plus introspective et domestique de la musique ambient. Le disque est composé de morceaux que James a enregistrés sur des cassettes dès 1985, alors qu'il était encore adolescent et vivait en Cornouailles, en utilisant une collection de synthétiseurs et de boîtes à rythmes modifiés par ses soins.\n\nL'album est largement considéré comme une pierre angulaire des sous-genres « intelligent dance music » (IDM) et ambient techno. Bien qu'il maintienne une impulsion fondamentale ancrée dans les rythmes de club, il est profondément défini par ses textures éthérées et atmosphériques ainsi que par ses mélodies mélancoliques et obsédantes. La qualité sonore a souvent été remarquée pour ses caractéristiques lo-fi, résultat du vieillissement des enregistrements sur cassette, un détail qui n'a fait qu'ajouter à l'aura mythique et nostalgique du disque. Les critiques comme les auditeurs l'ont loué pour sa profondeur émotionnelle et sa complexité structurelle, établissant souvent des comparaisons avec les œuvres de Brian Eno tout en intégrant simultanément les textures sonores du shoegaze et de l'acid house du début des années 90.\n\nSur le plan culturel, Selected Ambient Works 85–92 a agi comme un catalyseur, contribuant à faire découvrir la musique techno à un public plus large en dehors des clubs de danse traditionnels, trouvant finalement sa place parmi les fans de musique indépendante. Au fil des décennies, il a consolidé son statut comme l'un des albums électroniques les plus influents des années 1990, apparaissant fréquemment en tête des listes des « meilleurs albums » de publications comme Fact et Pitchfork. Son héritage continue d'imprégner la musique électronique moderne, définissant l'intersection entre l'innovation technique et le sentiment humain brut et organique.",
+      "source_sha256": "845057e44355b1b3f380c1cd56eda7f378e438afc16489ebc4dd39ee04c5aba7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:32:17.206Z"
+    }
+  }
 }

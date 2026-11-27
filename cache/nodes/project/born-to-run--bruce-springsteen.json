@@ -125,5 +125,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le chef-d'œuvre de 1975 qui a révélé Bruce Springsteen, une fusion cinématographique de rock, de R&B et de pop qui capture parfaitement l'aspiration romantique et agitée de la jeunesse américaine.",
+      "article": "Born to Run, sorti le 25 août 1975, est le troisième album studio de l'auteur-compositeur-interprète américain Bruce Springsteen et son chef-d'œuvre révélateur. Après la performance commerciale mitigée de ses deux premiers disques, Springsteen a fait face à une pression immense de la part de Columbia pour livrer un succès sous peine d'être évincé du label. Poussé par le désir de créer « le plus grand disque de rock » qu'il ait jamais entendu, Springsteen et son ensemble d'accompagnement, le E Street Band, ont passé plus d'un an à concevoir méticuleusement l'album aux 914 Sound Studios et aux Record Plant Studios à New York. Le processus de production, co-géré par Springsteen, Mike Appel et Jon Landau, a été fortement influencé par l'esthétique grandiose du « Wall of Sound » de Phil Spector, aboutissant à un paysage sonore dense et cinématographique qui privilégiait l'ambition et l'intensité émotionnelle.\n\nSur le plan lyrique, l'album marque un départ thématique par rapport aux récits centrés sur le Jersey Shore de ses travaux précédents. Il capture l'esprit universel et agité de la jeunesse américaine, une collection de personnages piégés par leurs circonstances qui rêvent d'évasion et de rédemption à travers la promesse de la route. La chanson-titre, en particulier, est devenue un hymne à ce désir. Malgré le scepticisme initial de la critique et la pression de l'industrie, l'album a été propulsé par une campagne promotionnelle agressive et a fini par assurer sa place dans le canon du rock. Il a depuis été reconnu comme un jalon de l'histoire de la musique, honoré par une intronisation au National Recording Registry pour sa profonde signification culturelle et esthétique. Aujourd'hui, Born to Run demeure la déclaration définitive de Springsteen, équilibrant parfaitement les sensibilités du heartland rock avec une ambition grandiose orientée vers la pop qui a changé à jamais la trajectoire de sa carrière.",
+      "source_sha256": "8ba79afc445bbc4fe06bace77678c04595ab716ca821e70596b018d1d133ff8b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:19:17.850Z"
+    }
+  }
 }

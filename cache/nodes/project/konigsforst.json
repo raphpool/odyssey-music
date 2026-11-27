@@ -83,5 +83,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre monumentale d'ambient techno, Königsforst utilise des boucles de bande magnétiques immersives et embrumées pour capturer l'atmosphère obsédante et psychédélique de la forêt allemande dont il tire son nom.",
+      "article": "Königsforst, publié en 1998 sur le label influent Mille Plateaux, constitue le troisième album studio du projet Gas de Wolfgang Voigt. Œuvre séminale dans le développement de l'ambient techno, le disque est nommé d'après le parc de loisirs Königsforst, près de Köln, la ville natale de Voigt. Le parc, qui a servi de lieu aux expériences psychédéliques de jeunesse de Voigt avec le LSD, fournit le socle conceptuel et esthétique de l'ensemble du projet Gas — une tentative de cartographier par le son l'interaction entre la lumière, l'ombre et la nature au sein d'une dense forêt allemande. Musicalement, Königsforst est défini par ses couches colossales et mouvantes de textures en boucles, ses pulsations de basse souterraines et un style de production vaporeux et étouffé qui imite la sensation de se déplacer à travers un paysage impénétrable et chargé de brouillard. L'album comble efficacement le fossé entre les rythmes techno profonds et hypnotiques et les paysages sonores éthérés de la musique ambient, créant une expérience d'écoute monolithique qui semble à la fois ancienne et avant-gardiste. Lors de sa sortie initiale, l'interaction complexe entre les boucles distordues et les mélodies d'inspiration classique a marqué un tournant significatif dans la musique électronique, influençant une génération de concepteurs sonores et de producteurs expérimentaux cherchant à mêler atmosphère organique et répétition mécanique. L'album existe en plusieurs itérations, avec des différences entre le vinyle original de 1998, le CD contemporain et l'inclusion ultérieure dans le coffret Gas Box en 2016, ajoutant une couche de complexité archivistique à son héritage. En transformant le souvenir d'un lieu physique spécifique en une expérience sonore abstraite, Wolfgang Voigt a créé l'un des monuments les plus obsédants et immersifs de la musique électronique de la fin des années 90.",
+      "source_sha256": "24214a99a634ca5b6290830e0859e36d37de9f77526ce16a4cdb5726a4b63d52",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:19.960Z"
+    }
+  }
 }

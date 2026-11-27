@@ -59,5 +59,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Lovin' You » est le chef-d'œuvre emblématique de l'auteure-compositrice-interprète américaine Minnie Riperton, figurant sur son album de 1974, 'Perfect Angel'.",
+      "article": "« Lovin' You » est le chef-d'œuvre emblématique de l'auteure-compositrice-interprète américaine Minnie Riperton, figurant sur son album de 1974, 'Perfect Angel'. Écrit par Riperton et son mari, Richard Rudolph, le morceau a acquis une renommée durable pour son arrangement doux et sans percussions — ne comportant que de la guitare acoustique, du piano électrique et le son ambiant et accidentel de chants d'oiseaux — ainsi que pour l'extraordinaire performance vocale de Riperton, qui utilise de manière proéminente son registre de sifflet virtuose. Produite par Stevie Wonder (crédité sous le nom de « El Toro Negro » en raison de son contrat avec Motown) et Rudolph, la chanson est devenue un immense succès intergénérationnel, atteignant la première place du Billboard Hot 100 en avril 1975. Sa création est profondément ancrée dans l'histoire personnelle du couple ; la mélodie a commencé comme une distraction apaisante pour leur fille en bas âge, Maya, et le fondu enchaîné intime de la chanson présente, de manière célèbre, Riperton murmurant le nom de son enfant. En évitant les normes de production typiques de l'époque et en se concentrant sur un paysage sonore minimaliste et aérien, « Lovin' You » est devenu un document définitif de la soft soul des années 1970 et demeure une ballade aimée et influente. Elle représente un tournant dans la carrière de Riperton, mettant en valeur ses prouesses vocales bien au-delà des limites des genres musicaux de l'époque, et s'impose comme l'un des exemples les plus reconnaissables de ballade pop jamais enregistrés.",
+      "source_sha256": "1137718a3b12e0b3396c5cd85729169fad5d87989df1a6ac3aeeb0a0e82fe080",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:18.968Z"
+    }
+  }
 }

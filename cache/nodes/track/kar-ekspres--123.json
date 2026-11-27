@@ -68,5 +68,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Kar Ekspres » est un morceau évocateur du groupe stambouliote 123, figurant en septième position sur leur premier album de 2009, Aksel.",
+      "article": "« Kar Ekspres » est un morceau évocateur du groupe stambouliote 123, figurant en septième position sur leur premier album de 2009, Aksel. L'album, qui fonctionne comme un récit conceptuel suivant les aventures d'un garçon nommé Aksel, d'un hibou et d'une baleine, est une pierre angulaire de la production artistique initiale du groupe. Connu pour son mélange d'alternative, d'indie pop et d'influences jazz subtiles, 123 a forgé une identité sonore distincte qui a trouvé un écho sur la scène musicale indépendante d'Istanbul à la fin des années 2000.\n\nLe morceau lui-même, d'une durée de 2:25, résume le penchant du groupe pour la narration atmosphérique et les arrangements nuancés. Alors que l'album Aksel dans son ensemble est accompagné d'un livre d'illustrations de Huban Korman — soulignant davantage sa nature narrative — « Kar Ekspres » sert de moment mélodique concis au sein de ce voyage plus vaste. La production, assurée par le collectif « who are we who we are » aux côtés des membres du groupe eux-mêmes, aboutit à un son chaleureux et texturé qui caractérise une grande partie de leur travail de cette période. Grâce à leur approche unique de la composition, 123 a réussi à tisser ensemble des éléments disparates de pop et de rock expérimental, s'imposant comme une voix significative dans le paysage musical indépendant de Turquie. Le morceau demeure un exemple poignant de leur capacité à capturer des moments émotifs et fugaces à travers la musique, consolidé par le mixage et le mastering minutieux de Mike Nielsen.",
+      "source_sha256": "f2fa400bcc8533da555d5f0ca6aa29cf441333dc089e1d3258a9611ac7d8368d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:44:22.961Z"
+    }
+  }
 }

@@ -108,5 +108,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier album de Scorpions sorti en 1972, mettant en avant un son hard rock brut aux teintes psychédéliques, produit par le légendaire Conny Plank.",
+      "article": "Lonesome Crow est le premier album studio du groupe de rock allemand Scorpions, sorti le 9 février 1972. Enregistré en octobre 1971 aux Star Studios de Hambourg sous la direction du légendaire producteur Conny Plank, l'album représente une phase expérimentale distincte pour le groupe, très différente du hard rock léché et des power ballads qui définiront plus tard leur succès mondial. Au moment de l'enregistrement, le groupe comptait en son sein un jeune Michael Schenker, alors âgé de seulement 16 ans, dont le travail à la guitare apportait une dimension entraînante, souvent psychédélique, aux compositions. L'album a servi de bande originale au film antidrogue allemand Das Kalte Paradies (Le Paradis froid), et son paysage sonore se caractérise par une approche sombre, mélodique et parfois tentaculaire, mêlant des éléments de hard rock, de rock psychédélique et du son Krautrock alors émergent.\n\nBien que l'album soit un artefact historique important, marquant la transition du groupe vers une formation professionnelle, il demeure une exception dans leur discographie. L'écriture des chansons est créditée collectivement au groupe, un point de discorde de longue date pour Michael Schenker, qui a quitté le groupe par la suite pour rejoindre UFO et a revendiqué la paternité principale de titres clés comme « In Search of the Peace of Mind ». En dehors de cette chanson spécifique, qui est apparue par intermittence dans leurs concerts pendant des années, Scorpions s'est largement distancé du matériel de Lonesome Crow après la tournée de leur troisième album, In Trance. L'album a connu diverses rééditions sous des titres différents, tels que Action et The Original Scorpions, souvent avec des listes de titres modifiées, reflétant la relation évolutive du groupe avec ses premiers travaux formateurs. Il demeure aujourd'hui un aperçu fascinant et brut de la créativité naissante d'un groupe qui était encore en train de découvrir sa propre identité.",
+      "source_sha256": "70f3eb01040693004ed02cb5ae2119939134f5f07cebb21b8811b799c04952ee",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:18.248Z"
+    }
+  }
 }

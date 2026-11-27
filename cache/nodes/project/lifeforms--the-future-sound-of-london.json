@@ -155,5 +155,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Lifeforms est un chef-d'œuvre tentaculaire et immersif d'ambient techno qui a défini les frontières expérimentales du genre dans les années 1990, mêlant paysages sonores denses et production avant-gardiste.",
+      "article": "Lifeforms est le deuxième album studio du duo pionnier de la musique électronique britannique The Future Sound of London (FSOL), sorti le 23 mai 1994 chez Virgin Records. Œuvre définitive des scènes ambient et électronique des années 1990, l'album a marqué une transition significative pour le duo, passant de leurs travaux techno plus rythmés à un paysage sonore tentaculaire, immersif et hautement expérimental. Composé de deux disques de matériel dense et atmosphérique, Lifeforms est largement célébré pour ses techniques de production innovantes, mélangeant conception sonore ambient, techno expérimentale, esthétique glitch et textures complexes en couches.\n\nLa création de l'album a été caractérisée par la recherche par le duo d'une palette sonore plus cérébrale, organique et surnaturelle. Avec une durée de plus de 90 minutes, il crée une expérience cinématographique immersive qui était révolutionnaire pour son époque, suscitant les éloges des critiques pour son ambition artistique. L'album a bénéficié de collaborations avec des personnalités notables, dont Robert Fripp de King Crimson, qui a fourni des textures de guitare, et le percussionniste indien Talvin Singh, ajoutant à la richesse sonore mondiale et influencée par la fusion de l'album.\n\nSur le plan culturel, Lifeforms a servi de point de repère pour le mouvement ambient techno, influençant un vaste éventail de producteurs et d'artistes électroniques. Son héritage est tel qu'il a même inspiré le nom du célèbre groupe électronique suédois Carbon Based Lifeforms. Commercialement réussi, il a atteint la sixième place du UK Albums Chart, prouvant que la musique électronique expérimentale et avant-gardiste pouvait trouver un écho auprès d'un public plus large. L'illustration emblématique, présentant des images surréalistes telles que la « Witch Girl » et des modèles CGI créés par Buggy G. Riphead et le groupe lui-même, complétait la qualité extraterrestre et mystérieuse de la musique, consolidant Lifeforms comme un chef-d'œuvre immersif et essentiel de la décennie.",
+      "source_sha256": "08b0cb9b713f2e802b3579f24f2585ac63ed6efbf7dcb5383d63da391fb06ed7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:15.936Z"
+    }
+  }
 }

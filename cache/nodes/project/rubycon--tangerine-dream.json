@@ -67,5 +67,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Sorti en 1975, Rubycon est une étape marquante du mouvement électronique de la Berlin School, marquant un sommet dans la carrière de Tangerine Dream avec ses paysages sonores sombres, atmosphériques et portés par des séquenceurs. Il demeure une œuvre séminale du début de la musique ambient et électronique, célébrée pour sa « vision voyageuse » et son architecture sonore immersive en perpétuel déploiement.",
+      "article": "Rubycon, sorti en 1975, s'impose comme l'une des réalisations les plus significatives de la Berlin School de musique électronique. Suite à la percée commerciale et artistique de leur album précédent, Phaedra, Tangerine Dream a affiné son approche de la synthèse modulaire et de la composition basée sur les séquenceurs sur ce disque. Composé et produit par le trio emblématique composé de Edgar Froese, Christopher Franke et Peter Baumann, l'album est structuré en deux suites immersives de longue durée qui définissent l'esthétique de la « Berlin School » : des textures sombres, tentaculaires et hypnotiquement rythmiques qui ressemblent autant à des paysages sonores architecturaux qu'à des compositions musicales traditionnelles.\n\nÀ sa sortie, Rubycon s'est classé remarquablement bien, atteignant la 12e place des charts britanniques et y maintenant sa présence pendant 14 semaines, témoignant de l'influence croissante du groupe au milieu des années 1970. Les critiques comme les fans ont souvent cité l'album pour sa « grandeur lointaine » et sa capacité à évoquer des environnements vastes et surnaturels sans s'appuyer sur des structures de chansons conventionnelles. Contrairement aux expérimentations plus mélodiques et orientées pop qui apparaîtraient dans les décennies ultérieures de la musique électronique, Rubycon se caractérise par son exploration libre et pleine de tension, dérivant de motifs étroitement séquencés vers des passages ambiants vaporeux. Il a été décrit comme un « disque ambient satisfaisant de l'ère pré-ambient », capturant un niveau de profondeur et de texture que les critiques contemporains ont noté comme étant rarement reproduit par les innombrables artistes qu'il a inspirés dans les décennies qui ont suivi. L'album demeure un texte fondateur dans l'histoire de la musique électronique, une expérience d'écoute définitive pour quiconque s'intéresse aux pionniers du synthétiseur modulaire.",
+      "source_sha256": "7bcda1858d705565ac23a9cea1e7a089556cf03fd4379dd8b7e2cccff1da6bf7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:32:13.369Z"
+    }
+  }
 }

@@ -58,5 +58,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Eggy Toast » est un morceau marquant de l'album collaboratif de 1996 Expert Knob Twiddlers du duo emblématique d'IDM Mike & Rich (composé d'Aphex Twin et µ-Ziq).",
+      "article": "« Eggy Toast » est un morceau marquant de l'album collaboratif de 1996 Expert Knob Twiddlers du duo emblématique d'IDM Mike & Rich (composé d'Aphex Twin et µ-Ziq). Connu pour son titre fantaisiste et sa production complexe, le morceau illustre l'esprit ludique et expérimental qui a défini le son « Braindance » défendu par Richard D. James et Mike Paradinas au milieu des années 90. La collaboration entre ces deux titans de la musique électronique était notoirement ancrée dans leur amour commun pour les synthétiseurs matériels, les boîtes à rythmes et une approche de la composition quelque peu chaotique et pleine d'énergie.\n\nLe morceau est caractéristique de l'esthétique d'Expert Knob Twiddlers, mêlant des structures rythmiques complexes à des mélodies qui semblent à la fois rétro-futuristes et subtilement absurdes. En tant que partie d'un album qui capture la spontanéité de l'époque — souvent décrit par les fans comme un exemple par excellence de l'apogée de l'IDM — « Eggy Toast » utilise la technique caractéristique du « knob-twiddling », aboutissant à des timbres et des textures changeants qui maintiennent l'auditeur constamment engagé. Son inclusion dans le catalogue réédité sur Planet Mu a cimenté son héritage, démontrant l'influence durable de la collaboration entre James et Paradinas. La musique elle-même ressemble à une expérience de laboratoire en matière de malice sonore, équilibrant prouesse technique et sens de l'humour irrévérencieux qui demeure une marque de fabrique du travail en solo des deux artistes. Il constitue un moment charnière dans l'histoire de la musique électronique underground, représentant un pont entre la scène ambient techno des débuts et les développements plus frénétiques et axés sur le glitch qui suivront plus tard dans la décennie. Le morceau témoigne de la synergie créative entre ces deux producteurs prolifiques, mettant en valeur leur capacité à synthétiser la complexité technique en une pièce musicale accessible et pleine de caractère qui résonne encore aujourd'hui auprès des amateurs de musique électronique.",
+      "source_sha256": "85b7add8f9ed614cd911d88952fe2321cdb03504f2ee49160450fb02f888ed50",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:41:21.459Z"
+    }
+  }
 }

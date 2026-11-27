@@ -48,5 +48,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "La composition séminale de 1958 de La Monte Young est largement citée comme l'œuvre inaugurale du minimalisme musical, remplaçant le développement mélodique par des tons étendus et soutenus et un silence profond.",
+      "article": "Trio for Strings (1958) est une composition phare du pionnier de l'avant-garde américaine La Monte Young, largement reconnue par les musicologues comme une œuvre fondatrice du mouvement minimaliste. Composée durant sa dernière période d'exploration sérielle, l'œuvre représentait une rupture radicale avec l'activité dense et frénétique courante dans la musique classique occidentale de l'époque. Au lieu de cela, Young a construit la pièce exclusivement à partir de longs tons soutenus et de silences, déplaçant l'attention de l'auditeur vers les qualités microscopiques du son, du timbre et de l'intervalle harmonique plutôt que vers le développement mélodique ou thématique traditionnel. En privilégiant la stase sur la progression, la composition a anticipé les langages musicaux basés sur le drone qui domineraient la carrière ultérieure de Young et a fortement influencé la trajectoire du minimalisme américain, y compris le travail de Terry Riley et le mouvement ambient.\n\nLe poids historique du Trio est enraciné dans son traitement révolutionnaire du temps et de la perception. Bien que la structure utilise des techniques sérialistes communes au mentor de Young, Leonard Stein, et à l'influence d'Anton Webern, l'application d'une augmentation extrême — où les tons individuels et les silences peuvent durer une minute ou plus — crée un sentiment d'« intemporalité » qui semble étonnamment moderne, même des décennies plus tard. Au fil des ans, l'œuvre a été réalisée sous divers formats, notamment dans des versions en Just Intonation développées en collaboration avec le violoncelliste Charles Curtis et le Theatre of Eternal Music. Ces interprétations ultérieures ont cherché à manifester la signification harmonique intérieure de l'œuvre, utilisant souvent des ensembles plus larges pour mieux soutenir les tons purs et les intonations complexes qui définissent le langage tonal idiosyncrasique de Young. Le Trio demeure un document vital de l'histoire de l'avant-garde du XXe siècle, comblant le fossé entre le sérialisme moderniste tardif et les expériences méditatives et immersives de la drone music.",
+      "source_sha256": "edea32cb3b412e307938a884b56ed4857120e21b1924d1e21e0500e7e02a1014",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:17.758Z"
+    }
+  }
 }

@@ -126,5 +126,14 @@
       "name": "Frankies Beathouse"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier album de 1992 du groupe d'Eurodance italien Double You, mêlant des arrangements disco inspirés des années 70 à la production house caractéristique des années 90.",
+      "article": "Sorti en 1992 en tant que premier album studio du groupe d'Eurodance italien Double You, le disque fait suite au succès international massif de leur reprise de Please Don’t Go. Produite par Robyx Zanetti, la collection est ancrée par sa chanson-titre, écrite et enregistrée à l'origine par le musicien canadien Domenic Troiano en 1979. L'album présente un son Euro-house caractéristique défini par des remplissages de cordes et de piano, avec des arrangements gérés par AWF et un travail de production supplémentaire par Frankies Beathouse sur divers remixes. Larry Flick de Billboard a loué le projet pour ses refrains hymniques et sa sensibilité disco rétro, tandis que le critique de Music Week, Andy Beevers, a noté son style de production axé sur l'orgue. Le projet a cimenté la place du groupe sur la scène dance des années 1990, atteignant le top 10 des classements en Autriche, en France, en Allemagne et en Suisse.",
+      "source_sha256": "04987d623d9cbedb6c40b70422231abcb7c4e51407f51454e659661382b17b6b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:37:13.218Z"
+    }
+  }
 }

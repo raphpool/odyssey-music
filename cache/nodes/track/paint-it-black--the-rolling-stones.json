@@ -44,5 +44,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un single marquant de 1966 par The Rolling Stones, connu pour sa mélodie emblématique au sitar et son atmosphère sombre.",
+      "article": "Sorti en 1966, Paint It, Black demeure l'un des singles les plus emblématiques du groupe de rock britannique The Rolling Stones. Apparaissant à l'origine sur la version américaine de leur album Aftermath, le morceau est largement reconnu pour son riff de sitar distinctif et son atmosphère sombre et mélancolique. Il est devenu un succès mondial, atteignant le sommet des classements dans plusieurs pays et consolidant sa place en tant que pierre angulaire du canon rock des années 1960. La composition et la production de la chanson ont marqué une évolution stylistique significative pour le groupe, s'éloignant de leurs racines blues-rock vers un son plus expérimental et psychédélique. Elle reste une œuvre déterminante de l'époque, fréquemment citée pour son influence sur la musique rock et sa popularité durable dans la culture populaire.",
+      "source_sha256": "54e321b21a2789501d29bf8bde110b15c654d7f6b74831cce49bd5315a201d66",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:47:15.601Z"
+    }
+  }
 }

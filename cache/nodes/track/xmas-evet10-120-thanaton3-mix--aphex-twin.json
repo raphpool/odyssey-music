@@ -55,5 +55,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Favori des fans depuis une décennie, ce chef-d'œuvre tentaculaire de dix minutes issu de l'album « Syro » d'Aphex Twin sorti en 2014 mêle une programmation de batterie frénétique et complexe à une progression mélodique émotionnelle et évolutive.",
+      "article": "« XMAS_EVET10 [120] [thanaton3 mix] » est une composition électronique tentaculaire et complexe du producteur pionnier Aphex Twin (Richard D. James). Sorti à l'origine comme morceau final de son album « Syro » en 2014, la pièce est un exemple définitif de sa synthèse caractéristique entre complexité à haut tempo et mélancolie mélodique. D'une durée de plus de dix minutes, le morceau est réputé parmi les fans pour son évolution, passant d'une base rythmique frénétique à un paysage sonore luxuriant et expansif. Son titre, comme une grande partie de la discographie de James, suit ses conventions de nommage idiosyncrasiques, faisant souvent référence à des performances live, à des données techniques de BPM ou à des abréviations personnelles. La variante « thanaton3 mix » est devenue synonyme du « Metz track », un morceau qui a circulé parmi les bootleggers et les fans pendant des années après une performance live en 2010 à Metz, en France, avant de finalement bénéficier d'une sortie en studio. « Syro » lui-même a servi de point de repère culturel majeur lors de sa sortie, marquant le retour de James à la production d'albums studio après une interruption de treize ans. Le morceau encapsule la double nature de « Syro », célébrant simultanément les techniques de production nettes et modernes que James a perfectionnées au fil des années, tout en conservant l'imprévisibilité émotionnelle et la densité sonore qui définissaient ses premiers travaux. À travers ses percussions changeantes, son interaction mélodique et sa structure progressive, il demeure un moment marquant du vaste catalogue de l'artiste, illustrant sa capacité à équilibrer une architecture électronique chaotique avec un sentiment authentique et résonnant.",
+      "source_sha256": "6e6cad3282441ab7515d13a9fbdb98bdaedea52026f12c828a057c0211dd686a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:53:24.023Z"
+    }
+  }
 }

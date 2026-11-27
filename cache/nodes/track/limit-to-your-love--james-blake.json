@@ -69,5 +69,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "La réinterprétation épurée et riche en basses de « Limit to Your Love » de Feist par James Blake a transformé le paysage de la musique électronique, mêlant ballade minimaliste au piano et tension profonde des sub-basses.",
+      "article": "Sorti en novembre 2010, « Limit to Your Love » de James Blake s'impose comme un moment charnière du post-dubstep et de la pop électronique, marquant la transition d'un producteur connu pour sa musique de club rythmique et déformée vers un auteur-compositeur-interprète innovant et soul. Reprise de l'original de Feist, la version de Blake réduit le matériau source à ses éléments les plus essentiels : une mélodie de piano clairsemée et résonnante, un motif de batterie subtil et une énorme sub-basse vibrante qui sert d'ancrage émotionnel au morceau. La production se distingue par sa retenue et son utilisation architecturale du silence, Blake employant de longues pauses qui entraînent l'auditeur dans un espace tendu et introspectif avant que les pulsations de basse ne reviennent.\n\nAu moment de sa sortie, la chanson a attiré une attention considérable sur Blake, révélant une tessiture vocale chaleureuse et vulnérable qui contrastait avec la précision froide et mécanique souvent associée à la musique électronique contemporaine. En mêlant l'intimité organique de la ballade au piano au poids de la culture sound system britannique axée sur les basses, le morceau a comblé un fossé important, influençant une vague d'artistes électroniques à adopter des structures de chansons traditionnelles et une performance vocale émotive. Il est arrivé comme un single pivot de son premier cycle d'EP, servant finalement de pièce maîtresse à son premier album studio éponyme, James Blake (album), en 2011. Son succès a prouvé que la musique électronique pouvait être aussi subtile et émotionnellement dévastatrice que la pop traditionnelle, établissant Blake comme une figure singulière de la musique du XXIe siècle.",
+      "source_sha256": "01afb0624f4d7ff59df8d0574812269b12efad81c8c1c117162f4259ec275279",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:16.063Z"
+    }
+  }
 }

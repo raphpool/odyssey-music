@@ -60,5 +60,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Moment fort de l'album de retour d'Aphex Twin en 2014, Syro, « produk 29 [101] » est une leçon magistrale de rythmes électroniques superposés et pleins d'énergie.",
+      "article": "« produk 29 [101] » est un morceau du célèbre musicien électronique Aphex Twin, publié dans le cadre de son album studio de 2014 acclamé par la critique, Syro. Comptant parmi les compositions les plus marquantes du disque, le morceau illustre la production électronique complexe et pleine d'énergie pour laquelle Aphex Twin (Richard D. James) est reconnu. D'une durée d'environ cinq minutes, « produk 29 [101] » présente les arrangements denses et superposés ainsi que la complexité rythmique qui définissent l'ère Syro, équilibrant des percussions frénétiques avec des éléments mélodiques devenus synonymes de sa signature sonore.\n\nPublié sur Warp Records, le morceau a contribué à l'immense attente et au succès final de Syro, qui marquait la première sortie d'un album studio majeur de James en plus d'une décennie. Le titre, caractéristique de ses conventions de nommage cryptiques et numériques, suggère une précision mécanique ou expérimentale. Dans le contexte plus large de l'album, « produk 29 [101] » sert de pont entre les racines IDM (Intelligent Dance Music) qui ont établi la carrière d'Aphex Twin dans les années 1990 et les techniques de production studio plus propres et plus soignées qu'il a affinées dans les années 2010. Le morceau est largement considéré par les fans comme par les critiques comme une pièce essentielle de sa discographie, démontrant sa capacité continue à innover au sein du paysage électronique bien après son ascension initiale. Son inclusion sur Syro a consolidé la place de l'album en tant que sortie électronique marquante de la décennie.",
+      "source_sha256": "da0017c6855f41c53045e3734edc07e9cea23286ce5ef32ebd8f5458b6dca746",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:15.365Z"
+    }
+  }
 }

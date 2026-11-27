@@ -55,5 +55,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« MmmHmm » est un morceau marquant du producteur américain Flying Lotus, mettant en vedette le jeu de basse virtuose de son collaborateur fréquent Thundercat.",
+      "article": "« MmmHmm » est un morceau marquant du producteur américain Flying Lotus, mettant en vedette le jeu de basse virtuose de son collaborateur fréquent Thundercat. Sorti en 2010 dans le cadre du troisième album studio très influent de Flying Lotus, Cosmogramma, le morceau représente une « oasis astrale » pivot au sein du paysage sonore cosmique dense, ultra-rapide et complexe de l'album. Connu pour sa mélodie légère aux teintes tropicales et sa production complexe, la chanson met en valeur une convergence harmonieuse entre expérimentation électronique et instrumentation live imprégnée de jazz.\n\nLe morceau est largement célébré pour sa capacité à équilibrer une précision rythmique mécanique avec les lignes de basse fluides et « repliées » caractéristiques du style unique de Thundercat. Sur le plan lyrique et tonal, la chanson offre un sentiment d'introspection et de clarté, illustré par le refrain « Just be who you are », qui sert de moment de zen poignant au milieu des textures électroniques plus larges et chaotiques du disque. Culturellement, cette collaboration a solidifié le partenariat créatif entre Flying Lotus et Thundercat, un duo dont les travaux futurs allaient façonner fondamentalement le développement du hip-hop expérimental, de la musique électronique et du jazz fusion moderne tout au long des années 2010. En se distinguant comme un centre mélodique rare et accessible au sein de Cosmogramma, « MmmHmm » demeure l'une des compositions les plus reconnaissables et durables de la période Warp Records de la carrière de Flying Lotus.",
+      "source_sha256": "1908e4ed513ad6ca4121751784003380435e5c6809ec68dfcd0b9c0bc546295e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:24.440Z"
+    }
+  }
 }

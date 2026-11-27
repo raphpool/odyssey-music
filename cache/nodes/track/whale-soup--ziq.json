@@ -73,5 +73,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Whale Soup » est un morceau marquant du premier album de 1993, Tango N'Vectif, du producteur électronique influent µ-Ziq, le projet principal de Mike Paradinas.",
+      "article": "« Whale Soup » est un morceau marquant du premier album de 1993, Tango N'Vectif, du producteur électronique influent µ-Ziq, le projet principal de Mike Paradinas. Sorti durant l'ère naissante de l'intelligent dance music (IDM) et des débuts de l'expérimentation breakbeat, le morceau capture l'énergie brute et frénétique qui a contribué à définir le son de Rephlex, le label légendaire fondé par Aphex Twin et Grant Wilson-Claridge.\n\nMusicalement, « Whale Soup » met en avant le style de production complexe et axé sur le rythme dont Paradinas a été le pionnier au début des années 1990. Il mélange les breakbeats nets et syncopés, courants dans les scènes rave et hardcore britanniques de l'époque, avec les sensibilités mélodiques décalées et ludiques qui allaient devenir une marque de fabrique de la longue carrière de µ-Ziq. Le morceau sert de pont essentiel entre la musique de dancefloor à haute intensité du début des années 90 et les textures électroniques plus introspectives, destinées à l'écoute domestique, qui allaient évoluer vers le sous-genre « intelligent ».\n\nEn incluant « Whale Soup » sur Tango N'Vectif, µ-Ziq s'est imposé comme une figure centrale d'une communauté qui repoussait les limites de la musique électronique, comblant le fossé entre la culture rave underground et la conception sonore avant-gardiste. L'héritage durable du morceau se manifeste dans la manière dont il continue d'être cité par les fans et les critiques comme une pièce essentielle de l'histoire de l'IDM, reflétant un moment où les frontières de la techno et du breakbeat étaient brisées et reconstituées en formes sonores entièrement nouvelles. Grâce à sa superposition méticuleuse et son refus de se conformer aux tropes standard du quatre-au-sol, Paradinas a assuré que des morceaux comme « Whale Soup » restent distincts, vibrants et profondément influents pour les générations suivantes d'artistes électroniques.",
+      "source_sha256": "62e2949b6d07f7f4d391d1e4506db9fe100de0b986f2e4b39aeed5c27b285802",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:53:17.614Z"
+    }
+  }
 }

@@ -51,5 +51,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre techno séminal de 1993 signé Basic Channel, « Phylyps Trak » est célébré pour son énergie hypnotique brute aux accents industriels et demeure un modèle fondateur du son dub-techno berlinois.",
+      "article": "« Phylyps Trak » est un morceau techno séminal du duo berlinois influent Basic Channel, sorti en 1993 sur leur label du même nom. Souvent cité comme un modèle du son « Berlin-Detroit », le morceau est réputé pour son esthétique brute, hypnotique et aux accents industriels. Enregistré en public au Waschhaus de Potsdam, il capture une énergie éphémère et improvisée qui a défini une grande partie de la production du duo durant cette période. Le morceau se caractérise par des boucles de batterie lourdes et vacillantes ainsi que par des séquences de synthétiseurs complexes et évolutives qui créent une expérience d'écoute profondément immersive. Au fil des ans, « Phylyps Trak » a atteint un statut quasi religieux parmi les amateurs de techno, sa production minimaliste servant de leçon magistrale sur la tension et la libération.\n\nSon importance culturelle durable réside dans son éloignement des sons plus polis et optimistes courants dans la musique dance du début des années 90, privilégiant au contraire une approche granuleuse axée sur la texture qui a contribué à solidifier l'identité esthétique de la scène techno berlinoise. L'influence du morceau s'entend dans les vagues successives de producteurs de dub techno et de minimal techno qui ont considéré la discographie de Basic Channel comme une source d'inspiration fondamentale. Avec sa pertinence persistante et son son intemporel, « Phylyps Trak » continue d'être considéré comme l'une des compositions les plus importantes de l'histoire de la musique électronique, incarnant une essence du genre qui demeure à la fois avant-gardiste et rythmiquement essentielle.",
+      "source_sha256": "ca47c268fe65cc16d0c1014e765ea74b3b4970a7eae8bf6e76c21a1d60cc16b4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:47:21.457Z"
+    }
+  }
 }

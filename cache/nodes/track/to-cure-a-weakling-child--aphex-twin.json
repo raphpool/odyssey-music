@@ -63,5 +63,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre de breakbeats frénétiques et saccadés mêlés à un sentiment mélodique fragile, « To Cure A Weakling Child » s'impose comme l'un des titres emblématiques de l'album phare d'Aphex Twin sorti en 1996.",
+      "article": "« To Cure A Weakling Child » est un morceau électronique séminal du producteur britannique influent Richard D. James, enregistrant sous son pseudonyme le plus reconnaissable, Aphex Twin. Publié à l'origine sur l'album de 1996 Richard D. James Album via Warp Records, le morceau est une pierre angulaire des sous-genres drill 'n' bass et IDM (Intelligent Dance Music). Le titre est célèbre pour sa programmation de batterie complexe et hyperactive juxtaposée à une structure mélodique étonnamment mélancolique, presque enfantine. Il illustre la capacité de James à manipuler des percussions à haute fréquence et des breaks saccadés pour en faire une composition étonnamment émotive.\n\nLe morceau est caractérisé par son architecture rythmique complexe, présentant des breakbeats denses et multicouches qui semblent trébucher sur eux-mêmes de manière contrôlée et chaotique. Cette couche rythmique frénétique contraste avec une mélodie chaleureuse basée sur des synthétiseurs qui évoque un sentiment de fragilité ludique, fournissant l'ancrage thématique à l'imagerie du « weakling child ». La composition est devenue si emblématique au sein de la scène électronique expérimentale que James a revisité le concept plus tard, publiant une version retravaillée intitulée « To Cure A Weakling Child (Contour Regard) » sur l'EP Come to Daddy en 1997. Au fil des décennies, le morceau a conservé un héritage significatif, influençant une génération de producteurs cherchant à combler le fossé entre une science du rythme agressive et technique et des paysages sonores mélodiques et atmosphériques. Il demeure un point d'entrée définitif pour ceux qui explorent le mouvement IDM britannique du milieu des années 90 et sert d'exemple majeur de la maîtrise de production de Richard D. James.",
+      "source_sha256": "a76f74cc9104b1859e139a57c36f51f147697236106613e842cc037bcb9d7226",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:13.451Z"
+    }
+  }
 }

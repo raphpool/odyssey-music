@@ -75,5 +75,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Sorti en 2006, le premier album studio de Skream! est un monument séminal du dubstep qui a contribué à propulser le son sombre et riche en basses du sud de Londres dans la conscience mondiale.",
+      "article": "Skream!, sorti en 2006 sur le label séminal Tempa, s'impose comme un monument fondateur dans l'évolution du dubstep. Conçu par le producteur originaire de Croydon Oliver Jones, plus connu sous le nom de Skream, l'album a capturé l'énergie brute et chargée de sub-bass de la scène du sud de Londres durant sa période la plus fertile. Bien que le dubstep trouve ses racines dans les expérimentations sombres et squelettiques du garage et du grime du début des années 2000, Skream! a apporté une sensibilité mélodique, émotive et axée sur le dancefloor au genre, consolidant l'esthétique qui allait bientôt conquérir la musique électronique dans le monde entier.\n\nIncluant des titres emblématiques tels que « Midnight Request Line », le projet est défini par ses lignes de basse profondes et oscillantes, ses percussions clairsemées et une tension caractéristique entre obscurité claustrophobe et accessibilité mélodique. Skream! est souvent cité par les critiques et les fans comme l'un des documents définitifs de l'époque, mettant en avant un artiste au sommet de sa concentration créative. L'album a aidé à faire passer le dubstep d'un phénomène de club localisé à un son mondial, influençant d'innombrables producteurs qui ont suivi le sillage du collectif de Croydon. Au-delà de sa portée historique, le disque demeure une expérience d'écoute convaincante et cohérente qui capture un tournant décisif dans le paysage de la production électronique du XXIe siècle. Il ne s'agit pas simplement d'une collection de singles ; c'est un paysage sonore qui encapsule parfaitement l'humeur de son époque.",
+      "source_sha256": "7b66077167e25fd0242323866baf2b6b7d22de28e6843bfeed7bc85c79ad8fd8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:32:22.973Z"
+    }
+  }
 }

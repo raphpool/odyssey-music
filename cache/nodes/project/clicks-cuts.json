@@ -54,5 +54,14 @@
   ],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Série de compilations déterminante qui a cristallisé l'esthétique glitch au tournant du millénaire, Clicks + Cuts fait office de manifeste définitif pour le label allemand Mille Plateaux et pour le mouvement plus large de la musique électronique expérimentale.",
+      "article": "Publié en 2000 par le label allemand influent Mille Plateaux, le premier volume de la série Clicks + Cuts constitue un document phare dans l'histoire de la musique électronique. Conçue durant une période d'évolution rapide de la conception sonore assistée par logiciel, la compilation a efficacement comblé le fossé entre la musique informatique académique et les franges aventureuses de la culture club underground. Elle a servi d'introduction définitive à ce qui allait devenir largement connu sous le nom de « glitch » — un genre qui a consciemment adopté les artefacts sonores du traitement numérique, notamment les sauts de CD, les erreurs de mémoire tampon, les plantages système et les parasites, traitant ces défaillances techniques comme une matière expressive.\n\nLa série, qui a fini par s'étendre sur plusieurs volumes, est devenue un carrefour vital pour une communauté mondiale de producteurs qui repoussaient les limites de la performance et de la composition sur ordinateur portable. En se concentrant sur l'architecture du son plutôt que sur les tropes mélodiques ou rythmiques traditionnels, les artistes impliqués dans Clicks + Cuts ont contribué à légitimer une nouvelle esthétique « déconstruite » qui rejetait la nature immaculée et hautement produite de la musique de danse contemporaine. Cette approche radicale a encouragé les auditeurs à trouver de la beauté dans les micro-détails et les limites techniques du matériel audio numérique, cimentant la réputation de la série en tant que point d'entrée essentiel dans le paysage électronique expérimental du début des années 2000. Son influence a été vaste, offrant une plateforme à des figures clés comme Alva Noto, Ryoji Ikeda et Pole, tout en définissant simultanément une identité sonore qui demeure une pierre angulaire de la production électronique d'avant-garde du XXIe siècle.",
+      "source_sha256": "be0a45cc9b2377488972b5e3c13b35109334606755b040a384f5eac4022553a1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:20:14.977Z"
+    }
+  }
 }

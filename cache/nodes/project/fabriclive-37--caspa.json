@@ -189,5 +189,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "La compilation mixée séminale de 2007 qui a propulsé le dubstep sous les projecteurs mondiaux, curatée et mixée par les pionniers de la basse montants Caspa et Rusko.",
+      "article": "Fabriclive.37 est une compilation mixée marquante de 2007 publiée par la célèbre boîte de nuit et label londonien Fabric. Mixée par le duo de dubstep pionnier Caspa et Rusko, cette sortie est largement considérée comme un document pivot dans l'explosion du genre dubstep au-delà des confins intimes de la scène underground londonienne. En 2007, le dubstep passait d'une ramification expérimentale de niche du garage et du grime à une force mondialement reconnue, et Fabriclive.37 a servi de transmission de haut niveau de cette évolution agressive et riche en basses.\n\nLe mix capture un moment spécifique d'énergie maximale, mettant en valeur la basse « wobble » et les esthétiques mécaniques brutes qui allaient définir le son pour la demi-décennie suivante. Caspa et Rusko, tous deux étoiles montantes de la scène à l'époque, ont curaté une liste de titres équilibrant des hymnes percutants avec des morceaux plus profonds, mettant en vedette des poids lourds comme Skream, Coki et Distance. Le mix est défini par son rythme implacablement propulsif, caractérisé par des battements en mi-temps, des sub-basses tremblantes et un sentiment de confrontation sonore imminente. Sa sortie a solidifié le rôle de Fabric en tant que prescripteur principal dans le monde de la bass music et demeure un artefact essentiel pour tout auditeur cherchant à comprendre l'époque où le dubstep s'est transformé d'une sous-culture de sous-sol en un phénomène culturel majeur. L'inclusion de titres comme « Cockney Thug » et « Jahova » aide à ancrer le mix dans son importance historique en tant que moment transformateur pour la musique électronique.",
+      "source_sha256": "ed2152ff55a94d122abd492aefcd36dfcf4a2345026b327e358c15886d517620",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:23:13.416Z"
+    }
+  }
 }

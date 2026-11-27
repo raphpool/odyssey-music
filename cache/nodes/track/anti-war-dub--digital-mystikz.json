@@ -69,5 +69,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Anti War Dub » est un morceau séminal dans le développement des débuts du dubstep, sorti en 2006 par le duo de production britannique Digital Mystikz (composé de Mala et Coki) sur leur label influent, DMZ.",
+      "article": "« Anti War Dub » est un morceau séminal dans le développement des débuts du dubstep, sorti en 2006 par le duo de production britannique Digital Mystikz (composé de Mala et Coki) sur leur label influent, DMZ. En tant que document clé du son dubstep originaire de Croydon, le morceau illustre le glissement du genre, s'éloignant des tempos plus rapides du garage pour un espace défini par des sub-bass profondes, une percussion minimaliste et une tension atmosphérique intense. Sa sortie sur le maxi 12 pouces DMZ007, couplé au tout aussi acclamé « Haunted », a marqué un moment décisif pour la scène, cimentant la réputation des soirées club DMZ et du label comme le cœur battant du mouvement.\n\nSur le plan sonore, « Anti War Dub » est remarqué pour sa structure clairsemée et squelettique, qui permet au poids immense des basses fréquences de dominer le champ sonore. Le morceau évite les ornements excessifs, s'appuyant plutôt sur des échos soigneusement placés, des textures de synthétiseurs obsédantes et une pulsation rythmique qui semble à la fois méditative et menaçante. Le titre « anti-war » et les échantillons vocaux intégrés au morceau reflètent la conscience politique qui imprégnait parfois le mouvement dubstep à ses débuts, ancrant ce son axé sur les basses, souvent perçu comme une évasion, dans une réalité mondiale plus sobre. Il reste largement célébré par les producteurs comme par les fans en tant que classique intemporel ayant comblé le fossé entre l'influence du dub jamaïcain traditionnel et le paysage moderne de la musique électronique de danse. L'héritage durable du morceau est attesté par son inclusion dans diverses rétrospectives de la scène électronique des années 2000 et par son influence continue sur les producteurs explorant des paysages sonores centrés sur les basses. Pour ceux qui ont connu les années formatrices du dubstep à Londres, « Anti War Dub » est fréquemment cité comme l'hymne par excellence de cette époque.",
+      "source_sha256": "5f6686ee52ae0e8aea2025e845984a21bedcc199fcd1e589ba675cbb7c14f434",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:38:13.384Z"
+    }
+  }
 }

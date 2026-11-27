@@ -65,5 +65,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Pewter Dragon » est un morceau électronique du producteur influent Mike Paradinas, opérant sous son pseudonyme Jake Slazenger.",
+      "article": "« Pewter Dragon » est un morceau électronique du producteur influent Mike Paradinas, opérant sous son pseudonyme Jake Slazenger. Sorti en 2006 sur Planet Mu, le morceau illustre la conception sonore à la fois ludique et complexe que Paradinas a cultivée tout au long de sa carrière. En tant que personnage artistique, Jake Slazenger était souvent utilisé pour explorer une musique électronique teintée de funk, légèrement absurde et techniquement dense, se distinguant des textures plus abrasives ou ambiantes trouvées sous ses principaux pseudonymes. « Pewter Dragon » témoigne du dynamisme rythmique et excentrique de la scène IDM (Intelligent Dance Music) du milieu des années 2000, où les producteurs privilégiaient souvent des grooves idiosyncrasiques et bancals aux structures de genre traditionnelles. À ce stade de sa carrière, Paradinas s'était imposé comme une figure centrale de l'underground électronique britannique grâce à son label, Planet Mu, et à sa propre production prolifique. Le morceau est remarquable par son rendu compact et percutant, publié en tant que single numérique qui souligne la capacité de l'artiste à maintenir une identité sonore distincte et fantaisiste tout en traversant divers sous-genres de musique électronique expérimentale. Il demeure un favori culte parmi les fans du catalogue étendu de Paradinas, s'imposant comme une excursion singulière à mi-tempo dans son excentricité mélodique caractéristique.",
+      "source_sha256": "1e18dfc63760fb61b07bd1cb9fcae1352b1ad09c709ece70850c966bfe6bb23a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:47:18.861Z"
+    }
+  }
 }

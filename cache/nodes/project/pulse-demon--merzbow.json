@@ -95,5 +95,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pierre angulaire du harsh noise et du Japanoise, Pulse Demon est un chef-d'œuvre de haute intensité au son brut et pur qui a repoussé les limites de l'extrême sonore lors de sa sortie en 1996.",
+      "article": "Pulse Demon est un album studio séminal du musicien noise japonais Merzbow, publié le 28 mai 1996 chez Relapse Records. Enregistré à Tokyo au ZSF Produkt Studio entre octobre et novembre 1995, l'album s'impose comme un pilier du genre harsh noise, souvent cité pour sa densité sonore sans compromis. Masami Akita, la force visionnaire derrière Merzbow, a composé l'album en utilisant divers outils de création sonore, notamment des objets métalliques, une radio à ondes courtes, des bandes magnétiques, la voix et des appareils électroniques générateurs de bruit. La création de l'album a été marquée par un engagement envers une production sonore directe et enregistrée en direct, Akita évitant délibérément les overdubs pour maintenir une intensité brute et immédiate.\n\nL'esthétique de l'album est aussi frappante que son son ; la version CD originale présentait une pochette argentée holographique distincte, un clin d'œil intentionnel à la collection Prospective 21e Siècle de Philips Records des années 1970 et aux motifs visuels op-art minimalistes de Bridget Riley. Akita a décrit l'aspect « argent brillant » comme l'incarnation de l'esprit du heavy metal, le percevant à travers un prisme non conventionnel, presque philosophique. Le titre lui-même sert de double hommage : il fait référence au groupe d'Afro-rock des années 1970 Demon Fuzz tout en reflétant l'approche technique d'Akita consistant à utiliser une pédale fuzz comme générateur d'impulsions spécialisé. Des décennies après sa sortie, Pulse Demon continue de jouir d'une réputation d'artefact essentiel de la musique extrême, célébré par certains comme un chef-d'œuvre de « statique vicieusement pure » et critiqué par d'autres pour son rendu incessant et assourdissant. Son statut durable est confirmé par de multiples rééditions sur des labels comme Bludhoney et Relapse, cimentant sa place dans l'histoire du son expérimental.",
+      "source_sha256": "6d5978ed96de089282285459ff13c7cfa768b24c5ec439cf8044441d0b3c5467",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:31:17.393Z"
+    }
+  }
 }

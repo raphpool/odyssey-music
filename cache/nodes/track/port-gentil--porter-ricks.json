@@ -60,5 +60,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Port Gentil » est un chef-d'œuvre définitif de dub techno, apparaissant comme la pièce maîtresse atmosphérique de l'album Biokinetics de 1996 du duo allemand Porter Ricks.",
+      "article": "« Port Gentil » est un chef-d'œuvre définitif de dub techno, apparaissant comme la pièce maîtresse atmosphérique de l'album Biokinetics de 1996 du duo allemand Porter Ricks. Sorti sur le légendaire label Chain Reaction, le morceau illustre le son « deep-sea » caractéristique du projet : une combinaison de pulsations rythmiques lourdement traitées et baignées de réverbération, de fréquences sub-basses et d'une texture océanique qui semble à la fois mécanique et organique.\n\nPorter Ricks, composé de Thomas Köner et Andy Mellwig, a utilisé l'esthétique sonore précise du label pour repousser les limites de ce que la techno pouvait être au milieu des années quatre-vingt-dix. Plutôt que de s'appuyer sur l'énergie frénétique de la musique de club traditionnelle, « Port Gentil » adopte un rythme plus lent et hypnotique, construisant un paysage sonore stratifié qui attire les auditeurs dans un environnement dense et immersif. Le morceau est largement cité pour son influence sur le genre, aidant à codifier la palette sonore froide, industrialisée, mais profondément émotive qui est devenue la marque de fabrique de l'école berlinoise de dub techno. Sa longévité témoigne de la technique de production méticuleuse du duo, où la distinction entre conception sonore et composition commence à s'estomper. Le morceau constitue un moment profond de l'histoire de la musique électronique, capturant une intersection spécifique entre la minimal techno naissante et les textures ambient avant-gardistes qui continue d'influencer la conception sonore moderne.",
+      "source_sha256": "e056da2fcebb741c7db35d65112807ab18f42840620644ad265a3e8bbc0306ce",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:13.295Z"
+    }
+  }
 }

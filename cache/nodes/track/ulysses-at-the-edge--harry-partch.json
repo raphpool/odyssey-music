@@ -57,5 +57,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Composition instrumentale charnière de Harry Partch, « Ulysses at the Edge » illustre l'évolution du compositeur vers un idiome axé sur la percussion utilisant ses instruments microtonaux fabriqués sur mesure.",
+      "article": "« Ulysses at the Edge » est une œuvre instrumentale séminale du compositeur et inventeur d'instruments américain Harry Partch. Composée en 1955 dans son studio d'Evanston, dans l'Illinois, la pièce représente un moment de transition significatif dans la production de la dernière période de Partch, marquant un changement distinct par rapport à ses œuvres antérieures axées sur la « voix psalmodiante » lyrique vers un idiome plus purement instrumental et axé sur la percussion. La composition a été conçue pour utiliser sa collection unique d'instruments microtonaux, mettant spécifiquement en vedette le Diamond Marimba et les Cloud-Chamber Bowls, aux côtés d'éléments de cuivres qui suggèrent un lien avec son intérêt pour les timbres teintés de jazz — Partch aurait initialement envisagé l'œuvre pour le trompettiste Chet Baker.\n\nLa musique de « Ulysses at the Edge » traverse des paysages sonores denses et résonnants caractéristiques du système d'accord en justesse de Partch, qui permet des intervalles purs, sans battements, qui diffèrent considérablement du tempérament égal occidental standard. Dans l'enregistrement de 1958 — qui fut finalement publié sur Gate 5 Records — Partch joue lui-même du Diamond Marimba et des Cloud-Chamber Bowls, accompagné d'un petit ensemble comprenant David Reid au saxophone baryton et Dick Schleppe au saxophone alto. Cette approche basée sur l'ensemble souligne l'innovation texturale de la fin de carrière de Partch, où la physicalité des instruments fabriqués sur mesure définit la structure harmonique. En tant que partie du cycle « Ulysses », l'œuvre comble le fossé entre ses drames musicaux et dansés antérieurs et les explorations percussives complexes de ses dernières années, restant une entrée cruciale dans le catalogue de la musique expérimentale américaine du XXe siècle. Elle témoigne du refus de Partch de se conformer aux frontières académiques ou classiques conventionnelles, privilégiant au contraire un univers sonore profondément enraciné dans le rituel et une résonance brute et tactile.",
+      "source_sha256": "a5efc50dcf9e184f5160c7cb5e28bc5ac921f37d6e4e66f541fa0f2ba808ff66",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:19.423Z"
+    }
+  }
 }

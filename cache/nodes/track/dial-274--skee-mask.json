@@ -45,5 +45,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Dial 274 » est un morceau marquant du producteur électronique allemand Skee Mask, présent sur son album largement acclamé de 2018, Compro, publié sur le label munichois Ilian Tape.",
+      "article": "« Dial 274 » est un morceau marquant du producteur électronique allemand Skee Mask, présent sur son album largement acclamé de 2018, Compro, publié sur le label munichois Ilian Tape. Connu pour son mélange complexe de breakbeats atmosphériques, de textures ambient et de fondations techno subtiles, Skee Mask — alias de Bryan Müller — façonne des paysages sonores à la fois émotionnellement résonnants et rythmiquement complexes. « Dial 274 » illustre son style caractéristique, mariant des percussions nettes et rapides à des nappes sonores riches et expansives qui évoquent un sentiment de mélancolie futuriste.\n\nLe morceau dure plus de six minutes, permettant à l'arrangement d'évoluer patiemment à travers un travail de synthétiseurs superposés et une programmation de batterie précise. Dans le paysage de l'IDM contemporaine et de la musique électronique influencée par le breakbeat, Compro a imposé Skee Mask comme un maître de la production moderne, comblant le fossé entre l'esthétique rave nostalgique et une conception sonore tournée vers l'avenir. « Dial 274 » demeure un point fort du disque, fréquemment cité par les fans comme par les critiques pour sa qualité immersive, son interaction équilibrée entre ombre et lumière, et sa fidélité technique impeccable, devenue une marque de fabrique du catalogue du label Ilian Tape. Le morceau témoigne de la capacité de Müller à manipuler les motifs breakbeat pour en faire quelque chose d'unique, éthéré et profondément captivant pour l'auditeur.",
+      "source_sha256": "0787deaa287b3f91c4cab05043d07b793b883c5a4c23123db7b0167da930fe70",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:41:13.330Z"
+    }
+  }
 }

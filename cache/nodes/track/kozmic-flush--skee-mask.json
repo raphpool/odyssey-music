@@ -49,5 +49,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Kozmic Flush » est un morceau de techno atmosphérique magistral du producteur allemand Skee Mask, sorti dans le cadre de son album acclamé par la critique en 2018, Compro, sur le label munichois Ilian Tape.",
+      "article": "« Kozmic Flush » est un morceau de techno atmosphérique magistral du producteur allemand Skee Mask, sorti dans le cadre de son album acclamé par la critique en 2018, Compro, sur le label munichois Ilian Tape. Connu pour sa capacité à fusionner des rythmiques complexes et chargées de breakbeat avec des textures ambiantes et émotives, Skee Mask a conçu « Kozmic Flush » comme un moment marquant dans la narration globale de Compro. Le morceau illustre le « Ilian Tape sound » — une approche élégante et avant-gardiste de la musique de club qui comble le fossé entre la intelligent dance music (IDM) classique, le breakbeat à tempo élevé et la techno profonde et mélancolique.\n\nÀ sa sortie, Compro a été largement célébré pour sa profondeur structurelle et sa prouesse technique, « Kozmic Flush » se distinguant par sa conception sonore évocatrice et son énergie hypnotique et propulsive. Le morceau penche vers une complexité rythmique souterraine qui semble à la fois caverneuse et claustrophobe, tout en étant indéniablement dansante. Sa présence au sein de l'album sert de pont, maintenant la tension tout en mettant en valeur la maîtrise du producteur en matière d'atmosphère et de percussions subtiles et évolutives. Au moment de la sortie de ce disque, Skee Mask s'était imposé comme l'une des voix les plus passionnantes de la techno européenne, et « Kozmic Flush » demeure une pièce définitive de sa discographie, prisée des DJ pour sa capacité à percer à travers le bruit d'un système de club tout en offrant une expérience d'écoute profondément immersive. Son attrait durable réside dans cet équilibre délicat entre complexité technique et poids émotionnel. Le projet Compro, sorti sur Ilian Tape, a consolidé son statut, et ce morceau reste une référence dans sa carrière.",
+      "source_sha256": "ce4aab9c4c196e2cdfa5a79c767e2fe329d6111c20956b6b68166e2f4c66e5fd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:15.580Z"
+    }
+  }
 }

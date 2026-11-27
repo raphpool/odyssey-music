@@ -56,5 +56,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le morceau-titre de l'album IDM séminal de 1993 de l'alias Polygon Window de Richard D. James, servant de modèle atmosphérique et rythmique pour la musique électronique expérimentale.",
+      "article": "« Polygon Window » est le morceau d'ouverture de l'album de 1993 « Surfing on Sine Waves », publié par Warp Records sous l'alias de Richard D. James, Polygon Window. En tant que pièce éponyme du projet, il sert de pierre angulaire au son intelligent dance music (IDM) du début des années 90, mêlant la percussion précise et complexe du style de production de James à des sensibilités mélodiques qui dépassent les tropes acid bruts de l'époque. Le morceau illustre le paysage électronique atmosphérique et rythmé qui a défini la série séminale « Artificial Intelligence » de Warp.\n\nSur le plan sonore, « Polygon Window » met en valeur la maîtrise de la synthèse modulaire et de la programmation rythmique de James. Le morceau se construit lentement, superposant des boucles de percussions nettes et cliniques à des textures de synthétiseurs hypnotiques et changeantes qui évoquent un sentiment d'introspection mécanique. En supprimant les éléments rave à haute énergie prévalents à l'époque, James a créé un espace où le timbre et la texture devenaient l'objectif principal. Cette approche, caractérisée par un certain éclat froid et métallique tout en conservant une profondeur mélodique profondément émotionnelle, a consolidé sa position comme l'un des artistes électroniques les plus innovants de sa génération. L'album « Surfing on Sine Waves » demeure un jalon de la techno expérimentale, et le morceau-titre persiste comme un moment déterminant dans l'évolution de l'IDM, comblant le fossé entre la culture rave underground et l'electronica plus cérébrale et teintée d'ambient qui allait fleurir tout au long de la décennie. L'influence du morceau est évidente dans le travail d'innombrables producteurs électroniques qui ont cherché à équilibrer la complexité rythmique avec une composition atmosphérique axée sur les paysages sonores. À travers cet alias, James a pu explorer des territoires plus structurés et mélodiques que ceux dans lesquels il s'aventurait souvent avec ses sorties drill ’n’ bass plus lourdes, fournissant un pont vers son travail ultérieur, plus expansif, en tant qu'Aphex Twin.",
+      "source_sha256": "3064d1f2b2849536d01de79a0092f363925438583b87b3bb8a7cc58883f13b94",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:47:25.302Z"
+    }
+  }
 }

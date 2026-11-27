@@ -42,5 +42,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Mercy est un morceau marquant de l'album solo de Steve Jones sorti en 1987, capturant la transition du guitariste vers le son hard rock de la fin des années quatre-vingt.",
+      "article": "Mercy est un morceau important figurant sur l'album studio solo de 1987 du même nom de Steve Jones, l'ancien guitariste des Sex Pistols. Sorti durant la phase de carrière post-punk et hard rock de Jones, l'album met en avant sa transition vers un son rock léché et axé sur la guitare qui a défini sa production de la fin des années 1980. Le morceau sert de pièce maîtresse au disque, qui comprend également des chansons notables telles que « Give Me Up » et « Pleasure and Pain ». L'album est sorti en vinyle et représente un moment significatif dans la discographie de Jones, soulignant sa capacité à créer une musique rock anthémique indépendante de ses racines punk antérieures. Le projet demeure une entrée notable dans le paysage rock de la fin des années 1980, reflétant les styles de production de l'époque et l'influence durable de Jones en tant qu'auteur-compositeur et interprète.",
+      "source_sha256": "1a0002b2aaa664415c8f0cdf81351708273ee55c269ac2fdce2aaf4ad8eae7e4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:20.800Z"
+    }
+  }
 }

@@ -60,5 +60,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Imatch » est un morceau électronique magistralement complexe et teinté de glitch du duo allemand Mouse on Mars, présent sur leur album de 2012 « Parastrophics ».",
+      "article": "« Imatch » est un morceau du duo électronique allemand influent Mouse on Mars, sorti en 2012 dans le cadre de leur album studio « Parastrophics ». Connus pour leur approche expérimentale et souvent frénétique de la production électronique, Mouse on Mars a profité de cette période pour affiner davantage son esthétique « glitch-pop » caractéristique, mêlant des rythmes complexes et décousus à des accroches mélodiques et une conception sonore non conventionnelle.\n\nSur « Imatch », le duo démontre sa maîtrise de l'architecture sonore, tissant ensemble des textures synthétisées et des éléments percussifs mécaniques qui semblent à la fois précis et imprévisibles. Le morceau incarne le développement tardif du duo—composé de Jan St. Werner et Andi Toma—où ils ont comblé le fossé entre les sons IDM idiosyncratiques de la fin des années 1990 et une approche plus polie et moderne de la musique pop expérimentale. La composition est un moment fort de « Parastrophics », un album qui a marqué un retour en forme significatif pour le groupe après une période de projets parallèles et d'aventures collaboratives.\n\nLes auditeurs familiers avec Mouse on Mars reconnaîtront la tension ludique inhérente à « Imatch », où les artefacts numériques et les sons traités sont traités avec le soin de motifs instrumentaux. En 2012, le groupe avait consolidé son statut de pionnier du paysage électronique allemand, et « Imatch » témoigne de leur capacité à rester innovants sans sacrifier la vitalité rythmique qui a rendu leurs premières œuvres si percutantes. Ses couches complexes et sa production nette soulignent la maîtrise technique qui définit leur travail depuis leurs débuts au début des années 1990.",
+      "source_sha256": "09f1abbf3bf0390383e32441941b5db36bc10a89ac0de796c54edf829d88699e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:44:13.206Z"
+    }
+  }
 }

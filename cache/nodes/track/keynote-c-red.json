@@ -46,5 +46,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Keynote C: Red » est une composition ambient séminale du musicien pionnier du New Age Steven Halpern, publiée à l'origine dans le cadre de son album révolutionnaire de 1975, « Spectrum Suite ». Conçu spécifiquement comme une aide à la méditation et au bien-être holistique, le morceau est profondément enraciné dans",
+      "article": "« Keynote C: Red » est une composition ambient séminale du musicien pionnier du New Age Steven Halpern, publiée à l'origine dans le cadre de son album révolutionnaire de 1975, « Spectrum Suite ». Conçu spécifiquement comme une aide à la méditation et au bien-être holistique, le morceau est profondément enraciné dans l'intérêt de Halpern pour les propriétés thérapeutiques du son et de la vibration. En tant que mouvement d'ouverture de l'album, « Keynote C: Red » s'aligne conceptuellement et musicalement sur le premier chakra, ou chakra racine, au sein des systèmes de philosophie spirituelle orientale qui ont façonné une grande partie de l'esthétique fondamentale du mouvement New Age.\n\nLa signature sonore de la pièce est définie par sa qualité minimaliste et éthérée, privilégiant des textures résonnantes et des structures harmoniques soutenues qui évitent les formes de chansons traditionnelles ou l'urgence rythmique. En se concentrant sur la tonalité de do, Halpern crée un paysage sonore destiné à faciliter un état méditatif et ancré pour l'auditeur. « Spectrum Suite » lui-même est fréquemment cité comme l'une des œuvres les plus influentes de l'histoire de la musique New Age, établissant efficacement la dépendance du genre aux textures ambient apaisantes et à la résonance émotionnelle non mélodique. « Keynote C: Red » sert de porte d'entrée vers cet écosystème sonore, démontrant le lien délibéré entre les fréquences harmoniques et l'intention spirituelle qui deviendrait une marque de fabrique de la longue carrière de Halpern. Son statut durable est attesté par son inclusion répétée dans des éditions remastérisées et des compilations numériques qui continuent d'atteindre des publics en quête de réconfort dans le son. Au fil des décennies, le travail de Halpern a inspiré d'innombrables artistes ambient et thérapeutes qui utilisent le pouvoir du son pour la relaxation et l'ancrage spirituel, l'établissant fermement comme un patriarche du genre New Age. Son approche de la guérison par le son demeure une référence pour quiconque explore l'intersection de la musique et de la pleine conscience.",
+      "source_sha256": "f4c825cb5b0593644894c028be9cb2dedb6028d137721eea4224448a5bfdddf0",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:44:24.877Z"
+    }
+  }
 }

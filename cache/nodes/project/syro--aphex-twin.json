@@ -123,5 +123,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Publié après une pause de 13 ans, Syro est une leçon magistrale de production électronique méticuleuse, mêlant les breakbeats frénétiques caractéristiques d'Aphex Twin à des textures mélodiques raffinées et une conception sonore haute fidélité.",
+      "article": "Syro est le sixième album studio de l'influent artiste électronique Aphex Twin (Richard D. James), publié en septembre 2014 sur Warp. Marquant sa première sortie studio majeure depuis Drukqs en 2001, Syro était très attendu par la communauté mondiale de la musique électronique, représentant le retour significatif de l'une des figures les plus énigmatiques de l'IDM et de l'ambient techno. L'album présente un style de production complexe et méticuleux qui mélange les breakbeats frénétiques et micro-édités, signature de James, avec des passages de synthétiseurs plus chaleureux et mélodiques. Contrairement à certains de ses travaux plus rudes et abrasifs, Syro présente une approche de la conception sonore plus stratifiée et fluide, reflétant des années d'expérimentation en studio et l'évolution de son flux de travail axé sur le matériel.\n\nLa sortie de l'album a été précédée par une campagne de marketing guérilla secrète, culminant avec l'annonce via un dirigeable à Londres et des publications cryptiques sur les réseaux sociaux. Salué par la critique pour sa précision technique et sa profondeur émotionnelle, Syro a remporté le Grammy Award du meilleur album dance/électronique en 2015. Des titres comme « minipops 67 [120.2] » et « XMAS_EVET10 [120] » démontrent une maîtrise du rythme et de l'arrangement qui a consolidé le statut de James en tant que pionnier pérenne du genre. Sa signature sonore est définie par sa qualité d'enregistrement immaculée et l'interaction complexe entre des instruments personnalisés et du matériel analogique vintage, créant un paysage sonore qui semble à la fois rétro-futuriste et intemporel. Syro demeure une étape marquante de la discographie de James, comblant le fossé entre ses premières expérimentations chaotiques et les textures plus polies et contemplatives qui ont défini sa carrière ultérieure. C'est une écoute essentielle qui résume la complexité du paysage de la musique électronique au début des années 2010.",
+      "source_sha256": "0700e514775a2b9135c2e06feac2c1e82234b4a523b62a898b3655e1cb03d473",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:34:15.686Z"
+    }
+  }
 }

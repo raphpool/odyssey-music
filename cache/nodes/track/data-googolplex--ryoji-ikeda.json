@@ -68,5 +68,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Brève masterclass précise de conception sonore post-glitch, « data.googolplex » est un moment charnière de l'album séminal de Ryoji Ikeda paru en 2005, Dataplex.",
+      "article": "« data.googolplex » est une composition brève et précise de l'artiste électronique et compositeur japonais Ryoji Ikeda, publiée dans le cadre de son album séminal de 2005, Dataplex. Pierre angulaire du post-glitch et de la musique informatique, l'album explore la nature de l'information numérique, utilisant des sources sonores synthétiques brutes — des attaques de fréquences aiguës, des impulsions sub-basses et des artefacts numériques — pour construire un univers sonore aussi physiquement intense que méticuleusement agencé. Le travail d'Ikeda durant cette période se définit par une approche rigoureuse, presque scientifique, de la conception sonore, où il traite l'audio comme des données mathématiques devant être analysées, traitées et réarrangées en motifs rythmiques, parfois étonnamment funky. « data.googolplex » capture l'essence de ce projet ; malgré sa courte durée, il démontre la maîtrise du minimalisme par Ikeda et sa capacité à tirer parti des limites physiques des systèmes de lecture audio pour créer une expérience profonde et immersive. Le morceau, aux côtés de ses compagnons d'album, a solidifié la réputation d'Ikeda en tant que figure clé de l'art sonore moderne, comblant le fossé entre la musique informatique clinique et la composition d'avant-garde avec un vocabulaire stylistique qui semble à la fois futuriste et fondamentalement structurel. Son importance ne réside pas seulement dans ses qualités sonores individuelles, mais dans sa contribution à un cadre conceptuel plus large et ambitieux qui examine la manière dont nous définissons et interagissons avec les données qui façonnent de plus en plus notre réalité.",
+      "source_sha256": "96db38725d5071933e24f1d2afb19ce4aaf32b05715971f1f8a31dcffa9c68ef",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:40:16.178Z"
+    }
+  }
 }

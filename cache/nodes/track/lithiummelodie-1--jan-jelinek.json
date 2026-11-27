@@ -52,5 +52,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un morceau clé de l'album Kosmischer Pitch de Jan Jelinek sorti en 2005, mêlant influences du rock allemand des années 1970 et textures électroniques expérimentales.",
+      "article": "Lithiummelodie 1 est un morceau du musicien électronique allemand Jan Jelinek, enregistré à l'origine entre 2004 et 2005 au studio G.Guillaume à Berlin. La pièce est une composante centrale de l'album Kosmischer Pitch de Jelinek, une œuvre qui explore l'intersection entre les influences du rock allemand des années 1970 et la production électronique expérimentale. Lors de sa sortie initiale en 2005 via le label ~scape, l'album a été remarqué pour sa répétition hypnotique et sa manipulation subtile du temps, une technique que Jelinek qualifie souvent de « pitch » en référence à l'esthétique de la Wild Pitch House. Le morceau illustre l'approche caractéristique de Jelinek consistant à superposer les sons pour créer un environnement sonore dense et changeant qui semble à la fois minimaliste et profondément texturé. En 2025, pour marquer le 20e anniversaire de la sortie originale, l'album a été remastérisé par Giuseppe Ielasi et réédité par Faitiche, ramenant cette œuvre influente aux formats vinyle et numérique pour une nouvelle génération d'auditeurs.",
+      "source_sha256": "f353239d138f8eb32f136338c32c7efc59b3dd351e1629287cc6e4d4f744f5bf",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:17.194Z"
+    }
+  }
 }

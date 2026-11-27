@@ -87,5 +87,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Vitrine essentielle du hard bop, Soul Trombone met en vedette le tromboniste de jazz Curtis Fuller à la tête d'un ensemble stellaire—incluant Freddie Hubbard et Jimmy Heath—à travers une série d'originaux incisifs et soul et d'arrangements inventifs de standards.",
+      "article": "Publié en 1961 sur le label emblématique Impulse!, Soul Trombone s'impose comme une entrée quintessentielle dans la discographie du tromboniste de jazz américain Curtis Fuller. Enregistré aux Capitol Studios à New York sur trois jours en novembre 1961, l'album met en valeur la maîtrise de Fuller de l'idiome hard bop, mêlant précision technique et une approche soul et lyrique qui a défini son son durant cette période prolifique. Le projet présente un formidable ensemble d'accompagnement qui inclut le trompettiste Freddie Hubbard, le saxophoniste Jimmy Heath, le pianiste Cedar Walton, le bassiste Jymie Merritt, et les batteurs Jimmy Cobb et G.T. Hogan.\n\nLa collection de six titres est remarquée pour sa composition équilibrée, présentant trois œuvres originales de Fuller aux côtés d'arrangements de standards tels que « In the Wee Small Hours of the Morning », « The Breeze and I », et le traditionnel « Dear Old Stockholm ». Le critique Ken Dryden, écrivant pour AllMusic, a souligné les superbes performances en solo et la fluidité cohérente de l'album, notant l'absence de remplissage et l'espace que Fuller a laissé à ses compagnons de groupe. Servant de document crucial de la scène jazz du début des années 1960, Soul Trombone capture l'intersection de la virtuosité hard bop et des arrangements expressifs et accessibles qui caractérisaient la production artistique du label Impulse! sous la direction du producteur Bob Thiele. Son héritage persiste comme un sommet pour le trombone jazz en tant qu'instrument soliste, démontrant comment Fuller a élevé le rôle de l'instrument à vent au sein du format traditionnel du quintet/sextet de jazz.",
+      "source_sha256": "196ca60f8df9de41e5fd2203b6484493413951937a0dc72bbcc2236dcfae4b87",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:33:15.753Z"
+    }
+  }
 }

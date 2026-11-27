@@ -43,5 +43,14 @@
   ],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Corazón Loco » s'impose comme un classique poignant et durable du canon musical latino-américain, associé plus particulièrement à l'emblématique chanteur de boléro cubain Antonio Machín.",
+      "article": "« Corazón Loco » s'impose comme un classique poignant et durable du canon musical latino-américain, associé plus particulièrement à l'emblématique chanteur de boléro cubain Antonio Machín. Bien que le titre de la chanson ait été utilisé par divers artistes à travers différents genres — allant du boléro traditionnel à la salsa contemporaine —, la version immortalisée par Antonio Machín demeure l'interprétation par excellence du chagrin lyrique et de la sophistication mélodique de la composition. Antonio Machín, qui est devenu un pont culturel entre Cuba et l'Espagne tout au long du milieu du XXe siècle, a apporté un poids émotionnel distinct à la chanson, capturant l'essence même du « boléro » : un mélange de désir romantique, de retenue rythmique et d'interprétation vocale expressive qui définit le genre.\n\nLa chanson, caractérisée par ses paroles traitant des complexités de l'amour non partagé ou confus, présente le célèbre refrain : « No te puedo comprender / Corazón loco » (Je ne peux pas te comprendre / Cœur fou). Ce sentiment de désarroi face au chaos romantique est une marque de fabrique de la tradition classique du boléro. L'interprétation d'Antonio Machín, généralement soutenue par un arrangement chaleureux axé sur l'ensemble, souligne la tension narrative inhérente à l'écriture. Tout au long du XXe siècle, ce morceau est devenu un incontournable du monde hispanophone, et son influence persiste à travers de nombreuses reprises et hommages par des artistes légendaires comme Bebo Valdés et Diego El Cigala, garantissant que la chanson demeure une pièce fondamentale du répertoire du boléro. Son héritage durable réside dans la manière dont elle distille parfaitement l'expérience humaine universelle d'un amour qui défie toute logique. L'impact émotionnel du morceau est intrinsèquement lié à la tradition de la musique cubaine, qui a trouvé une résonance mondiale grâce à des maîtres comme ceux de l'Orquesta Aragón, dont l'héritage musical est étroitement lié au développement des rythmes latins populaires.",
+      "source_sha256": "a81b6930b4b4a106a57dfa018284783e8f6dd5c572281f9bfd30c622c6e277a7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:22.705Z"
+    }
+  }
 }

@@ -43,5 +43,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une pièce emblématique de l'electronica left-field des années 1990 par Luke Vibert, initialement parue sur la compilation classique de Ninja Tune 'Ninjacuts - Flexistentialism'.",
+      "article": "« Get Your Head Down » est une pièce emblématique de l'expérimentation électronique des années 1990 par le producteur britannique Luke Vibert. Sorti initialement en 1995 au sein de l'influente compilation « Ninjacuts - Flexistentialism » sur le label Ninja Tune, le morceau capture l'atmosphère créative et brouilleuse de genres de la scène électronique left-field britannique alors en plein essor. Vibert, connu pour sa production prolifique sous divers pseudonymes dont Wagon Christ et Plug, emploie ici son style éclectique caractéristique, tissant ensemble des rythmes complexes et des textures samplées qui défient toute catégorisation simple.\n\nLe morceau constitue un exemple précoce de la production ludique mais techniquement accomplie qui deviendra une marque de fabrique de la carrière de Vibert. Au moment de sa sortie, « Get Your Head Down » se distinguait au sein du catalogue de Ninja Tune, reflétant l'éthique du label consistant à soutenir des artistes qui repoussaient les limites du trip-hop, du downtempo et de l'electronica aux influences ambient. En mélangeant des samples organiques avec des beats nets et traités, le morceau met en évidence la maîtrise précoce de la conception sonore de Vibert et sa capacité à construire des paysages musicaux immersifs et changeants. Il demeure une rareté notable dans sa vaste discographie, soulignant la période formatrice durant laquelle il s'établissait comme une figure fondatrice de la musique électronique britannique. Les auditeurs cherchant à comprendre l'évolution sonore de l'underground électronique britannique des années quatre-vingt-dix trouveront dans ce morceau une fenêtre claire sur l'esprit aventureux de l'époque. Son apparition sur la compilation « Flexistentialism » a solidifié sa place en tant qu'élément incontournable de l'esthétique de Ninja Tune au milieu des années quatre-vingt-dix.",
+      "source_sha256": "6a30ebf568ec5ad0fb8db89aee89f978295f875d406d73174860795013608b15",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:43:13.543Z"
+    }
+  }
 }

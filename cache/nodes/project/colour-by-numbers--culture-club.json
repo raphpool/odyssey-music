@@ -114,5 +114,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Publié au sommet de leur célébrité mondiale en 1983, Colour by Numbers demeure la déclaration définitive de Culture Club, un chef-d'œuvre de blue-eyed soul, d'artisanat pop accrocheur et de flair New Wave. Porté par l'hymne emblématique de l'époque Karma Chameleon, l'album a cimenté la domination transatlantique du groupe et reste un artefact essentiel de la culture pop des années 80.",
+      "article": "Publié en octobre 1983, Colour by Numbers est le deuxième album studio du groupe pop britannique Culture Club. Après le succès de leurs débuts, le groupe a fait appel à la même équipe de production, incluant le producteur Steve Levine, et est retourné aux Red Bus Studios à Londres pour concevoir un disque qui allait définir le son de la pop des charts du milieu des années 80. Mêlant les fils stylistiques de la New Wave à des arrangements sophistiqués et chaleureux ancrés dans la blue-eyed soul, l'album a capturé un moment spécifique et vibrant de l'histoire de la musique britannique, où l'esthétique des sous-cultures se heurtait à un succès commercial mondial massif.\n\nPorté par la présence vocale et la personnalité charismatique de Boy George, le disque a produit une série de singles durables, notamment le tube Karma Chameleon. La palette sonore de l'album a été enrichie par la contribution de musiciens de studio comme le claviériste Phil Pickett et les chœurs emblématiques d'Helen Terry, dont la prestation soul offrait un contrepoint parfait au timbre distinctif de George. Sur le plan critique et commercial, ce fut un mastodonte ; il a atteint la première place au Royaume-Uni et la deuxième place du Billboard 200 aux États-Unis, restant une pierre angulaire du canon pop des années 1980. Des décennies plus tard, les membres du groupe ont rétrospectivement cité Colour by Numbers comme leur plus grande réussite artistique, un sentiment repris par son héritage durable en tant que masterclass d'efficacité dans l'écriture de chansons et de production pop-soul. Tout au long de sa liste de titres, de Church of the Poison Mind à Miss Me Blind, l'album maintient un haut niveau de cohérence, équilibrant parfaitement l'accessibilité avec une sophistication mélodique nuancée qui a distingué Culture Club de ses contemporains. Son empreinte culturelle a été si vaste qu'il a été reconnu comme l'un des 100 meilleurs albums des années 1980 par Rolling Stone, assurant sa place en tant que composante essentielle de l'histoire de la pop moderne.",
+      "source_sha256": "b52c3cba6ab4cd81bcd4e4bb5d9b183831ba8ecae66449c7187d941310fc5b3b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:20:17.445Z"
+    }
+  }
 }

@@ -83,5 +83,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une odyssée intense et conceptuelle dans l'au-delà, mêlant jazz fusion frénétique, textures électroniques expérimentales et hip-hop dans l'une des œuvres les plus ambitieuses de Flying Lotus.",
+      "article": "Publié en 2014 via Warp, « You're Dead! » est le cinquième album studio du producteur visionnaire basé à Los Angeles, Flying Lotus (Steven Ellison). Album conceptuel tentaculaire et intensément focalisé, l'œuvre sert de méditation sur la mort et l'au-delà, visant à capturer l'essence de ce qui vient après plutôt que de servir d'éloge funèbre morbide. Enregistré principalement dans le studio personnel d'Ellison, l'album souligne sa maîtrise du mélange entre production électronique moderne et liberté improvisée du jazz fusion. La collaboration continue avec le bassiste Thundercat, qui apporte des performances virtuoses sur presque chaque morceau, est essentielle au son cinétique et distinctif de l'album, ancrant les paysages sonores électroniques frénétiques et polyrythmiques dans des lignes de basse organiques et fluides.\n\nL'album présente un large éventail de collaborateurs, dont Kendrick Lamar, Kamasi Washington, Snoop Dogg et Herbie Hancock, reflétant le réseau profond et interconnecté des scènes jazz et hip-hop contemporaines de Los Angeles. Sur le plan sonore, il est remarqué pour sa grande plage dynamique et ses structures complexes, caractérisées par des rythmes syncopés et des textures denses et multicouches. La pochette, un chef-d'œuvre surréaliste et troublant créé par l'artiste de manga Shintaro Kago, donne le ton au mélange de macabre et de transcendantal de l'album. « You're Dead! » est largement considéré comme un jalon de la musique expérimentale des années 2010, réussissant à combler le fossé entre la beat music underground et l'expérimentation jazz traditionnelle tout en assurant sa place comme l'un des projets les plus intellectuellement ambitieux de la vaste discographie de Flying Lotus.",
+      "source_sha256": "ec14f47a140d132d6a97f0ed23b335ff405fe126ee90ab503776867cd65d2e04",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:37:19.685Z"
+    }
+  }
 }

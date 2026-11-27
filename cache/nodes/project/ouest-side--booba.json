@@ -78,5 +78,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre de 2006 de Booba, Ouest Side demeure un pilier définitif du gangsta rap français, illustrant la prouesse lyrique du rappeur et une production de haut niveau.",
+      "article": "Ouest Side est le troisième album studio de l'influent rappeur français Booba, sorti le 13 février 2006. Représentant un moment significatif dans l'évolution du hip-hop français et du gangsta rap, le projet a été publié via le propre label de Booba, Tallac Records, en conjonction avec le label majeur Barclay Records, une division d'Universal Music Group. L'album a solidifié le statut de Booba en tant que figure dominante de la scène rap française, mettant en avant un son poli et agressif qui a profondément résonné auprès du public. S'étendant sur plus de 58 minutes, le disque présente une équipe de production diversifiée, incluant des contributions de figures notables telles que DJ Mehdi et Kore. L'album a engendré plusieurs singles à succès, dont « Garde la pêche » et « Pitbull », qui demeurent des incontournables de sa discographie. Son succès commercial et critique a aidé à définir l'ère du milieu des années 2000 de la musique urbaine française, mélangeant des thèmes lyriques percutants avec des techniques de production sophistiquées.",
+      "source_sha256": "9565701969b419a703adcda67183a17a9b60025494a30fe15770187116172900",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:30:17.429Z"
+    }
+  }
 }

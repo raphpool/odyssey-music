@@ -65,5 +65,14 @@
       "name": "Pierre Schaeffer"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Cinq études de bruits » constitue la pierre angulaire de la musique électroacoustique du XXe siècle.",
+      "article": "« Cinq études de bruits » constitue la pierre angulaire de la musique électroacoustique du XXe siècle. Composée en 1948 par l'ingénieur et compositeur français Pierre Schaeffer au Studio d'Essai à Paris, cette série de cinq courtes compositions a fait découvrir au monde la « musique concrète », une rupture radicale avec la composition traditionnelle qui privilégiait les sons enregistrés et trouvés aux abstractions de la notation musicale écrite. Utilisant des disques phonographiques et la technologie de la bande magnétique à ses débuts, Pierre Schaeffer a manipulé des sons industriels et quotidiens — notamment des trains à vapeur, des tourniquets, des casseroles et des voix humaines — pour explorer les propriétés physiques du son lui-même, s'éloignant de la mélodie et de l'harmonie pour se concentrer sur le rythme et la texture.\n\nLa collection se compose de « Étude aux chemins de fer » (trains), « Étude aux tourniquets » (jouets), « Étude violette », « Étude noire » et « Étude pathétique ». Chaque pièce a servi d'expérience à ce que Pierre Schaeffer formaliserait plus tard sous le nom d'« objet sonore ». En isolant et en bouclant des sons spécifiques, Pierre Schaeffer a forcé l'auditeur à entendre la matière brute de la réalité comme de la musique, préfigurant les techniques d'échantillonnage et de collage sonore qui domineraient la musique électronique, le hip-hop et la musique d'avant-garde des décennies plus tard. Présentée en 1948 lors d'une émission de radio intitulée « Concert de bruits », l'œuvre a fondamentalement modifié la trajectoire du son moderne, cimentant l'héritage de Pierre Schaeffer en tant que pionnier ayant prouvé que tout son, lorsqu'il est enregistré et manipulé, possède un potentiel musical inhérent. Elle demeure une étude obligatoire pour quiconque s'intéresse aux origines de l'art sonore et à la transition de l'enregistrement analogique vers la musique électronique moderne.",
+      "source_sha256": "e5b4994ab77b4b4fa40b3725c92547a3597889af018fa3590cdbac4dcb73d493",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:22:20.876Z"
+    }
+  }
 }

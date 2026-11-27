@@ -91,5 +91,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« II », sorti le 30 août 1994, est le deuxième album studio à grand succès du groupe vocal de Philadelphie Boyz II Men.",
+      "article": "« II », sorti le 30 août 1994, est le deuxième album studio à grand succès du groupe vocal de Philadelphie Boyz II Men. Suite à l'immense succès de leur premier album, « Cooleyhighharmony », le quatuor a cherché à consolider sa place en tant que force dominante du R&B des années 1990. L'album a été méticuleusement conçu pour maintenir leur mainmise commerciale, les membres étudiant activement les tendances des ventes et Motown utilisant des études de marché pour élaborer une collection de ballades soul raffinées et de haute fidélité. Shawn Stockman, un membre du groupe, a expliqué plus tard que le titre visait à signifier une continuation directe de leur premier projet, fonctionnant comme une suite cinématographique.\n\nLes crédits de production de l'album représentent un « who's who » du paysage R&B du milieu des années 90, avec des contributions de titans de l'industrie tels que Babyface, Jimmy Jam et Terry Lewis, Dallas Austin et L.A. Reid, aux côtés du duo de production montant Tim & Bob. Le son qui en résulte est un mélange magistral des harmonies vocales caractéristiques du groupe et d'une production R&B contemporaine influencée par le hip-hop. « II » a été un véritable mastodonte commercial, atteignant le statut de disque de diamant et devenant l'un des albums R&B les plus vendus de tous les temps. Il a produit deux succès consécutifs numéro un au Billboard Hot 100, « I'll Make Love to You » et « On Bended Knee », ce dernier ayant remplacé le premier à la première place, un exploit rare dans les classements qui a solidifié le statut historique du groupe. Au-delà de son impact commercial, « II » a été reconnu par la critique, remportant le premier Grammy Award du meilleur album R&B en 1995. Son héritage demeure un artefact définitif de l'âge d'or du R&B du milieu des années 90, mettant en valeur un groupe au sommet de ses capacités techniques et populaires.",
+      "source_sha256": "5d923872230b05743323d61600340942f4a712f933540239db52ec2eb0d25cd3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:17.526Z"
+    }
+  }
 }

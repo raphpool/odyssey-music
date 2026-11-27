@@ -106,5 +106,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Véritable monument de l'histoire du rock progressif, The Dark Side of the Moon est un chef-d'œuvre conceptuel qui explore les pressions de la vie moderne, la santé mentale et le passage du temps grâce à des techniques de studio pionnières. Reconnu pour son intégration fluide de boucles magnétiques, de synthèse analogique et pour la profondeur philosophique de ses textes, l'album demeure l'un des disques les plus culturellement significatifs et les plus grands succès commerciaux jamais produits.",
+      "article": "Sorti le 1er mars 1973, The Dark Side of the Moon constitue le huitième album studio des géants anglais du rock progressif Pink Floyd. Développé au fil de nombreuses prestations scéniques avant son enregistrement, l'album a été conçu comme un disque conceptuel unifié abordant les pressions croissantes de la célébrité, la maladie mentale de l'ancien membre Syd Barrett, ainsi que des thèmes existentiels universels tels que le conflit, l'avidité et le temps. Les sessions d'enregistrement se sont déroulées aux EMI Studios — désormais célèbres sous le nom d'Abbey Road Studios — à Londres, entre 1972 et début 1973. Sous la direction technique de l'ingénieur Alan Parsons, le groupe a repoussé les limites de la production en studio, utilisant l'enregistrement multipiste innovant, des boucles magnétiques expérimentales et des synthétiseurs analogiques comme l'EMS VCS 3 et le Synthi A pour façonner son paysage sonore immersif.\n\nL'impact culturel du disque est incommensurable. Restant célèbre pour avoir passé plus de 900 semaines dans le classement Billboard 200, il est devenu une pierre angulaire de l'« album era », établissant de nouvelles normes tant pour la fidélité de production que pour la cohérence thématique. Au-delà de son succès commercial, la pochette iconique au prisme, conçue par Storm Thorgerson, demeure l'une des images les plus reconnaissables de l'histoire de la musique. L'interaction entre les paroles poignantes et précises de Roger Waters et les compositions musicales atmosphériques de David Gilmour, Richard Wright et Nick Mason a créé un héritage qui a vu l'album être intronisé au Grammy Hall of Fame et préservé au sein du United States National Recording Registry, consolidant sa place en tant que pilier de l'art du XXe siècle.",
+      "source_sha256": "1068da57dce59985a62be40c21ff02dbee8f7e6b63625dc935c3fcacc451fe2a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:34:22.291Z"
+    }
+  }
 }

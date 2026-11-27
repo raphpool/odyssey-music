@@ -189,5 +189,17 @@
       "mbid": "f1090a95-baf7-4870-966a-398c1ee9dc4f"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une plongée organisée dans le style de mixage expérimental de Daniele Baldelli, documentant les sons de danse psychédéliques du Cosmic Club dans le nord de l'Italie de 1979 à 1984.",
+      "article": "Publiée en 2007 sous la forme d'une compilation en double disque, Cosmic - The Original 1979–1984 organise la sélection de disques spécifique et hypnotique popularisée par Daniele Baldelli au club italien Cosmic. L'ensemble capture l'atmosphère de ses résidences à Lazise, où Baldelli a été le pionnier d'un style mélangeant funk, electro, jazz fusion et musique brésilienne à des vitesses délibérément ajustées. Il jouait fréquemment des disques 45 tours à 33 tours, ou vice versa, pour forcer les morceaux dans une plage de 90 à 110 BPM, créant un paysage sonore psychédélique et tourbillonnant. Cette collection documente l'époque où Baldelli utilisait des flangers et des égaliseurs pour transformer les textures, superposant souvent des morceaux de percussions africaines sur des compositions électroniques pour construire son mélange unique de son tribal et mécanique. La compilation demeure une référence archivistique majeure pour l'influence du « cosmic sound » du nord de l'Italie sur la space disco moderne.",
+      "facts": {
+        "inspirations": "percussions africaines, funk, musique brésilienne, jazz fusion, musique électronique allemande, disco"
+      },
+      "source_sha256": "dc2001176efef02c1b5849f40fd58aa4ee290bef8deb6d1d56ae020435dae5a3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:20:19.366Z"
+    }
+  }
 }

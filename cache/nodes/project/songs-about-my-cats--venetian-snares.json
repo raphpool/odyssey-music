@@ -172,5 +172,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon définitif du breakcore, l'album de 2001 de Venetian Snares est une exploration frénétique, émotionnellement résonnante et techniquement stupéfiante de l'IDM et des rythmes extrêmes, célèbre pour avoir été construit à partir d'échantillons sonores dérivés des propres chats de l'artiste.",
+      "article": "Sorti le 30 avril 2001 sur le label influent Planet Mu de Mike Paradinas, Songs About My Cats s'impose comme une pierre angulaire du développement du breakcore et du paysage plus large de l'IDM (Intelligent Dance Music) du début des années 2000. L'artiste derrière le projet, Aaron Funk — connu sous le pseudonyme de Venetian Snares — a conçu ce disque d'une manière aussi idiosyncrasique que son titre le suggère, en utilisant divers échantillons sonores générés à partir d'images et de sons de ses propres chats.\n\nMusicalement, l'album est un exercice de conception sonore numérique implacable et de haute intensité. Il opère dans un espace de genre défini par des rythmes staccato de mitrailleuse, des breaks distordus et des textures électroniques vertigineuses et nerveuses. Pourtant, sous la surface sonore chaotique et souvent éprouvante, il existe un degré surprenant de tendresse et de composition mélodique. Les critiques de l'époque, comme Tim diGravina, ont noté comment Funk évite les exercices purement mathématiques souvent associés à ses contemporains, optant plutôt pour une forme de « jazz » improvisé qui semble étranger tout en étant profondément captivant. L'album oscille entre des délires abrasifs et saccadés et des mélodies déformées inspirées du film noir, créant une expérience qui est à la fois une agression technique et un monde immersif étrangement apaisant. Il demeure un emblème de son époque, démontrant la capacité unique de Funk à mêler bruit expérimental sévère et voix créative distinctive et profondément personnelle. Pour beaucoup, il reste l'accomplissement suprême du genre breakcore, une œuvre qui a repoussé les limites de la manière dont les échantillons numériques pouvaient être manipulés pour évoquer des états émotionnels complexes.",
+      "source_sha256": "9b606782e7fb4411f62fb97477e0811248b3f7f3f034c3f36af45c7045c5e2bd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:33:13.858Z"
+    }
+  }
 }

@@ -36,5 +36,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Get Sorted (No More Mind Games) » est un morceau de musique électronique emblématique sorti en 1997 par le projet connu sous le nom de Cricket (3).",
+      "article": "« Get Sorted (No More Mind Games) » est un morceau de musique électronique emblématique sorti en 1997 par le projet connu sous le nom de Cricket (3). Distribuée principalement par le label néerlandais Spotsound Records, cette sortie met en avant les sonorités énergiques et portées par les synthétiseurs, typiques de la scène dance européenne de la fin des années 1990. En tant que morceau, il est surtout connu pour sa production rythmée et percutante ainsi que pour ses accroches vocales qui ont défini le paysage radiophonique et les clubs de l'époque. La sortie a connu de multiples formats, incluant le vinyle 12 pouces et diverses éditions en CD single, reflétant sa large distribution à travers l'Europe durant sa période d'activité intense. En synthétisant des éléments de trance et de pop, Cricket a réussi à capturer une esthétique spécifique de la culture club de la fin des années quatre-vingt-dix, comblant le fossé entre la musique dance underground et des formats plus accessibles, adaptés à la radio. L'implication du projet avec Spotsound Records a davantage consolidé sa place au sein du vibrant écosystème de musique électronique de la région du Benelux, qui était alors un centre crucial pour la production et la distribution dance. Bien qu'il s'agisse en grande partie d'un instantané d'un moment particulier en 1997, « Get Sorted » demeure un témoignage de la musique dance à haute valeur de production qui a défini les dernières années de la décennie. Le morceau s'impose comme une entrée représentative pour le projet, mettant en valeur leur engagement envers l'intensité rythmique et l'accessibilité mélodique. Pour ceux qui s'intéressent à l'évolution de l'Euro-trance et de la dance des années 90, ce morceau sert de point de repère accessible pour les caractéristiques stylistiques de l'époque.",
+      "source_sha256": "eda667a49109f4bbee1fefb925b1bf8370b62ce66b02553de2db7505c2346db6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:43:13.145Z"
+    }
+  }
 }

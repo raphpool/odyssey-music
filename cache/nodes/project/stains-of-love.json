@@ -34,5 +34,14 @@
   ],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Premier album studio du projet dark wave basé à Athènes Cinemascope, « Stains of Love » canalise l'esthétique glaciale et atmosphérique de la cold wave des années 80 dans un cadre post-punk contemporain. Mené par Leo Skiadas, cet opus est une leçon magistrale de mélancolie électronique introspective et de profondeur portée par les synthétiseurs.",
+      "article": "« Stains of Love » est le premier album studio du projet grec de cold wave et dark wave Cinemascope, publié en 2014 par le label indépendant Wave Records. Le projet est l'entreprise solo de Leo Skiadas, musicien, DJ et producteur radio athénien dont les racines dans la scène musicale électronique remontent au début des années 1990. L'album sert d'introduction définitive au son du projet, qui mêle avec maîtrise des mélodies mélancoliques de synthétiseurs aux structures rythmiques dépouillées et squelettiques caractéristiques du post-punk et du revival cold wave. Tout au long de l'album, Skiadas démontre une capacité à évoquer les tensions introspectives et atmosphériques inhérentes à l'esthétique dark wave, utilisant des textures aux accents analogiques qui rendent hommage à la new wave des années 1980 tout en conservant un style de production contemporain et raffiné. En tant que pierre angulaire de la discographie du projet, « Stains of Love » a consolidé la position de Cinemascope au sein de la scène underground dark wave internationale, établissant le modèle émotionnel et sonore que Skiadas continuera d'explorer sur des albums ultérieurs tels que « A Crack on the Wall ». L'album capture un sentiment d'isolement urbain nocturne, reflétant l'ancrage du projet dans la scène musicale vibrante mais sombre d'Athènes, en Grèce. En comblant le fossé entre les influences électroniques historiques et la musique indépendante sombre moderne, l'album demeure une œuvre charnière pour les amateurs du genre qui apprécient l'intersection entre profondeur mélodique et froideur synthétique. La sortie démontre efficacement pourquoi Cinemascope est devenu un nom respecté de l'underground européen contemporain, mettant en avant une sensibilité de production qui semble à la fois nostalgique et vitale. Avec des morceaux qui explorent les thèmes du désir et de la distance, « Stains of Love » offre une expérience cohérente et émotionnellement résonnante pour tout auditeur intéressé par l'évolution de la cold wave. L'album est une écoute essentielle pour les passionnés du genre, offrant un son brut et authentique qui persiste comme une marque de fabrique de la dark wave des années 2010.",
+      "source_sha256": "35a14a70366e9373489fd89846bab2943699c9a475e44fab02215c505c630bc6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:33:21.212Z"
+    }
+  }
 }

@@ -110,5 +110,18 @@
       "name": "Dan Hartman"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "L'hymne définitif de l'Italo house qui a dominé 1989, construit à partir d'échantillons de Loleatta Holloway et d'une quête pour la puissance d'une chanson rock.",
+      "article": "Sorti le 31 juillet 1989 sur le label italien Discomagic, « Ride on Time » de Black Box est devenu une force déterminante de l'Italo house. Produit par Daniele Davoli, Mirko Limoni et Valerio Semplici, le morceau a été construit dans leur studio personnel à l'aide d'un échantillonneur Akai S900 pour manipuler une accroche vocale tirée de « Love Sensation » de Loleatta Holloway et des accords de piano de « Love's Theme » du Love Unlimited Orchestra. Le titre provient d'une mauvaise compréhension des paroles, et après que le disque soit devenu numéro un au Royaume-Uni, le groupe a fait face à des pressions juridiques qui ont conduit à l'enregistrement de nouvelles voix par Heather Small. Pour la télévision et la vidéo, le groupe a engagé le mannequin Katrin Quinol pour mimer la performance, un choix qui a apporté à la fois confusion et notoriété à la sortie. Des critiques comme Phil Cheeseman ont noté sa résonance avec les rythmes de la Chicago house, tandis que d'autres ont plus tard salué sa pérennité en tant que classique de l'époque.",
+      "facts": {
+        "vocals": "Voix originales : Loleatta Holloway ; Voix réenregistrées : Heather Small ; Mimées par : Katrin Quinol",
+        "samples_notes": "Contient un échantillon vocal du single « Love Sensation » de Loleatta Holloway sorti en 1980 et des accords de piano du single « Love's Theme » du Love Unlimited Orchestra sorti en 1973."
+      },
+      "source_sha256": "36ae8afc389587209fe6b4ebefe397be58290a898406a86a67969bd5dda43c00",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:31:22.728Z"
+    }
+  }
 }

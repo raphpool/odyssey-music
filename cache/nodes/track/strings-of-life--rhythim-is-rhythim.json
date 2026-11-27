@@ -60,5 +60,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Strings of Life », sorti en 1987 sous le pseudonyme Rhythim Is Rhythim, est un hymne séminal de la techno de Détroit et une pierre angulaire de la musique électronique de danse mondiale.",
+      "article": "« Strings of Life », sorti en 1987 sous le pseudonyme Rhythim Is Rhythim, est un hymne séminal de la techno de Détroit et une pierre angulaire de la musique électronique de danse mondiale. Produit par Derrick May — membre des influents « Belleville Three » —, le morceau est issu d'un processus créatif impliquant l'échantillonnage d'une ballade au piano intitulée « Lightning Strikes Twice », composée par Michael James, un ami de May. En accélérant le tempo de la séquence originale, en la découpant en boucles rythmiques et en y superposant des textures de cordes synthétisées, May a créé un chef-d'œuvre percutant et obsédant qui, fait notable, est dépourvu de ligne de basse traditionnelle. Cette structure non conventionnelle défiait les normes de la house et de la musique de danse de l'époque, tout en trouvant un écho profond auprès du public, en particulier lors de l'explosion de la house au Royaume-Uni entre 1987 et 1988.\n\nBaptisé par le légendaire DJ house Frankie Knuckles après qu'il eut écouté une maquette, « Strings of Life » fait le pont entre la sensibilité mélodique et émotive de la première house et l'élan futuriste et froid de la techno de Détroit. Son héritage est immense ; il a été fréquemment cité dans les classements critiques de publications telles que Mixmag, DJ Magazine et Rolling Stone comme l'un des plus grands morceaux de danse de tous les temps. Son influence ne réside pas seulement dans sa sonorité, mais aussi dans son arrangement : le break dramatique de cordes au piano a établi un trope structurel dans la production électronique qui persiste encore aujourd'hui. En mettant en avant les percussions et en utilisant des échantillons orchestraux pour évoquer une atmosphère transcendante de « soleil levant », May a prouvé que la musique électronique pouvait posséder une résonance spirituelle profonde, influençant des générations de producteurs et de DJ à travers le monde. Le morceau est sorti à l'origine sur le label de May, Transmat, contribuant à consolider le statut de ce label comme pilier central du mouvement techno.",
+      "source_sha256": "89c22b492ba0cf672c51ffa9cceee2fb9615eec83004139dc33196b4af9b865b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:49:24.889Z"
+    }
+  }
 }

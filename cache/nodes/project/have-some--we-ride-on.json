@@ -47,5 +47,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un disque de garage rock et post-hardcore bruyant et épuré du trio de Brooklyn We Ride On, proposant neuf titres d'une énergie intense et d'une écriture serrée et entraînante.",
+      "article": "« Have Some » est un album studio bruyant et plein d'énergie du trio basé à Brooklyn We Ride On, sorti le 30 juillet 2013 sur le label Sick Room Records. Connu pour son instrumentation épurée et entraînante, l'album capture l'intensité de la scène rock underground de New York au début des années 2010, mêlant des éléments de garage rock, de post-hardcore et de punk rock. Composé de Rhett Mataix, Stephen McColl et Aaron Boroughs, le groupe propose un son tranchant et minimaliste qui privilégie la puissance brute et l'élan rythmique.\n\nEnregistré au Kennel à Brooklyn avec le producteur Billy Szeflinski et mixé par Andy Manganello, le projet comprend neuf titres qui démontrent la capacité du groupe à équilibrer le grain avec une énergie percutante et contagieuse. Des morceaux marquants tels que « Plastic Vampire Teeth » et « Knifeback City » illustrent leur esthétique caractéristique : une musique rock directe et sans fioritures qui semble à la fois urgente et rigoureusement composée. La sortie physique de l'album, publiée en vinyle 10 pouces, incluait un CD audio, reflétant l'appréciation du groupe pour les sorties tangibles et multifacettes au sein de la communauté indie rock. Par ses arrangements serrés et son interprétation agressive, « Have Some » demeure un document définitif de la dynamique collaborative du groupe et de sa contribution à l'esthétique post-hardcore de Brooklyn.",
+      "source_sha256": "c696d3d7ea57c24868bf2918ba0aa6d7e2e6dcabaa5a0cdab413c7a46346e9da",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:18.816Z"
+    }
+  }
 }

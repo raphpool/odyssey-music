@@ -108,5 +108,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre de la musique électronique de la fin des années 90 qui transcende les frontières du club pour créer une expérience d'écoute profondément intellectuelle et axée sur l'atmosphère. Le magnum opus de Carl Craig sert de méditation profonde sur le potentiel de la techno en tant qu'art, mêlant des paysages sonores complexes et mélancoliques à des rythmes expérimentaux.",
+      "article": "Sorti en 1997, More Songs About Food and Revolutionary Art s'impose comme l'accomplissement suprême du visionnaire de la techno de Détroit, Carl Craig. Après une période de succès massif sur les pistes de danse sous son pseudonyme Paperclip People, Craig est revenu à ses racines dans une production électronique expansive, sombre et expérimentale. L'album est bien plus qu'une collection de morceaux de club ; c'est un projet de conception sonore méticuleusement élaboré qui remet en question les idées reçues de l'auditeur sur ce que peut être la techno. S'inspirant de la nature révolutionnaire de l'art en tant que catalyseur du changement de conscience, Craig tisse ensemble des breakbeats complexes, des cordes obsédantes et des synthétiseurs profonds et résonnants.\n\nLe disque occupe un espace unique entre l'héritage classique et soul de la techno de Détroit et la scène émergente de l'intelligent dance music (IDM) de la fin des années 1990. Des morceaux comme At Les — avec ses progressions d'accords en cascade et émouvantes — et Dominas (une production dub influencée par Maurizio) démontrent la capacité de Craig à équilibrer précision technique et résonance émotionnelle profonde. Tout au long de l'album, Craig fait preuve d'une maîtrise de l'atmosphère, utilisant des rythmes lents et une superposition subtile pour construire des paysages qui semblent à la fois futuristes et profondément enracinés dans l'héritage industriel et brut de Détroit. Il demeure une sortie marquante, largement citée pour son ambition, sa sophistication technique et son refus d'être lié à un sous-genre unique, affirmant finalement la techno comme une forme d'art noble légitime et puissante.",
+      "source_sha256": "76dea5235a1a19d11ffa3f8e9299bfc596e802e9f408b593668bd129890aad67",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:28:19.781Z"
+    }
+  }
 }

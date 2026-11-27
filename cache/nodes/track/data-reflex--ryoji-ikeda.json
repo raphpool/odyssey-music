@@ -68,5 +68,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pièce précise et immersive de microsons granulaires, « data.reflex » est un morceau marquant de l'album dataplex de Ryoji Ikeda sorti en 2005, démontrant sa maîtrise dans la transformation de données binaires en textures auditives rythmiques complexes.",
+      "article": "« data.reflex » est un morceau séminal du compositeur électronique et artiste sonore japonais Ryoji Ikeda, figurant en 15e position sur son album acclamé par la critique en 2005, dataplex. Publié sur le label Raster‐Noton, l'album constitue le chapitre inaugural de la série Datamatics d'Ikeda, un corpus d'œuvres dédié à l'interrogation esthétique des données binaires brutes qui sous-tendent l'existence numérique moderne. « data.reflex » illustre l'approche caractéristique d'Ikeda du microsound, une pratique sonore ancrée dans la manipulation de signaux granulaires à haute fréquence et de brèves rafales percussives.\n\nMusicalement, le morceau se définit par sa précision clinique et sa capacité à brouiller les pistes entre texture ambiante et complexité rythmique. Contrairement à la musique électronique traditionnelle qui s'appuie sur des lignes de basse ou des mélodies conventionnelles, « data.reflex » construit un paysage sonore hypnotique, presque moléculaire, en utilisant des bips austères et rapides ainsi que des artefacts numériques distordus. Les critiques ont fréquemment comparé le son de l'album aux œuvres d'Autechre, notant sa capacité à rendre un audio mathématique et abstrait étrangement organique et immersif. L'album dataplex dans son intégralité est célèbre pour son interaction subversive avec les supports physiques, certains morceaux contenant des données conçues pour tester les lecteurs optiques, transformant l'acte de lecture en une expérience d'interrogation du matériel. Pour les auditeurs, « data.reflex » demeure un sommet de l'expérimentation post-glitch, témoignant de la capacité unique d'Ikeda à transformer une information binaire froide en une rencontre auditive viscérale et profondément physique.",
+      "source_sha256": "508c41a5bd8d1ce425c2ec9846408cbf427f7855e5428187357d700783394f95",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:40:18.892Z"
+    }
+  }
 }

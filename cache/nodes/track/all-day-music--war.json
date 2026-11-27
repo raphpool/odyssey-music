@@ -64,5 +64,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Morceau-titre de l'album de War paru en 1971, « All Day Music » est un hymne funk au groove lent définitif qui met en lumière le mélange caractéristique du groupe, fait de soul rythmique et de textures aux influences latines.",
+      "article": "« All Day Music » est le morceau-titre qui ouvre l'album studio de 1971 du groupe de funk américain War. Sorti en single en juillet 1971, ce titre constitue un exemple par excellence de la transition du groupe vers son propre son distinctif, suite à ses premières collaborations avec Eric Burdon. La chanson est une leçon magistrale du style « slow groove » qui a caractérisé l'identité du groupe, mêlant soul, percussions aux influences latines et sensibilités rock psychédélique en un tout atmosphérique et cohérent.\n\nComposé par Jerry Goldstein et les membres de War, le morceau met en valeur l'approche musicale démocratique du groupe, avec des rôles prédominants pour l'orgue de Lonnie Jordan, l'harmonica de Lee Oskar et l'interaction rythmique lourde entre la basse et les congas. Il capture l'essence de l'esthétique du groupe au début des années 70, une période marquée par l'indépendance artistique et la reconnaissance critique. Le morceau, tout comme l'album dont il est issu, a contribué à définir le genre de la progressive soul, s'éloignant des structures conventionnelles du rock et du R&B pour privilégier des grooves plus longs et exploratoires qui mettaient l'accent sur l'atmosphère et la complexité rythmique. Son tempo détendu mais entraînant demeure une marque de fabrique de l'héritage de War, influençant des générations de musiciens de funk et de soul. Au moment de sa sortie, War s'était fermement imposé comme une force créative redoutable, et « All Day Music » demeure un document fondateur de cette époque charnière.",
+      "source_sha256": "77ef374cabf79663fbd9d5f15fcd959724e750e13da417eac073e063dbc756f1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:37:25.099Z"
+    }
+  }
 }

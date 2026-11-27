@@ -24,5 +24,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre monumentale et tentaculaire de musique concrète et électronique, « Hymnen » déconstruit les hymnes nationaux du monde entier en un paysage sonore divisé en quatre régions, mettant l'auditeur au défi de trouver une unité au sein des fragments de symboles politiques mondiaux.",
+      "article": "« Hymnen » (allemand pour « Hymnes ») est une œuvre phare de la musique électronique et concrète composée par Karlheinz Stockhausen entre 1966 et 1967, avec des élaborations supplémentaires en 1969. Dans le catalogue de Stockhausen, elle est répertoriée sous le numéro 22. La composition est une exploration massive et ambitieuse de l'identité nationale et de la connectivité mondiale, utilisant des enregistrements de divers hymnes nationaux — dont « The Internationale », « La Marseillaise », le « Deutschlandlied », l'hymne russe, « The Star-Spangled Banner », et d'autres — comme matériau source principal. Stockhausen transforme ces enregistrements en un vaste paysage sonore en mutation qui défie les structures symphoniques traditionnelles, existant en quatre « Régions » distinctes.\n\nL'œuvre est profondément expérimentale, repoussant les limites de ce que la musique électronique pouvait représenter à la fin des années 1960. Stockhausen a conçu trois versions différentes : une pour sons purement électroniques et concrets (bande magnétique), une qui intègre des solistes en direct interagissant avec la bande préenregistrée, et une version orchestrale de la troisième région. Sa création, notamment lors de la performance du New York Philharmonic en 1971, demeure l'un des moments les plus significatifs de l'histoire de la musique classique contemporaine, remarquée pour son ampleur et sa durée. En démantelant et en reconstruisant les symboles sonores des nations, Stockhausen a créé une œuvre souvent interprétée comme une « musique après l'apocalypse », reflétant les tensions politiques et les changements mondiaux de l'époque tout en ancrant l'avant-garde dans les marqueurs culturels sonores humains les plus reconnaissables. Elle témoigne de la puissance du WDR Studio for Electronic Music de Cologne, où Stockhausen a passé une grande partie de sa période la plus influente à développer son langage unique du son dans l'espace.",
+      "source_sha256": "34f10dbb1f6d3d4f8a1645461b11ac7ad00d9ac7331f9b8cadfad019c79cc941",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:13.701Z"
+    }
+  }
 }

@@ -52,5 +52,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Moment fort de l'album Compro de Skee Mask sorti en 2018, « Flyby VFR » est une leçon de breakbeat atmosphérique, fusionnant une programmation rythmique complexe avec des mélodies poignantes et luxuriantes qui définissent le son moderne d'Ilian Tape.",
+      "article": "« Flyby VFR » est un morceau marquant du producteur électronique allemand Skee Mask, initialement publié en 2018 sur l'album acclamé par la critique Compro, paru sur le label munichois Ilian Tape. Le titre constitue un exemple par excellence de la capacité de Skee Mask à mêler des rythmes influencés par le breakbeat à des textures atmosphériques profondément émouvantes, consolidant ainsi sa réputation au sein de la scène électronique underground moderne. Son paysage sonore est défini par des percussions complexes et changeantes qui s'entremêlent sur une toile de fond de synthétiseurs luxuriants et mélancoliques, créant une atmosphère à la fois introspective et cinétique.\n\nSur le plan culturel, « Flyby VFR » est arrivé à un moment où les frontières entre l'ambient, la braindance et le breakbeat énergique devenaient de plus en plus poreuses. Skee Mask, connu dans la vie privée sous le nom de Bryan Müller, a utilisé la plateforme Ilian Tape pour défendre une esthétique distinctive qui privilégie la profondeur mélodique sans sacrifier l'utilité sur le dancefloor. Le morceau est fréquemment cité par les fans et les critiques comme l'un des sommets de l'album, loué pour sa capacité à évoquer un sentiment de mouvement fugace et de beauté atmosphérique — le « VFR » dans le titre (Visual Flight Rules) suggère une perspective ancrée et observationnelle, renforçant la qualité cinématographique et panoramique du morceau. Le succès de Compro et de titres comme « Flyby VFR » a aidé Ilian Tape à définir le son de la techno et de l'electronica du milieu et de la fin des années 2010, influençant une génération de producteurs cherchant à combler le fossé entre la composition électronique expérimentale et la musique de danse axée sur le rythme. L'attrait durable du morceau réside dans cet équilibre délicat, offrant aux auditeurs un voyage qui semble profondément personnel et techniquement précis.",
+      "source_sha256": "f2d9ebf6a6bd00eacc78cb6af82778cefed04333ee97e73406c0f1a4dd04a810",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:42:16.236Z"
+    }
+  }
 }

@@ -80,5 +80,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Écrit durant une période de déplacement à Utrecht, « Lost Luggage » d'Anushka Chkheidze est un EP ambient IDM de quatre titres qui explore une profonde nostalgie et la gravité émotionnelle de l'expérience immigrée.",
+      "article": "« Lost Luggage » est un EP électronique évocateur de la compositrice et productrice basée à Tbilissi, Anushka Chkheidze, sorti fin 2023. Le projet sert de documentation sonore d'une transition et d'un déplacement personnels ; il a été écrit durant une période où Chkheidze vivait à Utrecht, loin de chez elle en Géorgie. Cette géographie influence fortement l'œuvre, qui agit comme une collection de paysages sonores ambient et introspectifs, empreints de nostalgie pour les personnes et les lieux laissés derrière. À travers ses quatre titres — « Utrecht », « Lost Luggage », « Ase » et « My Lands » — l'EP explore l'intersection de la mémoire et du lieu, mêlant des textures IDM délicates à une synthèse ambient atmosphérique. La production, masterisée par Giorgi Koridze, reflète la voix mûrissante de Chkheidze sur la scène électronique géorgienne, offrant un regard contemplatif sur l'expérience immigrée à travers le prisme de la composition électronique. Le projet traite autant du voyage physique que du poids émotionnel porté dans l'esprit, faisant écho au sentiment des choses perdues ou laissées derrière soi durant le transit. Il constitue un chapitre significatif et ciblé dans la discographie de Chkheidze, s'éloignant du dancefloor pour explorer des textures auditives profondément personnelles, statiques et émotionnelles.",
+      "source_sha256": "4ab5db1d6a9ebb4639dbc6c24289bdcb950b8401a13e7b42fa5df5fe647ecfa3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:19.333Z"
+    }
+  }
 }

@@ -59,5 +59,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Chordblocker, Cinnamon Toasted » est un morceau hyperactif et hybride du duo électronique allemand Mouse on Mars, figurant en deuxième position sur leur album de 2012, Parastrophics.",
+      "article": "« Chordblocker, Cinnamon Toasted » est un morceau hyperactif et hybride du duo électronique allemand Mouse on Mars, figurant en deuxième position sur leur album de 2012, Parastrophics. Publié par Monkeytown Records, le morceau constitue un exemple parfait du retour du groupe à un son plus frénétique et expérimental après une longue pause. Avec la participation vocale de Steven Jo, le titre est caractéristique de l'approche « kaléidoscopique » de l'album, mêlant des sensibilités trap déconstruites à des éléments inattendus comme des sifflements et des guitares d'inspiration hawaïenne.\n\nLes critiques désignent souvent « Chordblocker, Cinnamon Toasted » comme un microcosme de l'ensemble du projet Parastrophics, qui défie fréquemment les frontières des genres, mélangeant dub, drum and bass, disco et IDM dans un paysage sonore cohérent, bien que volatil. Le morceau se distingue par sa production ludique et presque malicieuse, une marque de fabrique de la collaboration de longue date entre Jan St. Werner et Andi Toma. Sa nature fantaisiste et indifférente aux genres le situe confortablement dans la production électronique plus large du début des années 2010, où les structures traditionnelles étaient de plus en plus subverties par des artistes cherchant à repousser les limites de la pop, de la dance et de la musique d'avant-garde. Il demeure un témoignage de la capacité de Mouse on Mars à conserver son statut de figure influente et imprévisible de la scène électronique, des décennies après le début de sa carrière. Le morceau fait partie de la vaste discographie de Mouse on Mars, un duo qui a contribué à définir le son de l'IDM depuis ses débuts en 1994 avec Vulvaland. Ce titre, aux côtés d'autres sur le disque, illustre leur évolution, passant de pionniers de l'ambient pop au style chaotique et avant-gardiste qui a défini leur production des années 2010. La chanson continue d'être citée comme une pièce essentielle de leur puzzle sonore complexe et énergique. Mouse on Mars est reconnu pour son travail au sein de la communauté électronique allemande au sens large, ayant influencé d'innombrables artistes sur les scènes IDM et expérimentale. Le morceau lui-même reflète les influences diverses de ses membres, Jan St. Werner et Andi Toma, dont le travail s'est étendu de l'ambient à l'industriel et au-delà. Tout au long de leur carrière, ils ont collaboré avec divers artistes, tels que Dodo Nkishi, qui figure également en bonne place sur cet album, contribuant à compléter le son éclectique emblématique de leur label, Monkeytown Records.",
+      "source_sha256": "4f46e4c98e02211c68f035b1ba8f58091dbcaaafb14af8b93a4bad5abeb14dc6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:18.025Z"
+    }
+  }
 }

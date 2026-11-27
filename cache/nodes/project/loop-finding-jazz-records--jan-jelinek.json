@@ -114,5 +114,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Sorti en 2001, Loop-Finding-Jazz-Records de Jan Jelinek est un chef-d'œuvre séminal de l'ère clicks + cuts, transformant magistralement des échantillons de jazz en paysages sonores abstraits et hypnotiques. Grâce à un échantillonneur Ensoniq ASR-10, Jelinek a créé un univers luxuriant, organique et glitch qui a transcendé ses racines minimalistes pour devenir une pierre angulaire de la production électronique moderne.",
+      "article": "Loop-Finding-Jazz-Records (2001) est le deuxième album studio du producteur électronique allemand Jan Jelinek, publié sur le label influent ~scape. Souvent considéré comme un document définitif du mouvement « clicks + cuts », le disque est célèbre pour sa manipulation complexe et manuelle d'échantillons de jazz. Malgré son titre, la musique elle-même ne ressemble guère au jazz traditionnel ; au lieu de cela, Jelinek utilise des fragments d'instrumentation jazz — accords de piano, montées de cuivres et pincements de contrebasse — comme matière première pour un voyage ambiant immersif et riche en glitchs.\n\nEnregistré dans l'appartement berlinois de Jelinek à l'aide d'un échantillonneur Ensoniq ASR-10, l'album représente une intersection unique entre précision technique et résonance émotionnelle. Les critiques ont fréquemment loué le disque pour sa texture « organique », la contrastant avec la production plus froide et plus stérile souvent associée à la scène électronique du début des années 2000. Par des boucles constantes et des bégaiements rythmiques, Jelinek construit des atmosphères denses et hypnotiques qui semblent évoluer constamment tout en restant fondamentalement statiques dans leur structure. Son importance pour la musique électronique a été consolidée des décennies plus tard, lorsque des publications comme Pitchfork l'ont nommé parmi les meilleurs albums IDM jamais sortis. En dépouillant ses sources de leur contexte, Jelinek a invité les auditeurs à se concentrer sur la microstructure du son lui-même, créant un disque qui semble aussi chaleureux et intemporel aujourd'hui qu'il l'était à l'aube du millénaire.",
+      "source_sha256": "d7d22d995d4c9aaa12904f81c3157be03fa5ca168abc4bb6f332934f88f3d6dc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:17.850Z"
+    }
+  }
 }

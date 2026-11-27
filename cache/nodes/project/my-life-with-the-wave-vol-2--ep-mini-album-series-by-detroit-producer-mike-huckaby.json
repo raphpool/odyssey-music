@@ -15,5 +15,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Exercice magistral de contraintes ciblées, la série My Life With The Wave met en valeur l'ingéniosité deep-house de Mike Huckaby, utilisant le synthétiseur Waldorf Wave comme unique source sonore pour ces explorations chaleureuses et rythmées.",
+      "article": "La série My Life With The Wave représente l'un des projets conceptuels les plus fascinants de la deep house moderne de Détroit, mené par le regretté et vénéré producteur Mike Huckaby. Plutôt que de s'appuyer sur sa configuration de studio habituelle, Huckaby s'est imposé une limitation stricte : concevoir un disque entier en n'utilisant que des sons dérivés du synthétiseur Waldorf Wave. Cette contrainte, loin de limiter le résultat final, a poussé Huckaby à extraire une gamme incroyable de textures, allant de percussions poussiéreuses aux sonorités organiques et des lignes de basse profondes et soul à des mélodies délicates et papillonnantes.\n\nMy Life With The Wave Vol 2, sorti en 2016 sur Synth US, constitue un exemple par excellence de son approche, avec des titres comme Let The Dancer Do His Thing et Baseline 313. Le projet est remarquable non seulement pour la musique elle-même, mais aussi pour l'inclusion d'un CD d'accompagnement contenant 192 échantillons du synthétiseur, invitant les auditeurs et les autres producteurs à découvrir la méthodologie créative de Huckaby. Le son qui en résulte est typique de Huckaby : chaleureux, rythmé et magistralement superposé, comblant le fossé entre les sensibilités classiques de la Motor City et la conception sonore expérimentale. Sa capacité à évoquer une émotion profonde et des grooves entraînants à partir d'une palette sonore aussi singulière a cimenté son héritage en tant que véritable artisan de la musique électronique. Le projet demeure un témoignage de sa croyance dans le pouvoir de la concentration, démontrant comment les frontières créatives peuvent servir de catalyseur à l'innovation plutôt que d'entrave. Son travail sur cette série reste très recherché par les collectionneurs et les fans de musique électronique profonde et soul dans le monde entier.",
+      "source_sha256": "d2daa42d9540b976a74a11df5cb49aaed60b3e78645c7ea62ef89ae4b898a643",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:29:16.949Z"
+    }
+  }
 }

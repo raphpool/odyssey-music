@@ -91,5 +91,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre fondateur de la pop électronique, The Man-Machine a affiné l'esthétique mécanique de Kraftwerk en une vision du futur élégante, dansante et durablement influente. En équilibrant des thèmes robotiques cliniques avec des mélodies étonnamment fredonnables, l'album a comblé le fossé entre l'art rock d'avant-garde et la synth-pop grand public.",
+      "article": "Sorti en 1978, The Man-Machine (Die Mensch-Maschine) constitue le septième album studio du groupe électronique allemand séminal Kraftwerk. Enregistré dans leur légendaire Kling Klang Studio à Düsseldorf, l'album marque un tournant décisif dans l'évolution du groupe, s'éloignant des compositions plus tentaculaires et atmosphériques de leurs travaux du milieu des années 70 vers une structure plus serrée, plus rythmique et ouvertement orientée vers la pop. En éliminant le superflu et en se concentrant sur des boucles de synthétiseurs précises et imbriquées ainsi que sur des motifs de batterie rigides et métronomiques, Kraftwerk a créé un modèle pour la synth-pop qui résonnerait à travers des décennies de production de musique électronique.\n\nConceptuellement, l'album est un pont thématique entre l'identité humaine et le progrès technologique, explorant la relation symbiotique entre la société et les machines qui la soutiennent. Cette préoccupation pour « l'homme-machine » se reflète non seulement dans les paroles — qui abordent des thèmes liés à la robotique, à la vie urbaine et à la communication moderne — mais aussi dans la musique elle-même, qui semble à la fois intensément froide et étonnamment expressive. Des titres comme The Robots et The Model servent d'exemples déterminants de cette dualité, associant une instrumentation austère et programmée à des mélodies accrocheuses et faussement simples.\n\nAu-delà de son impact sonore, The Man-Machine est culturellement significatif pour sa présentation visuelle saisissante. La pochette de l'album, fortement influencée par le suprématiste russe El Lissitzky, a solidifié l'esthétique du groupe en tant que force moderne et avant-gardiste. Cet engagement envers un langage visuel et sonore unifié a aidé Kraftwerk à transcender l'étiquette « Krautrock » de leurs pairs, les positionnant plutôt comme les architectes d'un nouveau futurisme numérique. Pour beaucoup, ce disque demeure la déclaration définitive de Kraftwerk : une synthèse parfaite de l'humanité et de la technologie, exécutée avec une grâce mécanique et une clarté visionnaire.",
+      "source_sha256": "46c7f76b7b72c6614d5950c4391e381ec32e91ef8a1bb1d93117ebe55ad67441",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:35:13.789Z"
+    }
+  }
 }

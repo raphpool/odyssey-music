@@ -49,5 +49,14 @@
     }
   ],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une compilation sortie en 2000 illustrant l'énergie rythmique et la diversité stylistique du genre hip hop au tournant du millénaire.",
+      "article": "Rap.Com est une compilation sortie en 2000 qui capture un instantané du paysage hip hop au tournant du millénaire. En tant que collection, elle sert de document représentatif du genre rap, caractérisé par une musique rythmique stylisée et une interprétation vocale. Le projet reflète les tendances culturelles et musicales plus larges de l'époque, puisant dans les sons divers qui ont défini la scène hip hop durant cette période. En réunissant Various artistes sous une même bannière, la compilation met en lumière la nature collaborative et multiforme du genre alors qu'il continuait d'évoluer et d'étendre sa portée au sein de l'industrie musicale grand public.",
+      "source_sha256": "0804cbfc2f6b342771a49f26a912c0a4b31e20a12ddb1c34bc2c4d53646c698a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:31:17.373Z"
+    }
+  }
 }

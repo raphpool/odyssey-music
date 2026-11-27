@@ -56,5 +56,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Electromagnetic Dowsing » est un disque vinyle 12 pouces séminal du duo influent basé à Détroit DeepChord, publié pour la première fois en 2005 sur le label S Y N T H.",
+      "article": "« Electromagnetic Dowsing » est un disque vinyle 12 pouces séminal du duo influent basé à Détroit DeepChord, publié pour la première fois en 2005 sur le label S Y N T H. Pierre angulaire du mouvement dub-techno du milieu des années 2000, le projet capture l'esthétique austère, atmosphérique et rythmiquement hypnotique qui a défini les premiers travaux collaboratifs de Rod Modell et Mike Schommer. La sortie se compose de morceaux étendus et pulsés — « Step 1 » et « Step 2 » — qui s'appuient fortement sur la conception sonore profonde et caverneuse ainsi que sur les échos tourbillonnants associés au nexus Détroit-Berlin du dub-techno, dont les pionniers furent des artistes comme Basic Channel.\n\nLe projet est largement considéré par les fans et les collectionneurs comme un artefact essentiel du genre, remarqué pour sa qualité de production immersive et sa capacité à combler le fossé entre le fonctionnalisme club minimaliste et lourd, et les paysages sonores éthérés et ambiants. Masterisé par le légendaire ingénieur de Détroit Ron Murphy, « Electromagnetic Dowsing » possède une densité sonore unique qui en a fait un favori pérenne pour les DJ et les auditeurs de musique électronique profonde et atmosphérique. Bien qu'initialement publié en tant que white label en 2005, son influence a persisté à travers des rééditions ultérieures et des variations comme « The Final Step », cimentant son statut de « classique indémodable » au sein du canon dub-techno. Son héritage continue de résonner à travers le travail du label Echospace et le développement continu du dialogue deep-techno entre Détroit et Berlin.",
+      "source_sha256": "25e784444c125f8c373c546595fcb9b57650dc7fc9c3fce7bb734851fd2baf47",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:22:15.858Z"
+    }
+  }
 }

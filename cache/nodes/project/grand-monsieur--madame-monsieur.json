@@ -48,5 +48,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Grand Monsieur est l'album studio acclamé de 2018 du duo français Madame Monsieur, incluant leur titre Mercy pour l'Eurovision.",
+      "article": "Grand Monsieur est un album studio de 2018 du duo français Madame Monsieur, composé de la chanteuse Émilie Satt et du producteur Jean-Karl Lucas. Le projet a acquis une reconnaissance internationale significative lorsque le duo a représenté la France au Concours Eurovision de la chanson en 2018 avec le titre Mercy. L'album reflète leur mélange caractéristique de pop française moderne, marqué par une écriture réfléchie et une production électronique soignée. En tant que sortie charnière de leur discographie, Grand Monsieur a consolidé la présence du duo sur la scène musicale française contemporaine, démontrant leur capacité à créer des chansons émotionnellement résonnantes qui font le pont entre une narration intime et l'accessibilité de la pop grand public. L'album demeure un document définitif de leur partenariat créatif et de leur ascension vers la notoriété à la fin des années 2010.",
+      "source_sha256": "1476b007caeb412d970984501c93f7d6e1322df12e88c0b97ad7923375ab1310",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:12.816Z"
+    }
+  }
 }

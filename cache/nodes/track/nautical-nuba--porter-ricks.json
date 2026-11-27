@@ -71,5 +71,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Nautical Nuba » est un morceau séminal issu de l'album « Biokinetics » paru en 1996 du duo électronique allemand Porter Ricks, composé de Thomas Köner et Andy Mellwig.",
+      "article": "« Nautical Nuba » est un morceau séminal issu de l'album « Biokinetics » paru en 1996 du duo électronique allemand Porter Ricks, composé de Thomas Köner et Andy Mellwig. En tant que pièce maîtresse du canon dub techno, le morceau illustre l'approche caractéristique du duo en matière de conception sonore : des textures caverneuses axées sur l'atmosphère, superposées à une pulsation techno minimaliste et rythmique. Tout comme le reste de l'album, « Nautical Nuba » puise largement dans l'imagerie aquatique et océanique, utilisant des lignes de basse profondes et ondulantes ainsi que des artefacts sonores complexes et immergés qui créent une expérience d'écoute immersive, presque tactile.\n\nSorti sur le légendaire label berlinois Chain Reaction, le morceau — et l'album dans son ensemble — a capturé un moment charnière de la scène musicale électronique expérimentale du milieu des années 90. Porter Ricks a repoussé les limites de l'esthétique techno en intégrant l'expérience de Thomas Köner dans la dark ambient aux structures rythmiques conçues avec précision par Andy Mellwig. Le résultat est une œuvre qui semble à la fois expansive et claustrophobe, oscillant entre tension mélodique et dissolution sonore. Il demeure une référence pour les producteurs travaillant à l'intersection de l'ambient et de la techno, cité fréquemment pour son influence profonde sur l'évolution de la musique électronique profonde, texturée et teintée de dub. « Nautical Nuba » continue de résonner comme un chef-d'œuvre d'ambiance aux accents industriels, témoignant de l'esprit novateur du label Chain Reaction et de l'héritage durable de la collaboration Porter Ricks. Tout au long du morceau, on perçoit l'attention méticuleuse portée aux détails qui définissait l'esthétique de Chain Reaction, un label connu pour son approche froide, minimaliste et profondément axée sur les basses de la musique électronique. La collaboration entre Thomas Köner, maître des paysages sonores sombres et envoûtants, et Andy Mellwig, producteur profondément ancré dans la scène techno berlinoise, s'est avérée être l'un des duos les plus significatifs de la décennie. En brouillant les pistes entre texture ambient et rythmes prêts pour le dancefloor, « Nautical Nuba » atteint un équilibre sublime, ancrant sa conception sonore abstraite dans une pulsation constante et hypnotique. Ce morceau n'est pas simplement une chanson, mais un environnement sonore expansif, invitant l'auditeur à dériver à travers un paysage sombre et immergé de rythme et de bruit qui définit l'essence même de la dub techno primitive.",
+      "source_sha256": "e1433d56f593b9c7833e45a0865841513cb6f0e8fcf9445afe18bda95c425efd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:46:19.929Z"
+    }
+  }
 }

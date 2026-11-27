@@ -49,5 +49,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Point culminant de l'IDM de la fin des années 90, Niun Niggung voit le duo allemand Mouse on Mars mêler une programmation électronique complexe et glitchy à une instrumentation acoustique chaleureuse pour créer l'un des disques les plus aventureux de son époque.",
+      "article": "Niun Niggung, sorti en 1999, s'impose comme un album studio charnière dans la discographie du duo électronique allemand Mouse on Mars. Composé de Jan St. Werner et Andi Toma, le duo a conçu une œuvre qui a repoussé les limites de l'IDM, du glitch et du drill 'n' bass au cours d'une décennie où l'expérimentation électronique atteignait un sommet créatif. L'album est largement reconnu pour son approche fluide et décalée de la conception sonore, équilibrant des textures abstraites avec des mélodies étonnamment contagieuses aux accents funk qui défient les connotations stériles souvent associées à la production numérique de la fin des années 90.\n\nMusicalement, Niun Niggung occupe un espace unique entre les Instrumentals rigoureux et académiques et les tendances plus humoristiques et pop-déconstructivistes du duo. La production utilise une palette sophistiquée de traitement du son numérique, fournie par F.X.Randomiz, aux côtés d'instruments organiques comme des cors, des clarinettes et des cordes, qui aident à ancrer la complexité synthétique dans un environnement étonnamment chaleureux et résonnant. Des titres comme « Yippie » et « Diskdusk » illustrent cette synthèse, mêlant des motifs rythmiques complexes à des changements structurels imprévisibles. L'album a reçu un immense succès critique lors de sa sortie, obtenant notamment l'honneur de « Record of the Year » de la part de The Wire, et demeure une pierre angulaire définitive de la scène électronique allemande de la fin des années 90, cimentant la réputation de Mouse on Mars en tant que pionniers ayant refusé de choisir entre accessibilité et exploration avant-gardiste. Son héritage est celui d'une iconoclastie ludique : un disque qui semble aussi futuriste aujourd'hui qu'il l'était au tournant du millénaire. L'album met en valeur l'énergie collaborative de ses créateurs, Jan St. Werner et Andi Toma, qui continuent d'être des figures influentes dans la communauté électronique. Son impact sur le paysage de la musique électronique expérimentale reste profond, influençant les générations successives de producteurs qui explorent l'intersection des textures acoustiques et du traitement du signal numérique. Il témoigne de l'esprit aventureux de la musique électronique à la fin du XXe siècle.",
+      "source_sha256": "75329505e701a03d753f334303c41c93671cc681f4b428fcf709f74b79e9448b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:29:23.021Z"
+    }
+  }
 }

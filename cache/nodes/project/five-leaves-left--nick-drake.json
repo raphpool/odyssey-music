@@ -138,5 +138,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre inaugural de Nick Drake, Five Leaves Left est une œuvre essentielle de chamber-folk qui tisse magistralement une écriture intime centrée sur la guitare avec des arrangements de cordes luxuriants et évocateurs. Enregistré à l'apogée de la scène folk britannique de la fin des années soixante, il demeure un disque mélancolique et définitif d'une beauté obsédante.",
+      "article": "Five Leaves Left, le premier album studio du musicien folk anglais Nick Drake sorti en 1969, constitue un jalon essentiel dans le paysage du folk-rock et du chamber-folk de la fin des années soixante. Enregistré au studio Sound Techniques de Londres entre 1968 et 1969 sous la direction du producteur Joe Boyd, le disque fut publié par Island Records et ne reçut qu'une attention modeste avant d'être finalement reconnu comme un chef-d'œuvre mélancolique définitif. Le titre de l'album est largement cité comme une référence à l'avertissement imprimé sur les paquets de papier à cigarettes Rizla — « Only five leaves left » — un détail subtil qui reflète la nature fragile et introspective de l'écriture de Drake. Musicalement, Five Leaves Left se caractérise par une approche sophistiquée et nuancée qui distinguait Drake de ses contemporains folk. L'ingénieur du son John Wood a noté que Drake préférait enregistrer en direct, capturant souvent sa voix et sa guitare simultanément avec les cordes, ce qui a abouti à une cohésion brute et intime qui a su saisir son interprétation douce et articulée. La session a bénéficié de contributeurs notables, dont Richard Thompson de Fairport Convention et Danny Thompson de Pentangle, tandis que les arrangements de cordes complexes et amples ont été largement fournis par Robert Kirby et Harry Robertson. Ce mélange de guitare acoustique dépouillée aux accents blues et d'orchestrations riches et cinématographiques a créé un son unique et intemporel qui a su naviguer entre accessibilité et lyrisme profondément personnel et introspectif. Bien que la réception critique initiale ait été variée, souvent partagée entre l'admiration pour son talent et la confusion face au manque d'immédiateté radiophonique de l'album, sa réputation a crû de manière exponentielle au cours des décennies suivant sa mort prématurée, le consacrant comme l'un des disques les plus influents et durables de cette époque. Il demeure le chapitre inaugural d'une discographie brève mais d'une beauté dévastatrice, établissant la norme pour le mouvement chamber-folk qui a suivi.",
+      "source_sha256": "05fb4120a5868af668cba8b813ac9ca429f8cc899441da7201f89e806735eac9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:23:16.183Z"
+    }
+  }
 }

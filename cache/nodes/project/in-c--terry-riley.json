@@ -45,5 +45,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon du minimalisme du XXe siècle, In C de Terry Riley est une composition à partition ouverte pour un nombre indéfini de musiciens qui utilise 53 fragments mélodiques répétitifs pour créer un paysage sonore mouvant, hypnotique et communautaire.",
+      "article": "In C (1964) est une composition musicale séminale de Terry Riley qui constitue l'une des pierres angulaires définitives du minimalisme américain. Émergeant de la scène expérimentale vibrante des années 1960 à San Francisco, l'œuvre a été conçue par Riley durant une période d'intérêt intense pour la conscience psychédélique et le potentiel de la musique à agir comme une expérience méditative et transportante. La partition elle-même est trompeusement simple : elle consiste en 53 fragments mélodiques qu'un nombre indéfini d'instrumentistes sont invités à répéter dans une improvisation guidée et aléatoire. En s'appuyant sur la répétition de ces cellules, les musiciens créent une texture mouvante, semblable à une phase, qui évolue de manière organique en fonction des décisions collectives de l'ensemble, influencée par les expériences antérieures de Riley avec les boucles de bande et les « time-lag accumulators ».\n\nAu-delà de son innovation structurelle, In C a fondamentalement modifié la trajectoire de la composition moderne. Sa première en novembre 1964 au San Francisco Tape Music Center, réunissant des collaborateurs tels que Steve Reich et Pauline Oliveros, a marqué un départ du sérialisme rigide du milieu du siècle vers une pratique musicale communautaire et extatique. La suggestion de Steve Reich d'inclure une pulsation constante de croches a conféré à la pièce son rythme régulier caractéristique, qui ancre les couches mélodiques par ailleurs éthérées et scintillantes. Parce que l'œuvre est ouverte — ne nécessitant aucune instrumentation ni durée fixe — elle a été interprétée par d'innombrables ensembles à travers le monde, allant des orchestres de chambre traditionnels aux collectifs électroniques, cimentant son statut de texte vivant et durable dans le canon de la musique du XXe siècle. En 2022, la version enregistrée de la pièce par Riley en 1968 a été ajoutée à juste titre au National Recording Registry, reconnaissant son impact profond sur des générations de compositeurs, dont Philip Glass, John Adams et Julius Eastman.",
+      "source_sha256": "0d57aee1dd364b8371786cf5bd1b0dcf647474d171262ae5fedaf986cba229fe",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:19.627Z"
+    }
+  }
 }

@@ -69,5 +69,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre méditatif et charnière de 1972 qui a vu les pionniers allemands de Popol Vuh s'éloigner des synthétiseurs vers un son éthéré, acoustique et d'une beauté spirituelle.",
+      "article": "Hosianna Mantra, publié en 1972 par le collectif allemand Popol Vuh, représente un départ profond des expérimentations électroniques basées sur les synthétiseurs de leurs travaux précédents. Après s'être imposés comme des pionniers de la kosmische music avec des albums comme Affenstunde et In den Gärten Pharaos, le chef de groupe Florian Fricke a fait le choix audacieux d'abandonner son synthétiseur Moog au profit d'instruments acoustiques, cherchant un son qui semblait plus aligné avec le « flux naturel du battement de cœur ».\n\nLe résultat est un chef-d'œuvre délicat et méditatif, souvent cité comme une pierre angulaire de la musique ambient et spirituelle. Puisant dans des influences diverses incluant le judaïsme, le christianisme et le bouddhisme, l'album fonctionne comme une série d'hymnes complexes qui évitent les structures rock conventionnelles, la batterie et la basse pour une tapisserie lumineuse de piano, tambura, hautbois, violon et clavecin. Ce paysage sonore éthéré est élevé par la présence de la soprano sud-coréenne Djong Yun, dont les contributions vocales apportent un humanisme obsédant et surnaturel au disque. Le guitariste Conny Veit, collaborateur central sur le projet, tisse des lignes mélodiques complexes qui complètent le jeu de piano astral de Fricke.\n\nEnregistré durant une période d'exploration contre-culturelle intense en Allemagne de l'Ouest, Hosianna Mantra se distingue par son absence de cynisme et son engagement sincère et candide envers l'amour cosmique et la quête spirituelle. En mélangeant les sensibilités classiques occidentales avec des influences modales orientales, Popol Vuh a créé une œuvre qui est simultanément un produit de son époque et entièrement intemporelle. Il demeure l'un des albums les plus émotionnellement multivalents des années 1970, en équilibre au seuil de la foi et de la peur, offrant une expérience d'écoute sereine et immersive qui continue d'influencer les artistes ambient et de musique classique moderne aujourd'hui.",
+      "source_sha256": "909531bf3fcd0309c59307309fda5d64440c51a52961519e112d8f6e8d971783",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:22.521Z"
+    }
+  }
 }

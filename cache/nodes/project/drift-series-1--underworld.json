@@ -380,5 +380,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un marathon créatif tentaculaire et ambitieux de 52 semaines signé Underworld, publié sous la forme d'une compilation massive multi-disques qui documente leur expérimentation avec des textures ambient, techno et expérimentales.",
+      "article": "DRIFT Series 1 est un projet multidisciplinaire étendu du duo électronique britannique pionnier Underworld, documentant un défi créatif d'une année extrêmement ambitieux. Lancé en novembre 2018, le projet « Drift » a vu Rick Smith et Karl Hyde s'engager à créer et à publier de la musique, des vidéos et du contenu visuel sur une base hebdomadaire pendant 52 semaines consécutives. Ce processus a été intentionnellement conçu pour perturber le cycle traditionnel album-tournée, permettant au duo d'expérimenter la spontanéité, l'improvisation et un large éventail de textures sonores qui n'auraient peut-être pas trouvé leur place dans un album studio strictement organisé.\n\nLa collection qui en résulte, DRIFT Series 1, sert de compilation définitive de ce marathon créatif. S'étendant sur près de six heures d'audio à travers plusieurs disques, le projet est une mosaïque tentaculaire de l'identité aux multiples facettes d'Underworld. Il traverse des paysages sonores ambient, de la techno pulsée, du drone expérimental et leur narration parlée caractéristique. En se débarrassant des contraintes des calendriers de sortie standard, Underworld a exploré une forme d'expression brute et non filtrée, invitant les auditeurs à une vision transparente de leur processus artistique. La sortie a finalement abouti à une édition « Complete », consolidant une ère charnière de leur carrière définie par une volonté incessante d'évoluer. Cela reste une entrée marquante dans la discographie du duo pour son ampleur, son défi aux normes de l'industrie et son regard intime sur la façon dont un groupe de longue date continue de réinventer ses propres limites.",
+      "source_sha256": "054a593ed9a90e103a85c1eb6010c9c61fabe83ebbe72c1a2ac871ec18052d74",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:21.204Z"
+    }
+  }
 }

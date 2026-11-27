@@ -112,5 +112,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon de l'IDM du début des années 90, Electro-Soma est un chef-d'œuvre de techno mélodique qui a parfaitement capturé les aspirations futuristes et utopiques de la série Artificial Intelligence de Warp Records. À travers ses paysages sonores luxuriants chargés de synthétiseurs et ses percussions nettes et entraînantes, l'album a établi une esthétique définitive pour la scène intelligent dance music qui demeure immensément influente à ce jour.",
+      "article": "Sorti en 1993 sur Warp Records en tant que quatrième volet de la légendaire série de compilations Artificial Intelligence, Electro-Soma demeure un document fondateur de l'IDM naissante et de la techno mélodique. Créé par B12 — le duo visionnaire composé de Steven Rutter et Mike Golding —, l'album sert de synthèse cristalline de l'atmosphère futuriste et nocturne qui imprégnait la scène électronique britannique au début des années 1990. Contrairement à la techno plus dure et orientée vers les pistes de danse qui prévalait à Détroit ou à Berlin à l'époque, Electro-Soma privilégiait une approche plus introspective et cérébrale, superposant des textures de synthétiseurs complexes à une programmation de boîte à rythmes précise et souple. Le résultat est une œuvre de musique électronique « utopique », caractérisée par des nappes évocatrices et amples et un sentiment d'espace numérique vaste qui semble remarquablement prémonitoire aujourd'hui.\n\nSur le plan culturel, l'album a constitué un point de bascule crucial pour Warp Records, marquant un départ de leurs origines axées sur le rave vers une expérience d'écoute « intelligente ». Des titres comme Soundtrack Of Space et Hall Of Mirrors illustrent la capacité du duo à mêler profondeur émotionnelle et rigueur mécanique froide — une combinaison signature de chaleur issue du matériel et de thèmes de science-fiction. C'est cet équilibre entre l'étranger et l'accessible qui a assuré à Electro-Soma un statut durable de pierre angulaire du genre, continuant d'influencer des générations de producteurs électroniques qui se tournent vers B12 pour une leçon magistrale de séquençage atmosphérique et de profondeur mélodique. Qu'il soit entendu à travers le prisme de l'histoire ou comme une expérience d'écoute autonome, il s'impose comme l'un des projets définitifs de l'ère Warp, incarnant l'optimisme créatif et l'expérimentation technique d'un genre en pleine affirmation.",
+      "source_sha256": "0041d54fba913c4acc806c7e3d1363dd2cd16bf1184456e58998d98d6b816168",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:22:15.537Z"
+    }
+  }
 }

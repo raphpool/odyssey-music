@@ -51,5 +51,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un morceau essentiel des débuts de l'IDM, issu du premier album de μ-Ziq, reconnu pour ses percussions complexes et l'esthétique expérimentale et lo-fi qui a contribué à définir le son de Rephlex Records.",
+      "article": "« Swan Vesta » est un morceau charnière du premier album de 1993, Tango N' Vectif, du producteur électronique μ-Ziq (Mike Paradinas). Publié sur le label séminal Rephlex Records — cofondé par Richard D. James (Aphex Twin) et Grant Wilson-Claridge —, le morceau constitue une référence précoce du genre IDM (Intelligent Dance Music). Son architecture sonore reflète l'éthique expérimentale de l'époque, utilisant un mélange de matériel incluant les synthétiseurs Yamaha DX11 et Roland D50, couplés à un séquenceur Atari 1040 ST et à un enregistreur 4 pistes Fostex 280.\n\nLe morceau se distingue par ses percussions complexes et croustillantes ainsi que par ses paysages sonores éthérés et changeants qui définissent l'ère Tango N' Vectif du travail de μ-Ziq. L'album lui-même, et par extension « Swan Vesta », se situe dans un espace liminal entre la techno du début des années 90, l'industriel et l'ambient, mettant en valeur le penchant de Mike Paradinas pour des mélodies complexes enfouies sous des couches de grain lo-fi texturé. Son inclusion au catalogue de Rephlex l'a marqué comme une pièce essentielle de l'identité formative du label, qui privilégiait une production électronique aventureuse, non orientée vers le dancefloor, et qui allait définir une grande partie de l'underground expérimental britannique pour la décennie suivante. Le titre du morceau, une référence à une marque d'allumettes britannique bien connue, évoque la nature banale mais essentielle des objets du quotidien, reflétant l'esthétique brute et faite de sons trouvés qui traverse tout l'album. Il demeure un exemple emblématique du son « Planet μ » — une approche imaginative, idiosyncrasique et sans compromis de la composition électronique.",
+      "source_sha256": "bd29e0f44cfcc423b09268f41450fe7914eccf24741874bb0b742e80c267e1b2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:50:13.503Z"
+    }
+  }
 }

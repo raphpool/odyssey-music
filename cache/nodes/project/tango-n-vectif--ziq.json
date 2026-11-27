@@ -144,5 +144,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Publié en 1993 sur le légendaire label Rephlex Records, Tango N' Vectif est le premier album séminal de Mike Paradinas (sous le nom de µ-Ziq), mêlant avec maîtrise percussions industrielles et IDM mélodique luxuriante.",
+      "article": "Tango N' Vectif est le premier album studio du producteur de musique électronique britannique Mike Paradinas, publié en 1993 sous son alias µ-Ziq. En tant que l'un des documents fondateurs de l'ère IDM (Intelligent Dance Music), l'album est sorti sur le label influent Rephlex Records de Richard D. James. Tango N' Vectif a émergé durant une période d'effervescence créative immense au sein de la scène électronique underground britannique, se distinguant par sa tension unique entre des percussions abrasives aux accents industriels et des sensibilités mélodiques luxuriantes, souvent mélancoliques. Contrairement à beaucoup de ses contemporains qui penchaient fortement soit vers une fonctionnalité froide, soit vers une abstraction pure, Paradinas a façonné un son qui semblait simultanément dystopique et profondément humain, incorporant des motifs de batterie flangés et distordus aux côtés de nappes ambiantes amples et de lignes de synthétiseurs complexes et évolutives. Le disque est largement considéré comme une référence de la musique électronique des années 1990, mêlant des éléments d'acid techno, d'ambient techno et une programmation complexe de breakbeat en une déclaration cohérente et atmosphérique. Son héritage réside dans son refus de se conformer à des frontières de genre rigides, privilégiant au contraire l'ingéniosité mélodique et la texture sonore, ce qui a contribué à définir l'avant-garde expérimentale de la musique électronique au début des années 90. Au-delà de l'intensité rythmique dense de morceaux comme « Phi* 1700 (u/v) » et de la piste titre, l'album démontre un niveau de maturité mélodique et de profondeur expérimentale qui a établi µ-Ziq comme une voix majeure au sein de l'écurie Rephlex, aux côtés d'artistes du label comme Aphex Twin. L'album demeure une écoute essentielle, bien que stimulante, qui fait le pont entre l'énergie frénétique de la culture rave et les paysages sonores introspectifs, destinés à l'écoute au casque, qui allaient dominer l'évolution du genre.",
+      "source_sha256": "2fbd99d631e08f57256d78d8b05a07ac517cd0c163af4c31a4a2d8a903337f03",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:34:16.084Z"
+    }
+  }
 }

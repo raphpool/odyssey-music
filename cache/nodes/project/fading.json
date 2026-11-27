@@ -84,5 +84,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre de musique électronique atmosphérique, l'album « Fading » de DFRNT, sorti en 2012, mêle techno profonde imprégnée de dub et textures mélancoliques de UK bass pour créer une expérience sonore immersive et intemporelle.",
+      "article": "« Fading » est l'album studio de 2012 acclamé par la critique du producteur électronique basé au Royaume-Uni DFRNT, publié via le label Echodub. Représentant une évolution significative du son de DFRNT, l'album navigue à l'intersection atmosphérique du dubstep et de la dub techno, caractérisé par des paysages sonores luxuriants et étendus ainsi qu'une production complexe et émotionnellement résonnante. Avec 11 titres, dont des morceaux marquants comme « Everyone Is Moving » et « Silent Witness », le projet est largement considéré comme l'un des albums électroniques les plus sous-estimés de son époque, souvent comparé aux textures profondes et cinématographiques d'artistes comme Burial ou aux environnements sonores immersifs créés par DeepChord.\n\nTout au long du disque, DFRNT démontre une maîtrise magistrale de l'espace, équilibrant la complexité rythmique avec un sentiment de béatitude mélancolique qui définit l'esthétique unique de l'album. Le projet évite les tropes agressifs souvent associés au dubstep grand public en faveur d'atmosphères hypnotiques imprégnées de dub qui privilégient la texture et l'ambiance. En intégrant des échantillons vocaux à une synthèse délicate et stratifiée, le producteur crée une expérience d'écoute immersive à la fois introspective et expansive. « Fading » a cimenté la réputation de DFRNT en tant qu'architecte réfléchi du son électronique et demeure une référence pour les auditeurs attirés par les franges plus profondes et expérimentales de la UK bass music. Son héritage persiste dans son statut de classique culte, célébré pour sa narration cohérente, sa précision technique et sa profondeur émotionnelle durable.",
+      "source_sha256": "88e63657463c438337f747a929b7fa20af7bf4aacb2c80e95bffd055771c0f37",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:23:14.988Z"
+    }
+  }
 }

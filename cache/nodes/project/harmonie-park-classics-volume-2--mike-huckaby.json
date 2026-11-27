@@ -45,5 +45,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Véritable masterclass de deep house de Detroit, ce maxi 12 pouces présente deux titres intemporels et soul du regretté et grand Mike Huckaby. Indispensable pour ceux qui explorent la facette émotionnelle et riche en samples du catalogue Deep Transportation.",
+      "article": "Harmonie Park Classics Volume 2 est un maxi 12 pouces fondamental du légendaire producteur de Detroit Mike Huckaby, initialement publié en 2009 sur son propre label, Deep Transportation. Cette sortie constitue une pierre angulaire du son deep house, illustrant la maîtrise de Huckaby à mêler des textures soul aux accents classiques avec la sensibilité rythmique précise de l'école de Detroit. Composé de deux titres, « We Can Make It » et « Love Filter », l'EP démontre l'oreille fine de Huckaby pour le sampling et sa capacité à recontextualiser des pépites oubliées de disco et de boogie en hymnes de dancefloor intemporels et modernes. Les lignes de basse profondes et pulsées ainsi que les nappes de synthétiseurs luxuriantes et émotionnelles définissent le son, faisant de cette sortie un artefact essentiel de l'histoire de la musique électronique de Detroit.\n\nTout au long de sa vie, Mike Huckaby a été vénéré non seulement en tant que producteur, mais aussi en tant qu'éducateur, propriétaire de disquaire (notamment chez Record Time à Detroit) et trait d'union entre des générations de musiciens électroniques. La série « Harmonie Park Classics » témoigne de son talent de curateur et de producteur, distillant l'essence de l'esprit de la ville sous forme de vinyle. Les fans comme les critiques célèbrent l'EP pour sa chaleur inébranlable et sa profondeur musicale, des qualités qui ont défini une grande partie de la discographie de Huckaby. Les titres ont fait l'objet de multiples rééditions, dont une version remastérisée en 2013, garantissant que leur influence continue de résonner au sein de la scène house underground mondiale bien après sa disparition. Cet EP demeure un sommet de la deep house, caractérisé par une touche organique et humaine qui semble à la fois nostalgique et perpétuellement fraîche.",
+      "source_sha256": "1bfde192feb447080b1bcdb64f5d2b6410de57cc191a6eba9d9660efecbdd1b0",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:18.182Z"
+    }
+  }
 }

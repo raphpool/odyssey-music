@@ -62,5 +62,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un jalon fondamental de l'ambient glitch de 1995 par Microstoria (Markus Popp et Jan St. Werner) qui a transformé les artefacts numériques en l'architecture de la musique électronique expérimentale moderne.",
+      "article": "Init Ding est le premier album séminal de 1995 de Microstoria, le projet collaboratif entre les musiciens électroniques Markus Popp (mieux connu pour son travail sous le nom de Oval) et Jan St. Werner (cofondateur de Mouse on Mars). Publié sur le label Thrill Jockey, l'album s'impose comme une pierre angulaire du paysage électronique expérimental des années 1990, plus précisément dans le développement de la musique « glitch » et ambient. En déconstruisant et en réassemblant des fragments numériques, Microstoria a forgé une identité sonore à la fois fragile et profondément complexe, souvent décrite par les auditeurs comme « le son des ordinateurs qui rêvent ».\n\nL'album a marqué une rupture avec les structures techno ou ambient plus conventionnelles, privilégiant une conception sonore microscopique et des motifs non linéaires qui mettaient les auditeurs au défi d'interagir avec des artefacts numériques en tant que blocs de construction mélodiques et rythmiques. L'influence de Init Ding est profonde, ayant établi un modèle pour les générations suivantes d'artistes IDM et expérimentaux qui cherchaient à traiter les erreurs numériques comme des textures. Des décennies plus tard, l'œuvre demeure remarquablement fraîche, ses rééditions — souvent couplées au travail tout aussi acclamé du projet, _snd — continuant d'être citées dans les études critiques sur la musique ambient essentielle. Son héritage est celui d'une curiosité technique rencontrant une profondeur émotionnelle, prouvant que l'architecture rigide des premiers sons numériques pouvait être pliée en formes fluides et évocatrices.",
+      "source_sha256": "9dac410ecc7795b02799bce7f634c3b41159d55aacaec4bfd03aaf0ade31bc93",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:22.006Z"
+    }
+  }
 }

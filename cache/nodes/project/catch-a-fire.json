@@ -20,5 +20,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Catch a Fire est l'album phare de 1973 qui a fait découvrir au monde les sons révolutionnaires de The Wailers, mêlant le roots reggae jamaïcain brut à une production influencée par le rock pour propulser Bob Marley vers une célébrité mondiale.",
+      "article": "Sorti en avril 1973, Catch a Fire fait office de cinquième album studio historique pour The Wailers, le groupe qui sera bientôt présenté à l'international sous le nom de Bob Marley and the Wailers. Il constitue un moment charnière dans l'histoire du reggae, agissant comme le pont qui a fait découvrir une musique roots jamaïcaine profonde, spirituelle et politiquement engagée à un vaste public mondial. L'album a été enregistré dans plusieurs studios de Kingston, en Jamaïque, en 1972, mais a acquis son poli distinctif tourné vers l'international lorsque le fondateur d'Island Records, Chris Blackwell, sentant le potentiel du groupe pour les marchés orientés rock, a ajouté des overdubs sur plusieurs titres avec l'instrumentation supplémentaire du guitariste de session de Muscle Shoals, Wayne Perkins, à Londres.\n\nLe son qui en a résulté était une fusion magistrale : les grooves bruts et lourds de basse fournis par les frères Barrett (Aston et Carlton) ainsi que l'écriture incisive et révolutionnaire de Bob Marley et Peter Tosh ont été rehaussés par des textures de guitare aux accents rock et une production sophistiquée. Des chansons comme « Concrete Jungle » et « Stir It Up » encapsulaient la tension, l'espoir et le commentaire social du groupe. Au-delà de la musique, le conditionnement initial de l'album était emblématique : une pochette à charnière conçue pour ressembler à un briquet Zippo, un choix esthétique qui a cimenté son statut d'objet de collection.\n\nCatch a Fire a fait bien plus que propulser le groupe vers une célébrité internationale ; il a solidifié le reggae en tant que genre mondial capable de déclarations artistiques nuancées et axées sur l'album. Son succès a établi le modèle pour la marque « Bob Marley and the Wailers », changeant à jamais la trajectoire de la musique jamaïcaine et garantissant que le message du groupe serait entendu bien au-delà des rivages des Caraïbes. Malgré la confusion marketing ultérieure concernant l'identité individuelle par rapport à l'identité du groupe qui mènera à des règlements juridiques des décennies plus tard, la musique contenue dans Catch a Fire demeure un témoignage de l'une des périodes les plus créatives et puissantes de l'histoire collective de Marley, Tosh et Bunny Wailer.",
+      "source_sha256": "ccf509ff8b1d90c0bca19132e1799634512829496aff7b3d18a5faff2063c331",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:20:13.566Z"
+    }
+  }
 }

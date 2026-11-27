@@ -64,5 +64,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Rubycon, Part Two » est le deuxième mouvement envoûtant et vaste de l'album phare de Tangerine Dream sorti en 1975, Rubycon.",
+      "article": "« Rubycon, Part Two » est le deuxième mouvement envoûtant et vaste de l'album phare de Tangerine Dream sorti en 1975, Rubycon. D'une durée de plus de dix-sept minutes, le morceau constitue une pierre angulaire de la Berlin School de musique électronique, illustrant l'utilisation pionnière par le groupe de séquenceurs analogiques pour créer de vastes paysages sonores en constante évolution. Enregistrée au Manor en Angleterre, la pièce démontre la maîtrise du trio — Edgar Froese, Christopher Franke et Peter Baumann — sur une technologie électronique primitive, mêlant des pulsations de synthétiseurs oscillants à des nappes atmosphériques de Mellotron, des accords d'orgue étranges et des coups de gong résonnants.\n\nLes critiques ont longtemps noté la qualité « hantée » du morceau, qui contraste avec la texture rythmique légèrement plus active de la première partie de l'album. À mesure que le morceau progresse, l'interaction entre les lignes de séquenceur arpégées et les mélodies cosmiques balayantes crée un sentiment de distance et de mystère profonds. Pour de nombreux auditeurs, « Rubycon, Part Two » représente un sommet de la composition ambient-électronique primitive, un voyage « en perpétuel déploiement » qui évite les structures conventionnelles au profit de la texture et de l'ambiance. Son influence sur les générations ultérieures d'artistes électroniques, ambient et drone est incommensurable, consolidant sa place en tant que document définitif du mouvement kosmische musik du milieu des années 1970. Il demeure une marque de fabrique de la production de Tangerine Dream au milieu des années soixante-dix, reflétant le groupe au sommet de son ambition technique et de sa vision créative. Le morceau présente des performances emblématiques des membres, notamment la synthèse VCS 3 d'Edgar Froese et les arrangements élaborés au Moog de Christopher Franke. Son héritage est lié au développement du son définissant le genre qui dominera la musique électronique au cours de la décennie suivante.",
+      "source_sha256": "847ef86e8b8da72c4bbe6163471f5374f79be0f230673dff91a0a244676b6f8f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:25.035Z"
+    }
+  }
 }

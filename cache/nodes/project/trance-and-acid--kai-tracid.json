@@ -147,5 +147,17 @@
       "mbid": "508bf605-3383-4c2b-a8f0-a846d744a056"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le deuxième album de Kai Tracid, paru en 2002, est une collection séminale de hard trance qui a fusionné les sensibilités de l'acid house avec une production taillée pour les clubs.",
+      "article": "Publié le 8 février 2002 via Sony Dance Division, Trance & Acid constitue le deuxième album studio du producteur allemand Kai Tracid. Cette collection de 13 titres s'appuie fortement sur des textures acid house et des rythmes hard trance, avec la participation vocale de Jade 4U sur des morceaux tels que « Destiny's Path » et la chanson-titre « Trance & Acid ». La sortie a été distribuée sous plusieurs configurations, incluant un CD standard et une édition limitée comprenant un DVD bonus avec des clips vidéo et une biographie de l'artiste. Parmi la liste des titres figurent quatre singles : « Tiefenrausch (The Deep Blue) », « Too Many Times », « Life Is Too Short » et l'éponyme « Trance & Acid ». Au-delà des compositions originales comme « Bad Shape » et « Message Without Words », l'album inclut un « Warmduscher Remix » de « Destiny's Path ».",
+      "facts": {
+        "vocals": "Jade 4U"
+      },
+      "source_sha256": "7525439081f359b94a96b7fcba0723d0dce5a63506dbfbbeb92ab304bd3dbf3d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:35:24.326Z"
+    }
+  }
 }

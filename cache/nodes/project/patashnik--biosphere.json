@@ -120,5 +120,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Sorti en 1994, Patashnik constitue une œuvre fondatrice dans le développement de l'ambient techno des années 1990, mêlant paysages sonores futuristes, précision rythmique et échantillonnages vocaux évocateurs et clairsemés. Il demeure un témoignage de la capacité de Geir Jenssen à synthétiser des atmosphères arctiques froides avec la machinerie chaude et pulsante de l'underground électronique naissant.",
+      "article": "Patashnik, sorti en 1994, est le deuxième album studio du projet électronique norvégien Biosphere, dirigé par Geir Jenssen. Après le succès de son premier album, Microgravity, Patashnik a affiné le son « Arctic ambient » caractéristique du projet, s'orientant davantage vers un mélange d'ambient techno et de musique électronique axée sur l'espace. L'album est largement reconnu pour sa production cristalline, utilisant des synthétiseurs superposés, des séquences rythmiques et des échantillons vocaux soigneusement sélectionnés qui évoquent un sentiment d'isolement dans l'espace lointain et une mélancolie futuriste.\n\nSur le plan critique, le disque est remarqué pour sa cohérence en tant que voyage sonore. Des titres comme « Novelty Waves » et la chanson-titre, « Patashnik », illustrent l'approche sophistiquée de l'ambient house de cette époque, où la texture atmosphérique est équilibrée par des percussions fonctionnelles et entraînantes. Le travail de Jenssen sur cet album évite la densité de ses contemporains, optant plutôt pour une spatialité qui deviendra une marque de fabrique de sa longue carrière. La production bénéficie des contributions de Karsten Brustad sur « Botanical Dimensions », mais le projet reste fermement ancré dans la vision singulière de Jenssen, consistant à fusionner des atmosphères glaciales et désolées avec des rythmes électroniques accessibles. Pour de nombreux auditeurs, Patashnik a servi de porte d'entrée vers la musique électronique ambient, se plaçant aux côtés de contemporains comme Global Communication en tant que sortie définitive et formatrice de la scène intelligent dance music (IDM) du milieu des années 90. Il continue d'être célébré pour sa pertinence durable et sa capacité à capturer une humeur nocturne et cosmique spécifique qui demeure aussi puissante aujourd'hui qu'au moment de sa sortie.",
+      "source_sha256": "ff7b85ec63f2567ef65df3cc05a09202ec9bc0b18916eeadc14b612716799453",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:30:19.629Z"
+    }
+  }
 }

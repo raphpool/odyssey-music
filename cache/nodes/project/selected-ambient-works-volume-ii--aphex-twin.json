@@ -74,5 +74,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Selected Ambient Works Volume II, souvent abrégé en SAW II, est un album studio phare de l'énigmatique producteur de musique électronique britannique Richard D.",
+      "article": "Selected Ambient Works Volume II, souvent abrégé en SAW II, est un album studio phare de l'énigmatique producteur de musique électronique britannique Richard D. James, opérant sous son alias principal, Aphex Twin. Sorti le 7 mars 1994 via Warp, le projet a marqué une rupture profonde avec l'ambient techno rythmique et orientée dance-floor de son premier album de 1992, Selected Ambient Works 85–92. Là où son prédécesseur était défini par ses textures mélodiques imprégnées de breakbeat, Volume II s'aventure sur un terrain beaucoup plus introspectif, minimaliste et expérimental. S'inspirant de concepts de rêve lucide et des propres métaphores imaginatives de James — comparant l'expérience au fait de « se tenir dans une centrale électrique sous acide » —, l'album évite les titres de morceaux standard. Au lieu de cela, sa sortie physique originale représentait les compositions à travers une série de photographies abstraites et de diagrammes circulaires, laissant les auditeurs naviguer dans les paysages sonores obsédants et atmosphériques sans l'aide d'une nomenclature explicite.\n\nL'architecture sonore de l'album est profondément texturée, caractérisée par des drones balayants, des mélodies de synthétiseur délicates et, parfois, des paysages sonores discordants et inquiétants. Il couvre les domaines de l'ambient, du dark ambient, du drone et de la musique minimaliste, utilisant une collection de synthétiseurs vintage incluant des modèles de EMS, Moog et ARP. Bien qu'il ait reçu un accueil critique polarisé lors de sa sortie en raison de sa nature sans rythme et répétitive, l'album a fait l'objet d'une réévaluation critique significative au fil des décennies. Aujourd'hui, il est largement considéré comme une pierre angulaire du genre ambient, souvent cité aux côtés de l'œuvre séminale de Brian Eno, Ambient 1: Music for Airports, pour son influence profonde sur l'évolution de l'electronica moderne. Il demeure une expérience d'écoute profondément atmosphérique, presque surréaliste, qui continue de défier et de définir les frontières de la musique électronique expérimentale.",
+      "source_sha256": "76a50d9414b7c458fe5c0470556922f3b027adf3d804b488c05bae5f606c1992",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:32:19.457Z"
+    }
+  }
 }

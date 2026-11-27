@@ -119,5 +119,14 @@
       "type": "project",
       "name": "Bryter Layter"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Ultime chef-d'œuvre d'une beauté austère de Nick Drake, Pink Moon dépouille tout ornement pour ne laisser qu'une voix et une guitare singulières dans un paysage intime et obsédant.",
+      "article": "Sorti en février 1972 sur Island Records, Pink Moon constitue le troisième et dernier album studio de l'auteur-compositeur-interprète anglais Nick Drake. Enregistré en deux nuits en octobre 1971 au studio Sound Techniques de Londres, le projet représente un changement profond dans la direction artistique de Drake. Abandonnant les arrangements orchestraux luxuriants et l'accompagnement d'ensemble qui définissaient ses disques précédents, Five Leaves Left et Bryter Layter, Drake a opté pour une esthétique austère et intime. L'album ne présente que son jeu de guitare acoustique complexe et sa voix, à la seule exception d'un ajout de piano sur la chanson-titre.\n\nPink Moon est né d'un désir de simplicité et d'autonomie artistique. Drake, se sentant désabusé par les faibles performances commerciales de ses travaux antérieurs et son inconfort face aux exigences de la promotion, est arrivé au studio avec le producteur John Wood pour capturer ses chansons sous leur forme la plus élémentaire. Bien que l'album soit fréquemment coloré par la conscience qu'a l'auditeur des luttes ultérieures et de la mort prématurée de Drake, beaucoup de proches de son entourage — y compris ceux de son label et des sessions d'enregistrement — se sont souvenus qu'il était immensément fier de ce travail et qu'il n'était pas dans un état de dépression clinique lors de sa création. Malgré sa nature clairsemée et silencieuse, Pink Moon a perduré comme un chef-d'œuvre de l'indie folk, sa beauté minimaliste et obsédante gagnant une reconnaissance généralisée bien après sa sortie initiale. D'une durée d'un peu moins de 30 minutes, il demeure l'une des déclarations les plus concentrées et émotionnellement résonnantes du canon des auteurs-compositeurs-interprètes.",
+      "source_sha256": "dce11de011cd9f5cdeb55b13a8662305701e591533d86b44044a0315dfef35e9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:31:13.614Z"
+    }
+  }
 }

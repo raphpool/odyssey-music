@@ -53,5 +53,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Point culminant de l'album collaboratif Expert Knob Twiddlers, « Mr. Frosty » met en avant l'expérimentation électronique ludique et complexe de Mike Paradinas et Richard D. James.",
+      "article": "« Mr. Frosty » est un morceau électronique complexe du projet collaboratif Mike & Rich, une union légendaire entre Aphex Twin (Richard D. James) et µ-Ziq (Mike Paradinas). Enregistré à l'origine au milieu des années 1990 et ayant finalement bénéficié d'une sortie plus large et remastérisée sur la version étendue de 2016 de leur album collaboratif Expert Knob Twiddlers, le morceau illustre l'esthétique ludique et idiosyncrasique de la scène IDM du milieu des années 90. Il présente la complexité rythmique, les textures glitch et les sensibilités mélodiques décalées caractéristiques qui ont défini le travail solo des deux artistes durant cette ère formatrice.\n\nMusicalement, « Mr. Frosty » dérive à travers des paysages sonores changeants, utilisant un mélange de patchs de synthétiseurs aux sonorités organiques et de percussions hyper-traitées qui semblent à la fois nostalgiques et futuristes. La durée du morceau, près de sept minutes, permet au duo d'explorer un terrain sonore dense qui équilibre des rythmes mécaniques discordants et saccadés avec des moments d'une chaleur déformée surprenante. Il s'impose comme une pièce maîtresse pour les amateurs des mouvements braindance et IDM, capturant l'esprit d'expérimentation, d'ironie et de prouesse technique qui imprégnait les cercles proches de Planet Mu et Rephlex à l'apogée de la musique électronique expérimentale des années 1990.",
+      "source_sha256": "91ab5866f8714262793a1042a6cc1b9bce7b1446191bf5b3d9b0216bc771eb42",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:46:13.501Z"
+    }
+  }
 }

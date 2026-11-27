@@ -65,5 +65,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Burnt Sienna » est un morceau précoce et séminal du producteur électronique Mike Paradinas, opérant sous son pseudonyme emblématique µ-Ziq.",
+      "article": "« Burnt Sienna » est un morceau précoce et séminal du producteur électronique Mike Paradinas, opérant sous son pseudonyme emblématique µ-Ziq. Sorti en 1993 sur l'album « Tango N'Vectif », le morceau s'impose comme une pièce représentative de l'IDM (Intelligent Dance Music) des débuts et du paysage sonore électronique expérimental qui a défini l'underground britannique du début des années 1990. Paradinas, figure centrale de l'évolution du genre, a contribué à établir les fondations de Rephlex Records aux côtés de Richard D. James (Aphex Twin), et « Burnt Sienna » encapsule l'architecture complexe et axée sur les breakbeats de cette époque.\n\nD'une durée de plus de huit minutes, le morceau démontre la maîtrise précoce de Paradinas en matière de batteries programmées et de textures atmosphériques, mêlant l'urgence rythmique de la breakbeat techno aux qualités oniriques et cérébrales qui allaient devenir synonymes du label IDM. Son inclusion sur « Tango N'Vectif » — un disque célébré pour son énergie brute et sa programmation complexe — a marqué l'arrivée d'une voix significative dans la musique électronique. Le morceau demeure une référence pour les auditeurs et les producteurs intéressés par les années formatrices de l'électronique expérimentale, servant de pont entre la techno centrée sur le dancefloor du début des années quatre-vingt-dix et la conception sonore plus abstraite et introspective qui suivrait dans les dernières années de la décennie. Sa présence durable sur des plateformes comme Bandcamp reflète son statut de pièce intemporelle de composition électronique au sein du catalogue µ-Ziq.",
+      "source_sha256": "87260e09f8dad472150ef8e543e8fe7b17591ec721d61079ff8ae0fdeca44388",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:12.975Z"
+    }
+  }
 }

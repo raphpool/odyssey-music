@@ -66,5 +66,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Formé dans le sillage de la dissolution du groupe séminal de l'ère C86 Talulah Gosh, Heavenly a émergé au début des années 1990 comme l'une des forces les plus vitales et influentes de la scène indiepop britannique.",
+      "article": "Formé dans le sillage de la dissolution du groupe séminal de l'ère C86 Talulah Gosh, Heavenly a émergé au début des années 1990 comme l'une des forces les plus vitales et influentes de la scène indiepop britannique. Centré autour de l'écriture et du chant distinctifs d'Amelia Fletcher — rejointe par Peter, Rob, Cathy et le regretté Matthew Fletcher — le groupe est devenu une pierre angulaire du légendaire label Sarah Records basé à Bristol. Leur son a évolué de l'énergie douce, tintante et frénétique de l'« anorak-pop » de leurs premières années vers un son indie-rock plus sophistiqué, musclé et sans doute plus chargé politiquement, illustré par des titres phares comme « Atta Girl ».\n\nTout au long de leur carrière, Heavenly a équilibré des mélodies accrocheuses et ensoleillées avec des paroles incisives et intelligentes qui exploraient souvent les thèmes de la politique de genre, les sensibilités riot grrrl et les complexités des relations humaines. Malgré l'isolement relatif de la scène indie britannique du milieu des années 90, ils ont rassemblé un public culte qui s'étendait du Royaume-Uni aux rivages internationaux, particulièrement aux États-Unis via des labels comme K Records. Leur héritage est caractérisé par une éthique « fraîche, joyeuse et influente » qui a aidé à combler le fossé entre le tintement classique de l'indie-pop et les sons plus rugueux et directs de la fin des années 90. Le parcours du groupe a été tragiquement interrompu en 1997 suite au décès de leur batteur, Matthew Fletcher, bien que sa sœur Amelia ait continué à influencer la musique indépendante pendant des décennies par la suite, notamment en formant Marine Research et des projets ultérieurs. Leur discographie, couvrant des albums tels que 'Heavenly vs. Satan' (1991), 'Le Jardin de Heavenly' (1992) et 'The Decline and Fall of Heavenly' (1994), demeure un catalogue définitif d'une époque où l'indie-pop était à son apogée, vibrante et sans complexe.",
+      "source_sha256": "6ae1096112c7c701c57f95c8f13ce81c19861ef91813ef661bd6b5c1f76fbea9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:34:23.339Z"
+    }
+  }
 }

@@ -48,5 +48,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Axel F » est un morceau instrumental électronique séminal de 1985 composé par Harold Faltermeyer, créé comme thème pour Beverly Hills Cop (soundtrack) et célèbre pour sa production synth-pop pionnière et sa mélodie mondialement reconnue.",
+      "article": "« Axel F » est un morceau instrumental électronique emblématique composé, produit et interprété par le musicien allemand Harold Faltermeyer en 1985. Servant de thème principal au film à succès Beverly Hills Cop (soundtrack), le morceau est défini par sa structure synth-pop rythmique et entraînante ainsi que par son utilisation novatrice des synthétiseurs, ce qui l'a rapidement propulsé vers un succès international. Son son est caractérisé par une ligne mélodique en dents de scie distinctive et accrocheuse — célèbrement programmée sur un Roland Jupiter-8 — soutenue par une basse Moog modulaire, des accords percutants issus d'un Roland JX-3P, des sonorités rappelant le marimba provenant d'un Yamaha DX7, et une programmation de batterie précise fournie par la LinnDrum.\n\nL'empreinte culturelle du morceau s'est considérablement étendue au-delà de ses débuts cinématographiques, atteignant les sommets des classements à travers l'Europe, le Canada et les États-Unis. Son influence sur la culture pop des années 1980 et la production de musique électronique demeure profonde, marquant un point de transition où la musique de film s'est fondue harmonieusement avec les classements pop commerciaux. Bien que l'enregistrement original reste un pilier de l'histoire de la synth-pop, la mélodie a été revisitée, samplée et réimaginée à de nombreuses reprises, notamment par des reprises de haut niveau par des artistes comme Crazy Frog des décennies plus tard, cimentant son statut de morceau musical universellement reconnu et durable. L'approche méticuleuse de la synthèse de Faltermeyer et sa maîtrise du matériel de l'époque ont permis à « Axel F » de conserver une qualité nette et futuriste qui continue de résonner aussi bien auprès des passionnés de musique électronique que du grand public.",
+      "source_sha256": "68886cd25c6e0599a336069c4d01f30cfaab1381c2c98e245b2a0c4d98aaadbc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:38:19.058Z"
+    }
+  }
 }

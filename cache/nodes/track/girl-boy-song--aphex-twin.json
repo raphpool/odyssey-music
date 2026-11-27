@@ -57,5 +57,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Girl/Boy Song » — souvent désigné par le titre de mix « Girl/Boy (NLS Mix) » — est l'un des morceaux les plus emblématiques du visionnaire électronique britannique Richard D.",
+      "article": "« Girl/Boy Song » — souvent désigné par le titre de mix « Girl/Boy (NLS Mix) » — est l'un des morceaux les plus emblématiques du visionnaire électronique britannique Richard D. James, publié sous son alias principal, Aphex Twin. Apparu initialement sur le « Girl/Boy EP » en 1996 et ancrant plus tard son album charnière « Richard D. James Album », le morceau s'impose comme une pierre angulaire du genre drill 'n' bass en plein essor au milieu des années 90.\n\nSur le plan musical, « Girl/Boy Song » est une synthèse complexe de textures contradictoires. Il marie une programmation de batterie hyper-cinétique et truffée de glitchs — une marque de fabrique des explorations rythmiques frénétiques de James à cette époque — avec des arrangements de cordes orchestraux amples qui imprègnent la pièce d'un sentiment de nostalgie profond, presque mélancolique. Cette juxtaposition entre précision mécanique froide et sentimentalité humaine chaleureuse crée un paysage sonore qui semble à la fois futuriste et profondément personnel.\n\nLa résonance émotionnelle du morceau est étroitement liée au contexte de sa création. La pochette de l'EP qui l'accompagne présente un mémorial pour le frère aîné de James, qui portait le même nom et est décédé à la naissance, soulignant le récit personnel tissé à travers la musique. Bien qu'il soit sorti durant une période de production intense pour Aphex Twin, « Girl/Boy Song » demeure un titre marquant pour sa capacité à combler le fossé entre la musique de club expérimentale et la composition sophistiquée. Il est largement considéré comme un classique du canon IDM (Intelligent Dance Music), apparaissant fréquemment dans les rétrospectives critiques et les listes des meilleurs morceaux des années 90 pour sa contribution unique à l'évolution de la production électronique.",
+      "source_sha256": "77447d38bc4a58f184e911fdfd0d5445ca614186c007bfe58b2d9afbbffdcff3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:43:15.678Z"
+    }
+  }
 }

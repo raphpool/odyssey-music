@@ -48,5 +48,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un succès retentissant de 2012, mélangeant les genres, signé Florida Georgia Line, devenu la chanson country numérique la plus vendue de l'histoire.",
+      "article": "« Cruise » est un hymne déterminant de la musique country du XXIe siècle, sorti en 2012 par le duo américain Florida Georgia Line. En tant que premier single de leur album *Here's To The Good Times*, le morceau est devenu un phénomène culturel, accédant finalement au rang de chanson country numérique la plus vendue de tous les temps selon Nielsen SoundScan. Caractérisé par son son « bro-country » léché — une fusion de production aux accents rock, de phrasé rythmique influencé par le hip-hop et de thèmes centrés sur la vie nocturne rurale et les voyages en voiture — « Cruise » a agi comme un catalyseur pour un virage de la musique country vers des esthétiques pop et crossover.\n\nLe succès de la chanson a été considérablement amplifié par un remix mettant en vedette le rappeur Nelly, qui l'a aidée à atteindre une domination radiophonique multi-format et à étendre sa portée bien au-delà des classements country traditionnels. « Cruise » détient la distinction d'avoir passé 24 semaines non consécutives à la première place du classement Billboard Hot Country Songs, une série record à l'époque. Sa domination commerciale a consolidé Florida Georgia Line en tant que figures centrales de l'establishment country moderne et a illustré le paysage évolutif de la musique country, où la consommation numérique et l'attrait pour la radio pop sont devenus des critères essentiels de succès dans les années 2010. Le morceau demeure un exemple majeur de l'approche « genre-busting » qui a redéfini le succès commercial pour les artistes basés à Nashville durant cette ère.",
+      "source_sha256": "0c968c72aa78e85fc3f850ddf0748e6ec206e1cfc066411d895465c4556bab26",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:24.881Z"
+    }
+  }
 }
