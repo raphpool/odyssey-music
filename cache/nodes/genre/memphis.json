@@ -122,15 +122,15 @@
   "l10n": {
     "fr": {
       "teaser": "Un sous-genre régional et underground du hip-hop du Sud, défini par une production DIY sur cassette, des thèmes sombres de horrorcore et l'utilisation prédominante des boîtes à rythmes Roland TR-808.",
-      "article": "Originaire de Memphis au milieu et à la fin des années 1980, ce sous-genre régional du hip-hop s'est constitué comme une alternative à petit budget et locale aux scènes dominantes de New York et de Los Angeles. Des pionniers comme DJ Spanish Fly ont fait le pont entre l'electro-funk des années 1980 et un son gangsta plus dur, utilisant des boîtes à rythmes Roland TR-808 pour établir une esthétique caractéristique définie par des cloches, des caisses claires numériques tranchantes et des basses profondes. Les artistes enregistraient fréquemment dans des studios aménagés dans des chambres, distribuant leur musique via des réseaux de cassettes indépendants plutôt que par les canaux traditionnels. Le son est souvent marqué par des thèmes lyriques sombres et graphiques, des accroches vocales répétitives et une approche lo-fi de l'échantillonnage qui intègre du funk, de la soul et des bandes originales de films d'horreur. Parmi les œuvres fondatrices clés, citons Mystic Stylez de Three 6 Mafia et Paranoid Funk de Lil Noid, ce dernier ayant capturé l'éthique brute et DIY de la culture underground des cassettes de la ville.",
+      "article": "Originaire de Memphis au milieu et à la fin des années 1980, ce sous-genre régional du hip-hop s'est constitué comme une alternative à petit budget et locale aux scènes dominantes de New York et de Los Angeles. Des pionniers comme DJ Spanish Fly ont fait le pont entre l'electro-funk des années 1980 et un son gangsta plus dur, utilisant des boîtes à rythmes Roland TR-808 pour établir une esthétique signature définie par des cloches, des caisses claires numériques tranchantes et des basses profondes. Les artistes enregistraient fréquemment dans des studios de chambre, distribuant leur musique via des réseaux de cassettes indépendants plutôt que par les canaux traditionnels. Le son est souvent marqué par des thèmes lyriques sombres et graphiques, des accroches vocales répétitives et une approche lo-fi de l'échantillonnage qui incorpore du funk, de la soul et des bandes originales de films d'horreur. Parmi les œuvres fondatrices clés, on trouve Mystic Stylez de Three 6 Mafia et Paranoid Funk de Lil Noid, ce dernier ayant capturé l'éthique brute et DIY de la culture underground des cassettes de la ville.",
       "facts": {
-        "era": "milieu des années 1980 à aujourd'hui",
+        "era": "du milieu des années 1980 à aujourd'hui",
         "origin": "Memphis, Tennessee",
         "sonic_markers": "Production lo-fi, percussions Roland TR-808, cloches marquées, atmosphère sombre, échantillons découpés, flows en double temps et en triolets."
       },
       "source_sha256": "befa51e695f3ec1c1bfd37dff7d434aa7a392b3350a3cdceb95dc45de63bf46a",
       "model": "gemini-3.1-flash-lite",
-      "translated_at": "2026-11-27T19:44:52.611Z"
+      "translated_at": "2026-11-27T20:14:54.448Z"
     }
   }
 }

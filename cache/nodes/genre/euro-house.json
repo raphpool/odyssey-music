@@ -83,15 +83,15 @@
   "l10n": {
     "fr": {
       "teaser": "Un sous-genre de house music à vocation commerciale apparu en Europe à la fin des années 1980, caractérisé par des riffs de piano mélodiques et des accroches vocales adaptées à la radio.",
-      "article": "L'Euro House a émergé à la fin des années 1980 en tant que style de musique de danse axé sur le chant à travers le continent européen. Contrairement à l'orientation underground de la Chicago house, le genre a privilégié l'attrait commercial par le biais de riffs de piano accrocheurs et d'accroches vocales prêtes pour la radio. Les producteurs ont souvent mélangé ces éléments avec l'esthétique énergique de la scène Eurodance contemporaine pour créer un son conçu pour les clubs européens et la radio pop. Le style reste distinct par son accent mis sur le raffinement et l'accessibilité, agissant comme un pont entre les expérimentations électroniques localisées et la musique de danse plus large orientée vers les classements des années 1990.",
+      "article": "La Euro House a émergé à la fin des années 1980 en tant que style de musique de danse axé sur le chant à travers le continent européen. Contrairement à l'approche underground de la Chicago house, le genre a privilégié l'attrait commercial par le biais de riffs de piano entraînants et d'accroches vocales prêtes pour la radio. Les producteurs mélangeaient souvent ces éléments avec l'esthétique à haute énergie de la scène Eurodance contemporaine pour créer un son conçu pour les clubs européens et la radio pop. Le style reste distinct par son accent mis sur le raffinement et l'accessibilité, agissant comme un pont entre les expérimentations électroniques localisées et la musique de danse plus large orientée vers les classements des années 1990.",
       "facts": {
         "era": "fin des années 1980 aux années 1990",
         "origin": "Europe",
-        "sonic_markers": "Riffs de piano accrocheurs, accroches vocales adaptées à la radio, production soignée, rythmes house commerciaux"
+        "sonic_markers": "Riffs de piano entraînants, accroches vocales adaptées à la radio, production soignée, rythmes house commerciaux"
       },
       "source_sha256": "85303f7e35d18702a675b83d5d0592db015378f52415948ec11be03051ed1c1f",
       "model": "gemini-3.1-flash-lite",
-      "translated_at": "2026-11-27T19:42:51.617Z"
+      "translated_at": "2026-11-27T20:12:54.567Z"
     }
   }
 }

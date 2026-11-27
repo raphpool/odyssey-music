@@ -123,15 +123,15 @@
   "l10n": {
     "fr": {
       "teaser": "L'A-pop est une évolution de la musique pop centrée sur l'Afrique qui intègre des rythmes percussifs d'amapiano à des influences mondiales de R&B et de dance.",
-      "article": "L'African pop — ou A-pop — est un cadre de fusion de genres défini par la chanteuse sud-africaine Tyla dans son album studio de 2026 du même nom. Cherchant à se réapproprier l'étiquette pop, Tyla a décrit son intention comme étant d'adapter la musique pop à son propre héritage africain plutôt que l'inverse. Le son est fortement percussif et se concentre sur des rythmes dérivés de l'amapiano, tout en intégrant des éléments de R&B, de dance et d'electropop. Sur l'album, Tyla collabore avec divers artistes et producteurs régionaux pour créer une itération mondialisée du style, incluant des participations de Liquideep, MaWhoo et Babalwa M, qui apporte des voix en xhosa sur le morceau I Don't Care. Tyla a explicitement déclaré que la musique africaine est, par définition, de la musique pop, cherchant à dissoudre la séparation perçue entre les traditions africaines locales et la culture pop mondiale.",
+      "article": "L'African pop — ou A-pop — est un cadre fusionnant les genres, défini par la chanteuse sud-africaine Tyla dans son album studio de 2026 du même nom. Cherchant à se réapproprier l'étiquette pop, Tyla a décrit son intention comme une adaptation de la musique pop à son propre héritage africain plutôt que l'inverse. Le son est fortement percussif et se concentre sur des rythmes dérivés de l'amapiano, tout en intégrant des éléments de R&B, de dance et d'electropop. Sur l'album, Tyla collabore avec divers artistes et producteurs régionaux pour créer une itération mondialisée du style, incluant des participations de Liquideep, MaWhoo et Babalwa M, qui apporte des voix en xhosa sur le morceau I Don't Care. Tyla a explicitement déclaré que la musique africaine est, par définition, de la musique pop, cherchant à dissoudre la séparation perçue entre les traditions africaines locales et la culture pop mondiale.",
       "facts": {
         "era": "2026",
         "origin": "Afrique du Sud",
-        "sonic_markers": "Fondations percussives d'amapiano, accroches pop mélodiques, voix teintées de R&B, production dance-pop."
+        "sonic_markers": "Bases percussives d'amapiano, accroches pop mélodiques, voix teintées de R&B, production dance-pop."
       },
       "source_sha256": "8f2247a3a8e7d35de5a9ef3bfbf393353c9b76b0f60c97d23f6bbbc016c05d28",
       "model": "gemini-3.1-flash-lite",
-      "translated_at": "2026-11-27T19:39:47.372Z"
+      "translated_at": "2026-11-27T20:09:51.492Z"
     }
   }
 }

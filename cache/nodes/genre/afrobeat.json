@@ -111,16 +111,16 @@
   ],
   "l10n": {
     "fr": {
-      "teaser": "Un genre nigérian des années 1960 lancé par Fela Kuti, caractérisé par une fusion de highlife, de funk et de jazz, accompagnée de polyrythmies complexes et de commentaires sociopolitiques.",
-      "article": "Né au Nigeria à la fin des années 1960, l'Afrobeat s'est structuré lorsque Fela Kuti et le batteur Tony Allen ont intégré la musique traditionnelle yoruba au funk, au jazz et à la soul américains. Fela Kuti a établi le mouvement dans son club de Lagos, l'Afrika Shrine, où son groupe Africa '70 a tenu une résidence de 1970 à 1975. Le genre se définit par des rythmes complexes et entrecroisés ainsi que par de longs solos instrumentaux, mettant souvent en avant des sections de cuivres imposantes, des orgues Hammond et une variété de percussions incluant le shekere et l'ogene. Le discours politique était au cœur du style, Kuti utilisant des paroles provocatrices pour critiquer la corruption militaire et l'injustice sociale. Au-delà de ses racines, le genre a laissé une empreinte durable sur la musique occidentale, influençant notamment l'album 'Remain in Light' de Talking Heads en 1980 et trouvant un nouveau foyer dans les années 2000 auprès de collectifs basés à Brooklyn comme Antibalas.",
+      "teaser": "Genre nigérian des années 1960 initié par Fela Kuti, caractérisé par une fusion de highlife, de funk et de jazz, accompagnée de polyrythmies complexes et de commentaires sociopolitiques.",
+      "article": "Né au Nigeria à la fin des années 1960, l'Afrobeat s'est cristallisé lorsque Fela Kuti et le batteur Tony Allen ont intégré la musique traditionnelle yoruba au funk, au jazz et à la soul américains. Fela Kuti a établi le mouvement dans son club de Lagos, l'Afrika Shrine, où son groupe Africa '70 a tenu une résidence de 1970 à 1975. Le genre se définit par des rythmes complexes et entrecroisés ainsi que par de longs solos instrumentaux, mettant souvent en avant des sections de cuivres imposantes, des orgues Hammond et une variété de percussions incluant le shekere et l'ogene. Le discours politique était au cœur du style, Fela Kuti utilisant des paroles provocatrices pour critiquer la corruption militaire et l'injustice sociale. Au-delà de ses racines, le genre a laissé une empreinte durable sur la musique occidentale, influençant notamment l'album 'Remain in Light' de Talking Heads en 1980 et trouvant un nouveau foyer dans les années 2000 avec des collectifs basés à Brooklyn comme Antibalas.",
       "facts": {
-        "era": "fin des années 1960 à nos jours",
+        "era": "de la fin des années 1960 à nos jours",
         "origin": "Lagos, Nigeria",
         "sonic_markers": "Sonorité big band, polyrythmies complexes, longs solos instrumentaux, sections de cuivres, orgue Hammond, percussions d'inspiration yoruba."
       },
       "source_sha256": "d7f5f4cdf15bc05316a22bb124f6867d83e0160f6885d7e471ca5158e7b6f29b",
       "model": "gemini-3.1-flash-lite",
-      "translated_at": "2026-11-27T19:39:51.509Z"
+      "translated_at": "2026-11-27T20:09:55.711Z"
     }
   }
 }
