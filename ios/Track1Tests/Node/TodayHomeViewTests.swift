@@ -35,15 +35,6 @@ final class TodayHomeViewTests: XCTestCase {
 		return TodayHome(node: try makeNode(facts: facts, edges: edges), date: date, timeZone: paris)
 	}
 
-	private var tint: CoverTint {
-		CoverTint(
-			stops: [
-				LinearRGB(red: 0.29, green: 0.33, blue: 0.32), LinearRGB(red: 0.27, green: 0.26, blue: 0.23),
-				LinearRGB(red: 0.20, green: 0.16, blue: 0.13),
-			],
-			shadow: LinearRGB(red: 0.5, green: 0.4, blue: 0.4))
-	}
-
 	private func rgba(_ color: Color) -> [UInt8] {
 		var (red, green, blue, alpha) = (CGFloat(0), CGFloat(0), CGFloat(0), CGFloat(0))
 		guard UIColor(color).getRed(&red, green: &green, blue: &blue, alpha: &alpha) else { return [] }
@@ -122,21 +113,27 @@ final class TodayHomeViewTests: XCTestCase {
 
 	// MARK: - Background
 
-	func testTheBackgroundIsTheFourStopGradientOfTheReader() throws {
-		let stops = try XCTUnwrap(Metrics.tintStops(tint))
-
-		XCTAssertEqual(stops.map(\.location), [0, 0.05, 0.10, 0.15, 1])
-		for index in 0..<3 {
-			XCTAssertEqual(stops[index].color, Color(tint.stops[index]), "band \(index)")
-		}
-		XCTAssertEqual(stops[3].color, Track1Tokens.colorBackgroundElevated)
-		XCTAssertEqual(stops[4].color, Track1Tokens.colorBackgroundElevated)
-		XCTAssertEqual(Metrics.tintHeight, 2064)
-		XCTAssertEqual(stops.map(\.location), PlayerMetrics.tintStops(tint).map(\.location))
+	/// The ambient cover backdrop needs a cover to draw and is a transparency effect (TRA-830).
+	func testTheBackdropIsAmbientWithACoverAndWithoutReduceTransparency() {
+		XCTAssertEqual(TodayHomeContent.backdrop(hasCover: true, reduceTransparency: false), .ambient)
 	}
 
-	func testWithoutATintTheBackgroundIsFlat() {
-		XCTAssertNil(Metrics.tintStops(nil))
+	func testTheBackdropIsFlatWithoutACoverOrUnderReduceTransparency() {
+		XCTAssertEqual(TodayHomeContent.backdrop(hasCover: false, reduceTransparency: false), .flat)
+		XCTAssertEqual(TodayHomeContent.backdrop(hasCover: true, reduceTransparency: true), .flat)
+		XCTAssertEqual(TodayHomeContent.backdrop(hasCover: false, reduceTransparency: true), .flat)
+	}
+
+	/// The gradient of the reader is gone from the home: the source draws the ambient backdrop, none of it.
+	func testTheHomeSourceDrawsTheAmbientBackdropAndNoTintGradient() throws {
+		let source = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent()
+			.deletingLastPathComponent().appendingPathComponent("Track1/Features/Today/TodayHomeView.swift")
+		let text = try String(contentsOf: source, encoding: .utf8)
+
+		XCTAssertFalse(text.contains("PlayerMetrics"))
+		XCTAssertFalse(text.contains("tintStops"))
+		XCTAssertFalse(text.contains("CoverTint"))
+		XCTAssertTrue(text.contains("AmbientCoverBackdrop("))
 	}
 
 	// MARK: - Cover
@@ -198,12 +195,12 @@ final class TodayHomeViewTests: XCTestCase {
 		XCTAssertFalse(TodayHomeContent.showsGenres(of: bare))
 	}
 
-	/// Pins the initializer of the contract: the view is built with or without a tint and a cover.
-	func testTheViewIsBuiltWithOrWithoutATintAndACover() throws {
+	/// Pins the initializer of the contract: the view is built with or without a cover.
+	func testTheViewIsBuiltWithOrWithoutACover() throws {
 		let bare = try makeHome()
 
-		_ = TodayHomeView(home: bare, tint: nil, cover: nil, isOpening: false, discover: {})
-		_ = TodayHomeView(home: bare, tint: tint, cover: Image(systemName: "photo"), isOpening: true, discover: {})
+		_ = TodayHomeView(home: bare, cover: nil, isOpening: false, discover: {})
+		_ = TodayHomeView(home: bare, cover: Image(systemName: "photo"), isOpening: true, discover: {})
 	}
 
 	// MARK: - Which screen
