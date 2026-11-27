@@ -8,7 +8,8 @@ import {
 	type GenerateJsonRequest,
 	type GenerateJsonResult,
 } from "../../src/translation/translate-node.js";
-import { artistNode, edge } from "../images/helpers.js";
+import type { NodePayload } from "../../src/types.js";
+import { artistNode, edge, genreNode } from "../images/helpers.js";
 
 const SOURCE_P1 =
 	"Marlow Quartet is the project of Elias Marlow, a composer born in Cornwall and raised in a small town " +
@@ -59,7 +60,7 @@ function reply(text: string, inputTokens = 100, outputTokens = 50): GenerateJson
 /** Runs the translator against a fake provider that plays `results` in order and records every request. */
 async function run(
 	results: GenerateJsonResult[],
-	target = node,
+	target: NodePayload = node,
 	now: () => Date = () => NOW,
 	model?: string,
 ) {
@@ -134,6 +135,55 @@ describe("createNodeTranslator", () => {
 		expect(requests[1]?.temperature).toBe(0);
 		expect(requests[1]?.prompt).toContain("empty (teaser)");
 		expect(requests[0]?.prompt).not.toContain("rejected");
+	});
+
+	describe("facts left in English (TRA-845)", () => {
+		// The shape of the genre batch (TRA-819): good French prose, facts handed back as the source wrote them.
+		const genre = genreNode("test-genre", "test genre", {
+			editorial_definition: node.editorial_bio,
+			editorial_article: node.editorial_article,
+			origin: "United States",
+			era: "Late 1980s–Present",
+		});
+		const unchangedFacts = { origin: "United States", era: "Late 1980s–Present" };
+		const translatedFacts = { origin: "États-Unis", era: "Fin des années 1980 à aujourd'hui" };
+
+		it("tells the model the facts it left in English, and accepts the translated facts on the retry", async () => {
+			const { outcome, requests } = await run(
+				[reply(answer({ facts: unchangedFacts })), reply(answer({ facts: translatedFacts }))],
+				genre,
+			);
+
+			expect(outcome.ok && outcome.attempts).toBe(2);
+			expect(outcome.ok && outcome.translation.facts).toEqual(translatedFacts);
+			expect(requests).toHaveLength(2);
+			expect(requests[1]?.prompt).toContain("fact_untranslated (facts.origin)");
+			expect(requests[1]?.prompt).toContain("fact_untranslated (facts.era)");
+			expect(requests[0]?.prompt).not.toContain("fact_untranslated");
+		});
+
+		it("gives up with invalid_output when the model keeps the facts in English twice", async () => {
+			const { outcome } = await run(
+				[reply(answer({ facts: unchangedFacts })), reply(answer({ facts: unchangedFacts }))],
+				genre,
+			);
+
+			expect(outcome).toMatchObject({ ok: false, reason: "invalid_output", attempts: 2 });
+			const issues = outcome.ok ? [] : outcome.issues;
+			expect(issues.map((issue) => `${issue.code}:${issue.field}`)).toEqual([
+				"fact_untranslated:facts.era",
+				"fact_untranslated:facts.origin",
+			]);
+		});
+
+		it("asks, in the system prompt, for the values of the facts to be translated with names kept", async () => {
+			const { requests } = await run([reply(answer())]);
+
+			const system = requests[0]?.systemInstruction ?? "";
+			expect(system).toMatch(/Translate the values of the facts/);
+			expect(system).toMatch(/places, periods and descriptions/);
+			expect(system).toMatch(/keeping proper names/);
+		});
 	});
 
 	it("gives up after two refusals and reports the issues of the second", async () => {
