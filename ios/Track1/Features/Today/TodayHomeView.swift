@@ -2,6 +2,8 @@ import SwiftUI
 import Track1Core
 
 /// Measures of Figma `324:1788` (file `phudxrQNlzQJafXLma4FyX`, 393 x 844, TRA-736). The ticket wins.
+/// The background is not the mock-up's (`324:1790`, a four-stop gradient): since 2026-11-27 (TRA-830) it
+/// is the ambient backdrop of the cover, or `background.elevated` alone without one.
 /// Both blocks are placed from the top of the screen, status bar included, as the mock-up is.
 enum TodayHomeMetrics {
 	static let identifier = "today-home"
@@ -33,14 +35,6 @@ enum TodayHomeMetrics {
 	static let tabBarTop: CGFloat = 749
 	/// Room under the card once it scrolls (a short screen). Not measured on the mock-up, which has no scroll.
 	static let bottomPadding = Track1Tokens.spacing24
-
-	/// `324:1790`: the same four-stop gradient as the reader's (`338:2463`), so `PlayerMetrics` draws it.
-	static let tintHeight = PlayerMetrics.tintHeight
-
-	/// `nil` without a tint: the screen is then `background.elevated` alone.
-	static func tintStops(_ tint: CoverTint?) -> [Gradient.Stop]? {
-		tint.map(PlayerMetrics.tintStops)
-	}
 
 	/// The Artwork of the "unavailable" state at the size of the cover: `Track1Artwork` only draws 48, 64 and
 	/// 96 pt, and scaling it would round the corners the cover does not have, so its colours and its glyph
@@ -81,6 +75,16 @@ enum TodayHomeContent {
 
 	static func coverAccessibilityLabel(title: String) -> String {
 		"Pochette de \(title)"
+	}
+
+	enum Backdrop: Equatable {
+		case ambient, flat
+	}
+
+	/// `.ambient` only with a cover and without Reduce Transparency; `.flat` is today's elevated colour.
+	/// The blurred cover is a transparency effect, so Reduce Transparency keeps the home flat (TRA-830).
+	static func backdrop(hasCover: Bool, reduceTransparency: Bool) -> Backdrop {
+		hasCover && !reduceTransparency ? .ambient : .flat
 	}
 }
 
@@ -124,14 +128,13 @@ struct TodayHomeView: View {
 	private typealias Metrics = TodayHomeMetrics
 
 	private let home: TodayHome
-	private let tint: CoverTint?
+	@Environment(\.accessibilityReduceTransparency) private var reduceTransparency
 	private let cover: Image?
 	private let isOpening: Bool
 	private let discover: () -> Void
 
-	init(home: TodayHome, tint: CoverTint?, cover: Image?, isOpening: Bool, discover: @escaping () -> Void) {
+	init(home: TodayHome, cover: Image?, isOpening: Bool, discover: @escaping () -> Void) {
 		self.home = home
-		self.tint = tint
 		self.cover = cover
 		self.isOpening = isOpening
 		self.discover = discover
@@ -161,13 +164,14 @@ struct TodayHomeView: View {
 		.ignoresSafeArea(.container, edges: .top)
 	}
 
-	/// `background.elevated` under everything, and the tint of the cover over its first 15 %.
+	/// `background.elevated` under everything, and the ambient backdrop of the cover over it when there is one.
+	/// Replaces the tint gradient of the mock-up (`324:1790`), which the home no longer draws (TRA-830, D1).
 	private var backdrop: some View {
-		ZStack(alignment: .top) {
+		let style = TodayHomeContent.backdrop(hasCover: cover != nil, reduceTransparency: reduceTransparency)
+		return ZStack(alignment: .top) {
 			Track1Tokens.colorBackgroundElevated
-			if let stops = Metrics.tintStops(tint) {
-				LinearGradient(stops: stops, startPoint: .top, endPoint: .bottom)
-					.frame(height: Metrics.tintHeight)
+			if style == .ambient, let cover {
+				AmbientCoverBackdrop(cover: cover)
 			}
 		}
 		.ignoresSafeArea()

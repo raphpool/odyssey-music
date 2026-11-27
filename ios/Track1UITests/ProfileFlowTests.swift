@@ -812,12 +812,30 @@ final class ProfileFlowTests: XCTestCase {
 		XCTAssertFalse(app.buttons["onboarding-start"].exists)
 	}
 
-	/// Same degradation once a profile exists: Today keeps working off the stored `genre_ids`, and the Genres
-	/// tab reads as unavailable, with "Sauvegarder" off, until the taxonomy is back.
+	/// Same degradation once a profile exists and the first launch has left its snapshot on disk: the network
+	/// reader of this launch cannot produce any card, so the families can only come from the disk. The tab
+	/// keeps the last taxonomy, with "Sauvegarder" off since nothing has changed (TRA-828).
 	@MainActor
-	func testADegradedCatalogKeepsTodayAndMakesTheGenresTabUnavailable() {
+	func testADegradedCatalogAfterAFirstLaunchKeepsTheGenresTabOnItsLastTaxonomy() {
 		let app = firstProfile()
 		UITestFlows.relaunch(app, catalog: Self.degradedCatalog)
+
+		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
+		UITestFlows.tabButton("Genres", in: app).tap()
+		XCTAssertTrue(card("family-0", in: app).waitForExistence(timeout: 5))
+		XCTAssertTrue(card("family-1", in: app).exists)
+		XCTAssertFalse(app.buttons["genres-retry"].exists)
+		XCTAssertTrue(app.buttons[Self.saveIdentifier].exists)
+		XCTAssertFalse(app.buttons[Self.saveIdentifier].isEnabled)
+	}
+
+	/// The same degradation without a snapshot (a device updated from a build that had none): Today keeps
+	/// working off the stored `genre_ids`, and the Genres tab reads as unavailable, with "Sauvegarder" off,
+	/// until the taxonomy is back.
+	@MainActor
+	func testADegradedCatalogWithoutASnapshotMakesTheGenresTabUnavailable() {
+		let app = firstProfile()
+		UITestFlows.relaunch(app, catalog: Self.degradedCatalog, extraArguments: ["-track1-reset-genre-catalog"])
 
 		XCTAssertTrue(element(app, "today-title").waitForExistence(timeout: 15))
 		UITestFlows.tabButton("Genres", in: app).tap()

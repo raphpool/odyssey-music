@@ -24,8 +24,14 @@ public enum GenreCatalogLoad: Sendable {
 	case unavailable
 }
 
-/// Keeps a genre-only snapshot of the catalog in `genre-catalog.v1.json` and serves it without the network
-/// (plan D1, D2).
+public enum GenreCatalogRefresh: Equatable, Sendable {
+	case updated
+	case unchanged
+	case failed
+}
+
+/// Keeps a genre-only snapshot of the catalog in `genre-catalog.v1.json`, serves it without the network and
+/// revalidates it by ETag (plan D2, D3).
 ///
 /// The file is derived data: anything unreadable, of another version or without an editorial taxonomy reads
 /// as absent and is overwritten by the next successful download. Everything on disk is untrusted, so the
@@ -70,6 +76,46 @@ public actor GenreCatalogStore {
 		let result = await task.value
 		inFlightLoad = nil
 		return result
+	}
+
+	/// Revalidates the stored snapshot with its ETag and replaces it when the server has another revision.
+	/// The file is left untouched in every other case, so a failed refresh never costs the snapshot.
+	public func refresh() async -> GenreCatalogRefresh {
+		await resetIfNeeded()
+		let stored = await storedSnapshot()
+		switch await readCatalog(stored?.etag) {
+		case .failure:
+			return .failed
+		case .notModified:
+			// A 304 answers an ETag that was sent; with no snapshot there is nothing it could confirm.
+			return stored == nil ? .failed : .unchanged
+		case .success(let catalog, let etag):
+			guard let fresh = Self.snapshot(from: catalog, etag: etag) else { return .failed }
+			// Read again: `load()` or `remember` may have stored a snapshot while the request was in flight.
+			if await storedSnapshot()?.catalog.revision == fresh.catalog.revision { return .unchanged }
+			// `.updated` promises that `load()` now serves the new revision, so a failed write is `.failed`.
+			return await write(fresh) ? .updated : .failed
+		}
+	}
+
+	/// Stores the genre subset of a catalog another reader already downloaded. A catalog without an editorial
+	/// taxonomy changes nothing: an existing snapshot stays.
+	public func remember(_ catalog: Catalog, etag: String?) async {
+		await resetIfNeeded()
+		guard let snapshot = Self.snapshot(from: catalog, etag: etag) else { return }
+		_ = await write(snapshot)
+	}
+
+	/// Wraps a catalog reader so that every successful read also feeds the snapshot. The result is returned
+	/// as is, `.failure` and `.notModified` included, after `remember` has finished.
+	public nonisolated func remembering(
+		_ read: @escaping @Sendable () async -> APIResult<Catalog>
+	) -> @Sendable () async -> APIResult<Catalog> {
+		{ [self] in
+			let result = await read()
+			if case .success(let catalog, let etag) = result { await self.remember(catalog, etag: etag) }
+			return result
+		}
 	}
 
 	private func performLoad() async -> GenreCatalogLoad {

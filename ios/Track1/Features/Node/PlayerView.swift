@@ -48,11 +48,14 @@ enum PlayerMetrics {
 	/// 44 pt of touch on a 34 pt line, the back button's recipe (`PlayerBackButton`).
 	static let sourceTouchOutset: CGFloat = (PlayerNowBarMetrics.minimumTouchTarget - role.lineHeight) / 2
 
-	/// `338:2463`: a 393 x 2064 frame, the three cover bands at 0, 5 and 10 %, then `background.elevated`
-	/// from 15 %. `CoverTintGradient` cannot draw it: its stops are fixed at 0, 13, 27 and 50 %.
+	/// `338:2463`: a 393 x 2064 frame, the three cover bands at 0, 15 and 30 %, then `background.elevated`
+	/// from 45 % (929 pt, below the 844 pt screen). `CoverTintGradient` cannot draw it: its stops are fixed
+	/// at 0, 13, 27 and 50 %. 2026-11-27 (TRA-831, plan player-gradient-tint, D4): these stops deliberately
+	/// differ from the mockup's, whose dark began only 310 pt down the frame, so the reader went dark above
+	/// the reading centre instead of below the screen. Do not copy them back from Figma.
 	static let tintHeight: CGFloat = 2064
-	static let tintPositions: [CGFloat] = [0, 0.05, 0.10]
-	static let tintEndpoint: CGFloat = 0.15
+	static let tintPositions: [CGFloat] = [0, 0.15, 0.30]
+	static let tintEndpoint: CGFloat = 0.45
 
 	/// Where the mockup paragraphs fade, in the 844 pt frame: `338:2479` is clear at 42 + 5.637 % x 170 and
 	/// opaque at its end, `338:2491` opaque at its start (562) and clear at 562 + 89.869 % x 306.

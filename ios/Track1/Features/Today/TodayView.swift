@@ -21,7 +21,6 @@ struct TodayView: View {
 	private struct Page {
 		let recommendationID: UUID
 		let home: TodayHome
-		let tint: CoverTint?
 		let cover: Image?
 	}
 
@@ -94,7 +93,7 @@ struct TodayView: View {
 		case .home:
 			if let page {
 				TodayHomeView(
-					home: page.home, tint: page.tint, cover: page.cover, isOpening: isOpening,
+					home: page.home, cover: page.cover, isOpening: isOpening,
 					discover: { Task { await discover() } }
 				)
 				// A new recommendation (other tastes) is another home, not an update of this one.
@@ -153,7 +152,7 @@ struct TodayView: View {
 			recommendationID: recommendation.recommendationID,
 			// The day of the recommendation, not the clock: a read after midnight must not relabel yesterday's node.
 			home: TodayHome(node: response.node, date: Self.date(of: recommendation), timeZone: .current),
-			tint: NodePageView.coverTint(for: hero.state), cover: cover)
+			cover: cover)
 		await model.recordImpressionIfNeeded()
 	}
 

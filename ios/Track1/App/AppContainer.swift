@@ -20,6 +20,8 @@ final class AppContainer {
 	let reminderCenter: any ReminderCenter
 	let reminderPrompt: ReminderPromptFlag
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
+	/// The disk snapshot of the genres the Genres tab reads; nil without API configuration.
+	let genreCatalog: GenreCatalogStore?
 
 	init(configurationResult: Result<AppConfiguration, AppConfigurationError> = AppConfiguration.load()) {
 		self.configurationResult = configurationResult
@@ -36,6 +38,7 @@ final class AppContainer {
 					? ProfileStore.profileFileName : nil
 			)
 			let resetProfile = processInfo.arguments.contains("-track1-reset-profile")
+			let resetGenreCatalog = processInfo.arguments.contains("-track1-reset-genre-catalog")
 			let seedCorruptProfile = processInfo.arguments.contains("-track1-seed-corrupt-profile")
 			let resetDailyRecommendation = processInfo.arguments.contains("-track1-reset-daily-recommendation")
 			if let fixture = processInfo.environment["TRACK1_PROFILE_CATALOG_JSON"] {
@@ -54,6 +57,7 @@ final class AppContainer {
 			reminderPrompt = ReminderPromptFlag()
 			let localStore = LocalStore()
 			let resetProfile = false
+			let resetGenreCatalog = false
 			let seedCorruptProfile = false
 			let resetDailyRecommendation = false
 			onboardingCatalog = nil
@@ -74,13 +78,29 @@ final class AppContainer {
 		case .success(let configuration):
 			let client = APIClient(configuration: configuration)
 			apiClient = client
+			let readGenreCatalog: @Sendable (_ etag: String?) async -> APIResult<Catalog>
 			#if targetEnvironment(simulator)
-				let contentReaders =
-					UITestFixtureReaders.make(environment: ProcessInfo.processInfo.environment) ?? .live(client)
+				let fixtureReaders = UITestFixtureReaders.make(environment: ProcessInfo.processInfo.environment)
+				let contentReaders = fixtureReaders ?? .live(client)
+				if fixtureReaders != nil {
+					// The fixture reader ignores the ETag: a refresh gets the same revision again, which changes nothing.
+					let fixtureCatalog = onboardingCatalog ?? contentReaders.catalog
+					readGenreCatalog = { _ in await fixtureCatalog() }
+				} else {
+					readGenreCatalog = { etag in await client.catalog(etag: etag, hasCachedRepresentation: etag != nil) }
+				}
 			#else
 				let contentReaders = ContentReaders.live(client)
+				readGenreCatalog = { etag in await client.catalog(etag: etag, hasCachedRepresentation: etag != nil) }
 			#endif
 			readers = contentReaders
+			// 2026-11-25: the Genres tab read the whole catalog (`GET /mobile/v1/catalog`) on every launch and
+			// showed a spinner for seconds. The snapshot lives next to the profile: UI tests reset both together.
+			genreCatalog = GenreCatalogStore(
+				localStore: localStore,
+				readCatalog: readGenreCatalog,
+				resetBeforeUse: resetProfile || resetGenreCatalog
+			)
 			imageStore = NodeImageStore(readImage: contentReaders.image, load: { await NodeImageLoader.load(url: $0) })
 			analytics = AnalyticsClient(
 				configuration: AnalyticsConfiguration(
@@ -93,6 +113,7 @@ final class AppContainer {
 		case .failure:
 			apiClient = nil
 			readers = nil
+			genreCatalog = nil
 			imageStore = nil
 			analytics = nil
 		}

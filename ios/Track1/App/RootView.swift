@@ -25,6 +25,7 @@ struct RootView: View {
 							readers: container.readers,
 							imageStore: container.imageStore,
 							onboardingCatalog: container.onboardingCatalog,
+							genreCatalog: container.genreCatalog,
 							analytics: analytics,
 							profileStore: container.profileStore,
 							reminderCenter: container.reminderCenter,
@@ -51,6 +52,7 @@ private struct ApplicationTabs: View {
 	let readers: ContentReaders?
 	let imageStore: NodeImageStore<UIImage>?
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
+	let genreCatalog: GenreCatalogStore?
 	let analytics: AnalyticsClient
 	let profileStore: ProfileStore
 	let reminderCenter: any ReminderCenter
@@ -98,7 +100,7 @@ private struct ApplicationTabs: View {
 					profileStore: profileStore,
 					analytics: analytics,
 					reminderCenter: reminderCenter,
-					loadCatalog: onboardingCatalog ?? readers?.catalog,
+					loadCatalog: onboardingLoader,
 					finished: profileWasCreated
 				)
 				.transition(.opacity)
@@ -114,12 +116,29 @@ private struct ApplicationTabs: View {
 		.animation(Track1Motion.animation(.slow, reduceMotion: reduceMotion), value: gate)
 		.task {
 			await reloadProfile()
+			warmUpGenreCatalog()
 			await presentReminderPromptIfNeeded()
 		}
 		// Over the tabs, which stay mounted under it: the screen is the one of the onboarding, full height.
 		.fullScreenCover(isPresented: $showsReminderPrompt) {
 			NotificationOptInView(center: reminderCenter, onContinue: reminderPromptAnswered)
 		}
+	}
+
+	/// The onboarding reads the catalog once, and what it reads feeds the Genres snapshot, so that the tab has
+	/// its genres from the first launch on.
+	private var onboardingLoader: (@Sendable () async -> APIResult<Catalog>)? {
+		let loader = onboardingCatalog ?? readers?.catalog
+		guard let loader else { return nil }
+		return genreCatalog?.remembering(loader) ?? loader
+	}
+
+	/// A device that already had a profile before the snapshot existed has none on disk yet: it is made at the
+	/// launch, not when the tab opens. Unstructured, so that a tab change, which cancels the view task and the
+	/// request with it, does not leave the write undone.
+	private func warmUpGenreCatalog() {
+		guard case .profile = profileState, let genreCatalog else { return }
+		Task { _ = await genreCatalog.load() }
 	}
 
 	// 2026-10-13 (TRA-383): no tint here; the Nocturne action tint set at the app root must reach the tabs.
@@ -224,7 +243,7 @@ private struct ApplicationTabs: View {
 						profileStore: profileStore,
 						recentNodes: recentNodes,
 						analytics: analytics,
-						loadCatalog: onboardingCatalog ?? readers?.catalog,
+						genreCatalog: genreCatalog,
 						// The recommendation of the day follows the new revision: Today reads the profile it is given,
 						// and its load is keyed on the revision. 2026-11-17 (TRA-737): the tab stays on screen, as the
 						// genres are saved in place from it; it used to jump to Today when its edit sheet closed.
