@@ -61,5 +61,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "100% Rap Français représente une série de mixtapes et de compilations influentes qui ont documenté l'évolution dynamique de la scène hip-hop française au début des années 2000.",
+      "article": "100% Rap Français est un titre récurrent utilisé pour diverses mixtapes et compilations mettant en avant la scène hip-hop française. Tout au long du début des années 2000, cette marque est devenue un incontournable pour les DJ et les labels cherchant à constituer des collections de morceaux de rap underground et grand public, servant d'instantané du son en pleine évolution de cette époque. Ces projets présentaient souvent un mélange de collectifs établis et d'artistes émergents, reflétant les divers styles régionaux qui définissaient le paysage du rap français durant cette période.\n\nDes mixtapes axées sur la rue aux compilations plus commerciales, la série a mis en lumière les talents lyriques et de production d'artistes tels que La Cliqua, KDD et Alibi Montana, ainsi que des groupes comme La Clinique et Mafia Trece. En regroupant des titres provenant de diverses sources indépendantes et de majors, ces sorties ont joué un rôle significatif dans la promotion de la visibilité du hip-hop français, offrant aux auditeurs un aperçu complet de la croissance du genre et de son impact culturel au tournant du millénaire.",
+      "source_sha256": "f406adcad7a9cb630428feba14dfac75adbb3a14f8160f560c95b4d36fecc996",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T22:17:56.394Z"
+    }
+  }
 }

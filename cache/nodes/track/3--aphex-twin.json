@@ -58,5 +58,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« #3 », souvent désigné sous le nom de « Rhubarb », est un morceau marquant du double album séminal d'Aphex Twin sorti en 1994, Selected Ambient Works Volume II.",
+      "article": "« #3 », souvent désigné sous le nom de « Rhubarb », est un morceau marquant du double album séminal d'Aphex Twin sorti en 1994, Selected Ambient Works Volume II. Publié sur Warp Records, ce morceau incarne l'approche minimaliste et texturale de la deuxième grande incursion de Richard D. James dans l'ambient. Contrairement à ses œuvres précédentes, qui penchaient souvent vers un drill-and-bass frénétique ou des structures mélodiques complexes, « #3 » est un cours magistral d'atmosphère statique et de résonance émotionnelle. La composition repose sur une progression d'accords de synthétiseur consonante et à évolution lente, qui semble à la fois intemporelle et profondément mélancolique.\n\nLe morceau est largement célébré par les auditeurs comme par les critiques pour son surnom « Rhubarb » — un sobriquet popularisé par les fans qui capture la texture chaleureuse, organique, mais légèrement floue du morceau. Son profil sonore est caractérisé par une nappe de synthétiseur douce et chaude qui dérive avec des changements d'intensité et de fréquence subtils, presque imperceptibles. En supprimant le rythme et les éléments percussifs, James invite l'auditeur dans un espace statique et immersif qui récompense une écoute méditative et concentrée.\n\nEn tant que pierre angulaire du mouvement ambient techno des années 1990, le morceau a contribué à définir les possibilités du genre, démontrant que la musique électronique pouvait atteindre de profondes profondeurs de pathos et de tranquillité sans s'appuyer sur les tropes musicaux traditionnels. L'héritage de Selected Ambient Works Volume II demeure immense, et « #3 » persiste comme étant sans doute son moment le plus emblématique et le plus apprécié, fréquemment cité pour sa capacité inégalée à évoquer un sentiment d'introspection profonde et silencieuse. Il demeure un exemple définitif de la maîtrise de James sur ses machines, transformant une tension brute en une émotion profondément humaine.",
+      "source_sha256": "3904f0d85b6d9790ee58f18b458449f61003bf4a12067ab1925b0186db034d3d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T22:17:59.012Z"
+    }
+  }
 }

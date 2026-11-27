@@ -43,5 +43,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Exercice fascinant de conception sonore spatiale, « 50 Euro to Break Boost » associe un breakbeat persistant et saccadé à des mélodies cristallines pour créer une atmosphère électronique singulièrement vaste et immersive.",
+      "article": "« 50 Euro to Break Boost » est un morceau marquant de l'album Compro, sorti en 2018 par l'artiste électronique munichois Skee Mask. Publié sur le label influent Ilian Tape, le titre illustre l'approche distinctive du producteur en matière de techno axée sur le breakbeat. Défini par une conception sonore méticuleusement sculptée, le morceau présente un rythme breakbeat persistant et saccadé qui sert de moteur à un paysage sonore tridimensionnel d'une grande envergure. Skee Mask, reconnu pour sa maîtrise de la manipulation du volume et de la profondeur spatiale, utilise un riff central composé de notes descendantes dotées d'une qualité résonnante, semblable à celle d'une cloche, évoquant à la fois une texture industrielle et une clarté atmosphérique.\n\nLe morceau est fréquemment cité pour sa nature hypnotique et répétitive, qui évite les structures de chansons traditionnelles au profit d'une expérience immersive aux accents ambient. En équilibrant des fréquences basses sismiques et lourdes avec des textures nettes et lumineuses, Skee Mask crée un environnement vaste qui est à la fois introspectif et adapté aux systèmes de sonorisation de club haute fidélité. Compro a été largement acclamé pour sa résonance émotionnelle et sa sophistication technique, « 50 Euro to Break Boost » servant d'exemple par excellence de la manière dont l'artiste mélange le grain des breakbeats vintage avec les techniques de production immaculées de la musique électronique contemporaine. Le morceau demeure une pièce maîtresse de la discographie de Skee Mask, illustrant sa capacité à concevoir une musique qui semble à la fois physiquement exigeante et profondément contemplative.",
+      "source_sha256": "8e449a22a7ed5b846dfb8aef1ba82e28e0c7733290406a42832ef4283db806ed",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T22:18:54.905Z"
+    }
+  }
 }

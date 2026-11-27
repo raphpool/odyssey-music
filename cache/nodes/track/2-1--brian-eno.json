@@ -64,5 +64,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« 2/1 » est une composition ambient séminale de Brian Eno, définie par des boucles de bandes magnétiques de mélodies de piano qui se chevauchent et se déplacent pour créer un paysage sonore immersif et en constante évolution.",
+      "article": "« 2/1 » est le deuxième morceau de l'album phare de Brian Eno sorti en 1978, Ambient 1: Music for Airports. En tant qu'élément d'une œuvre fondatrice du genre ambient, la pièce a été méticuleusement construite en utilisant des boucles de bandes magnétiques d'interprétations au piano — mettant notamment en vedette Robert Wyatt — qui sont superposées pour créer un paysage sonore évolutif et semi-aléatoire. Le morceau est représentatif de la philosophie ambient initiale d'Eno : une musique qui est « aussi ignorables qu'intéressante », conçue pour transformer l'environnement de l'auditeur et procurer un sentiment de calme sans exiger une écoute linéaire et concentrée. En utilisant des boucles de bandes de longueurs variables, Eno s'est assuré que les parties constitutives de la composition tournent les unes par rapport aux autres, ce qui signifie que les relations harmoniques entre les boucles changent constamment, empêchant le morceau de se répéter jamais exactement de la même manière. Cette approche, fortement inspirée par les compositeurs minimalistes et le concept de « musique d'ameublement », s'est éloignée des structures traditionnelles de la musique pop pour créer une expérience spatiale et atmosphérique qui a redéfini la façon dont la musique électronique pouvait être utilisée dans les espaces publics comme privés. Par ses textures austères et scintillantes, « 2/1 » illustre l'ambition minimaliste d'induire un espace méditatif pour l'auditeur, témoignant de la puissance du minimalisme technologique délibéré dans l'art sonore. Il demeure l'un des morceaux les plus significatifs de la musique ambient du XXe siècle, illustrant l'efficacité de la répétition mécanique pour atteindre une beauté profonde et organique.",
+      "source_sha256": "90c95d48a3dcb71d405f31387b10c3f35564cbf5000f8dcb0325e205cea519f6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T22:17:58.445Z"
+    }
+  }
 }

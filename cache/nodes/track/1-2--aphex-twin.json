@@ -53,5 +53,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Communément appelé « Cliffs », ce morceau d'ouverture obsédant et atmosphérique issu de Selected Ambient Works Volume II d'Aphex Twin demeure l'une des pièces ambient les plus emblématiques des années 1990.",
+      "article": "« 1/2 », fréquemment désigné par les fans et les critiques sous le nom de « Cliffs », est le mouvement d'ouverture du double album séminal de 1994 d'Aphex Twin, Selected Ambient Works Volume II. Représentant un écart significatif par rapport à l'intensité rythmique et acid de ses travaux antérieurs, ce morceau établit la palette sonore atmosphérique, texturale et souvent déconcertante qui définit l'album. Comme une grande partie du disque, le morceau n'est pas titré sur la version originale, identifié uniquement par un graphique circulaire d'icônes visuelles imprimé sur la pochette de l'album. Ce surnom de « Cliffs » a été dérivé par les fans à partir de l'icône correspondante, et est depuis devenu l'identifiant principal dans les discussions culturelles sur l'œuvre.\n\nMusicalement, le morceau est caractérisé par une mélodie mélancolique et ample qui semble à la fois expansive et claustrophobe. Il évite les motifs de batterie traditionnels au profit de paysages sonores synthétisés en couches qui évoquent des paysages — changeants, érodés et extraterrestres. En utilisant un accordage microtonal et des structures harmoniques denses, Richard D. James a créé une pièce qui semble prise entre deux époques, servant de point de repère dans l'évolution de l'intelligent dance music (IDM) et de l'ambient techno. Le morceau est essentiel pour comprendre la transition de la musique électronique de la piste de danse vers la sphère contemplative de l'écoute au casque. Il donne le ton à un album qui continue d'être cité comme un sommet du design sonore électronique, influençant des générations de producteurs ambient et expérimentaux qui privilégient le timbre et l'ambiance aux tropes structurels traditionnels. Son impact durable réside dans cette capacité à exister en tant qu'environnement singulier et immersif, détaché des structures de chansons standard et fonctionnant plutôt par un sens de gravité émotionnelle soutenue.",
+      "source_sha256": "498e6d47b6c9cc1b02a24eac31e203e9718cd93034c77391d016e7d6a1219075",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-26T22:17:55.109Z"
+    }
+  }
 }
