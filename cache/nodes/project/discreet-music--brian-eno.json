@@ -100,5 +100,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre fondateur de la musique ambient, l'album Discreet Music de Brian Eno, sorti en 1975, a ouvert la voie au concept de « musique d'ameublement » grâce à la composition générative, aux boucles sur bande et à la synthèse minimaliste.",
+      "article": "Discreet Music, sorti en 1975, est une œuvre charnière dans la discographie du musicien et producteur britannique Brian Eno. Quatrième album studio de l'artiste et premier à paraître sous son nom complet, il constitue un document fondateur de la musique ambient et générative. L'album est divisé en deux parties distinctes : le morceau-titre, une pièce minimaliste de 30 minutes composée à l'aide d'un séquenceur EMS Synthi AKS et de systèmes de délai sur bande, et trois variations sur le Canon en ré majeur de Johann Pachelbel, interprétées par le Cockpit Ensemble et arrangées par Gavin Bryars : Fullness of Wind (variation on the “Canon in D major” by Johann Pachelbel), French Catalogues (variation on the “Canon in D major” by Johann Pachelbel) et Brutal Ardour (variation on the “Canon in D major” by Johann Pachelbel).\n\nLe concept central du morceau-titre est né du désir d'une musique capable de coexister avec son environnement, fonctionnant comme une « musique d'ameublement » — un terme emprunté à Erik Satie — que l'auditeur pourrait choisir d'écouter ou d'ignorer. Le processus d'enregistrement lui-même était hautement génératif ; Eno a mis en place le dispositif et l'a laissé fonctionner, son intervention se limitant à des ajustements mineurs alors qu'il s'occupait d'autres tâches. La texture sonore qui en résulte est faite de boucles douces et changeantes qui créent un paysage que l'auditeur peut habiter. Cette approche de la « musique automatique » deviendra une caractéristique déterminante de la carrière d'Eno, menant directement à l'esthétique ambient qu'il affinera sur des albums marquants comme Ambient 1: Music for Airports en 1978.\n\nDiscreet Music est souvent cité comme un tournant majeur où Eno s'est éloigné de l'art-pop plus structuré de ses premiers disques pour se tourner vers des compositions introspectives et atmosphériques qui ont remodelé le paysage de la musique électronique. En créant un espace où l'auditeur peut interagir avec la musique selon son propre niveau d'attention, Eno a effectivement anticipé l'émergence des genres modernes de l'ambient, du drone et du soundscape. L'album demeure un témoignage de l'idée selon laquelle la composition peut consister autant à mettre un système en mouvement qu'à réaliser un arrangement délibéré, note par note.",
+      "source_sha256": "de3bc8f78ff76520484dc4fbdb452aeeada0301512e7f7ef70c8e6d1bf602be5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:17.619Z"
+    }
+  }
 }

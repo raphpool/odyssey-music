@@ -88,5 +88,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre séminal de l'afrofuturisme dans le jazz d'avant-garde, fonctionnant à la fois comme une bande originale de film et comme un manifeste de la philosophie cosmique de Sun Ra.",
+      "article": "Space Is The Place est une œuvre fondamentale du légendaire compositeur, chef d'orchestre et visionnaire du jazz d'avant-garde Sun Ra, enregistrée en 1972 avec son Intergalactic Solar Arkestra. Bien qu'il soit souvent recherché via diverses expressions descriptives, le projet définitif associé à ses explorations sonores du cosmos est l'album Space Is The Place, qui a servi de bande originale au film culte du même nom sorti en 1974. Enregistrées à Oakland, en Californie, ces sessions capturent The Sun Ra Arkestra à un moment charnière de leur développement, mêlant free jazz, électronique expérimentale, rythmes africains traditionnels et philosophie céleste.\n\nL'album n'est pas simplement une collection de morceaux mais un voyage conceptuel, manifestant la conviction profonde de Sun Ra selon laquelle « space is the place » pour l'humanité noire, un refuge contre l'oppression terrestre. Tout au long du disque, The Sun Ra Arkestra utilise une large gamme d'instruments — incluant divers saxophones, flûtes, percussions et synthétiseurs — pour créer des paysages sonores atmosphériques, souvent chaotiques, mais profondément structurés. Des morceaux comme l'épique Blackman / Love In Outer Space et la chanson-titre, Space Is The Place, illustrent la capacité unique du groupe à tisser des textures denses et avant-gardistes avec des accroches mélodiques et scandées. Cette œuvre demeure une pierre angulaire du mouvement afrofuturiste, influençant des générations de musiciens de jazz, de funk et de musique électronique en redéfinissant les frontières de ce qu'une bande originale pouvait être et la manière dont la musique pouvait fonctionner à la fois comme critique sociale et transcendance cosmique. Ses rééditions et sa résonance culturelle continue attestent du statut durable de Sun Ra en tant que pionnier ayant effectivement « sonifié » sa propre mythologie.",
+      "source_sha256": "bb703f2698cf9975f2f45539e30cafba8672b62330b942465ccf393a1311fba2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:33:18.977Z"
+    }
+  }
 }

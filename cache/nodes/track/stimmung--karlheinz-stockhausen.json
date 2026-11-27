@@ -49,5 +49,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon de la musique d'avant-garde du XXe siècle, « Stimmung » de Karlheinz Stockhausen est une composition hypnotique et rituelle pour six voix, entièrement basée sur les harmoniques d'une seule note fondamentale.",
+      "article": "« Stimmung » (1968) de Karlheinz Stockhausen s'impose comme une réalisation monumentale de la musique vocale d'avant-garde du XXe siècle. Composée pour six chanteurs, l'œuvre est une exploration méditative et immersive du chant harmonique, entièrement fondée sur les harmoniques d'une seule note fondamentale, le si bémol. En se concentrant sur les propriétés acoustiques de la voix humaine, Stockhausen a abandonné la progression mélodique et harmonique traditionnelle au profit d'une exploration statique et rituelle du son lui-même. L'œuvre est structurée en 51 « modèles » interconnectés qui s'enchaînent avec fluidité, entraînant l'auditeur dans un paysage sonore vaste qui mêle parole, incantation et résonance harmonique pure.\n\nLe titre lui-même, un mot allemand qui se traduit par « accord », « atmosphère » ou « humeur », résume parfaitement l'intention de la pièce : amener les chanteurs et les auditeurs dans un état partagé d'accord harmonique. Les chanteurs sont tenus d'utiliser des techniques vocales, notamment le chant diphonique et une manipulation précise des sons vocaliques, pour isoler des harmoniques spécifiques de la note fondamentale. Tout au long de la performance, ils scandent des noms de divinités issues de diverses cultures mondiales, ancrant cette expérience acoustique éthérée dans un sentiment de mysticisme spirituel ou séculier. Depuis sa création à Paris en 1968, « Stimmung » est restée une œuvre essentielle de l'avant-garde européenne, influençant d'innombrables compositeurs minimalistes et expérimentaux en démontrant les possibilités profondes inhérentes à la performance vocale microtonale. Diverses interprétations, comme l'enregistrement acclamé de Paul Hillier et Theatre of Voices, ont contribué à consolider son statut de pierre angulaire du répertoire moderne, prouvant sa pertinence continue en tant qu'expérience transformatrice pour l'auditeur.",
+      "source_sha256": "62392f503bae7ce1e0868f564fce51589007f4709bcfee19bbb8fa5924fd5ea6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:49:24.639Z"
+    }
+  }
 }

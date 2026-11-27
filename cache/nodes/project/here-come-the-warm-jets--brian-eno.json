@@ -113,5 +113,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre séminale de l'art-pop, le premier album solo de Brian Eno fait figure de chef-d'œuvre de chaos calculé, mêlant l'énergie du glam rock à des techniques de production avant-gardistes.",
+      "article": "Sorti le 8 février 1974, Here Come the Warm Jets s'impose comme l'audacieux premier album studio solo de Brian Eno, marquant sa première déclaration musicale majeure après son départ des pionniers du glam rock Roxy Music. Enregistré en seulement douze jours aux Majestic Studios de Londres, l'album est une œuvre quintessentielle d'art-pop, mêlant les sensibilités théâtrales et incisives de la guitare glam du début des années 70 à l'expérimentation avant-gardiste et à une sensibilité pop art. Eno, crédité simplement sous le nom de « Eno » sur la pochette, a abordé la production avec une philosophie unique, invitant seize musiciens invités — dont d'anciens camarades de Roxy Music et des membres de groupes comme Hawkwind, Matching Mole et King Crimson — précisément parce qu'ils étaient musicalement incompatibles.\n\nCette friction délibérée était un principe fondamental de la méthode d'Eno. En orchestrant des « accidents » et en utilisant des indications abstraites comme la danse ou des descriptions non musicales, il a contraint son ensemble à explorer des territoires inconnus. Le son qui en résulte se caractérise par une production dense, où des instruments comme la « snake guitar » et le « simplistic piano » sont traités et transformés pour modifier leur identité sonore. Des titres comme Needles in the Camel’s Eye et Blank Frank illustrent cette approche, reliant les rythmes rock-and-roll des années 1950 à des textures futuristes et traitées. Souvent mal compris en raison de son titre — dont la rumeur disait fréquemment qu'il faisait référence à la miction, bien qu'Eno ait précisé qu'il s'agissait d'un descripteur pour un son de « warm jet guitar » — l'album demeure une pierre angulaire du canon de l'art rock, démontrant une approche audacieuse et intellectuelle de la musique pop qui allait définir une grande partie de la carrière ultérieure d'Eno, tant en tant qu'auteur qu'en tant que producteur visionnaire.",
+      "source_sha256": "6d299152a4f2f93cf42cdabde38d39fa15c308103ad4cb7b3427b44a72ce8fbb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:19.850Z"
+    }
+  }
 }

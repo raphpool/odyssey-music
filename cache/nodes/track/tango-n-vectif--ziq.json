@@ -73,5 +73,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Tango N' Vectif » est la piste titre du premier album studio du musicien électronique µ-Ziq, sorti en 1993 sur le légendaire Rephlex Records.",
+      "article": "« Tango N' Vectif » est la piste titre du premier album studio du musicien électronique µ-Ziq, sorti en 1993 sur le légendaire Rephlex Records. En tant qu'un des artefacts fondateurs du genre IDM (Intelligent Dance Music), le morceau capture l'esprit aventureux de l'époque, mêlant percussions brutes aux influences industrielles et sensibilités mélodiques délicates. La composition sert d'exemple parfait du « son Rephlex » — une esthétique caractérisée par une juxtaposition ludique mais complexe de boîtes à rythmes brutes, de lignes de basse distordues et de mélodies synthétiques étonnamment émouvantes qui penchent vers des textures ambient et techno.\n\nSorti à une époque où la musique électronique britannique s'éloignait rapidement du son rave pur pour s'orienter vers des territoires plus cérébraux destinés à l'écoute domestique, le morceau et l'album dont il est issu ont été essentiels pour établir Mike Paradinas (µ-Ziq) comme une figure centrale de la scène aux côtés de contemporains comme Aphex Twin. La signature sonore de « Tango N' Vectif » présente des breakbeats complexes et syncopés qui semblent à la fois mécaniques et organiques, superposés sous des paysages sonores chaleureux et tentaculaires. Son influence durable réside dans sa capacité à réconcilier les qualités agressives et bruyantes de la techno industrielle avec une approche mélodique sophistiquée, presque nostalgique. Ce morceau, et le disque qu'il définit, demeure une référence pour le développement de la musique électronique au début des années 1990, illustrant le potentiel expérimental de la production sur matériel analogique. Il témoigne de la mission du label consistant à promouvoir une musique électronique avant-gardiste et défiant les genres, qui privilégiait la vision artistique à l'utilité sur les pistes de danse.",
+      "source_sha256": "96a81e694570ae0cc008ddc4edaa2ba260267f2a530404a10cbf6f6af30b1887",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:50:15.836Z"
+    }
+  }
 }

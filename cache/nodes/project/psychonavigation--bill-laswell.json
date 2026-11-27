@@ -66,5 +66,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une collaboration phare de 1994 entre la légende de l'ambient Pete Namlook et le maître producteur Bill Laswell, mêlant lignes de basse dub profondes et électronique immersive et expansive.",
+      "article": "Psychonavigation est une collaboration ambient-dub fondamentale entre le bassiste et producteur visionnaire Bill Laswell et le pionnier de la musique électronique allemande Pete Namlook. Sorti en 1994 sur le label influent de Namlook, FAX +49-69/450464, l'album représente une convergence distincte entre la scène expérimentale du centre-ville de New York et le mouvement électronique ambient allemand en plein essor. Enregistré au studio Greenpoint de Laswell à Brooklyn, le projet capture une tension atmosphérique spécifique qui définit la fusion de l'époque entre des lignes de basse dub profondes et tectoniques et des textures de synthétiseur éthérées. Les trois longues compositions de l'album démontrent la capacité du duo à maintenir des paysages sonores immersifs et hypnotiques, passant de l'immensité monolithique de « Psychic and U.F.O. Revelations in the Last Days » à la chaleur complexe et technologique de « Angel Tech ».\n\nEn tant que première d'une série fructueuse de collaborations, Psychonavigation a servi de document essentiel au renouveau ambient du milieu des années 90, où le poids physique de la production dub a été reconsidéré à travers le prisme de la musique ambient. La synergie entre les fréquences graves, organiques et ancrées de Laswell et la conception sonore numérique et expansive de Namlook reste très estimée dans les cercles de musique électronique. Le disque témoigne de l'esprit collaboratif de FAX +49-69/450464, qui a agi comme un canal vital pour l'expérimentation transcontinentale tout au long de la décennie. En mariant les sensibilités dub de l'avant-garde new-yorkaise avec l'esthétique électronique allemande précise et axée sur le modulaire, Laswell et Namlook ont créé un modèle pour l'ambient dub qui continue de résonner auprès des auditeurs intéressés par l'intersection du dub, du drone et des environnements sonores ambient.",
+      "source_sha256": "b37276770c1f31ff3e01fd53b09c62b3f3c0c44981bca064c21bec09b8e16b5b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:31:15.932Z"
+    }
+  }
 }

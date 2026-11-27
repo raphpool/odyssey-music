@@ -138,5 +138,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier album définitif de 1983 qui a défini le mouvement college rock américain, mettant en vedette le jangle caractéristique de Peter Buck, la basse mélodique de Mike Mills et le style lyrique emblématique et cryptique de Michael Stipe.",
+      "article": "Murmur, sorti en 1983 sur I.R.S. Records, s'impose comme le premier album studio marquant du groupe de rock alternatif américain R.E.M. Enregistré en Caroline du Nord sous la direction des producteurs Don Dixon et Mitch Easter, l'album a émergé comme un moment charnière dans le développement de la musique indépendante américaine au début des années 1980. Sa production, qui a notoirement évité les synthétiseurs et les clichés rock polis courants à l'époque, a privilégié un son atmosphérique et « intemporel » construit sur les arpèges de guitare tintants et jangly caractéristiques de Peter Buck, les lignes de basse mélodiques de Mike Mills et le chant notoirement énigmatique, parfois marmonné, de Michael Stipe.\n\nLa création de l'album fut une réaction contre l'approche trop technique et clinique des producteurs précédents, le groupe cherchant activement une capture sonore plus organique et authentique de leur énergie scénique. Des chansons comme Radio Free Europe et Talk About the Passion ont mis en valeur une sensibilité d'écriture qui a comblé le fossé entre l'intensité post-punk et les traditions folk-rock classiques. Culturellement, Murmur est largement crédité d'avoir établi le modèle du mouvement college rock des années 1980 et l'explosion ultérieure du rock alternatif au cours de la décennie suivante. Son influence est cimentée par sa présence constante sur les listes critiques des meilleurs albums de tous les temps, servant de leçon magistrale sur la façon de construire une déclaration artistique cohérente et axée sur l'ambiance avec un minimum d'artifice en studio. L'album demeure un texte fondateur pour les étudiants en indie rock, démontrant comment un groupe peut subvertir les conventions pop tout en élaborant des mélodies profondément émouvantes et durables. Tout au long du disque, l'interaction entre la section rythmique et la guitare de Buck crée une texture dense et stratifiée qui semble à la fois intime et expansive, établissant la norme pour ce que le rock indépendant allait devenir dans les décennies qui ont suivi. Sa longévité critique et son importance historique sur la scène d'Athens, en Géorgie, en font l'un des premiers disques les plus importants de l'histoire de la musique américaine.",
+      "source_sha256": "b1b24585053c35e9538df5479b568d219d0a9f5e4ba199f5571625bd1e15c02e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:28:21.930Z"
+    }
+  }
 }

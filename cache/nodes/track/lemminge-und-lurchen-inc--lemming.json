@@ -35,5 +35,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un titre de morceau qui évoque l'esprit ludique et expérimental de la musique indépendante, distinct du groupe de glam rock néerlandais du même nom.",
+      "article": "Lemminge Und Lurchen Inc. est un morceau associé au paysage culturel et musical plus large, bien qu'il soit distinct du groupe de glam rock néerlandais Lemming. Alors que le groupe Lemming, originaire des Pays-Bas, est bien documenté pour ses contributions au glam rock avec des membres comme Wally Slot et Martin van Wijk, le titre spécifique « Lemminge Und Lurchen Inc. » apparaît dans des contextes qui s'écartent de la discographie principale du groupe. Le nom lui-même reflète une nomenclature ludique, peut-être absurde, courante dans certaines scènes musicales expérimentales ou spécialisées, bien qu'il manque une lignée directe avec l'ensemble néerlandais établi. Le groupe Lemming, actif dans les années 1970, demeure une entité remarquée dans l'histoire de la musique néerlandaise, mais ce titre de morceau spécifique n'apparaît pas dans leurs sorties officielles répertoriées dans les archives majeures. Au lieu de cela, le nom existe comme un artefact curieux au sein de l'histoire plus large, souvent fragmentée, de la musique indépendante et des références culturelles.",
+      "source_sha256": "3bdceb23c6f0dddd43fe2bb63f0e3064b800f879860f793ef9b4ac5d47ded0c3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:12.736Z"
+    }
+  }
 }

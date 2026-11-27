@@ -42,5 +42,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre phare de l'expérimentalisme microtonal américain, « Barstow » de Harry Partch traduit les graffitis désespérés des auto-stoppeurs de l'époque de la Grande Dépression en un cycle musical obsédant et riche en instrumentation.",
+      "article": "« Barstow » est une œuvre fondatrice de la musique expérimentale américaine du compositeur Harry Partch, conçue entre 1941 et 1955. Il s'agit d'un élément central de son cycle plus vaste, The Wayward, qui documente les expériences transitoires de la culture hobo américaine pendant la Grande Dépression. La composition est née des propres expériences de Partch en tant que vagabond ; alors qu'il faisait de l'auto-stop dans le désert de Mojave en 1941, il a découvert une série d'inscriptions désespérées et poignantes laissées par des auto-stoppeurs sur une rambarde d'autoroute dans la ville californienne de Barstow.\n\nPartch a transcrit ces expressions humaines brutes — allant de demandes de transport à des déclarations de chagrin d'amour et de faim existentielle — et les a mises en musique en utilisant son système unique d'intonation juste et les instruments microtonaux qu'il a fabriqués sur mesure, tels que la surrogate kithara, le chromelodeon, la diamond marimba et le boo. Structurellement, l'œuvre alterne entre des récitations parlées de ces graffitis et des passages mélodiques étendus qui s'inspirent librement des traditions folkloriques américaines. Au fil des décennies, Partch a révisé la pièce à plusieurs reprises, élargissant son instrumentation pour inclure davantage d'interprètes et d'instruments, faisant passer le ton de la désespérance austère et solitaire de la version originale de 1941 à un portrait social plus complexe et multicouche. En traitant le langage vernaculaire des dépossédés comme un grand art, Partch a créé un document profondément empathique de l'expérience américaine « oubliée », illustrant sa conviction que la musique la plus profonde pouvait être trouvée dans les expressions non éditées de la vie quotidienne.",
+      "source_sha256": "e5b601f3debf4e10e24be6cf2fb86567947991e52bebefa8e9a4323a12e016df",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:38:21.214Z"
+    }
+  }
 }

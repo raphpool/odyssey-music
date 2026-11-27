@@ -73,5 +73,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Beaucoup Fish est un jalon de l'electronica de la fin des années 90, capturant Underworld au sommet de leur puissance créative et de leur influence culturelle après le succès crossover de « Born Slippy .NUXX ». Mêlant poésie en flux de conscience et production techno sophistiquée, il sert de pont entre l'énergie rave des entrepôts du début des années 90 et les textures introspectives et atmosphériques qui allaient définir le tournant du millénaire.",
+      "article": "Beaucoup Fish est le cinquième album studio du groupe électronique britannique Underworld, sorti le 1er mars 1999. Arrivé dans le sillage du succès mondial massif de leur hymne « Born Slippy .NUXX », propulsé par Trainspotting, l'album suscitait d'immenses attentes. Il constitue le point culminant de la collaboration du groupe avec le collectif de design Tomato et, surtout, marque le dernier album studio mettant en vedette le trio composé de Karl Hyde, Rick Smith et Darren Emerson. Sur ses 74 minutes, l'album affine la fusion caractéristique d'Underworld entre techno entraînante, progressive house et lyrisme en flux de conscience. Des titres comme l'énergique « Push Upstairs » et le pulsant « Jumbo » montrent un groupe maîtrisant parfaitement son art, superposant savamment des paysages sonores texturés sur des rythmes précis, prêts pour les clubs.\n\nAu-delà de ses aspirations pour les pistes de danse, Beaucoup Fish déploie une profondeur émotionnelle nuancée. Des morceaux tels que la ballade minimale et fragile « Skym » et l'intensité teintée de rock de « Bruce Lee » démontrent l'ampleur de l'ambition sonore du groupe. Le titre lui-même — dérivé d'une prononciation du sud des États-Unis de « bookoo » captée sur bande lors de l'enregistrement de « Jumbo » — reflète le penchant du groupe pour trouver la magie dans le banal, transformant des enregistrements de terrain en éléments fondamentaux de leur musique. En équilibrant précision technique et voix organiques et improvisées, Underworld a créé une œuvre cohérente qui demeure l'un des projets longue durée les plus respectés de la scène électronique des années 90, capturant l'agitation et l'énergie cinétique d'une ère précédant le basculement numérique. La production de l'album, assurée par Rick Smith, a cimenté sa place en tant que document définitif de la culture électronique britannique, mêlant technique de studio sophistiquée et puissance brute et répétitive du mouvement rave. Rétrospectivement, il est fréquemment cité aux côtés de classiques comme The Dark Side of the Moon pour sa cohérence atmosphérique et sa conception sonore influente, établissant fermement l'héritage du groupe en tant que pionniers de la musique électronique.",
+      "source_sha256": "3afede6f675bc97c79634c4dfeeb01aefcea9bd96dd10e18ee296e05e71e3f6c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:19:13.283Z"
+    }
+  }
 }

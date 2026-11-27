@@ -58,5 +58,14 @@
   ],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Destiny » est un morceau downtempo par excellence du duo anglais Zero 7, sorti en 2001 en tant que single phare de leur premier album acclamé par la critique, Simple Things.",
+      "article": "« Destiny » est un morceau downtempo par excellence du duo anglais Zero 7, sorti en 2001 en tant que single phare de leur premier album acclamé par la critique, Simple Things. Produite par les membres de Zero 7, Henry Binns et Sam Hardaker, la chanson fait office de leçon magistrale du son électronique atmosphérique influencé par le lounge qui a dominé la scène chillout britannique du début des années 2000. Conçu à l'origine comme un instrumental, le morceau a trouvé son cœur émotionnel grâce aux contributions vocales de l'auteure-compositrice-interprète australienne Sia et de l'artiste britannique Sophie Barker. Leur interaction crée une atmosphère luxuriante, mélancolique et profondément intime, les paroles explorant des thèmes de désir, d'isolement et de séparation amoureuse.\n\nLe processus de production derrière « Destiny » souligne la nature fortuite du processus créatif collaboratif du duo. Binns et Hardaker, connus pour leur travail antérieur de remix pour des artistes comme Radiohead et Terry Callier, cherchaient les voix adéquates pour sublimer leurs arrangements instrumentaux. Leur découverte de Sia, facilitée par une relation avec son manager sur un terrain de football, s'est avérée transformatrice. Le morceau a été écrit et enregistré en un seul après-midi, capturant une énergie brute et spontanée qui dément sa production polie et « placide ». Avec ses harmonies vocales distinctives et brûlantes et sa fusion de mélodies en mode phrygien avec un rythme décontracté, « Destiny » est devenu un pilier durable du genre, cimentant la réputation de Zero 7 en tant qu'architectes du downtempo moderne. Son empreinte culturelle a été étendue par son clip vidéo emblématique, qui a utilisé des techniques de rotoscopie pour refléter le mélange de réalisme urbain et de rêverie émotionnelle du morceau. La chanson demeure un moment déterminant de l'époque, reflétant l'esthétique sonore sophistiquée et nocturne qui a défini une génération d'auditeurs.",
+      "source_sha256": "8c904a3c349582c12459171023672a914363a54da84b6d9a0dc9beb0e18f6cc6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:40:24.967Z"
+    }
+  }
 }

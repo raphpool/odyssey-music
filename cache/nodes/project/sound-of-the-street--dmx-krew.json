@@ -103,5 +103,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Premier album studio de DMX Krew, Sound of the Street est une œuvre déterminante de l'electro du milieu des années 90 qui a revitalisé le son classique axé sur le matériel de ce genre pour une nouvelle ère d'auditeurs de musique électronique sur le label Rephlex Records.",
+      "article": "Sorti en 1996 sur le label séminal Rephlex Records d'Aphex Twin, Sound of the Street constitue le premier album studio de DMX Krew, l'alias influent du producteur britannique Ed Upton. L'album sert de déclaration définitive du renouveau electro du milieu des années 90, capturant l'esthétique ludique et axée sur le matériel qui deviendrait une marque de fabrique du label. S'éloignant des tendances IDM plus sombres et expérimentales prévalentes dans la musique électronique britannique contemporaine, Upton s'est fortement appuyé sur des rythmes de boîtes à rythmes classiques, des lignes de basse synthétiques funky et un charme rétro-futuriste qui rendait hommage à la culture electro et hip-hop du début des années 80.\n\nDes morceaux comme « Rock to the Beat » et « Sound of the DMX » illustrent le dévouement de l'artiste à créer une musique de danse accessible et pleine d'énergie tout en conservant un grain distinctif de studio amateur. Avec sa durée de 49 minutes, l'album offre un voyage cohérent à travers des paysages minimalistes et rythmiques qui évitent toute complexité inutile au profit de grooves contagieux et riches en bleeps. Sa sortie a consolidé la position de DMX Krew en tant que voix vitale de l'underground électronique, donnant le ton à l'engagement du label à repousser les limites de la musique de machine avec un sens de l'humour et une fonctionnalité orientée vers la piste de danse. À la fois hommage aux racines du genre et pionnier du renouveau des années 90, l'album demeure une pierre angulaire du catalogue Rephlex.",
+      "source_sha256": "31853755a64e77599ab704bf4fa9471df8c3231cea6a23375a3d1964deb4074a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:33:19.060Z"
+    }
+  }
 }

@@ -144,5 +144,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Vespertine est un chef-d'œuvre de musique de chambre électronique intime où Björk tisse des arrangements orchestraux délicats avec des textures glitch micro-rythmiques pour explorer des thèmes de sanctuaire, de solitude et d'érotisme domestique. Il s'agit d'une œuvre déterminante de l'art pop des années 2000 qui a transformé la précision froide de l'électronique en un paysage sonore organique et profondément vulnérable.",
+      "article": "Sorti en 2001, le quatrième album studio de Björk, Vespertine, a marqué une rupture radicale avec l'intensité percussive et taillée pour les clubs de son prédécesseur, Homogenic. Souvent décrit comme un chef-d'œuvre « chamber-electronic » ou « micro-beat », l'album se définit par son échelle intime et domestique ainsi que par son paysage sonore fragile et cristallin. Björk a collaboré étroitement avec le duo Matmos et la harpiste Zeena Parkins pour concevoir des rythmes complexes et saccadés échantillonnés à partir de sons du quotidien — craquements de glace, battements de cartes et chuchotements — qui ont ensuite été superposés à de riches arrangements orchestraux dirigés par Vince Mendoza.\n\nSur le plan lyrique et tonal, l'album explore des thèmes de solitude, d'érotisme et de la sainteté du monde intérieur. Il ressemble à un journal intime mis en musique, dépouillant la bravade extravertie de la célébrité pop au profit d'une atmosphère éthérée et feutrée. La présence de la chorale et les délicats arrangements de harpe apportent une chaleur humaine et organique qui ancre les manipulations électroniques papillonnantes. Vespertine demeure une sortie marquante dans l'évolution de l'art pop, influente par son intégration fluide de la composition avant-gardiste à une écriture émotionnelle profondément accessible. Il a redéfini les possibilités de la musique électronique en tant que médium pour la narration intime, cimentant le statut de Björk en tant qu'artiste visionnaire prête à s'aventurer dans les espaces les plus calmes et les plus vulnérables de l'expérience humaine. L'héritage du disque persiste non seulement dans son utilisation pionnière de l'esthétique glitch, mais aussi dans son engagement inébranlable envers une vision esthétique singulière et cohérente qui transforme la production électronique en quelque chose de distinctement poétique.",
+      "source_sha256": "232f81383a8f31798a02e54f690a6e1c9843e1297333ed957afb1bb9bf750f07",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:36:21.212Z"
+    }
+  }
 }

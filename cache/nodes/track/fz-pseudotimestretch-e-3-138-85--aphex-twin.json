@@ -61,5 +61,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« fz pseudotimestretch+e+3 [138.85] » est un morceau court et captivant issu de l'album studio phare d'Aphex Twin, Syro, sorti en 2014.",
+      "article": "« fz pseudotimestretch+e+3 [138.85] » est un morceau court et captivant issu de l'album studio phare d'Aphex Twin, Syro, sorti en 2014. Publié par Warp Records, le titre fait office d'exploration brève mais caractéristique des techniques de studio du maître de l'IDM. Le titre lui-même, un clin d'œil aux effets de « pseudo-time stretch », fait allusion à la manipulation numérique minutieuse souvent présente dans la production de Richard D. James, où la synthèse granulaire et le séquençage rythmique sont poussés vers des extrêmes techniques.\n\nAvec une durée inférieure à une minute, le morceau fonctionne comme une pièce hyper-condensée au sein de l'écosystème de Syro. Bien que Syro soit largement considéré comme une leçon magistrale de composition électronique, vaste, ludique et extrêmement détaillée, des morceaux comme celui-ci agissent comme des interludes rythmiques ou des expériences sonores qui maintiennent l'élan frénétique et énergique de l'album. L'inclusion du suffixe numérique « 138.85 » est une nomenclature classique d'Aphex Twin, faisant souvent référence au tempo du morceau ou à des métadonnées techniques spécifiques issues de son équipement de studio, ancrant davantage la pièce dans le processus obsessionnel et mécanique qui définit son travail en fin de carrière. Sur le plan culturel, le morceau souligne comment Aphex Twin a continué à combler le fossé entre la conception sonore académique abstraite et l'IDM accessible et hautement dansable dans les années 2010, réaffirmant son statut de pionnier qui sépare rarement le technique du musical. Malgré sa brièveté, il reste un favori parmi les auditeurs qui apprécient l'approche dense et texturée de la création de rythmes pour laquelle l'album est célébré.",
+      "source_sha256": "bad361e3cb1ddfe8ed3bb8c78a8c67b0d2d3c895f95994a7a6a8a76ea88a14f4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:42:24.882Z"
+    }
+  }
 }

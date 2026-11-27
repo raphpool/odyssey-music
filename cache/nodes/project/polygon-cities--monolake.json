@@ -131,5 +131,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre définitive du dub-techno du début des années 2000, Polygon Cities de Monolake équilibre avec expertise une conception sonore numérique complexe avec des grooves profonds et chaleureux et une atmosphère cinématographique expansive. Il demeure une marque de fabrique du style de production minimaliste et précis de Robert Henke.",
+      "article": "Polygon Cities, sorti en 2005 sur le label Imbalance Computer Music de l'artiste, s'impose comme une référence de l'évolution de Monolake au sein du paysage techno minimaliste et dub-techno. Produit par Robert Henke et T++ au Centre de la Recherche Numérique, l'album représente une synthèse raffinée du « Cologne sound » caractéristique du duo, une approche de la musique électronique précise et dense en textures qui privilégie la clarté sonore et la profondeur atmosphérique aux tropes traditionnels du dancefloor. À travers ses neuf titres, le projet explore une esthétique « dépouillée », équilibrant des lignes de basse sombres et lourdes de dub avec un travail de synthétiseur plus brillant et mélodique, ainsi que des échantillons vocaux traités qui introduisent un élément humain subtil dans ces paysages sonores façonnés par la machine.\n\nL'album capture un moment de transition et de maturation pour Monolake, s'éloignant des textures plus lourdes et claustrophobes d'œuvres antérieures comme Gravity ou Momentum. Des titres comme Pipeline, CCTV et North démontrent une maîtrise magistrale de la synthèse numérique, utilisant une conception sonore expansive pour créer une expérience immersive, presque cinématographique. L'album est caractérisé par son « sublime mur de son », où des bips, des clics et des rythmes percutants complexes sont méticuleusement superposés pour créer un sentiment de vaste espace urbain, d'où le titre. Il demeure une entrée acclamée par la critique dans leur discographie, louée par les fans comme par les critiques pour sa précision, sa chaleur et son refus de s'appuyer sur les tropes répétitifs et agressifs courants dans la techno contemporaine du milieu des années 2000. Son influence durable réside dans cet équilibre délicat entre l'expérimentation numérique abstraite et les grooves viscéraux influencés par le dub qui ancrent l'expérience d'écoute.",
+      "source_sha256": "56328ab9274f9b656fd0239e1c2597dc0c252c07d43958b81b8bdc3b86ebef77",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:31:15.637Z"
+    }
+  }
 }

@@ -80,5 +80,14 @@
       "name": "Neu!"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Neu! est le premier album studio du duo de krautrock allemand du même nom, paru en 1972. Œuvre révolutionnaire, il a défini le rythme minimaliste « motorik » et tracé une nouvelle trajectoire pour la musique expérimentale, ambient et post-punk. Enregistré en quatre nuits intenses à Hambourg avec le producteur Conny Plank, l'album a dépouillé la musique rock jusqu'à son essence répétitive fondamentale, créant un paysage sonore axé autant sur la texture et l'endurance que sur la composition. Son influence s'est propagée sur des décennies de musique alternative, cité par des artistes allant de David Bowie et Brian Eno au groupe Negativland, qui a tiré son nom de la suite d'ouverture de l'album. Par son rythme implacable et sa conception sonore radicale, Neu! demeure l'un des documents les plus essentiels de la scène underground expérimentale des années 1970.",
+      "article": "Neu! est le premier album studio éponyme du duo de krautrock allemand composé de Michael Rother et Klaus Dinger, sorti en 1972. Publié sur Brain Records, l'album fait office de texte fondateur de la musique expérimentale, célèbre pour avoir introduit le rythme « motorik » — un rythme 4/4 persistant et entraînant que Dinger qualifiait souvent de « long straight ». Produit par le légendaire Conny Plank, qui a agi comme médiateur entre les deux membres au tempérament parfois instable, l'album a été enregistré à Hambourg en quatre nuits en décembre 1971.\n\nLe disque est un jalon du minimalisme et de la texture sonore. Plutôt que de s'appuyer sur les structures traditionnelles du blues-rock, les morceaux s'étirent souvent en paysages sonores hypnotiques, définis par le jeu de guitare fluide et traité de Rother et la percussion mécanique de Dinger. Le morceau d'ouverture « Hallogallo » est devenu l'exemple par excellence du style motorik, tandis que « Negativland » — remarqué pour son utilisation d'un taishōgoto japonais — a mis en évidence l'intérêt du duo pour une conception sonore proche de l'industriel et pour le bruit électronique. Bien qu'initialement cantonné à une niche commerciale en Allemagne de l'Ouest, avec environ 35 000 exemplaires vendus, sa réputation a considérablement grandi au cours des cinq dernières décennies. Il est désormais largement considéré comme l'un des albums les plus significatifs des années 1970, exerçant une influence profonde sur les musiciens ambient, électroniques, post-punk et indie-rock du monde entier, de Brian Eno et David Bowie au collectif Negativland, qui a adopté son nom d'après le deuxième morceau de l'album. L'héritage de Neu! réside dans son engagement envers un son implacable et tourné vers l'avant, agissant comme un pont crucial entre l'expérimentation psychédélique de la fin des années 1960 et la pulsation structurée de la musique électronique qui a suivi.",
+      "source_sha256": "07d6ef28d715994b15860a9b32806b9d4aa227bfffbc347e3df8c7fcc70a03d9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:29:18.151Z"
+    }
+  }
 }

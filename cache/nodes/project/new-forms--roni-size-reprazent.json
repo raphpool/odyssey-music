@@ -149,5 +149,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« New Forms » (1997) est le premier album studio historique du collectif britannique de drum and bass Roni Size / Reprazent.",
+      "article": "« New Forms » (1997) est le premier album studio historique du collectif britannique de drum and bass Roni Size / Reprazent. Émergeant de la scène musicale de Bristol — un foyer pour la fusion de la culture breakbeat, du jazz et du dub — l'album a joué un rôle charnière en faisant sortir la drum and bass de la scène rave underground pour l'amener vers la conscience grand public. Publié par le label séminal Talkin’ Loud, il a été largement salué pour sa fusion sophistiquée d'instrumentation live et de breakbeats programmés frénétiques caractéristiques de la jungle. En mélangeant les textures organiques de la contrebasse et des rythmes teintés de jazz avec une production électronique, Roni Size, Krust, DJ Die et Suv ont créé un modèle de « jazzstep » qui a repoussé les limites du genre.\n\nL'impact de l'album a été immédiat, lui permettant de remporter le Mercury Prize en 1997, une étape importante pour un artiste électronique à l'époque. Avec sa structure vaste et ambitieuse — souvent répartie sur des doubles disques dans son édition CD originale — « New Forms » offrait une expérience d'écoute aussi adaptée à l'écoute domestique qu'au dancefloor. Mettant en vedette les voix soul et atmosphériques d'Onallee, des titres comme « Brown Paper Bag » et « Watching Windows » sont devenus des hymnes essentiels, comblant le fossé entre la musique de club à haute énergie et une production sophistiquée et accessible. Des décennies plus tard, « New Forms » demeure un texte fondateur de la musique électronique des années 1990, loué pour la clarté de sa production, son envergure ambitieuse et sa mission réussie de diversifier la palette rythmique de la drum and bass. Son influence durable se fait sentir dans la myriade de façons dont les producteurs ont par la suite cherché à intégrer des musiciens live dans les paysages sonores numériques du continuum breakbeat.",
+      "source_sha256": "9d49cc99bfbac344c4e3ed6753894852786a047b9dd5effdf248ff140da447d2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:29:21.571Z"
+    }
+  }
 }

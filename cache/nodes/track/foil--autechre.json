@@ -62,5 +62,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Foil » est le morceau d'ouverture de l'album très influent d'Autechre paru en 1994, Amber.",
+      "article": "« Foil » est le morceau d'ouverture de l'album très influent d'Autechre paru en 1994, Amber. Publié sur Warp Records, le morceau constitue un moment charnière de l'Intelligent Dance Music (IDM) naissante, capturant la capacité précoce du duo à tisser des paysages sonores complexes et évolutifs avec une précision rythmique et mécanique. D'une durée de plus de six minutes, « Foil » donne le ton à l'ensemble de l'album, mêlant des textures ambiantes et spatiales à des motifs percussifs subtils et syncopés qui allaient définir le son évolutif du duo de Sheffield tout au long des années 1990.\n\nLe morceau se distingue par son poids atmosphérique et son équilibre structurel, paraissant à la fois futuriste et ancré dans la scène techno du milieu des années 90. Sa production reflète l'engagement du label à repousser les limites électroniques, s'éloignant des tropes axés sur les clubs de l'époque pour privilégier des expériences plus cérébrales, destinées à l'écoute domestique. « Foil » utilise efficacement des synthétiseurs aux sonorités métalliques changeantes et des percussions soigneusement modulées, créant un sentiment de mouvement vers l'avant qui ne se résout jamais tout à fait dans des structures de danse traditionnelles. Il demeure un pilier de la discographie précoce d'Autechre, marquant un tournant décisif dans la manière dont les artistes électroniques abordaient la production, la superposition et la texture, influençant des générations de producteurs cherchant à marier les sensibilités ambiantes à la logique rigoureuse de la composition algorithmique. En ancrant l'album Amber, « Foil » souligne le talent du duo pour établir un monde immersif et étranger dès le premier battement. Autechre, composé de Rob Brown et Sean Booth, a conçu ce morceau comme une pierre angulaire du genre IDM en plein essor, une scène qui a trouvé sa place sur des labels comme Warp Records, aux côtés de pairs tels qu'Aphex Twin et Boards of Canada. Son héritage réside dans sa précision d'ingénierie sonore, influençant les producteurs de musique électronique pendant des décennies.",
+      "source_sha256": "69857273333df29302a8bec4d7de0b9b11cecc933cdd2545c302f71d9202c9dc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:42:19.058Z"
+    }
+  }
 }

@@ -52,5 +52,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un morceau de dream-pop cinématographique et obsédant signé Chromatics, connu pour son apparition dans Twin Peaks: The Return de David Lynch et son exploration de la mémoire nostalgique.",
+      "article": "Shadow est un morceau de dream-pop obsédant et atmosphérique du groupe américain Chromatics, initialement publié en 2015 dans le cadre du 2015 Adult Swim Singles Program et intégré plus tard à la bande originale de 2017 de Twin Peaks: The Return. Produit par le cerveau créatif du groupe Johnny Jewel, le morceau illustre le mélange caractéristique du projet fait de textures nostalgiques portées par les synthétiseurs et de voix éthérées et détachées. Sur le plan lyrique, le titre explore les thèmes de la mémoire, du désir et de la persistance du passé, avec des paroles qui évoquent un sentiment cinématographique d'isolement urbain : conduire de nuit, les réverbères qui s'estompent et le poids métaphorique d'une « shadow ».\n\nAu-delà de sa sortie numérique initiale via le label Italians Do It Better, le morceau a acquis une résonance culturelle significative grâce à son apparition dans le revival de Twin Peaks de David Lynch. La performance du groupe au sein du fictif « Bang Bang Bar » a solidifié sa place dans l'esthétique surréaliste et mélancolique de la série. Johnny Jewel a décrit la philosophie du morceau comme une reconnaissance de la nostalgie en tant que force tentante mais finalement illusoire, caractérisant l'amour comme un « appel à la guerre ». Sa production se caractérise par un tempo lent et pulsé ainsi que par des couches de synthétiseurs luxuriantes, ce qui en fait une pièce déterminante du mouvement dream-pop du milieu des années 2010 associé au label Italians Do It Better. La chanson existe en plusieurs versions, dont une sortie « 8-track » en démo, soulignant l'approche méticuleuse et itérative du groupe en matière de composition.",
+      "source_sha256": "1f1adcd0fd0b0e5996357ec3bcecf25e3ff9a49bd4c57e733c845ebbcd92acec",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:49:13.116Z"
+    }
+  }
 }

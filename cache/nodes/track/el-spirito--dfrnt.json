@@ -60,5 +60,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Exploration profonde et atmosphérique de dub-techno et de bass music, « El Spirito » illustre la conception sonore méticuleuse de l'EP de 2012 du producteur DFRNT.",
+      "article": "« El Spirito » est un morceau marquant du producteur électronique basé au Royaume-Uni DFRNT, sorti en 2012 en tant que titre éponyme de son EP sur le label Echodub. Connu pour son approche profonde et introspective de la musique électronique, DFRNT s'est taillé une place au sein des paysages sonores en évolution du début des années 2010. Le morceau lui-même reflète la synthèse caractéristique de l'artiste mêlant textures dub-techno, précision rythmique inspirée de l'IDM et poids atmosphérique du dubstep britannique. S'étendant sur plus de six minutes, « El Spirito » se déploie avec une patience méticuleuse, utilisant une conception sonore immersive et des fréquences graves pulsées qui définissent l'esthétique d'Echodub. Cette sortie a capturé un moment spécifique de la scène underground bass britannique, où le genre s'éloignait des mécaniques de dancefloor agressives du dubstep du milieu des années 2000 vers des arrangements plus contemplatifs, destinés à l'écoute domestique. L'EP faisait partie d'une période productive pour DFRNT, consolidant sa réputation d'architecte d'environnements audio évocateurs et souterrains qui comblent le fossé entre l'ingénierie axée sur le club et la composition mélodique et émotive. Le morceau continue d'être remarqué par les passionnés pour sa production cristalline et sa capacité à maintenir la tension sans s'appuyer sur les tropes habituels du genre. Ce morceau demeure l'un des exemples les plus représentatifs du son qu'Echodub a cultivé durant ses années de formation.",
+      "source_sha256": "17c0f9f1fa770fbbab2837c0d9b082dd0b91d24f19243ac4b407f08afb5c1701",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:41:21.461Z"
+    }
+  }
 }

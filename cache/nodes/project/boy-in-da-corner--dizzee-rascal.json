@@ -168,5 +168,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier album essentiel de Dizzee Rascal qui a fait découvrir au monde le son sombre et cinétique du grime, remportant le Mercury Prize 2003 pour son commentaire social brut et sa production révolutionnaire.",
+      "article": "Boy in da Corner est le premier album studio marquant du rappeur et producteur britannique Dizzee Rascal, sorti le 21 juillet 2003 chez XL Recordings. Originaire de l'est de Londres, l'artiste alors âgé de 18 ans a façonné un son qui allait définir le genre émergent du grime, mêlant des éléments de UK garage, de dancehall et de musique électronique expérimentale. L'album sert de document définitif sur la culture jeunesse londonienne du début des années 2000, capturé à travers la production austère et viscérale de Dizzee et son débit vocal erratique et plein d'énergie. Avec des thèmes se concentrant sur les dures réalités de la vie dans les cités HLM, l'album a offert une fenêtre sur un monde souvent ignoré par l'industrie musicale dominante.\n\nAcclamé par la critique dès sa sortie, Boy in da Corner a obtenu un score global de 92/100 sur Metacritic et a remporté le prestigieux Mercury Prize 2003, consolidant son statut comme l'un des albums les plus influents de l'histoire de la musique britannique. Son impact fut immédiat, les critiques comparant l'intensité lyrique et le commentaire social de Dizzee à des artistes britanniques emblématiques comme Johnny Rotten et Morrissey. Des titres comme 'I Luv U' — que Dizzee a autoproduit à l'âge de 16 ans — et 'Fix Up, Look Sharp' sont devenus des hymnes de la scène. En offrant une voix authentique et brute qui a résonné bien au-delà de ses origines locales, l'album a fait de Dizzee Rascal le premier artiste grime reconnu internationalement au Royaume-Uni et a établi un modèle sonore qui continue d'influencer les producteurs d'électronique et de hip-hop aujourd'hui. Il s'impose non seulement comme un disque définissant un genre, mais aussi comme une œuvre intemporelle de réalisme social en musique.",
+      "source_sha256": "7511de1d2172da2b7f09d41f6e4849aded617a8b28c78c4134eb170470dd95f3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:19:17.988Z"
+    }
+  }
 }

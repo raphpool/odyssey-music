@@ -94,5 +94,17 @@
       "name": "Nyi Tasri"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un enregistrement de terrain séminal de 1971 de musique de cour indonésienne qui présente un ensemble patrimonial et un morceau immortalisé sur le Voyager Golden Record.",
+      "article": "Enregistré par l'ethnomusicologue Robert E. Brown le 10 janvier 1971, dans la salle de réception du Pura Paku Alaman, cet album a capturé l'ensemble de gamelan patrimonial dirigé par K.R.T. Wasitodiningrat. L'enregistrement a été produit par Teresa Sterne pour la Nonesuch Explorer Series et met en vedette le Kyai Pengawé Sari accordé en sléndro sur les pistes un et trois, et le Kyai Telaga Muntjar accordé en pélog sur les pistes deux et quatre. Des sons environnementaux ambiants, notamment des moineaux nichant dans la salle, sont audibles tout au long de la performance, qui était initialement prévue pour célébrer l'anniversaire de Paku Alam VIII. Le morceau « Ketawang: Puspåwårnå » a acquis une reconnaissance internationale lorsqu'il a été sélectionné pour figurer sur le Voyager Golden Record. L'album a reçu une nomination pour le Grammy Award du meilleur enregistrement folklorique ethnique ou traditionnel en 1972.",
+      "facts": {
+        "vocals": "Chants assurés par les pesindhen Nyi Djiworetno, Niken Larasati et Nyi Tasri."
+      },
+      "source_sha256": "db2dc3ea3d6fd14ef54a509ce29d901d038d4b0baa4634ba9f66ab3f73a3cfee",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:15.165Z"
+    }
+  }
 }

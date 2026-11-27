@@ -44,5 +44,14 @@
   ],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Melbourne Round Midnight » est une pièce séminale de dub techno produite par le musicien électronique canadien installé à Berlin Scott Monteith, qui publie sa musique sous le pseudonyme Deadbeat.",
+      "article": "« Melbourne Round Midnight » est une pièce séminale de dub techno produite par le musicien électronique canadien installé à Berlin Scott Monteith, qui publie sa musique sous le pseudonyme Deadbeat. Apparaissant comme la deuxième piste de son album acclamé par la critique en 2007 « Journeyman's Annual », la composition illustre l'approche atmosphérique et riche en studio du rythme et de la texture qui est devenue une marque de fabrique du son dub techno berlinois du milieu des années 2000. Le morceau s'inscrit confortablement dans un paysage défini par des fréquences de basse profondes et pulsées, des accords frappés imprégnés de delay et un sens de l'espace architectural caverneux que les fans de la lignée Basic Channel reconnaissent immédiatement.\n\nTout au long du morceau, Monteith construit un environnement hypnotique où le minimalisme rythmique rencontre une conception sonore luxuriante. La signature sonore de « Melbourne Round Midnight » repose sur la modulation subtile des filtres et des unités de delay, créant un sentiment de mouvement qui semble à la fois mécanique et organique. Il capture l'esthétique maussade et nocturne des clubs de musique électronique de cette époque, mélangeant la rigidité structurelle de la techno avec la chaleur et la spontanéité de la musique dub. En tant que partie intégrante de « Journeyman's Annual », le morceau a cimenté la réputation de Deadbeat en tant que maître des paysages sonores évolutifs et demeure une référence pour les auditeurs naviguant aux intersections de la musique électronique expérimentale, de la house et de la techno infusée de dub. La pièce ne se présente pas seulement comme une production autonome, mais comme un élément constitutif crucial dans le développement du « son berlinois » au cours de la première décennie des années 2000, reflétant une période où la précision numérique rencontrait l'imperfection pleine d'âme des techniques de production de style bande magnétique.",
+      "source_sha256": "2c52ee238342010f35ed4013cb59e613277d45838736b1027b05100101e444e3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:21.048Z"
+    }
+  }
 }

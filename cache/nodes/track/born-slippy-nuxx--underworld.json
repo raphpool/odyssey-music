@@ -62,5 +62,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Born Slippy .NUXX » est un morceau séminal de musique électronique du groupe britannique Underworld, qui a durablement cimenté son héritage en tant que battement de cœur évocateur et euphorique du film Trainspotting (Original Motion Picture Soundtrack) de 1996.",
+      "article": "« Born Slippy .NUXX » est un morceau séminal de musique électronique du groupe britannique Underworld, qui a durablement cimenté son héritage en tant que battement de cœur évocateur et euphorique du film Trainspotting (Original Motion Picture Soundtrack) de 1996. Sorti à l'origine en face B en 1995, le chemin du morceau vers le statut d'hymne définitif des années 1990 a été consolidé par son inclusion dans le film culte de Danny Boyle, atteignant par la suite la deuxième place du UK Singles Chart lors de sa réédition en 1996.\n\nMusicalement, le morceau est célèbre pour sa grosse caisse « four-on-the-floor » entraînante, son interprétation vocale distordue et ses accords de synthétiseur éthérés et balayants. Sa construction est notoirement stratifiée et abstraite ; Karl Hyde a écrit les paroles pendant une période de lutte contre l'alcoolisme, cherchant à capturer la perspective fragmentée et désorientée d'une soirée dans le quartier de Soho à Londres. La prise vocale de Hyde — enregistrée lors d'une session unique et spontanée — présente le refrain emblématique et répétitif de « lager, lager, lager », né du fait qu'il avait perdu le fil des paroles. Bien qu'il soit fréquemment interprété à tort comme un hymne de fête hédoniste, le morceau est profondément enraciné dans le désespoir personnel, agissant comme ce que Hyde a décrit comme un « cri à l'aide » plutôt que comme une célébration de la « lad culture » de l'époque.\n\nLa production d'Underworld, dirigée par Rick Smith, Karl Hyde et Darren Emerson, atteint une tension unique entre des textures techno cliniques et austères et un sentiment d'élévation cathartique irrésistible. Son empreinte culturelle s'étend bien au-delà du club, ayant été cité par diverses publications musicales comme l'un des morceaux les plus importants de sa décennie. La résonance émotionnelle du morceau dans Trainspotting (Original Motion Picture Soundtrack) — diffusé lors de la séquence culminante du film — a parfaitement encapsulé le mélange de crasse et d'euphorie de l'époque, liant à jamais le son de l'underground du milieu des années 90 au paysage cinématographique de l'époque. Même des décennies plus tard, il demeure un rare exemple de musique dance qui équilibre une production artistique sophistiquée avec une accessibilité viscérale indéniable.",
+      "source_sha256": "71755b1ff415938602a650393373d2fbb36babc61128b85d3a2823b51d4f41a5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:38:25.372Z"
+    }
+  }
 }

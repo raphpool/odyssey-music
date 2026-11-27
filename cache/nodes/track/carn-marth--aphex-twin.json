@@ -45,5 +45,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Carn Marth » est une composition électronique distinctive du producteur britannique Richard D.",
+      "article": "« Carn Marth » est une composition électronique distinctive du producteur britannique Richard D. James, publiée sous son pseudonyme le plus emblématique, Aphex Twin. Le morceau constitue la cinquième entrée de son album studio influent de 1996, « Richard D. James Album », qui demeure une étape charnière dans l'évolution de l'IDM (Intelligent Dance Music) et du drill and bass. D'une durée de seulement 2 minutes et 33 secondes, « Carn Marth » illustre la maîtrise magistrale du producteur sur les percussions complexes et saccadées ainsi que sur la synthèse ludique et émotive.\n\nDans le contexte de l'album, « Carn Marth » agit comme un moment charnière d'intensité rythmique et de curiosité mélodique. Bien que le « Richard D. James Album » soit fréquemment loué pour ses juxtapositions marquées — alternant entre des breakbeats agressifs et rapides et des mélodies envoûtantes aux accents orchestraux — « Carn Marth » penche vers ces derniers, fournissant une énergie frénétique et cinétique qui a défini une grande partie du paysage électronique britannique au milieu des années 90. Sa production, entièrement assurée par James lui-même, met en valeur son approche caractéristique de la conception sonore : précise, complexe et profondément humaniste malgré ses origines numériques. Le statut durable du morceau témoigne de l'impact persistant du travail d'Aphex Twin au milieu des années 90, qui a efficacement aboli les frontières entre le hardcore jungle, l'ambient et la composition avant-gardiste, établissant un modèle pour des générations de musiciens électroniques à suivre. Malgré sa brièveté, « Carn Marth » capture un zénith créatif spécifique, où la capacité technologique brute des séquenceurs matériels était poussée à sa limite expressive absolue, aboutissant à une pièce qui semble à la fois hyper-moderne et remarquablement intemporelle.",
+      "source_sha256": "0363b64d6eeb9b8722f11a91c24890093efced5e5e50aeb2a5e30cd1f5885764",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:15.885Z"
+    }
+  }
 }

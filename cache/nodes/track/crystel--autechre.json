@@ -49,5 +49,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Crystel » est un morceau séminal du duo pionnier de musique électronique britannique Autechre, publié à l'origine en 1992 sur l'album de compilation révolutionnaire « Artificial Intelligence ».",
+      "article": "« Crystel » est un morceau séminal du duo pionnier de musique électronique britannique Autechre, publié à l'origine en 1992 sur l'album de compilation révolutionnaire « Artificial Intelligence ». En tant que l'une des premières entrées de la série « Artificial Intelligence » de Warp Records, le morceau occupe une place significative dans le développement de l'IDM (Intelligent Dance Music) et de l'ambient techno. Caractérisé par ses textures de synthétiseur délicates et scintillantes ainsi que par ses motifs mélodiques complexes et évolutifs, « Crystel » représente un tournant crucial dans la musique électronique, s'éloignant de l'éthique purement orientée vers le dance-floor de la rave et de la techno de la fin des années 80 vers une esthétique plus introspective, destinée à l'écoute domestique.\n\nLa production du morceau témoigne de l'attention méticuleuse aux détails qui deviendrait la marque de fabrique du travail de Sean Booth et Rob Brown sous le nom d'Autechre. Contrairement à beaucoup de leurs pairs de l'époque qui se concentraient sur des percussions entraînantes, « Crystel » privilégie un paysage sonore stratifié et éthéré qui équilibre chaleur et précision mécanique. En donnant la priorité à la texture et à l'atmosphère, Autechre a contribué à redéfinir le potentiel de la musique électronique en tant que médium pour des compositions complexes plutôt que comme de simples outils de danse fonctionnels. L'influence durable de « Crystel » s'entend dans le travail d'innombrables artistes ambient et expérimentaux qui ont suivi, cimentant le statut d'Autechre en tant qu'innovateurs ayant élargi les possibilités sonores des synthétiseurs électroniques. Le morceau sert de pont vital entre l'ère fondatrice de la techno britannique et le mouvement IDM cérébral et expérimental qui allait s'épanouir tout au long des années 1990.",
+      "source_sha256": "8f154c45f212e5f6a3895aaba0025a0dbed0674bc0c3a0584382eac51c5b326c",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:40:13.373Z"
+    }
+  }
 }

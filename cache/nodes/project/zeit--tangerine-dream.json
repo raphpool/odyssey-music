@@ -108,5 +108,14 @@
       "type": "project",
       "name": "Atem"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Un double album monumental et abstrait qui a défini le genre « space music » et est fréquemment cité comme un précurseur du dark ambient, proposant une composition expansive en quatre mouvements.",
+      "article": "Sorti en août 1972, Zeit (allemand pour « Temps ») constitue le troisième album studio des pionniers allemands de la musique électronique Tangerine Dream. Double 33 tours tentaculaire, il sert de texte fondateur au développement du dark ambient et de la space music, arrivant un an avant l'album séminal de Brian Eno, Ambient 1: Music for Airports. L'album a marqué une transition significative pour le groupe, étant le premier à présenter la formation légendaire composée d'Edgar Froese, Christopher Franke et Peter Baumann. Enregistrée au studio de Dieter Dierks, la production s'éloigne des penchants plus percussifs du Krautrock de leurs œuvres précédentes, optant plutôt pour une structure statique et méditative.\n\nSous-titré « Largo in Four Movements », l'album explore le concept philosophique selon lequel le temps est immobile, se manifestant comme un paysage sonore immersif qui évite le rythme traditionnel au profit de clusters de notes lents et évolutifs. L'orchestration est remarquablement ambitieuse pour l'époque, incorporant une utilisation intensive du synthétiseur VCS3, de l'orgue et de la guitare glissando, aux côtés des apparitions en tant qu'invité de Florian Fricke de Popol Vuh au Moog et du Cologne Cello Quartet sur le morceau d'ouverture, Birth of Liquid Plejades. Zeit demeure l'enregistrement le plus austère et le plus abstrait de Tangerine Dream, une réalisation monolithique qui a été citée par des musiciens comme Steven Wilson comme l'un des albums les plus importants de l'histoire de la musique électronique atmosphérique. C'est une œuvre qui exige de la patience, invitant l'auditeur dans un vide où la musique se fond en texture, établissant le modèle pour des décennies de composition électronique expérimentale.",
+      "source_sha256": "e99678826e93e46c4ba1315c228b4d7a6744100be9b5eef7f0bdb533b1404d99",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:37:21.600Z"
+    }
+  }
 }

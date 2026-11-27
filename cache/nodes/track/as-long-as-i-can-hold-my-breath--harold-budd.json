@@ -74,5 +74,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« As Long as I Can Hold My Breath » est une pièce emblématique du compositeur ambient américain Harold Budd, parue à l'origine sur son album de 2005 « Avalon Sutra ». Budd, figure centrale du développement du minimalisme et de la musique ambient, est réputé pour sa technique de piano « soft pedal ».",
+      "article": "« As Long as I Can Hold My Breath » est une pièce emblématique du compositeur ambient américain Harold Budd, parue à l'origine sur son album de 2005 « Avalon Sutra ». Budd, figure centrale du développement du minimalisme et de la musique ambient, est réputé pour sa technique de piano « soft pedal » — un son défini par un timbre doux, semblable à une cloche, et un sustain qui crée une atmosphère onirique et immersive. Ce morceau sert d'ancrage délicat et introspectif au sein du paysage plus vaste de l'album, illustrant la maîtrise de l'espace et de la résonance par Budd.\n\nTout au long de sa carrière, les compositions de Harold Budd ont fréquemment brouillé les pistes entre musique classique contemporaine et musique électronique ambient. Dans « As Long as I Can Hold My Breath », il emploie un phrasé de piano délibéré et dépouillé qui encourage l'auditeur à ralentir sa perception du temps. Le morceau n'est pas simplement une composition de notes, mais une exploration du déclin du son, qui persiste dans l'air bien après que chaque touche a été frappée. Cette pièce est fréquemment citée comme un moment fort pour ceux qui apprécient l'intersection entre structure minimaliste et vulnérabilité émotionnelle dans la musique instrumentale moderne. Sa présence sur l'album « Avalon Sutra » saisit Budd à une période où il affinait son esthétique caractéristique, consolidant son statut d'architecte légendaire, bien que discret, de paysages sonores modernes. Pour de nombreux auditeurs, le morceau agit comme un point d'entrée méditatif dans la vaste et influente discographie de Budd, illustrant sa capacité à évoquer une immobilité profonde avec une incroyable économie de moyens.",
+      "source_sha256": "277b4447fcaf7cb871c2cca6b3b5adcbfc9d7587f362ac158411260b31d4d739",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:38:15.464Z"
+    }
+  }
 }

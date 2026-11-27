@@ -123,5 +123,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une sortie séminale de 1998 par Autechre qui fait le pont entre leurs racines IDM mélodiques et l'expérimentalisme austère et hautement technique de leur carrière ultérieure.",
+      "article": "LP5, sorti en 1998 sur Warp, constitue un point de pivot critique dans l'évolution du duo électronique anglais Autechre. Souvent désigné simplement sous le nom de « Autechre » ou « Album » en raison de l'absence totale de texte d'identification sur son emballage original, le disque a marqué un changement profond par rapport aux paysages sonores IDM mélodiques et « chaleureux » qui définissaient leurs travaux antérieurs — plus particulièrement sur des albums comme Amber — vers une électronique d'avant-garde plus froide, hautement technique et rythmiquement complexe, qu'ils allaient continuer à explorer. Intégrant des éléments de musique électroacoustique et de traitement sonore numérique, l'album démontre une transition vers un territoire sonore plus rigide, mathématique et abstrait.\n\nTechniquement, LP5 témoigne du processus évolutif du groupe. Comme révélé dans des entretiens ultérieurs, la production a vu le duo utiliser une gamme spécifique de matériel et de logiciels, notamment le Nord Lead 1, le Yamaha DX100 et l'échantillonneur Ensoniq ASR-10. Les rythmes ont été méticuleusement programmés, parfois en utilisant Logic Pro ou des logiciels d'édition sonore spécialisés, reflétant une obsession croissante pour les possibilités génératives de leurs outils. Le morceau « Drane2 » sert de marqueur culturel spécifique au sein de la scène électronique de la fin des années 90 ; il a été explicitement créé comme une réponse sonore directe au morceau « Bucephalus Bouncing Ball » d'Aphex Twin, qui était lui-même une réponse à un morceau antérieur d'Autechre, « Drane ». Cette interaction souligne la relation compétitive mais profondément influente entre les architectes du genre IDM. Rétrospectivement, LP5 est largement considéré comme un sommet de la carrière du duo, équilibrant un accès persistant à leur profondeur émotionnelle antérieure avec les abstractions intenses et stimulantes de leur trajectoire créative ultérieure. Son héritage perdure en tant qu'entrée déterminante dans le canon de l'Intelligent Dance Music, célébré pour sa résistance intransigeante aux conventions.",
+      "source_sha256": "e21de4dd5c04da9b8395e7a910919e3284efd8a227679cf33a6b71b1248bb59e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:21.777Z"
+    }
+  }
 }

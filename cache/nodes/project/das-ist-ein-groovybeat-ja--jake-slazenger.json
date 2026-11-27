@@ -64,5 +64,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre ironique de l'electronica du milieu des années 90, « Das Ist Ein Groovybeat, Ja » de Jake Slazenger constitue une plongée satirique et teintée de lounge de Mike Paradinas dans le renouveau du easy listening alors en plein essor. Mêlant funk synthétique et sensibilités jazz déformées, l'album équilibre précision technique et sens de l'humour distinctement pince-sans-rire, consolidant sa place de classique culte dans la discographie de Warp.",
+      "article": "« Das Ist Ein Groovybeat, Ja » est un disque déterminant dans la carrière prolifique de Mike Paradinas, publié sous son pseudonyme Jake Slazenger par Warp en 1996. Bien que Paradinas soit surtout connu pour son travail pionnier dans l'IDM et le drill 'n' bass sous le nom de µ-Ziq, ce projet l'a vu adopter un personnage parodiant le renouveau « lounge » et « easy listening » du milieu des années 90. L'album capture un moment où les musiciens électroniques ont commencé à se tourner vers la musique de bibliothèque et les bandes originales de télévision des années 1960 et 1970, en les tordant à travers le prisme de l'échantillonnage et de la synthèse modernes.\n\nLa musique de l'album se caractérise par son approche ironique du funk, du jazz et de la soul. Des titres comme « Hung Like A Bull » et « Supafunk » utilisent des accords d'orgue kitsch, des lignes de basse fluides et des breakbeats traités, créant un paysage sonore qui ressemble à une bande originale de jeu télévisé issue d'une réalité alternative plus surréaliste. Contrairement à ses productions plus agressives sous d'autres pseudonymes, le travail de Slazenger est ici léger et ludique, tout en conservant les marques de fabrique de production complexes qui définissaient l'esthétique de Warp à cette époque. Le titre même de l'album se moque du sérieux des scènes krautrock et électroniques allemandes, cimentant l'identité du disque en tant qu'exercice délibéré de subversion esthétique.\n\nAu fil de ses 12 titres, incluant des morceaux marquants comme « Nautilus » et « Slowdance », le projet crée une atmosphère immersive et légère qui refuse d'être prise trop au sérieux. En mariant les textures de la musique commerciale vintage à la complexité rythmique de l'electronica des années 90, Paradinas démontre sa polyvalence en tant que producteur. « Das Ist Ein Groovybeat, Ja » demeure un artefact culte hautement considéré, représentant une pollinisation croisée spécifique de genres qui a brièvement prospéré dans l'ombre de l'explosion de l'Intelligent Dance Music au Royaume-Uni. Son influence persiste dans l'ADN des expériences de plunderphonics et de downtempo qui ont suivi.",
+      "source_sha256": "174f946f6ed2aaf059cd846d130df154e556d85a756f64af2076ae66539794db",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:20:22.661Z"
+    }
+  }
 }

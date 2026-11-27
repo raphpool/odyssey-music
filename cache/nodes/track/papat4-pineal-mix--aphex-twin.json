@@ -55,5 +55,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un morceau d'IDM caractéristique et complexe issu de l'album du retour d'Aphex Twin en 2014, « Syro », mettant en vedette des percussions rapides et des textures extraterrestres emblématiques.",
+      "article": "Publié à l'origine en 2014 dans le cadre de l'album phare « Syro », « Papat4 (Pineal Mix) » représente un moment clé du retour de Richard D. James sur la scène de la musique électronique. En tant que premier album studio complet d'Aphex Twin en plus d'une décennie, « Syro » était très attendu, et des morceaux comme « Papat4 » ont servi à confirmer que James n'avait rien perdu de son étrange capacité à mêler une programmation de batterie complexe et agressive à un travail de synthétiseur riche et émotionnel. Le morceau, d'une durée d'environ 4 minutes et 18 secondes, démontre les sensibilités « drill 'n' bass » dont il a été le pionnier, tout en conservant une esthétique raffinée et soignée en studio qui le distingue de ses productions plus chaotiques des années 90. Son titre, typique de la nomenclature énigmatique associée à l'ère « Syro », souligne l'accent mis sur la précision technique et la synthèse expérimentale qui ont défini la production de l'album. En intégrant des rythmes saccadés et hyper-cinétiques à des changements mélodiques inattendus, la pièce demeure un exemple convaincant de l'influence durable de l'artiste sur l'intelligent dance music (IDM) moderne. Elle témoigne de la capacité de James à innover au sein de son propre vernaculaire sonore établi, se révélant à la fois nostalgique et tournée vers l'avenir dans son exécution. Le morceau a été publié via Warp Records, consolidant sa place dans la lignée du label influent qui a accueilli une grande partie des travaux les plus significatifs de James depuis le début des années 1990. Sa réception a davantage solidifié la pertinence durable de sa voix artistique à l'ère électronique moderne.",
+      "source_sha256": "bc11ff2e1ee9690adf34a1e269b04dc757569a5c3998f5ac1c1aa96006f13b84",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:47:15.926Z"
+    }
+  }
 }

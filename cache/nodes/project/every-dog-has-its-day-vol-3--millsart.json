@@ -94,5 +94,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Every Dog Has Its Day vol. 3 est une collection remarquable de musique électronique du légendaire producteur de techno Jeff Mills, publiée sous son alias Millsart. Initialement conceptualisée en 2002, cette parution sert de contrepoint atmosphérique et profondément introspectif à la techno à haute vélocité aux accents industriels pour laquelle il est le plus connu, offrant un voyage sonore destiné à apaiser l'impatience et à élever les attentes.",
+      "article": "Every Dog Has Its Day vol. 3 constitue un volet charnière de la discographie de Jeff Mills, mettant spécifiquement en avant son pseudonyme Millsart, plus mélodique et introspectif. Bien que Mills soit synonyme des paysages sonores brutalistes et mécaniques qui ont défini l'esthétique de la techno de Detroit dans les années 1990, le projet Millsart sert de laboratoire pour l'exploration atmosphérique et la curiosité texturale. Initialement publié en 2002 sur Axis, ce volume est méticuleusement conçu pour être une expérience d'écoute thérapeutique, destinée — comme Mills lui-même l'a décrit — à « apaiser l'agitation et à susciter de grandes attentes » à travers un prisme électronique raffiné.\n\nMusicalement, le projet s'éloigne de la techno incisive et taillée pour les clubs de ses sorties majeures. Il penche plutôt vers des synthétiseurs fluides, des séquences rythmiques qui pulsent avec intention plutôt qu'avec agressivité, et un sens de l'espace qui semble distinctement cosmique. Des titres tels que Planets And Satellites et Asteroid soulignent ce départ, privilégiant une narration sonore qui ressemble autant à une méditation ambient-techno qu'à une expérimentation pour piste de danse. Le disque invite l'auditeur à comprendre le temps et l'anticipation, encadrant l'acte d'écoute comme un moyen de débloquer des passages de découverte personnelle.\n\nEn publiant cela sous l'alias Millsart, Jeff Mills a effectivement séparé son identité techno commerciale à haute énergie de son travail plus expérimental et introspectif, permettant une liberté créative qui a influencé une génération d'artistes explorant l'intersection de la deep techno et de la musique ambient. Le statut durable du disque — démontré par sa réédition et sa disponibilité continue via Axis — le cimente comme une pièce cruciale de l'évolution de la techno de Detroit, prouvant que la prouesse technique de Mills est aussi efficace dans la contemplation silencieuse qu'elle l'est pour faire danser un entrepôt rempli de monde. C'est une œuvre qui exige de la patience, récompensant l'auditeur avec des couches de sons synthétiques riches qui s'épanouissent avec le temps.",
+      "source_sha256": "b2328ec362b5fa0d9ac07a585df13326003a664a58ff91d0f1f862da473a894a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:22:25.731Z"
+    }
+  }
 }

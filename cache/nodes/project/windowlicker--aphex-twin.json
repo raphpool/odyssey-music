@@ -57,5 +57,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre défiant les genres de l'electronica de la fin des années 90, Windowlicker a consolidé l'influence d'Aphex Twin grâce à son mélange de R&B glitch, de manipulation vocale surréaliste et d'œufs de Pâques visuels cachés.",
+      "article": "Sorti en mars 1999 sur Warp, Windowlicker demeure l'une des œuvres les plus emblématiques et influentes de la discographie de Richard D. James, sous son alias Aphex Twin. Single marquant qui a comblé le fossé entre la composition électronique expérimentale et une production accessible axée sur le rythme, le morceau-titre se caractérise par son intégration intelligente de breakbeats traités, d'harmonies vocales aiguës et d'atmosphères étranges rappelant le lounge. Il a défié les frontières des genres, ayant été décrit comme tout à la fois du « R&B cyborg sans compromis » et une déconstruction du hip-hop filtrée à travers le prisme du glitch et du noise.\n\nAu-delà de la composition elle-même, le projet est culturellement significatif pour ses éléments techniques et visuels innovants. En collaborant avec le réalisateur Chris Cunningham, James a conçu un clip vidéo qui reste un pilier de la culture électronique. De plus, James a utilisé le logiciel MetaSynth pour intégrer une spirale visuelle cachée dans le spectrogramme haute fréquence du morceau, une prouesse technique qui a renforcé sa réputation d'artiste cryptique. Les faces B de la sortie, en particulier le morceau célèbre pour son titre sous forme de formule mathématique et le délicat Nannou, ont démontré l'étendue de sa palette sonore. Windowlicker a fait plus que simplement se classer dans les charts britanniques ; son influence sur la syncope, la production numérique et le son en évolution de la scène électronique des années 2000 a été profonde, des artistes comme Daft Punk le citant comme une référence stylistique majeure pour leur propre évolution. Aujourd'hui, il reste un pilier de l'IDM et un texte fondateur pour quiconque explore l'intersection entre sensibilité pop et musique électronique d'avant-garde.",
+      "source_sha256": "e6c74240047d23890e6af75ec2fbdc693083403bfd34171d12d7b13d0b9ae392",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:37:16.361Z"
+    }
+  }
 }

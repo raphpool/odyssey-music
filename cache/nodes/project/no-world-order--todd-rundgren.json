@@ -53,5 +53,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Expérience multimédia ambitieuse de 1993 menée par Todd Rundgren (sous le nom de TR-i), No World Order est reconnu comme le premier album interactif, permettant aux auditeurs de réorganiser des segments musicaux modulaires en temps réel via la plateforme Philips CD-i.",
+      "article": "Sorti en 1993, No World Order s'impose comme une œuvre expérimentale majeure du multi-instrumentiste et producteur américain Todd Rundgren, enregistrée sous son pseudonyme TR-i. Il occupe une place singulière dans l'histoire de la musique en tant que premier album véritablement interactif. Développé spécifiquement pour la plateforme multimédia Philips CD-i, le projet a été conçu pour briser la nature statique de la musique enregistrée en permettant à l'auditeur de manipuler la lecture en temps réel. En utilisant une interface contrôlant le tempo, l'ambiance, la complexité du mixage et la forme musicale, les utilisateurs pouvaient réorganiser des segments de musique — composés de plus de 900 cellules musicales individuelles de quatre mesures — pour créer une expérience personnalisée.\n\nAu-delà de son ambition technique, l'album est un instantané fascinant de l'intérêt de Todd Rundgren pour la collision entre le rock, l'electronica et le hip-hop. La musique elle-même a été conçue pour être modulaire, garantissant que les transitions entre les segments sélectionnés par l'utilisateur restent fluides, quel que soit l'ordre dans lequel ils étaient joués. Bien que la version CD-i interactive ait offert l'implémentation la plus avancée, Todd Rundgren a également publié une version CD linéaire traditionnelle, qui servait de « mix de Rundgren » organisé, puis une édition plus conventionnelle orientée vers les chansons intitulée No World Order Lite. Le projet a été salué par la communauté des médias interactifs pour sa vision pionnière d'un support musical non linéaire, se révélant avoir des années d'avance sur l'ère du streaming algorithmique qui définirait plus tard la manière dont le public consomme la musique. L'expérience No World Order demeure un témoignage de la stature de longue date de Todd Rundgren en tant que futuriste musical cherchant constamment à défier les frontières entre le créateur et l'auditeur.",
+      "source_sha256": "37a488ab2c99ef09e6191d387844539c3d1e0f2d03a18cf4edd07f88b1358e9d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:30:13.767Z"
+    }
+  }
 }

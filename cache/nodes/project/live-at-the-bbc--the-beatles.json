@@ -69,5 +69,14 @@
       "type": "project",
       "name": "On Air – Live at the BBC Volume 2"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Une collection définitive des premières prestations radiophoniques des Beatles, capturant l'énergie brute des sessions de studio du groupe entre 1963 et 1965.",
+      "article": "Live at the BBC est une compilation parue en 1994 regroupant des prestations des Beatles qui furent initialement diffusées sur diverses émissions de radio du BBC Light Programme entre 1963 et 1965. L'album constitue un document historique essentiel sur l'évolution du groupe, capturant des prestations « live in studio » qui reflètent le répertoire de scène qu'ils ont perfectionné au sommet de la Beatlemania. Composée de 56 chansons et de 13 pistes de dialogue, cette parution fut significative en incluant 30 chansons qui n'avaient jamais été publiées auparavant par le groupe. Elle a marqué la première sortie officielle de prestations inédites depuis 1977 et a offert aux fans une alternative de haute qualité aux collections pirates exhaustives qui circulaient depuis des années. Le matériel, enregistré lors de 52 apparitions différentes à la radio de la BBC, met en valeur le répertoire précoce du groupe, qui reposait largement sur des reprises de morceaux de rhythm and blues et de rock and roll de la fin des années 1950 et du début des années 1960. L'album a été remasterisé et réédité en 2013 pour coïncider avec la sortie d'un second volume d'émissions de la BBC, consolidant davantage sa place dans la discographie des Beatles en tant que regard définitif sur leurs années de formation sur les ondes.",
+      "source_sha256": "e13618e8116e80eeef82710fcc4fc9e9434c167dd979e37243df6efa14279ea6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:15.696Z"
+    }
+  }
 }

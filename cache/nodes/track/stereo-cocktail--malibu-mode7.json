@@ -49,5 +49,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Stereo Cocktail » est un morceau marquant de l'artiste électronique originaire de l'Oregon Malibu Mode7, sorti le 16 juillet 2019 dans le cadre du projet Blue Crush.",
+      "article": "« Stereo Cocktail » est un morceau marquant de l'artiste électronique originaire de l'Oregon Malibu Mode7, sorti le 16 juillet 2019 dans le cadre du projet Blue Crush. Malibu Mode7, également associé au label Sunset Hotline, s'est taillé une place en réimaginant des paysages sonores classiques à travers une esthétique authentique axée sur le chiptune et les banques de sons. Le morceau incarne le style caractéristique du producteur, qui sert de pont entre les atmosphères empreintes de nostalgie de la vaporwave et l'énergie rythmique précise du chiptune et de la synthwave.\n\nBlue Crush, l'album dont est extrait « Stereo Cocktail », est décrit par l'artiste comme capturant un « paradisio onirique », mêlant des hauts et des bas qui se déplacent avec la fluidité des vagues océaniques. La chanson elle-même, d'une durée de 3 minutes et 28 secondes, utilise le penchant du producteur pour les textures lo-fi et pixélisées qui évoquent un passé brumeux et reconstruit. En tissant ces éléments sonores, Malibu Mode7 crée un son à la fois rétro-futuriste et intimement familier pour les fans des sous-cultures vaporwave et chiptune. La sortie du morceau a coïncidé avec une période de croissance pour l'artiste au sein de ces communautés électroniques, où de tels paysages sonores recontextualisés ont trouvé un public dédié sur des plateformes comme Bandcamp. À travers « Stereo Cocktail », Malibu Mode7 encapsule efficacement l'essence de son projet créatif : la synthèse de l'artifice numérique pixélisé avec les ambiances luxuriantes et brumeuses de la pop électronique moderne.",
+      "source_sha256": "09e5d807456053a42283745856b3cdc6901bfa87c8b7523e572fc76f46850bcd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:49:22.992Z"
+    }
+  }
 }

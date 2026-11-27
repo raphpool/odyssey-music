@@ -24,5 +24,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Premier album révolutionnaire de dark ambient, Nunatak Gongamur, sorti en 1990 par Thomas Köner, est une leçon magistrale de design sonore minimaliste, entièrement construit à partir de la résonance traitée de gongs pour créer une atmosphère d'isolement profond et glacial.",
+      "article": "Sorti en 1990 sur le label indépendant Barooni, Nunatak Gongamur constitue l'entrée fondatrice et glaçante de la discographie du musicien électronique allemand Thomas Köner. Ce premier album studio est un jalon dans l'évolution de la dark ambient, réduisant le son à son essence la plus élémentaire et obsédante. Tout au long de ses près de 50 minutes, Köner crée un paysage sonore immersif et glacial en utilisant une seule source traitée électroniquement : le gong. Par une manipulation rigoureuse, des délais et un retraitement, ces vibrations métalliques sont transmutées en drones caverneux à basse fréquence qui évoquent l'isolement désolé et gelé suggéré par le titre de l'album — un « nunatak » étant un sommet montagneux qui émerge d'un champ de glace environnant.\n\nL'esthétique de l'album est austère et sans compromis, évitant la mélodie et le rythme traditionnels au profit d'une expérience monolithique et méditative. En isolant le timbre résonnant du gong et en l'étendant en vastes textures souterraines, Köner a établi un modèle pour le « deep listening » et le design sonore environnemental qui définirait une grande partie de son travail ultérieur. Souvent cité pour son influence profonde sur les mouvements dark ambient et drone, Nunatak Gongamur demeure une référence pour les auditeurs en quête d'intensité minimaliste. La production, assistée par Roland Speckle, souligne la physicalité pure du son, créant un espace où l'auditeur ressent le poids du silence autant que la résonance des gongs traités. Il s'agit d'un chef-d'œuvre précoce du minimalisme, documentant la naissance d'un style signature qui articule magistralement la nature sublime des paysages sonores froids et atmosphériques.",
+      "source_sha256": "86f0751ec2267fd7812a4494a8d92ef7af52f88ac64623ee788d5a4c6078d629",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:30:15.762Z"
+    }
+  }
 }

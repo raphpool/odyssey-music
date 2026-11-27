@@ -47,5 +47,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Rev8617 » est un morceau séminal du producteur électronique allemand Skee Mask, sorti en 2018 en tant que titre phare de son album acclamé Compro.",
+      "article": "« Rev8617 » est un morceau séminal du producteur électronique allemand Skee Mask, sorti en 2018 en tant que titre phare de son album acclamé Compro. Émergeant du terreau fertile du label Ilian Tape, devenu synonyme d'une approche unique et haute fidélité de la techno moderne et de l'IDM, le morceau incarne la capacité du producteur à mêler des structures rythmiques entraînantes à une conception sonore complexe et émotive. Dans le contexte de Compro, « Rev8617 » fait office de pont entre la précision clinique de la techno expérimentale contemporaine et une sensibilité atmosphérique plus nostalgique.\n\nLe morceau se caractérise par ses percussions agitées imprégnées de breakbeat et une palette de synthétiseurs scintillants, presque éthérés, qui semblent à la fois ancrés dans la culture sound-system et élevés par une composition personnelle et introspective. Skee Mask, connu dans la vie privée sous le nom de Bryan Müller, utilise ce morceau pour mettre en avant son style de production caractéristique : des transitoires propres et percutants superposés à des motifs de batterie complexes et changeants qui invitent l'auditeur à s'engager à un niveau à la fois physique et cérébral. Lors de sa sortie, Compro a été largement salué pour la cohérence de son univers sonore, et « Rev8617 » demeure l'un des exemples les plus fréquemment cités pour expliquer pourquoi Skee Mask est devenu une figure centrale du paysage de la musique électronique de la fin des années 2010. Il ne s'agit pas simplement d'un outil pour le dancefloor, mais d'une pièce d'architecture sonore qui équilibre prouesse technique et chaleur palpable et douce-amère, consolidant sa place en tant que jalon de la résurgence de l'intelligent dance music de cette époque.",
+      "source_sha256": "207a90dcacae65f067c6f8c6dbb5381976353373d82b3116f9d7833fcbe1d21d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:20.750Z"
+    }
+  }
 }

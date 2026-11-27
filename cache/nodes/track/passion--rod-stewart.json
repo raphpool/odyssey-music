@@ -82,5 +82,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Hymne pop-rock entraînant de 1980 signé Rod Stewart, « Passion » explore l'agitation urbaine mondiale à travers le prisme d'un son à succès qui a défini le début des années 80.",
+      "article": "« Passion » est un morceau pop-rock par excellence de l'auteur-compositeur-interprète britannique Rod Stewart, sorti en 1980 en tant que premier single de son dixième album studio, Foolish Behaviour. Caractérisée par son rythme entraînant, sa production soignée et une interprétation vocale persistante et rythmée, la chanson capture une intersection polie entre le disco tardif et la new-wave qui a marqué la production de Stewart à l'aube des années 1980. Sur le plan lyrique, la chanson explore les thèmes du malaise urbain, de la solitude et de la quête universelle et incessante de connexion — ou « passion » — à travers des villes mondiales, de New York à Moscou et Tokyo.\n\nLe morceau reflète un effort collaboratif significatif, crédité à la force créative collective de The Rod Stewart Group, incluant Phil Chen, Kevin Savigar, Jim Cregan et Gary Grainger, avec la contribution à la production de Andy Johns. Son succès a été marqué par une performance dans le top 20 mondial, atteignant la cinquième place des classements Billboard aux États-Unis, consolidant son statut d'élément incontournable du répertoire de Stewart au début des années 80. Le paysage sonore du morceau est défini par le travail proéminent aux claviers de Savigar et un arrangement net et serré qui a comblé le fossé entre les racines rock de Stewart et les sons dansants contemporains de l'époque. Au-delà de son omniprésence à la radio, la chanson a maintenu une présence culturelle, étant associée plus tard à l'esthétique du cinéma pour adultes des années 1980. À travers son refrain persistant, « Passion » sert à la fois d'hymne littéral et métaphorique à l'énergie agitée de la décennie, illustrant la capacité caméléon de Stewart à s'adapter aux paysages musicaux changeants sans sacrifier son identité vocale rauque caractéristique.",
+      "source_sha256": "1643c5a7e62180b25358bd8be9e5a3ee5ebff845902c6e54696384132f72159b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:47:17.446Z"
+    }
+  }
 }

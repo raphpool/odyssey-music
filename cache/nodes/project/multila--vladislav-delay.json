@@ -116,5 +116,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre déterminant de la dub techno au tournant du millénaire, tissant des textures ambiantes obsédantes avec une production méticuleuse et chargée de glitch.",
+      "article": "Multila, sorti en 2000 sur le légendaire label Chain Reaction, s'impose comme un monument déterminant de la scène dub techno au tournant du millénaire. Orchestré par le visionnaire finlandais Sasu Ripatti sous son pseudonyme Vladislav Delay, le disque fonctionnait à l'origine comme une compilation de deux EP antérieurs, « Huone » et « Ranta », qui avaient été publiés par le label en 1999 et 2000. Malgré ses origines fonctionnelles en tant que collection, Multila possède une identité sonore singulière et cohérente qui transcende ses parties, l'établissant comme l'une des œuvres les plus significatives de la carrière prolifique de Ripatti.\n\nL'album est célébré pour son exploration dense, atmosphérique et hautement texturée de la techno minimale et imprégnée de dub. Il équilibre des pièces plus courtes et obsédantes avec la pièce centrale colossale de 22 minutes, « Huone », une odyssée qui illustre la technique de production méticuleuse et chargée de glitch qui allait définir le son de Vladislav Delay. En tissant des éléments d'IDM, de glitch et de dub-techno dans un paysage froid et immersif, Ripatti a repoussé les limites du son de Chain Reaction, créant une œuvre qui demeure profondément influente. Des décennies plus tard, son impact continue de résonner, notamment cité par des artistes tels que Animal Collective comme une influence majeure, renforçant encore son statut de classique intemporel au sein de la musique électronique expérimentale. Son héritage est préservé par des rééditions périodiques, dont une remastérisation en 2020 par Rashad Becker, garantissant que ses couches complexes et changeantes restent accessibles aux nouveaux auditeurs.",
+      "source_sha256": "557632e5063d0ab2f435b0cf0b9d3c2dc7781b793eb26b9490e5a83d278aee66",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:28:21.420Z"
+    }
+  }
 }

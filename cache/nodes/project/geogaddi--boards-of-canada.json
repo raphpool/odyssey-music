@@ -258,5 +258,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre sombre et claustrophobe de la musique électronique, Geogaddi est un voyage dense et hypnotique à travers des textures analogiques aux thématiques occultes et des paysages sonores paranoïaques complexes. Il marque le virage définitif de Boards of Canada vers l'étrange et l'ésotérique, consolidant leur héritage dans le canon de l'IDM.",
+      "article": "Sorti en février 2002 sur Warp, Geogaddi est le deuxième album studio du duo électronique écossais Boards of Canada, composé des frères Marcus Eoin et Michael Sandison. Enregistré entre 1999 et 2001 dans le studio isolé du duo, Hexagon Sun, situé dans les Pentland Hills, l'album fait office de successeur plus claustrophobe, plus sombre et plus complexe à leur premier album séminal de 1998, Music Has the Right to Children. Alors que les premiers travaux du duo étaient marqués par un pastoralisme nostalgique et baigné de soleil, Geogaddi s'oriente vers le cryptique et le troublant.\n\nLe processus créatif de l'album fut notoirement obsessionnel ; le duo a enregistré plus de 90 morceaux, les distillant en une séquence finale de 23 titres qui agit comme un voyage unifié et tortueux. La palette sonore est profondément texturée, caractérisée par des synthétiseurs analogiques lourdement traités, des instruments acoustiques manipulés — incluant flûtes et guitares — et une utilisation complexe de couches de sous-fréquences, de messages inversés et de messages subliminaux. Les références thématiques tout au long de l'album suggèrent des plongées profondes dans la numérologie, l'occultisme, le folklore païen et les sectes religieuses, inspirées en partie par le film d'horreur de 1973 The Wicker Man et la musique folk de The Incredible String Band. De plus, la production fut notablement influencée par le traumatisme national ambiant des attentats du 11 septembre, ce qui a accentué la paranoïa et la tension inhérentes à l'album. En mêlant effroi hantologique et production IDM méticuleuse, Geogaddi a solidifié la réputation de Boards of Canada en tant que maîtres de l'atmosphère et de l'énigme, et demeure un artefact déterminant, souvent scruté, de la musique électronique du début des années 2000.",
+      "source_sha256": "2595d211bb9116bbba494b73f27b3e4b3297e9164f029eff640aa43bd77d1d5a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:23:22.619Z"
+    }
+  }
 }

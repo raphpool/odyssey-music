@@ -145,5 +145,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon de la pop expérimentale des années 1960, cet album-concept « perdu » de Joe Meek et The Blue Men est un voyage imaginatif et pionnier dans des paysages sonores électroniques de l'ère spatiale, créés à l'aide de bulles éclatées, de bouteilles entrechoquées et d'une ingéniosité de studio pure.",
+      "article": "I Hear a New World est un album-concept électronique pionnier produit par le visionnaire producteur de disques anglais Joe Meek en 1960. Initialement conçu comme une exploration complète des mystères de l'espace, le projet fut écourté par l'effondrement financier du propre label de Meek, Triumph Records. Au moment de sa sortie initiale, seul un EP quatre titres réussit à voir le jour, laissant l'album complet exister en grande partie comme un chef-d'œuvre mythique et inédit pendant des décennies. Ce n'est qu'en 1991 que l'album complet fut finalement publié, consolidant sa place en tant que pierre angulaire de l'avant-pop et de la musique électronique expérimentale.\n\nMusicalement, l'album témoigne de l'ingéniosité obsessionnelle et « bricolée » de Meek. Travaillant depuis son studio personnel à Holland Park, Meek a employé des techniques peu orthodoxes — telles que faire des bulles dans l'eau, frapper des bouteilles de lait avec des cuillères et manipuler l'électricité — pour évoquer des paysages sonores rappelant les contrées extraterrestres qu'il imaginait exister ailleurs dans le système solaire. Bien que ces méthodes fussent ancrées dans le quotidien, les sons qui en résultaient étaient radicalement futuristes pour 1960. Aidé par les musiciens de studio connus sous le nom de The Blue Men (dirigés par Rod Freeman), l'album a mélangé des sensibilités skiffle et rock-and-roll naissant avec des traitements vocaux à haute fréquence et une production stéréophonique pionnière. En fusionnant des sons terrestres tangibles avec des concepts extraterrestres, Meek a créé une expérience surréaliste et flottante qui a influencé des générations d'artistes expérimentaux, des pionniers de l'électronique aux innovateurs de l'indie-pop de la fin du 20e siècle. Aujourd'hui, I Hear a New World est célébré non seulement comme une curiosité sonore, mais comme une tentative audacieuse et précoce de cartographier le son du futur.",
+      "source_sha256": "26523b87e3f71c4e846158b60c3faaea0bc75710ae8f443b65056b7c11ac5667",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:15.380Z"
+    }
+  }
 }

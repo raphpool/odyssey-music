@@ -46,5 +46,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« The Judgement » est un mini-album puissant de 2022 du supergroupe d'anison japonais de longue date JAM Project, mêlant des arrangements de heavy metal orchestral intenses à leur interprétation vocale caractéristique à haut indice d'octane. La collection explore des thèmes sombres et introspectifs, se déplaçant à travers un arc narratif qui culmine dans des morceaux de rédemption et de lutte existentielle.",
+      "article": "Sorti en septembre 2022, « The Judgement » s'impose comme un EP conceptuel significatif de JAM Project, le célèbre supergroupe japonais d'« anison » (chanson d'anime) connu pour ses hymnes tonitruants imprégnés de heavy metal. Depuis sa formation en 2000, le groupe — composé de chanteurs vétérans comme Hironobu Kageyama et Masaaki Endoh — est synonyme de l'intensité débordante requise pour les génériques d'anime shonen et les bandes originales de jeux vidéo. « The Judgement », cependant, penche vers une narration thématique plus cohérente, allant au-delà de l'utilité d'un simple morceau pour offrir un voyage sonore structuré.\n\nL'EP, contenant sept titres, utilise un mélange d'éléments de metal symphonique, de rock progressif et de hard rock que JAM Project a perfectionné au cours de deux décennies. Musicalement, la sortie est caractérisée par une instrumentation technique et serrée qui met en valeur les prouesses vocales individuelles de ses membres. Des chansons comme « Karma ~the dark side of human nature~ » et « Atonement » reflètent un changement tonal vers le dramatique et le sombre, illustrant la capacité du groupe à équilibrer son énergie explosive habituelle avec une écriture contemplative aux teintes sombres. Le projet sert à la fois de témoignage de l'influence durable du groupe dans l'industrie musicale japonaise et de sa volonté continue d'expérimenter avec les conventions du genre anison. Pour les fans comme pour les nouveaux venus, il représente une offre polie, intense et profondément théâtrale qui honore l'héritage du groupe tout en poussant son son vers des paysages plus matures et émotifs. La valeur de production est caractéristiquement élevée, capturant l'esprit grandiloquent d'une performance en arène tout en maintenant les détails complexes nécessaires à l'enregistrement en studio. Il demeure une entrée remarquable dans le vaste catalogue du groupe, riche de plusieurs décennies.",
+      "source_sha256": "671f47830bab99c80da8c8d5b95f2923f730bdeafd84dfd50c6ed22783ecdc6b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:35:13.998Z"
+    }
+  }
 }

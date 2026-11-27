@@ -55,5 +55,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une pièce hypnotique et expansive de minimal techno extraite de l'album phare de Ricardo Villalobos paru en 2003, 'Alcachofa'.",
+      "article": "« Theogenese » est un morceau marquant de l'album de minimal techno séminal de Ricardo Villalobos paru en 2003, 'Alcachofa'. Publié sur le label influent Playhouse, le titre illustre l'esthétique de production unique qui a consolidé la réputation de Villalobos sur la scène de la musique électronique du début des années 2000. D'une durée de plus de neuf minutes, « Theogenese » incarne la sensibilité hypnotique et axée sur le groove de la minimal techno de cette époque, caractérisée par des percussions complexes et superposées ainsi que par des textures rythmiques subtiles et évolutives qui se déploient avec une patience délibérée.\n\nEn tant que composante essentielle de 'Alcachofa', largement considéré comme une sortie marquante pour les sous-genres microhouse et minimal, « Theogenese » démontre la maîtrise de Villalobos en matière de boucles électroniques aux sonorités organiques et de micro-échantillons. Contrairement à la techno plus entraînante et destinée aux heures de pointe de cette période, le morceau privilégie une atmosphère profonde et cérébrale qui donne la priorité au développement rythmique et à la texture sonore plutôt qu'aux structures pop traditionnelles. Les techniques de production présentes ici — impliquant souvent de longues séquences changeantes et des fréquences soigneusement modulées — soulignent l'intérêt du producteur pour le dancefloor en tant qu'espace d'immersion psychologique, une marque de fabrique qui continuera de définir son travail tout au long de sa carrière sur la scène électronique berlinoise et au-delà. 'Alcachofa' a servi de pont entre la précision clinique de la minimal techno du début des années 2000 et une palette sonore plus fluide et organique qui a trouvé un écho bien au-delà des limites du genre.",
+      "source_sha256": "277e0a5ea1abeae150189b5a1b4d1581a8acfcaafc83e6358882cf5783b65265",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:26.892Z"
+    }
+  }
 }

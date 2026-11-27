@@ -84,5 +84,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon de la musique électronique de danse, le premier album d'Underworld en tant que trio synthétise les textures brutes des pistes de danse des années 90 avec la narration poétique et le flux de conscience de Karl Hyde. Il demeure une œuvre séminale qui a comblé le fossé entre la culture rave underground et l'ambition artistique.",
+      "article": "Sorti le 24 janvier 1994 sur le légendaire label Junior Boy's Own, Dubnobasswithmyheadman a marqué une transformation décisive pour Underworld. Après une période infructueuse en tant que groupe de synth-pop dans les années 80, le duo central composé de Karl Hyde et Rick Smith a recruté le jeune DJ Darren Emerson, réalignant ainsi efficacement leur son sur la scène électronique britannique en plein essor. L'album constitue une synthèse vaste et tentaculaire d'acid house, de dub et de techno, caractérisée par une approche de production fluide et improvisée où boucles, échantillons et fragments vocaux étaient constamment remodelés.\n\nLe contenu lyrique du disque, dont une grande partie a été écrite par Karl Hyde lors de ses voyages aux États-Unis, penche fortement vers une poésie observationnelle surréaliste et basée sur le flux de conscience. Des titres comme « Dark & Long » et « Mmm... Skyscraper I Love You » capturent de manière vivante l'aliénation urbaine et l'énergie cinétique de villes comme New York ainsi que les grands espaces du Midwest américain. Cette tension sonore et lyrique — ancrée dans des rythmes bruts orientés vers les clubs mais élevée par les voix lettrées et impressionnistes de Hyde — s'est révélée profondément influente, contribuant à sortir la musique de danse des tentes de rave pour l'amener dans le domaine de l'écoute introspective et artistique.\n\nAu-delà de la musique, l'esthétique de l'album, conçue par le collectif Tomato, est devenue synonyme du design graphique « grunge » des années 90. Sa typographie dense et fragmentée ainsi que son style visuel chaotique ont établi une nouvelle norme pour le packaging de la musique de danse, consolidant l'identité du groupe en tant qu'unité artistique interdisciplinaire. Des décennies plus tard, Dubnobasswithmyheadman est toujours salué comme un texte fondateur de l'intelligent dance music, illustrant le moment où Underworld est passé du statut de survivant de l'industrie à celui de l'un des groupes électroniques les plus innovants et durables de l'histoire. Il reste un document essentiel des années 1990, capturant une intersection unique entre culture club, production expérimentale et écriture littéraire.",
+      "source_sha256": "c76bfee3d811a2aa85ccecd34c0aedbd3b108acfaa021960e07092ab940bc79e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:21.605Z"
+    }
+  }
 }

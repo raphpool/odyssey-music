@@ -83,5 +83,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre fondateur de la dub-techno berlinoise des années 1990, définissant l'esthétique austère et caverneuse du label Basic Channel.",
+      "article": "Phylyps Trak est un EP 12 pouces séminal publié en 1993 par le légendaire duo berlinois Basic Channel, composé de Moritz von Oswald et Mark Ernestus. En tant que deuxième entrée au catalogue de leur label éponyme (BC 02), cette sortie représente un moment fondateur dans l'évolution de la dub-techno. Le projet se caractérise par son esthétique austère, hypnotique et lourdement traitée, repoussant les limites de la forme techno grâce à l'utilisation caractéristique par le duo de techniques de studio dub lourdes, de chaleur analogique et de paysages sonores expansifs.\n\nL'EP se compose de trois titres — Phylyps Trak, Phylyps Base et Axis — qui témoignent tous d'une approche méticuleuse de la production, privilégiant la texture sonore et les grooves profonds et répétitifs aux structures de chansons conventionnelles. En dépouillant la techno jusqu'à son essence squelettique et en y injectant une réverbération et un écho caverneux imprégnés de dub, Basic Channel a défini un langage sonore unique qui influencerait des générations de producteurs de musique électronique. Le projet demeure une pierre angulaire de la scène électronique berlinoise des années 1990, comblant le fossé entre la précision mécanique de la techno de Detroit et la qualité méditative et spacieuse du dub jamaïcain. Phylyps Trak n'est pas simplement un disque ; c'est un modèle structurel pour la techno minimaliste et profonde qui continue de définir une grande partie de la musique de danse expérimentale moderne. Son impact se répercute dans le travail d'innombrables artistes contemporains qui s'inspirent de la maîtrise du duo en matière de manipulation de fréquences et d'atmosphère spatiale.",
+      "source_sha256": "9381b73f91f928ee875dd1bad73ddbb22a7afc316a29d7b802ebd75b9354d683",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:31:15.367Z"
+    }
+  }
 }

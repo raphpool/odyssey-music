@@ -117,5 +117,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Cylobian Sunset est une collection captivante d'IDM et d'electronica ambient du producteur Cylob, présentant un mélange de rythmes saccadés, de mélodies sauvages et de paysages sonores cinématographiques luxuriants. L'album est très apprécié pour sa personnalité distincte et sa technicité émotive, suscitant souvent des comparaisons favorables avec l'esthétique innovante et décalée initiée par des artistes comme Aphex Twin.",
+      "article": "Cylobian Sunset s'impose comme une parution marquante dans la discographie du producteur électronique britannique Cylob, capturant l'esprit nuancé, ludique et souvent discordant de l'Intelligent Dance Music (IDM) du milieu des années 90. Publié indépendamment via les propres canaux de l'artiste, le projet témoigne de la polyvalence du genre, passant avec fluidité de morceaux agressifs et rythmiquement complexes à des paysages sonores fragiles aux accents ambient. Les auditeurs comme les critiques ont loué l'album pour son atmosphère cohérente mais aventureuse, notant comment des titres comme « Synek » et « Diof » reflètent une maîtrise magistrale de la synthèse numérique et des structures mélodiques non conventionnelles.\n\nLe projet est fréquemment souligné pour sa qualité cinématographique, utilisant efficacement la texture et l'espace pour évoquer un sentiment de « robo-emo » — un descripteur souvent utilisé par les fans pour caractériser l'équilibre entre une programmation froide et calculée et une profondeur émotionnelle authentique et déchirante. L'influence de l'ère Rephlex Records est palpable tout au long de l'œuvre, la production reflétant le jeu mélodique malicieux et cérébral souvent associé à Aphex Twin. Des rythmes frénétiques et saccadés de « Ofid » au poids atmosphérique du morceau-titre, « Cylobian Sunset » demeure une pierre angulaire pour ceux qui s'intéressent à l'évolution de l'IDM, continuant de résonner auprès des auditeurs qui valorisent à la fois la précision technique et le charme mélodique. Il reste un point d'entrée définitif pour explorer la vaste palette créative de Cylob, offrant une fenêtre sur une période de la musique électronique où l'expérimentation technique était profondément liée à l'expression thématique.",
+      "source_sha256": "ec25312d28e5e726f94731527f0e3d2c6dcf87021bdce4cdf36e36c1cafafc65",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:20:20.967Z"
+    }
+  }
 }

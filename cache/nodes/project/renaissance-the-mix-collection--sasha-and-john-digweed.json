@@ -72,5 +72,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Renaissance: The Mix Collection, sorti en 1994, est une compilation historique qui a effectivement défini le modèle de l'album de mix DJ commercial moderne.",
+      "article": "Renaissance: The Mix Collection, sorti en 1994, est une compilation historique qui a effectivement défini le modèle de l'album de mix DJ commercial moderne. Mixée par le duo emblématique Sasha & John Digweed, cette parution était une extension directe de leur résidence légendaire au club Renaissance au Royaume-Uni. Au moment de sa sortie, le mix a joué un rôle déterminant dans la codification du son progressive house émergent, mêlant house, early trance et électronique atmosphérique et mélodique en un récit cohérent et euphorique qui reflétait le voyage nocturne de la piste de danse du club.\n\nLa collection est largement créditée d'avoir porté la « seconde vague » de la musique dance à un public beaucoup plus large, faisant passer la musique électronique de la culture club underground à la conscience dominante. Avec son format trois disques logé dans un digipack distinctif arborant le Zechariah de Michel-Ange sur la pochette, le projet est devenu une pierre angulaire pour une génération de DJ. Il a démontré comment un mix organisé pouvait transcender la sélection individuelle de morceaux pour créer une expérience d'écoute singulière et immersive.\n\nDes critiques et des publications comme Resident Advisor et The Quietus ont fréquemment cité l'album comme le « père de toutes les compilations de mix », soulignant son influence durable sur l'évolution de la progressive house et le boom ultérieur des séries de mix dirigées par des DJ. En 2004, la collection a été rééditée dans une version remastérisée, pour laquelle Sasha et Digweed ont méticuleusement recréé le mélange original en utilisant des techniques numériques modernes, prouvant la pertinence durable de leur premier chef-d'œuvre collaboratif.",
+      "source_sha256": "bbaf0880fbca9c741761590f221ed9a299d0aa8b823e6218350e9bc906a0cf19",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:31:19.901Z"
+    }
+  }
 }

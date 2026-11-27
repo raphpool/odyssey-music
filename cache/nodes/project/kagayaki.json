@@ -67,5 +67,14 @@
       "name": "Masakatsu Takagi"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Kagayaki est un double album luxuriant et vaste du compositeur japonais Masakatsu Takagi qui sert d'exploration méditative de l'enfance, de la nature et du cycle des saisons à travers une tapisserie de chamber folk et d'enregistrements de terrain.",
+      "article": "Sorti le 15 octobre 2014 sur le label Felicity, Kagayaki s'impose comme l'une des œuvres les plus célébrées de la discographie du multi-instrumentiste et compositeur japonais Masakatsu Takagi. S'étendant sur deux disques et vingt-trois pistes, le projet est un journal sonore profondément intime et évocateur. Takagi façonne un monde éthéré qui puise largement dans le chamber folk, le new age néoclassique et la musique ambient, intégrant souvent des enregistrements de terrain et des éléments de musique folklorique japonaise traditionnelle et de min'yō. La création de l'album a été influencée par le retour de l'artiste à la nature et son observation des vies simples et cycliques des enfants et des communautés rurales.\n\nMusicalement, Kagayaki se caractérise par une esthétique chaleureuse, pastorale et souvent fantaisiste. L'instrumentation est variée et organique, mettant en vedette un travail délicat au piano, des cordes et des percussions subtiles, complétés par des contributions vocales de divers membres de la communauté, incluant la narration de Shiju-san et les performances vocales de Hama-chan, entre autres. Les pistes, qui portent souvent des titres liés aux phénomènes naturels et à l'existence rurale quotidienne — tels que « Amamizu » (Eau de pluie) et « Semiyobi » (Appel de cigale) — créent un paysage sonore dense et atmosphérique qui semble à la fois ancré dans un espace physique et transcendant dans sa résonance spirituelle. Le projet représente un tournant significatif dans le travail de Takagi vers un mode de composition plus acoustique et centré sur la communauté, s'éloignant de ses compositions antérieures davantage tournées vers l'électronique. En tant que suite, il invite les auditeurs dans un état contemplatif, imitant le flux d'une forêt ou d'une saison qui change, ce qui en fait une œuvre marquante du chamber folk ambient des années 2010.",
+      "source_sha256": "2373a6dc240632df99cf771dd72742cce2b7ad4609c275a7f9b2a4db38959b15",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:15.975Z"
+    }
+  }
 }

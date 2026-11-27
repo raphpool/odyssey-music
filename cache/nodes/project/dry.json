@@ -16,5 +16,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier album féroce et viscéral qui a fait découvrir au monde la voix singulière de PJ Harvey, mêlant blues-rock, post-punk et une écriture brute et sans compromis, faisant de cet opus un jalon de la musique alternative du début des années 90.",
+      "article": "Dry, sorti en 1992, s'impose comme le premier album féroce et révolutionnaire de l'auteure-compositrice-interprète anglaise PJ Harvey. Enregistré entre septembre et décembre 1991, l'album a fait découvrir au monde la puissance viscérale du trio PJ Harvey. Au moment de sa sortie, Harvey — craignant que ce ne soit sa seule occasion d'enregistrer — a insufflé une honnêteté intense et brute dans le projet, façonnant une œuvre qui est depuis reconnue comme un jalon du rock alternatif et indépendant.\n\nLe caractère sonore de Dry est défini par son instrumentation dépouillée et musclée, qui s'appuie fortement sur des textures blues-rock, une tension post-punk et des accords de puissance acérés. La production de l'album, réalisée en collaboration avec Head et Mark Vernon, capture une esthétique brute et immédiate qui semble être une rupture délibérée avec les sons polis dominants dans la musique alternative du début des années 90. Les critiques ont fréquemment noté que Dry a servi de point d'entrée vital et sans compromis à une carrière singulière, son contenu lyrique mêlant thèmes féministes, ironie et une interprétation vocale brute, parfois déconcertante.\n\nDes titres tels que « Dress » et « Sheela-Na-Gig » illustrent l'approche unique de l'écriture de Harvey, tandis que l'instrumentation — soutenue par les contributions de musiciens tels que Stephen Vaughan à la basse — fournit une base rythmique serrée qui permet à la voix d'occuper le devant de la scène. Les évaluations rétrospectives ont consolidé son statut de disque essentiel, les critiques comparant son impact aux œuvres pionnières de Patti Smith et Marianne Faithfull. Plus de trente ans après ses débuts, Dry demeure un modèle de la manière dont un premier album peut équilibrer des instincts abrasifs et expérimentaux avec une profonde clarté émotionnelle qui résonne auprès des auditeurs à travers les générations. Il s'impose comme le document pivot d'une jeune artiste qui a refusé tout compromis, capturant un moment d'énergie créative brute qui allait définir sa trajectoire pour les décennies à venir.",
+      "source_sha256": "e37e98fa8cd0ea8d23ea975543130b1ed0f0b9f2bb97fa764d1ce2d608970c04",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:20.484Z"
+    }
+  }
 }

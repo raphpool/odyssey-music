@@ -82,5 +82,14 @@
       "type": "project",
       "name": "Fragile"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon du rock progressif, ce chef-d'œuvre de 1972 met en valeur la virtuosité et la profondeur conceptuelle de la formation classique de Yes à son apogée créatif. Défini par sa plage titulaire occupant toute une face et ses arrangements complexes, il demeure un document définitif de l'ambition symphonique du genre.",
+      "article": "Sorti en septembre 1972, Close to the Edge constitue le cinquième album studio des géants anglais du rock progressif Yes, représentant l'apogée absolu de leur production créative. Enregistré aux Advision Studios de Londres avec le collaborateur et producteur de longue date Eddy Offord, le projet capture un groupe opérant au sommet de sa maîtrise technique et de son ambition conceptuelle. L'album est ancré par sa monumentale plage titulaire de dix-huit minutes, qui occupe l'intégralité de la première face du 33 tours original. Inspirée par le Siddhartha de Hermann Hesse, la composition est un cours magistral d'architecture symphonique, mêlant signatures rythmiques complexes, interactions instrumentales virtuoses et arrangements vocaux luxuriants et éthérés. La seconde face propose deux titres distincts mais tout aussi sophistiqués : le morceau aux accents folk et profondément émouvant And You and I, et le titre entraînant et rythmiquement complexe Siberian Khatru.\n\nAu-delà de la musique, Close to the Edge fut une étape importante pour Yes à plusieurs égards. Il marqua la dernière apparition en studio de la formation classique du groupe, incluant le batteur Bill Bruford, dont les rythmes méticuleux mais teintés de jazz offraient un contrepoids crucial aux éléments les plus ornementaux du son du groupe. L'album introduisit également l'emblématique logo « bulle » conçu par l'artiste Roger Dean, dont les paysages surréalistes et surnaturels sont devenus indissociables de l'identité esthétique du groupe. Le processus d'enregistrement intense, souvent laborieux — impliquant de multiples prises, des montages de bandes élaborés et une attention quasi obsessionnelle aux détails — a réussi à capturer une énergie « live » rare au sein de l'environnement de studio. Ayant connu un succès commercial massif dès sa sortie, l'album demeure une pierre angulaire du genre rock progressif, continuellement cité par les critiques et les musiciens pour son influence, sa complexité et sa profondeur sonore durable. Il ne se présente pas simplement comme une collection de chansons, mais comme une suite singulière et cohérente qui a repoussé les limites de ce que la musique rock pouvait accomplir au début des années 1970.",
+      "source_sha256": "543268f86f295006ab115354af3bc6781937cf6362563c6587d38fb764d0823e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:20:16.095Z"
+    }
+  }
 }

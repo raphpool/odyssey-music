@@ -47,5 +47,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« data.telex » est la treizième piste de l'album Dataplex, acclamé par la critique en 2005, du musicien électronique et artiste visuel japonais Ryoji Ikeda.",
+      "article": "« data.telex » est la treizième piste de l'album Dataplex, acclamé par la critique en 2005, du musicien électronique et artiste visuel japonais Ryoji Ikeda. Connu pour son approche rigoureuse de la musique électronique minimaliste et son exploration approfondie des propriétés physiques du son, Ikeda utilise Dataplex pour étudier les relations entre les données, le bruit et le rythme. En tant que pièce courte et précise durant un peu plus d'une minute, « data.telex » incarne l'esthétique austère et clinique qui définit l'ère Dataplex d'Ikeda, où les structures sonores sont réduites à leurs composants mathématiques et numériques fondamentaux.\n\nLe morceau fonctionne comme un moment intégral dans le cadre conceptuel plus large de l'album, contribuant à une étude plus vaste des systèmes binaires et de la transmission d'informations. Le travail d'Ikeda se caractérise par l'utilisation de sons sinusoïdaux, de bruit blanc et d'éléments glitch rapides, repoussant souvent les limites de la perception des fréquences et de la séparation stéréo. Comme une grande partie de sa production de cette période, « data.telex » dépouille les structures mélodiques et harmoniques traditionnelles, se concentrant plutôt sur la texture et la précision micro-rythmique des sons synthétisés. En titrant les pistes de l'album avec des variations du suffixe « -plex », Ikeda renforce le statut de l'album en tant qu'entité axée sur les données, « data.telex » servant de l'un des nombreux blocs modulaires et interconnectés de son numérique qui construisent le paysage sonore global de l'album. Sa capacité à transformer des données froides et computationnelles en une expérience d'écoute viscérale et immersive demeure une réalisation marquante de la musique électronique du XXIe siècle.",
+      "source_sha256": "05b70f5d81a7e34f894c1c4215286c113281da9fb5e54214c3ca874ec30f45d0",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:40:21.139Z"
+    }
+  }
 }

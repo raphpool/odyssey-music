@@ -52,5 +52,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un morceau d'Afrobeats collaboratif et rythmé de Dr. SID avec Don Jazzy, représentatif du style de production soigné et riche en hooks du label Mavin Records.",
+      "article": "« That's Interesting » est un morceau d'Afrobeats collaboratif de l'artiste nigérian Dr. SID, bénéficiant de la production et de la voix du prolifique patron du label Mavin Records, Don Jazzy. Sorti comme un titre phare de « The Interesting EP » de Dr. SID au début des années 2020, la chanson constitue un exemple parfait du son contagieux et rythmé qui définit désormais la musique populaire nigériane contemporaine.\n\nLe morceau est construit autour d'une base de percussions nettes et minimalistes, caractéristique du style de production soigné que Don Jazzy a perfectionné tout au long de sa carrière. Dr. SID, connu pour son interprétation charismatique et sa performance vocale fluide, apporte une sensibilité mélodique qui fait le pont entre les influences R&B et les exigences énergiques du dancefloor Afrobeats. Sur le plan lyrique, la chanson joue avec la cadence enjouée et observationnelle suggérée par son titre, créant une atmosphère riche en hooks qui met l'accent sur le groove et l'accessibilité.\n\nEn tant qu'effort collaboratif entre l'un des faiseurs de tubes les plus durables du Nigeria et un patron de label qui a façonné les carrières de certaines des plus grandes stars du genre, « That's Interesting » souligne la synergie inhérente à l'écosystème de Mavin Records. Il témoigne de la capacité du label à créer une musique qui reste ancrée dans les traditions percussives régionales tout en visant les sensibilités pop mondiales qui ont alimenté l'ascension internationale massive de l'Afrobeats. Le morceau n'est pas seulement une chanson, mais un élément du récit évolutif de la musique urbaine nigériane, illustrant l'interaction fluide entre la performance et une production de studio haute fidélité.",
+      "source_sha256": "1f4558cd25aefa2d698e4a111f5b85edd427454352634b229aa9c56abe5a4823",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:50:21.613Z"
+    }
+  }
 }

@@ -38,5 +38,14 @@
   ],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre de pop émotive, cette ballade de 1980 est largement considérée comme l'une des plus grandes réussites d'ABBA, capturant la douleur de la fin d'une relation avec une grâce profonde et cinématographique.",
+      "article": "« The Winner Takes It All » est une ballade emblématique de 1980 du supergroupe pop suédois ABBA, qui sert de puissant premier single à leur septième album studio, « Super Trouper ». Écrite par Björn Ulvaeus et Benny Andersson, la chanson met en vedette Agnetha Fältskog au chant principal. Bien qu'elle soit souvent mythifiée comme une transcription littérale du divorce entre Ulvaeus et Fältskog, les auteurs-compositeurs l'ont décrite comme une exploration fictionnalisée de l'expérience brute et universelle de la dissolution d'une relation. La composition est née de petits fragments musicaux et d'une démo intitulée « The Story of My Life », évoluant finalement d'un morceau au tempo rapide vers la ballade sombre, inspirée de la chanson française, que les fans connaissent aujourd'hui.\n\nMusicalement, la chanson est remarquée pour sa ligne de piano descendante caractéristique et son interprétation vocale dramatique et chargée d'émotion. Le processus d'enregistrement fut profondément personnel, Ulvaeus notant que les paroles ont émergé dans un élan d'émotion en une seule heure. Lorsqu'elle fut présentée à Fältskog, l'impact fut immédiat et visible. À sa sortie, la chanson fut un triomphe commercial mondial, atteignant la première place au Royaume-Uni, en Belgique, en Irlande et aux Pays-Bas. Elle demeure l'une des œuvres les plus durables et les plus acclamées par la critique d'ABBA, arrivant fréquemment en tête des sondages comme chanson de rupture préférée et s'imposant comme un exemple définitif de la capacité du groupe à mêler une production soignée à un pathos humain profond et accessible. Son héritage est cimenté par son statut de l'un des rares morceaux d'ABBA à avoir connu un succès durable dans les classements du Billboard américain.",
+      "source_sha256": "7c310a9aef30e07365c368ba9e6251cd4dd442272e341503a12913a843eb4680",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:24.929Z"
+    }
+  }
 }

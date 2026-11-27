@@ -70,5 +70,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un hymne pop-rock poignant et entraînant issu de l'album à succès international de The Corrs, In Blue, illustrant le mélange caractéristique des membres du groupe entre instrumentation folk irlandaise et production léchée.",
+      "article": "No More Cry est un morceau du quatuor irlandais The Corrs, sorti en 2000 sur leur album studio au succès retentissant, In Blue. Connus pour leur synthèse entre instrumentation traditionnelle irlandaise — comme le tin whistle et le bodhrán — et une production pop-rock contemporaine sophistiquée, le groupe a atteint une renommée internationale massive à la fin des années 1990 et au début des années 2000. No More Cry illustre cette transition vers le nouveau millénaire, portant le son léché et radiophonique qui a défini l'ère In Blue, laquelle a éloigné le groupe de ses débuts plus ancrés dans les racines pour aller vers un son pop plus propre et plus rythmé.\n\nLe morceau se distingue par son écriture collaborative, créditée aux quatre membres de la fratrie : Andrea, Caroline, Jim et Sharon Corr. Musicalement, il équilibre l'héritage folk du groupe avec un vernis studio moderne, utilisant des éléments comme la programmation et des claviers additionnels aux côtés de leurs instruments traditionnels. Produit collectivement par les membres de la fratrie, le morceau sert d'exemple par excellence du processus créatif soudé du groupe. Avec Andrea Corr au chant principal et au tin whistle, la chanson présente un mélange caractéristique de nostalgie et de résilience, des thèmes qui revenaient fréquemment dans leurs paroles. À sa sortie, In Blue a cimenté le statut de stars mondiales de The Corrs, et No More Cry demeure un titre favori des fans qui met en lumière les capacités multi-instrumentales complexes de l'ensemble. En intégrant des outils de production numérique modernes et un mastering méticuleux, le morceau représente l'esthétique à gros budget et hautement polie de la musique pop d'Atlantic Records au tournant du siècle, réussissant à combler le fossé entre le succès crossover celtique-pop et la viabilité commerciale grand public.",
+      "source_sha256": "035fa95b2d284dcb7af2ff4b71d922e2d22a328eff7423f4a6ad7291625ec69f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:46:23.161Z"
+    }
+  }
 }

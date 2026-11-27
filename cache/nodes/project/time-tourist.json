@@ -64,5 +64,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Publié en 1996 sur Warp Records, Time Tourist est une œuvre fondatrice de l'intelligent dance music (IDM) qui mêle esthétique techno de Détroit, textures ambient et concepts narratifs de science-fiction. Développé par le duo B12, l'album agit comme un paysage sonore tentaculaire et atmosphérique qui semble à la fois futuriste et distinctement ancré dans la lignée bleep-techno du début des années quatre-vingt-dix.",
+      "article": "Time Tourist est l'album séminal de 1996 du duo électronique B12, publié sur le label emblématique de Sheffield, Warp Records. Après leur premier album révolutionnaire Electro-Soma (1993), ce disque a davantage solidifié la réputation du projet en tant qu'architectes du son qui serait finalement classé comme « intelligent dance music » ou IDM. L'album se caractérise par sa synthèse luxuriante et atmosphérique, ses rythmes complexes et saccadés, et un lien profond avec les racines mélodiques et soul de la techno de Détroit. Tout au long du disque, Steve Rutter et Michael Golding façonnent un voyage sonore qui ressemble à un récit de science-fiction, un choix thématique amplifié par le design futuriste distinctif de The Designers Republic.\n\nLa musique de Time Tourist oscille entre des paysages sonores cristallins aux accents ambient et des compositions plus rythmiques et mécaniquement précises. Des morceaux comme VOID/Comm et Cymetry démontrent la capacité caractéristique du duo à équilibrer complexité technique et sens de la mélodie poignant, presque mélancolique. L'œuvre se situe à l'intersection de plusieurs sous-genres prévalents dans l'underground britannique du milieu des années 90, puisant dans la bleep techno, l'ambient et la musique électronique expérimentale naissante. Il est souvent cité pour sa superposition dense et une esthétique froide, mais accueillante, qui parvient à paraître à la fois extraterrestre et humaine. Au-delà du son, l'album est un jalon pour son ambition conceptuelle ; le packaging complexe et les conventions de nommage des pistes (« Game 01 / Levels 01-02 / Zones 01-05 ») suggèrent une construction de monde inspirée des jeux vidéo qui était en avance sur son temps, cimentant son statut de sortie phare de l'époque.",
+      "source_sha256": "5a1798c93ffe4c68d30de2b9a96ae1c4df6e763c07687805abe6c5ea5ad0bf06",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:35:22.104Z"
+    }
+  }
 }

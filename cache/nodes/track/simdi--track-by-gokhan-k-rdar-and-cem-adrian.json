@@ -57,5 +57,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une collaboration évocatrice de 2024 entre les sommités de la musique turque Gökhan Kırdar et Cem Adrian, mêlant une production électronique soignée à des voix puissantes et émouvantes.",
+      "article": "« Şimdi » est un morceau collaboratif sorti en 2024 par deux des figures les plus éminentes des scènes alternative et électronique turques, Gökhan Kırdar et Cem Adrian. Le morceau, présent sur l'album « Mücevher », marque une intersection créative entre la maîtrise de longue date de la synthèse électronique et de la production atmosphérique de Kırdar et la tessiture vocale distinctive et multi-octave d'Adrian. Connu pour son travail pionnier dans le mélange de structures électroniques et d'éléments traditionnels anatoliens, Kırdar fournit une toile de fond sophistiquée et soignée qui permet à l'interprétation vocale expressive et mélancolique d'Adrian de prendre le devant de la scène. La sortie capture un moment contemporain de la musique turque, où l'héritage et la production futuriste continuent de se confondre, séduisant à la fois les auditeurs de longue date des paysages sonores cinématographiques de Kırdar et le public dévoué et étendu d'Adrian. Le morceau dure 3 minutes et 55 secondes, incarnant la profondeur thématique souvent présente dans leurs projets collaboratifs, en mettant l'accent sur la tension atmosphérique et la résonance émotionnelle. Il témoigne de l'influence durable que les deux artistes exercent, reliant différentes générations de fans à travers une expression musicale partagée et chargée d'émotion.",
+      "source_sha256": "3bb9410d77818b3422dc3c70b07a1e7f6842f88dbbb3d4964e2a5fe3aae0db9d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:49:15.709Z"
+    }
+  }
 }

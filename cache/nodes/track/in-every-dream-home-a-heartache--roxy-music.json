@@ -56,5 +56,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« In Every Dream Home a Heartache » est une pièce centrale sombre et cinématographique de l'album de Roxy Music paru en 1973, For Your Pleasure.",
+      "article": "« In Every Dream Home a Heartache » est une pièce centrale sombre et cinématographique de l'album de Roxy Music paru en 1973, For Your Pleasure. Écrit par le leader Bryan Ferry, le morceau s'impose comme l'une des expérimentations les plus obsédantes du groupe, mêlant des éléments d'art rock et de proto-punk à une narration glaciale et détachée. La chanson est structurée comme un monologue sinistre, où le narrateur dresse l'inventaire des conforts matériels d'un mode de vie haut de gamme pour finalement révéler que sa compagne ultime et obsessionnelle est une poupée gonflable en plastique. Cette juxtaposition entre opulence et aliénation profonde sert de critique mordante à la vacuité consumériste.\n\nMusicalement, la chanson est ancrée par une ligne d'orgue Farfisa répétitive et obsédante jouée par Andy Mackay, qui évoque un sentiment de malaise gothique. À mesure que la chanson progresse, la tension monte vers une coda instrumentale étendue, chargée de larsen, menée par le guitariste Phil Manzanera. Le morceau est remarquable pour son utilisation pionnière des effets de studio ; sur la version vinyle originale, la chanson semblait s'estomper dans le sillon de fin, pour revenir avec un son lourdement traité et phasé. La contribution de Brian Eno via le synthétiseur VCS 3 et son utilisation innovante du délai à bande renforcent l'esthétique étrange et avant-gardiste du morceau. Depuis sa sortie, la chanson a conservé un statut culte, citée comme un moment fondateur de l'art rock et apparaissant occasionnellement dans le cinéma moderne pour souligner des thèmes d'isolement et d'obsession.",
+      "source_sha256": "a7a8975d2ec55a6b642e3812f0085e4fe6a548e3a9be05a945d1fb363e41cfee",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:44:15.605Z"
+    }
+  }
 }

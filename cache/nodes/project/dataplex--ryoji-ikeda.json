@@ -158,5 +158,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre séminale du minimalisme numérique et premier volet de la série « Datamatics » de Ryoji Ikeda, Dataplex transforme des données informatiques brutes en une expérience sonore clinique, précise et au rythme singulier. L'album est reconnu pour son approche conceptuelle poussée, incluant une piste finale conçue pour tester les limites mécaniques des supports optiques.",
+      "article": "Dataplex (stylisé dataplex) est l'album studio séminal de 2005 de l'artiste sonore et compositeur japonais Ryoji Ikeda, publié sur le label allemand influent Raster-Noton. Représentant un moment charnière dans l'évolution de la musique électronique, l'album constitue le premier volet de l'ambitieuse série « Datamatics » d'Ikeda, un projet au long cours dédié à l'interrogation et à la sonification du vaste paysage invisible de données informatiques brutes qui entoure l'existence moderne. Composé de vingt pistes, l'album fonctionne comme une exploration scientifique d'une grande précision du son, utilisant des textures de minimal techno, de la synthèse granulaire et du bruit électronique pur pour créer un environnement sonore aussi clinique que rythmiquement captivant.\n\nÀ sa sortie, Dataplex a reçu un accueil critique largement élogieux pour sa rigueur dans le souci du détail et sa capacité à transformer des signaux numériques en ce que les critiques ont décrit comme du funk « cérébral et moléculaire ». L'approche d'Ikeda est ici radicalement minimaliste, dépouillant la musique de toute mélodie ou narration conventionnelle au profit d'une manipulation pure des formes d'onde. L'album est peut-être aussi célèbre pour ses provocations techniques que pour son son : la piste finale, data.adaplex, contient des modèles de données spécifiques conçus pour tester les limites des lecteurs CD optiques, provoquant intentionnellement des erreurs de lecture sur certains systèmes — une marque de fabrique de la pratique d'Ikeda consistant à brouiller la frontière entre le médium et le message. Dataplex demeure un texte fondateur de la musique numérique du XXIe siècle, cimentant la réputation d'Ikeda comme l'une des figures les plus innovantes travaillant à l'intersection de l'art sonore, des mathématiques et de la musique informatique expérimentale. Son influence est évidente dans le développement ultérieur du mouvement « post-glitch », où l'esthétique de l'erreur informatique et du résidu numérique est devenue un pilier créatif central.",
+      "source_sha256": "b7279608b6faf000c89cd1489b53ca128e83e4080bbe21a3431f828372bbdf07",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:13.701Z"
+    }
+  }
 }

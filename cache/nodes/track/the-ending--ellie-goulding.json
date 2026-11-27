@@ -54,5 +54,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« The Ending » est un morceau de pop atmosphérique et introspectif issu de l'album Halcyon d'Ellie Goulding sorti en 2012, capturant le mélange caractéristique de vulnérabilité émotionnelle et de production électronique complexe de l'artiste.",
+      "article": "« The Ending » est un morceau de l'auteure-compositrice-interprète britannique Ellie Goulding, présent sur son album de 2012 « Halcyon » publié chez Polydor. La chanson met en avant le mélange caractéristique de Goulding entre une pop émotive aux accents folk et une production électronique, qui a défini son ascension vers une renommée internationale au début des années 2010. Sur le plan lyrique, la chanson traite des thèmes de l'isolement et de la dissolution des liens, utilisant l'imagerie métaphorique du fait de « s'enfermer » et de chercher un « pont » dans une « terre de rivières ». La production présente le rendu vocal net et superposé ainsi que les textures de synthétiseurs atmosphériques qui sont devenus des éléments incontournables de l'ère « Halcyon », durant laquelle Goulding s'est davantage orientée vers une pop électronique sombre et expansive par rapport à ses débuts indie-pop. « The Ending » constitue un moment poignant de sa discographie, démontrant sa capacité à équilibrer une vulnérabilité émotionnelle délicate avec des arrangements de studio très soignés. Le morceau est sorti durant une période de croissance significative pour Goulding, consolidant son statut comme l'une des voix les plus marquantes de la musique pop contemporaine. Les refrains lyriques persistants et rythmés de la chanson reflètent l'anxiété intérieure exprimée dans les couplets, ancrant le morceau dans un sentiment d'introspection urgente. Au moment de la sortie de l'album, Goulding avait déjà capté l'attention mondiale grâce à son timbre vocal unique, et « The Ending » est un morceau qui souligne la profondeur du paysage pop atmosphérique qu'elle a contribué à affiner au tournant de la décennie.",
+      "source_sha256": "a3b352d9efaee72187fd8a8fe34183f27daebf2a33b6643a5954a8fd105d95c8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:13.618Z"
+    }
+  }
 }

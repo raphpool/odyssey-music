@@ -56,5 +56,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon fondamental de la New Age en 1975, Spectrum Suite de Steven Halpern a introduit des paysages sonores ambiants et méditatifs conçus pour faciliter la guérison et la relaxation grâce à des compositions codées par couleur et alignées sur les chakras.",
+      "article": "Spectrum Suite, publié en 1975 par le compositeur américain Steven Halpern, est largement considéré comme un jalon fondamental dans le développement de la musique New Age. Enregistré au Music Annex à Menlo Park, en Californie, l'album a marqué une rupture radicale avec les compositions structurées qui dominaient la musique populaire à l'époque. Halpern s'est concentré sur la création d'un paysage sonore immersif et méditatif destiné à réduire le stress et à induire la relaxation. En incorporant des tons soutenus et des textures minimalistes, l'album a mis les auditeurs au défi de s'éloigner des attentes mélodiques conventionnelles, privilégiant plutôt une expérience ambiante et « curative » qui allait influencer des décennies de production de musique de bien-être, de méditation et d'ambiance.\n\nLa structure de Spectrum Suite est profondément liée aux concepts ésotériques de couleur et d'énergie. Chacune des pistes de l'album est associée à une couleur spécifique du spectre visible et, par extension, à un chakra correspondant dans le système énergétique humain. Ce cadre conceptuel n'était pas seulement un choix esthétique ; il a établi un modèle pour les projets ultérieurs de « musique curative » qui cherchaient à fusionner la musique électronique avec des pratiques de santé spirituelles et holistiques. Malgré le scepticisme initial de l'industrie musicale traditionnelle, qui peinait à classer son approche ambiante non conventionnelle, l'album a fini par acquérir un statut culte et est devenu une pierre angulaire du mouvement New Age naissant. Son héritage persiste en tant qu'œuvre séminale dans l'histoire du son ambiant et environnemental, fournissant le plan pour d'innombrables artistes et producteurs indépendants travaillant à l'intersection de la musique et de la pleine conscience. À travers des labels comme son propre Sound Rx, Halpern a transformé le projet en un catalyseur pour toute une industrie de production audio méditative et thérapeutique qui demeure influente aujourd'hui.",
+      "source_sha256": "6fd3b68ae780e382e92e242f688b83f4701d107ad52c5643b7e06cb4bf9a7229",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:33:19.217Z"
+    }
+  }
 }

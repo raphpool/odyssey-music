@@ -20,5 +20,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Deep Space » est le premier album de CANDIACE sorti en 2021, une collection soignée de titres R&B contemporains qui fait le pont entre la célébrité de la chanteuse issue de la téléréalité et une identité musicale professionnelle et dédiée.",
+      "article": "« Deep Space » est le premier album studio de 2021 de la chanteuse et personnalité de la téléréalité américaine CANDIACE (Candiace Dillard Bassett). Sorti à l'automne 2021, l'album sert de déclaration musicale définitive de la star, largement connue pour sa carrière dans la série de Bravo « The Real Housewives of Potomac ». Produit dans un style R&B contemporain et élégant, le projet met en valeur sa tessiture vocale à travers une collection de titres qui équilibrent récit personnel et production soignée, prête pour la radio.\n\nLe disque comprend 15 titres, dont des interludes intimes qui offrent aux auditeurs un aperçu de son processus créatif et de sa vie personnelle. Parmi les moments forts, citons les vibrants « Drive Back » et « Cause a Scene », qui soulignent sa capacité à créer des accroches pop-R&B rythmées et entraînantes. Le projet démontre également son esprit collaboratif, avec des apparitions notables telles que le titre « Stay With Me », qui met en vedette la regrettée artiste R&B Traci Braxton. En faisant le pont entre sa personnalité publique et une identité musicale distincte, « Deep Space » a établi CANDIACE comme une artiste sérieuse au sein du paysage R&B moderne. Sa distribution via MNRK Music Group et la sortie ultérieure d'une édition vinyle violette en 2023 soulignent l'attrait durable du projet pour sa base de fans et la croissance continue de sa carrière musicale en dehors de son travail à la télévision. La structure de l'album, caractérisée par des titres concis et émotifs, reflète une approche moderne de la pop-R&B, privilégiant l'accessibilité et des valeurs de production soignées. Il demeure un artefact clé dans la documentation des stars de la téléréalité qui réussissent leur transition vers l'enregistrement musical professionnel.",
+      "source_sha256": "7c67c48810c66fae0d8541850bc24a6ffe121849d0851d8991660bf22da0adb1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:13.159Z"
+    }
+  }
 }

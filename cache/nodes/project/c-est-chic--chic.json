@@ -129,5 +129,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le deuxième album de Chic, qui contient leur succès définitif « Le Freak », capture le son funk-disco sophistiqué qui a défini la fin des années 1970.",
+      "article": "Sorti en août 1978 chez Atlantic Records, C'est Chic est le deuxième album studio du groupe américain influent Chic. Enregistré au Power Station à New York, le projet représente l'apogée de la domination commerciale du groupe durant l'ère disco de la fin des années 1970. L'album est peut-être plus célèbre pour contenir le tube légendaire « Le Freak », un morceau qui a dominé les classements Billboard Hot 100, R&B et Club Play, se vendant finalement à des millions d'exemplaires et consacrant Nile Rodgers et Bernard Edwards comme les maîtres architectes de la musique de danse moderne.\n\nMusicalement, C'est Chic définit le « Chic sound » — une fusion précise, serrée et syncopée de disco, de funk et de R&B, caractérisée par le jeu de guitare rythmique complexe de Nile Rodgers et le jeu de basse mélodique emblématique de Bernard Edwards. Au-delà de son premier single à succès, le disque présente des arrangements sophistiqués sur des titres comme « I Want Your Love », qui ont renforcé le statut du groupe en tant qu'acteurs essentiels de la scène disco internationale. L'album n'a pas seulement été une puissance commerciale, passant onze semaines en tête du classement Billboard R&B, mais il a également reçu les éloges de la critique pour sa production soignée et sa sophistication rythmique. En Europe, l'album a été initialement publié avec une pochette différente sous le titre Très Chic, incluant une liste de titres modifiée qui comprenait « Dance, Dance, Dance (Yowsah, Yowsah, Yowsah) » issu de leur premier album. C'est Chic demeure un document phare de la musique populaire américaine de la fin des années 70, incarnant l'élégance et l'urgence rythmique qui ont défini le genre à son apogée.",
+      "source_sha256": "eaeb7d0b0efff1d105409b9154bf4648391ce9aae67457771a3e982f376915fe",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:19:19.750Z"
+    }
+  }
 }

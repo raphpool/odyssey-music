@@ -82,5 +82,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un classique du rock progressif monumental, sombre et aux arrangements complexes qui a redéfini les frontières du genre grâce à ses suites audacieuses occupant des faces entières et à son interprétation émotionnelle intense.",
+      "article": "Sorti en novembre 1971, Pawn Hearts est le quatrième album studio des pionniers anglais du rock progressif Van der Graaf Generator et est largement considéré comme le sommet de l'intensité créative du groupe durant sa première période. Produit par John Anthony et enregistré aux Trident Studios de Londres, l'album capture le groupe — le chanteur et auteur-compositeur Peter Hammill, le saxophoniste David Jackson, l'organiste et bassiste Hugh Banton et le batteur Guy Evans — au sommet de leur maîtrise technique et conceptuelle. C'est une œuvre définie par son atmosphère sombre et menaçante, ses arrangements complexes et le lyrisme existentiel et très personnel de Hammill.\n\nInitialement conçu comme un double album, la version finale a été réduite par Charisma Records en un seul 33 tours comprenant seulement trois longs morceaux : « Lemmings (Including Cog) », « Man-Erg » et l'ambitieuse suite occupant toute une face, « A Plague of Lighthouse Keepers ». Cette composition, qui explore les thèmes de l'isolement, de la culpabilité et de la mort, demeure l'une des réalisations les plus significatives de l'ère progressive. La création de l'album a été marquée par un processus d'écriture collaboratif et obsessionnel, incluant des mois passés en isolement à Crowborough, dans le Sussex, où le groupe a peaufiné son son unique, dominé par l'orgue et le saxophone. Malgré un succès commercial mitigé au Royaume-Uni à l'époque, l'album a rencontré une popularité importante en Italie, menant à des tournées intensives qui ont fini par épuiser le groupe jusqu'à une séparation temporaire en 1972. Le titre lui-même est un contrepet de « horn parts », reflétant l'humour sardonique qui coexistait avec la musique sérieuse et souvent éprouvante du groupe. Pawn Hearts a depuis été reconnu comme un jalon du canon du rock progressif, influençant des générations de musiciens par son approche avant-gardiste de la structure des chansons et son intensité émotionnelle brute.",
+      "source_sha256": "dbefc29c53995b9b61ac6e0f75ca708ecf51c6a42de80b56ebfffc72ce572fe8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:30:20.173Z"
+    }
+  }
 }

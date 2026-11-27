@@ -84,5 +84,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Four Violins » est une pièce séminale de la musique minimaliste américaine composée par Tony Conrad en 1964.",
+      "article": "« Four Violins » est une pièce séminale de la musique minimaliste américaine composée par Tony Conrad en 1964. Souvent citée comme une œuvre fondatrice de la drone music, la composition explore la résonance harmonique produite par quatre violons accordés selon une relation spécifique, non tempérée. Plutôt que de se concentrer sur la mélodie ou le rythme au sens traditionnel, l'œuvre de Conrad invite l'auditeur dans un paysage sonore dense et vibrant fait d'harmoniques et d'interactions de phase. En employant des techniques d'archet soutenu, les interprètes génèrent un environnement acoustique immersif où les frontières entre les instruments individuels se fondent en un bloc sonore unifié et scintillant. Son importance historique réside dans son éloignement des systèmes d'accord occidentaux et son engagement radical envers des relations de fréquences pures, influençant des générations de compositeurs d'avant-garde et expérimentaux.\n\nBien qu'Éliane Radigue soit une compositrice française légendaire renommée pour ses œuvres électroniques profondes et transformatrices sur synthétiseur ARP 2500 ainsi que pour son vaste catalogue ultérieur d'œuvres acoustiques (notamment la série « Occam »), « Four Violins » est principalement associé à Tony Conrad. Une confusion survient parfois car les interprètes et ensembles contemporains qui jouent la musique acoustique de Radigue — tels que ceux impliqués dans son cycle « Occam » — partagent souvent le même espace esthétique expérimental axé sur le drone. Cependant, « Four Violins » de Conrad demeure un pilier indépendant du minimalisme des années 1960. L'œuvre est un exemple par excellence du glissement vers la « process music », où le compositeur met en place une condition acoustique et permet aux propriétés physiques du son et de l'espace de dicter le résultat final, une méthodologie qui résonne profondément avec les pratiques méditatives et d'expansion temporelle développées plus tard par Radigue. La pièce se place aux côtés des œuvres de figures comme La Monte Young pour définir le mouvement minimaliste précoce.",
+      "source_sha256": "1bb8406db39a0aad8ebf0b9fcc8aa23163b0a9bf193a15411e77895491c58243",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:42:21.626Z"
+    }
+  }
 }

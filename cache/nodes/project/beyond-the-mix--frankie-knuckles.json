@@ -92,5 +92,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Sorti en 1991, Beyond the Mix constitue les débuts sur un label majeur du pionnier de la house music Frankie Knuckles, équilibrant des morceaux dance imprégnés de soul et de gospel avec les sonorités club à haute production de l'époque.",
+      "article": "Beyond the Mix, publié sur Virgin Records en 1991, s'impose comme une sortie marquante dans la carrière du regretté Frankie Knuckles, l'homme souvent cité comme le « Godfather of House ». Arrivé à une époque où la musique électronique de danse commençait à faire des percées significatives dans l'industrie musicale grand public, l'album sert de vitrine définitive à la capacité de Knuckles à combler le fossé entre ses racines underground de Chicago et les attentes de haute fidélité polie d'une sortie sur un label majeur. Enregistré aux Quad Recording Studios à New York, le projet encapsule la palette sonore diversifiée de la house du début des années quatre-vingt-dix, passant avec fluidité entre des morceaux vocaux soul, des hymnes inspirés du gospel et une production hip-house plus contemporaine et imprégnée de rap.\n\nL'album est peut-être mieux connu pour l'inclusion du morceau atmosphérique et largement vénéré The Whistle Song, une composition qui incarne les sensibilités mélodiques de Knuckles et son approche profonde et émotive de la house music. Bien que les critiques de l'époque aient noté l'intensité variée de l'album — oscillant entre une énergie prête pour les clubs et des arrangements plus décontractés axés sur la chanson — il demeure un document pivot de l'évolution du genre. Collaborant avec des figures clés comme Eric Kupper et utilisant des chanteurs tels que Lisa Michaelis et Shelton Becton, Knuckles a livré un disque qui privilégiait la musicalité aux côtés du rythme. Même des décennies plus tard, Beyond the Mix est reconnu comme une masterclass de production qui a transcendé l'étiquette de simple « dancefloor extravaganza », offrant plutôt un regard complet sur la chaleur, la profondeur musicale et l'esprit visionnaire que Knuckles a apportés à la musique électronique tout au long de sa vie et de sa carrière influentes.",
+      "source_sha256": "659fd58a41d988e78c9502ec49551b61fbc0cb53d2ab449509f89b0c572974e8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:19:15.367Z"
+    }
+  }
 }

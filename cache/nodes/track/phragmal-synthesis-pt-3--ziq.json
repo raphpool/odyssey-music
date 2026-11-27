@@ -55,5 +55,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Partie d'une trilogie expérimentale, ce classique IDM issu du premier album de µ-Ziq capture l'esprit brut et novateur du son de Rephlex Records au début des années 90.",
+      "article": "« Phragmal Synthesis (Pt. 3) » est une pièce complexe de musique électronique sortie en 1993, représentant un moment fondateur dans l'histoire du label Rephlex et du genre IDM (Intelligent Dance Music). Produit par Mike Paradinas sous son pseudonyme principal µ-Ziq, ce morceau constitue le dernier volet de la trilogie « Phragmal Synthesis », une série de compositions expérimentales qui explorent les paysages denses, abrasifs, mais mélodiques, caractéristiques des premiers travaux de Paradinas. En tant que morceau phare du premier album Tango n' Vectif, « Phragmal Synthesis (Pt. 3) » met en lumière l'esthétique brute et axée sur le matériel de l'underground britannique du début des années 90. Le morceau se définit par ses structures rythmiques complexes, ses motifs de synthétiseurs superposés et un sentiment palpable d'énergie ludique, presque chaotique, qui allait devenir un pilier du son Rephlex. Paradinas, travaillant aux côtés de Francis Naughton lors de la création du projet, a conçu une musique qui défiait les contraintes traditionnelles du dancefloor de l'époque, optant plutôt pour une approche texturée, imprégnée d'ambient-techno, qui semblait à la fois étrangère et profondément humaine. Son inclusion dans diverses versions de Tango n' Vectif — à la fois comme morceau original de l'album et plus tard dans le cadre de la réédition étendue de 2001 — souligne son importance au sein de la discographie de µ-Ziq et son influence durable sur les générations suivantes de producteurs de musique électronique. Le morceau capture la transition de la musique électronique britannique, passant de rythmes influencés par la rave à des compositions plus introspectives, destinées à l'écoute domestique, qui ont contribué à définir le terme « Intelligent Dance Music ». En combinant des percussions glitch et des nappes de synthétiseurs éthérées et expansives, Paradinas a créé une œuvre qui semble aussi novatrice aujourd'hui qu'à sa sortie, cimentant son statut de figure centrale de l'histoire électronique moderne.",
+      "source_sha256": "2e015953298894f394610868a7fa0f4f5bd019e25eb9a00c1f131a3fc2d96f71",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:47:20.652Z"
+    }
+  }
 }

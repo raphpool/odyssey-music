@@ -61,5 +61,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« The White Arcades » est le morceau d'ouverture éponyme de l'album studio de 1988 du même nom du compositeur ambient américain Harold Budd.",
+      "article": "« The White Arcades » est le morceau d'ouverture éponyme de l'album studio de 1988 du même nom du compositeur ambient américain Harold Budd. Sorti sur le label Opal Records de Brian Eno, le morceau encapsule le style éthéré et impressionniste que Budd a perfectionné tout au long des années 1980. Le processus d'enregistrement de l'album s'est déroulé dans divers lieux internationaux, notamment le studio des Cocteau Twins à Londres, reflétant une période de collaboration intense entre Budd et des figures centrales des scènes ambient et dream-pop britanniques.\n\nMusicalement, « The White Arcades » sert de déclaration définitive de l'approche caractéristique de Budd au piano, plaçant des mélodies délicates et clairsemées contre des textures atmosphériques luxuriantes. Le travail de production, impliquant à la fois Brian Eno et Robin Guthrie, imprègne le morceau d'une qualité cinématographique et spacieuse qui est devenue une marque de fabrique de l'esthétique d'Opal Records. Cette composition spécifique, ainsi que plusieurs autres de l'album, a bénéficié d'une exposition notable grâce à son utilisation dans des films documentaires de Ric Burns, tels que « Coney Island », qui a utilisé la tonalité obsédante et évocatrice de la musique pour souligner son récit historique. Le morceau demeure un exemple charnière de l'intersection entre l'influence classique traditionnelle et les textures naissantes de la musique ambient électronique de la fin des années 80, cimentant l'héritage de Budd en tant que maître des paysages sonores minimalistes et évocateurs.",
+      "source_sha256": "f17fbce6789a79f233ec81d6519d2232577d5d8654c19048487823fd746953b9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:23.100Z"
+    }
+  }
 }

@@ -69,5 +69,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pièce emblématique de l'IDM du début des années 90, « Amenida » est un morceau atmosphérique et rythmiquement complexe issu du premier album de µ-Ziq, qui équilibre parfaitement l'énergie du breakbeat et une profondeur mélodique mélancolique.",
+      "article": "« Amenida » est un morceau fondateur du producteur électronique britannique µ-Ziq (Mike Paradinas), sorti à l'origine en 1993 sur son premier album séminal, Tango N'Vectif. Émergeant de la scène IDM expérimentale et dynamique du début des années 90, le morceau constitue un exemple parfait de l'approche fondamentale de Paradinas en matière de conception sonore : fusionner une programmation de breakbeat complexe et saccadée avec des textures de synthétiseurs mélodiques et atmosphériques.\n\nContrairement aux directions plus agressives ou « drill 'n' bass » qu'il explorera plus tard, « Amenida » capture une tension brumeuse spécifique, emblématique de la transition de l'époque entre l'esthétique rave et les paysages sonores plus contemplatifs, destinés à l'écoute au casque, du catalogue de Rephlex. Le morceau se caractérise par ses structures rythmiques complexes — qui se déplacent et bégayent d'une manière qui semble à la fois organique et conçue par une machine — superposées à des nappes mélancoliques expansives qui évoquent un sentiment de nostalgie. Pour de nombreux auditeurs de l'époque, l'album Tango N'Vectif a constitué un pont essentiel entre l'énergie viscérale de la culture dance britannique et l'électronique abstraite et avant-gardiste qui allait finir par définir le genre intelligent dance music (IDM). « Amenida » demeure un témoignage de l'esprit aventureux de la musique électronique du début des années 90, équilibrant complexité technique et sensibilité mélodique profondément émotive, ce qui en a fait une référence pour les producteurs expérimentaux de toutes générations. Sa présence sur l'album contribue à ancrer le disque dans l'histoire de la musique électronique comme un cours magistral de texture et de déconstruction rythmique.",
+      "source_sha256": "7ae4561784d25ac5b651392f8dc14e1e934e6901a6b69fb6e70381ad3e7cd96e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:37:24.859Z"
+    }
+  }
 }

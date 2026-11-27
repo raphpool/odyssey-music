@@ -57,5 +57,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Lost Luggage » est la pièce maîtresse éponyme de l'EP de 2023 de la productrice électronique géorgienne Anushka Chkheidze.",
+      "article": "« Lost Luggage » est la pièce maîtresse éponyme de l'EP de 2023 de la productrice électronique géorgienne Anushka Chkheidze. Sorti le 29 septembre 2023, le morceau sert de réflexion poignante et atmosphérique sur les thèmes du déplacement, de la transition et de la nostalgie. Anushka Chkheidze, figure marquante de la scène électronique contemporaine de Tbilissi, a composé cet EP durant une période de mobilité entre son foyer et de nouveaux environnements, plus précisément à Utrecht. Le morceau résume l'identité sonore pour laquelle elle est devenue connue : un mélange délicat et immersif de textures ambient et d'un travail rythmique influencé par l'IDM, évoquant un sentiment d'espace personnel profond.\n\nD'une durée de sept minutes et vingt secondes, la composition se déploie avec la patience caractéristique du travail d'Anushka Chkheidze. Elle évite l'énergie frénétique souvent associée à l'IDM, optant plutôt pour une approche texturée axée sur les paysages sonores, privilégiant l'ambiance au kinétisme. Le titre du morceau fonctionne à la fois comme un contenant littéral et métaphorique pour les émotions entourant le voyage : les souvenirs persistants des personnes et des lieux laissés derrière soi, et la réalité physique du déplacement de sa vie d'une géographie à une autre. En centrant l'EP autour de ce récit, Anushka Chkheidze crée une expérience d'écoute intime qui résonne auprès des auditeurs familiers avec la nature transitoire de la vie moderne. Sa production, masterisée par Giorgi Koridze, garantit que les couches de nappes de synthétiseurs et les subtiles pulsations percussives conservent une qualité éthérée et immaculée, établissant davantage Anushka Chkheidze comme une voix significative au sein de la communauté électronique expérimentale internationale. L'accueil global de l'EP souligne sa capacité à traduire des expériences personnelles abstraites en un langage sonore cohérent et évocateur.",
+      "source_sha256": "b8adbfc151e9ca079dd4c1918a477f0edd4a4ef929286a93bd1a52f7f5a940fb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:18.966Z"
+    }
+  }
 }

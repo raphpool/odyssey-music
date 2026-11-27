@@ -35,5 +35,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre séminal de la musique électronique, Trans-Europe Express a transformé le paysage pop avec ses rythmes froids et conçus avec précision, ainsi que ses mélodies influentes aux allures de machines.",
+      "article": "Sorti en mars 1977, Trans-Europe Express est le sixième album studio du groupe électronique allemand pionnier Kraftwerk, enregistré dans leur légendaire Kling Klang Studio à Düsseldorf. Après le projet plus expérimental Radio-Activity, cet album a marqué une évolution décisive dans le vocabulaire sonore du groupe, s'éloignant des structures libres et improvisées de leurs débuts krautrock pour se diriger vers une forme rigoureuse et disciplinée de pop électronique mélodique. Porté par l'introduction du séquenceur personnalisé Synthanorma, l'album se définit par ses rythmes hypnotiques et répétitifs, ses textures de synthétiseurs épurées et le détachement méticuleux qui allait devenir l'esthétique signature du groupe.\n\nL'album reflète une fascination pour la modernité européenne, en particulier pour le réseau ferroviaire international qui a inspiré sa chanson-titre. Les thèmes du voyage, de la technologie et de l'intersection entre l'humanité et l'artificialité y sont entrelacés, notamment dans le morceau « Showroom Dummies », où le groupe explore l'idée de se considérer comme des objets inanimés. Le processus de production a impliqué un virage vers une précision professionnelle, les membres Ralf Hütter et Florian Schneider conservant un contrôle créatif strict tout en travaillant aux côtés des percussionnistes Karl Bartos et Wolfgang Flür. En évitant la tradition rock de la performance expressive et chaotique au profit de compositions contrôlées et séquencées, Trans-Europe Express a essentiellement fourni un modèle pour le futur de la synth-pop, de la techno et de l'electro. Son influence sur les générations suivantes, particulièrement au sein du hip-hop primitif et de la musique dance, est incommensurable, le consolidant comme un texte fondateur dans l'histoire de la musique électronique. Tout au long du disque, l'attention méticuleuse portée par le groupe aux détails rythmiques et leur utilisation pionnière de la synthèse analogique ont contribué à élever le synthétiseur du rang d'outil spécialisé pour effets sonores à celui d'instrument mélodique principal. Ce changement a ouvert la voie à la domination de la musique électronique dans les décennies suivantes, cimentant le statut de l'album en tant que chef-d'œuvre de l'innovation sonore du vingtième siècle.",
+      "source_sha256": "818d21f886b340c96f7397e0e69782bf0ed8ddf7df8140cb247410e283298709",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:36:13.178Z"
+    }
+  }
 }

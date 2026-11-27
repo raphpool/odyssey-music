@@ -64,5 +64,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Upright Kangaroo » est un morceau marquant du projet collaboratif « Expert Knob Twiddlers », l'unique album studio de 1996 des pionniers de l'électronique Mike Paradinas (µ-Ziq) et Richard D. James (Aphex Twin).",
+      "article": "« Upright Kangaroo » est un morceau marquant du projet collaboratif « Expert Knob Twiddlers », l'unique album studio de 1996 des pionniers de l'électronique Mike Paradinas (µ-Ziq) et Richard D. James (Aphex Twin). Publié sous le nom de Mike & Rich, le projet représente une rencontre rare entre deux des figures les plus influentes des mouvements IDM et braindance des années 1990. Le morceau lui-même est emblématique de l'approche ludique et énergique des synthétiseurs sur l'album, présentant un arrangement labyrinthique de lignes de basse analogiques grinçantes, une programmation de batterie frénétique et saccadée, ainsi que les mélodies fantaisistes caractéristiques qui définissent la production collaborative des deux artistes.\n\nBien que l'album soit sorti à l'origine sur le propre label de James, Rephlex Records, il a connu un regain de popularité significatif suite à sa réédition en 2016 par Planet Mu, le label fondé par Paradinas. Cette réédition, qui incluait des bonus inédits, a cimenté le statut du disque en tant que classique culte du genre IDM. « Upright Kangaroo » sert de microcosme à la synergie créative du duo, équilibrant avec succès la complexité technique et un sens de l'irrévérence qui contraste avec les œuvres plus austères ou ambiantes souvent associées à leurs productions en solo. Il demeure un point fort fréquemment cité par les amateurs du son électronique expérimental de la fin des années 90, capturant un moment où les frontières du genre étaient activement repoussées par une exploration sonore idiosyncrasique.",
+      "source_sha256": "30a9c72f862d320c6253e4c45a8f0189790063142bbb8aaeb2d507c4469ef681",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:22.863Z"
+    }
+  }
 }

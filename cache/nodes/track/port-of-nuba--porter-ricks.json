@@ -71,5 +71,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pièce maîtresse de la dub techno de 1996, « Port Of Nuba » est une leçon de design sonore atmosphérique qui a défini l'esthétique minimaliste et influente du label berlinois Chain Reaction.",
+      "article": "« Port Of Nuba » est un morceau séminal du duo électronique allemand Porter Ricks, sorti en 1996 en face A de leur deuxième maxi 12 pouces sur le légendaire label Chain Reaction. En tant qu'architectes clés du son dub techno, Porter Ricks — composé de Thomas Köner et Andy Mellwig — a utilisé cette sortie pour asseoir sa réputation en fusionnant des textures profondes et caverneuses avec les structures squelettiques et répétitives de la techno berlinoise. Le morceau est défini par sa production froide et atmosphérique, caractérisée par des échos dub lourdement traités et un rythme hypnotique et roulant qui illustre le « Chain Reaction sound » défini par des paysages abstraits et minimalistes.\n\n« Port Of Nuba » fait office de leçon de design sonore spatial, où l'absence de progression harmonique traditionnelle est compensée par la densité pure de son champ sonore réverbérant. Il a capturé l'air du temps de la scène underground berlinoise du milieu des années 1990, s'éloignant des tropes plus mélodiques ou agressifs de la techno contemporaine au profit d'une approche cérébrale et introspective qui demeure très influente. La sortie du morceau sur Chain Reaction — une émanation de l'emblématique label Basic Channel — le situe au sein d'un canon musical qui privilégiait la présence physique du son, souvent pressé avec une attention particulière portée aux capacités acoustiques du support vinyle chez Dubplates & Mastering à Berlin. En tant qu'exemple définitif de dub techno, « Port Of Nuba » reste une référence pour les producteurs explorant l'intersection entre poids industriel et atmosphère influencée par le dub. Le label Chain Reaction a été fondé comme une plateforme pour une techno plus profonde et plus abstraite suite au succès de Basic Channel, et son influence sur la culture de la musique électronique à la fin des années 90 ne saurait être surestimée. En associant cette sortie à « Nautical Nuba » en face B, Porter Ricks a démontré sa capacité à créer des compositions immersives et longues qui fonctionnaient comme des pièces d'art modulaires et changeantes. Leur travail continue d'être cité par les producteurs modernes des scènes ambient et techno expérimentale du monde entier. La durée et la précision technique du morceau illustrent les standards élevés fixés par les partenaires de studio du label, influençant une génération d'ingénieurs du son.",
+      "source_sha256": "416c93285de4f194ebc0b8de946ced36e4ebf8f3ee7fc324860e82457945a130",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:14.162Z"
+    }
+  }
 }

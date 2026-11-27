@@ -107,5 +107,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Album collaboratif légendaire de 1996 entre les icônes de l'électronique Aphex Twin et µ-Ziq, Expert Knob Twiddlers met en avant l'expérimentation ludique et inspirée du kitsch du duo sur le label Rephlex Records. C'est une capsule temporelle légère et déterminante de la scène IDM des années 90.",
+      "article": "Expert Knob Twiddlers est un album studio séminal sorti en 1996 par les sommités de la musique électronique Mike Paradinas (mieux connu sous le nom de µ-Ziq) et Richard D. James (Aphex Twin), opérant sous le pseudonyme collaboratif Mike & Rich. Publié sur le label influent de James, Rephlex Records, le projet représente un moment singulier dans le paysage IDM du milieu des années 90, capturant deux titans de la musique électronique expérimentale dans une humeur remarquablement ludique et irrévérencieuse. Enregistré en grande partie en 1994, l'album est apparu comme une « version mise à jour de l'easy listening et du funk », marquée par une programmation de batterie idiosyncrasique, une conception sonore fantaisiste et une absence distincte du ton sérieux souvent attribué aux producteurs électroniques d'avant-garde de l'époque.\n\nParadinas et James ont travaillé rapidement sur le matériel, souvent alimentés par des sessions nocturnes et une expérimentation décontractée. Des morceaux comme « Giant Deflating Football » mettent en évidence l'approche du duo : incorporer des textures sonores trouvées — telles que le grattage ou le fait de souffler dans des microphones — aux côtés de leur synthèse électronique caractéristique. La pochette de l'album, une parodie du jeu de société Downfall, a donné le ton à la sortie, signalant que si la prouesse technique était indéniable, le projet était fondamentalement un exercice de plaisir. Les perspectives critiques rétrospectives ont souvent considéré le disque comme une « capsule temporelle ludique, parfois inspirée », le distinguant de la production plus intense ou conceptuelle typique des discographies individuelles du duo. En 2016, l'album a été redécouvert par une nouvelle génération grâce à une réédition étendue via Planet Mu, cimentant son héritage en tant que relique charmante et non conventionnelle de la musique électronique expérimentale des années 1990.",
+      "source_sha256": "484f0f78821021e7bcc209c7ece159d5abc8da3a653e412f3ee84318854300d0",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:23:13.142Z"
+    }
+  }
 }

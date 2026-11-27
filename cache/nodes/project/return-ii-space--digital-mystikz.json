@@ -88,5 +88,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Document essentiel de la scène underground dubstep de 2010, Return II Space capture le son profond, squelettique et méditatif dont Digital Mystikz a été le pionnier. Comprenant des titres publiés sur le légendaire label DMZ, il demeure une exploration définitive de l'esthétique spatiale et riche en basses du genre.",
+      "article": "Return II Space est une collection marquante de Digital Mystikz, le duo de production dubstep séminal composé de Mala et Coki. Publié en 2010 sur leur propre label emblématique, DMZ, le projet fonctionne comme une anthologie organisée de titres qui ont contribué à définir le « DMZ sound » — un style austère, inquiétant et profondément axé sur les basses qui évitait les tendances commerciales commençant à submerger le genre à l'époque. L'album est composé de six titres initialement publiés sous forme d'une série de disques vinyles 12 pouces (DMZ 015, 016 et 017), ancrant le projet dans la culture sound system qui a vu naître le mouvement dans le sud de Londres.\n\nSur le plan sonore, Return II Space se caractérise par son minimalisme, ses structures répétitives et son atmosphère profonde portée par les sub-basses. Des titres comme Unexpected et le morceau-titre, Return II Space, incarnent la précision mécanique et étrange qui a fait de Digital Mystikz les maîtres de l'art du dubstep. En mettant l'accent sur l'atmosphère plutôt que sur la mélodie complexe, le projet évoque un sentiment d'isolement urbain vaste qui était la marque de fabrique des débuts du son des soirées DMZ au club Mass de Brixton. En dépouillant le paysage sonore jusqu'à ses éléments les plus nus et les plus efficaces, Mala et Coki ont créé un document qui reste influent pour son dévouement à la pureté, au poids et à l'impact physique des basses fréquences. Le mastering du disque a été assuré par Jason Goz, et l'identité visuelle distinctive de la sortie est créditée à l'artiste &a&k&t, soulignant l'éthique collaborative et DIY qui a soutenu l'influence profonde du label DMZ sur la musique électronique.",
+      "source_sha256": "2d0a0eb3ea19ca6a005bceae6c5f71655fbcb9184b163cd220432287c951dbf1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:31:20.485Z"
+    }
+  }
 }

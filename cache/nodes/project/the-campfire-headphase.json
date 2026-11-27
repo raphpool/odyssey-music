@@ -142,5 +142,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Départ chaleureux et baigné de soleil par rapport à la densité électronique sombre de Geogaddi, The Campfire Headphase voit Boards of Canada expérimenter avec des guitares acoustiques traitées et une esthétique plus organique et cinématographique.",
+      "article": "The Campfire Headphase est le troisième album studio du duo électronique écossais séminal Boards of Canada, sorti en octobre 2005 via Warp. Arrivant trois ans après le claustrophobe et complexe Geogaddi, l'album représente un changement stylistique significatif pour le duo, Michael et Marcus Sandison. Plutôt que de s'appuyer sur la programmation dense et menaçante de synthétiseurs et la nostalgie de l'enfance qui définissaient leurs travaux précédents, The Campfire Headphase penche vers une palette plus chaleureuse et organique. Le disque met en avant des guitares acoustiques — souvent traitées et bouclées — pour créer un son « baigné de soleil » que les artistes ont décrit comme ressemblant à une bande originale de road movie ou à la musique de « cowboys androïdes ».\n\nL'enregistrement du projet fut un processus méticuleux qui a impliqué l'abandon d'une version initiale complète de l'album en 2004 afin de poursuivre une esthétique plus simple et plus optimiste. Les frères Sandison se sont intentionnellement éloignés des calendriers de production « infernaux » du passé, cherchant à créer une musique qui ressemblait moins à une formule électronique rigide et davantage à la production d'un groupe traditionnel. Ce pivot s'est accompagné d'une réduction délibérée de leur utilisation caractéristique d'échantillons vocaux, en particulier de voix d'enfants, qu'ils estimaient être devenus un trope trop prévisible dans leur travail. Malgré une réception mitigée de la part des fans qui ont initialement eu du mal avec cet éloignement de leurs racines plus sombres et percussives, l'album est aujourd'hui largement considéré comme un disque charnière de leur discographie, démontrant leur capacité à évoquer des paysages intenses et nostalgiques grâce à une instrumentation lo-fi et une conception sonore sophistiquée. Il demeure une pierre angulaire de la scène downtempo et électronique expérimentale du milieu des années 2000.",
+      "source_sha256": "a09746e73bdfb7923d29a57ce0dc72a96c9cee3288c9fa220219055b129239d5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:34:21.241Z"
+    }
+  }
 }

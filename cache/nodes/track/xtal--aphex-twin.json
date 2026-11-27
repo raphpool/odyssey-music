@@ -63,5 +63,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Xtal » constitue la porte d'entrée éthérée vers l'un des albums électroniques les plus célèbres des années 1990, Richard D.",
+      "article": "« Xtal » constitue la porte d'entrée éthérée vers l'un des albums électroniques les plus célèbres des années 1990, le premier album longue durée de Richard D. James sous le nom d'Aphex Twin, « Selected Ambient Works 85-92 ». Sorti en 1992 sur le label belge R&S Records, le morceau sert de mouvement d'ouverture à une collection qui a fondamentalement remodelé le paysage de l'ambient techno. Caractérisé par ses textures de synthétiseurs riches et superposées, ses échantillons vocaux hypnotiques — un fragment vocal aérien récurrent qui confère au morceau sa qualité obsédante et onirique — et un rythme breakbeat entraînant et net, « Xtal » équilibre introspection atmosphérique et propulsion prête pour le club.\n\nHistoriquement, le morceau est souvent cité pour son esthétique de production brute et lo-fi, caractéristique de l'ensemble de l'album « Selected Ambient Works 85-92 », qui proviendrait d'enregistrements sur cassettes réalisés à domicile. Ce grain sonore, combiné au talent inné de James pour la complexité mélodique, a créé un pont entre les structures répétitives de la première techno et les profondeurs plus contemplatives et immersives de la musique ambient. En plaçant ce morceau au début de son premier album séminal, Aphex Twin a immédiatement établi sa capacité à créer des paysages sonores immersifs qui semblaient à la fois étrangers et intimes. Au fil des décennies, « Xtal » a maintenu son statut de chef-d'œuvre du genre, influençant une génération de producteurs d'IDM et d'ambient électronique cherchant à émuler son mélange unique de mélancolie et de mouvement rythmique vers l'avant. Il demeure un moment déterminant de la vaste discographie de Richard D. James, capturant un instant précis où la production électronique de haut vol a rencontré la résonance émotionnelle. Le morceau continue d'être un pilier du discours sur la musique électronique moderne, fréquemment cité pour sa contribution séminale à la définition de l'esthétique « ambient techno » et reste l'une des compositions les plus discutées de la discographie de l'artiste. Son influence durable témoigne de la nature intemporelle de la production. Ce morceau est synonyme du catalogue de R&S Records, marquant un point culminant de la scène électronique du début des années 1990 au Royaume-Uni et en Belgique. Avec des contributions à la production de Richard D. James lui-même, il demeure une composition phare.",
+      "source_sha256": "6d699b8bc5940cc195fdad327611465c05fe66f964fcc0e8869f8d9ec9b9e2ae",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:53:25.257Z"
+    }
+  }
 }

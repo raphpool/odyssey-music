@@ -74,5 +74,14 @@
       "name": "Steven Halpern"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Publié en 1980, Eastern Peace est une entrée fondamentale dans la discographie de Steven Halpern, illustrant son approche pionnière de la guérison par le son et de la musique ambient à travers le prisme de compositions méditatives portées par les synthétiseurs.",
+      "article": "Eastern Peace, publié en 1980 par le musicien New Age et guérisseur par le son pionnier Steven Halpern, représente une évolution significative dans son travail à la fin des années 1970 et au début des années 1980. Enregistré au Music Annex à Menlo Park, en Californie, l'album constitue un exemple définitif des paysages sonores ambient de Halpern, spécifiquement conçus pour induire des états de relaxation profonde, de méditation et de guérison. En utilisant des structures mélodiques minimales, des textures de synthétiseur douces et des intervalles tonaux soigneusement étudiés, Halpern a cherché à contourner l'engagement cognitif traditionnel de la musique, privilégiant au contraire un effet physiologique direct sur l'auditeur.\n\nAu moment de sa sortie, Eastern Peace s'est distingué par son esthétique sans prétention, « aux accents ethniques », qui le différenciait de certains de ses enregistrements antérieurs, plus techniquement expérimentaux. Les morceaux — tels que August Moon (Part 1), Kwan Yin, et le morceau-titre Eastern Peace — sont caractérisés par leur espace et leur absence délibérée de contraste dynamique, marqueurs courants du genre New Age naissant qu'il a contribué à définir. L'album n'est pas simplement une collection de chansons, mais un outil fonctionnel conçu pour le bien-être personnel, la méditation et la réduction du stress. Son impact culturel réside dans sa consolidation précoce du sous-genre de la « musique de guérison », fournissant un modèle pour le succès commercial et thérapeutique de la musique ambient au cours des décennies suivantes. À travers son travail sur ce projet et d'autres, Halpern s'est imposé comme une figure centrale du mouvement visant à utiliser les fréquences sonores comme médium d'ancrage psychologique et spirituel, un héritage qui continue d'influencer la musique ambient contemporaine et la musique électronique axée sur le bien-être.",
+      "source_sha256": "238d6dd547b25fe1ab46b55a3de546164c3974f3bf05582b6d5a42cc2731a4aa",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:22:13.370Z"
+    }
+  }
 }

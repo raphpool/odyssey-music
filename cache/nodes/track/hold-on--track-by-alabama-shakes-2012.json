@@ -38,5 +38,14 @@
   "producers": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Hold On » est le premier single révélation du groupe de blues-rock américain Alabama Shakes, sorti en 2012.",
+      "article": "« Hold On » est le premier single révélation du groupe de blues-rock américain Alabama Shakes, sorti en 2012. Il fait office de morceau pilier pour le groupe, contribuant à les propulser d'Athens, en Alabama, vers une renommée internationale. La chanson est définie par la performance vocale brute et imposante de la chanteuse Brittany Howard et par un rythme entraînant et granuleux qui évoque les traditions soul et R&B du sud des États-Unis. Le profil sonore du morceau est ancré par un groove propulsif et régulier, des lignes de guitare tintantes et une intensité imprégnée de gospel qui semble à la fois classique et urgente. Sur le plan lyrique, « Hold On » capture un sentiment de persévérance et de résilience, des thèmes que Howard livre avec une profondeur émotionnelle viscérale qui est devenue la signature du groupe.\n\nLe succès de « Hold On » a été déterminant dans l'appréciation du roots-rock et de la soul au début des années 2010, valant au groupe des éloges critiques généralisés et de multiples nominations aux Grammy. Sa production — dépouillée, percutante et sans fioritures — a permis à l'alchimie organique du groupe d'occuper le devant de la scène, contrastant avec les sons pop plus polis qui dominaient les ondes à l'époque. « Hold On » demeure un hymne durable de la carrière du groupe, symbolisant l'esprit puissant et brut de leur son. En mélangeant des influences historiques avec une attitude garage-rock contemporaine, Alabama Shakes a fait en sorte que leur premier single résonne bien au-delà des cercles de blues traditionnels, marquant le début d'un parcours bref mais hautement influent pour le groupe. Le morceau a joué un rôle déterminant dans l'établissement de la présence du groupe dans le paysage rock moderne.",
+      "source_sha256": "2d9bc1153760bf235f2c7426daa71906800c135c2278d0f3486221ea81800af3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:43:22.811Z"
+    }
+  }
 }

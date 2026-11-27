@@ -43,5 +43,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« The Clan » est un morceau marquant du tromboniste de jazz Curtis Fuller, initialement paru sur son album de 1961 Soul Trombone via Verve/Impulse!",
+      "article": "« The Clan » est un morceau marquant du tromboniste de jazz Curtis Fuller, initialement paru sur son album de 1961 Soul Trombone via la lignée Verve/Impulse!. En tant que pilier de l'ère hard-bop, le travail de Fuller au début des années 1960 équilibrait virtuosité technique et arrangements profonds et empreints de soul. « The Clan » met en valeur la maîtrise du trombone par Fuller, utilisant l'instrument non seulement comme une voix d'accompagnement, mais comme un meneur dynamique capable de lignes mélodiques complexes et swinguantes qui ancrent la section rythmique entraînante du morceau.\n\nLe morceau lui-même est un exemple par excellence du jazz accessible mais sophistiqué du début des années 1960. Produit par George Douglas, il capture une session de grande camaraderie musicale, une marque de fabrique des enregistrements de Fuller. La composition démontre sa capacité à écrire pour un ensemble, mélangeant des textures riches en cuivres avec une improvisation fluide. L'enregistrement est resté une pièce importante de la discographie de Fuller, reflétant la transition de l'époque du bebop traditionnel vers des styles hard-bop plus orientés vers le groove qui ont trouvé un écho auprès d'un public plus large. Pour les auditeurs cherchant à comprendre l'esthétique jazz du milieu du siècle, « The Clan » sert de point d'entrée définitif et plein d'énergie. Il capture un moment où le jazz honorait simultanément ses racines techniques tout en se tournant vers un avenir plus poli et raffiné en studio. Le morceau souligne la synergie entre les solistes et l'équipe de production durant une période fertile pour le jazz américain.",
+      "source_sha256": "6dfca9a2bd7a425f2939b0115c6788d9d355fe173c4c47635f1cf2768b2f848d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:13.641Z"
+    }
+  }
 }

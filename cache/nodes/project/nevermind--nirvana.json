@@ -69,5 +69,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Véritable séisme dans l'histoire du rock, Nevermind a synthétisé l'énergie punk, la sensibilité pop et une angoisse brute représentative d'une génération pour devenir le son emblématique des années 90.",
+      "article": "Sorti le 24 septembre 1991, Nevermind constitue un tournant culturel monumental, propulsant la scène grunge de Seattle sur le devant de la scène mondiale et modifiant durablement la trajectoire de la musique populaire. Deuxième album studio et premier disque chez une major pour Nirvana, il s'agit de la première parution du groupe à mettre en avant la batterie explosive de Dave Grohl. Produit par Butch Vig et enregistré principalement aux Sound City Studios en Californie, l'album offre un son poli et haute fidélité qui contraste nettement avec les premières productions indépendantes et brutes du groupe. Malgré une production accessible, le disque a conservé le cœur émotionnel sombre, introspectif et parfois dérangeant de l'écriture de Kurt Cobain.\n\nLes thèmes de l'aliénation, de la frustration et du sentiment anti-establishment ont trouvé un écho profond auprès de la génération X, mettant fin de fait à la domination de l'ère hédoniste du hair metal. Des chansons comme l'hymne générationnel « Smells Like Teen Spirit », le mélancolique « Come as You Are » et le complexe « In Bloom » sont devenus des titres emblématiques qui ont comblé le fossé entre l'éthique punk et le succès radiophonique pop. L'ascension commerciale de l'album a été fulgurante ; il a atteint la première place du Billboard 200 au début de l'année 1992, détrônant Dangerous de Michael Jackson. Avec plus de 30 millions d'exemplaires vendus dans le monde et son inscription en 2004 au National Recording Registry pour son importance historique profonde, Nevermind est célébré à juste titre comme un tournant culturel qui a redéfini le son et l'esprit des années 1990.",
+      "source_sha256": "c9f03f589f81e355c595d19774f8902efc32c8688511e184cae8eceba5c9eeb7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:29:20.232Z"
+    }
+  }
 }

@@ -53,5 +53,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Morceau-titre de l'album solo d'Alec Empire paru en 2001, cette chanson est une leçon magistrale de son style digital hardcore caractéristique, fusionnant des textures électroniques abrasives avec une énergie agressive aux accents industriels.",
+      "article": "Intelligence and Sacrifice est le morceau-titre de l'album studio d'Alec Empire paru en 2001, marquant un tournant décisif dans la carrière du producteur après Atari Teenage Riot. Publié sur son propre label Digital Hardcore Recordings, le morceau illustre le son à haute intensité, imprégné d'influences industrielles, qui a défini l'esthétique du label. En tant que pièce maîtresse du premier disque de l'album, la composition s'appuie sur la palette sonore agressive, saturée et riche en voix qu'Empire a perfectionnée tout au long des années 1990. Le morceau se distingue par son énergie délibérée et conflictuelle, qui sert d'ancrage thématique à l'exploration par l'album de la volatilité personnelle et politique au tournant du millénaire.\n\nTechniquement, le morceau reflète le penchant d'Empire pour l'échantillonnage intensif et la manipulation électronique abrasive, comblant souvent le fossé entre la culture rave underground et la musique industrielle métallique. Il intègre des échantillons distincts, dont un clin d'œil notable au groupe industriel KMFDM. Au moment de la sortie de cet album, Empire amorçait un changement dans sa production créative, s'éloignant de la dynamique de groupe d'Atari Teenage Riot pour une exploration solo plus introspective et étendue. Cette chanson demeure un document de cette transition, capturant un producteur qui regardait simultanément les décombres de ses projets passés tout en définissant agressivement sa trajectoire artistique individuelle. Sa production reste un exemple par excellence du genre « digital hardcore » dont Empire a été le fer de lance, caractérisé par une dynamique implacable et une signature sonore sans compromis.",
+      "source_sha256": "0ab1fd7c6806ee7fa5248fe2a5510bb8a391129ea40617709d3aac91ed04745f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:44:15.998Z"
+    }
+  }
 }

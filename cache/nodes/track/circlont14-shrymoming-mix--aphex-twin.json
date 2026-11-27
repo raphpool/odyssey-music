@@ -55,5 +55,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Morceau marquant de l'album de retour d'Aphex Twin en 2014, Syro, cette composition est une leçon magistrale de sept minutes de percussions complexes et de synthèse analogique aux textures extraterrestres et scintillantes.",
+      "article": "Circlont14 (Shrymoming Mix) [152.97][shrymoming mix] est une composition électronique dense et complexe d'Aphex Twin, figurant en huitième piste sur son album phare de 2014, Syro. Marquant le premier album studio de Richard D. James sous le nom d'Aphex Twin en plus d'une décennie, Syro fut un retour très attendu qui a synthétisé des décennies de son exploration sonore idiosyncratique. Le « Shrymoming mix » de Circlont14 (Shrymoming Mix) résume parfaitement l'éthique de l'album : une collision frénétique mais hautement contrôlée de breakbeats, de synthèse analogique grinçante et de motifs de percussions complexes et superposés qui changent avec une énergie mercurielle.\n\nLe morceau est caractéristique du style mature de James, où une programmation rythmique hyper-détaillée — souvent nourrie par sa vaste collection d'équipements personnalisés et de matériel vintage — rencontre une sensibilité mélodique ludique, presque chaotique. Le suffixe numérique entre crochets [152.97] fait référence au tempo du morceau en battements par minute, un détail analytique signature que James a appliqué tout au long de la liste des titres de Syro, reflétant son approche de la composition obsédée par la précision. Musicalement, il fonctionne comme une leçon magistrale de textures, équilibrant des percussions abrasives proches du drill-and-bass avec des accords scintillants imprégnés de synth-pop qui évoluent tout au long de sa durée de sept minutes. Dans le contexte de l'album, le morceau comble le fossé entre son expérimentalism plus agressif de l'ère Drukqs et la production polie et accessible de ses travaux ultérieurs, servant de pilier à l'IDM contemporaine. Il demeure un favori des fans pour sa capacité à équilibrer une densité sonore écrasante avec un sentiment de joie extraterrestre et légère.",
+      "source_sha256": "4d11fd02a56c690c45f7c301138416f32efa77874ae743070f28cd9cb6459766",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:19.218Z"
+    }
+  }
 }

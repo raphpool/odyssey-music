@@ -76,5 +76,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Compilation fondamentale de minimal et de dub techno, BCD-2 met en avant la production magistralement répétitive et atmosphérique de Mark Ernestus et Moritz von Oswald de Basic Channel.",
+      "article": "BCD-2 est une compilation définitive du légendaire duo allemand de minimal techno Basic Channel, publiée en 2008 sur leur label éponyme. Composé de six morceaux hypnotiques et tentaculaires, le projet fait office de cours magistral à l'intersection du dub, de l'industriel et de la techno, illustrant la conception sonore inégalée et la prouesse de production de Mark Ernestus et Moritz von Oswald. L'album est célébré pour son engagement sans compromis envers le minimalisme, où la répétition est élevée au rang d'art, créant des paysages sonores denses et atmosphériques qui semblent simultanément froids, mécaniques et profondément humains.\n\nLa collection inclut des compositions essentielles telles que « Enforcement », « Phylyps Trak » et « Inversion », qui soulignent toutes la capacité du duo à manipuler des percussions polyrythmiques et robotiques ainsi que des textures de basse immergées. En évitant les structures mélodiques conventionnelles au profit de la texture et d'une énergie viscérale, BCD-2 capture l'ambiance nocturne et introspective de la scène techno berlinoise des années 1990. Son influence demeure profonde, ayant façonné la trajectoire de genres comme la microhouse et au-delà grâce à sa rigoureuse économie sonore. Pour l'auditeur, l'album fonctionne comme une expérience hypnotique et immersive, offrant un aperçu d'un monde de mécontentement et de précision architecturale qui semble tout aussi vital et révélateur aujourd'hui qu'au moment de sa sortie. Il ne s'agit pas simplement d'un album à écouter, mais d'un espace conceptuel à habiter.",
+      "source_sha256": "f2801cb7cf5960275196019fac4e7351debf14e868c8c720f6ca8948acd563b7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:19:13.279Z"
+    }
+  }
 }

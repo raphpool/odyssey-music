@@ -85,5 +85,14 @@
       "name": "Mike Hill"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« The Wayward » est le premier album studio longue durée éponyme du trio punk expérimental basé à Baltimore, The Wayward.",
+      "article": "« The Wayward » est le premier album studio longue durée éponyme du trio punk expérimental basé à Baltimore, The Wayward. Sorti le 6 juin 2006 via Black Box Recordings, l'album représente un tournant critique dans le début de carrière du groupe, formé en 2004 suite à la dissolution de la formation Carrion. Le disque a été enregistré au Translator Audio à Brooklyn, New York, avec Mike Hill aux commandes de l'ingénierie, capturant l'énergie brute et abrasive qui définirait une grande partie de la production ultérieure du groupe.\n\nMusicalement, l'album occupe un espace distinct entre le post-hardcore anguleux et saccadé et le rock expérimental. Avec une formation composée de Nick Skrobisz à la guitare et au chant, Jesse Skrobisz à la Bass VI et Nate Simms à la batterie, le trio a façonné un paysage sonore marqué par la dissonance et une complexité cinétique. Les compositions de « The Wayward » vont d'attaques rythmiques entraînantes à des passages décousus aux influences psychédéliques, illustrant une approche qui résiste aux frontières conventionnelles des genres. La liste des titres de l'album, comprenant neuf morceaux dont « Balthazar », « No Remainder » et « Ye Olde Battle Axe », témoigne de la maîtrise technique et de l'agitation créative d'un groupe qui allait continuer à évoluer, passant finalement à un format de trio atypique puis à un duo, élargissant encore son esthétique minimaliste et abrasive. Le projet demeure une référence pour la transition du groupe vers les scènes noise-rock et expérimentales de Baltimore.",
+      "source_sha256": "3c667abad09759dd885cdf102f9e4c51c443aa2f31e53ba102a14d68fdfb1490",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:35:18.909Z"
+    }
+  }
 }

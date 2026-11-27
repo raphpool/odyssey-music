@@ -58,5 +58,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pièce marquante de la musique minimal glitch, « Tendency » utilise des micro-échantillons de jazz pour créer un paysage sonore chaleureux, hypnotique et à la texture unique.",
+      "article": "« Tendency » est une pièce séminale de musique électronique composée par l'artiste et producteur allemand Jan Jelinek. Sorti à l'aube du millénaire, le morceau s'impose comme une pierre angulaire des mouvements glitch et minimal techno, caractérisé par la technique de « loop-finding » propre à Jelinek. En isolant et en répétant de petits fragments chaleureux d'enregistrements de jazz — cuivres, guitares et notes de piano — et en les superposant à un traitement numérique texturé et subtil, Jelinek a créé un son qui semble à la fois incroyablement organique et distinctement synthétique. Le morceau figure sur son album acclamé de 2001, Loop-Finding-Jazz-Records, qui demeure une sortie définitive pour le label ~scape et une référence pour la musique ambient expérimentale. Par sa manipulation minutieuse du rythme et du timbre, Jelinek parvient à dépouiller le jazz de ses éléments les plus hypnotiques, construisant un paysage sonore dense et atmosphérique qui évoque le souvenir évanescent d'une performance nocturne en club. Son importance ne réside pas seulement dans la technique du micro-échantillonnage, mais dans la résonance émotionnelle des compositions, qui parviennent à combler le fossé entre la conception sonore abstraite et une musicalité profondément satisfaisante, chaleureuse et pleine d'âme. Pour les auditeurs explorant l'intersection du jazz moderne, de l'ambient et de la production électronique, « Tendency » fait office de leçon magistrale de subtilité et de retenue.",
+      "source_sha256": "804218a2189859f158105ae9797cfc9f464237ceaa09ee1491954661754e0ce1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:50:21.045Z"
+    }
+  }
 }

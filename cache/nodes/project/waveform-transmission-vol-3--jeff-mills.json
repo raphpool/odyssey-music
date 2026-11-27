@@ -81,5 +81,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Déclaration définitive de la techno de Détroit du début des années 90, Waveform Transmission, Vol. 3 de Jeff Mills est un chef-d'œuvre brutal et dépouillé qui a repoussé les limites du minimalisme machine-funk et de l'intensité.",
+      "article": "Sorti en 1994 sur le légendaire label berlinois Tresor, Waveform Transmission, Vol. 3 s'impose comme l'un des albums les plus significatifs de l'histoire de la techno. Produit par le pionnier de Détroit Jeff Mills, l'album est une exploration implacable et sans compromis du rythme et de la tension. En éliminant les fioritures mélodiques présentes dans une grande partie de la musique électronique de l'époque, Mills s'est concentré sur la puissance brute et percussive des machines, créant un modèle sonore qui allait définir le « son Tresor » et influencer des générations de producteurs sur les scènes techno minimaliste et industrielle. La liste des titres de l'album, qui comprend des morceaux percutants comme « The Extremist » et « Wrath Of The Punisher », témoigne de la capacité de Mills à extraire des grooves profonds et hypnotiques à partir des éléments les plus simples. Comme Mills l'a noté dans les notes de pochette originales, l'album était la manifestation d'un besoin de comprendre la condition humaine dans un monde en mutation rapide, utilisant la technologie comme vecteur de théorie et de substance. Son influence s'étend bien au-delà de Détroit, agissant comme un pont entre le cœur industriel américain et la culture club européenne naissante qui a trouvé refuge dans les voûtes de Tresor. Plus qu'une simple collection de morceaux pour dancefloor, le disque est une expérience immersive de précision mécanique, d'atmosphère industrielle froide et de l'énergie implacable et motrice que seul Mills pouvait synthétiser au sommet de ses capacités créatives. Même des décennies plus tard, l'intensité pure et la clarté de la production restent inégalées, cimentant son statut de pilier fondamental de la techno moderne.",
+      "source_sha256": "48af24e7d9439415e5e4373bd8a29f36be8dcb4a973dd2402ca3945a8bdd45e2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:37:13.055Z"
+    }
+  }
 }

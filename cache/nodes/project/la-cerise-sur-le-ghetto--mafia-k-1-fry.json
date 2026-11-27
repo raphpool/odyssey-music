@@ -81,5 +81,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier album définitif du légendaire collectif de rap français Mafia K'1 Fry, incluant l'hymne du genre « Pour ceux ».",
+      "article": "La Cerise sur le ghetto est le premier album studio séminal de l'influent collectif de rap français Mafia K'1 Fry, sorti le 28 avril 2003 chez Small et Hostile Records. Représentant l'apogée de l'impact culturel du collectif, l'album a atteint la huitième position des classements français, où il est resté pendant vingt et une semaines. Il est largement célébré pour avoir défini une ère spécifique du hip-hop français, avec des titres emblématiques tels que « Pour ceux » et « Balance » qui demeurent des classiques du genre. Le projet a rassemblé les divers talents du collectif, incluant des membres de groupes comme 113 et Intouchable, aux côtés d'artistes solo comme Rohff, Karlito et Manu Key. Malgré l'absence du collaborateur de longue date DJ Mehdi en raison de conflits d'emploi du temps, la production de l'album a été dirigée par Jakus, avec des contributions additionnelles du duo Frenesik et de Zoxea. La direction artistique, supervisée par Manu Key et Karlito, a réussi à synthétiser l'esthétique brute et urbaine du collectif en une sortie commerciale cohérente et couronnée de succès.",
+      "source_sha256": "b301ec72c53cf8579d1a43e5b0e77a09397e06dbe51ac8305742c2971989ee6e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:21.675Z"
+    }
+  }
 }

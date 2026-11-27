@@ -67,5 +67,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre de techno breakbeat issu de l'album phare de Skee Mask en 2018, Compro, « Via Sub Mids » est une leçon magistrale de texture profonde axée sur les sub-basses et de conception rythmique complexe.",
+      "article": "« Via Sub Mids » est un morceau marquant du producteur électronique allemand Skee Mask, sorti à l'origine en 2018 dans le cadre de son deuxième album acclamé par la critique, Compro, sur le label munichois Ilian Tape. Le morceau illustre le style de production unique qui a défini l'émergence de Skee Mask en tant que voix majeure de la musique électronique contemporaine : un mélange de rythmes complexes axés sur le breakbeat, de nappes atmosphériques luxuriantes et d'une conception sonore profonde portée par les sub-basses. D'une durée d'environ six minutes et demie, la pièce évolue dans l'espace situé entre la techno ambient et le breakbeat, démontrant une maîtrise du rythme et de la texture qui demeure une caractéristique déterminante de la production du label Ilian Tape à cette époque.\n\nSur le plan culturel, « Via Sub Mids » et l'album Compro sont souvent cités comme des moments charnières de la fin des années 2010 pour la scène techno « proche de l'IDM ». En évitant les structures rigides en 4/4 de la techno traditionnelle des heures de pointe au profit de batteries fluides et entraînantes ainsi que de paysages sonores émotionnels et immersifs, Skee Mask a contribué à combler le fossé entre l'electronica cérébrale et les morceaux destinés aux clubs. Le titre lui-même fait allusion à sa signature sonore, soulignant l'importance des fréquences médiums et le poids des sub-basses, qui créent ensemble une expérience d'écoute dense et enveloppante. Son inclusion dans Compro a cimenté le statut de l'album en tant que classique moderne, influençant fortement les vagues ultérieures de producteurs de club expérimentaux cherchant à mélanger une programmation rythmique complexe avec la résonance émotionnelle du breakbeat et de l'IDM du début des années 90. Tout au long du morceau, l'interaction entre les percussions nettes et les couches de synthétiseurs en constante évolution démontre un niveau de précision technique devenu la marque de fabrique de la discographie de Skee Mask. Il témoigne de la capacité de l'artiste à équilibrer complexité technique et musicalité hypnotique profonde, ce qui en fait une écoute essentielle pour quiconque explore l'intersection entre la techno moderne et la conception sonore axée sur le break.",
+      "source_sha256": "73ff5bf0a630a679375dd29eea94a389050786843117316159f6f108860f633b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:53:14.192Z"
+    }
+  }
 }

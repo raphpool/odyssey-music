@@ -45,5 +45,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre microtonal et rituel scénique fondamental, Delusion of the Fury est l'œuvre majeure ultime de Harry Partch, mêlant avec maestria le théâtre nô japonais au folklore éthiopien grâce à une armée d'instruments microtonaux fabriqués sur mesure.",
+      "article": "Delusion of the Fury: A Ritual of Dream and Delusion constitue le magnum opus du compositeur américain Harry Partch, pionnier visionnaire de la musique microtonale et de la facture instrumentale. Achevée en 1966 et créée en 1969 à l'UCLA, cette « opéra en deux actes » représente l'aboutissement du dévouement de toute une vie de Partch à l'intégration de la musique, de la danse, du mime et du rituel. L'œuvre utilise sa vaste collection d'instruments microtonaux fabriqués sur mesure, qui ne sont pas de simples accompagnements mais des éléments sculpturaux essentiels de la scénographie elle-même.\n\nL'œuvre est divisée en deux actes distincts qui explorent le thème de la colère humaine et le potentiel de réconciliation. Le premier acte est tiré de la pièce de théâtre nô japonaise Atsumori, se concentrant sur le voyage d'un fantôme vers la paix, tandis que le second acte est basé sur un conte populaire éthiopien intitulé Justice, qui utilise la satire et la farce pour critiquer les systèmes communautaires. Par ce jumelage, Partch évoque la tradition grecque antique consistant à juxtaposer la tragédie à un drame satyrique. Pour Partch, compositeur qui s'est souvent senti marginalisé par l'establishment musical dominant, Delusion of the Fury a servi de déclaration personnelle profonde. Son associé, Danlee Mitchell, a décrit l'œuvre avec justesse comme « la réconciliation de Harry avec le monde », représentant une ultime et grandiose tentative de combler le fossé entre sa vision sonore radicale et l'expérience humaine. Au-delà de sa signification technique dans la microtonalité, l'œuvre demeure un artefact vital de l'avant-garde du XXe siècle, continuellement remis à l'honneur par des ensembles modernes comme MusikFabrik.",
+      "source_sha256": "e5f6d2977f79f98af97b4228209813875f60dad28bd4ad313168ccd9801eebb4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:15.437Z"
+    }
+  }
 }

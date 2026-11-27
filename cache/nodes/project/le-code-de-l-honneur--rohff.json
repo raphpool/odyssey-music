@@ -61,5 +61,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Premier album studio de l'icône du rap français Rohff, Le Code de l'honneur est un classique fondateur de la scène hip-hop française de la fin des années 90.",
+      "article": "Le Code de l'honneur est le premier album studio du rappeur français Rohff, sorti le 7 décembre 1999. Œuvre séminale dans le paysage du hip-hop français, l'album a consolidé la réputation de Rohff en tant que figure clé de la scène, mêlant des sensibilités rap hardcore à la production boom bap typique de l'époque. Le projet a été publié par Phénomène Records, le label de T.I.N du groupe Expression Direkt, en collaboration avec Musisoft Distribution et EMI. D'une durée de plus de 74 minutes, l'album est remarqué pour son lyrisme brut et son intégration profonde au sein du collectif Mafia K'1 Fry, avec des collaborations de membres éminents tels que 113, OGB, Intouchable et Karlito. Des titres comme « Du fond du cœur » et « Génération sacrifiée » sont depuis reconnus comme des classiques du genre. L'album demeure une pierre angulaire du rap français de la fin des années 90, capturant l'énergie brute et le commentaire social qui ont défini cette période.",
+      "source_sha256": "4e8bc42ab7b4b8a4a6e04be52b1d244c6d23552fa9e93150e38f9195de6f1c5a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:13.006Z"
+    }
+  }
 }

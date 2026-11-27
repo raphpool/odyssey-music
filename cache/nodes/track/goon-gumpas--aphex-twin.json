@@ -61,5 +61,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Goon Gumpas » est un morceau du producteur de musique électronique influent Aphex Twin, présent sur son album studio emblématique de 1996, « Richard D. James Album ».",
+      "article": "« Goon Gumpas » est un morceau du producteur de musique électronique influent Aphex Twin, présent sur son album studio emblématique de 1996, « Richard D. James Album », qui a été publié par le label britannique historique Warp Records. Le morceau constitue un exemple concis de la capacité de l'artiste à mêler des percussions complexes et chargées de glitch à des arrangements mélodiques et ludiques qui définissent sa production du milieu des années 90. D'une durée de deux minutes et deux secondes, « Goon Gumpas » est un moment marquant d'un disque qui a contribué à ancrer le son de l'Intelligent Dance Music (IDM) et du drill 'n' bass dans la conscience populaire de l'époque.\n\nLa production de « Goon Gumpas » démontre la précision caractéristique de James dans la conception sonore, utilisant des motifs de batterie nets et saccadés qui se heurtent à des lignes de synthétiseur douces et évocatrices. Cette juxtaposition crée une atmosphère qui semble à la fois numérique et organique, une marque de fabrique de son travail durant cette période. Publié sur Warp Records, un label essentiel qui a joué un rôle déterminant dans le développement de la musique expérimentale et électronique, le morceau contribue au récit global de « Richard D. James Album » en tant que projet définissant le genre. Par son mélange innovant de rythme et de mélodie, « Goon Gumpas » demeure un témoignage de l'impact durable d'Aphex Twin sur la culture de la musique électronique, influençant un large éventail de producteurs expérimentaux et d'auditeurs. Le morceau est largement célébré pour sa sophistication technique et sa capacité à évoquer un sentiment d'émerveillement fantaisiste malgré la nature complexe, souvent agressive, de sa programmation rythmique. Son association avec Warp Records, qui a également publié le travail d'autres expérimentateurs comme Boards of Canada, a consolidé sa position à l'avant-garde de la révolution électronique des années 1990. L'inclusion du morceau sur « Richard D. James Album » reste un point d'entrée essentiel pour comprendre l'étendue et la profondeur de son exploration sonore, comblant le fossé entre l'exploration ambiante et la complexité rythmique de la musique breakbeat. En outre, le soutien du label à des artistes comme Autechre et Boards of Canada souligne l'esprit de collaboration de l'époque pour repousser les limites de l'IDM, garantissant que cette œuvre musicale demeure un point de référence clé dans le développement de la musique électronique moderne.",
+      "source_sha256": "4c0b819610cc68534634523d77bf0e991149c940036b3bbdedac9196bae017cc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:43:18.967Z"
+    }
+  }
 }

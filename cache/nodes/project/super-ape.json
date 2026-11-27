@@ -35,5 +35,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre définitif du dub, Super Ape capture Lee Scratch Perry au sommet de sa puissance créative au sein du légendaire studio Black Ark. Il demeure un artefact essentiel de l'expérimentation en studio jamaïcain, défini par ses rythmes hypnotiques, ses effets spatiaux fantomatiques et la magie de production singulièrement excentrique de son créateur.",
+      "article": "Sorti en 1976, Super Ape s'impose comme une réalisation monumentale dans l'histoire de la musique dub, largement considéré comme l'œuvre studio par excellence du producteur et architecte sonore Lee Scratch Perry. Enregistré dans son célèbre studio Black Ark à Kingston, en Jamaïque, l'album est officiellement crédité à son groupe de studio, The Upsetters, bien que sa signature sonore soit inextricablement liée aux techniques de mixage excentriques et révolutionnaires de Perry. Durant cette période, Perry a transformé le studio lui-même en instrument, repoussant les limites de la manipulation de bande, de l'écho massif et des paysages sonores surréalistes qui allaient influencer fondamentalement le futur de la musique électronique, du post-punk et de l'expérimentalisme influencé par le dub.\n\nL'album représente un sommet pour l'esthétique du Black Ark, caractérisé par une chaleur organique mais profondément psychédélique qui le distingue de la production numérique stérile qui dominera plus tard le genre. Des titres comme « Dread Lion » et le morceau-titre « Super Ape » illustrent une maîtrise de l'espace et de la texture, où les instruments s'effacent dans des délais tourbillonnants et où les percussions sont étirées jusqu'à leurs limites. En Jamaïque, l'album est sorti à l'origine sous le titre Scratch the Super Ape sur le propre label de Perry, Upsetter, avant d'atteindre un public international via Island Records. Il demeure un texte fondateur du canon reggae, essentiel pour son atmosphère, son ingéniosité rythmique et la vision créative sans compromis de l'une des figures les plus énigmatiques de la musique. Écouter Super Ape, c'est pénétrer dans un environnement humide et surnaturel où le rythme est traité comme une substance vivante et malléable.",
+      "source_sha256": "1ec761d0876906aeb93f6072b91702eca853d12d9b273c96724cbd2ad9bb00a1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:34:13.068Z"
+    }
+  }
 }

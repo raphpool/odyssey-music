@@ -78,5 +78,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Floating » est une collaboration sereine et texturale entre The Album Leaf de Jimmy LaValle et le multi-instrumentiste Spencer Zahn, mêlant de délicates impulsions électroniques à des arrangements organiques et atmosphériques.",
+      "article": "« Floating » est un morceau atmosphérique collaboratif publié début 2026 par le projet électronique de longue date The Album Leaf, mené par Jimmy LaValle, et le compositeur et multi-instrumentiste Spencer Zahn. Le titre marque la poursuite de la longue tradition de The Album Leaf consistant à mêler des esthétiques ambient, post-rock et downtempo au sein de paysages sonores introspectifs. En tant que composition, « Floating » fonctionne comme une méditation sonore, caractérisée par son rythme lent et délibéré, ses synthétiseurs chaleureux et ses arrangements complexes et superposés qui font écho à l'expérience de Zahn dans le jazz contemporain et les structures néoclassiques.\n\nEn unissant la superposition rythmique électronique caractéristique de LaValle à la sensibilité mélodique de Zahn, le morceau occupe un espace situé entre l'expérimentation électronique et la composition ambient moderne. Sa sortie, accompagnée d'un visualiseur officiel, souligne une évolution vers une direction plus éthérée et minimaliste pour les deux artistes. Le titre témoigne de l'influence durable de The Album Leaf sur la scène indie-electronic, démontrant comment ils continuent d'évoluer en collaborant avec des musiciens partageant une affinité pour les environnements musicaux délicats et hautement texturés. Le résultat est une pièce qui semble à la fois expansive et profondément intime, s'inscrivant parfaitement dans la lignée des sous-genres « downtempo » et « ambient » qu'ils explorent depuis plus de deux décennies.",
+      "source_sha256": "5b33b3d7b4f6e10487466f9c784cfb918d728bf998bc46faae0dd1e6e0081f2f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:42:15.768Z"
+    }
+  }
 }

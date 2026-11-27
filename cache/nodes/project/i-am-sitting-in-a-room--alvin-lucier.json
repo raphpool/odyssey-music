@@ -53,5 +53,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre séminale d'art sonore datant de 1969, le projet d'enregistrement itératif d'Alvin Lucier cartographie la résonance physique d'une pièce à travers la dégradation progressive de la parole humaine.",
+      "article": "I Am Sitting in a Room est une pièce d'art sonore emblématique composée par le compositeur américain Alvin Lucier en 1969. L'œuvre est une exploration profonde de la résonance, de l'environnement acoustique et de la dégradation du son par l'enregistrement itératif. Dans cette pièce, Lucier narre un court texte autoréflexif sur le processus de s'enregistrer lui-même dans une pièce. Il diffuse ensuite cet enregistrement dans la même pièce et réenregistre le résultat, répétant le processus de nombreuses fois. À chaque itération, les propriétés acoustiques spécifiques de la pièce — ses dimensions, sa géométrie et ses matériaux — agissent comme un filtre, accentuant certaines fréquences tout en en atténuant d'autres. Au fil de l'enregistrement, l'intelligibilité de la parole disparaît, ne laissant finalement que les fréquences pures et résonantes de l'espace lui-même.\n\nConsidérée comme une œuvre séminale de la musique sur bande minimaliste et de l'installation sonore, la pièce est célébrée pour sa capacité à transformer le langage en architecture. Edward Strickland, dans son analyse du minimalisme, a noté que « I Am Sitting in a Room » unit les principes fondamentaux du mouvement en utilisant une répétition extrême et des moyens limités pour révéler un fait physique de la nature. Interprétée pour la première fois au Guggenheim Museum en 1970, l'œuvre a été revisitée et mise en scène à de nombreuses reprises, y compris par Lucier lui-même tout au long de sa longue carrière. Son influence s'étend bien au-delà de la musique expérimentale, servant de pierre angulaire aux artistes intéressés par l'art conceptuel, l'acoustique et la manipulation numérique du son. L'œuvre capture la tension entre l'intention de l'artiste et le caractère inéluctable de l'environnement, aboutissant à une expérience obsédante et méditative qui demeure l'une des réalisations les plus significatives de l'histoire de la composition d'avant-garde du XXe siècle.",
+      "source_sha256": "f34270d0ee81ae31589802138eef829852553c7ad4793d9180f050c26d9c096b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:13.473Z"
+    }
+  }
 }

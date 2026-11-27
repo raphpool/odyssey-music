@@ -70,5 +70,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier album de 1998 du groupe pop britannique Ultra, produit par Ian Stanley et composé d'une collection de succès pop écrits par le groupe lui-même.",
+      "article": "Ultra est le premier album studio du groupe pop anglais Ultra, sorti en 1998 chez East West Records. Produit par l'ancien membre de Tears for Fears, Ian Stanley, le projet a été principalement écrit et interprété par les membres du groupe James Hearn, Jon O'Mahony, Nick Keynes et Michael Harwood. Le groupe, qui s'est formé durant leurs années d'école dans le Buckinghamshire, a cherché à se distinguer des boys bands contemporains en écrivant ses propres morceaux et en jouant de ses propres instruments. L'album a connu un succès précoce significatif en Asie du Sud-Est avant de bénéficier d'une sortie plus large en Europe, où il a atteint la 37e place du UK Albums Chart. Au début de 1999, le disque avait atteint des ventes certifiées or en Italie et en Indonésie, soutenu par des singles tels que « Say You Do », « Say It Once » et « The Right Time ». Si certains critiques ont souligné les fortes sensibilités pop de l'album, d'autres ont débattu de son originalité au sein du paysage pop encombré de la fin des années 1990.",
+      "source_sha256": "bbb277ba637766dde04feabd5cccc0e9aaca0a0aec69ad6764995085405c18a6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:36:18.579Z"
+    }
+  }
 }

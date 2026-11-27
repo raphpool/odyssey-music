@@ -35,5 +35,14 @@
   "producers": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Stella » est un morceau électronique séminal du duo de production allemand Jam & Spoon, sorti à l'origine en 1992 sur l'EP « Tales from a Danceographic Ocean ». En tant que pierre angulaire de la trance du début des années 1990, le morceau a émergé durant une période d'évolution significative pour la culture club européenne.",
+      "article": "« Stella » est un morceau électronique séminal du duo de production allemand Jam & Spoon, sorti à l'origine en 1992 sur l'EP « Tales from a Danceographic Ocean ». En tant que pierre angulaire de la trance du début des années 1990, le morceau a émergé durant une période d'évolution significative pour la culture club européenne, caractérisée par des textures atmosphériques, des percussions entraînantes et l'intégration d'éléments mélodiques progressifs. Jam & Spoon, composé de Rolf Ellmer (Jam El Mar) et Markus Löffel (Mark Spoon), a joué un rôle déterminant dans la définition du son de cette époque, poussant la trance au-delà de la simple répétition rythmique vers les domaines de paysages sonores narratifs et immersifs.\n\nSouvent associé à leur vaste projet « Tripomatic Fairytales », « Stella » est fréquemment remarqué pour sa résonance émotionnelle et sa complexité structurelle. Le morceau illustre parfaitement le nom « trance » — un état de suspension rythmique et mélodique destiné aux vastes environnements de club. Son influence est cimentée non seulement par son accueil initial, mais aussi par les nombreux remixes, rééditions et inclusions dans les histoires définitives du genre. Pour les auditeurs et les producteurs de l'époque, le morceau a servi de pont entre la techno plus dure et teintée d'industriel de la fin des années 80 et le son plus mélodique et ample qui allait dominer les pistes de danse européennes tout au long des années 90. Son héritage durable témoigne de l'approche pionnière du duo en matière de synthétiseurs et d'architecture de piste de danse.",
+      "source_sha256": "57c8ad22bc9e1de0336829730b3c04b0e4fd1be5ac3b27666fafe4ad8b5a4763",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:49:22.471Z"
+    }
+  }
 }

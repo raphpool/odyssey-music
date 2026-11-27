@@ -66,5 +66,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« For Your Pleasure » est la plage titulaire atmosphérique et tentaculaire qui clôture le deuxième chef-d'œuvre de 1973 de Roxy Music, portant le même nom.",
+      "article": "« For Your Pleasure » est la plage titulaire atmosphérique et tentaculaire qui clôture le deuxième chef-d'œuvre de 1973 de Roxy Music, portant le même nom. En tant que déclaration finale sur un album qui a consolidé le statut du groupe en tant que pionniers du mouvement art-glam, le morceau sert de résumé hypnotique de l'esthétique initiale de la formation. Il capture la tension entre l'interprétation vocale mélancolique et suave de Bryan Ferry et les penchants avant-gardistes du groupe, largement dirigés par le travail au synthétiseur VCS3 d'un autre monde de Brian Eno. La composition est remarquée pour son rythme constant et progressif, qui évite les structures pop conventionnelles au profit d'un paysage sonore cinématographique, presque psychédélique. Tout au long du morceau, l'interaction entre la guitare texturée de Phil Manzanera, le saxophone d'Andy Mackay et les boucles synthétisées crée une atmosphère dystopique mais séduisante qui influencera des générations de musiciens d'art-rock et expérimentaux. Son inclusion en tant que morceau final sur un album largement considéré comme le zénith de leur première période a cimenté sa réputation de pierre angulaire de l'art rock britannique des années 1970. Contrairement à la pop-glam pleine d'énergie de singles comme « Do the Strand », « For Your Pleasure » penche vers le côté plus sombre et cérébral du groupe, mettant en valeur l'expérimentalisme en studio qui a défini les sessions dirigées par le producteur Chris Thomas. Cela demeure un exemple définitif de la manière dont Roxy Music pouvait mélanger l'accessible à l'avant-garde, laissant les auditeurs dans un état de réflexion atmosphérique.",
+      "source_sha256": "d35ec342f57f9cd3055ed21e61c4dbedf488ebd08d77f3ac0a81219de72f02ae",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:42:20.952Z"
+    }
+  }
 }

@@ -60,5 +60,14 @@
       "name": "Cvstillo"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le quatrième projet studio de Germ, Every Dog Has Its Day, offre une expérience agressive et riche en basses qui s'inscrit dans le son underground brut caractéristique de l'artiste. Publié via G*59 Records, l'album propose des collaborations clés avec $uicideboy$, Lil Gnar et d'autres, consolidant sa place dans le paysage du rap sudiste moderne.",
+      "article": "Every Dog Has Its Day est le quatrième projet studio du rappeur basé à Atlanta, Germ, sorti le 15 mars 2024 via le label indépendant G*59 Records. Suivant sa trajectoire établie sur la scène rap underground — caractérisée par un débit brut et énergique ainsi qu'une esthétique lo-fi — ce projet représente une nouvelle étape importante dans sa discographie riche en collaborations. L'album présente une liste de pairs éminents au sein des écosystèmes G*59 et du soundcloud-rap adjacent, incluant des contributions de $uicideboy$, Black Kray (sous le nom de Sickboyrari), TiaCorine et Lil Gnar.\n\nEn matière de production, le projet s'appuie sur les sonorités atmosphériques et lourdes en basses qui sont devenues synonymes de la marque G*59. Parmi les producteurs notables ayant contribué au projet figurent Budd Dwyer, Cvstillo et H3NRY. La sortie de l'album a été précédée par le single « CC », qui a servi d'indicateur précoce du ton agressif et percutant du disque. Avec 13 titres, Every Dog Has Its Day maintient un niveau d'énergie constant, renforçant la position de Germ en tant que voix vitale, bien que perturbatrice, du rap sudiste contemporain. Grâce à son partenariat continu avec G*59, Germ continue d'affiner son style de hip-hop non conventionnel, souvent distordu, qui résonne profondément au sein des communautés numériques, faisant de ce projet un point fort de son catalogue 2024.",
+      "source_sha256": "a36e98d41a6f5392d8d3fa8f7db63d7bb84a4bd7da595e825454d00cbe6903fb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:22:21.372Z"
+    }
+  }
 }

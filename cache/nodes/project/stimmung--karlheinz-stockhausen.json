@@ -46,5 +46,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Stimmung (1968) est une œuvre séminale de la musique d'avant-garde du XXe siècle du compositeur allemand Karlheinz Stockhausen, écrite pour six chanteurs et six microphones.",
+      "article": "Stimmung (1968) est une œuvre séminale de la musique d'avant-garde du XXe siècle du compositeur allemand Karlheinz Stockhausen, écrite pour six chanteurs et six microphones. Commandée par la ville de Cologne pour le Collegium Vocale Köln, la pièce constitue une étape importante de la composition occidentale en tant que première œuvre majeure basée entièrement sur la production d'harmoniques vocales et de sons suraigus. D'une durée d'environ 74 minutes, Stimmung utilise un bourdon de si♭1 grave — inaudible pour le public — comme fréquence fondamentale à partir de laquelle les chanteurs se déploient en une série de modèles d'harmoniques vocales. Le titre lui-même, Stimmung, est un terme allemand riche qui englobe l'idée d'« accord » — non seulement au sens musical, mais faisant également référence à l'accord de l'âme et à la résonance psychologique entre les interprètes.\n\nLa pièce est structurée en 51 « moments » utilisant ce que Karlheinz Stockhausen a défini comme la « forme moment », où la séquence des hauteurs est fixe, mais où la distribution spécifique des modèles rythmiques, des motifs phonétiques et des éléments lyriques reste à la discrétion des interprètes. Les chanteurs intègrent des matériaux divers, notamment des « noms magiques » de diverses divinités mondiales et une poésie amoureuse érotique écrite par le compositeur. Inspiré par ses expériences au Mexique et le temps passé à Madison, dans le Connecticut, Karlheinz Stockhausen a découvert la technique du chant harmonique grâce à son jeune fils. En ancrant la composition dans une intonation juste, Stimmung crée un espace hypnotique et méditatif qui remet en question les structures harmoniques occidentales traditionnelles, agissant comme un pont entre le sérialisme et les explorations méditatives basées sur le bourdon qui émergeaient dans l'avant-garde de l'époque. Elle demeure un témoignage de la capacité de Karlheinz Stockhausen à synthétiser une organisation structurelle rigide avec une exploration sonore profonde et viscérale, et a été interprétée par de nombreux ensembles spécialisés, dont Theatre of Voices et Singcircle, au cours des décennies qui ont suivi sa création.",
+      "source_sha256": "fc347c6b07082c5df098fbd9053f3f4b56590276fc388e57d50a50eea5d70f12",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:33:25.139Z"
+    }
+  }
 }

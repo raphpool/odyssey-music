@@ -59,5 +59,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Haunted » est une ballade rock atmosphérique et mélancolique du légendaire groupe de hard rock britannique Deep Purple, sortie dans le cadre de leur album de 2003 « Bananas ».",
+      "article": "« Haunted » est une ballade rock atmosphérique et mélancolique du légendaire groupe de hard rock britannique Deep Purple, sortie dans le cadre de leur album de 2003 « Bananas ». Marquant le premier album à présenter Don Airey aux claviers suite au départ de Jon Lord, « Bananas » a représenté une transition significative pour le groupe. « Haunted » se distingue dans la liste des titres par son éloignement du son hard rock typique et énergique du groupe, adoptant plutôt un style de production cinématographique et atmosphérique qui inclut des arrangements de cordes et des chœurs féminins.\n\nÀ sa sortie, la chanson est devenue un point de discorde parmi les fans de longue date du groupe, servant d'exemple polarisant de la volonté du groupe d'expérimenter avec des textures plus orientées pop ou AOR (Album Oriented Rock) durant l'ère Steve Morse. Alors que certains auditeurs ont loué la profondeur émotionnelle du morceau et le travail délicat à la guitare de Steve Morse, d'autres ont trouvé que l'éloignement de leur héritage axé sur les riffs percutants était déconcertant. Malgré cet accueil mitigé, « Haunted » demeure un chapitre notable de la vaste discographie de Deep Purple, illustrant l'effort du groupe pour intégrer de nouvelles influences sonores tout en naviguant dans une nouvelle ère de leur longue carrière. Le morceau souligne la tentative du groupe d'équilibrer son héritage hard rock avec des arrangements plus doux et mélodiques au début du XXIe siècle. Le morceau présente également le travail du producteur Michael Bradford, qui a cherché à capturer une énergie spontanée et vivante tout au long de l'enregistrement de l'album « Bananas », même lors du travail sur des ballades plus structurées et symphoniques comme « Haunted ».",
+      "source_sha256": "243836a6b5981d7f987555ec515606dd48f8ca936cc52c74e56ef5d19d78a6c2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:43:18.710Z"
+    }
+  }
 }

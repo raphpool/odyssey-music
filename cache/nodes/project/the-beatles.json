@@ -68,5 +68,14 @@
     }
   ],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "The Beatles ont redéfini les frontières de la musique rock à travers une décennie prolifique d'innovation en studio et d'impact culturel mondial.",
+      "article": "The Beatles étaient un groupe de rock anglais dont l'influence sur la musique mondiale demeure inégalée. Actif tout au long des années 1960, le groupe a fondamentalement changé le paysage de la musique populaire, évoluant de leurs premiers succès pop vers une formation sophistiquée axée sur le travail en studio. Leur catalogue principal, standardisé à la fin des années 1980, comprend 12 albums studio originaux britanniques, la version américaine de Magical Mystery Tour, et les compilations exhaustives Past Masters. Ces parutions capturent la progression du groupe de 1962 à 1970, documentant leur transition d'enregistrements centrés sur la performance scénique vers les techniques de studio expérimentales mises en avant sur des albums marquants comme The Beatles (le White Album). Initialement signés chez Parlophone au Royaume-Uni, le groupe a plus tard établi son propre label Apple Records en 1968. Leur discographie est notoirement complexe en raison des différences initiales entre les parutions britanniques et américaines, qui ont finalement été harmonisées durant l'ère numérique afin d'assurer un héritage mondial cohérent pour leurs 217 titres principaux.",
+      "source_sha256": "69bc298fddc3c964bede52d441fa052c487e32099e6af2b038ad5d9c1d50c4ae",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:34:20.414Z"
+    }
+  }
 }

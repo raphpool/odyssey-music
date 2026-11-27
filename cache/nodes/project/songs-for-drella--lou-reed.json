@@ -162,5 +162,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Cycle de chansons hanté et intime, véritable réconciliation artistique, Songs for Drella est l'hommage poignant de Lou Reed et John Cale à leur ancien mentor, Andy Warhol. Enregistré après des années de brouille, ce chef-d'œuvre minimaliste et dépouillé capture la complexité de la vie de Warhol et l'héritage compliqué qu'il a laissé à ses plus célèbres protégés.",
+      "article": "Songs for Drella, sorti en 1990, s'impose comme l'une des collaborations les plus significatives et chargées d'émotion de l'histoire du rock. Né du chagrin partagé de Lou Reed et John Cale — brouillés depuis leur période commune au sein du Velvet Underground —, le projet a été conçu comme un hommage à leur mentor, Andy Warhol, décédé en 1987. Le titre de l'album fait lui-même référence à « Drella », un surnom donné à Warhol (contraction de Dracula et Cinderella) connu de son cercle restreint de « Superstars » à The Factory. Suite à une suggestion du peintre Julian Schnabel, les deux légendes se sont retrouvées lors de la cérémonie commémorative de Warhol, pour finalement se réunir autour de la création de ce cycle de chansons. Enregistré à New York, l'album est marqué par une esthétique minimaliste et dépouillée qui permet au poids narratif des paroles d'occuper le devant de la scène. L'écriture se partage entre des perspectives à la première personne — canalisant Warhol lui-même — et des réflexions directes de Reed et Cale sur leur relation complexe avec l'artiste. Les chansons parcourent la vie de Warhol de manière chronologique, de ses racines modestes à Pittsburgh à son ascension en tant qu'icône du Pop Art, jusqu'à son isolement et son déclin. Le résultat est une œuvre d'une immense vulnérabilité et précision, agissant à la fois comme un exorcisme des démons du passé et comme un acte profond de clôture artistique. Bien que la tension entre Reed et Cale ait été suffisamment forte pour empêcher une tournée de promotion, le projet a effectivement ouvert la voie à la réunion, bien qu'éphémère, de la formation classique du Velvet Underground. Il demeure une déclaration définitive sur l'intersection entre l'art d'avant-garde, la musique rock et la nature complexe, souvent parasitaire, de la célébrité.",
+      "source_sha256": "2cce8c2eb7b168db58b9387e70db7237fb00926d5303de86135dc784067eac39",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:33:14.174Z"
+    }
+  }
 }

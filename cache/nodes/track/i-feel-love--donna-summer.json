@@ -60,5 +60,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« I Feel Love » est un single marquant de 1977 de la chanteuse américaine Donna Summer, produit par Giorgio Moroder et Pete Bellotte.",
+      "article": "« I Feel Love » est un single marquant de 1977 de la chanteuse américaine Donna Summer, produit par Giorgio Moroder et Pete Bellotte. Enregistré à Munich aux Musicland Studios, le morceau représente un moment charnière de l'histoire de la musique où le disco a croisé le monde naissant de la synthèse électronique. Intégré à l'album de Summer I Remember Yesterday — un projet conçu pour explorer différentes décennies musicales —, le morceau se voulait une représentation du futur. Moroder et son équipe y sont parvenus en délaissant les arrangements orchestraux traditionnels au profit d'un synthétiseur Moog, programmé et séquencé avec une précision minutieuse. Parce que le synthétiseur analogique d'époque était notoirement instable et sujet aux désaccords, le processus d'enregistrement a nécessité la superposition de courts segments audio de 20 à 30 secondes, réaccordés manuellement et assemblés. Cette lutte technique a donné naissance à un rythme hypnotique, entraînant et parfaitement mécanique qui contrastait fortement avec les sons organiques, souvent grandiloquents, de l'ère disco.\n\nLe résultat fut une révolution sonore. Mettant en vedette la voix éthérée de Summer, chantée en voix de tête, superposée à une séquence de synthétiseur incessante et répétitive ainsi qu'à une grosse caisse régulière fournie par Keith Forsey, « I Feel Love » a dépouillé la musique de danse jusqu'à ses éléments les plus fondamentaux et hypnotiques. Ce fut un succès mondial immédiat, atteignant la première place dans divers pays et devenant un pilier durable des clubs. Son influence sur la musique moderne ne peut être surestimée ; en démontrant la puissance du rythme séquencé et produit par des machines, il a fourni un modèle pour le développement de la musique électronique de danse, incluant la synth-pop, la techno et la house. En 2011, il a été reconnu par la Library of Congress pour son importance culturelle et historique, consolidant son statut comme l'un des disques les plus influents du 20e siècle. Son héritage continue de résonner à travers des générations de producteurs et d'artistes qui ont samplé, repris et été inspirés par sa pulsation électronique pionnière.",
+      "source_sha256": "4fbf9df9be21e461f520a9fb7bcac8671cb79cdfdc79ff2d17055c1bb96348cc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:43:25.973Z"
+    }
+  }
 }

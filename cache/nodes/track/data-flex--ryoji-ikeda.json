@@ -65,5 +65,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« data.flex » est un morceau minimaliste et précis de l'artiste sonore japonais Ryoji Ikeda, figurant en 14e position sur son album de 2005, Dataplex.",
+      "article": "« data.flex » est un morceau minimaliste et précis de l'artiste sonore japonais Ryoji Ikeda, figurant en 14e position sur son album de 2005, Dataplex. Publié par le label expérimental séminal Raster-Noton, le morceau incarne l'approche caractéristique d'Ikeda du son numérique : la réduction de l'information à ses composants fondamentaux. En tant que partie de la série Datamatics, l'album et ses mouvements individuels explorent les données informatiques brutes qui imprègnent l'existence moderne, traduisant la logique mathématique en une expérience rythmique audible.\n\nMusicalement, « data.flex » fonctionne au sein du cadre hautement technique de l'esthétique d'Ikeda. Il évite la mélodie traditionnelle au profit d'une tapisserie granulaire et rythmique que les critiques ont décrite comme « chirurgicale ». En isolant des formes d'ondes pures et des pulsations semblables à des horloges, Ikeda crée un environnement qui semble à la fois abstraitement scientifique et remarquablement funky dans un sens cérébral. Sa place au sein de Dataplex contribue à l'ambition globale de l'album : interpréter le bruit de l'ère numérique comme une structure complexe et organisée. Le morceau illustre le potentiel du mouvement post-glitch à combler le fossé entre l'art sonore d'avant-garde et la musique électronique répétitive haute fidélité, s'imposant comme un moment charnière dans l'exploration de la matérialité numérique par Ikeda.",
+      "source_sha256": "ca4f6d5f0117f44bab5a70ac5abc5a6ac3166957aa9c96ab4a518ad0f3fb1508",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:40:15.363Z"
+    }
+  }
 }

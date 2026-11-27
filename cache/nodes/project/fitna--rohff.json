@@ -56,5 +56,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Fitna est l'album studio de 2024 du vétéran du rap français Rohff, marquant un nouveau chapitre dans sa carrière légendaire.",
+      "article": "Fitna est un album studio de l'influent rappeur français Rohff, sorti en 2024. En tant qu'entrée significative dans sa vaste discographie, le projet poursuit la présence de longue date de Rohff sur la scène hip-hop française, mettant en valeur son style lyrique évolué et ses choix de production. L'album a été rendu disponible sous divers formats, incluant le CD et le téléchargement numérique, reflétant sa stratégie de sortie contemporaine. Faisant suite à ses travaux précédents, Fitna renforce le statut de Rohff en tant qu'artiste vétéran qui demeure actif et pertinent au sein du paysage compétitif du rap français. L'album sert de témoignage à sa carrière durable et à sa capacité à produire constamment du nouveau matériel pour sa base de fans dévoués.",
+      "source_sha256": "6012ead903f5b73216e9feb1581262eb09133ab4f322c7f8829c868c72d7c292",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:23:14.666Z"
+    }
+  }
 }

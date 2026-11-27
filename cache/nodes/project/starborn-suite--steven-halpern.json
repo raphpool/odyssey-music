@@ -85,5 +85,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre séminal de la New Age de 1978 par Steven Halpern, proposant des arrangements hypnotiques et ambiants pour piano et synthétiseur conçus pour induire des états de relaxation profonde.",
+      "article": "Starborn Suite est un album séminal de 1978 du compositeur pionnier de la New Age Steven Halpern, publié sur son propre label, Halpern Sounds. Souvent cité comme une pierre angulaire des scènes émergentes de la musique ambiante et thérapeutique de la fin des années 1970, l'album reflète l'intérêt de Halpern pour les principes psychoacoustiques et les structures musicales « anti-frénétiques ». S'éloignant des complexités du jazz traditionnel ou des changements dramatiques rencontrés dans le rock progressif contemporain, Starborn Suite utilise des textures soutenues et résonnantes — obtenues par des couches de piano à queue acoustique, de piano électrique et de synthétiseurs à cordes polyphoniques — pour créer un environnement sonore destiné à induire la relaxation et des états méditatifs.\n\nLa composition de l'album est délibérée, s'éloignant de la progression mélodique conventionnelle au profit de la stase harmonique et d'une atmosphère éthérée. En mettant l'accent sur les qualités spatiales du son et les réponses physiologiques de l'auditeur, Halpern a contribué à définir une esthétique qui deviendrait synonyme du genre « New Age », précédant son explosion commerciale grand public. L'enregistrement, produit par Halpern lui-même, conserve une qualité de production chaleureuse et intime qui souligne l'interaction entre les textures organiques du piano acoustique et les nappes synthétiques, établissant un modèle pour les futurs paysages sonores ambiants. Starborn Suite demeure un document essentiel de la musique de guérison expérimentale des années 1970, incarnant le virage contre-culturel vers la pleine conscience et l'intériorité par le son.",
+      "source_sha256": "60e14d161fd2283063ed25b919a647bf07c7237640c4bf9832168c5a329ca761",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:33:22.517Z"
+    }
+  }
 }

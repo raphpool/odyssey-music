@@ -132,5 +132,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "La compilation séminale de 1994 qui a inauguré l'emblématique série ambient-celtique de Hearts of Space, mêlant mélodies traditionnelles et paysages sonores éthérés et contemplatifs.",
+      "article": "Celtic Twilight (1994) constitue la première parution d'une série séminale d'albums de compilation organisée par le label ambient et new age Hearts of Space Records. Émergeant au plus fort de l'essor de la new age au début des années 1990, la collection sert de porte d'entrée sonore définitive à l'esthétique caractéristique du label : un mélange homogène d'instrumentation celtique traditionnelle, de textures de synthétiseurs atmosphériques et d'arrangements introspektifs et contemplatifs. En rassemblant des titres d'artistes clés de leur écurie, tels que Bill Douglas, Mychael Danna et Loreena McKennitt, le projet a capturé un moment culturel spécifique où la musique néo-celtique a trouvé un public important au sein des marchés mondiaux de l'ambient et de la world music.\n\nL'accent thématique de l'album sur le « twilight » — cet espace liminal entre le jour et la nuit, le mythe et la réalité — a ancré son large attrait commercial, le positionnant comme une bande-son idéale pour la relaxation, la méditation et l'évasion. Contrairement aux collections folk plus traditionnelles, Celtic Twilight met l'accent sur le brillant de la production et les sensibilités de la « space music », s'appuyant fortement sur des synthétiseurs éthérés et une interaction instrumentale minimaliste. Son succès a consolidé la réputation du label Hearts of Space pour sa curation haute fidélité axée sur l'ambiance, faisant directement écho à l'influence de leur émission de radio syndiquée de longue date du même nom. La série est devenue une référence pour les auditeurs en quête d'une interprétation cinématographique et modernisée de l'héritage celtique, comblant efficacement le fossé entre la musique folk historique et la scène électronique-ambient contemporaine. Son influence a résonné bien au-delà de sa sortie initiale, engendrant de multiples suites et cimentant un créneau de sous-genre distinct qui continue d'être associé à la marque Hearts of Space.",
+      "source_sha256": "b075ff0c41a36bcb2bce8caea5a3da7bbb490108018cd21ecf1580ae8cd5a0da",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:20:13.218Z"
+    }
+  }
 }

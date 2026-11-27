@@ -56,5 +56,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Electromagnetic Dowsing (Step 1) » est une œuvre emblématique de deep dub techno, publiée à l'origine en 2005 par le projet influent DeepChord, dirigé par le producteur américain visionnaire Rod Modell.",
+      "article": "« Electromagnetic Dowsing (Step 1) » est une œuvre emblématique de deep dub techno, publiée à l'origine en 2005 par le projet influent DeepChord, dirigé par le producteur américain visionnaire Rod Modell. Sorti sur le label éponyme S Y N T H (numéro de catalogue SYNTH 001), le morceau illustre le son trouble, atmosphérique et rythmiquement hypnotique qui a contribué à définir la connexion Detroit-Berlin dans la musique électronique moderne. Avec une durée de près de 12 minutes, la composition est construite sur des accords dub denses et caverneux ainsi que sur une structure en boucle évolutive méticuleusement élaborée, créant une expérience d'écoute immersive et souterraine.\n\nLe morceau a acquis une reconnaissance underground significative pour sa capacité à combler le fossé entre l'esthétique dub classique et la techno minimaliste contemporaine. Bien qu'il soit profondément ancré dans les sensibilités de production de labels comme Basic Channel, DeepChord a réussi à cultiver une palette sonore cinématographique distinctement américaine. Au fil des ans, le morceau est resté un incontournable dans les sets des DJ exigeants qui privilégient les progressions psychédéliques de longue durée. Le processus de production a bénéficié du mastering de Ron Murphy, figure légendaire de la scène techno de Detroit dont le travail au National Sound Corporation a conféré à de nombreux disques emblématiques leur poids et leur chaleur caractéristiques. Au-delà de son pressage original, le morceau continue d'être vénéré comme un modèle de l'esthétique « deep », illustrant le pouvoir de la répétition et de la texture dans la conception de la musique électronique. Son influence durable persiste en tant que référence pour les producteurs explorant les frontières atmosphériques du genre.",
+      "source_sha256": "5a6457309d88738e8333a63d45cac22a9afdcb7b98bbf8b347ec4e58eb74ea17",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:41:22.901Z"
+    }
+  }
 }

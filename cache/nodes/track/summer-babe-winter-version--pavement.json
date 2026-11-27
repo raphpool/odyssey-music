@@ -79,5 +79,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Summer Babe (Winter Version) » est la piste d'ouverture emblématique du premier album séminal de Pavement, Slanted and Enchanted, sorti en 1992.",
+      "article": "« Summer Babe (Winter Version) » est la piste d'ouverture emblématique du premier album séminal de Pavement, Slanted and Enchanted, sorti en 1992. Émergeant du paysage vibrant et lo-fi de l'indie rock du début des années 90, la chanson sert d'introduction parfaite à l'esthétique du groupe : une collision accidentée et accrocheuse de sensibilités jangle pop et de textures noise-pop. Stephen Malkmus, le principal auteur-compositeur du groupe, livre des paroles qui oscillent sans effort entre observation pleine d'esprit et abstraction surréaliste. Le morceau est réputé pour son contraste, équilibrant un noyau mélodique entraînant avec la « bourrasque » caractéristique du groupe, faite de guitares compressées et distordues, ainsi qu'une interprétation délibérément décontractée, presque désintéressée.\n\nInitialement publiée dans une version différente en tant que single 7 pouces par Drag City Records en 1991, la « Winter Version » est devenue la prise définitive lors de son inclusion sur Slanted and Enchanted. Elle encapsule un moment de transition pour le groupe, passant de ses premières expérimentations mystérieuses d'enregistrements domestiques vers un son indie-rock plus cohérent, bien que toujours chaotique. Culturellement, la chanson a transcendé ses origines, apparaissant fréquemment sur les listes des critiques des plus grandes chansons de tous les temps, célébrée pour son influence sur le développement de la scène underground des années 1990 et son incarnation de l'éthos « slacker rock » dont Pavement fut le pionnier. Elle demeure un cours magistral sur la manière de combiner un artisanat mélodique profond avec un style de production conscient de lui-même, fragmenté et bruyant sans complexe. La chanson est inextricablement liée à la sortie de l'album chez Matador Records, consolidant le rôle du label dans la définition du son de la décennie.",
+      "source_sha256": "c3e43e99f61e1de9c70f5cf05954ff0e1a7503ed14f678890fcdb97aeb860c79",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:50:13.327Z"
+    }
+  }
 }

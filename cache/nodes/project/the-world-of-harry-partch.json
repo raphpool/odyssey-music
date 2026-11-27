@@ -42,5 +42,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une collection séminale de 1969 documentant l'univers sonore microtonal radical de Harry Partch, mettant en vedette ses instruments fabriqués sur mesure et des compositions légendaires comme 'Barstow'.",
+      "article": "The World of Harry Partch est un album studio historique de 1969 publié sur Columbia Masterworks qui sert de vitrine audio définitive aux compositions microtonales radicales du pionnier américain Harry Partch. L'album présente des réalisations emblématiques de certaines de ses œuvres les plus significatives, dont « Daphne of the Dunes » et le classique « Barstow », qui capture le style vocal idiosyncratique inspiré par les auto-stoppeurs que Partch a cultivé au cours de sa vie de vagabond. L'enregistrement documente la réalité sonore spécifique de l'instrumentarium fabriqué sur mesure par Partch, incluant la Surrogate Kithara, la Diamond Marimba et le Chromelodeon, qui ont tous été célèbres dans son manifeste théorique, Genesis of a Music. Parce que le travail de Partch exigeait des techniques d'accordage et d'interprétation entièrement nouvelles, la production de cet album, supervisée par Partch lui-même et dirigée par son collaborateur de longue date Danlee Mitchell, est considérée comme un document historique crucial de sa vision compositionnelle. En apportant ces compositions complexes en intonation juste à 11 limites sur le label Columbia Masterworks, l'album a agi comme un catalyseur pour faire découvrir la musique expérimentale et microtonale à un public plus large, influençant les générations ultérieures de compositeurs comme Lou Harrison et James Tenney. Il demeure le point de départ essentiel pour les auditeurs cherchant à comprendre l'intersection entre l'artisanat instrumental physique et la théorie musicale d'avant-garde au XXe siècle.",
+      "source_sha256": "8ffae8f3ff2485ac4ca418aa743f3b35106a0e746872d2f9eee9d927c101a4e6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:35:21.036Z"
+    }
+  }
 }

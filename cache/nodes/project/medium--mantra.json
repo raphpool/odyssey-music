@@ -47,5 +47,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Medium est un ambitieux album-concept de metal progressif paru en 2019 par le groupe français Mantra, explorant avec maîtrise la dualité du corps et de l'esprit à travers des paysages sonores complexes et techniques ainsi que des compositions stratifiées.",
+      "article": "Sorti en 2019, Medium est le troisième album studio du groupe français de metal progressif Mantra. Le projet est une exploration ambitieuse de la dualité entre le corps et l'esprit, structuré autour de ce concept thématique central. Musicalement, il met en avant le penchant du groupe pour les arrangements complexes, la maîtrise technique et les paysages sonores lourds et atmosphériques qui sont devenus les marques de fabrique de leur style au sein de la scène metal progressif européenne.\n\nMantra se distingue par un mélange sophistiqué d'instrumentation lourde et de structures de chansons dynamiques, souvent mélodiques. Medium a été salué par la critique et les auditeurs pour sa composition et la grande qualité de sa production, certains fans soulignant des titres comme « Mind » comme des moments forts. Cette sortie a renforcé la réputation du groupe en matière de narration conceptuelle, leur vision artistique s'étendant même à l'expérience immersive offerte par le site web accompagnant l'album. L'œuvre démontre une maturité dans leur son, naviguant entre des signatures rythmiques complexes et des textures superposées tout en maintenant une cohérence émotionnelle tout au long du projet. Il demeure une entrée clé dans leur discographie, reflétant l'engagement continu du groupe à repousser les limites de leur genre, sous le label Finisterian Dead End.",
+      "source_sha256": "40afe94270f74609bbb6cb3d6c7bcc7ed021ab76c47167ce50c6d9edd2a44c63",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:28:16.732Z"
+    }
+  }
 }

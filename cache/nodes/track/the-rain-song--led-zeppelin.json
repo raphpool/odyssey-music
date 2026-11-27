@@ -48,5 +48,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« The Rain Song » est une ballade expansive et mélancolique du groupe de rock anglais Led Zeppelin, figurant comme deuxième piste de leur album de 1973 « Houses of the Holy ». D'une durée de plus de sept minutes, la chanson constitue un sommet de l'étendue compositionnelle du groupe, mettant en valeur une deli",
+      "article": "« The Rain Song » est une ballade expansive et mélancolique du groupe de rock anglais Led Zeppelin, figurant comme deuxième piste de leur album de 1973 « Houses of the Holy ». D'une durée de plus de sept minutes, la chanson constitue un sommet de l'étendue compositionnelle du groupe, mettant en valeur un départ délibéré du style hard-rock centré sur les riffs qui leur a initialement apporté la célébrité. Le morceau a été célèbrement conçu par le guitariste Jimmy Page en réponse à un défi de George Harrison, qui avait suggéré que Led Zeppelin était incapable d'écrire une ballade convaincante. Page a relevé le défi en élaborant un arrangement mélodique sophistiqué qui utilisait des accordages de guitare alternatifs et des textures orchestrales luxuriantes simulées par l'utilisation innovante d'un Mellotron, joué par John Paul Jones.\n\nRobert Plant livre l'une de ses performances vocales les plus retenues et émotionnellement résonnantes, complétée par le travail délicat de guitare acoustique et électrique de Page. Bien que les critiques contemporains de l'époque aient été sceptiques quant à son ton sentimental et à sa dépendance aux effets de studio, la chanson a depuis été largement réévaluée comme un chef-d'œuvre exquis de chagrin et de maturité émotionnelle. Sa complexité structurelle et son atmosphère évocatrice ont suscité les éloges de producteurs comme Rick Rubin, qui a noté que le morceau défie toute classification facile. L'enregistrement de la chanson, qui a eu lieu en 1972 à Stargroves, reflète la volonté du groupe d'expérimenter avec les arrangements et l'instrumentation. Pour beaucoup, « The Rain Song » capture une facette poignante et profondément introspective de Led Zeppelin, prouvant leur polyvalence au-delà du blues-rock lourd pour lequel ils sont le plus connus. Elle demeure une pierre angulaire de l'héritage du groupe, incarnant le côté patient et magnifiquement arrangé de leur son qui leur a permis de transcender les conventions de leur époque.",
+      "source_sha256": "dbf4e191b0d0fcfea600c59b6c4d4695dc61539754678d35698152d903671da7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:19.281Z"
+    }
+  }
 }

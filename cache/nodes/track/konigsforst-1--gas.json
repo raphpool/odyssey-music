@@ -71,5 +71,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Königsforst 1 » est l'ouverture immersive et atmosphérique de l'album séminal Gas de Wolfgang Voigt, servant de passerelle vers le mélange caractéristique du projet, composé de textures orchestrales en boucle et de rythmes techno immergés. S'inspirant de la forêt de Königsforst, le morceau capture une qualité hypnotique et onirique qui demeure un exemple par excellence de l'ambient techno.",
+      "article": "« Königsforst 1 » est le morceau d'ouverture de l'album séminal d'ambient techno de 1998, Königsforst, créé par le musicien électronique allemand Wolfgang Voigt sous son influent pseudonyme, Gas. Sorti durant une période d'expérimentation au sein de la scène électronique de Cologne, le morceau sert de point d'entrée à l'esthétique signature du projet : un paysage sonore dense, claustrophobe, mais étrangement pastoral, composé d'échantillons orchestraux superposés, bouclés et lourdement traités, ainsi que de battements techno étouffés.\n\nLe morceau — tout comme le reste de l'album Königsforst — est profondément façonné par son homonyme, la forêt de Königsforst près de Cologne. Wolfgang Voigt a puisé son inspiration dans ses expériences de jeunesse dans ce parc de loisirs, souvent filtrées à travers le prisme d'une perception induite par le LSD. Il en résulte une musique qui semble perpétuellement immergée, caractérisée par des oscillations à basse fréquence et des textures tourbillonnantes qui imitent la sensation de marcher à travers une forêt ancienne et dense. « Königsforst 1 » capture spécifiquement cette qualité immersive et hypnotique, établissant la réputation du projet pour la création d'une « ambient techno » qui semble à la fois organique et profondément étrangère. Bien qu'apparu à l'origine sur l'EP Oktember sous le titre « Oktember A » avant son inclusion sur l'album Königsforst, le morceau a consolidé son statut de pierre angulaire de la musique électronique expérimentale de la fin des années 90, marquant un sommet dans la capacité de Voigt à manipuler l'atmosphère et le rythme pour en faire un récit cohérent et onirique. Sa sortie sur le légendaire label Mille Plateaux cimente davantage sa place dans l'histoire de la musique électronique en tant qu'œuvre déterminante de l'ère techno avant-gardiste.",
+      "source_sha256": "21c5b7494cdf7335758c1abc5766b822920ef0b825063416d5c7871b29af5bfd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:44:25.202Z"
+    }
+  }
 }

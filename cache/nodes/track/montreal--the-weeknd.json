@@ -58,5 +58,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Montreal » est un morceau de R&B atmosphérique et obsédant de l'auteur-compositeur-interprète canadien The Weeknd, sorti à l'origine dans le cadre de sa mixtape de 2011 'Echoes of Silence'.",
+      "article": "« Montreal » est un morceau de R&B atmosphérique et obsédant de l'auteur-compositeur-interprète canadien The Weeknd, sorti à l'origine dans le cadre de sa mixtape de 2011 'Echoes of Silence'. Produite par The Weeknd aux côtés de son collaborateur fréquent Illangelo, la chanson s'impose comme une entrée séminale du mouvement « Alternative R&B » qui a défini le début des années 2010. Connu pour son paysage sonore sombre et menaçant — porté par des basses tonitruantes, des caisses claires claquantes et le falsetto mélancolique et aérien caractéristique de The Weeknd — le morceau explore des thèmes tels que le détachement émotionnel, la solitude et la brutalité désinvolte des relations éphémères.\n\nL'une des caractéristiques les plus distinctes de « Montreal » est son utilisation créative du sampling ; le morceau met en avant une boucle vocale tirée de la chanson de France Gall de 1964 « Laisse Tomber les Filles ». En réutilisant ce sample de pop française rétro, The Weeknd et Illangelo créent un contraste surprenant et surréaliste avec la production dark-pop moderne du morceau, soulignant les thèmes lyriques du chagrin et de l'apathie. « Montreal » capture l'essence de l'ère « trilogy » de la discographie de l'artiste, contribuant à consolider sa réputation pour la création d'une musique froide et nocturne qui a profondément résonné auprès d'une génération désabusée par la romance moderne. Le morceau reste un favori des fans et un point d'analyse critique pour ceux qui étudient l'évolution du R&B contemporain, illustrant comment l'artiste a harmonieusement mêlé des sensibilités pop grand public à une esthétique underground non conventionnelle. La chanson est apparue plus tard sur la compilation de 2012 'Trilogy', qui a servi à présenter ces mixtapes underground à un public international beaucoup plus large.",
+      "source_sha256": "af8b74ff0da22559ae25bf9f83e7ce7d147f2620e0779e6a3e9cdc7e9b50cb4f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:46:13.276Z"
+    }
+  }
 }

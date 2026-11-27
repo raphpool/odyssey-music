@@ -42,5 +42,14 @@
   ],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Just Give Me a Reason » est une ballade pop poignante, classée en tête des ventes, de la chanteuse américaine P!nk, avec la participation de Nate Ruess du groupe d'indie-pop Fun.",
+      "article": "« Just Give Me a Reason » est une ballade pop poignante, classée en tête des ventes, de la chanteuse américaine P!nk, avec la participation de Nate Ruess du groupe d'indie-pop Fun. Sorti en février 2013 en tant que troisième single du sixième album studio de P!nk, « The Truth About Love » (2012), le morceau est devenu l'un des succès marquants de l'année. Écrite par P!nk et Ruess aux côtés du producteur Jeff Bhasker — qui a joué un rôle déterminant dans la définition du son de l'album « Some Nights » de Fun. — la chanson explore le paysage émotionnel complexe d'une relation au bord de la rupture, exprimant le désir de réconciliation sans offrir de résolutions faciles.\n\nLa composition est remarquée pour sa relative simplicité par rapport aux productions pop grandiloquentes prédominantes à cette époque. Elle s'ouvre sur une mélodie de piano dépouillée et mélancolique, introduisant progressivement des boîtes à rythmes et une basse pour construire une atmosphère délicate et tendue. La chanson fonctionne comme une conversation narrative, P!nk et Ruess échangeant des couplets avant de mêler leurs voix dans un duo culminant. L'accueil critique a été extrêmement positif, de nombreux chroniqueurs — dont ceux de Rolling Stone — la saluant comme le morceau phare de l'album pour son approche épurée et sa sincérité. Son succès fut véritablement mondial, atteignant la première place dans plus de vingt pays et obtenant de multiples nominations aux Grammy, consolidant sa place d'incontournable des radios grand public des années 2010. Le clip vidéo, qui a remporté un MTV Video Music Award de la meilleure collaboration, a encore renforcé l'empreinte culturelle de la chanson, mettant en scène P!nk aux côtés de son mari, Carey Hart.",
+      "source_sha256": "99690e96c5d38c5900dca17d121fae3db37f3c5191b0581167774cfad67cb679",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:44:21.140Z"
+    }
+  }
 }

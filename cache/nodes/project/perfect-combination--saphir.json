@@ -106,5 +106,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Morceau emblématique de l'Euro-disco allemand de 1986, Perfect Combination mêle une production rigoureuse axée sur les synthétiseurs aux mélodies pop entraînantes et rythmées qui ont défini le son des clubs européens du milieu des années 80.",
+      "article": "Perfect Combination est l'album studio définitif du duo Euro-disco allemand Saphir, sorti en 1986 sous le label EMI. Apparu au sommet de la scène disco allemande des années 1980, le projet capture l'esthétique léchée et dominée par les synthétiseurs caractéristique de cette époque. Produit par le duo composé de Walter Gerke et Mick Hannes, l'album a été enregistré au Hermes Music Studio à Kamen. Le son de Saphir se définit par des arrangements électroniques entraînants axés sur le rythme, mêlant des tempos énergiques et dansants à des mélodies pop soignées.\n\nLa liste des titres présente un mélange de morceaux de danse rapides et de synth-pop à tempo moyen, tels que la chanson-titre « Perfect Combination », « I Feel Good (I Feel Fine) » et leur interprétation de « The Witch-Queen Of New-Orleans ». La production a utilisé des systèmes informatiques C-lab, illustrant la précision technique devenue une marque de fabrique de la musique de danse européenne au milieu des années 80. Bien que Saphir n'ait pas atteint le succès mondial massif de contemporains comme Modern Talking, Perfect Combination demeure un artefact culte du sous-genre Euro-disco, reflétant une période spécifique de l'artisanat de studio européen où les rythmes programmés et la sensibilité pop mélodique se sont fusionnés de manière transparente pour dominer les classements régionaux et les pistes de danse. L'album reste une entrée célébrée pour les amateurs de musique de synthétiseur des années 80.",
+      "source_sha256": "a32871d61d59395034111ce2544e80650b0d64a810908663521c5741bd3830ae",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:30:21.682Z"
+    }
+  }
 }

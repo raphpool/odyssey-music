@@ -68,5 +68,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre définitif, abrasif et mélodique d'Aphex Twin qui a contribué à combler le fossé entre l'ambient techno et les rythmes complexes et saccadés de l'IDM des années 90.",
+      "article": "...I Care Because You Do est le troisième album studio du musicien électronique influent Aphex Twin (Richard D. James), sorti en avril 1995 sur Warp. Marquant un tournant décisif entre les textures ambient de son époque Selected Ambient Works et un son plus abrasif, complexe et rythmé, l'album est largement reconnu comme une pierre angulaire du genre IDM (Intelligent Dance Music). Le disque est remarqué pour son mélange idiosyncrasique de breakbeats agressifs, de mélodies de synthétiseurs obsédantes et d'arrangements sonores expérimentaux, jetant un pont entre l'expérimentation techno underground et la pop électronique structurée.\n\nSur le plan stylistique, l'album met en valeur la double nature de la production de Richard D. James : des moments d'une beauté mélodique sereine — incarnés par le morceau classique Alberto Balsalm — coexistent avec des percussions chaotiques et distordues ainsi que des textures industrielles discordantes présentes dans des titres comme Ventolin et Come On You Slags!. L'album contient également une couche caractéristique de jeu et de subversion, utilisant notamment des anagrammes de « Aphex Twin » et « Richard D. James » pour bon nombre de ses titres. Sorti à une époque de maturation significative pour Warp, ...I Care Because You Do a consolidé la réputation d'Aphex Twin en tant que visionnaire du paysage musical électronique, prouvant que la musique électronique pouvait être aussi intellectuellement exigeante que rythmiquement captivante. Son influence sur les générations ultérieures de producteurs électroniques demeure immense, cimentant son statut de sortie marquante dans l'histoire de la musique électronique des années 90.",
+      "source_sha256": "7d5a501f4714bb2b5e9c33220c57fb06f1d8883177e0961c2a573f6331b5b9d4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:13.316Z"
+    }
+  }
 }

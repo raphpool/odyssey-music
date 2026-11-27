@@ -96,5 +96,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre de tension krautrock et d'innovation rythmique, le classique de Can paru en 1972 capture le groupe à son apogée, mêlant grooves hypnotiques avant-funk et maîtrise expérimentale en studio.",
+      "article": "Ege Bamyasi est le troisième album studio de l'influent groupe de krautrock allemand Can, sorti le 29 novembre 1972 chez United Artists Records. Enregistré durant une période de forte dynamique créative au sein du Inner Space Studio, récemment établi par le groupe à Weilerswist, en Allemagne de l'Ouest, l'album s'impose comme un document charnière de la musique expérimentale du début des années 1970. Son titre, qui se traduit du turc par « gombo de la mer Égée », reflète le penchant du groupe pour des choix artistiques énigmatiques et surréalistes. Les sessions furent marquées par une échéance rigoureuse en juin 1972, poussant le groupe dans un état créatif frénétique mais concentré, aboutissant à certaines de leurs compositions les plus précises et rythmiques.\n\nL'architecture sonore de l'album est marquée par une fusion sophistiquée de krautrock, d'avant-funk et de rock psychédélique. En utilisant l'unité d'effets « Alpha 77 » et l'acoustique sur mesure de leur studio, aménagé dans un ancien cinéma insonorisé, le claviériste Irmin Schmidt et le bassiste Holger Czukay ont façonné un paysage sonore reliant des improvisations brutes et spontanées à des grooves serrés et hypnotiques. L'album inclut « Spoon », un morceau qui a connu un succès commercial significatif en Allemagne en tant que thème de la série télévisée Das Messer, aux côtés du complexe « Vitamin C », devenu l'une des pièces les plus reconnaissables du groupe. Avec les contributions vocales distinctes de Damo Suzuki et l'interaction entre les guitares de Michael Karoli et la batterie propulsive de Jaki Liebezeit, Ege Bamyasi demeure une sortie phare qui a comblé le fossé entre expérimentation avant-gardiste et musique rock rythmique accessible, influençant profondément des générations de musiciens post-punk, électroniques et alternatifs.",
+      "source_sha256": "abd3a66fa7417958df672d989e0af01d97f8fc22ffe8300c2b37e761722a2323",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:22:13.212Z"
+    }
+  }
 }

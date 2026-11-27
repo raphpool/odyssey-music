@@ -48,5 +48,14 @@
       "name": "Wolfgang Voigt"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une œuvre séminale de l'ambient techno et les débuts sombres, inspirés par la forêt, du son atmosphérique caractéristique du projet Gas.",
+      "article": "Sorti en 1997, Zauberberg est le deuxième album studio de l'influent projet électronique Gas, l'alias du producteur basé à Cologne Wolfgang Voigt. Représentant un moment charnière dans le développement de l'ambient techno, le disque marque les débuts de l'esthétique inspirée par la forêt qui définira le succès ultérieur du projet. Nommé en référence au roman classique de Thomas Mann, La Montagne magique (en allemand : Der Zauberberg), l'album est largement considéré comme l'entrée la plus sombre et la plus dissonante de la discographie de Gas.\n\nMusicalement, Zauberberg évolue à travers des paysages sonores denses et immersifs caractérisés par des boucles orchestrales lourdement traitées, des textures brumeuses et une pulsation sourde et martelante qui imite la sensation de naviguer dans une forêt profonde et claustrophobe. Fuyant les structures conventionnelles de la musique de danse, Voigt crée plutôt un espace liminal où la mélodie est absorbée par la décomposition rythmique et la statique. Cette qualité immersive a contribué à codifier le sous-genre « forest techno », positionnant le disque comme une pièce maîtresse de l'electronica expérimentale de la fin des années 1990. Publié sur le label emblématique basé à Francfort Mille Plateaux, l'album a par la suite joué un rôle déterminant dans la construction de l'héritage durable du projet Gas, étant finalement compilé aux côtés d'autres œuvres précoces dans les collections Nah und Fern et Box. Zauberberg demeure une œuvre séminale pour son utilisation pionnière de l'échantillonnage atmosphérique profond, consolidant son statut de pierre angulaire du canon de l'ambient techno.",
+      "source_sha256": "bc97a687c1ef5659bf5638700a78f5ed3ef35ceff7015f9fea31fbb4c290cf01",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:37:20.637Z"
+    }
+  }
 }

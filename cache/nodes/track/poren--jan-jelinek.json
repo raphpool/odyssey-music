@@ -64,5 +64,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Poren » est un morceau séminal de glitch-ambient de Jan Jelinek, conçu durant les sessions de « Loop-Finding-Jazz-Records » et publié sur l'EP « Tendency ».",
+      "article": "« Poren » est un morceau emblématique du producteur électronique allemand Jan Jelinek, sorti au tournant du millénaire. Il représente un moment charnière dans le développement de l'esthétique « clicks & cuts » ou glitch-ambient qui a émergé de la scène électronique fertile de Berlin à la fin des années 1990 et au début des années 2000. Bien que Jelinek soit surtout associé à son album séminal de 2001, « Loop-Finding-Jazz-Records », « Poren » a été produit durant les mêmes sessions d'enregistrement hautement productives. Bien que le morceau ne figure pas sur les pressages originaux de cet album définitif, il est devenu un élément incontournable de la discographie de Jelinek, apparaissant sur l'EP « Tendency » publié par le label influent Scape.\n\nMusicalement, « Poren » illustre la technique signature de Jelinek : le micro-bouclage d'échantillons de jazz jusqu'à ce qu'ils soient abstraits de leur contexte original, résultant en une texture chaude, hypnotique et granulaire. Le morceau fonctionne comme un paysage sonore immersif qui comble le fossé entre la précision numérique et l'organicisme aux sonorités analogiques. En dépouillant des lignes de piano et de basse jazz pour en faire des pulsations rythmiques saccadées, Jelinek a créé un modèle sonore qui a profondément influencé la direction de la musique électronique ambient expérimentale dans les années qui ont suivi. Son attrait durable réside dans cet équilibre délicat : maintenir la chaleur humaine du matériau source tout en le soumettant à la logique rythmique rigoureuse de la production numérique contemporaine. Le morceau demeure un exemple marquant de la manière dont les esthétiques glitch pouvaient être employées pour créer une musique émotionnellement résonnante, plutôt que purement cérébrale.",
+      "source_sha256": "4131aab301cd18aba2e612f45220c6e3967981dd77b874d5ae6a8f01adfbebbb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:47:25.373Z"
+    }
+  }
 }

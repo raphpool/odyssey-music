@@ -48,5 +48,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Sorti en 1990, « Not Forgotten » de Leftfield est un chef-d'œuvre atmosphérique de la scène rave britannique des débuts, faisant le pont entre l'énergie du breakbeat et les textures du progressive house naissant.",
+      "article": "« Not Forgotten » est une pièce fondatrice de la musique électronique britannique du début des années 1990, publiée par le duo séminal Leftfield en 1990 sur le label Outer Rhythm. Émergeant de la scène rave britannique en plein essor, le morceau représente un pont charnière entre l'énergie frénétique du hardcore et les paysages sonores plus atmosphériques et texturés qui allaient définir le progressive house et l'electronica naissante. Produit par Neil Barnes et Mat Clark, « Not Forgotten » se caractérise par ses percussions hypnotiques et entraînantes, ses fréquences sub-bass profondes et ses échantillons vocaux éthérés et obsédants qui créent une atmosphère immersive, presque cinématographique.\n\nAu moment de sa sortie, le morceau a suscité une attention considérable pour ses techniques de production sophistiquées, qui le distinguaient de nombre de ses contemporains. Sa sortie a contribué à établir Leftfield comme des pionniers de la scène, préparant le terrain pour leurs travaux ultérieurs acclamés par la critique, notamment leur premier album « Leftism ». « Not Forgotten » demeure une pierre angulaire de l'esthétique rave britannique du début des années 90, souvent cité pour son influence sur l'évolution de la production de musique dance, mêlant des éléments rythmiques lourds à une profondeur mélodique qui transcendait le dancefloor. Son héritage durable est attesté par de nombreuses rééditions et par la révérence continue que lui portent les historiens de la musique électronique et les producteurs. Par son mélange de rythme urbain brut et d'introspection atmosphérique, le morceau a capturé un moment spécifique de la culture dance britannique qui semblait à la fois éphémère et éternel.",
+      "source_sha256": "4ad88f3e7546020525c1200bace2714634d447472a2ecb340e271aa9ddd29cba",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:46:24.774Z"
+    }
+  }
 }

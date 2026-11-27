@@ -56,5 +56,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Stacking Smoke est une sortie charnière de 2019 du collectif néerlandais Autumn, illustrant leur évolution atmosphérique raffinée, passant de leurs origines symphoniques à une marque sophistiquée et texturée de heavy rock moderne.",
+      "article": "Stacking Smoke est le sixième album studio du collectif de heavy rock néerlandais Autumn, sorti en 2019. Représentant une évolution mature dans la longue carrière du groupe, le disque capture un changement dynamique dans leur paysage sonore, les éloignant de leurs racines metal symphonique à tendance gothique vers un son « heavy rock » plus atmosphérique, expansif et texturé. Sorti sur le label Painted Bass Records, l'album met en valeur les prouesses vocales de Marjan Welman, qui a rejoint l'ensemble en 2008 et est depuis devenu un élément définitif de leur identité mélodique.\n\nLa structure thématique et musicale de Stacking Smoke penche vers un territoire mélancolique et introspectif, avec des chansons comme « Blackout » et « Where The River Ends » soulignant la capacité du groupe à mélanger une instrumentation complexe avec un poids émotionnel. L'album a été enregistré par une formation composée de Marjan Welman au chant, des guitaristes Jens van der Valk, Mats van der Valk et Ronald Landa, du bassiste Maurice van der Es, du claviériste Jan Munnik et du batteur Jan Grijpstra. Collectivement, ils parviennent à tisser des mélodies de guitare superposées, des synthétiseurs atmosphériques et des rythmes entraînants qui semblent à la fois cinématographiques et ancrés. La sortie a marqué un retour significatif pour le groupe, réaffirmant leur statut sur la scène rock européenne après une période de calme relatif suivant leur départ de Metal Blade Records. Il demeure un jalon dans leur discographie, démontrant un groupe affinant avec succès son art tout en restant fidèle aux fondations lourdes et mélodiques qui ont défini leur identité au cours de deux décennies.",
+      "source_sha256": "39a1a415cab59fc7de3abdb68cd3127638ea54c0b9a4e479e44efc085d18c80d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:33:20.494Z"
+    }
+  }
 }

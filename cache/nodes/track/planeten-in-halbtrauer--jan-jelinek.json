@@ -64,5 +64,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un morceau marquant de l'album Kosmischer Pitch de Jan Jelinek sorti en 2005, mêlant des textures glitch complexes à des paysages sonores atmosphériques chaleureux.",
+      "article": "Planeten In Halbtrauer est un morceau du musicien électronique allemand Jan Jelinek, sorti en 2005 sur son album acclamé Kosmischer Pitch. La pièce illustre l'approche caractéristique de Jelinek de la musique électronique durant cette période, mêlant des textures orientées glitch à une sensibilité mélodique chaleureuse qui semble à la fois expérimentale et profondément atmosphérique. Publié sur le label ~scape, le morceau met en valeur le style de production méticuleux de Jelinek, où des changements rythmiques subtils et des paysages sonores superposés créent un sentiment de profondeur sonore qui définit le projet Kosmischer Pitch. Il demeure un emblème de sa production du milieu des années 2000, reflétant son exploration continue de l'intersection entre le traitement numérique et une conception sonore organique aux accents ambient.",
+      "source_sha256": "91b8f41c496213cd94f88daf264b1b6ba849c4111c4be68d4acd8fd9b59bb4fc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:47:22.497Z"
+    }
+  }
 }

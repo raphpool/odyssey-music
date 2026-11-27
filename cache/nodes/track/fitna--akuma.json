@@ -38,5 +38,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Fitna est un morceau allemand de 2023 composé par le duo musical Akuma et AXMO.",
+      "article": "Fitna est une sortie musicale de 2023 qui s'inscrit comme une entrée distincte dans le paysage musical allemand contemporain. Caractérisé par ses sensibilités de production modernes, le morceau présente les efforts collaboratifs des musiciens Akuma et AXMO, qui sont crédités pour sa composition. Bien que le titre partage un nom avec diverses références culturelles, cette œuvre spécifique représente un effort ciblé de ces artistes pour contribuer à la scène électronique ou proche de la pop en Allemagne au début des années 2020. Le morceau est remarquable pour sa présence singulière sur la sortie du même nom, soulignant une approche concentrée de sa composition et de sa distribution à l'ère du streaming numérique.",
+      "source_sha256": "0586bfd2f0e85eeaa7d15ad69dcb1871e1c30cb64719f83f1b6999c1c7302586",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:42:12.795Z"
+    }
+  }
 }

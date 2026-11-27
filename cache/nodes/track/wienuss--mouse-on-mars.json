@@ -63,5 +63,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Wienuss » est un morceau électronique du duo allemand Mouse on Mars, sorti en 2012 en tant que quatrième piste de leur album Parastrophics.",
+      "article": "« Wienuss » est un morceau électronique du duo allemand Mouse on Mars, sorti en 2012 en tant que quatrième piste de leur album Parastrophics. Le morceau met en avant l'approche caractéristique du groupe en matière de conception sonore, caractérisée par des percussions complexes et glitch, des textures synthétiques ludiques et une fluidité rythmique qui équilibre chaos et structure. Typique des paysages sonores électroniques expérimentaux prédominants dans le travail de milieu de carrière du duo, « Wienuss » illustre leur capacité à manipuler des artefacts numériques pour créer des structures accrocheuses, presque teintées de pop, sans sacrifier leurs sensibilités avant-gardistes. Sorti via Monkeytown Records, le morceau témoigne de leur influence durable sur les scènes IDM et électronique expérimentale, reflétant la même esthétique innovante et avant-gardiste qui définit leur discographie depuis le milieu des années 1990. Le morceau constitue une composante essentielle de Parastrophics, un album qui capture le duo à un moment de renouveau créatif, mêlant une architecture sonore complexe à l'énergie spontanée et amusante qui a maintenu Mouse on Mars au premier plan de la musique électronique pendant des décennies. Son nom, comme beaucoup d'autres dans leur catalogue, fait allusion à leur penchant pour les jeux de mots et au côté oblique et humoristique de leur personnalité artistique. Les artistes Andi Toma et Jan St. Werner ont construit cette œuvre, consolidant leur statut au sein du catalogue de Monkeytown Records.",
+      "source_sha256": "5f9b0b4c86bac8e85913fac01939be403dccf6543cddb9274440f5fcb30c93b3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:53:18.597Z"
+    }
+  }
 }

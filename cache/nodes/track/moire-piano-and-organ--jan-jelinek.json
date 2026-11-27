@@ -75,5 +75,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pièce maîtresse du microhouse et du glitch du début des années 2000, « Moiré (Piano & Organ) » illustre la manipulation magistrale par Jan Jelinek de textures jazz échantillonnées en boucles hypnotiques et scintillantes.",
+      "article": "« Moiré (Piano & Organ) » est un morceau séminal de l'album influent de Jan Jelinek paru en 2001, Loop-Finding-Jazz-Records. Publiée sur le label ~scape, cette pièce illustre l'esthétique « glitch-jazz » caractéristique de Jelinek : une fusion magistrale et hypnotique de micro-échantillons de textures jazz acoustiques traités en boucle et de bases rythmiques électroniques stables et discrètes. Dans « Moiré (Piano & Organ) », Jelinek s'empare de fragments d'instrumentation traditionnelle — comme le suggère le titre, le piano et l'orgue — et les soumet à un traitement granulaire dense. Le paysage sonore qui en résulte est fluide, scintillant et déroutant, paraissant à la fois organique et mécanique.\n\nLe morceau est profondément emblématique de la scène électronique berlinoise du début des années 2000, où les producteurs s'éloignaient de plus en plus des rythmes rigides et entraînants de la techno pour se tourner vers des paysages sonores plus texturés, orientés vers l'ambient et riches en échantillons. En manipulant les échantillons pour créer des cycles rythmiques superposés qui dérivent en phase et hors phase, Jelinek crée un effet sonore de type moiré, où l'auditeur perçoit des changements constants et subtils de tonalité et de tempo. Le morceau demeure une référence des genres microhouse et glitch, influençant une génération de producteurs cherchant à combler le fossé entre l'improvisation humaine chaleureuse et la nature froide et précise de la composition assistée par ordinateur. Loop-Finding-Jazz-Records dans son ensemble, et ce morceau en particulier, est largement cité comme l'une des œuvres électroniques les plus cohérentes et innovantes de son époque.",
+      "source_sha256": "429bc391f61a242aae54c100d4f806eac8be88c90a0fe147b447eb04f6cd98ff",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:24.709Z"
+    }
+  }
 }

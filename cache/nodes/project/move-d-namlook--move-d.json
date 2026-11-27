@@ -56,5 +56,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le partenariat collaboratif entre David Moufang (Move D) et Pete Namlook s'impose comme l'une des unions les plus prolifiques et significatives de l'histoire de la musique électronique.",
+      "article": "Le partenariat collaboratif entre David Moufang (Move D) et Pete Namlook s'impose comme l'une des unions les plus prolifiques et significatives de l'histoire de la musique électronique. S'étendant sur près de deux décennies et aboutissant à une œuvre totalisant 26 albums, leur collaboration était principalement centrée sur le label influent de Namlook basé à Francfort, Fax +49-69/450464. Leur production sonore a comblé le fossé entre la deep house, la techno, l'ambient et l'expérimentation teintée de jazz.\n\nLeur méthode de travail était réputée pour son caractère improvisé et profondément atmosphérique. En combinant la maîtrise de Moufang des rythmes house et techno basés sur le matériel avec le penchant de Namlook pour les textures de synthétiseurs amples et psychédéliques ainsi que les paysages sonores avant-gardistes, ils ont créé une palette sonore unique et hypnotique. Des morceaux comme « Silk Route » ou les titres issus de leurs albums « Wired » et « Let the Circle Not Be Broken » illustrent leur capacité à fusionner compétence technique et chaleur organique et tactile. Le partenariat ne reposait pas seulement sur le volume de leur production, mais sur la cohérence de leur vision : une quête continue d'une electronica « psycho-active » qui semblait à la fois futuriste et ancrée de manière intemporelle dans l'histoire de l'exploration électronique allemande. Même des années après la disparition de Namlook, leur catalogue demeure une référence fondamentale pour les producteurs travaillant dans l'ambient-techno et la deep house, prouvant que la spontanéité et une collaboration profonde peuvent aboutir à un art durable et hautement influent. La récente série « Reissued » par AWAY Music témoigne de leur héritage durable, portant ces joyaux uniquement disponibles en CD vers le vinyle et garantissant aux nouvelles générations l'accès à leur vaste et complexe catalogue.",
+      "source_sha256": "5a148a805ba1899df2316abc1d252ede8da8b02621c27e79ca2dc647fc65869e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:28:20.644Z"
+    }
+  }
 }

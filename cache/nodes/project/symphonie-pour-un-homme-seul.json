@@ -39,5 +39,14 @@
   ],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre monumentale et fondatrice de la musique concrète, Symphonie pour un homme seul est un paysage sonore expérimental composé en 1949-1950, utilisant des sons trouvés et la manipulation de bandes magnétiques pour explorer la vie intérieure d'un « homme seul ».",
+      "article": "Symphonie pour un homme seul est une œuvre fondatrice de la musique concrète, composée à Paris entre 1949 et 1950 par les pionniers Pierre Schaeffer et Pierre Henry. Émergeant du travail de Pierre Schaeffer au Studio d'Essai de la RTF, la pièce représente une rupture radicale avec la composition traditionnelle, abandonnant les instruments de musique et la notation formelle au profit d'« objets sonores » enregistrés sur bande magnétique et disques phonographiques. Par la manipulation de bruits du quotidien — trains, respiration humaine, pas, rires et énoncés vocaux — les créateurs ont construit un paysage sonore complexe explorant le monde intérieur de l'individu.\n\nLa composition a fait ses débuts en 1950 sous la forme d'une œuvre en vingt-deux mouvements, bien que sa complexité technique l'ait rendue notoirement difficile à interpréter en public, nécessitant une synchronisation complexe de multiples platines et tables de mixage. Au cours des décennies suivantes, l'œuvre a subi diverses révisions, pour finalement aboutir à une structure définitive en douze mouvements sous la direction de Pierre Henry. Pierre Schaeffer a qualifié l'œuvre d'« opéra pour aveugles », arguant qu'elle permettait à l'auditeur d'habiter le monde sonore intérieur d'un homme solitaire. En élevant des sons banals et trouvés au rang de composants musicaux, Symphonie pour un homme seul a remis en question la définition même de la musique dans l'après-guerre, fournissant le cadre théorique et pratique de la musique électronique et acousmatique moderne. Son héritage demeure l'un des artefacts les plus influents de l'avant-garde audio du début du XXe siècle, ouvrant la voie à tout, de la musique industrielle à la conception sonore contemporaine.",
+      "source_sha256": "952462574e8fdb9efcdf6f4ade6d3b770f65e0b80033a76920ded46cb0adc479",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:34:13.384Z"
+    }
+  }
 }

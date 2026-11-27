@@ -55,5 +55,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Crying in Your Face » est un morceau électronique séminal de Richard D.",
+      "article": "« Crying in Your Face » est un morceau électronique séminal de Richard D. James, opérant sous son pseudonyme AFX, initialement publié en tant que piste d'ouverture du quatrième volet de sa série acclamée Analord en 2005. Le morceau a par la suite bénéficié d'une distribution plus large sur la compilation Chosen Lords en 2006. En tant que partie intégrante du projet Analord, qui se distinguait par son dévouement à la synthèse analogique et à l'équipement vintage Roland, « Crying in Your Face » fait office de leçon magistrale en matière de textures et de motifs répétitifs et hypnotiques.\n\nMusicalement, le morceau est défini par sa pulsation acid-techno saccadée et syncopée ainsi que par un échantillon vocal distinct — « My boyfriend was crying in New York » — qui se répète avec une qualité mécanique et obsessionnelle. Cette répétition dépouille la voix de son poids narratif initial, la transformant en une simple couche rythmique supplémentaire au sein de l'arrangement dense piloté par le matériel. La production met en valeur la capacité caractéristique de James à équilibrer des fréquences basses agressives et grinçantes avec des éclats mélodiques délicats, presque fragiles. Son inclusion dans la série Analord a consolidé sa place dans le canon de l'IDM et de l'acid-techno des années 2000, représentant un moment charnière où le purisme du matériel analogique s'est heurté à la composition avant-gardiste. Le morceau demeure un favori culte pour sa précision technique et sa résonance émotionnelle étrange et persistante.",
+      "source_sha256": "6dd0dd1bfce2c839606adf820e5e8f6b7fafc967a778abbd6013651895dc70b4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:24.491Z"
+    }
+  }
 }

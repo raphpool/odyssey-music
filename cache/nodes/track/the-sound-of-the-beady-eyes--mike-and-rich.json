@@ -63,5 +63,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« The Sound of the Beady Eyes » est un morceau emblématique de l'album collaboratif IDM de 1996 « Expert Knob Twiddlers », créé par deux des figures les plus influentes de la musique électronique, Aphex Twin (Richard D. James) et µ-Ziq (Mike Paradinas).",
+      "article": "« The Sound of the Beady Eyes » est un morceau emblématique de l'album collaboratif IDM de 1996 « Expert Knob Twiddlers », créé par deux des figures les plus influentes de la musique électronique, Aphex Twin (Richard D. James) et µ-Ziq (Mike Paradinas). Opérant sous le pseudonyme Mike & Rich, le duo a enregistré la majeure partie de l'album en 1994, pendant la Coupe du monde, dans l'appartement partagé de James à Stoke Newington, à Londres. Les sessions étaient caractérisées par une énergie informelle et ludique — incorporant parfois même des éléments d'improvisation en studio « réellement ivres » — qui contrastait délibérément et de manière criarde avec la production électronique souvent sérieuse et guindée de l'époque.\n\nLe morceau lui-même incarne l'éthique de l'album : un mélange de pop légère aux accents Moog, de rythmes bancals et imprévisibles, et une affection manifeste pour l'esthétique excentrique des thèmes télévisés britanniques des années 1970. Contrairement aux courants plus cliniques et froids de la techno ou de l'ambient qui dominaient le paysage IDM à l'époque, « The Sound of the Beady Eyes » capture une chaleur spécifique, légèrement surréaliste et lo-fi. Le processus d'enregistrement reposait sur un mélange de matériel classique comme le Roland MKS-80, un Memorymoog et une Roland R8, qui, combinés aux styles de séquençage non conventionnels de Paradinas et James, ont produit un son à la fois primitif et étonnamment avant-gardiste. Après sa sortie initiale en 1996 sur le label Rephlex Records de James, le morceau a acquis un statut culte, bénéficiant finalement d'une réédition remastérisée sur Planet Mu en 2016, ce qui a contribué à consolider sa place en tant que moment marquant de la musique électronique expérimentale collaborative. Son attrait durable réside dans l'alchimie entre deux maîtres de la synthèse qui, pendant une brève période, ont mis de côté leurs personnalités artistiques plus réservées pour simplement s'amuser avec du matériel dans une pièce, aboutissant à un son qui reste distinctement sans prétention et indéniablement créatif.",
+      "source_sha256": "4db7b4cca9f75a564f0b2d112e19349eed45dc06398373fd13b75a63978f5b99",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:21.515Z"
+    }
+  }
 }

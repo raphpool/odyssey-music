@@ -91,5 +91,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Do While » est le morceau d'ouverture monumental de vingt-quatre minutes de l'album phare d'Oval sorti en 1995, 94diskont., une œuvre déterminante dans le développement du genre glitch.",
+      "article": "« Do While » est le morceau d'ouverture monumental de vingt-quatre minutes de l'album phare d'Oval sorti en 1995, 94diskont., une œuvre déterminante dans le développement du genre glitch. Markus Popp, Sebastian Oschatz et Frank Metzger ont utilisé un processus de production révolutionnaire pour cet enregistrement : ils ont enregistré, endommagé et réenregistré à plusieurs reprises des CD, utilisant efficacement les artefacts numériques — les sauts, les bégaiements et les défaillances mécaniques — comme matériau musical principal. En traitant ces « rayures » de CD comme des textures, Oval a transformé l'instabilité inhérente aux supports numériques en un paysage sonore sophistiqué et hypnotique.\n\n« Do While » agit lui-même comme une leçon magistrale de cette philosophie. Il commence par les textures scintillantes réutilisées de la musique new age de Mark Isham, qui sont lentement érodées et fracturées jusqu'à ce que la source originale soit presque méconnaissable, remplacée par une tension rythmique et pulsante qui définit l'esthétique glitch. Le morceau n'est pas simplement une collection de sons, mais une méditation sur la tension entre l'organique et le numérique. Par son titre et son intention sonore, il fait référence à la structure de programmation informatique « do while » — une boucle qui se poursuit tant qu'une condition est remplie — reflétant parfaitement la manière dont le morceau boucle et itère de façon obsessionnelle ses propres fragments brisés. Sa longueur imposante et son refus de se résoudre en structures de chansons traditionnelles ont mis au défi les auditeurs comme les producteurs au milieu des années 90, cimentant son statut de lien vital entre la musique ambient et la conception sonore électronique expérimentale. À travers 94diskont., Oval a établi un vocabulaire de la défaillance qui influencerait des générations de musiciens électroniques, repoussant les limites de ce qui pouvait être considéré comme « musical » en trouvant la beauté dans la panne du support numérique.",
+      "source_sha256": "447bac168acd498db992945f7fa8b3f71899b323cc675f591c59f0ca52b35467",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:41:15.764Z"
+    }
+  }
 }

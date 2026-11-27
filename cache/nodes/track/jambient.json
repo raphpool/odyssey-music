@@ -45,5 +45,14 @@
   "producers": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Jambient » n'est pas un morceau de musique unique et largement reconnu, mais plutôt un néologisme souvent utilisé dans les cercles expérimentaux et d'improvisation pour décrire une fusion entre la dynamique des « jam band » et les paysages sonores ambient.",
+      "article": "« Jambient » n'est pas un morceau de musique unique et largement reconnu, mais plutôt un néologisme souvent utilisé dans les cercles expérimentaux et d'improvisation pour décrire une fusion entre la dynamique des « jam band » et les paysages sonores ambient. Le terme a acquis une résonance particulière en 2024 grâce au projet Cowboy Sadness et à « Selected Jambient Works Vol. 1 », une sortie qui embrasse cette identité hybride en combinant un travail textuel atmosphérique de longue durée avec l'esprit libre et errant de l'improvisation.\n\nDans ce contexte, « Jambient » fonctionne davantage comme un descripteur d'une éthique sonore spécifique et fluide que comme le titre d'une composition discrète. Les morceaux qui pourraient être classés comme « Jambient » privilégient souvent l'exploration au long cours, mélangeant une instrumentation organique — fréquemment guitare, percussions et synthétiseurs — avec les structures génératives et lentes caractéristiques de la musique ambient. En comblant le fossé entre l'électricité de l'instant présent d'une jam session et les qualités méditatives et immersives de la production ambient, les artistes opérant dans cet espace cherchent à capturer un sens du lieu et du flux temporel. Cowboy Sadness, en particulier, utilise ce terme pour présenter sa collection de 2024 comme une exploration curatée de ce territoire liminal, invitant les auditeurs à s'engager avec une musique qui semble à la fois profondément terrestre et tournée vers l'espace. L'importance culturelle de ce terme réside dans son rejet des frontières rigides entre les genres, préférant s'appuyer sur la nature intersectionnelle des scènes électroniques underground et rock expérimental contemporaines. En nommant une collection « Selected Jambient Works », des artistes comme Cowboy Sadness signalent un départ des structures de chansons traditionnelles en faveur d'environnements expansifs axés sur l'ambiance, qui reposent sur l'interaction entre spontanéité et contrôle. Il demeure un marqueur de micro-genre, une étiquette pour ceux qui trouvent que la frontière entre l'improvisation sur scène et l'ambient en studio est un terrain fertile pour de nouvelles découvertes auditives.",
+      "source_sha256": "bad56ea992779ccb6173d3502eea7cac32c09fbfc9e45c2034c2f47470d0d213",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:44:21.057Z"
+    }
+  }
 }

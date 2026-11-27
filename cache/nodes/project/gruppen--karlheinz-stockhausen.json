@@ -56,5 +56,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une composition monumentale de 1955-57 par Karlheinz Stockhausen qui a redéfini la musique spatiale en orchestrant trois ensembles distincts pour entourer le public.",
+      "article": "Gruppen (1955–1957) est une œuvre séminale pour trois orchestres du compositeur allemand influent Karlheinz Stockhausen. Représentant un sommet de la composition sérielle d'après-guerre, l'œuvre est un jalon de la musique du XXe siècle, célèbre pour sa spatialisation innovante et son approche radicale du temps musical. Écrite durant une période transformatrice de la vie de Stockhausen alors qu'il était inspiré par les paysages alpins de Paspels, en Suisse, Gruppen visait à réconcilier la précision méticuleuse des techniques sérielles avec une ampleur orchestrale et une intensité sonore inédites.\n\nLa composition requiert trois orchestres séparés, chacun avec son propre chef, disposés en fer à cheval autour du public. Cette configuration n'était pas une simple nouveauté mais une nécessité compositionnelle pour maintenir la distinction de passages simultanés et musicalement indépendants. Le titre de Stockhausen fait référence à son intérêt pour les « groupes » — des blocs cohérents de matériau musical unifiés par des caractéristiques partagées telles que la dynamique, le timbre ou le registre — qui interagissent de manières défiant les notions traditionnelles de développement thématique. L'œuvre utilise également une organisation sérielle sophistiquée de la durée, reflétant son développement de la « série des durées » dans son travail théorique ... wie die Zeit vergeht ... .\n\nGruppen a connu sa première mondiale à Cologne le 24 mars 1958, dirigée par Stockhausen lui-même, aux côtés de Pierre Boulez et Bruno Maderna. La pièce demeure un témoignage de l'ambition de l'école de Darmstadt de synthétiser le sérialisme intégral avec des possibilités spatiales étendues. Elle est largement considérée comme un chef-d'œuvre incontestable qui a comblé le fossé entre le sérialisme pointilliste précoce et les textures plus expansives et immersives qui allaient définir les expérimentations sonores ultérieures de Stockhausen. Aujourd'hui encore, interpréter Gruppen est une tâche monumentale qui exige une coopération et une précision rares, cimentant son statut d'une des œuvres orchestrales les plus exigeantes et significatives du milieu du XXe siècle.",
+      "source_sha256": "0ace25c8b160c89088cf5ac47abf63395a70f87bc136d518272d1e1c93f38baa",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:14.987Z"
+    }
+  }
 }

@@ -70,5 +70,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre atmosphérique de l'IDM de la fin des années 90, « Telephasic Workshop » met en valeur le mélange emblématique de synthétiseurs analogiques chaleureux et de nostalgie portée par des breakbeats propre à Boards of Canada.",
+      "article": "« Telephasic Workshop » est une pièce essentielle de la musique électronique du duo écossais Boards of Canada, figurant comme un morceau marquant de leur premier album studio séminal de 1998, Music Has the Right to Children. Publié sur le label emblématique Warp Records, le morceau est réputé pour sa conception sonore complexe, chaleureuse et nostalgique, qui demeure une marque de fabrique de l'esthétique du groupe. Combinant des synthétiseurs analogiques flous, des breakbeats organiques et nets, ainsi que des échantillons vocaux obsédants et subtilement traités, « Telephasic Workshop » incarne le son « hantologique » et IDM (Intelligent Dance Music) qui a défini la scène électronique expérimentale de la fin des années 1990 au Royaume-Uni.\n\nLe morceau sert de première vitrine au génie de production des frères Marcus Eoin et Michael Sandison. Son univers sonore est profondément texturé, mêlant précision technique et sentiment de souvenir d'enfance en décomposition, un trope caractéristique de Boards of Canada. Le titre lui-même, évocateur d'appareils scientifiques ou de recherches de laboratoire obscures, est emblématique de la fascination du duo pour les documentaires sur la nature, les films éducatifs et les courants surréalistes des années 1970 et 1980. À sa sortie, Music Has the Right to Children a été salué pour sa capacité à éloigner la musique électronique des sons froids et cliniques de la musique de club contemporaine pour aller vers quelque chose de plus atmosphérique, émotif et psychologiquement complexe. « Telephasic Workshop » demeure non seulement un point culminant de cet album révélateur, mais aussi un texte fondateur pour une génération d'artistes ambient et downtempo inspirés par la capacité singulière du duo à manipuler des boucles de bande et à créer de vastes paysages auditifs immersifs. Son influence durable est attestée par son statut de l'une des compositions les plus aimées et étudiées de l'histoire de la musique électronique moderne.",
+      "source_sha256": "27d64b6ff79d5d0d85e8d331fe622823f34d90392ef9eb6b16596698fe74aa4b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:50:19.614Z"
+    }
+  }
 }

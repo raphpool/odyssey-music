@@ -68,5 +68,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre obsédant et aquatique de la dub techno du milieu des années 90, « Nautical Dub » est la pièce maîtresse emblématique de l'album phare de Porter Ricks, Biokinetics.",
+      "article": "« Nautical Dub » est un morceau séminal du duo électronique allemand Porter Ricks, figurant à l'origine sur leur premier album de 1996, Biokinetics. Largement considéré comme un chef-d'œuvre du genre dub techno, le morceau illustre le son caractéristique du duo : une atmosphère dense, brumeuse et aquatique créée grâce à des boucles de bande méticuleusement traitées, des fréquences sub-basses profondes et des échos dub minimalistes et obsédants.\n\nSorti sur le sous-label influent de Force Inc. Music Works, Mille Plateaux, « Nautical Dub » a contribué à définir le son influencé par « Basic Channel » qui imprégnait la scène électronique berlinoise au milieu des années 1990. Le morceau capture efficacement un sentiment d'isolement sonore, évoquant des images d'océans froids et vastes et de déclin industriel. Sa production, créditée à Thomas Köner et Andy Mellwig, repose sur la superposition de clics rythmiques subtils contre une réverbération caverneuse et expansive, une technique qui a depuis influencé des générations d'artistes ambient, expérimentaux et techno. L'héritage durable du morceau réside dans sa capacité à équilibrer un minimalisme extrême avec un poids émotionnel profond, servant à la fois d'ancrage rythmique pour les pistes de danse et d'expérience d'écoute profondément immersive. Il demeure une pierre angulaire du catalogue de Mille Plateaux et une sortie marquante dans l'évolution de la production de musique électronique.",
+      "source_sha256": "c92178a437970d4c80a000411de2a67016b73edb12ba9fc8616df22b7a9de9b3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:46:18.841Z"
+    }
+  }
 }

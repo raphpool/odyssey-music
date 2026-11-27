@@ -69,5 +69,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Véritable leçon de paysages sonores texturés, « Suspended In The Deep » voit le producteur britannique DFRNT naviguer dans un environnement aquatique immersif mêlant dub techno et IDM.",
+      "article": "« Suspended In The Deep » est un morceau du producteur électronique britannique DFRNT, initialement publié dans le cadre de son album de 2012, Fading, sur le label Echodub. La composition fait office de pièce représentative de l'esthétique signature de DFRNT à cette époque, mêlant des éléments de dub techno, d'IDM et de post-dubstep au sein d'un espace sonore atmosphérique et immersif. Tout au long de Fading, DFRNT — pseudonyme d'Alex — démontre une maîtrise des paysages sonores texturés, utilisant des rythmes subtils, une réverbération caverneuse et une précision rythmique pour créer un sentiment d'introspection liquide et profonde.\n\nLe morceau est caractéristique de la scène électronique underground britannique du début des années 2010, où les producteurs exploraient fréquemment les intersections entre le poids du dubstep axé sur les clubs et les styles de production expansifs et expérimentaux que l'on trouve dans la dub techno et la musique ambient. « Suspended In The Deep » fonctionne comme un ancrage tonal pour l'album, caractérisé par son accent sur la répétition hypnotique, les changements harmoniques délicats et une qualité de production soignée et professionnelle qui met l'accent sur l'espace et la « profondeur » — un motif récurrent dans le travail de l'artiste. Le morceau invite l'auditeur à naviguer dans un environnement vaste aux sensations aquatiques, soulignant la capacité de DFRNT à maintenir une narration musicale captivante par des changements subtils de texture plutôt que par le recours aux structures de chansons traditionnelles. En tant que partie intégrante d'une sortie charnière pour Echodub, le morceau a contribué à consolider la réputation du producteur au sein des cercles restreints mais influents de la musique électronique profonde imprégnée de dub.",
+      "source_sha256": "60293b95ee7c6b63d172d5c0ea3beefc35c08df57ee9597a60fb46bbb05adc21",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:50:13.847Z"
+    }
+  }
 }

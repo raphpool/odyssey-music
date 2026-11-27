@@ -54,5 +54,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Piste R&B léchée et portée par des synthétiseurs sortie en 1987, « Irresistible » met en avant la voix soul de la choriste Audrey Wheeler sur une production sophistiquée de Lionel Job et Preston Glass.",
+      "article": "« Irresistible » est une piste R&B élégante du milieu des années 1980, sortie en 1987 par la chanteuse américaine Audrey Wheeler. Principalement connue pour son travail de studio et ses chœurs auprès d'artistes majeurs, Wheeler s'est retrouvée sous les projecteurs avec cette escapade en solo, qui capture parfaitement le paysage sonore léché et synthétique de la radio urbaine de la fin des années 80. Le morceau a été produit par Lionel Job, un producteur ayant précédemment travaillé avec le groupe Starpoint, et Preston Glass, qui ont tous deux apporté à l'enregistrement leur style de production caractéristique, à la fois fluide et percutant. Écrite par une équipe comprenant André Pessis, Lionel Job, Preston Glass et Thor Baldursson, la chanson repose sur un groove serré et dansant typique du R&B contemporain de l'époque, sublimé par la performance vocale puissante et soul de Wheeler.\n\nLe single est sorti sur Capitol Records et a gagné en popularité sur les stations de radio locales, consolidant sa place en tant qu'exemple par excellence du son soul-pop léché et professionnel qui dominait les classements R&B américains durant cette période. Bien qu'il ne soit pas devenu un immense succès pop grand public, « Irresistible » demeure un joyau recherché par les collectionneurs de R&B de la fin des années 80, salué pour sa qualité de production et la précision technique de son arrangement. Il rappelle l'époque où des professionnels de studio et des chanteuses talentueuses comme Wheeler pouvaient créer une musique soul de haute qualité, prête pour la radio, qui faisait le pont entre le R&B traditionnel et l'esthétique pop électronique émergente. La disponibilité de versions 12 pouces et d'instrumentaux à l'époque souligne davantage son utilité et sa popularité au sein des circuits des DJ de club et de radio en 1987.",
+      "source_sha256": "b07845f00eb877bebd4497b154d6fa26922b18419ba62fe7257b4a28de212694",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:44:18.919Z"
+    }
+  }
 }

@@ -78,5 +78,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« My Brutal Life » est un projet évocateur et immersif des pionniers britanniques de la musique électronique The Black Dog, explorant les thèmes de la mélancolie urbaine et de l'existence moderne à travers un mélange d'ambient et d'électronique expérimentale.",
+      "article": "« My Brutal Life » est un projet majeur du duo électronique britannique emblématique The Black Dog, sorti en 2023. Connus pour leur influence fondatrice sur l'intelligent dance music (IDM) et les textures électroniques expérimentales, le duo est revenu avec cette œuvre pour explorer l'intersection entre l'émotion humaine et l'architecture froide et inflexible de la ville moderne. Le projet est profondément ancré dans l'esthétique caractéristique du groupe : un mélange obsédant et atmosphérique de paysages sonores ambient et de nuances rythmiques qui semble à la fois intime et expansif. À travers des titres comme « The Mundane » et « Asymmetrical Living », l'album capture un sentiment de gravité et d'isolement méditatif, offrant aux auditeurs un voyage sonore qui ressemble à une réflexion sur les complexités de la vie contemporaine. La musique parvient à être simultanément écrasante et apaisante, un témoignage de la capacité durable de The Black Dog à manipuler le son pour évoquer des états psychologiques précis et profonds. Cette sortie souligne l'évolution du duo, passant des structures orientées vers le dance-floor de leurs débuts dans les années 90 vers une pratique plus introspective et axée sur le design sonore, consolidant leur statut de maîtres de l'atmosphère et de la résonance émotionnelle. Le projet a également servi de catalyseur conceptuel pour d'autres entreprises artistiques, notamment des séries de mix ambient et des explorations basées sur la diffusion, soulignant la profondeur et l'étendue de l'univers que le duo a construit autour du disque.",
+      "source_sha256": "1c4dc5af029229dfa2805ddca1baa1b8f6286ddcc5a0d0bdfe4d6c5c5412a3eb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:29:15.833Z"
+    }
+  }
 }

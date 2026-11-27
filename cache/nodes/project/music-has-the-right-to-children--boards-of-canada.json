@@ -104,5 +104,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre définitif de la musique électronique des années 1990, Music Has the Right to Children mêle une synthèse analogique chaleureuse et nostalgique à des rythmes hip-hop mid-tempo nets, créant une atmosphère à la fois étrangement hantée et réconfortante.",
+      "article": "Sorti le 20 avril 1998 sur le label Warp, Music Has the Right to Children est le premier album studio séminal du duo électronique écossais Boards of Canada (Michael Sandison et Marcus Eoin). Le projet est largement considéré comme une pierre angulaire de l'IDM (Intelligent Dance Music) et de l'ambient techno, caractérisé par une texture sonore distinctement nostalgique et « usée » qui évoque les films éducatifs d'époque, les souvenirs d'enfance du milieu du siècle et un sentiment de chaleur en décomposition. L'album équilibre habilement des paysages sonores riches en synthétiseurs avec des boucles de batterie poussiéreuses influencées par le hip-hop mid-tempo.\n\nStructurellement, l'album alterne entre des compositions abouties et des vignettes atmosphériques plus courtes. Cette fragmentation intentionnelle confère au disque une qualité onirique et désorientante. Les critiques et les auditeurs notent fréquemment l'« âme machine » de la production ; les sons semblent vécus, intégrant des échantillons dégradés, du souffle de bande et des imperfections analogiques qui contrastent fortement avec l'esthétique stérile et polie prévalant dans une grande partie de l'electronica des années 1990. Avec des titres comme Telephasic Workshop et Turquoise Hexagon Sun, le duo a établi une signature sonore unique qui influencera des générations de producteurs électroniques. Il demeure un jalon dans l'histoire de la musique électronique, non seulement pour sa production technique, mais pour la profondeur émotionnelle profonde et étrange qu'il parvient à extraire de ses origines matérielles. Son héritage est cimenté par sa réputation de disque à l'« âme machine pure » qui semble avoir été sauvé d'un passé perdu et inquiétant.",
+      "source_sha256": "75a6a8ceb07c9a26784c114a0128cafcf705f2b93077afba298448a25e597710",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:29:15.207Z"
+    }
+  }
 }

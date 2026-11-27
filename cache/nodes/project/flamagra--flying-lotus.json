@@ -79,5 +79,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Voyage psychédélique et expansif à la croisée du jazz-funk, du hip-hop expérimental et de l'electronica, Flamagra témoigne de la maîtrise de Flying Lotus en matière de construction de mondes collaboratifs. Doté d'une liste éclectique d'invités, l'album capture une tension thématique centrale — une « flamme éternelle sur une colline » — qui pulse à travers son architecture tentaculaire de vingt-sept titres.",
+      "article": "Flamagra, publié en 2019 par Warp, représente le sixième album studio du producteur américain visionnaire Flying Lotus (Steven Ellison). Après une pause de cinq ans dans sa discographie solo après l'album acclamé par la critique You're Dead!, ce projet émerge comme un récit sonore ambitieux et expansif qui synthétise les influences disparates de l'artiste en une mythologie cohérente et ardente. Ellison a conceptualisé l'album autour d'une image métaphorique centrale : une « flamme éternelle sur une colline », une idée qui s'est concrétisée après une rencontre fortuite avec le réalisateur emblématique David Lynch, qui prête sa performance parlée, obsédante et surréaliste, au premier single de l'album, Fire Is Coming.\n\nMusicalement, Flamagra est une exploration dense et haute fidélité du jazz-funk, du hip-hop expérimental et de la musique électronique d'avant-garde. Sur une durée de 67 minutes, Flying Lotus orchestre une vaste liste de collaborateurs, dont Thundercat, Anderson .Paak, Little Dragon, Solange, George Clinton et Denzel Curry, parmi tant d'autres. La nature collaborative de l'album ressemble moins à une série d'apparitions d'invités qu'à un écosystème de sons soigneusement organisé. Des rythmes nerveux inspirés par la fusion aux textures atmosphériques luxuriantes, l'album équilibre une énergie chaotique et frénétique avec des moments de calme profond et méditatif. Il s'agit d'une œuvre déterminante du paysage électronique expérimental de la fin des années 2010, consolidant le rôle d'Ellison en tant que point de jonction vital entre les mondes du jazz fusion et de la production de beats moderne. En canalisant des années d'esquisses disparates et de réflexions thématiques dans cette vision singulière et brûlante, Flamagra demeure un projet phare qui capture l'innovation incessante de l'un des producteurs les plus uniques de la musique moderne. La structure de l'album — comprenant 27 titres — reflète une production créative dense, presque écrasante, qui récompense les écoutes multiples, passant de manière fluide entre improvisations jazz, beats teintés de trap et passages ambiants introspectifs, le tout maintenu par la signature de production inimitable de Flying Lotus.",
+      "source_sha256": "b4498c272d6fb2c552b5a50b9487e1644a068f2b7685499b6703900874e9e1f7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:23:18.482Z"
+    }
+  }
 }

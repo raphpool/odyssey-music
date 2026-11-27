@@ -89,5 +89,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre séminale du glitch et de l'ambient expérimental du début des années 2000, Entain de Vladislav Delay est une leçon magistrale sur la manière de tisser des artefacts numériques complexes en textures rythmiques profondément immersives.",
+      "article": "Entain est un album électronique séminal de l'artiste finlandais Vladislav Delay (Sasu Ripatti), sorti à l'origine en 2000 sur le label allemand influent Mille Plateaux. Souvent cité comme une pierre angulaire des scènes glitch, microsound et ambient expérimental du début des années 2000, Entain représente un moment charnière dans le développement de la production musicale numérique moderne. L'album se caractérise par ses textures complexes et saccadées, ses boucles rythmiques élaborées et une atmosphère profonde et immersive qui remet en question les notions traditionnelles de structure de chanson.\n\nSur le plan sonore, Entain s'appuie fortement sur l'artefact numérique — le son des fichiers corrompus, des sauts et des erreurs de processeur — transformé en un langage musical profondément émotif et cohérent. L'approche de Ripatti évite ici le sentiment froid et clinique souvent associé au glitch, privilégiant au contraire une synthèse stratifiée et organique qui semble presque tactile. En tissant de minuscules fragments sonores dans de vastes tapisseries en évolution, l'album capture un sentiment de temps suspendu, créant ce que les fans ont décrit comme un espace « au-delà du temps et de l'espace ». Il demeure une œuvre hautement respectée pour son utilisation pionnière de la manipulation numérique, influençant une génération de producteurs intéressés par l'intersection de l'émotion organique et de la défaillance numérique. La remastérisation de 2023 a contribué à réintroduire ce chef-d'œuvre atmosphérique auprès d'un nouveau public, consolidant sa place dans le canon expérimental.",
+      "source_sha256": "52ae734548612e3a40f9a611e7fa743f27ff274bca315f3042450089745792db",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:22:17.640Z"
+    }
+  }
 }

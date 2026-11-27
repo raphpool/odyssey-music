@@ -64,5 +64,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Throw » est un hymne techno séminal sorti en 1994 sous le pseudonyme Paperclip People, un projet du visionnaire de Détroit Carl Craig.",
+      "article": "« Throw » est un hymne techno séminal sorti en 1994 sous le pseudonyme Paperclip People, un projet du visionnaire de Détroit Carl Craig. Publié initialement sur le label britannique Open et devenant plus tard un pilier de Planet E Communications, le label de Détroit, le morceau fait office de leçon magistrale sur l'intersection entre minimalisme et musique de danse portée par le funk. Long de près de quinze minutes dans sa forme originale, « Throw » est construit autour d'un échantillon vocal hypnotique en boucle et d'une ligne de basse entraînante et contagieuse qui ne s'essouffle jamais, illustrant la maîtrise de Carl Craig en matière de tension et de relâchement.\n\nLe morceau est largement considéré comme l'un des moments définitifs du canon techno des années 1990. Son influence s'étend bien au-delà des raves en entrepôt où il a d'abord gagné en notoriété, ayant été remixé et réédité à de multiples reprises au fil des décennies par des artistes tels que Slam. Pour de nombreux passionnés de musique électronique, l'énergie incessante et la production chirurgicale de « Throw » incarnent l'âme futuriste du son de Détroit, prouvant que des structures électroniques répétitives pouvaient posséder une nuance rythmique profonde et un poids émotionnel humain intense. Il demeure une marque de fabrique de l'esthétique « techno-soul » dont Carl Craig a été le pionnier, comblant le fossé entre les rythmes mécaniques rigoureux et la chaleur expressive de la piste de danse.",
+      "source_sha256": "60924ba32b112a05a633e1cbd866ce1e99852f389530b8931e6d5c4635d8fb2a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:13.516Z"
+    }
+  }
 }

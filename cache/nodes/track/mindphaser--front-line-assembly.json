@@ -58,5 +58,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Mindphaser » est un morceau electro-industrial séminal du duo de Vancouver Front Line Assembly, servant de premier single à leur album phare de 1992, Tactical Neural Implant.",
+      "article": "« Mindphaser » est un morceau electro-industrial séminal du duo de Vancouver Front Line Assembly, servant de premier single à leur album phare de 1992, Tactical Neural Implant. La chanson représente un moment charnière dans le développement de l'industrial dance music, illustrant un style de production sophistiqué qui s'éloigne du bruit abrasif et dur des premiers travaux du groupe pour s'orienter vers des compositions plus mélodiques, texturées et techniquement complexes. Doté de voix lourdement traitées au vocodeur et d'échantillonnages complexes et multicouches, « Mindphaser » est une marque de fabrique du virage du genre vers une finition électronique haute fidélité tout en conservant son énergie conflictuelle fondamentale.\n\nL'impact culturel du morceau a été considérablement amplifié par son clip vidéo promotionnel primé, réalisé par Robert Lee. Évitant les images de performance traditionnelles, la vidéo a été construite de manière unique en écrivant la musique et les paroles spécifiquement pour correspondre aux images du film de science-fiction japonais de 1989 Gunhed. Le résultat, qui voyait les membres du groupe visuellement intégrés dans les paysages mécaniques du film, fut une percée dans les visuels industriels, remportant le prix du « Best Alternative Video » aux Canadian Music Video Awards de 1992 et bénéficiant d'une diffusion notable sur MTV. La chanson demeure une pierre angulaire du canon industriel, fréquemment citée comme l'une des plus grandes chansons du genre, et continue d'être un incontournable dans les clubs d'electronic dance music du monde entier. Sur le plan lyrique et conceptuel, elle reflète également le penchant du groupe pour le tissage de l'histoire intellectuelle de la musique industrielle, incorporant notamment des éléments de « The Hacker » de Clock DVA.",
+      "source_sha256": "3e06ddaec14905cdc1bf7622723dde44e07797a3431914aa6df74d1425852a99",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:22.957Z"
+    }
+  }
 }

@@ -61,5 +61,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre séminale de la techno de Détroit du début des années quatre-vingt-dix, le projet X-101 a marqué une collision charnière entre l'esthétique brute et industrielle de Underground Resistance et la précision du label allemand Tresor. Il s'impose comme une parution phare dans l'évolution de la techno futuriste à haute énergie.",
+      "article": "X-101 représente l'une des collaborations précoces les plus significatives entre l'avant-garde de la techno de Détroit et la scène club européenne. En tant que projet impliquant principalement les membres fondateurs de Underground Resistance — Jeff Mills, Mike Banks et Robert Hood —, le matériel publié sous le nom de X-101 en 1991 a distillé l'agressivité et l'urgence politique du son de la Motor City dans une structure industrielle implacable à haut BPM. L'album éponyme, souvent associé au label allemand Tresor, fut essentiel pour combler le fossé entre les racines underground de la techno américaine et la culture warehouse naissante de Berlin après la chute du Mur.\n\nLa musique elle-même est définie par une énergie percussive et frénétique qui privilégie une dynamique basée sur les boucles et des textures synthétiques dissonantes. Des titres comme « Sonic Destroyer » sont devenus des hymnes par excellence, incarnant la mission du projet de concevoir des paysages sonores futuristes et mécaniques qui semblaient à la fois étrangers et intensément humains. En utilisant le nom X-101, les producteurs ont maintenu un sentiment de mystère et de détachement, permettant à la musique de s'adresser à une idéologie tournée vers le futur, centrale dans la philosophie de Underground Resistance. Ce projet demeure une pierre angulaire de l'histoire de la techno des années quatre-vingt-dix, prouvant comment les environnements collaboratifs et les partenariats entre labels transcontinentaux — spécifiquement le lien durable entre Détroit et Tresor — ont aidé à formaliser le langage mondial de la musique électronique contemporaine. L'héritage de X-101 continue de résonner dans le travail des producteurs qui privilégient une conception sonore sans compromis et à haute intensité, témoignant d'une époque où la techno était définie par son esprit expérimental intransigeant et sa puissance sonore brute.",
+      "source_sha256": "279ba0874d701a147283f7cc160cdc44230dfcb10f8586eac0f3fbc0ef73849d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:37:19.359Z"
+    }
+  }
 }

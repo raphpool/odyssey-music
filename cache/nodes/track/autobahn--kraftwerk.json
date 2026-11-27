@@ -48,5 +48,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Autobahn », le morceau-titre monumental de l'album de la percée de Kraftwerk en 1974, s'impose comme une pierre angulaire de la musique électronique, jetant un pont entre le Krautrock expérimental de la fin des années 1960 et la domination de la pop synthétique des décennies suivantes.",
+      "article": "« Autobahn », le morceau-titre monumental de l'album de la percée de Kraftwerk en 1974, s'impose comme une pierre angulaire de la musique électronique, jetant un pont entre le Krautrock expérimental de la fin des années 1960 et la domination de la pop synthétique des décennies suivantes. Avec une durée dépassant les 22 minutes sur le disque original, la composition fait office de voyage sonore, simulant méticuleusement l'expérience d'une conduite sur le réseau autoroutier ouest-allemand. Elle a représenté un tournant décisif pour le groupe basé à Düsseldorf, s'éloignant des textures plus abstraites et organiques de leurs débuts pour s'orienter vers un son rigide, minimaliste et moteur qui embrassait la précision mécanique des synthétiseurs et des vocodeurs.\n\nProduit par les membres fondateurs Ralf Hütter et Florian Schneider aux côtés du légendaire Conny Plank, « Autobahn » a effectivement codifié l'esthétique « robot-pop » du groupe. En mêlant des mélodies accessibles et fredonnables à la pulsation rythmique répétitive qui serait bientôt connue sous le nom de rythme « motorik », le morceau a atteint une qualité hypnotique qui semblait à la fois futuriste et profondément ancrée dans la réalité industrielle moderne. Son impact culturel ne saurait être surestimé ; il a fondamentalement changé la perception des instruments électroniques dans la musique populaire, prouvant que les synthétiseurs pouvaient être utilisés non seulement pour des paysages sonores atmosphériques ou des expériences d'avant-garde, mais aussi pour une narration rythmique. Le succès de la chanson a fourni le modèle pour d'innombrables sous-genres, du synth-pop et de l'industriel à la techno et à l'electro, marquant le moment définitif où la musique pop a entamé sa transition vers l'ère numérique.",
+      "source_sha256": "752f0b2028490166bdbd9f071f292971ace728e4b0385d84c3be0eae9ada2509",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:38:17.568Z"
+    }
+  }
 }

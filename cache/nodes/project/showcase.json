@@ -46,5 +46,14 @@
       "name": "Sly & Robbie"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Showcase » est un album de reggae historique de 1979 du légendaire groupe de roots reggae Black Uhuru, produit par l'emblématique section rythmique Sly & Robbie.",
+      "article": "« Showcase » est un album de reggae historique de 1979 du légendaire groupe de roots reggae Black Uhuru, produit par l'emblématique section rythmique Sly & Robbie. L'album constitue un exemple définitif du format « showcase », un pilier de l'industrie musicale jamaïcaine à la fin des années 1970. Dans ce format, un album présente généralement une sélection de pistes vocales, chacune immédiatement suivie de sa version dub instrumentale. Cette structure permettait aux DJ de sound system et aux producteurs de démontrer le potentiel créatif du mixage et du remixage en studio, mettant efficacement en valeur les chansons de l'artiste aux côtés des techniques de production innovantes de l'ère dub.\n\n« Showcase » de Black Uhuru contient certains des premiers morceaux les plus essentiels du groupe, notamment des titres comme « General Penitentiary », « Guess Who's Coming to Dinner » et « Plastic Smile ». Avec les arrangements rythmiques magistraux et serrés fournis par Sly Dunbar et Robbie Shakespeare, l'album a contribué à consolider Black Uhuru comme une force majeure du mouvement roots reggae. Le son est caractérisé par des lignes de basse profondes et lourdes, des délais atmosphériques et les harmonies vocales distinctes et pleines d'âme qui ont défini le style caractéristique du groupe. En raison de son impact culturel, l'album a connu de nombreuses rééditions sur des labels internationaux, souvent sous des variantes du titre comme « Black Uhuru » ou « Guess Who's Coming to Dinner », soulignant son statut de disque fondateur dans l'histoire du reggae. En offrant aux auditeurs à la fois les performances vocales et leurs contreparties dub, « Showcase » capture la double nature de la production reggae : la chanson en tant qu'histoire et la chanson en tant que terrain de jeu sonore.",
+      "source_sha256": "2ebbf1d6eb5d0aa910f85365b1088fdebe09e7c21bb5455ceb7384f831d54d28",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:32:22.971Z"
+    }
+  }
 }

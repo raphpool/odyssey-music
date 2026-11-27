@@ -25,5 +25,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon séminal de l'histoire du dub, ce chef-d'œuvre collaboratif de 1976 associe les compositions roots méditatives et portées par le mélodica d'Augustus Pablo à l'ingénierie de studio révolutionnaire de King Tubby, définissant l'architecture spatiale et sonore du genre.",
+      "article": "Sorti en 1976, King Tubbys Meets Rockers Uptown s'impose comme l'un des disques les plus significatifs et influents de l'histoire du dub. Il s'agit d'un chef-d'œuvre collaboratif du multi-instrumentiste et producteur jamaïcain Augustus Pablo et du légendaire ingénieur du son King Tubby. L'album capture un moment charnière dans l'évolution du reggae, où les techniques de production en studio sont passées du simple enregistrement à un instrument à part entière. Pablo a fourni les fondations musicales initiales, jouant du mélodica, du piano, de l'orgue et du clavinet, soutenu par des musiciens de studio d'élite, dont Carlton Barrett à la batterie et les frères Aston et Robbie Shakespeare à la basse. Ces pistes ont ensuite été confiées à King Tubby, dont la magie dans son studio personnel de Kingston — utilisant un équipement construit sur mesure et de lourds effets d'écho, de réverbération et de délai — a transformé les chansons en paysages sonores profonds et atmosphériques. Le morceau-titre, une version dub de « Baby I Love You So » de Jacob Miller, sert de distillation parfaite de ce processus, démontrant comment le retrait et la manipulation d'éléments pouvaient créer de l'espace, de la tension et un profond sentiment de groove méditatif. Au-delà de son innovation technique, l'album a contribué à consolider le style « rockers », caractérisé par une pulsation rythmique constante et entraînante qui est devenue un pilier de l'époque. Il demeure une introduction essentielle pour comprendre l'ADN de la production musicale électronique moderne et de la culture sound system, régulièrement salué par les critiques comme l'un des plus grands albums de reggae jamais produits. Son héritage continue de résonner à travers des décennies de dub, de bass music et de musique électronique ambient.",
+      "source_sha256": "6fb70d3d9eadacf89f2048d13ae2e2e50dcb32c070badf148daddcdbfea1f978",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:19.611Z"
+    }
+  }
 }

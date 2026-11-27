@@ -63,5 +63,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre fondatrice de l'expérimentalisme glitch-ambient, « Uoon II » présente l'interaction délicate entre le piano émotif de Ryuichi Sakamoto et les textures numériques précises d'Alva Noto.",
+      "article": "« Uoon II » est une composition ambient séminale issue de l'album collaboratif de 2002 « Vrioon » par l'expérimentateur électronique allemand Alva Noto (Carsten Nicolai) et le légendaire compositeur japonais Ryuichi Sakamoto. Ce morceau sert de pierre angulaire aux premières explorations du duo, comblant le fossé entre les glitches électroniques minimalistes et les passages au piano délicats et émotifs. En tant que deuxième entrée de la séquence « Vrioon », il illustre le style de production précis et méthodique que Carsten Nicolai était en train de pionnier sous son alias Alva Noto chez Raster-Noton, juxtaposé au phrasé néo-classique évocateur que Sakamoto a perfectionné au cours de sa carrière longue de plusieurs décennies.\n\nLe paysage sonore de « Uoon II » est caractérisé par la tension et la synthèse des opposés : les clics et crépitements numériques rigides de la conception sonore de Noto face aux accords fluides et mélancoliques du piano de Sakamoto. Le morceau dure environ neuf minutes et quarante secondes, permettant à l'auditeur de s'immerger lentement dans ses superpositions atmosphériques. « Vrioon » est largement reconnu comme une référence du mouvement « glitch-ambient » du début des années 2000, où l'instrumentation traditionnelle et l'expérimentalisme post-numérique ont été fusionnés pour créer une nouvelle forme moderne de musique de chambre. La nature collaborative du morceau met en lumière un dialogue intuitif entre les deux artistes, où le silence, l'espace et les micro-sons reçoivent autant d'importance structurelle que les thèmes mélodiques eux-mêmes. Ce morceau est resté une pierre de touche pour la musique ambient expérimentale, illustrant comment des textures froides et computationnelles peuvent être rendues profondément intimes et humaines grâce à un artisanat collaboratif et minutieux.",
+      "source_sha256": "ce4da6de41f2b38e1588fecae90518a6a717d907a6997db3ba384220e7540c72",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:22.811Z"
+    }
+  }
 }

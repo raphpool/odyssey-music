@@ -61,5 +61,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Western Mimikry est un morceau marquant de l'album collaboratif Mimikry paru en 2010, un projet de Blixa Bargeld et Alva Noto qui mêle avec brio glitch et expérimentations industrielles.",
+      "article": "Western Mimikry est un morceau présent sur l'album collaboratif Mimikry sorti en 2010 par le duo ANBB, composé de Blixa Bargeld et Alva Noto. Publié sur le label Raster-Noton, le projet représente une fusion de paysages sonores électroniques, glitch et expérimentaux, caractéristiques de l'esthétique précise et minimaliste du label. L'album, qui comprend des morceaux comme Berghain et Wust, souligne la synergie entre les sensibilités vocales et structurelles avant-gardistes de Bargeld et la conception sonore numérique méticuleuse de Noto. Western Mimikry constitue un moment charnière de cette collaboration, reflétant l'exploration par le duo de textures industrielles et de musique classique moderne au sein d'un cadre électronique contemporain. L'album a été publié sous divers formats, incluant le CD et un coffret en édition limitée, consolidant sa place sur la scène électronique expérimentale du début des années 2010.",
+      "source_sha256": "fdf7e314eeadf5cbb996f71c215c0564293235ac7c29ce9d4a77f342f4f85fd2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:53:15.792Z"
+    }
+  }
 }

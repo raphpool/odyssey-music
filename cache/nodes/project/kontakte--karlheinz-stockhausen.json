@@ -83,5 +83,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon de la composition d'avant-garde du XXe siècle, Kontakte de Karlheinz Stockhausen fusionne sons électroniques, piano et percussions, ouvrant la voie à de nouvelles techniques de spatialisation et de sérialisme.",
+      "article": "Kontakte est une œuvre séminale de la musique électronique du milieu du XXe siècle, composée et réalisée par le visionnaire allemand Karlheinz Stockhausen entre 1958 et 1960. Créée au studio de musique électronique de la Westdeutscher Rundfunk (WDR) à Cologne avec l'assistance technique de Gottfried Michael Koenig, la composition représente une étape critique dans le développement du sérialisme intégral au sein du médium électronique. Le titre de l'œuvre, qui se traduit par « contacts », reflète l'intention de Stockhausen de combler le fossé entre les paysages sonores instrumentaux et électroniques, tout en explorant les « moments » structurels et les mouvements spatiaux du son.\n\nLa pièce existe en deux itérations principales : une version originale pour sons électroniques seuls (Nr. 12) et une version plus largement citée pour sons électroniques, piano et percussions (Nr. 12+1/2). Musicalement, Kontakte est célébrée pour son approche radicale de la spatialisation, utilisant une configuration à quatre canaux qui a permis à Stockhausen de faire naviguer les sons autour de l'auditeur de manière tridimensionnelle, dépassant largement les normes techniques de ses contemporains. L'œuvre est particulièrement remarquée pour une séquence centrale transformatrice où une hauteur de son se dissout progressivement en une série d'impulsions audibles, une illustration profonde de la connexion entre fréquence et rythme. En tant que pionnier de la composition électronique sérialiste, Stockhausen a utilisé ce projet pour exercer un contrôle sans précédent sur les propriétés fondamentales du son : timbre, hauteur, durée et intensité. Son influence s'étend à travers les traditions d'avant-garde et électroacoustiques, cimentant le statut de Stockhausen en tant que figure centrale dans l'évolution de la musique savante moderne.",
+      "source_sha256": "6a4dc4105ad69332123fd1e794c289f32e76c259b2fc886681c6d74372d58bdc",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:20.351Z"
+    }
+  }
 }

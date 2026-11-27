@@ -52,5 +52,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une composition hypnotique et minimaliste issue de l'album acclamé de Jan Jelinek en 2005, Kosmischer Pitch, mêlant instrumentation vintage et manipulation électronique.",
+      "article": "Im Diskodickicht est un morceau du musicien électronique allemand Jan Jelinek, apparu initialement sur son album de 2005 Kosmischer Pitch. Enregistré et produit au studio G. Guillaume à Berlin entre 2004 et 2005, le morceau illustre l'approche de la musique électronique de Jelinek durant cette période, qui puisait largement dans le rock allemand des années 1970 et utilisait des synthétiseurs, des guitares et des sons de batterie vintage. La composition est caractérisée par une répétition induisant la transe et des modulations subtiles qui explorent la manipulation du temps, un concept que Jelinek désigne sous le terme de « Pitch » dans le titre de l'album, en référence à la Wild Pitch House. Le morceau, tout comme le reste de l'album, a été remastérisé par Giuseppe Ielasi et réédité en 2025 pour marquer le 20e anniversaire de la sortie originale sur le label ~scape. Les critiques ont souligné la qualité minimaliste mais texturée de l'œuvre, la décrivant comme une expérience fantomatique et obscure qui se transforme à travers l'espace.",
+      "source_sha256": "2b27a5143ae9aae8f0061a72df19020866365a301990eb8a1ab178dc7b31c80a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:44:12.651Z"
+    }
+  }
 }

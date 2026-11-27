@@ -50,5 +50,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Fight The Hits » est un morceau électronique séminal du projet Discordian Popes, figurant sur la compilation historique « Bytes » de 1993. Publié sur le label emblématique Warp Records, le titre constitue un artefact essentiel de la scène intelligent dance music (IDM) du début des années 1990 au",
+      "article": "« Fight The Hits » est un morceau électronique séminal du projet Discordian Popes, figurant sur la compilation historique « Bytes » de 1993. Publié sur le label emblématique Warp Records, le titre constitue un artefact essentiel de la scène intelligent dance music (IDM) du début des années 1990 au Royaume-Uni. « Bytes » est historiquement significatif pour avoir mis en avant divers pseudonymes et projets supervisés par Black Dog Productions, un collectif qui a joué un rôle déterminant dans l'élargissement des frontières sonores de la musique électronique de danse au-delà des pistes de rave de l'époque, en s'orientant vers des territoires plus cérébraux, atmosphériques et techniquement complexes. « Fight The Hits » illustre cette transition, mêlant une programmation de batterie complexe à des textures éthérées, caractéristiques de la production avant-gardiste de l'époque. Son inclusion sur « Bytes » le place aux côtés d'autres œuvres fondatrices qui ont défini la trajectoire initiale de Warp, influençant des générations de producteurs cherchant à synthétiser des structures rythmées avec une conception sonore expérimentale. Le morceau témoigne de la synergie créative au sein de la communauté électronique londonienne au début des années 90, où les frontières traditionnelles des genres étaient brouillées pour forger un nouveau paysage introspectif pour la musique électronique. Les auditeurs revisitent souvent le titre pour apprécier sa production précise et son rôle dans l'évolution des mouvements ambient techno et IDM. L'atmosphère du morceau — une marque de fabrique de l'esthétique Warp des débuts — demeure profondément influente dans la production électronique contemporaine, signalant l'aube d'un mouvement qui privilégiait la profondeur sonore et la structure narrative plutôt que l'attrait purement fonctionnel pour la piste de danse. En aidant à codifier le versant « intelligent » de la techno, « Fight The Hits » demeure une entrée vitale dans la discographie de l'expérimentation des années 90.",
+      "source_sha256": "320aedb868f25837c624cee015042b833d1a68c6508c901b7b4dc7ad6afc1e60",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:42:13.207Z"
+    }
+  }
 }

@@ -76,5 +76,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Lightsabre Cocksucking Blues » est le morceau d'ouverture frénétique et abrasif de l'album « Mclusky Do Dallas » sorti en 2002 par le trio de noise-rock gallois Mclusky.",
+      "article": "« Lightsabre Cocksucking Blues » est le morceau d'ouverture frénétique et abrasif de l'album « Mclusky Do Dallas » sorti en 2002 par le trio de noise-rock gallois Mclusky. Enregistré au studio Electrical Audio de Steve Albini à Chicago, le morceau résume parfaitement le son caractéristique du groupe : des riffs de guitare anguleux et saccadés, une batterie propulsive et le chant distinctif et hargneux d'Andrew Falkous. D'une durée d'un peu moins de deux minutes, la chanson est un modèle d'économie et de tension, délivrant une décharge d'énergie post-hardcore à haut indice d'octane qui a imposé le groupe comme une force puissante de la scène indépendante britannique au début des années 2000. Le titre provocateur et le rythme effréné du morceau sont emblématiques de l'esthétique nihiliste mais pleine d'humour de Mclusky, qui combinait un savoir-faire musical sérieux avec un dédain pour le sérieux excessif de la musique rock de l'époque. Produit par Steve Albini, l'enregistrement capture le trio — Falkous, le batteur Matthew Harding et le bassiste Jon Chapple — avec une clarté viscérale, permettant à l'interaction dynamique entre le travail de guitare dissonant et la section rythmique entraînante de percer avec une puissance brute et non polie. « Lightsabre Cocksucking Blues » demeure un hymne définissant le statut culte du groupe, fréquemment cité pour son esprit mordant et son exécution instrumentale féroce. Il sert d'introduction immédiate et sans compromis à un disque qui sera considéré comme un jalon du paysage noise-rock du début des années 2000, influent pour son mélange fluide de sensibilités indie-pop et d'une approche art-punk résolument agressive. Sa brièveté et son immédiateté garantissent qu'il fonctionne non seulement comme une chanson, mais comme une déclaration d'intention pour le chaos qui suit.",
+      "source_sha256": "bb7c153d73fa13bfcf44fb72dc9cdc2a0ea3bdaf2fad50da464941ee03d35637",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:16.133Z"
+    }
+  }
 }

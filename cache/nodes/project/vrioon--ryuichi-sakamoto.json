@@ -91,5 +91,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon du minimalisme électronique du début des années 2000, Vrioon est la première collaboration entre Ryuichi Sakamoto et Alva Noto, mêlant d'élégantes mélodies de piano à des textures numériques cliniques teintées de glitch.",
+      "article": "Vrioon est un album collaboratif majeur entre le compositeur japonais Ryuichi Sakamoto et l'artiste électronique allemand Alva Noto, publié en 2002 sur le label influent Raster-Noton. Il constitue le premier volet de la série « Virus » du duo, une collection de cinq disques dont les titres — Vrioon, Insen, Revep, utp_ et Summvs — forment le mot « VIRUS ». L'album est célébré pour son esthétique minimaliste et précise, comblant le fossé entre composition classique et traitement électronique orienté glitch. Au cœur de Vrioon se trouvent les motifs de piano épurés et empreints d'émotion de Sakamoto, soumis à la manipulation électronique cristalline et précise caractéristique d'Alva Noto.\n\nL'interaction entre ces deux mondes disparates — la résonance organique et romantique d'un piano à queue et la précision froide et clinique des structures d'erreurs numériques — a créé un modèle pour la musique ambient et expérimentale moderne. Les critiques, notamment ceux de The Wire, ont loué le projet pour son sens profond de l'espace et son intégrité structurelle, l'album ayant finalement été nommé album de l'année par la publication en 2004. En équilibrant les mélodies de piano introspectives de Sakamoto avec les textures minutieusement découpées de Noto, Vrioon a transformé ce qui aurait pu être un exercice technique austère en un dialogue symphonique profondément résonnant entre tradition acoustique et expérimentation numérique. Sa sortie a consolidé la relation entre les deux artistes, marquant le début d'un partenariat prolifique d'une décennie qui a redéfini le minimalisme contemporain.",
+      "source_sha256": "f11b5a2d344e4f43880c18270aec8e476e1ccc63d9da90fbb630b6def085b794",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:36:22.972Z"
+    }
+  }
 }

@@ -78,5 +78,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Gearknot Cherry » est un morceau électronique expérimental saccadé et plein d'énergie signé Mouse on Mars, figurant sur leur album de 2012 « Parastrophics » via Monkeytown Records.",
+      "article": "« Gearknot Cherry » est un morceau électronique du duo allemand Mouse on Mars, présent sur leur album de 2012 Parastrophics. Publié par le label influent basé à Berlin Monkeytown Records, le morceau illustre la transition du duo au milieu de sa carrière vers des paysages sonores électroniques plus saccadés, complexes et aux structures irrégulières. Connus pour leur travail pionnier dans le glitch, l'IDM et la pop expérimentale, Andi Toma et Jan St. Werner ont profité de cette période pour décomposer davantage les motifs rythmiques et les textures traditionnels, comme en témoignent l'énergie frénétique et la production complexe du morceau.\n\nD'une durée de 2:59, « Gearknot Cherry » se situe dans la seconde moitié, plus dense, de l'album Parastrophics. Il se caractérise par le style de production signature du duo : une conception sonore méticuleuse qui mute et change fréquemment toutes les quelques secondes. Contrairement à leurs premiers disques techno davantage axés sur le rythme, Parastrophics a mis les auditeurs au défi avec des compositions non linéaires et une palette sonore agitée. La production de l'album s'est étendue de 2007 à 2011, capturée entre leur St. Martin Tonstudio à Düsseldorf et leur studio à Berlin. Le morceau témoigne de leur engagement durable envers une synthèse électronique imprévisible et à haute densité, influençant le paysage de la musique électronique expérimentale du début des années 2010. Pour l'auditeur, « Gearknot Cherry » sert de microcosme à la philosophie de Mouse on Mars : un refus de s'installer dans des grooves standards, optant plutôt pour une évolution constante du timbre et une instabilité rythmique qui force un engagement actif. Alors que les critiques de l'époque débattaient de l'accessibilité de ce changement sonore spécifique, le morceau demeure une pièce représentative d'un groupe expérimental itérant constamment sur sa propre identité complexe.",
+      "source_sha256": "5398a9dd53157b53fe0c0436a0e38d01ae824b07bdc2bf4858434713064377ee",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:42:25.519Z"
+    }
+  }
 }

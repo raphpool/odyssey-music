@@ -47,5 +47,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Beau Mot Plage » est un morceau séminal de minimal techno du producteur allemand Isolée (Rajko Müller), sorti au tournant du millénaire.",
+      "article": "« Beau Mot Plage » est un morceau séminal de minimal techno du producteur allemand Isolée (Rajko Müller), sorti au tournant du millénaire. Véritable hymne définissant les mouvements microhouse et minimal techno, le morceau est célébré pour ses textures chaudes et organiques, ses rythmes syncopés sophistiqués et une esthétique mélancolique mais dansante qui a comblé le fossé entre la fonctionnalité des clubs et la profondeur de l'écoute domestique. En évitant les boucles abrasives et répétitives courantes dans la techno de la fin des années 90, Isolée a créé un chef-d'œuvre qui semble à la fois futuriste et étrangement nostalgique, caractérisé par ses percussions sautillantes et ses motifs de synthétiseurs cristallins. L'héritage durable du morceau découle de sa capacité à conserver sa fraîcheur des décennies plus tard ; il demeure un incontournable dans les sets des DJ et producteurs avant-gardistes, illustrant l'influence persistante du « Kompakt sound » et de la scène minimal allemande plus large des années 2000. Son succès a contribué à définir une approche plus douce et plus mélodique de la musique électronique, privilégiant la texture sonore et la résonance émotionnelle à la force percussive pure, marquant un pivot vital dans l'évolution de la musique électronique de danse. Le morceau a connu de nombreuses rééditions et re-edits, confirmant son statut de classique intemporel dans le canon électronique. Le mélange distinctif de mélodies délicates et de lignes de basse profondes et entraînantes de la composition démontre les techniques de production innovantes qui ont propulsé la microhouse au premier plan de la scène mondiale de la musique électronique, consolidant sa place dans l'histoire en tant que production quintessentielle de l'époque.",
+      "source_sha256": "38e668cf6cfd811f65c1dcee85d2d7e1e88a6f8ee0718a29807b3dd83a736f45",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:38:21.607Z"
+    }
+  }
 }

@@ -136,5 +136,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Déclaration définitive du punk de 1977, Never Mind the Bollocks, Here's the Sex Pistols est un cours magistral de production agressive et de provocation nihiliste qui a fondamentalement modifié la trajectoire de la musique rock.",
+      "article": "Sorti fin 1977, Never Mind the Bollocks, Here's the Sex Pistols demeure le seul album studio publié par le groupe de punk rock anglais par excellence, les Sex Pistols. Produit principalement par Chris Thomas et Bill Price, le disque est une collection viscérale et à haut indice d'octane qui a cristallisé l'énergie, la colère et l'éthique conflictuelle de la scène punk britannique. Sa signature sonore est définie par des guitares saturées, le chant agressif et sarcastique de John Lydon (Johnny Rotten), et une urgence rythmique qui a dépouillé le rock progressif des années 1970 de ses excès boursouflés pour les remplacer par une puissance brute et immédiate.\n\nAu-delà de son impact musical, l'album fut un événement culturel monumental, synonyme de la panique morale et de la ferveur anti-establishment qui s'emparaient du Royaume-Uni à cette époque. Le titre lui-même devint un paratonnerre à controverses, entraînant des poursuites judiciaires concernant son obscénité perçue, ce qui, ironiquement, ne servit qu'à amplifier sa notoriété et son influence. Le processus de production de l'album fut marqué par des troubles internes au groupe et l'instabilité du label, pourtant le disque qui en résulta—comprenant des titres emblématiques comme God Save the Queen, Anarchy in the U.K. et Pretty Vacant—reste un document définitif de la rébellion juvénile. Que ce soit dans son pressage original de 11 titres ou dans les versions ultérieures de 12 titres intégrant Submission, l'album a laissé une marque indélébile sur l'histoire de la musique, établissant le modèle pour l'explosion mondiale de la sous-culture punk et continuant de servir de référence pour une musique rock authentique et sans compromis.",
+      "source_sha256": "20d005a4d99fa7ca7734281d53767fbd58f3f907159415195c8dc84d3d52943d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:29:19.677Z"
+    }
+  }
 }

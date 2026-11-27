@@ -62,5 +62,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Vli » est un morceau de techno atmosphérique et scintillant du producteur allemand Skee Mask, qui s'impose comme une pièce maîtresse de son album acclamé de 2018, « Compro ».",
+      "article": "« Vli » est un morceau très estimé du producteur de musique électronique allemand Skee Mask, publié dans le cadre de son deuxième album « Compro » (2018) sur le label influent basé à Munich, Ilian Tape. Le morceau illustre l'approche sonore distinctive de Skee Mask, qui fusionne la précision rythmique de la techno et du breakbeat avec un paysage sonore profondément émotionnel, aux accents ambient.\n\nCaractérisé par ses percussions complexes et nerveuses ainsi que par ses nappes de synthétiseurs luxuriantes et éthérées, « Vli » crée une expérience d'écoute immersive qui équilibre complexité technique et sentiment de chaleur mélancolique. La production démontre le « Ilian Tape sound » caractéristique — une réinterprétation moderne de l'IDM des années 90 et du jungle atmosphérique — qui a positionné Skee Mask comme une figure centrale de la musique dance expérimentale contemporaine. En tant que mouvement central au sein de « Compro », un disque largement salué pour sa cohérence et sa profondeur, « Vli » demeure une marque de fabrique de la capacité du producteur à concevoir des morceaux qui fonctionnent aussi bien sur la piste de danse que dans des environnements d'écoute contemplatifs et solitaires. Sa présence sur l'album contribue à ancrer la portée cinématographique et expansive du projet, mettant en valeur une technique de superposition sophistiquée devenue un trait définitif de la discographie de Skee Mask.",
+      "source_sha256": "5fb41c47fbabe296dffbd03e453518c2c54d7ba4597b66d3dccb32142e8f3c3f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:53:17.453Z"
+    }
+  }
 }

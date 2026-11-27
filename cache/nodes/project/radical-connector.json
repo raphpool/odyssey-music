@@ -29,5 +29,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un tournant plus conventionnel et orienté vers la chanson pour les pionniers allemands de l'IDM Mouse on Mars, Radical Connector mêle avec brio des sensibilités glitch-pop à l'électronica abstraite caractéristique du duo.",
+      "article": "Sorti en 2004, Radical Connector est un album studio du duo d'électronica allemand influent Mouse on Mars, composé de Jan St. Werner et Andi Toma. Huitième album studio du groupe, il occupe une place charnière dans leur discographie. Alors que des prédécesseurs comme Idiology repoussaient les limites de leurs paysages sonores avant-gardistes et chargés de glitch, Radical Connector a été largement remarqué par la critique pour être une entreprise plus conventionnelle et orientée vers la chanson. Il s'appuie fortement sur un hybride d'intelligent dance music (IDM), de textures post-rock et de ce qui est souvent décrit comme de la « glitch pop ».\n\nMalgré son approche relativement plus structurée, l'album conserve le sens de l'expérimentation ludique et erratique propre au duo. Le disque présente des contributions vocales notables de Dodo Nkishi et Niobe, qui insufflent une chaleur proche de la pop aux architectures synthétiques complexes du duo. Tout au long de titres tels que « Wipe That Sound », « Mine Is in Yours » et « Spaceship », le duo équilibre précision rythmique et mélodies fantaisistes, démontrant son refus constant de se répéter, même après une décennie de carrière. Bien que certaines critiques au moment de la sortie aient exprimé le désir de départs plus radicaux, Radical Connector demeure une parution charnière qui met en évidence la capacité de Mouse on Mars à combler le fossé entre la conception sonore abstraite et l'écriture mélodique accessible, s'avérant finalement être l'un de leurs projets les plus réussis et cohérents de cette époque. Publié sur les labels indépendants estimés Thrill Jockey et Sonig, il témoigne du partenariat créatif durable entre Werner et Toma.",
+      "source_sha256": "5bc3068a4dd04e89083ec1038a0e74b57adc5720e8e3efede458e6568636d88d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:31:17.373Z"
+    }
+  }
 }

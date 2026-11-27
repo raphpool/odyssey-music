@@ -119,5 +119,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Exploration évocatrice et texturée de breakbeat et d'ambient techno, « Compro » a imposé Skee Mask comme une voix majeure de l'electronica moderne axée sur l'ambiance.",
+      "article": "Sorti en 2018 sur le label munichois Ilian Tape, « Compro » est le premier album studio acclamé du producteur électronique allemand Skee Mask. S'éloignant des contraintes techno plus strictes de ses premières productions, « Compro » a établi Skee Mask comme un maître de la musique électronique atmosphérique et rythmiquement complexe. L'album est une exploration tentaculaire d'IDM profonde et introspective, de breakbeat et d'electronica aux teintes ambient. Son architecture sonore est définie par des textures riches et éthérées superposées à des motifs de batterie précis et entraînants qui semblent à la fois nostalgiques et tournés vers l'avenir. Des titres comme « Cerroverb » et « Rev8617 » démontrent une capacité unique à tisser des paysages sonores denses et émotifs dans un récit cohérent et haute fidélité. Le disque a été accueilli par un large succès critique pour sa qualité de production méticuleuse et son éloignement des tropes habituels des clubs, positionnant Skee Mask comme une figure centrale de l'évolution de la musique électronique indépendante moderne. « Compro » demeure un jalon du catalogue Ilian Tape, encapsulant une esthétique spécifique, mélancolique mais dansante, qui résonne aussi bien auprès des auditeurs à domicile que des habitués des clubs. Il sert de déclaration définitive de la polyvalence du producteur et de son engagement à créer des environnements sonores immersifs et bâtisseurs de mondes.",
+      "source_sha256": "7b0385c2a21fb5d76be45c7b0de07844d229e73ea44359042c73bc14f61f6899",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:20:17.927Z"
+    }
+  }
 }

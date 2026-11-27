@@ -90,5 +90,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Premier album révolutionnaire qui a redéfini le paysage du post-dubstep, James Blake, paru en 2011, mêle ballades au piano minimalistes et obsédantes, manipulations électroniques avant-gardistes et chant à fleur de peau.",
+      "article": "Sorti début 2011, James Blake est le premier album studio éponyme du musicien anglais James Blake, un disque marquant qui a redéfini les frontières entre production électronique et soul introspective. Après une année 2010 prolifique caractérisée par une série d'EP expérimentaux, cet album a marqué un tournant significatif vers une approche davantage centrée sur la voix et la chanson. Blake, jusqu'alors connu pour l'esthétique hachée et riche en samples de la scène dubstep britannique, s'est tourné vers un son « post-dubstep » privilégiant la vulnérabilité émotionnelle brute à l'agressivité des clubs.\n\nL'album se définit par sa production minimaliste et spatiale, ne comportant souvent guère plus qu'un piano, des textures de basses profondes et la voix de Blake, fortement manipulée et multipiste. Des titres comme The Wilhelm Scream et sa réinterprétation obsédante de Limit to Your Love de Feist soulignent une interaction unique entre instrumentation organique et glitch numérique. Blake est notamment passé d'une dépendance aux samples vocaux externes à l'enregistrement et au traitement de sa propre voix, qu'il a pitchée et bouclée pour créer une atmosphère spectrale, proche d'une chorale. Ce style de production autonome, combiné à l'énergie clairsemée et mélancolique de l'album, a suscité des comparaisons avec des pionniers vocaux modernes comme Thom Yorke et Justin Vernon. Lors de sa sortie sur son propre label Atlas Recordings (distribué par Polydor/Universal), l'album a été accueilli par un large succès critique, devenant finalement une référence pour le mouvement « electro-soul » et cimentant le statut de Blake en tant que figure transformatrice de la pop expérimentale contemporaine. Il a capturé un moment de changement, reflétant une génération de producteurs électroniques qui commençaient à adopter des structures de chansons traditionnelles à travers un prisme résolument moderne et technologique. L'édition vinyle inclut les titres exclusifs Tep and the Logic et You Know Your Youth, soulignant davantage la profondeur de sa vision créative initiale.",
+      "source_sha256": "a39e105e7d9ef8774365ae59fb221a59a4712370bba50e01a0fb4cc910035cd9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:13.933Z"
+    }
+  }
 }

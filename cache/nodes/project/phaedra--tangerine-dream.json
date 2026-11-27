@@ -63,5 +63,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Succès décisif de 1974 pour les pionniers allemands de la musique électronique Tangerine Dream, Phaedra a défini le son de la Berlin School grâce à son utilisation révolutionnaire des séquenceurs modulaires Moog et des textures atmosphériques du Mellotron.",
+      "article": "Sorti le 20 février 1974 chez Virgin Records, Phaedra demeure une étape charnière dans l'évolution de la musique électronique. Enregistré fin 1973 au Manor Studio dans l'Oxfordshire, en Angleterre, l'album saisit l'ensemble électronique allemand Tangerine Dream — composé d'Edgar Froese, Christopher Franke et Peter Baumann — à un moment de transition créative profonde. Phaedra a marqué les débuts du groupe sur le label Virgin et a servi de percée internationale, signalant un éloignement de leurs racines expérimentales plus libres au profit du son structuré, hypnotique et porté par les séquenceurs qui allait définir la « Berlin School » de la musique électronique. Le processus d'enregistrement fut notoirement ardu, entravé par la sensibilité à la température du matériel analogique. Dépourvu de banques de mémoire ou de préréglages, le groupe passait des heures chaque jour à accorder ses synthétiseurs modulaires Moog et ses séquenceurs pour maintenir la stabilité de la hauteur tonale. La plage titulaire, une odyssée expansive de 17 minutes, présente une impulsion rythmique entraînante générée par le séquenceur Moog, qui remplaça efficacement le rôle d'une basse traditionnelle dans les arrangements de l'ensemble. D'autres titres, tels que le lancinant Mysterious Semblance at the Strand of Nightmares, utilisaient le Mellotron pour créer de vastes paysages sonores atmosphériques capturant un sentiment d'exploration interstellaire. Le succès de l'album, construit principalement par le bouche-à-oreille, a consolidé la réputation de Tangerine Dream en tant que maîtres de l'avant-garde électronique naissante et demeure une pierre angulaire du genre progressive electronic. Son influence résonne à travers des décennies de musique ambient, industrielle et techno, cimentée par son statut d'album définitif des années 1970. En ouvrant de nouvelles voies dans la synthèse du son et de l'espace, Phaedra a prouvé que les instruments électroniques pouvaient porter des récits complexes et émotionnellement résonnants sans avoir besoin de structures mélodiques traditionnelles, changeant à jamais le cours de la musique synthétique. L'album sert de pont définitif entre le krautrock expérimental du début des années 70 et les compositions électroniques sophistiquées et séquencées qui ont suivi tout au long de la décennie et jusqu'à l'ère des synthétiseurs modernes.",
+      "source_sha256": "96fb43f284a8aa86dee8e02aa19a19cd2d92fd1f93decf744fa3444a93b43c78",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:30:22.554Z"
+    }
+  }
 }

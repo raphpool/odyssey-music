@@ -20,5 +20,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un EP acid essentiel et survitaminé publié sous le mystérieux pseudonyme « The Tuss », qui fait office de masterclass en synthèse analogique et en conception rythmique complexe par Richard D. James.",
+      "article": "Confederation Trough est un EP électronique influent publié en 2007 sous le pseudonyme « The Tuss », un projet largement identifié comme un alias de Richard D. James (Aphex Twin). Sorti sur le label Rephlex, cofondé par James, le disque occupe une place distincte dans sa discographie, mêlant l'expérimentation acid complexe et haute fidélité caractéristique de sa production du milieu des années 2000 à une esthétique singulière et auto-mythifiante. Le projet fut officiellement crédité à un certain « Brian Tregaskin », un personnage fictif qui a ajouté à l'intrigue et à la nature insaisissable de la musique, s'inscrivant parfaitement dans l'héritage énigmatique des divers projets parallèles de James.\n\nSur le plan musical, l'EP est célébré pour sa production dense et texturée ainsi que pour son travail rythmique à la fois agressif et nuancé. À travers ses morceaux, tels que « Fredugolon 6 » et « Alspacka », la sortie démontre une maîtrise de la synthèse analogique, utilisant notamment du matériel comme le Yamaha GX1. Les critiques comme les fans soulignent souvent le caractère sonore unique du disque, qui parvient à paraître à la fois nostalgique et étonnamment avant-gardiste. Il demeure un emblème de l'esthétique Rephlex : techniquement rigoureux, ludique et profondément attaché à la puissance brute de la conception sonore pilotée par synthétiseurs, ce qui lui assure une place de classique culte au sein des sphères IDM et acid techno. L'EP se place aux côtés de la série Analord de James comme un moment définitif de son exploration des équipements analogiques vintage.",
+      "source_sha256": "2f7425cb0554ea6e3823287eb4c287fe076c724e04eb1a7879018385550828ad",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:20:20.010Z"
+    }
+  }
 }

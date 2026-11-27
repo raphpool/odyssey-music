@@ -69,5 +69,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Hymne tranchant du noise-rock gallois, « To Hell With Good Intentions » fait office de satire acerbe et survoltée de l'ego dans l'industrie musicale, tirée de l'album phare de mclusky en 2002.",
+      "article": "« To Hell With Good Intentions » s'impose comme l'hymne par excellence du trio noise-rock gallois mclusky. Sorti en 2002 en tant que single et pièce maîtresse de leur album séminal 'mclusky Do Dallas', le morceau capture le mélange caractéristique du groupe fait d'esprit acerbe, de lignes de guitare acérées et d'une intensité pure et explosive. Produit par le légendaire Steve Albini, l'enregistrement dépouille tout superflu, délivrant un son brut et agressif qui reflète parfaitement les thèmes lyriques du morceau, à savoir l'ironie, la frustration et la posture performative dans l'industrie musicale.\n\nSur le plan lyrique, la chanson est une attaque directe et sarcastique contre les prétentions de la culture rock-and-roll. Avec des vers comme « My love is bigger than your love / We take more drugs than a touring funk band », la chanson tourne en dérision la nature compétitive et égocentrique des groupes ainsi que l'artifice qui les entoure. Le refrain, « And we're all going straight to hell », souligne l'humour nihiliste qui imprégnait le travail du groupe. Sa brièveté — un peu plus de deux minutes et demie — souligne la précision de l'écriture de mclusky ; ils ne perdent pas une seconde, bâtissant un mur de son à la fois repoussant et irrésistiblement accrocheur. Pour les fans des scènes post-hardcore et noise-rock du début des années 2000, ce morceau demeure un moment définitif, prouvant l'impact qu'il était possible de condenser dans une simple formation en trio, définie par une interprétation incisive et un volume sans compromis.",
+      "source_sha256": "0c109b3868ecb19701a4d99e2724d4bc3153d00df38b884b2c8e7c25e765c2ec",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:16.150Z"
+    }
+  }
 }

@@ -63,5 +63,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« data.hypercomplex » est un artefact sonore conçu avec précision, extrait de l'album séminal de Ryoji Ikeda paru en 2005, Dataplex.",
+      "article": "« data.hypercomplex » est un artefact sonore conçu avec précision, extrait de l'album séminal de Ryoji Ikeda paru en 2005, Dataplex. En tant que septième piste du disque, elle constitue un exemple par excellence du projet « Datamatics » d'Ikeda, qui cherche à interroger et à traduire les structures de données brutes et sous-jacentes de notre environnement numérique en une expérience esthétique. D'une durée de seulement 1:20, la pièce démontre la maîtrise du microsound par Ikeda, utilisant la synthèse granulaire et des textures techno minimalistes pour créer un espace aussi cliniquement précis qu'étrangement rythmique.\n\nLe morceau occupe un tournant critique dans la carrière d'Ikeda, marquant son retour à la production solo longue durée après son travail orchestral. Comme une grande partie de l'album Dataplex, « data.hypercomplex » fonctionne moins comme une chanson traditionnelle que comme une sonde numérique. Sa palette sonore est définie par des rafales à haute fréquence, des transitoires glitch et une pulsation mécanique, presque moléculaire, qui semble intrinsèquement ancrée dans l'architecture du code informatique. En dépouillant la mélodie et l'atmosphère conventionnelles au profit d'un retour d'information informationnel brut, Ikeda crée un environnement immersif qui met l'auditeur au défi de trouver la beauté dans la rigidité mathématique de l'art sonore moderne. Le morceau n'est pas seulement de la musique, mais une enquête sur la façon dont le silence, le rythme et les données coexistent, consolidant sa place en tant que pierre angulaire du glitch et de la musique électronique expérimentale du début du XXIe siècle.",
+      "source_sha256": "e7cc6d0c2c98305d66fe068b1fa51d52b5d7ed63c1eea8918c50cb3eb3a65a75",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:40:17.366Z"
+    }
+  }
 }

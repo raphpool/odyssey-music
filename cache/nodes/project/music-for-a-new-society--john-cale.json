@@ -102,5 +102,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre obsédant et dépouillé d'art rock, l'album de John Cale sorti en 1982 est un exercice d'exorcisme émotionnel qui demeure l'une des œuvres les plus glaçantes et les plus marquantes de sa carrière.",
+      "article": "Music for a New Society (1982) est le huitième album studio solo du musicien rock gallois John Cale, publié par ZE Records et Island Records. Créé aux Skyline Studios de New York à la suggestion du directeur du label Michael Zilkha, l'album marque une rupture significative avec la production précédente de Cale, davantage orientée vers le rock. Fuyant le recours à un groupe d'accompagnement standard, le disque se caractérise par ses arrangements de piano dépouillés, au style improvisé, et par une atmosphère profondément introspective, presque agonisante. Cale a décrit l'expérience de la création de cet album comme une forme d'exorcisme personnel, notant que les chansons traitaient en grande partie du regret et de la foi mal placée.\n\nLe processus d'enregistrement a impliqué que Cale définisse méticuleusement les structures avant de s'asseoir au piano pour enregistrer, cherchant à capturer « la terreur du moment ». À l'exception notable de « Changes Made », sur lequel figure le guitariste Allen Lanier de Blue Öyster Cult, l'album demeure une entreprise solo austère et intime. Son influence s'étend bien au-delà de la musique ; les dernières lignes du morceau « Sanities » ont servi d'épigraphe au roman graphique emblématique Watchmen (1986–1987) d'Alan Moore et Dave Gibbons. Malgré son échec commercial initial, l'album a acquis le statut de chef-d'œuvre de l'art rock et de la musique expérimentale, avant d'être revisité par Cale dans sa réinterprétation de 2016, M:FANS. À travers ses paysages austères et décharnés, l'album demeure un témoignage obsédant de la capacité singulière de Cale à transformer la douleur personnelle en un art résonnant et durable.",
+      "source_sha256": "1aff12b637887fd6f567d043be1b3fdff90c97f1cbc5cba4a264857aa0113a39",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:29:13.303Z"
+    }
+  }
 }

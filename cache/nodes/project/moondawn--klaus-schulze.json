@@ -75,5 +75,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pierre angulaire de la Berlin School des années 1970, Moondawn est l'album séminal de Klaus Schulze paru en 1976, qui a su combiner avec succès des textures de synthétiseurs analogiques expansives et l'élan rythmique du batteur Harald Grosskopf.",
+      "article": "Moondawn, sorti en 1976, constitue le sixième album studio du pionnier allemand de la musique électronique Klaus Schulze et représente un moment charnière dans le développement du style Berlin School. Enregistré durant une période de créativité prolifique, cet album a marqué un tournant significatif dans l'approche sonore de Schulze, s'imposant comme sa première œuvre à embrasser pleinement les caractéristiques rythmiques et structurelles de la Berlin School. Contrairement à certains de ses travaux antérieurs plus amorphes et expérimentaux, Moondawn est ancré par des motifs de séquenceurs hypnotiques et des textures de synthétiseurs immersives au format long qui définissent l'attrait durable du genre.\n\nUn élément clé de la distinction de Moondawn réside dans la contribution du batteur Harald Grosskopf, dont l'apport percussif a fourni une base rythmique dynamique qui complétait parfaitement les nappes de claviers expansives de Schulze. L'album se compose de deux compositions massives occupant chacune une face, « Floating » et « Mindphaser », qui démontrent la maîtrise de Schulze sur le synthétiseur Moog, l'ARP 2600 et d'autres équipements analogiques d'époque. En équilibrant des paysages sonores cosmiques et futuristes avec des rythmes ancrés et propulsifs, Moondawn a aidé à combler le fossé entre la musique électronique expérimentale et les rythmes plus accessibles et entraînants qui allaient influencer les générations ultérieures de producteurs d'ambient, de techno et de trance. Il demeure un emblème de la musique électronique des années 1970, souvent cité pour son influence sur l'évolution de l'ambient et de la space music. Au fil des décennies, il a été réédité à plusieurs reprises, incluant parfois des bonus offrant un aperçu supplémentaire du processus d'enregistrement de Schulze et de sa capacité à construire de vastes récits sonores en constante évolution.",
+      "source_sha256": "af7eb657798788d1f65574aeb078dfad8e0a775c71a362217232742a4e4bbbe9",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:28:19.594Z"
+    }
+  }
 }

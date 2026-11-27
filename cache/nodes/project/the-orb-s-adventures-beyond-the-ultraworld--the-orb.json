@@ -114,5 +114,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon de l'electronica des années 1990, ce double album tentaculaire a défini le genre ambient house en mêlant rythmes house hypnotiques, lignes de basse dub reggae et un collage de paysages sonores surréalistes. Il demeure un « album pour casque » définitif, transformant la piste de danse en un voyage méditatif et intergalactique à travers le son.",
+      "article": "The Orb's Adventures Beyond the Ultraworld, paru en 1991, s'impose comme un monument fondateur dans l'histoire de la musique électronique. Premier album studio du groupe britannique The Orb, il a joué un rôle crucial dans la popularisation du mouvement « ambient house », agissant comme un pont entre la culture rave énergique de la fin des années 1980 et l'esthétique des chill-out rooms introspectives qui allaient définir une grande partie de la scène dance du début des années 90. Mené par Alex Paterson, le projet a été conçu dans une période de flux créatif — suite au départ du cofondateur Jimmy Cauty — et bénéficie des contributions essentielles de collaborateurs tels que Kris Weston et Youth.\n\nSur le plan sonore, l'album est une odyssée tentaculaire en double vinyle qui privilégie l'atmosphère aux structures de chansons traditionnelles. Il se caractérise par une dépendance marquée à la « sampledelia », tissant ensemble des textures sonores diverses — incluant des sons de la nature, des dialogues de films, des émissions de radio et des envolées chorales — au sein de rythmes house chaloupés et de lignes de basse inspirées du dub reggae. Des titres comme l'emblématique morceau d'ouverture Little Fluffy Clouds et le vaste A Huge Ever Growing Pulsating Brain That Rules From the Centre of the Ultraworld (Live mix Mk 10) encapsulent parfaitement cette approche. En ignorant les tropes agressifs de la techno contemporaine au profit d'une expérience psychédélique et immersive, The Orb a créé un « album pour casque » qui a prouvé que la musique électronique pouvait être tout aussi cérébrale et émotionnellement évocatrice que ses homologues rock. Il demeure un artefact déterminant d'une époque qui cherchait à échapper à l'intensité du club par l'exploration sonore.",
+      "source_sha256": "0a6b53bba87c2dac14cab602a888afbac909af3405dfae2b9c74e2fdf971d32d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:35:15.861Z"
+    }
+  }
 }

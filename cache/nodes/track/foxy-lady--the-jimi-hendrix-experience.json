@@ -72,5 +72,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un hymne psychédélique hard rock déterminant qui a fait découvrir au monde la maîtrise du feedback par Jimi Hendrix et l'emblématique « Hendrix chord ».",
+      "article": "« Foxy Lady » (souvent orthographié « Foxey Lady ») est un morceau fondateur de The Jimi Hendrix Experience, paru sur leur premier album historique de 1967, Are You Experienced. Enregistrée le 13 décembre 1966 aux CBS Studios de Londres, la chanson constitue un exemple par excellence de l'approche révolutionnaire de Hendrix vis-à-vis de la guitare électrique et de l'écriture rock. Elle se caractérise par son utilisation intensive du feedback contrôlé, ses riffs agressifs et fanfarons, ainsi que par l'usage pionnier de ce qui est devenu connu sous le nom de « Hendrix chord » — un accord de septième de dominante avec neuvième augmentée qui mêle des sensibilités jazz et R&B à une intensité psychédélique brute.\n\nAu-delà de ses innovations techniques, « Foxy Lady » capture la personnalité provocatrice et hyper-masculine que Hendrix projetait lors de son ascension vers la célébrité internationale. Les paroles de la chanson, qui pourraient avoir été inspirées par diverses figures de la scène londonienne du milieu des années 1960, fonctionnent comme une adresse directe, presque ouvertement séductrice. Musicalement, le morceau met en valeur l'énergie tendue du trio, avec la ligne de basse de Noel Redding ancrant la performance et l'absence de fin prédéterminée menant à une coda improvisée et sauvage qui est devenue un élément incontournable des prestations scéniques du groupe.\n\nAu fil des décennies, « Foxy Lady » a consolidé son statut de l'une des chansons rock les plus significatives des années 1960. Elle transcende son époque d'origine en tant que vestige du « Summer of Love » grâce à son influence sur le développement du hard rock et du heavy metal. L'inclusion du morceau sur presque toutes les anthologies définitives de Jimi Hendrix et sa présence durable au cinéma, à la télévision et à la radio reflètent son poids culturel. Il demeure un cours magistral sur la manière dont Hendrix a tiré parti du feedback en tant qu'instrument, traitant le bruit non pas comme un défaut, mais comme une composante texturée de la composition elle-même. Son héritage ne réside pas seulement dans les notes jouées, mais dans l'attitude et la libération sonore qu'il a offertes à une génération de guitaristes qui ont suivi.",
+      "source_sha256": "80cab7f09874c83175239f0e98e98b99c7b5beef65f7637d14a59c0fb7f36511",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:42:23.130Z"
+    }
+  }
 }

@@ -19,5 +19,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Véritable leçon de minimal Detroit house, cet EP de 2012 signé Mike Huckaby contient le légendaire « Baseline 89 », un morceau salué pour son groove hypnotique et son influence durable sur la musique électronique moderne.",
+      "article": "« Baseline 88-89 » est un EP 12 pouces séminal publié en 2012 par Mike Huckaby, figure de proue de la house et de la techno de Détroit, sur son propre label S Y N T H. Véritable leçon de production minimaliste, le disque capture la sophistication rythmique profonde qui a défini la carrière célébrée de Huckaby. L'EP se compose de deux morceaux, « Baseline 88 » et « Baseline 89 », qui servent d'hommage aux sons fondateurs de la fin des années 1980 ayant façonné le paysage de la musique dance de Détroit.\n\n« Baseline 89 » en particulier a atteint un statut quasi mythique parmi les DJ house et techno du monde entier. Réputé pour ses percussions dépouillées et entraînantes ainsi que pour ses lignes de basse hypnotiques en boucle, il illustre la capacité de Huckaby à créer une résonance émotionnelle profonde à travers des éléments musicaux minimaux. Le morceau est fréquemment cité comme une pièce essentielle de la production house moderne, loué pour sa clarté, sa précision et son groove contagieux capable d'ancrer un set en club avec aisance. L'EP témoigne de l'héritage durable de Huckaby en tant que producteur et pédagogue respecté de l'histoire de la musique de Détroit, faisant le pont entre l'ère analogique vintage et les pistes de danse contemporaines. En revisitant et en affinant l'esthétique de ses influences formatrices, Huckaby a fait de « Baseline 88-89 » un document essentiel du canon de la musique électronique.",
+      "source_sha256": "d97290444083444329d2fbec0b0c3cf187c7c3db4c501d32c10a66b302ae2d4e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:19:13.044Z"
+    }
+  }
 }

@@ -67,5 +67,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Metropolis » est une collaboration electro-house à haute intensité entre le producteur superstar David Guetta et l'artiste néerlandais Nicky Romero, sortie au sommet de l'explosion de l'EDM.",
+      "article": "« Metropolis » est un morceau instrumental electro-house marquant qui capture le son par excellence de l'essor de l'EDM (Electronic Dance Music) au début des années 2010. Sorti en 2012 dans le cadre de « Nothing but the Beat (Ultimate Edition) » de David Guetta, le titre s'impose comme une collaboration définitive entre le vétéran de la house française David Guetta et le producteur néerlandais en pleine ascension Nicky Romero. À une époque où la musique électronique devenait une force pop mondiale dominante, « Metropolis » a servi d'hymne de festival par excellence, caractérisé par ses leads de synthétiseurs métalliques tranchants, son rythme four-on-the-floor entraînant et sa production méticuleusement soignée.\n\nS'appuyant sur les fondations house énergiques qui ont défini le succès crossover massif de Guetta durant cette période, le morceau met l'accent sur la tension et la libération grâce à ses superpositions complexes et ses drops dynamiques. Alors que de nombreuses compositions de Guetta de cette période s'appuyaient fortement sur des collaborations vocales adaptées à la radio, « Metropolis » a mis en lumière l'engagement technique du producteur envers les racines instrumentales de la big room house. L'implication de Nicky Romero a apporté une précision percussive et une complexité harmonique qui ont trouvé un écho auprès de la scène festivalière européenne en plein essor. Le morceau demeure un artefact nostalgique d'une époque précise, représentant le moment exact où la musique électronique portée par les DJ a consolidé son emprise sur les scènes grand public mondiales, fusionnant l'esthétique club avec des paysages sonores grandioses, prêts pour les stades. Il persiste comme un exemple populaire de l'énergie collaborative qui a caractérisé le mouvement house mainstream du milieu des années 2010.",
+      "source_sha256": "48af2b139075720d8c3743b7b8ea487fa5901f67f63ef728f6c34e2371674ff3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:45:22.642Z"
+    }
+  }
 }

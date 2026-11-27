@@ -56,5 +56,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon de la minimal techno, « Dexter » est resté pendant des années un dubplate underground insaisissable avant de devenir un élément incontournable de la discographie légendaire de Ricardo Villalobos.",
+      "article": "« Dexter » est un morceau séminal de musique électronique du producteur chilien-allemand Ricardo Villalobos, largement considéré comme un sommet de la minimal techno et de la microhouse. Sorti pour la première fois au milieu des années 2000, le morceau est devenu une « arme secrète » légendaire de la scène club mondiale bien avant sa sortie commerciale officielle sur vinyle, circulant souvent sous la forme d'un dubplate anonyme et insaisissable dans les propres sets de DJ de Villalobos. Son impact culturel découle de cette aura de rareté ; pendant des années, les fans et les autres DJ ont spéculé sur le titre et l'origine du morceau, contribuant à son statut de pièce de folklore underground.\n\nMusicalement, « Dexter » illustre l'approche caractéristique de Villalobos : la manipulation méticuleuse des micro-rythmes, des couches de percussions complexes et des paysages sonores hypnotiques et changeants. Contrairement aux styles plus agressifs et entraînants de la techno de pointe, « Dexter » repose sur une structure expansive et patiente qui respire et évolue, entraînant l'auditeur dans un état de transe. Sa production est réputée pour sa richesse en détails, récompensant les écoutes répétées sur des systèmes de sonorisation haute fidélité. En 2015, le morceau a fait l'objet d'une réédition officielle aux côtés de « Easy Lee », une autre des œuvres les plus acclamées de Villalobos, consolidant sa place dans le canon de la musique électronique contemporaine. Le morceau continue d'être célébré par les collectionneurs comme par les DJ pour sa qualité intemporelle et sa capacité à transformer l'énergie d'une piste de danse grâce à une superposition subtile et nuancée plutôt qu'à des drops conventionnels et grandiloquents.",
+      "source_sha256": "bfbcd75e050f1ba8b6a35bca75a66cb2f92e2a61e562e35ca89f775abefe8662",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:40:24.733Z"
+    }
+  }
 }

@@ -60,5 +60,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Focus Mel » est un morceau séminal d'IDM de 1993, apparu à l'origine sur la compilation phare de Warp Records, Bytes, et représentant l'évolution introspective et atmosphérique de la musique électronique du début des années 90.",
+      "article": "« Focus Mel » est un jalon précoce de l'intelligent dance music (IDM) des années 1990, enregistré par l'artiste Atypic et publié dans le cadre de l'album de compilation Bytes en 1993 sur Warp Records. Le morceau illustre le son naissant de l'influente série Artificial Intelligence de Warp, un mouvement qui a repositionné la musique de danse électronique, la faisant passer de la piste de danse des raves à l'environnement introspective et domestique de l'écoute au casque. Dans le contexte de Bytes, qui présentait diverses personnalités et alias au sein du collectif Black Dog Productions, « Focus Mel » se distingue par sa synthèse complexe et émotive ainsi que par sa profondeur atmosphérique. La qualité de la production reflète la scène électronique londonienne du début des années 90, mettant l'accent sur des textures riches et évolutives ainsi qu'une précision rythmique qui allaient influencer des décennies de musiciens électroniques ambient et expérimentaux. En tant qu'œuvre séminale des années formatrices de Warp Records, le morceau sert de capsule temporelle pour une époque où la frontière entre les rythmes orientés club et les paysages sonores destinés à l'écoute domestique était rapidement redéfinie par des visionnaires comme The Black Dog et ses alias associés. La contribution d'Atypic demeure une pièce chérie de l'histoire du label, fréquemment citée par les collectionneurs et les spécialistes de la musique électronique comme un élément essentiel du canon IDM qui a établi le « Warp sound ».",
+      "source_sha256": "968e7f82ae8bdab03e98a1b1481d86be02be5c64cc073b6f009502d20a030209",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:42:17.531Z"
+    }
+  }
 }

@@ -47,5 +47,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un EP ludique et excentrique de Mike Paradinas sous son alias Jake Slazenger, mêlant esthétique de library music et fantaisie électronique caractéristique.",
+      "article": "« Drops A Deuce » est un EP captivant sorti en 2020 par le légendaire producteur électronique Mike Paradinas sous son malicieux alias Jake Slazenger. Connu pour son travail sous le nom de µ-Ziq, Paradinas utilise le pseudonyme Slazenger pour explorer les facettes plus ludiques, expérimentales et ironiques de sa musique. L'EP, qui comprend le morceau phare « Wah Plog », est souvent décrit comme un clin d'œil moderne aux esthétiques singulières de la library music ou comme un compagnon sonore d'un dessin animé oublié. Il illustre la capacité de Paradinas à concevoir des textures électroniques denses et détaillées tout en conservant une atmosphère légère, presque surréaliste. En canalisant l'esprit de la musique de production radiophonique vintage, « Drops A Deuce » constitue un détour délicieux dans la discographie vaste et variée de l'artiste, mettant en valeur sa maîtrise de la synthèse ludique et son ingéniosité rythmique. C'est un disque qui récompense les auditeurs appréciant le côté plus tranchant, drôle et éclectique de l'expérimentation électronique, prouvant que même un « deuce » peut être façonné avec une précision technique de haut niveau et un humour musical profond.",
+      "source_sha256": "973695ba0a688948d8bfec9436fd261324e1a025ff416d64fa95e292644b14eb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:21:19.629Z"
+    }
+  }
 }

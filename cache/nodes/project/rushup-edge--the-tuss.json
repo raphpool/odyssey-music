@@ -104,5 +104,14 @@
       "type": "project",
       "name": "Syro"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Véritable masterclass d'énergie en matière d'acid techno et de drill and bass, Rushup Edge s'impose comme l'un des projets studio les plus concentrés et exaltants de Richard D. James, publié sous son énigmatique pseudonyme The Tuss.",
+      "article": "Rushup Edge est le premier et unique album studio publié sous le pseudonyme The Tuss, un projet apparu en 2007 sur le label Rephlex. Initialement entourée de mystère et créditée à une certaine « Karen Tregaskin », la musique — une fusion fulgurante et pleine d'énergie d'acid techno, de drill and bass et de breakcore — fut finalement confirmée comme étant l'œuvre du légendaire producteur électronique britannique Richard D. James, mieux connu sous le nom d'Aphex Twin. Sorti durant une période de calme relatif pour James, l'album a servi de passerelle entre le travail clinique et analogique de sa série 'Analord' et les arrangements plus complexes, axés sur les rythmes, caractéristiques de ses productions du début des années 1990.\n\nLe disque est largement considéré par les fans comme par les critiques comme l'une des sorties les plus vitales et abouties de la fin de carrière de James. Il délaisse les explorations ambiantes présentes ailleurs dans sa discographie au profit d'une intensité propulsive et mécanique. Des titres comme « Rushup I Bank 12 » et « Death Fuck » sont célébrés pour leur « mangled machine funk » et leur programmation de batterie complexe, mettant en avant un maître de la production électronique au sommet de son art. Dans les années suivant sa sortie originale en 2007, 'Rushup Edge' a acquis un statut culte parmi les amateurs de musique électronique, menant à une réédition numérique sur la boutique en ligne de James en 2017, accompagnée de matériel bonus. Il demeure un artefact unique, ludique et techniquement brillant de l'IDM des années 2000 qui continue d'influencer les producteurs contemporains de musique électronique expérimentale. Cet album reste une pierre angulaire pour ceux qui suivent l'évolution de l'IDM axée sur l'acid au milieu des années 2000, équilibrant parfaitement la complexité technique avec une approche brute et viscérale de la synthèse et du séquençage qui reste par excellence du Aphex Twin dans son exécution. Tout au long du projet, James utilise son approche caractéristique du design sonore, créant des couches de textures denses et polyrythmiques qui exigent à la fois une attention analytique et une immersion physique. En tant qu'artefact de l'ère du label Rephlex, il souligne l'engagement du label à publier des sons électroniques non conventionnels et repoussant les limites durant cette décennie. Même des années plus tard, l'album sonne frais, conservant le tranchant et l'esprit inventif qui ont défini le meilleur de la production expérimentale de cette époque.",
+      "source_sha256": "3476b6d6166a28f00fc3fad546ad3d7f808a46bc9a26ede4bd6609e3c126b33a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:32:14.090Z"
+    }
+  }
 }

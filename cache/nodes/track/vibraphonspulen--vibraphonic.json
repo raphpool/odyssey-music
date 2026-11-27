@@ -59,5 +59,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Vibraphonspulen est un morceau issu du premier album éponyme du groupe d'acid jazz Vibraphonic, sorti en 1993.",
+      "article": "Vibraphonspulen est un morceau figurant sur le premier album éponyme du projet d'acid jazz Vibraphonic, sorti en 1993. L'album, publié sur le label Acid Jazz, représente une entrée significative dans la scène acid jazz britannique du début des années 1990. Il a été produit et arrangé par Richard Marcangelo et Roger Beaujolais, qui ont joué un rôle déterminant dans la définition du son du groupe. L'album se caractérise par son mélange d'éléments électroniques et d'instrumentation jazz, une marque de fabrique de la production musicale orientée club de cette époque. Le premier album de Vibraphonic demeure une sortie notable au sein du genre, reflétant la production créative de l'équipe durant cette période.",
+      "source_sha256": "eebdeb4c519608c140f1d625871f9c2485f2f0e9cba1cdb6bc29c78aa4f319fa",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:53:13.258Z"
+    }
+  }
 }

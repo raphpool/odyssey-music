@@ -128,5 +128,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Beg to Differ est le premier album studio du groupe de metal new-yorkais Prong, sorti en 1990 chez Epic Records, marquant un tournant décisif dans la transition du groupe de ses racines hardcore punk vers le son groove metal qui a défini le genre et influencé le metal industriel et alternatif tout au long des années 90.",
+      "article": "Sorti en 1990 chez Epic Records, Beg to Differ constitue la déclaration d'intention définitive du trio new-yorkais Prong. Issu de la scène hardcore influente de la ville, le groupe avait déjà établi sa réputation grâce à des performances live abrasives et sans fioritures, ainsi qu'à des sorties indépendantes. Cependant, Beg to Differ les voit affiner leur identité sonore, troquant la vélocité chaotique du hardcore précédent pour une intensité plus contrôlée et percussive qui sera bientôt classée comme du groove metal. L'album est défini par le jeu de guitare staccato caractéristique de Tommy Victor, une approche rythmique et tranchante qui privilégie la précision et des riffs lourds et syncopés à la complexité mélodique traditionnelle. Des titres comme la chanson-titre Beg to Differ et Steady Decline démontrent cette évolution, mettant en avant une tension aux accents industriels qui a séduit un large public de metal, de thrash et d'alternatif. Ce pivot stylistique a joué un rôle déterminant dans l'établissement de Prong en tant qu'entité avant-gardiste, les éloignant des limites de la scène NYHC de la fin des années 80 tout en préfigurant le boom du metal industriel du début des années 90. Produit par le groupe et Mark Dodson, le disque équilibre une énergie brute sans compromis avec une clarté de production qui a permis à la section rythmique, composée du bassiste Mike Kirkland et du batteur Ted Parsons, d'ancrer les chansons dans une pulsation épaisse et entraînante. Beg to Differ demeure un jalon culte de l'époque, se dressant comme un pont critique entre les racines punk underground des années 1980 et le metal sophistiqué et riche en textures qui a dominé la décennie suivante. Son influence sur des groupes comme Korn, Pantera et Helmet est largement reconnue, cimentant sa place en tant que pierre angulaire de la transition metal des années 90.",
+      "source_sha256": "5666cfce1583bcabb0cbf33bb3a9cb73b7862ecdefa20cffe4ef3a9c790ee800",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:19:14.613Z"
+    }
+  }
 }

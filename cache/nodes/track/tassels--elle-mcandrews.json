@@ -54,5 +54,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un morceau indie-pop soul et nostalgique de l'auteure-compositrice-interprète de Calgary Elle McAndrews, « Tassels » sert de réflexion sincère sur la liberté éphémère et débridée de l'enfance.",
+      "article": "« Tassels » est un single poignant de 2024 de l'auteure-compositrice-interprète basée à Calgary Elle McAndrews, servant de méditation nostalgique sur l'innocence de la jeunesse. Sorti le 18 avril 2024, le morceau est profondément ancré dans la phase créative « La bElle Epoch » de l'artiste, une période caractérisée par un mélange fluide de pop, de soul et de sensibilités alternatives. Sur le plan lyrique, la chanson fonctionne comme un hommage aux jours insouciants de l'enfance, capturant spécifiquement l'image d'amis faisant la course à vélo à travers la ville avec des rubans flottant dans le vent, une métaphore d'un sentiment de liberté sans fardeau qui semble de plus en plus lointain à mesure que le temps passe.\n\nMusicalement, « Tassels » équilibre une énergie rythmique entraînante avec une performance vocale mélancolique et réfléchie. L'arrangement, produit par Laura Smith, présente des contributions discrètes mais évocatrices du guitariste Andrew Braun et du batteur Flavio Cirillo. Le crochet central de la chanson, l'image visuelle de « tassels on your bike » dansant dans la lumière, ancre l'auditeur dans un souvenir tangible aux tons sépia. En juxtaposant la chaleur de la camaraderie passée avec le vide froid du présent, McAndrews livre une exploration universelle de la façon dont la mémoire peut simultanément apporter du réconfort et souligner la mélancolie d'une transition inévitable. Il s'impose comme un exemple raffiné d'indie-pop moderne qui privilégie la résonance émotionnelle au pur spectacle, situant Elle McAndrews comme une voix distincte au sein de la vibrante scène musicale indépendante canadienne.",
+      "source_sha256": "bf1ad599dcc73fd3212b20d8e87d22d701889101272279b80b9c130e11161bd2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:50:17.848Z"
+    }
+  }
 }

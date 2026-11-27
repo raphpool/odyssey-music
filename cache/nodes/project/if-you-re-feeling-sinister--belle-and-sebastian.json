@@ -116,5 +116,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pierre angulaire de l'indie pop des années 1990, le deuxième album de Belle and Sebastian associe une narration littéraire centrée sur les personnages à des arrangements délicats de chamber pop. Il demeure une œuvre définitive de l'écriture mélancolique et mélodique écossaise.",
+      "article": "Sorti en 1996 sur Jeepster Recordings, If You're Feeling Sinister est le deuxième album studio du groupe d'indie pop écossais Belle and Sebastian. Mené par l'énigmatique et prolifique auteur-compositeur Stuart Murdoch, le groupe a émergé de Glasgow avec un son immédiatement distinct du mouvement Britpop dominant de l'époque. Plutôt que de viser les hymnes de stade de leurs contemporains, le groupe a façonné un paysage sonore intime et feutré, défini par des guitares acoustiques, un piano, des percussions délicates et des arrangements de violon qui marquaient un tournant vers ce qui allait devenir la chamber pop.\n\nL'album est largement révéré pour son lyrisme littéraire et vivant, qui présente une série de portraits de personnages marginalisés ou excentriques, souvent imprégnés d'un doux sentiment de mélancolie et d'un esprit cynique. Des chansons comme « Get Me Away From Here, I'm Dying » et le morceau-titre, « If You're Feeling Sinister », encapsulent la capacité du groupe à équilibrer une vulnérabilité profonde avec un humour pince-sans-rire. La production est dépouillée et sans fioritures, permettant au chant conversationnel de Murdoch et aux arrangements serrés et modestes de l'ensemble d'occuper le devant de la scène. Cette approche a profondément résonné auprès d'une génération d'auditeurs, établissant Belle and Sebastian comme des icônes cultes de la scène musicale underground.\n\nAu fil des décennies suivant sa sortie, l'album a acquis un statut presque mythique, apparaissant fréquemment sur les listes critiques des plus grands disques des années 1990. Son influence s'étend bien au-delà de sa parution initiale, ayant aidé à définir l'esthétique de l'indie pop de la fin des années 90 et fournissant un modèle pour d'innombrables auteurs-compositeurs-interprètes qui privilégient une composition délicate et axée sur la narration. Il demeure une exploration intemporelle de la jeunesse, de la confusion romantique et des tragédies silencieuses de la vie quotidienne, le tout filtré à travers une sensibilité pop impeccablement curatée. Pour beaucoup, il reste le disque par excellence de Belle and Sebastian, une œuvre de perfection tranquille qui semble aussi résonnante et vitale aujourd'hui qu'elle l'était lors de ses débuts.",
+      "source_sha256": "022d9e41d065b5baf1048080802ddbd707d38975295d233a2c1af551695ccbcd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:16.253Z"
+    }
+  }
 }

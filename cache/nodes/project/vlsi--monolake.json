@@ -124,5 +124,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "L'album VLSI de Monolake, paru en 2016, est une leçon magistrale d'« archéologie sonore », réimaginant les artefacts de la synthèse numérique des années 1980 à travers le prisme moderne de la techno et d'un design sonore teinté de glitch. Produit par Robert Henke, il constitue une réflexion profonde et dystopique sur l'ère technologique.",
+      "article": "VLSI est un album studio marquant du projet électronique Monolake, sorti en 2016 sur le label Imbalance Computer Music. Le projet fait office à la fois d'exploration technique de l'archéologie sonore et de commentaire sociopolitique sur l'influence omniprésente de l'industrie technologique. Produit par Robert Henke, l'album est né de recherches menées lors d'une résidence au Center for Research in Music and Acoustics (CCRMA) de l'université de Stanford. Son titre fait référence à la percée technologique des années 1970, le Very Large Scale Integration, qui a permis la production de masse des microprocesseurs et, par extension, la naissance des instruments numériques qui définissent une grande partie de la musique électronique moderne.\n\nSur le plan musical, VLSI fonctionne comme une excavation du passé numérique. Henke utilise une vaste gamme de synthétiseurs, de boîtes à rythmes et d'échantillonneurs vintage des années 1980 — dont le E-mu SP-12, le Synclavier II et le Yamaha DX7 — pour recontextualiser leurs timbres distincts, limités et « sales » au sein d'un cadre de production moderne et hautement raffiné. L'album synthétise des influences issues de la musique informatique académique, de la techno primitive, du UK breakbeat et du dubstep, aboutissant à un paysage sonore à la fois minimaliste, structurel et chargé d'un sous-courant dystopique délibéré. VLSI constitue l'aboutissement définitif d'un cycle de six EP publiés par Henke entre 2014 et 2016, affinés et développés pour réfléchir sur l'ère moderne de la corporatisation de la haute technologie. L'esthétique de l'album est complétée par sa pochette, qui puise directement dans la littérature séminale de 1979 sur la conception des circuits intégrés, ancrant les sonorités futuristes du projet dans l'histoire fondamentale de l'ingénierie informatique.",
+      "source_sha256": "33b2e700dc59439c71a784be27fcd7ebb0b4dd9bc7e8c449495ab3ab221b22ec",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:36:22.183Z"
+    }
+  }
 }

@@ -154,5 +154,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier album de Liz Phair, sorti en 1993, est une œuvre marquante de l'indie rock des années 90, célèbre pour son honnêteté émotionnelle brute, son esprit lyrique mordant et son cadre conceptuel en tant que réponse piste par piste à « Exile on Main St. » des Rolling Stones. Avec une production signée Brad Wood, l'album demeure un chef-d'œuvre essentiel et influent de l'écriture lo-fi.",
+      "article": "Sorti en 1993 sur Matador Records, le premier album studio de Liz Phair, « Exile in Guyville », est une œuvre séminale de l'indie rock des années 1990 qui a redéfini l'archétype de l'auteur-compositeur-interprète. Enregistré à Chicago chez Idful Music Corporation avec le producteur Brad Wood, l'album a été conçu comme une réponse thématique, piste par piste, au classique de 1972 des Rolling Stones, « Exile on Main St. ». Bien que le parallèle structurel — reliant les dix-huit chansons de Phair au double album des Stones — soit plus conceptuel que littéral, cette ambition a servi de brillant tremplin à la voix artistique singulière de Phair.\n\n« Exile in Guyville » s'impose comme une pierre angulaire des scènes lo-fi et indie rock des années 90. L'écriture de Phair est célébrée pour son honnêteté surprenante, sa vulnérabilité émotionnelle brute et ses paroles incisives, souvent provocatrices, qui dissèquent la politique sexuelle, les relations et les dynamiques de genre au sein de l'industrie musicale dominée par les hommes à cette époque. Des titres comme « Fuck and Run », « 6'1\" », « Flower » et « Stratford-on-Guy » démontrent une capacité unique à associer une prose conversationnelle et pleine d'esprit à des mélodies captivantes. La production de Phair et Wood utilise une large palette sonore, allant de ballades intimes à la guitare à des textures power pop entraînantes et art rock. L'album demeure une référence pour des générations d'artistes indépendants, fréquemment cité pour son influence sur l'esthétique « bedroom rock » et son statut durable comme l'un des plus grands premiers albums de tous les temps. Il a marqué l'arrivée d'un talent majeur, capturant un moment singulier de défi créatif qui reste aussi résonnant aujourd'hui qu'il l'était lors de sa sortie.",
+      "source_sha256": "561fd47450d663bde7ae0354d0dbec69c16de9f47f2012cf1347344e34d4b099",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:23:13.416Z"
+    }
+  }
 }

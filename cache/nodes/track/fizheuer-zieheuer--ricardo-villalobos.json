@@ -73,5 +73,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Sorti en 2006, « Fizheuer Zieheuer » s'impose comme un monolithe imposant dans la discographie du producteur de minimal techno Ricardo Villalobos.",
+      "article": "Sorti en 2006, « Fizheuer Zieheuer » s'impose comme un monolithe imposant dans la discographie du producteur de minimal techno Ricardo Villalobos. D'une durée de plus de 37 minutes, le morceau est une leçon magistrale de musique de danse hypnotique et progressive. Il est construit principalement autour d'un échantillon de cuivres récurrent, semblable à un ostinato, tiré de la chanson folklorique serbe traditionnelle « Pobjednički Čoček » de Blehorkestar Bakija Bakić. Ce motif de cuivres, qui ancre la pièce dans une tonalité majeure, est superposé à un treillis en constante évolution de percussions nuancées, de balayages de filtres et de délais subtils, créant un sentiment de mouvement incessant et changeant qui semble à la fois ancien et futuriste.\n\n« Fizheuer Zieheuer » a été largement considéré comme un tournant dans la musique électronique au milieu des années 2000, une période fréquemment décrite par les critiques comme une ère de consolidation pour le genre. Le journaliste musical Simon Reynolds a mis en avant le morceau dans son livre « Energy Flash » comme un exemple rare d'un artiste poussant la musique de danse vers des territoires inexplorés alors qu'une grande partie de la scène était devenue stagnante. La structure du morceau, qui privilégie l'évolution sur le long terme à la gratification immédiate, a souvent suscité des comparaisons pertinentes avec le travail pionnier de Manuel Göttsching, en particulier son œuvre phare de 1984, « E2-E4 ». Pour Ricardo Villalobos, le morceau est devenu un élément incontournable de ses propres sets de DJ légendaires et tentaculaires, où son noyau hypnotique lui permettait de tisser ensemble des textures sonores disparates pendant des heures. Il demeure une déclaration définitive sur le pouvoir de la répétition et l'alchimie de la production minimal techno.",
+      "source_sha256": "582249f342f05d08b37c6498640a190dce2ec3ba9fe7501bde775f3c65ef2382",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:42:13.449Z"
+    }
+  }
 }

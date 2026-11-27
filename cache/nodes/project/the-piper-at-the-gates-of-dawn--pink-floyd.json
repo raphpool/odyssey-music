@@ -125,5 +125,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "La déclaration psychédélique définitive de l'underground des années 1960, marquant le bref et brillant apogée du contrôle créatif de Syd Barrett sur Pink Floyd.",
+      "article": "Sorti en 1967, The Piper at the Gates of Dawn s'impose comme le chef-d'œuvre psychédélique singulier de la période initiale de Pink Floyd et le seul album studio réalisé sous la pleine direction créative de Syd Barrett. Enregistré aux Abbey Road Studios alors que The Beatles travaillaient sur Sgt. Pepper’s Lonely Hearts Club Band dans le même bâtiment, l'album représente un texte fondateur du rock psychédélique britannique. L'écriture de Barrett, caractérisée par un mélange de comptines fantaisistes inspirées de Lewis Carroll et de jams improvisés vastes et chaotiques, a distillé l'essence de la scène contre-culturelle underground londonienne en une expérience sonore unique. Le disque est reconnu pour son utilisation pionnière d'effets électroniques, le travail expérimental à l'orgue de Richard Wright et une qualité de production qui parvient à sonner à la fois fragile et intensément vibrante.\n\nAu-delà de sa portée historique, l'album capture un moment fragile pour Pink Floyd. Alors que la santé mentale de Barrett se détériorait, son influence sur la direction du groupe devenait de plus en plus ténue, pourtant ce disque demeure son héritage principal. Des titres tels que Astronomy Dominé et Interstellar Overdrive ont établi un modèle pour le space rock qui résonnerait à travers des décennies de musique progressive et psychédélique. Avec ses paroles surréalistes et ses structures de chansons non conventionnelles, The Piper at the Gates of Dawn reste une référence pour le potentiel créatif de la musique rock à la fin des années 1960, un témoignage obsédant et kaléidoscopique de l'apogée artistique visionnaire, bien que de courte durée, de Barrett. Son impact culturel durable réside dans son refus de se conformer aux normes pop commerciales de son époque, privilégiant au contraire un paysage sonore singulier et étranger qui continue d'intriguer les auditeurs des générations plus tard.",
+      "source_sha256": "5315906e76c80c64baa0cb0109e6b81b88106eb74b1363f9863cc89c5a564fdb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:35:15.937Z"
+    }
+  }
 }

@@ -54,5 +54,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre monolithique de dark ambient, l'album « Heresy » de Lustmord, sorti en 1990, est une descente terrifiante et hypnotique dans des paysages sonores définis par des drones infrasoniques et des atmosphères caverneuses oppressantes.",
+      "article": "Sorti en 1990 chez Soleilmoon Recordings, « Heresy » de Lustmord (le projet de Brian Williams) s'impose comme un pilier fondateur du genre dark ambient. Souvent cité comme l'une des œuvres les plus sombres et les plus troublantes de l'histoire de la musique enregistrée, l'album évite les structures de chansons traditionnelles au profit de paysages sonores vastes et caverneux et de drones de basse infrasoniques qui suscitent un profond sentiment de pressentiment. Plutôt que de s'appuyer sur des tropes d'horreur évidents, Williams utilise une conception sonore méticuleusement superposée, intégrant des cors tibétains traités, des textures industrielles lointaines et des cris animaliers manipulés pour créer une atmosphère immersive et claustrophobe.\n\nL'album est structuré comme une suite en six parties presque sans interruption, guidant l'auditeur à travers une descente dans un espace psychologique souterrain et désolé. Tout au long de l'heure que dure l'album, la production minutieuse crée une sensation viscérale de peur et d'émerveillement, brouillant les frontières entre texture ambiante et effroi industriel. « Heresy » a consolidé le statut de pionnier de Lustmord, établissant une référence pour la musique dark ambient qui a influencé d'innombrables artistes dans les sphères noise, industrielle et avant-gardiste. L'illustration obsédante, semblable à un volcan, qui orne la sortie — souvent associée à des représentations d'un paysage apocalyptique — complète le poids apocalyptique de la musique, renforçant sa réputation d'œuvre d'art sonore singulière et stimulante qui exige une immersion totale. Il demeure un artefact essentiel pour les auditeurs explorant les franges les plus sombres du son électronique.",
+      "source_sha256": "a4faacdbfce6b2efc9655937057dec91ee2b9d1cf4db5440069c446519fc1494",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:20.405Z"
+    }
+  }
 }

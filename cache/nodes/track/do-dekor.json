@@ -53,5 +53,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Do Dekor » est une pièce séminale de production micro-house de l'artiste électronique allemand Jan Jelinek, figurant comme un morceau marquant de son album très influent de 2001, « Loop-Finding-Jazz-Records ». Connu pour son utilisation pionnière d'échantillons de jazz répétitifs, chaleureux et imprégnés de glitch, Jelinek",
+      "article": "« Do Dekor » est une pièce séminale de production micro-house de l'artiste électronique allemand Jan Jelinek, figurant comme un morceau marquant de son album très influent de 2001, « Loop-Finding-Jazz-Records ». Connu pour son utilisation pionnière d'échantillons de jazz répétitifs, chaleureux et imprégnés de glitch, le travail de Jelinek durant cette période a comblé le fossé entre la musique électronique abstraite et les sensibilités jazz traditionnelles. Dans « Do Dekor », l'auditeur est gratifié de l'esthétique signature de Jelinek : des textures sonores en boucle, au flou artistique, qui estompent les frontières entre le matériau source acoustique et la manipulation numérique. Le morceau est construit sur une structure rythmique délicate, où Jelinek superpose avec finesse des éléments percussifs saccadés à des échantillons organiques qui semblent à la fois nostalgiques et futuristes.\n\nCe morceau est largement considéré comme un moment charnière des scènes minimal techno et glitch-house du début des années 2000. Son attrait durable réside dans la manière dont il construit une atmosphère profondément immersive et brumeuse qui donne l'impression d'être reconstruite en temps réel. En isolant de petits fragments rythmiques issus de disques de jazz et en les bouclant pour créer de nouvelles structures hypnotiques, Jelinek a créé un paysage sonore qui se distinguait totalement de la production clinique et plus froide de nombre de ses contemporains. « Do Dekor » sert efficacement de modèle à son approche de l'échantillonnage, privilégiant la texture et l'ambiance à la structure traditionnelle des chansons, cimentant son statut de pierre angulaire de l'esthétique post-techno qui a défini une grande partie du discours sur la musique de danse expérimentale au tournant du millénaire.",
+      "source_sha256": "f6a6e5dcbbfdc1116a00fc9c0b05a352655651488f7cacc146143c07e63d35e2",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:41:13.332Z"
+    }
+  }
 }

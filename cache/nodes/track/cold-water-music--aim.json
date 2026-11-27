@@ -60,5 +60,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Cold Water Music » est le morceau-titre évocateur et downtempo du premier album studio de 1999 du même nom, signé par le musicien britannique Aim.",
+      "article": "« Cold Water Music » est le morceau-titre évocateur et downtempo du premier album studio de 1999 du même nom, signé par le musicien britannique Aim. Émergeant de la scène électronique dynamique de Manchester à la fin des années 1990, Aim (le pseudonyme de production d'Andy Turner) a combiné des éléments de hip-hop, d'electronica et de trip-hop pour créer une signature sonore à la fois urbaine et introspective. « Cold Water Music », le morceau, illustre cette esthétique atmosphérique, s'appuyant sur une instrumentation fluide aux accents jazz et un rythme délibéré et hypnotique. Il est construit sur un échantillon de « Maureen in the Desert », une composition obsédante de Carter Burwell tirée de la bande originale du film 'Psycho III' (1986).\n\nL'album 'Cold Water Music' est sorti sur l'influent label Grand Central Records, synonyme du « son de Manchester » de l'époque, qui privilégiait souvent les textures organiques et la production basée sur l'échantillonnage plutôt que les styles plus durs populaires dans d'autres scènes dance. En tant que pièce maîtresse de ce premier album, le morceau « Cold Water Music » sert de manifeste sonore au travail d'Aim : il est mélancolique, cinématographique et magistralement arrangé, démontrant sa capacité à réutiliser des influences disparates pour en faire une expérience immersive et cohérente. L'attrait durable du morceau réside dans cette fusion sans faille, cimentant la réputation d'Aim en tant que figure centrale de l'évolution du downtempo et de la musique électronique britannique au tournant du millénaire. En équilibrant prouesse technique et résonance émotionnelle profonde, le morceau continue d'être célébré par les fans de trip-hop de la fin des années 90 pour sa qualité intemporelle et décontractée.",
+      "source_sha256": "952435db9e227a6b4cc7d564c5847137e9ab5d921c6c139ada78feb5e0b3ff02",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:20.735Z"
+    }
+  }
 }

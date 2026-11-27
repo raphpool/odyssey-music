@@ -39,5 +39,14 @@
       "name": "Mike Paradinas"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Sorti en 1997, Lunatic Harness est le quatrième album studio du producteur de musique électronique anglais Mike Paradinas, enregistré sous son alias le plus célèbre, μ-Ziq.",
+      "article": "Sorti en 1997, Lunatic Harness est le quatrième album studio du producteur de musique électronique anglais Mike Paradinas, enregistré sous son alias le plus célèbre, μ-Ziq. Apparu au sommet de la scène IDM (Intelligent Dance Music) du milieu des années 1990, l'album est largement considéré comme une pierre angulaire du sous-genre « drill 'n' bass ». Contrairement aux œuvres souvent abrasives ou purement expérimentales de contemporains comme Squarepusher ou Aphex Twin, Lunatic Harness se distingue par ses percussions complexes et rapides superposées à des textures mélodiques profondément émotionnelles. Cet équilibre unique entre technicité à haute vitesse et sensibilité pop atmosphérique accessible lui a valu les éloges de la critique, le positionnant comme l'une des parutions les plus significatives de l'histoire du label Planet Mu, que Paradinas a lui-même fondé. L'héritage durable de l'album est attesté par sa réédition pour le 25e anniversaire en 2022 et sa fréquente inclusion dans les classements rétrospectifs des meilleurs albums électroniques des années 1990. Avec des titres comme « Brace Yourself Jason » et « My Little Beautiful », le projet a démontré avec efficacité que les structures rythmiques complexes et erratiques de la culture breakbeat pouvaient être harmonisées avec des paysages harmoniques raffinés et changeants. Il demeure une déclaration définitive de l'époque, capturant un moment où les frontières de la rave, de la jungle et de la musique ambient étaient fondamentalement remodelées. Sur plus de 70 minutes, l'album explore une riche palette sonore qui continue d'influencer les producteurs de musique électronique aujourd'hui, consolidant sa place de classique du genre. C'est une écoute essentielle pour tout étudiant en musique électronique, illustrant le sommet de l'innovation du milieu des années 90.",
+      "source_sha256": "6d3c2b6bbdb32a3510467481db72de9110dd59219f61558162f4a8062213ca5e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:21.696Z"
+    }
+  }
 }

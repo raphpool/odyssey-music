@@ -87,5 +87,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un EP brut et axé sur le matériel qui fait revivre le pseudonyme AFX de Richard D. James, présentant des séquences percussives complexes et des configurations analogiques personnalisées exhumées de ses archives de 2006 à 2008.",
+      "article": "Publié le 21 août 2015 via Warp, Orphaned Deejay Selek 2006-2008 est un EP significatif de l'innovateur de musique électronique Richard D. James, paru sous son pseudonyme de longue date, AFX. Sorti peu après son album acclamé Syro, ce projet offre un contraste avec les structures mélodiques expansives de son prédécesseur, privilégiant plutôt une approche brute, énergique et hautement rythmique qui souligne la maîtrise de James en matière de synthèse et de séquençage basés sur le matériel. L'EP fait office d'excavation archivistique, rassemblant du matériel conçu dans son studio entre 2006 et 2008, une période où son son s'est concentré de plus en plus sur des textures complexes pilotées par des machines et une manipulation percussive.\n\nLe projet est remarqué pour son ingéniosité technique, mettant en avant des équipements construits sur mesure et un traitement intensif. Par exemple, le morceau midi pipe1c sds3time cube/klonedrm utilise un orgue à tuyaux MIDI personnalisé, un délai Urei Time Cube et des percussions synthétisées séquencées sur une Yamaha RS2000. Un autre point fort, r8m neotek beat, repose sur une source sonore Roland R8m mixée via une console Neotek avec une riche réverbération à ressort Allen Organ. Ce dévouement envers des chemins de signaux analogiques spécifiques et des chaînes matérielles souligne la signature sonore de l'EP : il est viscéral, sans compromis et profondément stratifié. En faisant revivre le pseudonyme AFX, James a signalé un retour aux facettes les plus abrasives et orientées vers le dance-floor de sa production, offrant un contrepoint granuleux et « orphelin » au travail de production plus poli de sa carrière ultérieure. Il demeure un document vital du processus de James, révélant le détail mécanique intense présent dans ses expériences électroniques les plus concentrées.",
+      "source_sha256": "1b779391215ed1d08ad5cf0bae6b3bd83eb342d90385aafe9841b696a246e42f",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:30:17.437Z"
+    }
+  }
 }

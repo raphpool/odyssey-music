@@ -65,5 +65,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon essentiel du krautrock, Neu! 75 équilibre introspection ambiante et agressivité proto-punk brute pour créer l'un des disques expérimentaux les plus influents des années 1970.",
+      "article": "Sorti en février 1975, Neu! 75 constitue le troisième album studio du duo krautrock allemand séminal Neu!, composé de Michael Rother et Klaus Dinger. Enregistré au studio de Conny Plank entre décembre 1974 et janvier 1975, l'album représente une bifurcation distincte des philosophies musicales divergentes du duo. Après une pause durant laquelle Rother a collaboré avec Cluster au sein du groupe expérimental Harmonia, le duo est revenu avec un compromis qui a défini la structure du disque : la première face met en avant les sensibilités ambiantes, hypnotiques et mélodiques de Rother, tandis que la seconde face penche vers l'énergie brute, agressive et orientée rock de Dinger.\n\nCette scission stylistique fait de Neu! 75 un jalon essentiel dans l'évolution de la musique expérimentale. L'album présente une utilisation plus marquée des claviers et des effets de studio en phase que les travaux précédents du groupe. Les contributions de Dinger, particulièrement sur le morceau Hero, sont fréquemment citées comme des exemples précoces de proto-punk, un son qui a exercé une influence tangible sur la scène punk britannique naissante, captivant notamment l'attention de John Lydon des Sex Pistols et de David Bowie. À l'inverse, la première face atmosphérique demeure un document essentiel du mouvement kosmische musik. Bénéficiant de la précision rythmique de Hans Lampe et Thomas Dinger sur la seconde face, le disque a non seulement consolidé l'héritage de Neu! mais a également fourni le modèle pour le projet ultérieur des frères Dinger, La Düsseldorf. Des décennies plus tard, Neu! 75 continue d'être vénéré pour son mélange visionnaire de minimalisme et d'urgence brute, cimentant son statut d'entrée indispensable dans le canon du krautrock.",
+      "source_sha256": "9e9f96e29cb7806190c0ef0ef4b19297033f45a56d349bf95a44d7b14c3d54e8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:29:19.119Z"
+    }
+  }
 }

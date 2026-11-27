@@ -64,5 +64,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Publié en 2024 via Relapse Records, New Heaven est un chef-d'œuvre féroce et éclectique de metal extrême qui met en valeur la capacité inégalée d'Inter Arma à fusionner le sludge, le doom, le black et le metal progressif en un son unique, idiosyncratique et défiant les genres.",
+      "article": "New Heaven, publié en 2024 par le vénérable label de musique extrême Relapse Records, s'impose comme un témoignage tentaculaire et complexe de l'évolution constante du groupe virginien Inter Arma. S'appuyant sur les fondations sonores établies dans leurs travaux précédents, tels que le très acclamé Sulphur English, ce disque représente une synthèse ambitieuse de sludge, de doom, de black metal et de sensibilités progressives. Inter Arma est depuis longtemps reconnu pour son refus de se conformer strictement aux conventions de genre, et New Heaven est sans doute leur exploration la plus aventureuse de cette éthique à ce jour. L'album est marqué par une tension délibérée, équilibrant des moments de technicité abrasive et dissonante avec des passages acoustiques dépouillés et atmosphériques qui apportent un contrepoids émotionnel essentiel. Les critiques comme les fans ont souligné la capacité du disque à passer sans effort d'une lourdeur écrasante à combustion lente à des structures complexes, presque labyrinthiques, démontrant la prouesse technique des musiciens sans sacrifier l'impact brut et viscéral qui a défini leur discographie. En dépassant les modèles traditionnels du metal extrême, New Heaven capture un sentiment d'instabilité et d'urgence actuelles, renforçant encore la réputation du groupe comme l'une des voix les plus fascinantes et idiosyncratiques de la musique heavy contemporaine. Cette sortie sert à la fois d'écoute exigeante pour les traditionalistes et de voyage gratifiant pour les auditeurs en quête d'un mélange de composition conceptuelle et d'énergie primale.",
+      "source_sha256": "67625d406ba32aa2fe1db87808850c2b1fa4b2f040e61f7516969389eb1619eb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:29:21.337Z"
+    }
+  }
 }

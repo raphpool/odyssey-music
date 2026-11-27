@@ -40,5 +40,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une composition classique de l'ère du milieu du siècle de la musique haïtienne, enregistrée sous la direction de l'influent chef d'orchestre Issa El-Saieh.",
+      "article": "Comme une reine est une composition musicale notable associée au riche héritage du chef d'orchestre haïtien Issa El-Saieh et son orchestre. Opérant principalement entre 1947 et 1956, El-Saieh a fondé le label La Belle Créole pour capturer les sons vibrants de l'époque, enregistrant dans divers lieux allant de Port-au-Prince à New York et La Havane. Son travail mêlait souvent des rythmes haïtiens locaux comme le Meringue et le Congo à des arrangements orchestraux plus larges influencés par le jazz, mettant en vedette des chanteurs éminents tels que Joseph Trouillot. La production de ces morceaux était méticuleusement supervisée par El-Saieh, qui collaborait fréquemment avec divers musiciens pour former des ensembles distincts sous sa direction. Ces enregistrements, publiés à l'origine sur des disques 78 tours, demeurent un document significatif de la scène musicale caribéenne du milieu du siècle, reflétant les échanges interculturels qui ont défini la production artistique de cette période.",
+      "source_sha256": "6c5b20a5a9a9b71f8599990cac2ad400b27ebce0e2bc328b1d2ee99e7488a651",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:20.736Z"
+    }
+  }
 }

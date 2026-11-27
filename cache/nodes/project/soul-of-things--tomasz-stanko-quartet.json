@@ -152,5 +152,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre de jazz atmosphérique et mélancolique, Soul of Things présente le légendaire trompettiste polonais Tomasz Stańko dans une suite de treize variations évocatrices interprétées par son jeune quartet télépathique. Produit par Manfred Eicher pour ECM Records, l'album est une déclaration définitive du jazz européen moderne, équilibrant une improvisation profonde et pleine d'âme avec une retenue structurelle.",
+      "article": "Soul of Things est un album studio déterminant du trompettiste polonais Tomasz Stańko et de son quartet, publié en 2002 sur le prestigieux label ECM Records. Enregistré en août 2001 au célèbre Rainbow Studio d'Oslo et produit par Manfred Eicher, l'album met en vedette Stańko aux côtés d'un trio de jeunes musiciens polonais qui connaîtront par la suite un succès considérable : le pianiste Marcin Wasilewski, le contrebassiste Sławomir Kurkiewicz et le batteur Michał Miśkiewicz. Ce quartet, souvent désigné sous le nom de « Polish Quartet », représente un moment charnière dans le regain de carrière de Stańko.\n\nL'album est structuré comme une suite de treize variations numérotées, intitulées de Soul of Things, Var. I à Soul of Things, Var. XIII. Plutôt qu'une collection de compositions disparates, l'œuvre fonctionne comme une exploration singulière et cohérente du « blues slave » caractéristique de Stańko, un style mélancolique et profondément lyrique qui comble le fossé entre le free jazz d'avant-garde et une sensibilité plus tempérée, orientée vers la ballade. Les critiques ont souvent noté que la musique présente une qualité intemporelle et atmosphérique, caractéristique de l'esthétique ECM, avec un son qui évoque les improvisations modales de Kind of Blue de Miles Davis tout en conservant une identité européenne distincte et émotionnellement résonnante.\n\nSoul of Things est largement considéré comme un chef-d'œuvre de la discographie de Stańko. Il met en lumière son jeu de trompette caractéristique, au ton sombre et émotif, et démontre « l'intimité télépathique » de son quartet. À ce stade de sa carrière, Stańko avait réussi à synthétiser des décennies de sa propre histoire musicale, tissant des références à des musiques de films et à des compositions antérieures dans une performance mature, retenue et poétique. L'album a cimenté la réputation de ses jeunes sidemen et demeure l'un des disques de jazz les plus célèbres du début des années 2000, récoltant de nombreuses distinctions, dont les éloges de la critique dans les publications de jazz internationales. Il reste un témoignage de la conviction de Stańko selon laquelle il « jouait la même chanson toute sa vie », capturant l'essence de son parcours artistique à travers treize fragments d'une beauté distillée.",
+      "source_sha256": "6da9a52b40764e5d407243e20df398d04f955200ca4c7a7d1f18edda5c3654fd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:33:15.992Z"
+    }
+  }
 }

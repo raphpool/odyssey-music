@@ -49,5 +49,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« They Know Your Name » est une composition électronique distinctive du duo allemand influent Mouse on Mars, sortie en single 7 pouces en 2012 via Monkeytown Records.",
+      "article": "« They Know Your Name » est une composition électronique distinctive du duo allemand influent Mouse on Mars, sortie en single 7 pouces en 2012 via Monkeytown Records. Connus pour leur approche expérimentale et défiant les genres de l'electronica, Andi Toma et Jan St. Werner présentent un mélange de production teintée de glitch et de sensibilités mélodiques qui définissent leur son depuis des décennies. Le morceau met en vedette la voix du collaborateur Dodo Nkishi, dont la performance apporte un élément humain essentiel au paysage complexe et hyper-numérique du duo.\n\nLa sortie de 2012 comprend également un remix du célèbre producteur électronique Machinedrum, qui apporte son style caractéristique axé sur le footwork et les basses au matériel original, recontextualisant l'ossature rythmique de l'original. En tant que sortie physique en édition limitée (limitée à 500 exemplaires), elle représente un moment spécifique de la production de fin de carrière de Mouse on Mars, faisant suite à leurs expérimentations très estimées tout au long des années 1990 et 2000. Le morceau capture efficacement la capacité du duo à équilibrer la complexité technique avec des accroches contagieuses proches de la pop, cimentant leur réputation de maîtres pour combler le fossé entre la musique électronique d'avant-garde et une conception sonore accessible et émotive. Il demeure un artefact clé pour les fans de l'esthétique du label Monkeytown et de la scène expérimentale plus large adjacente à l'IDM des années 2010. La sortie présente des contributions distinctes d'Andi Toma, Jan St. Werner, Dodo Nkishi et Machinedrum.",
+      "source_sha256": "5cce392954f4e2acbc46c23f3ecfdbc9bd18f6cd4dbc60d5f57fd825dde4ef33",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:13.516Z"
+    }
+  }
 }

@@ -20,5 +20,14 @@
   "producers": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Phi* 1700 (u/v) » est un morceau séminal d'IDM et de breakbeat précoce du producteur électronique britannique Mike Paradinas, sorti sous son alias µ-Ziq en 1994.",
+      "article": "« Phi* 1700 (u/v) » est un morceau séminal d'IDM et de breakbeat précoce du producteur électronique britannique Mike Paradinas, sorti sous son alias µ-Ziq en 1994. Apparaissant comme le titre phare de l'EP du même nom publié via le légendaire label R&S Records, le morceau est largement considéré comme l'une des entrées les plus distinctives et influentes du canon « intelligent dance music » du début des années 90. Il se caractérise par ses structures rythmiques sombres et complexes, une hybridation de breakbeat, d'electro et de conception sonore expérimentale qui repoussait les limites de ce à quoi la musique électronique de danse pouvait ressembler durant son ère formative post-rave.\n\nLe titre lui-même ajoute une couche de surréalisme à la musique ; il est célèbre pour être dérivé d'une ligne d'« algèbre fictionnelle » trouvée dans le roman fantastique Pyramids de Terry Pratchett, reflétant l'ethos excentrique, intellectuel et souvent ludique qui définissait les premières productions d'artistes comme Paradinas et ses pairs sur des labels comme R&S et Rephlex. Musicalement, le morceau a acquis une réputation auprès des auditeurs pour son atmosphère, souvent décrite comme possédant une sensation unique, sombre et texturée qui se distingue même au sein du paysage encombré de l'expérimentation électronique des années 1990. Sa production, qui semble à la fois claustrophobique et expansive, démontre la maîtrise précoce de Paradinas du séquençage matériel, marquant un moment crucial dans l'évolution des textures électroniques riches en break qui influenceraient des générations de producteurs dans les scènes IDM et club expérimentales. Il demeure un sommet de la discographie de µ-Ziq, représentant une collision entre l'énergie du dancefloor et une abstraction cérébrale détachée.",
+      "source_sha256": "88a2c2f913f9074b060463ec2a2521766d1266496f6d43996de43dc97276a3af",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:47:19.270Z"
+    }
+  }
 }

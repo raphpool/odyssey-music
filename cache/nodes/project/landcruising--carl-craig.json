@@ -85,5 +85,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Premier album séminal de 1995 du visionnaire de la techno de Détroit Carl Craig, Landcruising agit comme une bande-son cinématographique et futuriste qui a redéfini le potentiel émotionnel de la musique électronique.",
+      "article": "Sorti en 1995, le premier album de Carl Craig, Landcruising, s'impose comme une œuvre marquante de la techno de Détroit, comblant le fossé entre la précision mécanique froide et une portée cinématographique émotive. Souvent décrit comme une réponse sonore à Trans Europe Express de Kraftwerk, l'album sert de bande-son imaginaire à l'acte de conduire à travers Détroit, capturant la topographie urbaine en évolution de la ville à travers un prisme mêlant sérénité et tension. La production de Craig sur Landcruising se caractérise par son esthétique tournée vers l'avenir ; même des décennies plus tard, les morceaux conservent une capacité étrange à paraître à la fois futuristes et ancrés dans le réel.\n\nMusicalement, l'album est un chef-d'œuvre de texture et de mouvement. Des chansons comme Mind Of A Machine associent des motifs de caisse claire distinctifs et tranchants à des nappes de synthétiseurs vastes et planantes, tandis que des pièces comme Science Fiction intègrent des éléments de jazz libre et des clins d'œil subtils à des pionniers de l'électronique comme Jean-Michel Jarre. L'album n'est pas seulement une collection de morceaux de club mais un voyage cohérent ; il remet en question l'idée contemporaine selon laquelle la techno ne pourrait pas transmettre une émotion humaine profonde. Des titres comme Technology offrent une atmosphère plus imposante, presque menaçante, tandis que Einbahn démontre une maîtrise parfaite de l'espace rythmique minimal. Landcruising est largement considéré comme l'un des documents essentiels du son de Détroit, prouvant que l'intérêt de la musique n'est pas simplement la destination, mais l'expérience immersive du voyage lui-même. Au fil du temps, l'album a maintenu son statut de pièce vitale de l'histoire de la musique électronique, des éditions étendues récentes permettant à ses compositions complexes et soigneusement nuancées d'atteindre une nouvelle génération d'auditeurs.",
+      "source_sha256": "0709e6d81f9f4a0b85e07a859e33cd619b27ccf04012f0c5fdd83ad163ea609d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:22.678Z"
+    }
+  }
 }

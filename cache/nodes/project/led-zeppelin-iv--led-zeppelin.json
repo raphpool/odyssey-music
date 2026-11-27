@@ -123,5 +123,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Souvent considéré comme l'album de heavy rock par excellence, Led Zeppelin IV est un chef-d'œuvre de changements dynamiques et d'expérimentations de production, incluant l'immortel « Stairway to Heaven » et la légendaire épopée blues-rock « When the Levee Breaks ».",
+      "article": "Sorti le 8 novembre 1971 chez Atlantic Records, le quatrième album studio sans titre des titans du rock anglais Led Zeppelin — universellement connu sous le nom de Led Zeppelin IV — s'impose comme l'un des disques les plus influents et les plus réussis commercialement de l'histoire du rock. Produit par le guitariste Jimmy Page, le projet a été enregistré dans un cadre unique et informel à Headley Grange, une maison de campagne dans le Hampshire, en Angleterre. En utilisant le Rolling Stones Mobile Studio, le groupe a pu s'éloigner de l'atmosphère conventionnelle et sous haute pression des studios pour expérimenter un mélange de hard rock, de folk et de blues rock. Les sessions qui en ont résulté ont capturé une énergie rare et spontanée qui a défini l'apogée créative du groupe.\n\nL'album est sans doute mieux connu pour son magnum opus, « Stairway to Heaven », une épopée de huit minutes devenue un incontournable des radios rock et une pierre angulaire de la mythologie durable de l'album. Au-delà de cela, le disque met en valeur la polyvalence du groupe : des riffs complexes et imbriqués de « Black Dog » à l'énergie fulgurante de « Rock and Roll », en passant par les textures atmosphériques et rustiques de « The Battle of Evermore » — qui mettait en vedette la voix invitée de Sandy Denny — et la réinterprétation lourde et tonitruante de « When the Levee Breaks » de Memphis Minnie.\n\nSuite à la réception critique mitigée de Led Zeppelin III, le groupe a cherché à renverser les attentes de l'industrie en publiant le quatrième album sans nom et sans identifiant de groupe sur la pochette, choisissant plutôt de se représenter à travers quatre symboles distincts. Cette présentation mystérieuse, combinée à la qualité pure de la musicalité, a solidifié le statut de Led Zeppelin en tant que géants de l'ère du rock de stade des années 1970. Avec plus de 37 millions d'exemplaires vendus dans le monde, il demeure un artefact culturel définitif qui a comblé le fossé entre des origines brutes imprégnées de blues et les ambitions plus vastes et progressives de l'évolution du hard rock de la décennie.",
+      "source_sha256": "4fab7a9df780a31a7158d4a69290cc20aa2bfb60b61b4c4539fb6c7fba2b2ec4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:27:13.606Z"
+    }
+  }
 }

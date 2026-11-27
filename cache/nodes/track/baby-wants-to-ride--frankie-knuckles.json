@@ -56,5 +56,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pierre angulaire de la house de Chicago, cette collaboration emblématique entre Frankie Knuckles et Jamie Principle demeure l'un des morceaux les plus durables et influents du genre.",
+      "article": "« Baby Wants to Ride » s'impose comme l'un des morceaux les plus définitifs et influents de l'histoire de la house music de Chicago, servant de collaboration marquante entre le légendaire Frankie Knuckles et le chanteur Jamie Principle. Émergeant à l'origine du terreau fertile de la scène de Chicago au milieu des années 1980, le morceau capture l'énergie brute et cinétique des premiers dancefloors de la ville. La performance vocale emblématique, suggestive et profondément soul de Jamie Principle, associée à la production magistrale de Knuckles — caractérisée par des rythmes de boîte à rythmes entraînants et des mélodies de synthétiseur hypnotiques — a créé un modèle pour le son house naissant qui allait bientôt captiver le monde entier.\n\nL'attrait durable du morceau réside dans son groove contagieux et dépouillé, qui met parfaitement en valeur l'interaction entre le chant distinct et langoureux de Principle et la pulsation mécanique qui définissait les techniques de production innovantes de l'époque. En tant que pilier du genre, « Baby Wants to Ride » a transcendé sa sortie initiale pour devenir un incontournable de la culture house, faisant l'objet de nombreuses rééditions, éditions et remixes au fil des décennies, assurant ainsi la pérennité de sa pertinence à travers les générations. Son héritage est inextricablement lié au partenariat entre Knuckles et Principle, une union créative qui a contribué à consolider les fondations de la house et qui demeure une référence pour les musiciens électroniques explorant les profondeurs de l'héritage de la dance music. Le morceau reste un exemple par excellence de la puissance émotionnelle et de l'urgence des dancefloors inhérentes à la house classique de Chicago.",
+      "source_sha256": "35f5a42a8975708e1f4afab2b439e6eada3fd5c07d9d329551669e595c868e07",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:38:20.897Z"
+    }
+  }
 }

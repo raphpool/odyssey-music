@@ -85,5 +85,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Electronic Meditation est le premier album sauvage, brut et séminal des pionniers allemands Tangerine Dream, capturant un moment fugace d'expérimentation avant-gardiste pure avant que le groupe ne s'oriente vers ses paysages sonores synthétiques cosmiques emblématiques. Enregistré dans une usine berlinoise en 1969, l'album demeure un document singulier et granuleux de free jazz, de psychédélisme et de proto-rock électronique qui présente la seule collaboration en studio entre Edgar Froese, Klaus Schulze et Conrad Schnitzler.",
+      "article": "Sorti en juin 1970 sur le label séminal Ohr, Electronic Meditation sert d'introduction explosive et chaotique à Tangerine Dream, un groupe qui deviendrait bientôt synonyme du développement de la kosmische musik et de l'électronique ambiante. Enregistré dans une usine louée à Berlin en octobre 1969, l'album capture une énergie brute et distincte qui diffère grandement des épopées polies et séquencées qui définiront les années ultérieures du groupe. Il demeure le seul enregistrement à présenter la formation initiale définitive composée d'Edgar Froese, Klaus Schulze et Conrad Schnitzler, trois figures qui allaient chacune façonner le cours de la musique électronique et expérimentale de manière indépendante.\n\nL'architecture sonore de l'album est intentionnellement abrasive et hautement non conventionnelle, mélangeant une instrumentation traditionnelle — guitare, orgue, violoncelle et flûte — avec la manipulation de sons trouvés, tels que le bruit de parchemin brûlé, de pois secs secoués et de verre brisé. Fuyant les structures de chansons conventionnelles de l'époque, les titres de Electronic Meditation penchent fortement vers l'improvisation libre, canalisant l'esprit du free jazz et du rock avant-gardiste underground. Des morceaux comme « Journey Through a Burning Brain » présentent une approche viscérale et radicale du bruit et de la texture qui semble plus proche de l'expérimentalisme dur du travail ultérieur de Schnitzler avec Kluster que du style symphonique ultérieur de Tangerine Dream. Bien qu'il ait pu être rejeté par certains critiques contemporains comme une curiosité non raffinée, son importance historique en tant que pierre angulaire de la scène underground allemande est indéniable, servant de cartographie primitive mais vitale d'un nouveau territoire sonore cosmique.",
+      "source_sha256": "703e1a271e4c53d93d5572bf5cef2866917fb73cf22b9a4caca91b35a85be3bd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:22:17.478Z"
+    }
+  }
 }

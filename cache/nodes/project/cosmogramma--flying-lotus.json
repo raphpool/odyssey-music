@@ -160,5 +160,14 @@
       "type": "project",
       "name": "Pattern+Grid World"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre visionnaire de la musique électronique, l'album Cosmogramma de Flying Lotus, sorti en 2010, synthétise le jazz, l'IDM et le hip-hop en un voyage intime, conceptuel et émotionnellement fort à travers le cosmos.",
+      "article": "Cosmogramma, publié en 2010 sur Warp, s'impose comme le magnum opus du producteur Steven Ellison, connu sous le nom de Flying Lotus. Conçu dans le sillage d'une immense tragédie personnelle — suite aux décès de sa mère et de sa grand-tante, la légendaire musicienne de jazz Alice Coltrane — l'album est un acte profond de synthèse et de deuil. Enregistré principalement dans son appartement de Los Angeles, le projet transcende les frontières de la musique électronique, tissant ensemble des éléments d'IDM, de nu jazz, de hip hop psychédélique et de glitch en une tapisserie maximaliste et afrofuturiste. Ellison a utilisé un hybride de techniques de production numérique, incluant un échantillonnage intensif et des boîtes à rythmes, tout en intégrant l'instrumentation live d'un groupe de collaborateurs, au premier rang desquels le bassiste Thundercat, dont la relation créative avec Ellison s'est consolidée durant ces sessions. Parmi les autres contributeurs clés figurent Ravi Coltrane, Miguel Atwood-Ferguson et Thom Yorke, dont la présence sur « ...And the World Laughs with You » sert de pont historique entre les mondes de l'electronica expérimentale et de l'art-rock. Le titre lui-même, une mauvaise interprétation d'une expression utilisée par Alice Coltrane, témoigne des préoccupations métaphysiques de l'album ; il explore des thèmes tels que les expériences de sortie de corps, le rêve lucide et le cosmos, ancrant ses aspirations conceptuelles dans l'intimité brute de l'enregistrement des derniers instants de sa mère. Cosmogramma n'est pas seulement un disque électronique, mais un voyage transformateur et multicouche qui a redéfini les possibilités de la musique basée sur le rythme dans les années 2010, cimentant le statut de Flying Lotus en tant qu'architecte visionnaire du son. Son influence résonne à travers la musique contemporaine, marquant un moment charnière où l'énergie brute de la scène beat de Los Angeles a rencontré les arrangements sophistiqués du jazz fusion et de la composition avant-gardiste.",
+      "source_sha256": "915be7fc5e695f63dad80de7b753639bdcf9960a211b0ad3aa153524a12fd4a3",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:20:20.489Z"
+    }
+  }
 }

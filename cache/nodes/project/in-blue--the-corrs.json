@@ -138,5 +138,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "In Blue est le troisième album studio du groupe de pop-rock familial irlandais The Corrs, sorti en 2000, qui a propulsé le groupe vers un succès international généralisé, particulièrement aux États-Unis. Produit en collaboration avec des poids lourds comme Robert John \"Mutt\" Lange, l'album mêle harmonieusement les sensibilités pop teintées de celtique caractéristiques du groupe avec une production contemporaine soignée, donnant naissance à des singles à succès tels que \"Breathless\", numéro un au Royaume-Uni.",
+      "article": "In Blue est le troisième album studio du groupe de pop-rock familial irlandais The Corrs, sorti en juillet 2000. Ce projet constitue une pierre angulaire de la discographie du groupe, marquant un moment charnière où ils ont réussi à faire le pont entre leurs influences folk irlandaises traditionnelles et une production pop-rock léchée, destinée au marché international. Enregistré dans des studios prestigieux à Dublin et en Suisse, l'album a bénéficié de la collaboration de plusieurs producteurs de renom, notamment Robert John \"Mutt\" Lange, dont l'influence a contribué à façonner le son poli et calibré pour la radio de l'album.\n\nL'album est sans doute mieux connu pour son immense succès international, en particulier le single à succès \"Breathless\", qui a atteint la première place du UK Singles Chart et a consolidé leur position aux États-Unis, un marché qu'ils cherchaient à conquérir activement. \"In Blue\" témoigne de la capacité des Corrs à fusionner les textures de la musique celtique, portées par le tin whistle et le bodhrán, avec les accroches mélodiques et l'accessibilité rythmique de la pop contemporaine pour adultes. La chanson \"Rebel Heart\", présente sur l'album, a obtenu une nomination aux Grammy Awards pour la meilleure performance instrumentale pop, soulignant la polyvalence instrumentale du groupe au-delà de leurs aspirations dans les classements pop. Le disque demeure un artefact pop-rock marquant du tournant du millénaire, reflétant la tendance de l'industrie de la fin des années 90 et du début des années 2000 à intégrer des éléments traditionnels dans des formats grand public à portée mondiale. Par ses performances commerciales et sa présence durable à la radio, l'album a établi The Corrs comme des stars mondiales, mêlant le sentiment irlandais régional à l'architecture sonore expansive et élégante typique des standards de production des grandes maisons de disques de l'époque.",
+      "source_sha256": "15f010813fed1a24639797287f0d6f75806cd2f9a71f908fa5559b2086283b20",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:19.848Z"
+    }
+  }
 }

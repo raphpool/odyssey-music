@@ -84,5 +84,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« FLIPMODE » est un EP collaboratif vibrant des producteurs OOGO et Aksel Aksel qui fusionne des influences footwork, bass et afrobeat en une expérience de club sensorielle et pleine d'énergie. Il marque une synthèse créative significative, équilibrant maîtrise technique et groove instinctif et organique.",
+      "article": "« FLIPMODE » est un EP collaboratif publié en 2025 par les producteurs électroniques basés à Paris OOGO (Ugo De Angelis) et Aksel Aksel (Aksel Bahouche). Sorti sur le label français Nowadays Records, le projet sert de synthèse dynamique de leurs parcours musicaux distincts, fusionnant la précision technique d'OOGO — affinée par son travail avec le collectif La Fine Équipe — avec l'instinct rythmique brut apporté par Aksel Bahouche. À travers cinq titres, l'EP navigue dans un paysage sans frontières de musique de club, puisant largement dans les structures de la bass music, du footwork, de l'afrobeat et de la house.\n\nLe projet se caractérise par un équilibre entre une utilité club à haute énergie et une conception sonore profonde et introspective. Des titres comme « SACÙDETE » et « SKANK LOW » illustrent cette dualité, oscillant entre des rythmes spirituels et entraînants et une tension hypnotique dans les basses fréquences. L'EP propose également une collaboration vocale avec Bright Edem Kwesi Addo sur « HWAN NA », renforçant l'intérêt du projet pour l'intégration de textures de club mondiales dans un cadre électronique européen contemporain. « FLIPMODE » n'est pas présenté simplement comme une collection de morceaux pour la piste de danse, mais comme une exploration sensorielle du mouvement, conçue pour résonner simultanément dans l'espace physique d'un club et dans le paysage intérieur de l'auditeur. En mélangeant chaleur organique et production électronique acérée, OOGO et Aksel Aksel établissent une identité collaborative à la fois fraîche et profondément ancrée dans l'état actuel et évolutif de la culture club moderne.",
+      "source_sha256": "6d55674be04c07257567716e658f6aa8ccc366af022d4cf4c8dca9b1caf041a0",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:23:18.984Z"
+    }
+  }
 }

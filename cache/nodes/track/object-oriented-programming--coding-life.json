@@ -54,5 +54,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Object-Oriented Programming » est un morceau électronique de 2019 par Coding Life conçu pour offrir un paysage sonore stable et axé sur la concentration aux développeurs de logiciels et aux programmeurs informatiques.",
+      "article": "« Object-Oriented Programming » est un morceau électronique fonctionnel sorti en 2019 par l'artiste Coding Life. Apparaissant comme une pièce au sein du projet Binaural Coding: Electronic Music to Improve Productivity, le morceau est conçu spécifiquement pour les besoins esthétiques et fonctionnels des développeurs de logiciels et des programmeurs informatiques travaillant dans des environnements de concentration profonde. Coding Life est un personnage d'artiste centré sur le créneau de la « musique de productivité », mélangeant souvent des textures électroniques stables, ambiantes ou rythmiques destinées à minimiser les distractions et à faciliter l'« état de flux » lors de tâches cognitives lourdes comme le codage. Le morceau lui-même reflète cette approche axée sur l'utilité, privilégiant des paysages sonores cohérents et non intrusifs plutôt que des structures d'écriture conventionnelles ou un contenu lyrique. Ce genre de « musique d'étude » ou de « musique de codage » est devenu de plus en plus répandu à la fin des années 2010 et au début des années 2020 sur les plateformes de streaming, où les producteurs ont organisé des environnements numériques pour la concentration, le piratage et les sessions de travail en profondeur. Le titre du morceau comble explicitement le fossé entre son sujet technique — le paradigme de programmation de la conception orientée objet — et sa fonction prévue en tant qu'outil auditif pour les développeurs, le positionnant fermement au sein d'une sous-culture numérique moderne de musique de fond axée sur la technologie. Bien qu'il ne s'agisse pas d'une composition conventionnelle au sens populaire, son existence souligne la nature spécialisée et algorithmique de la production ambiante contemporaine.",
+      "source_sha256": "5e342316eaa1aa1af5da2a918760634928a36a51fb76d34b35793b65199d8158",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:47:13.130Z"
+    }
+  }
 }

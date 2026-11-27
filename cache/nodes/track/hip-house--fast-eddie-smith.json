@@ -60,5 +60,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un morceau phare de 1988 par le producteur de Chicago “Fast” Eddie Smith qui a défini le genre Hip House en mélangeant des rythmes house électroniques avec un phrasé vocal hip hop.",
+      "article": "Sorti en 1988 par le producteur de Chicago “Fast” Eddie Smith, le morceau Hip House est devenu l'hymne définitif du genre du même nom. En tant qu'ancien DJ sur les stations de radio de Chicago WGCI-FM et WBMX, “Fast” Eddie Smith a utilisé son expérience au sein du mouvement house naissant pour synthétiser l'énergie électronique des pistes de danse avec un débit vocal hip hop. La chanson a établi la réputation de “Fast” Eddie Smith en tant que producteur et a aidé à définir le mouvement hybride qui influencerait plusieurs de ses succès ultérieurs, dont Git On Up, classé au Billboard. La sortie est synonyme de l'époque de la musique club de Chicago de la fin des années 80 qui s'est détachée des structures house traditionnelles pour incorporer des voix rythmiques de style rap.",
+      "source_sha256": "6153e818ec8dcfe589ed4e9f5e80102fb46f49946ac790a45cc5fb9401ab64d7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:43:20.798Z"
+    }
+  }
 }

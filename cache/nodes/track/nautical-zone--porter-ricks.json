@@ -67,5 +67,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Nautical Zone » est le morceau final de l'album phare de 1996 « Biokinetics » du duo de minimal techno allemand Porter Ricks.",
+      "article": "« Nautical Zone » est le morceau final de l'album phare de 1996 « Biokinetics » du duo de minimal techno allemand Porter Ricks. Publié sur le légendaire label berlinois Chain Reaction, le morceau incarne la conception sonore froide, océanique et profondément immersive qui a défini la collaboration du duo entre Thomas Köner et Andy Mellwig. S'étendant sur plus de douze minutes, « Nautical Zone » est une leçon de dub-techno, utilisant de vastes espaces caverneux, des pulsations rythmiques subtiles et des textures sous-marines profondes qui ressemblent autant à un environnement sonore qu'à une composition musicale.\n\nLe morceau, comme une grande partie de l'album « Biokinetics », explore des thèmes liés à l'atmosphère maritime et à la solitude industrielle. Sa structure est patiente et hypnotique, caractéristique du son Chain Reaction qui privilégiait l'atmosphère et la décomposition rythmique à la propulsion techno traditionnelle. « Nautical Zone » fonctionne comme la descente finale dans le paysage sonore abyssal que l'album construit tout au long de sa durée, laissant l'auditeur dans un état d'immersion soutenue et résonnante. Son importance réside dans son influence profonde sur l'évolution de l'ambient techno et du deep dub, prouvant que la musique électronique pouvait porter le poids et l'arc narratif d'une expérience cinématographique. Le morceau a été largement cité comme un moment définitif du minimalisme des années 90, marquant l'intersection où l'art sonore conceptuel rencontrait les sensibilités club de la scène underground berlinoise. Par son utilisation d'une réverbération expansive et d'arrangements percussifs minimaux, « Nautical Zone » demeure une référence essentielle pour les producteurs explorant les possibilités de l'espace et de l'atmosphère dans la musique électronique de danse.",
+      "source_sha256": "e1520170dc068fbc1fedd9c103c78a50856d7b9c41e673f6601ace9289eb25bf",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:46:21.073Z"
+    }
+  }
 }

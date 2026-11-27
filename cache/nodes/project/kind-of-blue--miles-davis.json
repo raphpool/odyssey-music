@@ -138,5 +138,14 @@
       "type": "project",
       "name": "Jazz Track"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre séminal du modal jazz, le classique de 1959 de Miles Davis a changé le cours de l'histoire de la musique en remplaçant les changements d'accords complexes par des modes ouverts, favorisant une nouvelle ère de liberté improvisatrice.",
+      "article": "Kind of Blue, publié le 17 août 1959 par Columbia, demeure le chef-d'œuvre définitif du mouvement modal jazz et est largement considéré comme l'un des albums les plus significatifs de l'histoire de la musique enregistrée. Dirigé par le trompettiste Miles Davis au sommet de ses capacités créatives, l'album a été enregistré au célèbre Columbia 30th Street Studio à New York. Les sessions, tenues les 2 mars et 22 avril 1959, mettaient en vedette un sextet légendaire comprenant les saxophonistes John Coltrane et Cannonball Adderley, les pianistes Bill Evans et Wynton Kelly, le bassiste Paul Chambers et le batteur Jimmy Cobb.\n\nS'éloignant des structures d'accords rigides du bebop et du hard bop, Davis a cherché à libérer ses musiciens en basant l'album entièrement sur la modalité. En fournissant à l'ensemble des modes mélodiques plutôt que des changements d'accords traditionnels, Davis a favorisé une atmosphère de spontanéité créative et d'espace sans précédent. Ce virage vers le « modal jazz » a permis aux solistes — particulièrement John Coltrane et Cannonball Adderley — d'explorer l'improvisation avec une profondeur lyrique nouvelle. L'approche minimaliste de l'album, combinée à l'interaction profonde entre les musiciens, a créé un paysage sonore intemporel qui demeure aussi évocateur aujourd'hui qu'à ses débuts.\n\nAu-delà de ses innovations techniques, Kind of Blue a redéfini les possibilités esthétiques du jazz, influençant des générations de musiciens à travers les genres rock, classique et avant-garde. Son impact culturel a été formellement reconnu en 2002 lorsqu'il a été sélectionné pour le National Recording Registry par la Library of Congress. En tant qu'album de jazz le plus vendu de tous les temps, atteignant le statut de 5× Platinum, il sert de pierre angulaire au canon musical américain. L'album demeure un paradigme d'équilibre sonore, offrant une expérience d'écoute sereine mais sophistiquée qui continue de défier et d'inspirer les publics du monde entier.",
+      "source_sha256": "bf80d559364acfc5d803eac4fd8c55c6db2bccc5ec9240c3f3434034edda2c3b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:26:18.476Z"
+    }
+  }
 }

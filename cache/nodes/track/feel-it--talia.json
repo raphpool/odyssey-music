@@ -48,5 +48,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Feel It » est un morceau de dance Makina de 1996 à haute énergie signé Talía, avec la voix de Gemma Arqués et une production de John Eftwo, connu pour ses diverses itérations de remix qui ont défini le son rave espagnol du milieu des années 90.",
+      "article": "« Feel It » est un morceau de Makina emblématique de 1996 enregistré par l'artiste Talía. Sorti sur le label espagnol Falco Music, le titre encapsule le son euphorique et à haute énergie caractéristique de la scène dance espagnole du milieu des années 90, souvent classé comme Makina ou Eurodance. Il met en vedette la voix de Gemma Arqués et a été produit et arrangé par John Eftwo, qui a également écrit le morceau. La production incarne les rythmes entraînants, les lignes de synthétiseur hyméniques et les interprétations vocales émotionnelles qui ont défini la culture club en Espagne durant cette époque. Connu pour ses multiples variations — dont l'Arriva Mix, le Radio Mix, le Dance-Techno Mix et le Rave-Hypnotic Mix — « Feel It » reflète l'approche multidimensionnelle de la production dance courante dans les années 1990, où une seule composition était fréquemment réimaginée pour s'adapter à différents environnements de club, de la diffusion radio aux sets de rave aux heures de pointe. Son héritage durable sur la scène est attesté par des rééditions, notamment un pressage de 2025 sur Discos Comix, soulignant son statut de classique culte au sein du genre Makina espagnol. La contribution de Talía au paysage de la dance music des années 90 demeure un témoignage de l'énergie régionale et de la production créative du circuit électronique espagnol.",
+      "source_sha256": "48402b7a19d2d716f2dfaf7af146504506f04af80ddb2c8b4205b2034fbcf89b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:41:24.736Z"
+    }
+  }
 }

@@ -24,5 +24,14 @@
   "genres": [],
   "tracklist": [],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Le premier album de Will Ackerman, sorti en 1976, est largement considéré comme un document séminal qui a contribué au lancement du genre New Age et a établi le modèle esthétique de son label légendaire, Windham Hill Records.",
+      "article": "Sorti en 1976, le premier album de Will Ackerman, In Search of the Turtle's Navel, fait office d'artefact fondateur dans l'histoire de la musique New Age. Au moment de son enregistrement, Ackerman était un charpentier en activité à Palo Alto, en Californie, bien loin des centres de l'industrie musicale commerciale. Le son minimaliste de l'album, porté par la guitare acoustique, capturait une atmosphère introspective spécifique qui allait bientôt définir l'esthétique de Windham Hill Records, le label indépendant influent qu'Ackerman a fondé peu de temps après.\n\nMusicalement, l'album se situe à l'intersection de la guitare primitive américaine — une tradition défendue par des artistes comme John Fahey — et des sensibilités méditatives émergentes qui allaient se fondre dans le genre « New Age ». Les compositions sont largement instrumentales, s'appuyant sur un jeu de doigts délicat et des textures atmosphériques. Bien que la sortie originale de 1976 présentait une collection idiosyncrasique de titres et un ordre de pistes spécifique, sa réédition de 1977 a consolidé la place de l'album dans la conscience publique et a établi le modèle de ce qui est devenu l'un des genres les plus commercialement fructueux des années 1980. L'album demeure un témoignage de l'esprit DIY de la musique acoustique des années 1970, prouvant qu'un enregistrement modeste et artisanal pouvait redéfinir le paysage de la musique instrumentale. Son héritage durable réside non seulement dans sa clarté mélodique et douce, mais aussi dans son rôle d'étincelle accidentelle ayant déclenché le phénomène Windham Hill, comblant le fossé entre les traditions folk et les paysages sonores proches de l'ambient.",
+      "source_sha256": "47777779e6e1f9cb8840e81525677598ae9b5aecf4e7b81d15fa849c882f6006",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:25:20.639Z"
+    }
+  }
 }

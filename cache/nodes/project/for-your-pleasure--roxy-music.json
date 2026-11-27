@@ -83,5 +83,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon de l'art rock et du glam, le deuxième album de Roxy Music demeure un cours magistral sur l'ambiance, la texture et l'expérimentation en studio, marquant l'apogée de la formation originale composée de Bryan Ferry et Brian Eno.",
+      "article": "For Your Pleasure, le deuxième album studio des pionniers anglais de l'art rock Roxy Music, s'impose comme un chef-d'œuvre déterminant de l'ère glam rock du début des années 1970. Sorti le 23 mars 1973 chez Island Records, le projet a marqué un tournant dans l'histoire du groupe, servant de dernière collaboration entre le leader Bryan Ferry et le visionnaire de l'expérimentation électronique Brian Eno. Enregistré aux AIR Studios de Londres, l'album a affiné l'énergie frénétique et avant-gardiste de leur premier album éponyme de 1972 pour aboutir à un paysage sonore plus concentré, sophistiqué et menaçant. Avec l'aide à la production de Chris Thomas, le groupe a créé un son dense et atmosphérique qui a comblé le fossé entre les sensibilités rétro-pop et la manipulation électronique futuriste.\n\nSur le plan thématique, For Your Pleasure explore l'intersection entre l'intellectualisme des écoles d'art, l'artifice moderne et le désir dystopique. Des titres tels que « In Every Dream Home a Heartache » — une ballade étrange et lente sur l'aliénation, centrée sur une poupée gonflable — illustrent parfaitement la tension entre le crooning romantique de Ferry et l'approche innovante du groupe en matière d'artifice en studio. La production de l'album utilise des boucles de bande, le déphasage et une instrumentation traitée pour construire un univers sonore qui semble à la fois glamour et claustrophobe. Couronné de succès commercial et critique, l'album a atteint la quatrième place des classements britanniques et reste largement considéré comme l'un des disques les plus influents dans le développement de l'art rock, préfigurant la voie pour d'innombrables artistes post-punk et électroniques à venir. La pochette emblématique, mettant en scène le mannequin Amanda Lear avec une panthère noire, demeure l'une des images les plus célèbres de l'histoire de la musique, encapsulant l'attrait de l'album pour le danger et la décadence de la haute couture.",
+      "source_sha256": "030d73b91669188645434a6c660aca55334bde7d38038a1089402d8ca0868f69",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:23:19.935Z"
+    }
+  }
 }

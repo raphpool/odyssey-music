@@ -64,5 +64,14 @@
   ],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Valley of the Shadows » demeure une réalisation séminale dans l'histoire du jungle et du drum and bass, cimentant l'héritage du duo Origin Unknown, composé de Andy C et Ant Miles.",
+      "article": "« Valley of the Shadows » demeure une réalisation séminale dans l'histoire du jungle et du drum and bass, cimentant l'héritage du duo Origin Unknown, composé de Andy C et Ant Miles. Sorti à l'origine en 1993 sur RAM Records, le morceau figurait initialement en face B de « The Touch », mais son impact profond sur les pistes de danse l'a rapidement vu éclipser le titre principal. La chanson se caractérise par sa tension atmosphérique, portée par ses échantillons vocaux emblématiques et obsédants : « Felt that I was in this long dark tunnel », tirés d'un documentaire de la BBC de 1988 intitulé Q.E.D. sur les expériences de sortie de corps.\n\nMusicalement, « Valley of the Shadows » était en avance sur son temps, s'écartant des structures rigides du breakbeat hardcore prévalant en 1993. Son arrangement dépouillé et inquiétant ainsi que son utilisation sophistiquée de l'espace ont contribué à tracer une nouvelle voie pour ce qui allait devenir le drum and bass moderne. Produit en seulement quatre heures à l'aide de sons de batterie provenant d'un CD offert avec le magazine Future Music, le morceau demeure un témoignage de l'ingéniosité brute de la scène rave britannique du début des années 90. Sa longévité est telle qu'il a fait l'objet d'une réédition autonome en 1996, se classant finalement dans le UK Singles Chart et assurant sa place d'hymne qui continue d'être joué et remixé dans les clubs du monde entier. Pour les passionnés du genre, le morceau sert de pont vital entre l'expérimentation chaotique et riche en échantillons du jungle primitif et l'esthétique plus raffinée et propulsive du drum and bass ultérieur.",
+      "source_sha256": "bbdd3bdc5180e59c3b9c34eb58ba2a10d3d78ab02968c843e176dc5e5a887c68",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:25.175Z"
+    }
+  }
 }

@@ -58,5 +58,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Vibes » est un duo mélancolique et atmosphérique issu de l'album « Lady Wood » de Tove Lo sorti en 2016, avec la participation vocale de Joe Janiak, et servant de conclusion au chapitre « Fairy Dust » du disque.",
+      "article": "« Vibes » est un duo synth-pop mélancolique de l'auteure-compositrice-interprète suédoise Tove Lo, avec la participation du musicien anglais Joe Janiak. Sortie en 2016 en tant que sixième piste de son deuxième album studio, « Lady Wood », la chanson sert de conclusion au premier chapitre de l'album, intitulé « Fairy Dust ». Le morceau est connu pour sa production atmosphérique et pulsée — assurée par l'équipe suédoise d'auteurs-compositeurs et de producteurs The Struts — ainsi que pour son interaction vocale intime entre Tove Lo et Janiak, explorant des thèmes de connexion, de vulnérabilité émotionnelle et d'alchimie enivrante.\n\nSur le plan lyrique, la chanson capture l'attraction intense, presque viscérale, d'une rencontre romantique, avec des couplets qui passent d'une proximité physique à des questions existentielles plus larges sur l'attirance et le désir. Sa production mélange des éléments d'électro et de pop alternative, créant un paysage sonore à la fois soigné et brut. La chanson a été bien accueillie par les fans pour sa conception sonore immersive et demeure un moment fort de l'ère « Lady Wood ». Au-delà de sa place sur l'album, « Vibes » a bénéficié d'une exposition supplémentaire grâce à son inclusion dans le long métrage « Power Rangers » de 2017. Cette collaboration souligne le penchant de Tove Lo pour les récits pop complexes et mélancoliques, marquant un moment significatif dans l'arc narratif de sa production artistique durant cette période.",
+      "source_sha256": "a1f531c9ad443ba0c9de65e9b55a0323c68661ea4e498fe8884b8134f15baf5a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:53:13.259Z"
+    }
+  }
 }

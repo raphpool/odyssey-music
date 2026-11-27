@@ -86,5 +86,14 @@
     }
   ],
   "producers": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon de la musique électronique expérimentale des années 1990, Tri Repetae a marqué la transition d'Autechre d'une IDM mélodique vers une conception sonore abstraite, texturée et riche en glitch qui allait définir leur héritage durable.",
+      "article": "Tri Repetae (souvent stylisé « tri repetae. ») est le troisième album studio du duo de musique électronique anglais Autechre, sorti le 6 novembre 1995 sur le label influent Warp. Marquant un pivot distinct par rapport à l'accessibilité mélodique de leurs œuvres précédentes, Incunabula (1993) et Amber (1994), ce disque a consolidé la réputation de Sean Booth et Rob Brown en tant que pionniers d'une branche de la musique électronique plus complexe, abstraite et axée sur la texture. L'album a émergé de la fertile scène électronique de Sheffield, tirant une inspiration significative des esthétiques « glitch » émergentes partagées au sein de leur cercle, qui incluait des collaborations et des échanges avec des producteurs comme Mark Fell et Jez Potter.\n\nMusicalement, Tri Repetae se caractérise par un virage vers des structures rythmiques minimales et répétitives combinées à une conception sonore complexe et spacieuse. L'album est une étude de la texture, le duo repoussant les limites de ce qui pouvait être accompli avec le matériel de l'époque. L'intention esthétique était si précise que le groupe a déclaré préférer qu'il soit écouté sur vinyle, notant que l'expérience d'écoute était « complète avec le bruit de surface ». Son identité visuelle, conçue par The Designers Republic, a renforcé cet ethos froid, mécanique, mais organique à travers des palettes de couleurs spécifiques. Des décennies plus tard, Tri Repetae est largement considéré comme une œuvre séminale, comblant le fossé entre l'intelligent dance music (IDM) et l'ambient expérimental, et influençant des générations de musiciens électroniques grâce à son ingénierie sonore sans compromis. Il demeure une pierre angulaire du catalogue de Warp Records et une déclaration définitive sur les possibilités de la production électronique au milieu des années 90.",
+      "source_sha256": "a40666bbc3991d05fe82b872645760cb4c090cc387ebd850936a2fbdbfa63b2d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:36:13.443Z"
+    }
+  }
 }

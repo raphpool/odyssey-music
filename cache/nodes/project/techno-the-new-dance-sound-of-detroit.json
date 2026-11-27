@@ -78,5 +78,14 @@
       "name": "Neil Rushton"
     }
   ],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une compilation historique de 1988, dirigée par Derrick May et Neil Rushton, qui a défini la techno de Détroit comme un genre indépendant de la house de Chicago.",
+      "article": "« Techno! The New Dance Sound of Detroit » est une compilation séminale de 1988 qui sert d'acte de baptême définitif au genre techno de Détroit. Publié sur 10 Records, le label britannique de Virgin Records, le projet a été dirigé par le dénicheur de talents britannique Neil Rushton et le pionnier de Détroit Derrick May. Au moment de sa sortie, la musique électronique émergeant de Détroit était souvent classée par erreur par le public international comme une variante régionale de la house de Chicago. Rushton, reconnaissant les paysages sonores futuristes uniques produits par les Belleville Three (Juan Atkins, Derrick May et Kevin Saunderson), a cherché à distinguer la production de la ville. Suite à l'inclusion du morceau « Techno Music » de Juan Atkins — fortement influencé par les écrits futuristes d'Alvin Toffler — l'équipe a opté pour le terme « techno » pour encadrer le projet. Bien que la compilation n'ait pas connu un succès commercial immédiat massif, elle a constitué un jalon culturel crucial qui a fait découvrir le son de Détroit aux auditeurs européens. Elle a catalysé la reconnaissance internationale de figures comme May, Atkins et Saunderson, et a ouvert la voie à l'expansion mondiale de la techno en tant que genre distinct et influent de musique électronique de danse. L'album présente un échantillon équilibré de pionniers précoces et de morceaux essentiels, dont « Big Fun » d'Inner City, qui est devenu plus tard un succès majeur, ainsi que des œuvres de Blake Baxter et Eddie Fowlkes. Aujourd'hui, il demeure un document historique vital qui capture un moment fugace et transformateur où l'esprit industriel et expérimental de Détroit a été pour la première fois solidifié sous un nom qui allait définir une génération de musique de club.",
+      "source_sha256": "d2b52e699e8175722a93cb20fb4fa2d9bced4933d2d2f700d01d8d985e5f83fb",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:34:17.679Z"
+    }
+  }
 }

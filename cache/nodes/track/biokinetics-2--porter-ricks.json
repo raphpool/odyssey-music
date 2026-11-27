@@ -74,5 +74,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pièce maîtresse du dub techno sombre d'inspiration maritime, « Biokinetics 2 » met en avant les textures profondes et réverbérées qui ont défini l'underground berlinois des années 1990.",
+      "article": "« Biokinetics 2 » est un morceau séminal issu de l'album Biokinetics de 1996 du duo allemand Porter Ricks. Publié sur le légendaire label Chain Reaction — une filiale de Basic Channel —, le morceau est une pierre angulaire du mouvement dub techno qui a défini la scène électronique berlinoise du milieu des années 90. Composée par Andy Mellwig et Thomas Köner, la pièce illustre le « Chain Reaction sound » : une fusion de percussions techno squelettiques et entraînantes avec des paysages sonores profonds et réverbérés qui évoquent la décrépitude maritime industrielle.\n\nMusicalement, « Biokinetics 2 » se caractérise par ses cycles rythmiques hypnotiques, où des battements froids et mécaniques sont submergés sous des couches d'échos dub aqueux et scintillants. La production est délibérément clairsemée mais atmosphérique, se concentrant sur la texture et l'espace plutôt que sur le développement mélodique. Il sert de pont entre la musique ambient et le dub techno, mettant en valeur la capacité unique de Porter Ricks à créer des environnements sonores immersifs, presque tactiles. Le morceau reste très estimé pour son esthétique sombre et menaçante ainsi que pour son influence sur les générations ultérieures de producteurs explorant l'intersection du minimalisme et du dub. Il a été réédité en 2012 par Type Records, consolidant davantage son statut de pièce intemporelle de l'histoire de la musique électronique. Sa résonance réside dans sa capacité à équilibrer une précision mécanique intense avec un sentiment profond et obsédant d'isolement. Le morceau capture l'essence de la philosophie du label Chain Reaction, offrant une expérience à la fois physiquement exigeante et psychologiquement profonde. Grâce à l'utilisation habile du délai et de la superposition sonore, Mellwig et Köner ont créé un monde sonore aquatique qui semble encore avant-gardiste des décennies plus tard.",
+      "source_sha256": "ad7f71c53da24fead86e01992a93f3208610831def6153d23c128ceba8ed6046",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:38:25.049Z"
+    }
+  }
 }

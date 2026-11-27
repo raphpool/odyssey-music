@@ -72,5 +72,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Exploration monumentale de 37 minutes du hypnotisme minimaliste, cette sortie de Ricardo Villalobos définit l'ère micro-house du milieu des années 2000 avec son architecture de boucles d'échantillons folkloriques et sa profondeur rythmique intense.",
+      "article": "Fizheuer Zieheuer est un EP marquant de 2006 du producteur de techno minimale chilien-allemand Ricardo Villalobos, publié sur le label influent Playhouse. S'étendant sur plus de 72 minutes, le projet est dominé par sa pièce-titre tentaculaire de 37 minutes, une leçon magistrale de l'esthétique hypnotique et micro-rythmique qui a défini le paysage électronique minimal du milieu des années 2000. Le morceau est construit autour d'un échantillon de cuivre unique et répétitif tiré de la chanson folklorique serbe « Pobjednički Čoček », que Villalobos tisse dans une tapisserie complexe et évolutive de micro-percussions, de balayages de filtres subtils et de délais profonds et résonnants.\n\nLa sortie occupe un statut mythique dans l'histoire de la musique de danse, souvent citée comme un exemple définitif de la capacité de l'ère « minimal » à pousser la musique électronique vers des territoires expérimentaux expansifs, presque méditatifs. Son influence a été comparée par les critiques à la maîtrise électronique de longue durée de E2-E4 de Manuel Göttsching, cimentant la réputation de Villalobos en tant que pionnier capable de combler le fossé entre la musique de club fonctionnelle et la composition d'avant-garde. Au-delà du morceau-titre, la version CD inclut la pièce complémentaire « Fizbeast », qui dépouille les échantillons de cuivres mélodiques pour isoler et souligner le squelette rythmique sophistiqué de la production. Forgé à une époque de grande expérimentation dans le circuit des clubs de Berlin, Fizheuer Zieheuer demeure une référence pour les producteurs travaillant avec la répétition, la composition basée sur des boucles et l'art subtil de la narration DJ longue durée. Il est largement considéré comme l'un des documents électroniques les plus significatifs de sa décennie.",
+      "source_sha256": "4e0a3826d371fcb63cc6a5db41bd8197278a91f530cf3791e4c28babe265c29d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:23:17.709Z"
+    }
+  }
 }

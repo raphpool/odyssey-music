@@ -52,5 +52,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un morceau downtempo atmosphérique et mélancolique avec Chrissie Hynde, surtout connu pour sa réinterprétation évocatrice du classique « State of Independence » de Vangelis et Jon Anderson.",
+      "article": "« Spiritual High (State of Independence) » est une production électronique-pop déterminante du collectif britannique Moodswings, avec la chanteuse légendaire Chrissie Hynde. Sorti en 1991, le morceau est devenu un succès radiophonique notable, en particulier pour son mélange atmosphérique de textures ambient, de rythmes électroniques downtempo et de voix aux accents soul. Il s'agit d'une réinterprétation — essentiellement une reprise — du classique de 1981 « State of Independence », composé à l'origine par Vangelis et Jon Anderson. En intégrant des éléments du premier modèle du trip-hop à l'interprétation vocale envoûtante de la chanteuse de The Pretenders, Moodswings a créé un pont entre la pop sophistiquée de la fin des années 80 et l'explosion dance-ambient du début des années 90. La chanson est peut-être plus distinctement mémorisée pour son inclusion d'extraits audio du leader des droits civiques Dr. Martin Luther King Jr., ce qui confère au morceau une couche de gravité sociopolitique très caractéristique de l'expérimentation de l'époque avec une production orientée vers des paysages sonores multicouches. Grâce aux contributions de producteurs et d'ingénieurs comme ceux de Nice & Nasty, le morceau a atteint un son poli et expansif qui a transcendé ses origines de dance-club, l'établissant comme un artefact mémorable de la production électronique britannique du début des années 90. Au-delà de ses performances dans les classements, « Spiritual High » demeure une étude de cas curieuse sur la façon dont les groupes britanniques de l'époque ont recontextualisé les fondations prog-électroniques des années 1970 et 1980 dans les scènes downtempo et house en plein essor.",
+      "source_sha256": "12c2f23ce6c9022ff1542c7011e7329935cc26197def2969f8abf74daa00f653",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:49:19.382Z"
+    }
+  }
 }

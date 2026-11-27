@@ -67,5 +67,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Fusion monumentale de drone metal et d'orchestration avant-gardiste, le chef-d'œuvre de 2009 de Sunn O))) enrichit ses paysages sonores saturés de larsen avec des cordes complexes, des chœurs et des influences de spiritual jazz.",
+      "article": "Sorti en mai 2009, Monoliths & Dimensions s'impose comme un album studio phare et définitif des pionniers américains du drone metal, Sunn O))). Élargissant considérablement la densité monolithique portée par les guitares qui définissait leurs travaux précédents, cet album constitue l'aboutissement de deux années d'expérimentation et de collaboration minutieuses. Loin d'être un simple hybride de metal et de musique orchestrale, le projet agit comme une expansion prismatique du son, tissant une instrumentation acoustique, des ensembles complexes de cuivres et d'anches, un trio de contrebasse et un chœur de femmes viennois — dirigé par Jessika Kenney — au sein de la base drone fondamentale du groupe. Les membres principaux Stephen O’Malley et Greg Anderson ont travaillé en étroite collaboration avec les producteurs Randall Dunn et Mell Dettmer pour exploiter le timbre du larsen, façonnant finalement une œuvre qui demeure profondément musicale, abstraite et incroyablement puissante. L'album présente une vaste gamme de collaborateurs invités, dont le compositeur Eyvind Kang, le guitariste Oren Ambarchi, le chanteur Attila Csihar et le guitariste d'Earth, Dylan Carlson. Le morceau final, « Alice », constitue un hommage poignant et transcendant à la regrettée harpiste de jazz Alice Coltrane, ancrant les penchants éthérés et heavy-psych de l'album dans un héritage d'exploration spirituelle profonde. En intégrant ces arrangements complexes et non linéaires, Sunn O))) a réussi à affiner son « dreamsludge » caractéristique pour en faire quelque chose à la fois plus vaste et plus délicat que leurs efforts précédents, consolidant ainsi leur influence au sein des sphères expérimentales et avant-gardistes. La pochette de l'album présente l'œuvre « Out-of-round X » de Richard Serra, un reflet visuel du poids monumental et structuré que la musique cherche à évoquer. Acclamé par la critique dès sa sortie, il continue d'être considéré comme un sommet du genre drone metal.",
+      "source_sha256": "1ea4dd4f077851e5845a66432676e5b4d5a2f3d21edca5699146d4d9c807f371",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:28:17.853Z"
+    }
+  }
 }

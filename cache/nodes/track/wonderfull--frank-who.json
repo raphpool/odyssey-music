@@ -38,5 +38,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une production trance néerlandaise entraînante de 2003 signée Frank Who?, qui capture l'euphorie mélodique et la précision rythmique du son club de pointe de cette époque.",
+      "article": "« Wonderfull » est un morceau de trance à haute énergie sorti en 2003 par l'artiste de musique électronique Frank Who? (un alias du producteur F. Massif). Apparu durant une période prolifique pour la scène trance néerlandaise, le morceau a été publié sur 1969 Recordings, un label synonyme du paysage sonore mélodique et entraînant du mouvement trance du début des années 2000 aux Pays-Bas. « Wonderfull » capture l'essence de cette époque spécifique, caractérisée par des mélodies de synthétiseur expansives, une intensité rythmique et des techniques de production atmosphériques conçues pour les grandes pistes de danse.\n\nLe morceau témoigne de la production sonore axée sur les clubs de l'époque, mettant l'accent sur un rythme 4/4 entraînant associé à des leads planants typiques de la trance, oscillant entre mélancolie et euphorie. Comme beaucoup de sorties 12 pouces du label 1969 Recordings au début des années 2000, il souligne le savoir-faire technique qui a défini la communauté trance néerlandaise. Frank Who? équilibre habilement la précision mécanique des percussions électroniques avec des couches mélodiques fluides et émotives, typiques du croisement entre la progressive trance et les rythmes plus durs et plus rapides populaires dans les clubs néerlandais en 2003. Bien que le morceau reste une pièce de niche de la discographie trance mondiale, il incarne l'approche studio sophistiquée qui a fait des Pays-Bas un centre névralgique de la musique électronique de danse au tournant du millénaire. Le morceau se place aux côtés d'autres productions notables du même label et de la même époque, reflétant une période où la trance s'est orientée vers des sensibilités plus polies et destinées aux grandes salles. C'est une œuvre qui valorise la montée en puissance, la texture sonore et l'élan rythmique, des éléments qui ont fait de la trance néerlandaise du début des années 2000 une force culturelle significative dans la culture club internationale. Le projet comprend également le morceau « MSN (Make Some Noise) », ancrant davantage son identité dans les tendances esthétiques de son temps.",
+      "source_sha256": "3e4b137574eb099c60dfad7032d264f6520b94e76b239000f6e97478f32eb1b5",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:53:23.286Z"
+    }
+  }
 }

@@ -91,5 +91,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Pierre angulaire du dark ambient, le chef-d'œuvre de 1992 de Thomas Köner, « Teimo », utilise des enregistrements innovants de gongs sous l'eau pour créer un paysage sonore immersif et d'une lenteur glaciaire qui a défini l'atmosphère du genre.",
+      "article": "Sorti en 1992, « Teimo » s'impose comme le deuxième album solo définitif du pionnier allemand de l'ambient Thomas Köner. Il est largement considéré comme le disque qui a établi la signature sonore de Köner, une leçon magistrale de musique drone sombre et atmosphérique qui semble à la fois vaste et claustrophobiquement intime. Alors que son premier album « Nunatak Gongamur » a fait découvrir au monde ses sensibilités minimalistes, « Teimo » a affiné ces idées en un paysage glacé et cohérent qui a cimenté son influence au sein des scènes ambient et expérimentales des années 1990.\n\nL'album est célèbre pour les techniques de production innovantes de Köner, notamment l'enregistrement de gongs sous l'eau. Ce processus a imprégné les morceaux d'une résonance trouble et désorientante qui reflète parfaitement les préoccupations thématiques de l'album concernant les environnements gelés et désolés. Des titres comme « Andenes » — nommé d'après un village de Norvège — et les trois parties de « Nieve Penitentes » évoquent des paysages de neige en haute altitude et un froid mordant. En se concentrant sur des textures à mouvement lent et des fréquences de basses profondes, « Teimo » dépasse le simple son d'arrière-plan, exigeant une expérience d'écoute immersive et presque tactile. Avec sa sortie ultérieure en 1993, « Permafrost », « Teimo » est fréquemment cité par les critiques et les auditeurs comme une pierre angulaire du genre dark ambient, démontrant une maîtrise précoce de la superposition sonore qui continue de résonner auprès des fans de musique électronique avant-gardiste et expérimentale. Son héritage durable est souligné par sa réédition ultérieure aux côtés de « Permafrost », consolidant davantage son statut d'œuvre essentielle et fondamentale dans la discographie de Köner.",
+      "source_sha256": "7ed4be775f1b7a36be8676307a6809c2ec40511a96b72bdab8640a19ae359c72",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:34:19.040Z"
+    }
+  }
 }

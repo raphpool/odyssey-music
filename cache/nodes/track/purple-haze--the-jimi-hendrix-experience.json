@@ -76,5 +76,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un hymne rock monumental de 1967, défini par son riff de guitare brûlant et saturé d'effets ainsi que par ses techniques de studio pionnières.",
+      "article": "« Purple Haze » demeure l'un des hymnes les plus emblématiques de l'ère du rock psychédélique des années 1960, publié par The Jimi Hendrix Experience en 1967. Écrit par le virtuose de la guitare Jimi Hendrix, le morceau est célèbre pour son riff d'ouverture explosif et distordu — incluant le fameux « accord Hendrix » (un E7#9) — et pour son utilisation pionnière d'effets de studio. Produit par Chas Chandler aux studios De Lane Lea et Olympic de Londres, l'enregistrement a capturé l'énergie brute du power trio : Jimi Hendrix à la guitare et au chant, Mitch Mitchell à la batterie et Noel Redding à la basse.\n\nLa signature sonore de la chanson est définie par des techniques de production expérimentales, notamment l'utilisation précoce de la pédale de guitare « Octavia », développée par Roger Mayer pour doubler la fréquence du signal d'entrée, créant un effet d'octave aigu distinctif. Grâce au multi-piste et à une spatialisation innovante, Chas Chandler et Jimi Hendrix ont façonné une production « mur de son » qui a repoussé les limites de ce qui était possible en 1967. Bien qu'il soit souvent associé à la contre-culture psychédélique de l'époque, Jimi Hendrix lui-même l'a décrit comme une chanson d'amour. Il reste un jalon du hard rock et du proto-metal, consolidant la réputation de Jimi Hendrix en tant que guitariste révolutionnaire ayant fondamentalement remodelé le langage sonore de la musique rock. Il figure en tant que piste d'ouverture sur l'édition nord-américaine du premier album studio du groupe, Are You Experienced. Son influence sur le heavy metal et le hard rock persiste, le morceau ayant été intronisé au Grammy Hall of Fame. Le titre est sorti sur le label Track au Royaume-Uni et sur Reprise aux États-Unis.",
+      "source_sha256": "3203fd5426b84dcbd5d757d60ee6512154a4a83b766bf6e2c38f203cefb217a6",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:17.221Z"
+    }
+  }
 }

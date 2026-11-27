@@ -106,5 +106,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Nursery Cryme est le chef-d'œuvre historique de 1971 qui a introduit la formation classique de Genesis, mêlant narration gothique et arrangements symphoniques complexes qui ont défini le rock progressif. Il contient l'épopée obsédante « The Musical Box » et demeure une référence essentielle de l'évolution artistique précoce du groupe.",
+      "article": "Nursery Cryme, publié en novembre 1971 chez Charisma Records, constitue une étape charnière dans l'histoire du rock progressif et la carrière du groupe britannique Genesis. En tant que troisième album studio, il représente un pivot créatif crucial, marquant les débuts de la formation « classique » du groupe avec l'arrivée du batteur Phil Collins et du guitariste Steve Hackett. Remplaçant le batteur John Mayhew et le guitariste Anthony Phillips, Collins et Hackett ont apporté une dextérité technique et une couleur instrumentale inédites qui ont défini le son du groupe tout au long des années 1970.\n\nL'album est largement admiré pour son mélange d'arrangements symphoniques complexes et de narration surréaliste, typiquement britannique. Il s'ouvre sur l'ambitieuse épopée de dix minutes « The Musical Box », un conte obsédant de possession fantomatique devenu une pièce maîtresse des prestations scéniques du chanteur Peter Gabriel, qui arborait des costumes théâtraux pour incarner ses personnages. Des titres comme « The Return of the Giant Hogweed » démontrent la maîtrise naissante du groupe en matière de changements dynamiques, tissant des passages de guitare complexes et agressifs signés Hackett avec les textures de clavier ornées de Tony Banks.\n\nAu-delà de son ambition technique, Nursery Cryme a établi le paysage thématique que Genesis allait explorer pendant des années : fantastique gothique, récits historiques et études de personnages excentriques comme « Harold the Barrel ». Bien que l'album n'ait pas été un succès commercial immédiat lors de sa sortie au Royaume-Uni, il a assuré au groupe un public dévoué et a fourni les bases essentielles à leurs triomphes artistiques ultérieurs, Foxtrot et Selling England by the Pound. Il demeure un exemple par excellence du sous-genre prog symphonique, célébré pour sa profondeur narrative cohérente, sa musicalité raffinée et la synthèse parfaite entre délicatesse acoustique et puissance électrique.",
+      "source_sha256": "21969a6b756e12b037fe29786da03dba62e0adeb02a7216afbf16144038f8e9a",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:30:15.687Z"
+    }
+  }
 }

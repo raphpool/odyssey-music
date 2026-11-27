@@ -51,5 +51,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Jalon de l'ère IDM, cet album met en valeur le mélange unique de percussions drill 'n' bass et de mélodies de basse influencées par le jazz de Squarepusher.",
+      "article": "Hard Normal Daddy est le deuxième album studio du musicien électronique anglais Tom Jenkinson, opérant sous son pseudonyme le plus célèbre, Squarepusher. Sorti le 28 avril 1997, il s'agit de son premier album complet pour le label britannique influent Warp, marquant un moment charnière dans sa carrière et dans le développement du paysage de la musique électronique du milieu des années 1990. L'album constitue un document définitif du sous-genre « drill 'n' bass », une ramification expérimentale de la drum 'n' bass caractérisée par ses percussions à haute vitesse, glitchy, et sa programmation hyperactive, que Jenkinson équilibre avec une chaleur lyrique et une complexité mélodique surprenantes.\n\nContrairement à beaucoup de ses contemporains qui s'appuyaient fortement sur l'effet de choc d'une densité rythmique extrême, Jenkinson a apporté une sensibilité musicale distincte à Hard Normal Daddy, intégrant un jeu de basse fretless sophistiqué aux influences jazz et des arrangements complexes au clavier. Jenkinson lui-même a cité les bandes originales de funk des années 1970 et les thèmes de séries télévisées policières comme influences principales, s'éloignant de l'étiquette « jazz fusion » souvent appliquée à son travail par les critiques de l'époque. Le paysage sonore de l'album est à la fois étranger et étrangement humain, oscillant entre des breaks chaotiques et fracturés et des textures mélodiques fluides qui invitent à des écoutes répétées. La pochette et le packaging, conçus par Jenkinson et Johnny Clayton, offrent un lien austère et ancré avec la ville natale de l'artiste, Chelmsford, présentant des images de paysages locaux et de structures industrielles désaffectées qui contrastent avec la nature futuriste et numérique de la musique.\n\nConsidéré rétrospectivement comme l'un des chefs-d'œuvre définitifs de l'ère IDM, Hard Normal Daddy a assuré la place de Squarepusher à l'avant-garde de la musique électronique expérimentale. Son influence se fait encore sentir dans la manière dont les artistes naviguent entre virtuosité technique et expression émotionnelle brute. En mariant avec succès l'énergie à haut régime de la scène rave britannique avec une approche artisanale, presque classique, de la composition, l'album demeure un point d'entrée essentiel dans la discographie tentaculaire et influente de Tom Jenkinson, agissant comme un pont entre la rave en sous-sol et la salle d'écoute avant-gardiste.",
+      "source_sha256": "d6026b4783822adb65684c26196c7cce4847a5b24d9c03343b72c7cd04597bf7",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:16.107Z"
+    }
+  }
 }

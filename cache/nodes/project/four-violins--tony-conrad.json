@@ -57,5 +57,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Œuvre monumentale du minimalisme de 1964 signée Tony Conrad, « Four Violins » est une exploration brute et multipiste de la juste intonation et du bourdon qui demeure une pierre angulaire du canon avant-gardiste.",
+      "article": "« Four Violins » (1964) est un document fondateur de la composition minimaliste, réalisé par le compositeur et multi-instrumentiste américain visionnaire Tony Conrad. Enregistrée en 1964 mais largement diffusée seulement en 2004, la pièce occupe une place critique dans l'histoire de l'avant-garde new-yorkaise. Elle représente une approche extrême et rigoureuse de la juste intonation et de l'exploration des sons tenus, divergeant du minimalisme rythmique et plus structuré associé à certains de ses contemporains. Conrad, membre clé du Theatre of Eternal Music aux côtés de La Monte Young, John Cale et Marian Zazeela, a utilisé le violon pour générer un champ dense et scintillant d'harmoniques qui a fondamentalement remis en question les idées existantes sur la structure musicale et la performance.\n\nEn superposant plusieurs prises de son propre jeu de violon, Conrad a atteint une richesse psychoacoustique soutenue qui était en avance sur son temps. L'œuvre se caractérise par son esthétique brute et sans compromis, offrant une expérience immersive qui se déploie à travers des changements microtonaux et l'intensité physique des cordes frottées. Sa sortie tardive a permis aux générations ultérieures de musiciens de drone et expérimentaux de réévaluer les contributions de Conrad au minimalisme précoce, situant « Four Violins » comme un précurseur essentiel des mouvements drone et ambient qui allaient suivre au cours des décennies suivantes. Elle demeure un témoignage saisissant de la puissance conceptuelle du son dans sa forme la plus pure et la plus soutenue.",
+      "source_sha256": "6d6be8d48dce5acbaf4d23962545ba6f087f06558107538f194966bbce26b765",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:23:20.224Z"
+    }
+  }
 }

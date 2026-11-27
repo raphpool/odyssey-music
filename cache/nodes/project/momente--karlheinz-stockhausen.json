@@ -52,5 +52,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Une œuvre révolutionnaire de la « forme moment » d'avant-garde qui redéfinit radicalement la cantate par des structures modulaires, des techniques vocales étendues et un vaste collage textuel éclectique.",
+      "article": "Momente (1962–1969) est une composition musicale marquante du pionnier de l'avant-garde allemande Karlheinz Stockhausen, souvent décrite comme une « cantate aux résonances radiophoniques et théâtrales ». Écrite pour une soprano solo, quatre chœurs mixtes et treize instrumentistes — incluant des claviers électriques et une vaste gamme de percussions — l'œuvre représente un tournant décisif dans le développement compositionnel de Stockhausen. S'éloignant du sérialisme rigide et des structures abstraites qui dominaient l'avant-garde européenne des années 1950, Stockhausen a conçu Momente selon la « forme moment ». Dans ce cadre conceptuel, l'attention de la musique se déplace de la téléologie développementale vers l'expérience du « maintenant », où chaque section existe comme une entité autonome conçue pour capturer une sensation ou une perception distincte.\n\nCréée durant une période de profonde transformation personnelle et professionnelle, l'œuvre présente un texte complexe et multilingue qui puise dans des sources disparates : le Cantique des Cantiques, une correspondance personnelle, des rapports anthropologiques de Bronisław Malinowski, et même des exclamations entendues dans le public lors de ses précédentes représentations. L'interprétation vocale est tout aussi expérimentale, utilisant des techniques étendues telles que le chuchotement, le gloussement, le claquement et le rire, aux côtés d'un chant plus conventionnel. Stockhausen souhaitait que ces sons créent un pont médiateur entre les timbres vocaux et instrumentaux, les membres du chœur jouant occasionnellement sur des objets domestiques comme des boîtes à savon et des clés à écrous. En raison de sa structure modulaire et « polyvalente », les trente moments peuvent être agencés selon diverses séquences, renforçant l'intérêt du compositeur pour des formes musicales qui ne sont pas figées mais dynamiques et expérientielles. Elle demeure l'un des chefs-d'œuvre les plus significatifs, bien que stimulants, de la musique contemporaine européenne d'après-guerre.",
+      "source_sha256": "425cb8d8048176e9ef36ff8c9911eba73e1899a40ddbf42c2f44b13ee83b23dd",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:28:17.694Z"
+    }
+  }
 }

@@ -82,5 +82,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Rushup I Bank 12 » est un morceau charnière et marquant de Rushup Edge, l'album de 2007 publié par le mystérieux projet The Tuss sur le label britannique emblématique Rephlex.",
+      "article": "« Rushup I Bank 12 » est un morceau charnière et marquant de Rushup Edge, l'album de 2007 publié par le mystérieux projet The Tuss sur le label britannique emblématique Rephlex. Largement reconnu comme un pseudonyme de Richard D. James (Aphex Twin), The Tuss a offert un exutoire à une forme de musique électronique à la fois abrasive et mélodique, fortement orientée vers l'acid, le breakcore et une conception sonore complexe imprégnée de glitch. « Rushup I Bank 12 » s'impose comme une pièce maîtresse de l'album, reliant une programmation de batterie polyrythmique frénétique à des mélodies de synthétiseur émouvantes et scintillantes, une juxtaposition caractéristique que James a maîtrisée tout au long de sa prolifique carrière.\n\nCe qui distingue ce morceau pour de nombreux passionnés, c'est son intégration audacieuse de mélodies au piano au milieu d'une toile de fond de tension percussive agressive. Il met en valeur les valeurs de production haute fidélité synonymes du projet, souvent célébré pour sa « propreté » sonore distincte, même au sein de structures rythmiques de haute intensité. La sortie de Rushup Edge a alimenté d'intenses spéculations au sein des cercles de musique électronique à l'époque, comblant le fossé entre le son de la série Analord et ses travaux plus expérimentaux. « Rushup I Bank 12 » demeure un favori culte, souvent cité pour ses « dirty » drum breaks et la vulnérabilité inattendue apportée par ses couches harmoniques, cimentant son statut de point culminant essentiel de l'IDM du milieu des années 2000.",
+      "source_sha256": "47ad6ccaca8b094ae55eab9f6fddb917c651e72ee051d1b7a63af19cbfb76a09",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:48:24.638Z"
+    }
+  }
 }

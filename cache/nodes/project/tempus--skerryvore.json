@@ -139,5 +139,14 @@
   ],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Album folk-rock vaste et anthémique du groupe écossais Skerryvore, Tempus mêle instruments traditionnels et production moderne pour explorer les thèmes du temps et de la persévérance.",
+      "article": "Tempus est un album studio du groupe de rock celtique écossais Skerryvore, sorti en avril 2023. Ce projet a marqué un moment significatif dans la longue carrière du groupe, illustrant son évolution depuis ses racines traditionnelles vers un son plus vaste et contemporain qui penche fortement vers la pop, le rock et une production anthémique. Comme le suggère le titre — « tempus » étant le mot latin pour « temps » — le disque sert de regard réflexif sur le passage des années, capturant à la fois l'intimité de l'héritage acoustique du groupe et son ambition pour des scènes plus grandes et internationales.\n\nProduit avec une sensibilité soignée, prête pour les stades, l'album présente des mélodies envolées, des arrangements complexes d'instruments traditionnels comme le fiddle et les cornemuses mêlés à des guitares électriques et des percussions entraînantes. Les titres du projet sont conçus pour évoquer à la fois la nostalgie et l'espoir, résonnant auprès de la base de fans dévoués du groupe tout en atteignant de nouveaux auditeurs grâce à ses structures de chansons accessibles. En comblant le fossé entre l'histoire folk légendaire de l'Écosse et une production moderne adaptée à la radio, Tempus s'impose comme une représentation définitive de la capacité de Skerryvore à maintenir son identité culturelle tout en embrassant une croissance stylistique. L'album a été largement accueilli comme un témoignage de l'endurance du groupe et de sa pertinence continue dans le paysage folk-rock contemporain.",
+      "source_sha256": "52cd34789ba6e8d2ce002b9cd921d279ca144972a3a72fb72a73ef7390d7beb8",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:34:18.801Z"
+    }
+  }
 }

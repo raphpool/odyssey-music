@@ -54,5 +54,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un voyage instrumental tentaculaire de 36 pistes à travers des paysages sonores dark ambient et industriels, enregistré par Nine Inch Nails comme une « bande originale pour rêveries ».",
+      "article": "Sorti en mars 2008, Ghosts I–IV s'impose comme un jalon expérimental pivot dans la discographie de Nine Inch Nails. Développé sur une période de dix semaines de sessions studio intenses et improvisées, le projet a marqué la première sortie indépendante du groupe suite à leur départ d'Interscope Records. Trent Reznor, travaillant en étroite collaboration avec ses collaborateurs fréquents Atticus Ross et Alan Moulder, a cherché à se débarrasser des attentes et des structures rigides de l'écriture rock typique. Le résultat est une collection instrumentale tentaculaire de 36 pistes qui évite la structure traditionnelle des chansons au profit d'une exploration atmosphérique, de textures dark ambient et de paysages sonores décrits par Reznor comme « une bande originale pour rêveries ».\n\nLa création de Ghosts I–IV a été définie par un engagement envers l'impulsion. Les musiciens, incluant des contributeurs comme Alessandro Cortini, Adrian Belew et Brian Viglione, ont utilisé des configurations peu orthodoxes — allant d'instruments standards à des objets trouvés comme des poubelles et des bonbonnes d'eau — pour construire des couches de profondeur sonore. De manière critique, l'album a été publié sous une licence Creative Commons (BY-NC-SA), une décision avant-gardiste qui a permis des interprétations et des remix par les fans, et il est entré dans l'histoire en devenant le premier album sous licence Creative Commons à être nommé pour un Grammy Award. En présentant le disque comme une expérience visuelle et cinématographique plutôt que comme une collection de singles, Nine Inch Nails a réussi à pivoter vers un son plus ambient et industriel qui a ouvert la voie à la carrière ultérieure, hautement acclamée, de Reznor et Ross en tant que compositeurs de musiques de films. Son influence résonne dans l'ère moderne de l'expérimentation électronique collaborative basée sur des projets.",
+      "source_sha256": "3fd810421082e017586ad3186d55813bc7435d1a5a585a98689fa3980d9b4c7b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:13.215Z"
+    }
+  }
 }

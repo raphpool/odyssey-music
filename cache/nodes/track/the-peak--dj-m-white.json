@@ -37,5 +37,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un morceau de techno dynamique et énergique de 2024 par DJ M. White, caractérisé par ses mélodies de synthétiseur sphériques et son rythme pulsant à 136 BPM.",
+      "article": "« The Peak » est un morceau électronique de 2024 produit par DJ M. White, sorti sur le label iM Electronica. Positionné au sein du paysage techno moderne, plus précisément dans le sous-genre techno « peak time/driving », le morceau illustre la tendance contemporaine vers une musique électronique immersive et à haute énergie. À 136 BPM et composé dans la tonalité de Do majeur, le morceau se caractérise par un mélange de sensibilités mélodiques et un travail robuste de synthétiseurs sphériques qui crée un paysage sonore hypnotique mais puissant, destiné aux environnements de haute intensité.\n\nSorti en juin 2024, « The Peak » témoigne de la production actuelle d'iM Electronica, un label qui met fréquemment en avant une musique de danse entraînante et riche en synthétiseurs. La production du morceau se concentre sur l'interaction entre des motifs mélodiques profonds et les fondations rythmiques incessantes synonymes de la techno moderne de « peak time ». Il fonctionne à la fois comme une arme fonctionnelle pour les pistes de danse et comme un témoignage de l'architecture sonore commune au circuit techno moderne axé sur le numérique, où la précision de la conception sonore est aussi vitale que l'impact global de la composition. En capturant un sentiment de mouvement continu et d'expansion mélodique, le morceau résonne avec les attentes esthétiques des clubs et des festivals où la techno entraînante constitue le cœur de l'expérience.",
+      "source_sha256": "40d442044eb385e862d8c466527082fd2f3e55fd2f210a89142e741e7ccff391",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:51:17.440Z"
+    }
+  }
 }

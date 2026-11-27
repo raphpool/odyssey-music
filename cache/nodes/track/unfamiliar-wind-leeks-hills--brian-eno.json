@@ -60,5 +60,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre obsédant et atmosphérique issu de l'album phare de Brian Eno en 1982, Ambient 4: On Land, où des paysages sonores superposés évoquent l'essence d'un environnement physique et onirique.",
+      "article": "Unfamiliar Wind (Leeks Hills) est un morceau ambient séminal du visionnaire britannique Brian Eno, figurant comme la sixième composition de son chef-d'œuvre de 1982, Ambient 4: On Land. Publié sur le label Editions EG, l'album constitue le dernier, et peut-être le plus profond, volet de la série « Ambient » d'Eno, marquant une rupture avec les textures plus légères et mélodiques d'œuvres antérieures comme Music for Airports.\n\nUnfamiliar Wind (Leeks Hills) encapsule l'éthos distinct de l'album : un paysage sonore dense et impressionniste qui semble moins être une composition de studio qu'une écologie capturée. Eno utilise des enregistrements de terrain, des synthèses traitées et une superposition texturale subtile pour évoquer le sentiment d'un espace physique — les Leeks Hills — transformé par des forces atmosphériques, presque surnaturelles. Le morceau fonctionne comme une topographie auditive, ancrant l'auditeur dans un environnement onirique où les frontières entre le son organique et l'artifice électronique se dissolvent complètement. En tant que pierre angulaire du genre ambient, la pièce demeure essentielle pour sa capacité à équilibrer une immobilité profonde avec une complexité étrange et évocatrice qui a redéfini les possibilités de la conception sonore dans la production musicale. Elle témoigne de l'évolution de la philosophie de production d'Eno, où l'environnement lui-même agit comme l'instrument principal.",
+      "source_sha256": "36b591dc68fb551eee72279b3c587fba4359d6827d0e2c1337892a18a1cb4041",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:52:20.723Z"
+    }
+  }
 }

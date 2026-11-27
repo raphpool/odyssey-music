@@ -44,5 +44,14 @@
   ],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Computer Love » est un hymne déterminant du funk des années 1980, enregistré par le légendaire groupe de l'Ohio Zapp et sorti en single en 1986, extrait de leur quatrième album studio, The New Zapp IV U.",
+      "article": "« Computer Love » est un hymne déterminant du funk des années 1980, enregistré par le légendaire groupe de l'Ohio Zapp et sorti en single en 1986, extrait de leur quatrième album studio, The New Zapp IV U. Connu pour son utilisation distinctive et mélancolique de la talk box — un instrument signature utilisé avec maestria par le chef d'orchestre Roger Troutman —, le morceau exprime l'isolement et le désir associés à la recherche de l'amour dans un monde de plus en plus numérisé et distant. La production du titre, assurée par Roger Troutman, met en avant un groove fluide et mid-tempo qui fait le pont entre le R&B traditionnel et le son synth-funk émergent de l'époque, soutenu par les chœurs évocateurs des légendes de la soul Shirley Murdock et Charlie Wilson.\n\nAu-delà de son succès initial dans les classements, atteignant la huitième place du Billboard R&B chart, « Computer Love » a consolidé son statut de pierre angulaire de la culture musicale populaire. Ses hooks de synthétiseur iconiques et scintillants ainsi que ses paroles émotionnellement résonnantes sur la solitude à l'ère numérique en ont fait l'un des morceaux les plus fréquemment samplés de l'histoire du hip-hop et du R&B, formant notamment l'ossature du succès planétaire de 1995 « California Love » par 2Pac avec la participation de Dr. Dre et de Roger Troutman lui-même. Le titre demeure un exemple poignant de la capacité de Zapp à imprégner des sons mécaniques et électroniques d'une profonde émotion humaine, continuant de résonner auprès des auditeurs des décennies après sa sortie originale. Sa présence dans des films comme Menace II Society a davantage assuré sa place en tant que repère sonore essentiel du paysage musical urbain des années 1980.",
+      "source_sha256": "1e5586f7059ffb30427cc541f5182ccb575eb31857ddf98f1bb29daea2e19ec4",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:21.773Z"
+    }
+  }
 }

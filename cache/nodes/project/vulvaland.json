@@ -64,5 +64,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Premier album du duo allemand Mouse on Mars, Vulvaland est une œuvre marquante de la musique électronique expérimentale des années 1990 qui fusionne avec brio les influences ambient, dub et Krautrock au sein d'une esthétique IDM unique.",
+      "article": "Vulvaland est le premier album studio révolutionnaire du duo électronique allemand Mouse on Mars, sorti en 1994 sur le label Too Pure. Représentant un moment charnière dans le développement de la musique électronique des années 1990, particulièrement au sein de la scène de Cologne, le projet a mis en évidence la capacité unique du duo à mélanger des courants expérimentaux de techno, de dub et de Krautrock avec des textures ambient complexes et ondoyantes. Composé, arrangé et produit par Jan St. Werner et Andi Toma, Vulvaland est arrivé à une époque où les frontières de l'IDM et de l'ambient techno étaient repoussées avec audace, préparant le terrain pour la longue et influente carrière du duo.\n\nLe son de l'album est marqué par sa synthèse à la fois organique et numérique, privilégiant les paysages sonores texturés aux structures de danse conventionnelles. Des titres comme « Frosch » et le morceau final tentaculaire de près de 30 minutes, « Katang », démontrent le penchant du duo pour des compositions immersives qui se déploient lentement et récompensent une écoute attentive. Reconnu par la critique pour son ambition créative, le projet a été cité comme un disque essentiel de la renaissance de la musique électronique de Cologne, soulignant le rôle de la ville dans l'évolution mondiale de l'electronica expérimentale et innovante. En tissant ensemble des influences disparates — des fondations rythmiques du dub aux sensibilités plus surréalistes et avant-gardistes de leurs contemporains — Vulvaland a établi un modèle pour le côté « glitchy » et ludique de l'IDM que Mouse on Mars continuerait d'affiner au cours des décennies suivantes. Son héritage demeure un témoignage de l'esprit aventureux de la musique électronique européenne du début des années 90.",
+      "source_sha256": "760b07777528a3308ce4da9185deb777bf4198b84a93cec243d8bd0aed24bd9d",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:36:24.979Z"
+    }
+  }
 }

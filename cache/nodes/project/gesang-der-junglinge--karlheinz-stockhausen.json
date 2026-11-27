@@ -45,5 +45,14 @@
   "tracklist": [],
   "producers": [],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "La composition électronique séminale de Karlheinz Stockhausen qui a ouvert la voie à la synthèse d'éléments vocaux humains avec des textures électroniques, préparant le terrain pour des décennies de conception sonore.",
+      "article": "« Gesang der Jünglinge » (Chant des adolescents), réalisée entre 1955 et 1956 au studio de la Westdeutscher Rundfunk (WDR) à Cologne, demeure le premier chef-d'œuvre imposant de la musique électronique. Composée par le visionnaire compositeur allemand Karlheinz Stockhausen, l'œuvre fut une tentative révolutionnaire de synthétiser les deux traditions dominantes, souvent antagonistes, de la musique d'avant-garde du milieu du siècle : l'école allemande de l'elektronische Musik, qui utilisait strictement des signaux électroniques générés comme des ondes sinusoïdales, et l'école française de la musique concrète, qui se concentrait sur la manipulation de phénomènes acoustiques enregistrés.\n\nAu cœur de « Gesang der Jünglinge » se trouvent trois matériaux électroniques primaires — ondes sinusoïdales, impulsions et bruit blanc filtré — intégrés à la voix enregistrée d'un jeune soprano de 12 ans, Josef Protschka. L'innovation de Stockhausen résidait dans son effort pour jeter un pont entre le mécanique et l'organique, en créant électroniquement des sons de phonèmes et en faisant correspondre les caractéristiques de résonance de la voix humaine à des hauteurs synthétiques. Le texte, tiré de l'histoire biblique de Shadrach, Meshach et Abednego dans le Livre de Daniel, est structuré autour d'une échelle complexe de compréhensibilité, reflétant l'approche intellectuelle rigoureuse de Stockhausen envers le sérialisme et la conception sonore. Conçue à l'origine pour une diffusion spatiale sur cinq canaux, la pièce demeure une référence pour son exploration précoce du son spatialisé, ainsi que pour sa profonde influence sur la culture populaire. Plus particulièrement, les techniques employées dans l'œuvre, incluant l'utilisation de boucles de bande et de collage sonore, ont directement nourri les expérimentations d'avant-garde de The Beatles, notamment sur des titres comme « Tomorrow Never Knows » et « Revolution 9 », contribuant à combler le fossé entre la composition académique rigoureuse et les possibilités sonores évolutives du rock et de la musique expérimentale de la fin des années 1960. Son héritage durable réside dans la manière dont elle a prouvé que la synthèse électronique pouvait être aussi expressive, émotionnelle et structurellement sophistiquée que la musique orchestrale traditionnelle.",
+      "source_sha256": "412747c324e91244f2fbc8d112644e09d6c102b0c87fbc2da8518905154971a1",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:24:13.948Z"
+    }
+  }
 }

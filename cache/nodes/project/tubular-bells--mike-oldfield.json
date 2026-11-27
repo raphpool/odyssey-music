@@ -85,5 +85,14 @@
       "type": "project",
       "name": "Tubular Bells III"
     }
-  ]
+  ],
+  "l10n": {
+    "fr": {
+      "teaser": "Chef-d'œuvre technique et créatif du rock progressif des années 1970, le premier album de Mike Oldfield est une prouesse instrumentale tentaculaire qui a lancé Virgin Records et est devenu un phénomène culturel mondial.",
+      "article": "Tubular Bells est le premier album studio historique du multi-instrumentiste anglais Mike Oldfield, sorti le 25 mai 1973. Il occupe une place particulière dans l'histoire de la musique en tant que première parution de Virgin Records, une initiative qui a contribué au lancement de l'empire Virgin Group. Enregistré principalement au Manor Studio dans l'Oxfordshire alors qu'Oldfield n'avait que 19 ans, l'album est un tour de force d'expérimentation en studio et de composition progressive. Oldfield a joué lui-même de presque tous les instruments, utilisant des techniques d'enregistrement multipiste pionnières, un exploit qu'il a développé en bloquant la tête d'effacement d'un magnétophone pour permettre l'ajout de couches successives d'overdubbing.\n\nMusicalement, l'album est divisé en deux mouvements longs, principalement instrumentaux, qui mêlent rock progressif, éléments de folk, musique classique et structures minimalistes de compositeurs comme Terry Riley. Sa palette sonore est remarquablement vaste, allant de mélodies délicates au piano et à la guitare acoustique à une instrumentation rock lourde et aux emblématiques tubular bells qui donnent leur nom à l'œuvre. Bien que l'album ait connu des ventes lentes au départ, il a rencontré un succès commercial mondial massif suite à son utilisation dans le film d'horreur de 1973 The Exorcist, ce qui a propulsé le thème d'ouverture dans la conscience collective. Depuis sa sortie, il est devenu l'un des albums britanniques les plus vendus de tous les temps et demeure un exemple par excellence du rock expérimental des années 1970. Son influence a été honorée lors de divers jalons culturels, notamment la cérémonie d'ouverture des Jeux olympiques d'été de 2012 à Londres.",
+      "source_sha256": "6193a78ff528e07fe85eaf1e3a9fa783a3bb018c2c16c52a3f78b969c8d81b8b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:36:16.102Z"
+    }
+  }
 }

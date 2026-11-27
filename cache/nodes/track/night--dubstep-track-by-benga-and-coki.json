@@ -44,5 +44,14 @@
   ],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Night » est un hymne dubstep séminal de 2008 produit par les Londoniens Benga et Coki.",
+      "article": "« Night » est un hymne dubstep séminal de 2008 produit par les Londoniens Benga et Coki. Sorti sur le label influent Tempa, le morceau est devenu un moment déterminant pour la transition du genre, passant des clubs sombres et underground à une reconnaissance culturelle plus large. Caractérisé par son accroche vocale et synthétique hypnotique, minimaliste et obsédante, « Night » a évité les tropes plus saccadés et agressifs souvent associés au dubstep de la fin des années 2000, optant plutôt pour une simplicité mélodique hypnotique qui a trouvé un écho bien au-delà du public principal de la scène.\n\nLa collaboration entre Benga (Adegbenga Adejumo) et Coki (Dean Harris), deux figures centrales de la scène dubstep du sud de Londres, a eu lieu à un moment fort du développement du genre. Bien que sa production dépouillée — centrée sur ce synthétiseur principal désormais emblématique et plaintif — ait été initialement polarisante pour certains puristes, elle a indéniablement propulsé le dubstep dans la conscience collective, devenant un incontournable des sets de festival et apparaissant même dans une couverture médiatique plus large à l'époque. Le morceau était une pièce maîtresse de l'album de Benga de 2008, Diary of an Afro Warrior, un document essentiel du son de cette époque.\n\nAujourd'hui, « Night » reste l'un des morceaux électroniques les plus reconnaissables des années 2000. Son impact réside dans sa simplicité trompeuse ; c'était un morceau qui nécessitait une présence massive de sub-bass pour être pleinement apprécié, mais son accroche était immédiatement entraînante, comblant le fossé entre l'expérimentation underground et la sensibilité pop. Il a servi de point de repère, souvent cité pour avoir attiré une nouvelle vague d'auditeurs vers le mouvement dubstep, et continue d'être considéré comme un pont entre les racines fondamentales du genre et son explosion grand public, bien que brève.",
+      "source_sha256": "1e0189222f12ee3abafd578f234525880d7343373bf123ab291707d0c2d36b84",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:46:22.546Z"
+    }
+  }
 }

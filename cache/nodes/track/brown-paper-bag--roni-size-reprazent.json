@@ -67,5 +67,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "Un chef-d'œuvre de drum and bass imprégné de jazz qui a contribué à définir le son de Bristol et a remporté le Mercury Prize en 1997.",
+      "article": "« Brown Paper Bag » est un morceau séminal de l'ensemble de drum and bass Roni Size / Reprazent, sorti en 1997 comme l'un des points forts de leur album phare, New Forms. Souvent cité comme un moment déterminant dans l'intégration d'instruments live à la précision électronique du jungle et du drum and bass britanniques, le morceau est réputé pour son esthétique organique aux accents jazz. Construit autour d'une ligne de contrebasse cool et d'une percussion nerveuse basée sur des breakbeats, « Brown Paper Bag » a démontré que le genre pouvait dépasser le cadre du dancefloor pour atteindre des territoires plus cérébraux et atmosphériques sans sacrifier son énergie viscérale.\n\nÀ sa sortie sur le label Talkin' Loud, le morceau a bénéficié d'un attrait crossover significatif, contribuant à propulser New Forms vers une victoire au prestigieux Mercury Prize en 1997. Cette victoire a marqué un moment historique pour la musique électronique, validant le travail de fusion expérimentale de Roni Size et de ses collaborateurs. La production du morceau, qui équilibre une instrumentation fluide au rendu live avec une programmation numérique acérée, demeure une référence pour le genre, illustrant un niveau de musicalité qui a influencé d'innombrables producteurs par la suite. Il ne s'agit pas simplement d'un morceau de musique de danse ; c'est une composition sophistiquée qui a capturé l'esprit novateur de la scène électronique de Bristol à la fin des années quatre-vingt-dix.",
+      "source_sha256": "a1154812584a5c270ca9b75116ba9e8f4b9429e32229b4b8728c55dd3e222674",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:39:13.263Z"
+    }
+  }
 }

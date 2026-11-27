@@ -71,5 +71,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Do the Strand » est un hymne définitif du glam rock des années 1970, servant de piste d'ouverture au deuxième album séminal de Roxy Music, For Your Pleasure (1973).",
+      "article": "« Do the Strand » est un hymne définitif du glam rock des années 1970, servant de piste d'ouverture au deuxième album séminal de Roxy Music, For Your Pleasure (1973). Écrite par le leader Bryan Ferry, la chanson fonctionne à la fois comme un morceau de danse glam rock par excellence et comme une pièce d'art-pop sophistiquée qui puise dans un éventail étourdissant de références culturelles. Contrairement au premier album du groupe, qui reposait souvent sur des intros atmosphériques, « Do the Strand » démarre immédiatement avec un motif de piano et de saxophone entraînant et plein d'énergie qui donne le ton pour le reste du disque.\n\nSur le plan lyrique, la chanson est un pastiche de haute et basse culture, citant des poids lourds artistiques tels que le Sphinx, la Mona Lisa, Guernica de Picasso et Lolita de Nabokov. Ferry a conçu le morceau comme un hommage moderne aux auteurs-compositeurs de l'ère du jazz, en particulier Cole Porter, tentant de capturer une exubérance à la fois ironique et profondément sincère. Le « Strand » lui-même est une mode de danse fictive — inspirée par une publicité pour des cigarettes — qui sert de métaphore à la « danse de la vie », incarnant le bourdonnement, l'énergie et le flair théâtral qui caractérisaient la scène glam naissante. Malgré son statut de l'une des pistes les plus durables et les plus appréciées du groupe, son histoire commerciale fut modeste, ne parvenant pas à se classer lors de sa réédition au Royaume-Uni en 1978. Néanmoins, son influence fut immédiate ; l'héritage de la chanson est peut-être mieux consolidé par le fait que l'incarnation originale des Sex Pistols (alors appelés The Strand) a tiré son nom directement du morceau, signalant l'impact profond que Roxy Music a eu sur les pionniers du mouvement punk qui allaient suivre peu après. La chanson demeure une pierre angulaire des concerts de Roxy Music, un témoignage de son attrait durable et de sa vitalité sonore.",
+      "source_sha256": "fff385e41f4d2cd2880a8d1b17857d05fb2990e9f0c5a033ef81fad0a3af8e8e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:41:14.098Z"
+    }
+  }
 }

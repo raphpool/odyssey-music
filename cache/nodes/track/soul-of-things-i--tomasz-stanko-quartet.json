@@ -66,5 +66,14 @@
   "personnel": [],
   "samples": [],
   "sampled_by": [],
-  "remixed_by": []
+  "remixed_by": [],
+  "l10n": {
+    "fr": {
+      "teaser": "« Soul of Things I » est le mouvement d'ouverture de l'album phare de 2002, Soul of Things, du Tomasz Stańko Quartet.",
+      "article": "« Soul of Things I » est le mouvement d'ouverture de l'album phare de 2002, Soul of Things, du Tomasz Stańko Quartet. Enregistré au légendaire Rainbow Studio d'Oslo sous la direction de l'ingénieur du son Jan Erik Kongshaug et du producteur Manfred Eicher, le morceau introduit une « suite balladesque » qui a défini la collaboration du quartet. Le titre met en vedette Tomasz Stańko à la trompette, accompagné par la section rythmique qui allait plus tard acquérir une renommée internationale sous le nom de Marcin Wasilewski Trio : le pianiste Marcin Wasilewski, le bassiste Sławomir Kurkiewicz et le batteur Michał Miśkiewicz.\n\nSur le plan musical, la pièce sert de point d'entrée à l'atmosphère cinématographique distincte de l'album. Les critiques ont noté sa qualité « film noir », caractérisée par le phrasé délicat et évocateur de Stańko qui émerge d'un paysage brumeux et atmosphérique. L'interaction entre Stańko et le trio est marquée par un degré extraordinaire de sensibilité ; le jeu de piano de Wasilewski fournit une base fertile et dépouillée qui permet aux mélodies de la trompette de se déployer avec un sens élastique du temps. Plutôt que l'improvisation jazz traditionnelle, la pièce met l'accent sur l'ambiance, l'espace et un langage intérieur partagé, reflétant le rapport musical profond et ancien du quartet. « Soul of Things I » capture un moment où l'« âme » de la musique s'établit par la patience et le silence, établissant un précédent pour l'introspection qui domine le reste de la suite. Il demeure un exemple définitif de l'esthétique du jazz européen défendue par le label ECM au début du XXIe siècle.",
+      "source_sha256": "9b11526ce06eb73fa5a4a4f24c352aaf4a67ed5e2ee5aa81e6afe3846857057e",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:49:19.058Z"
+    }
+  }
 }

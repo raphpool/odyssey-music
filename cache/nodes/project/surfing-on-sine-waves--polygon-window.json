@@ -112,5 +112,14 @@
     }
   ],
   "personnel": [],
-  "related_projects": []
+  "related_projects": [],
+  "l10n": {
+    "fr": {
+      "teaser": "L'unique album studio définitif du projet Polygon Window de Richard D. James, véritable pilier de la série « Artificial Intelligence » de Warp Records au début des années 1990.",
+      "article": "Surfing on Sine Waves est l'album studio séminal et unique publié par Richard D. James sous son alias Polygon Window. Sorti le 11 janvier 1993 chez Warp Records, le projet s'impose comme une entrée marquante de l'influente série « Artificial Intelligence » du label, une collection qui a contribué à définir les scènes émergentes de l'intelligent dance music (IDM) et de l'ambient techno au début des années 1990. Enregistré dans les Llannerlog Studios de James en Cornouailles, l'album fait office de leçon magistrale de synthèse, jetant un pont entre l'énergie frénétique orientée rave de ses travaux antérieurs — souvent associés à son pseudonyme Aphex Twin — et les paysages sonores plus complexes, mélodiques et cérébraux qui allaient caractériser le genre IDM.\n\nLe titre de l'album a été suggéré par le fondateur de Warp, Rob Mitchell, un clin d'œil sardonique à la culture surf que Richard D. James a côtoyée durant son enfance en Cornouailles, et dont il a cherché à se distancier. Malgré sa nature abstraite, la musique est constamment ancrée par la prouesse technique et la profondeur émotionnelle de James. Des titres comme « Polygon Window », « Quoth » et « If It Really Is Me » démontrent un équilibre entre des rythmes acid-techno entraînants et des textures ambient luxuriantes, prouvant que la musique de danse pouvait être aussi intellectuellement exigeante que physiquement captivante. Les évaluations rétrospectives ont constamment loué le disque ; Pitchfork l'a inclus dans sa liste des 50 meilleurs albums IDM de tous les temps, et le magazine Fact l'a reconnu comme l'un des 100 meilleurs albums des années 1990. Avec sa fusion unique de rythmes bruts et « embryonnaires » et un travail de synthèse raffiné, Surfing on Sine Waves demeure une pièce essentielle de l'histoire de la musique électronique, capturant un artiste en pleine période d'évolution rapide tout en cimentant son statut de figure clé de la synthèse moderne.",
+      "source_sha256": "e56f063a2258f3880eaa45e3dce35f8f87ecdac2b55ee848dd08d091341bf61b",
+      "model": "gemini-3.1-flash-lite",
+      "translated_at": "2026-11-27T15:34:13.142Z"
+    }
+  }
 }
