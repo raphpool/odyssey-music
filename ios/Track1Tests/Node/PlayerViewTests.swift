@@ -86,17 +86,31 @@ final class PlayerViewTests: XCTestCase {
 		XCTAssertNotNil(Track1Motion.animation(.fast, reduceMotion: false))
 	}
 
-	func testTheBackgroundIsTheCoverBandsAt0And5And10PercentThenTheElevatedColour() {
+	/// TRA-831 (plan player-gradient-tint, D4): the elevated colour is reached at 45 %, below the screen.
+	func testTheBackgroundIsTheCoverBandsAt0And15And30PercentThenTheElevatedColourFrom45() {
 		let bands = [
 			LinearRGB(red: 0.29, green: 0.33, blue: 0.32), LinearRGB(red: 0.27, green: 0.26, blue: 0.23),
 			LinearRGB(red: 0.20, green: 0.16, blue: 0.13),
 		]
 		let stops = Metrics.tintStops(CoverTint(stops: bands, shadow: bands[0]))
 
-		XCTAssertEqual(stops.map(\.location), [0, 0.05, 0.10, 0.15, 1])
+		XCTAssertEqual(stops.map(\.location), [0, 0.15, 0.30, 0.45, 1])
 		for (stop, band) in zip(stops, bands) { XCTAssertEqual(rgba(stop.color), rgba(Color(band))) }
 		for stop in stops.suffix(2) { XCTAssertEqual(rgba(stop.color), [0x1A, 0x11, 0x0E, 0xFF]) }
 		XCTAssertEqual(Metrics.tintHeight, 2064)
+	}
+
+	/// TRA-831 (D5): the tint covers the whole screen, the dark starts only below its bottom edge.
+	func testTheBackgroundOnlyReachesTheElevatedColourBelowTheScreen() {
+		XCTAssertGreaterThan(Metrics.tintEndpoint * Metrics.tintHeight, Metrics.designHeight)
+	}
+
+	func testTheCoverBandsStrictlyIncreaseAndEndBeforeTheElevatedColour() throws {
+		let positions = Metrics.tintPositions
+		let last = try XCTUnwrap(positions.last)
+		XCTAssertEqual(positions.count, 3)
+		for (previous, next) in zip(positions, positions.dropFirst()) { XCTAssertLessThan(previous, next) }
+		XCTAssertLessThan(last, Metrics.tintEndpoint)
 	}
 
 	func testTheFadeIsClearWhereTheMockupParagraphsReachZero() {
