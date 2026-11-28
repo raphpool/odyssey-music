@@ -293,16 +293,16 @@ Trois parties, dix tickets, 23 points. Points = estimate Linear. ‖ = parallél
 
 | # | Tâche | Tier | Pts | Dépend de |
 |---|---|---|---|---|
-| 1.1 | TRA-? · `src/itunes.ts` : lire `previewUrl`, valider son hôte, lister les pistes d'un album | tier/2 | 2 | — |
-| 1.2 | TRA-? · `src/album-preview.ts` : pistes notables d'un album (graphe) et choix de la piste iTunes | tier/2 | 2 | 1.1 |
-| 1.3 | TRA-? · `src/streaming-links.ts` : résoudre et mettre en sidecar l'extrait par type | tier/2 | 3 | 1.1, 1.2 |
-| 1.4 | TRA-? · `src/mobile/media.ts` + `src/flags.ts` + `docs/track1-api.md` : exposer `preview` dans `/links`, lire les notables, kill switch | tier/2 | 2 | 1.3 |
-| 2.1 ‖ | TRA-? · Core : `PreviewLink`, `LinksResponse.preview`, `NodeViewModel.preview` | tier/2 | 2 | — |
-| 2.2 ‖ | TRA-? · Core : `PreviewEngine` (protocole) et `PreviewPlaybackModel` (machine à états) | tier/2 | 3 | — |
-| 3.0 ‖ | TRA-? · Garde vitest « streaming seul, pas d'arrière-plan » | tier/1 | 1 | — |
-| 3.1 | TRA-? · App : `AVPreviewEngine`, faux moteur UI test, injection jusqu'à `PlayerView` | tier/2 | 3 | 2.2 |
-| 3.2 | TRA-? · App : pochette lecture/pause dans `PlayerNowBar`, ligne d'attribution, câblage dans `PlayerReader` (précondition Q11) | tier/2 | 3 | 2.1, 3.1 |
-| 3.3 | TRA-? · UI test : fixture `preview`, attribution, bascule lecture/pause | tier/1 | 2 | 3.2 |
+| 1.1 | TRA-846 · `src/itunes.ts` : lire `previewUrl`, valider son hôte, lister les pistes d'un album | tier/2 | 2 | — |
+| 1.2 | TRA-847 · `src/album-preview.ts` : pistes notables d'un album (graphe) et choix de la piste iTunes | tier/2 | 2 | 1.1 |
+| 1.3 | TRA-851 · `src/streaming-links.ts` : résoudre et mettre en sidecar l'extrait par type | tier/2 | 3 | 1.1, 1.2 |
+| 1.4 | TRA-852 · `src/mobile/media.ts` + `src/flags.ts` + `docs/track1-api.md` : exposer `preview` dans `/links`, lire les notables, kill switch | tier/2 | 2 | 1.3 |
+| 2.1 ‖ | TRA-848 · Core : `PreviewLink`, `LinksResponse.preview`, `NodeViewModel.preview` | tier/2 | 2 | — |
+| 2.2 ‖ | TRA-849 · Core : `PreviewEngine` (protocole) et `PreviewPlaybackModel` (machine à états) | tier/2 | 3 | — |
+| 3.0 ‖ | TRA-850 · Garde vitest « streaming seul, pas d'arrière-plan » | tier/1 | 1 | — |
+| 3.1 | TRA-853 · App : `AVPreviewEngine`, faux moteur UI test, injection jusqu'à `PlayerView` | tier/2 | 3 | 2.2 |
+| 3.2 | TRA-854 · App : pochette lecture/pause dans `PlayerNowBar`, ligne d'attribution, câblage dans `PlayerReader` (précondition Q11) | tier/2 | 3 | 2.1, 3.1 |
+| 3.3 | TRA-855 · UI test : fixture `preview`, attribution, bascule lecture/pause | tier/1 | 2 | 3.2 |
 
 Diffs attendus (tests compris) : 1.1 ≈ 230, 1.2 ≈ 200, 1.3 ≈ 280, 1.4 ≈ 240, 2.1 ≈ 220, 2.2 ≈ 290,
 3.0 ≈ 90, 3.1 ≈ 260, 3.2 ≈ 290, 3.3 ≈ 120. Si 1.3, 2.2 ou 3.2 dépasse 300 lignes, couper le long de la
@@ -313,41 +313,41 @@ tout moment ; puis 3.1 → 3.2 → 3.3. Les parties 1 et 2 se mergent dans n'imp
 
 ### Partie 1 — Serveur : l'extrait sort de `/links` (déployable seule : champ additif, l'app d'aujourd'hui l'ignore)
 
-- [ ] TRA-? 1.1 — `src/itunes.ts` : `ITunesResult` lit `previewUrl`, `collectionId`, `trackNumber`,
+- [ ] TRA-846 1.1 — `src/itunes.ts` : `ITunesResult` lit `previewUrl`, `collectionId`, `trackNumber`,
   `discNumber`, `wrapperType` ; `isAllowedPreviewUrl` ; `AppleCandidate.previewUrl` / `collectionId` ;
   `lookupAlbumSongs(collectionId)` ; `canonicalName` exporté ; tests `test/itunes.test.ts` et un
   `test/itunes-preview.live.test.ts` (hors `npm run test`).
-- [ ] TRA-? 1.2 — `src/album-preview.ts` (nouveau, pur) : `notableTrackTitles(project, artist)` (D3 :
+- [ ] TRA-847 1.2 — `src/album-preview.ts` (nouveau, pur) : `notableTrackTitles(project, artist)` (D3 :
   `reference_track` puis `notable_tracks`, restreints à la `tracklist`) et `pickAlbumSong(songs, titles)`
   (notable par égalité canonique, sinon piste 1 disque 1) ; tests `test/album-preview.test.ts`.
-- [ ] TRA-? 1.3 — `src/streaming-links.ts` : `PreviewLink` / `PreviewMiss` dans `StreamingLinks`,
+- [ ] TRA-851 1.3 — `src/streaming-links.ts` : `PreviewLink` / `PreviewMiss` dans `StreamingLinks`,
   `ResolveLinksInput.notableTrackTitles` / `previews`, `resolvePreview` par type (D3), résolution
   paresseuse des sidecars sans clé, miss expirante ; tests `test/streaming-links.test.ts`.
-- [ ] TRA-? 1.4 — `src/mobile/media.ts` : `MobileLinksResponse.preview`, lecture du nœud artiste pour les
+- [ ] TRA-852 1.4 — `src/mobile/media.ts` : `MobileLinksResponse.preview`, lecture du nœud artiste pour les
   titres notables, revalidation d'hôte à la sortie, kill switch `previewsEnabled()` (`src/flags.ts`) ;
   `src/server.ts` (commentaire de route) ; `docs/track1-api.md` (section « Liens d'écoute et extrait ») ;
   tests `test/mobile/media.test.ts`.
 
 ### Partie 2 — Core iOS : l'app comprend l'extrait et sait le piloter (déployable seule : rien de visible)
 
-- [ ] TRA-? 2.1 — `APIModels.swift` : `PreviewLink`, `LinksResponse.preview` (additif, hôte validé par
+- [ ] TRA-848 2.1 — `APIModels.swift` : `PreviewLink`, `LinksResponse.preview` (additif, hôte validé par
   `URLValidation.previewAssetURL`) ; `NodeViewModel.preview` ; tests `ListeningTests`,
   `NodeListeningTests`, `NodeViewModelTests`.
-- [ ] TRA-? 2.2 — `ios/Track1Core/Sources/Track1Core/Listening/PreviewPlayback.swift` : `PreviewEngine`,
+- [ ] TRA-849 2.2 — `ios/Track1Core/Sources/Track1Core/Listening/PreviewPlayback.swift` : `PreviewEngine`,
   `PreviewEngineEvent`, `PreviewPlaybackState`, `PreviewPlaybackModel`, `PreviewLink.attributionLabel` ;
   tests `PreviewPlaybackTests` avec un faux moteur.
 
 ### Partie 3 — App iOS : l'extrait se joue dans le lecteur (déployable à partir de 3.2)
 
-- [ ] TRA-? 3.0 — `test/ios-preview-streaming.test.ts` : garde contre le téléchargement d'assets et le
+- [ ] TRA-850 3.0 — `test/ios-preview-streaming.test.ts` : garde contre le téléchargement d'assets et le
   mode arrière-plan.
-- [ ] TRA-? 3.1 — `ios/Track1/Media/AVPreviewEngine.swift` (+ pbxproj), `UITestPreviewEngine` dans
+- [ ] TRA-853 3.1 — `ios/Track1/Media/AVPreviewEngine.swift` (+ pbxproj), `UITestPreviewEngine` dans
   `UITestFixtureReaders.swift`, `AppContainer.makePreviewEngine`, `RootView` → `PlayerDestination` →
   `PlayerView(previewEngine:)` ; `ios/Track1Tests/Media/AVPreviewEngineTests.swift` (+ pbxproj).
-- [ ] TRA-? 3.2 — `Track1Icon.Glyph.pause` ; `PlayerNowBar` : pochette bouton lecture/pause avec glyphe ;
+- [ ] TRA-854 3.2 — `Track1Icon.Glyph.pause` ; `PlayerNowBar` : pochette bouton lecture/pause avec glyphe ;
   `PlayerPreviewAttribution` et `PlayerMetrics.preview*` dans `PlayerView.swift` ; `PlayerReader` crée et
   pilote `PreviewPlaybackModel` ; tests `Track1IconTests`, `PlayerNowBarTests`, `PlayerViewTests`.
-- [ ] TRA-? 3.3 — `UITestFlows.linksBody` porte un `preview` ; `TodayFlowTests` : attribution lue, bascule
+- [ ] TRA-855 3.3 — `UITestFlows.linksBody` porte un `preview` ; `TodayFlowTests` : attribution lue, bascule
   lecture → pause → lecture, capture `3.3-preview`.
 
 ## Risques
