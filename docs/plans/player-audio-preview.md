@@ -1,8 +1,9 @@
 # Lecteur iOS : un extrait légal du morceau pendant la lecture
 
 Plan de la phase `plan` du process de livraison, écrit le 2026-11-28 sur le brief de Raphael (app iOS
-Track1, lecteur `PlayerView`). **En attente de validation** (gate humain, étape 3). Projet Linear : à créer
-après validation.
+Track1, lecteur `PlayerView`). **Validé par Raphael le 2026-11-28** (gate humain, étape 3), amendé le même
+jour avec ses décisions (section « Décisions de Raphael » ci-dessous). Projet Linear : à créer ; les
+identifiants des tickets sont à reporter ici.
 
 Brief : « J'aimerais qu'on ait un extrait de la musique, qu'on obtienne de façon légale — soit un extrait
 de l'album, soit un extrait du titre qu'on recommande — qui se joue dans le player pendant que
@@ -14,6 +15,25 @@ quelles conditions, et ce qui se passe sans extrait.
 
 Tous les chemins sont relatifs à la racine du dépôt ; les numéros de ligne sont ceux de `origin/main` au
 2026-11-28 (`e86f046`).
+
+## Décisions de Raphael (2026-11-28)
+
+Réponses aux questions du gate, intégrées dans les décisions, le découpage et les tickets ci-dessous.
+
+- **Q1 Source** : iTunes Search API sans clé (D1), recommandation acceptée.
+- **Q2 Album** : **pas la piste 1 par défaut.** L'extrait d'un album est une piste « déjà notable » : une
+  piste de l'album qui figure parmi les pistes notables de son artiste. Règle complète en D3 (ordre quand
+  plusieurs pistes sont notables, repli quand aucune ne l'est ou n'a d'extrait). Le repli « piste 1 » est
+  **une hypothèse à confirmer** (Q2b) : Raphael l'a supposée sans la trancher.
+- **Q4 Lecture automatique** à l'ouverture du lecteur : oui. Raphael a été informé de la tension avec la
+  condition « entertainment value » (§ 5.2.5, condition v de la licence) et **assume cette décision de
+  risque** ; le kill switch serveur reste (Risques, ticket 1.4).
+- **Q5 Session audio** : `.ambient` (mode silencieux respecté, jamais d'interruption d'une autre app, pas de
+  démarrage automatique si une autre app joue).
+- **Q10** : ticket 1.4 (champ additif de `/links`) en **tier/2**.
+- **Q3, Q6, Q7 (libellé français), Q8, Q9, silence sans extrait** : recommandations du plan, non contestées.
+- **Q11 reste ouverte** : les conditions non vérifiées (Performance Partners, Identity Guidelines) sont à
+  lire par Raphael **avant le merge de 3.2** ; c'est une précondition écrite dans ce ticket.
 
 ## Problème
 
@@ -160,14 +180,23 @@ du lecteur, alors que `/links` porte déjà la réponse iTunes dont l'extrait so
 `/mobile/v1/nodes/:slug/preview.m4a` — notre bande passante, et une mise en cache côté serveur que la
 condition (iv) interdit.
 
-### D3 — Quel extrait, par type : le morceau lui-même, la piste 1 de l'album, le premier titre iTunes de l'artiste ; rien pour genre et label
+### D3 — Quel extrait, par type : le morceau lui-même, une piste notable de l'album (sinon la piste 1), le premier titre iTunes de l'artiste ; rien pour genre et label
 
 - **track** : le `previewUrl` du candidat `song` déjà retenu pour le lien Apple (`resolveApple("song")`,
   même réponse HTTP, zéro appel de plus). `apple_url` = ce lien.
-- **project** : le candidat `album` retenu donne un `collectionId` ; `/lookup?id=<collectionId>&entity=song`
-  liste ses pistes ; on prend la **première piste du premier disque** qui a un `previewUrl`. Un appel iTunes
-  de plus, une fois (sidecar). `apple_url` = `trackViewUrl` de cette piste (page de l'album, piste
-  sélectionnée).
+- **project** (décision de Raphael, Q2) : une **piste notable de l'album**. Le candidat `album` retenu donne
+  un `collectionId` ; `/lookup?id=<collectionId>&entity=song` liste ses pistes (un appel iTunes de plus, une
+  fois, sidecar). Côté graphe, les pistes notables de l'album sont, **dans cet ordre** : le `reference_track`
+  du premier artiste crédité (`edges.artists[0]`), puis ses `notable_tracks` dans l'ordre de la liste
+  (`src/node-spec.ts:34-39` : le `reference_track` est « the reference track, chosen among discography /
+  notable_tracks », TRA-457 — c'est la plus notable des notables), **restreintes aux pistes qui sont dans la
+  `tracklist` de l'album** (même slug, `src/node-spec.ts:50`). La piste retenue est la première de cette
+  liste dont le titre, canonisé (`canonicalName`, même pliage que `canonicalArtist`), est **égal** au titre
+  d'une piste iTunes de l'album qui a un `previewUrl`. **Repli** : pas d'artiste crédité, artiste absent du
+  cache, pas de `tracklist`, aucune notable sur l'album, aucun titre égal ou aucune notable avec extrait →
+  la **première piste du premier disque** qui a un `previewUrl` (**hypothèse à confirmer, Q2b**). Le
+  sidecar note quel chemin a gagné (`pick: "notable" | "first_track"`), pour l'audit. `apple_url` =
+  `trackViewUrl` de la piste retenue (page de l'album, piste sélectionnée).
 - **artist** : recherche `entity=song` sur le nom de l'artiste ; premier résultat dont le crédit, canonisé
   (`canonicalArtist`, `src/itunes.ts:215-224`), est **exactement** le nom de l'artiste et qui a un
   `previewUrl`. L'ordre d'iTunes tient lieu de « titre le plus connu ». `apple_url` = `trackViewUrl` du
@@ -177,11 +206,15 @@ condition (iv) interdit.
 Un mauvais extrait est pire que pas d'extrait (le principe de `lookupVerifiedAlbumArt`,
 `src/itunes.ts:247-250`) : en l'absence de correspondance vérifiée, miss.
 
-*Alternatives rejetées :* pour un album, la piste la plus connue — iTunes ne donne pas de popularité par
-piste ; la piste présente dans `notable_tracks` de l'artiste — un second graphe à parcourir pour un gain
-incertain (Q2 propose de le garder pour plus tard) ; pour un artiste, la piste 1 du premier projet de sa
-`discography` — deux appels, et la discographie du cache n'est pas ordonnée par notoriété ; pour un
-genre, le `landmark_tracks[0]` — pas de barre Now pour porter l'attribution, brief séparé (Q3).
+*Alternatives rejetées :* pour un album, la piste 1 par défaut — proposition initiale du plan, écartée par
+Raphael (une piste notable dit mieux pourquoi l'album compte ; la piste 1 ne reste que le repli) ; la piste
+la plus connue selon iTunes — iTunes ne donne pas de popularité par piste ; l'ordre de la `tracklist`
+parmi les notables (la plus tôt sur le disque) — l'ordre éditorial `reference_track` puis `notable_tracks`
+porte un signal, l'ordre du disque n'en porte pas ; chercher les notables par l'arête `project` de chaque
+nœud `track` au lieu de la `tracklist` de l'album — une lecture de cache par piste notable, alors que la
+`tracklist` est déjà sur l'album ; pour un artiste, la piste 1 du premier projet de sa `discography` —
+deux appels, et la discographie du cache n'est pas ordonnée par notoriété ; pour un genre, le
+`landmark_tracks[0]` — pas de barre Now pour porter l'attribution, brief séparé (Q3).
 
 ### D4 — Lecture : `AVPlayer` en streaming, session `.ambient`, lecture automatique sauf si une autre app joue, pause par la pochette, arrêt dès que le lecteur disparaît
 
@@ -190,7 +223,10 @@ genre, le `landmark_tracks[0]` — pas de barre Now pour porter l'attribution, b
   secondaire à l'activité principale — ici, lire.
 - **Lecture automatique** à l'ouverture du lecteur dès que l'extrait est prêt, **sauf** si
   `AVAudioSession.isOtherAudioPlaying` est vrai au départ : alors l'extrait attend en pause et la pochette
-  montre « lecture ». Un appui joue quand même (le choix de l'utilisateur).
+  montre « lecture ». Un appui joue quand même (le choix de l'utilisateur). La lecture automatique est une
+  **décision de risque de Raphael** (2026-11-28, Q4), pris en connaissance de la condition « entertainment
+  value » ; le kill switch serveur `ODYSSEY_PREVIEWS` (ticket 1.4) permet de couper tous les extraits sans
+  livrer l'app.
 - **Un seul contrôle** : la pochette de la barre Now devient un bouton lecture / pause, avec un glyphe
   superposé (`play.fill` existant, `pause.fill` à ajouter à `Track1Icon.Glyph`). Pas de barre de
   progression, pas de volume.
@@ -253,37 +289,42 @@ intercepter `URLSession` pour les UI tests — rejeté par le plan D3 de `UITest
 
 ## Découpage
 
-Trois parties, neuf tickets. Points = estimate Linear. ‖ = parallélisable avec la ligne du dessus.
+Trois parties, dix tickets, 23 points. Points = estimate Linear. ‖ = parallélisable avec la ligne du dessus.
 
 | # | Tâche | Tier | Pts | Dépend de |
 |---|---|---|---|---|
 | 1.1 | TRA-? · `src/itunes.ts` : lire `previewUrl`, valider son hôte, lister les pistes d'un album | tier/2 | 2 | — |
-| 1.2 | TRA-? · `src/streaming-links.ts` : résoudre et mettre en sidecar l'extrait par type | tier/2 | 3 | 1.1 |
-| 1.3 | TRA-? · `src/mobile/media.ts` + `docs/track1-api.md` : exposer `preview` dans `/links` | tier/2 | 2 | 1.2 |
+| 1.2 | TRA-? · `src/album-preview.ts` : pistes notables d'un album (graphe) et choix de la piste iTunes | tier/2 | 2 | 1.1 |
+| 1.3 | TRA-? · `src/streaming-links.ts` : résoudre et mettre en sidecar l'extrait par type | tier/2 | 3 | 1.1, 1.2 |
+| 1.4 | TRA-? · `src/mobile/media.ts` + `src/flags.ts` + `docs/track1-api.md` : exposer `preview` dans `/links`, lire les notables, kill switch | tier/2 | 2 | 1.3 |
 | 2.1 ‖ | TRA-? · Core : `PreviewLink`, `LinksResponse.preview`, `NodeViewModel.preview` | tier/2 | 2 | — |
 | 2.2 ‖ | TRA-? · Core : `PreviewEngine` (protocole) et `PreviewPlaybackModel` (machine à états) | tier/2 | 3 | — |
 | 3.0 ‖ | TRA-? · Garde vitest « streaming seul, pas d'arrière-plan » | tier/1 | 1 | — |
 | 3.1 | TRA-? · App : `AVPreviewEngine`, faux moteur UI test, injection jusqu'à `PlayerView` | tier/2 | 3 | 2.2 |
-| 3.2 | TRA-? · App : pochette lecture/pause dans `PlayerNowBar`, ligne d'attribution, câblage dans `PlayerReader` | tier/2 | 3 | 2.1, 3.1 |
+| 3.2 | TRA-? · App : pochette lecture/pause dans `PlayerNowBar`, ligne d'attribution, câblage dans `PlayerReader` (précondition Q11) | tier/2 | 3 | 2.1, 3.1 |
 | 3.3 | TRA-? · UI test : fixture `preview`, attribution, bascule lecture/pause | tier/1 | 2 | 3.2 |
 
-Diffs attendus (tests compris) : 1.1 ≈ 220, 1.2 ≈ 280, 1.3 ≈ 200, 2.1 ≈ 220, 2.2 ≈ 290, 3.0 ≈ 90,
-3.1 ≈ 260, 3.2 ≈ 290, 3.3 ≈ 120. Si 2.2 ou 3.2 dépasse 300 lignes, couper le long de la frontière
-indiquée dans ses notes.
+Diffs attendus (tests compris) : 1.1 ≈ 230, 1.2 ≈ 200, 1.3 ≈ 280, 1.4 ≈ 240, 2.1 ≈ 220, 2.2 ≈ 290,
+3.0 ≈ 90, 3.1 ≈ 260, 3.2 ≈ 290, 3.3 ≈ 120. Si 1.3, 2.2 ou 3.2 dépasse 300 lignes, couper le long de la
+frontière indiquée dans ses notes.
 
-Ordre d'attaque : 1.1 → 1.2 → 1.3 en worktree A ; 2.1 et 2.2 en worktrees B et C en parallèle ; 3.0 à tout
-moment ; puis 3.1 → 3.2 → 3.3. Les parties 1 et 2 se mergent dans n'importe quel ordre.
+Ordre d'attaque : 1.1 → 1.2 → 1.3 → 1.4 en worktree A ; 2.1 et 2.2 en worktrees B et C en parallèle ; 3.0 à
+tout moment ; puis 3.1 → 3.2 → 3.3. Les parties 1 et 2 se mergent dans n'importe quel ordre.
 
 ### Partie 1 — Serveur : l'extrait sort de `/links` (déployable seule : champ additif, l'app d'aujourd'hui l'ignore)
 
 - [ ] TRA-? 1.1 — `src/itunes.ts` : `ITunesResult` lit `previewUrl`, `collectionId`, `trackNumber`,
   `discNumber`, `wrapperType` ; `isAllowedPreviewUrl` ; `AppleCandidate.previewUrl` / `collectionId` ;
-  `lookupAlbumSongs(collectionId)` ; `canonicalArtist` exporté ; tests `test/itunes.test.ts` et un
+  `lookupAlbumSongs(collectionId)` ; `canonicalName` exporté ; tests `test/itunes.test.ts` et un
   `test/itunes-preview.live.test.ts` (hors `npm run test`).
-- [ ] TRA-? 1.2 — `src/streaming-links.ts` : `PreviewLink` / `PreviewMiss` dans `StreamingLinks`,
-  `resolvePreview` par type (D3), résolution paresseuse des sidecars sans clé, miss expirante ; tests
-  `test/streaming-links.test.ts`.
-- [ ] TRA-? 1.3 — `src/mobile/media.ts` : `MobileLinksResponse.preview`, revalidation d'hôte à la sortie ;
+- [ ] TRA-? 1.2 — `src/album-preview.ts` (nouveau, pur) : `notableTrackTitles(project, artist)` (D3 :
+  `reference_track` puis `notable_tracks`, restreints à la `tracklist`) et `pickAlbumSong(songs, titles)`
+  (notable par égalité canonique, sinon piste 1 disque 1) ; tests `test/album-preview.test.ts`.
+- [ ] TRA-? 1.3 — `src/streaming-links.ts` : `PreviewLink` / `PreviewMiss` dans `StreamingLinks`,
+  `ResolveLinksInput.notableTrackTitles` / `previews`, `resolvePreview` par type (D3), résolution
+  paresseuse des sidecars sans clé, miss expirante ; tests `test/streaming-links.test.ts`.
+- [ ] TRA-? 1.4 — `src/mobile/media.ts` : `MobileLinksResponse.preview`, lecture du nœud artiste pour les
+  titres notables, revalidation d'hôte à la sortie, kill switch `previewsEnabled()` (`src/flags.ts`) ;
   `src/server.ts` (commentaire de route) ; `docs/track1-api.md` (section « Liens d'écoute et extrait ») ;
   tests `test/mobile/media.test.ts`.
 
@@ -315,11 +356,19 @@ moment ; puis 3.1 → 3.2 → 3.3. Les parties 1 et 2 se mergent dans n'importe 
   page du nœud, attribution + lien vers le morceau toujours affichés, streaming seul garanti par la garde
   3.0, pas de mode arrière-plan. Plan B sans changement d'app : résoudre la même URL par l'Apple Music API
   (D1), le contrat `/links` ne bouge pas. Plan C : `preview: null` partout en désactivant le résolveur
-  (variable d'environnement `ODYSSEY_PREVIEWS=0`, lue à chaque appel comme `onDemandImagesEnabled`,
-  `src/flags.ts:45-48`) — l'app retombe sur la barre Now d'aujourd'hui.
-- **Lecture automatique perçue comme intrusive ou comme « entertainment value ».** Le son est `.ambient`
-  (silencieux respecté), ne démarre pas par-dessus une autre app, s'arrête au retour, dure 30 s, et porte
-  sur l'œuvre lue. Q4 laisse à Raphael le choix « sur action seulement ».
+  (`previewsEnabled()` dans `src/flags.ts`, variable `ODYSSEY_PREVIEWS=0`, lue à chaque appel comme
+  `onDemandImagesEnabled`, `src/flags.ts:45-48` ; ticket 1.4) — `/links` répond `preview: null` et l'app
+  retombe sur la barre Now d'aujourd'hui, sans livraison App Store.
+- **Lecture automatique perçue comme intrusive ou comme « entertainment value ».** Décision de risque prise
+  par Raphael le 2026-11-28 (Q4), informé de la condition (v) et du § 5.2.5. Garde-fous : le son est
+  `.ambient` (silencieux respecté), ne démarre pas par-dessus une autre app, s'arrête au retour, dure 30 s,
+  et porte sur l'œuvre lue ; le kill switch ci-dessus coupe tout en une variable d'environnement ; passer
+  en « lecture sur appui » est un changement d'une ligne (`autoplay: false` dans `PreviewPlaybackModel`).
+- **La piste notable dépend du graphe, le sidecar n'expire pas.** Si `notable_tracks` ou `tracklist`
+  changent après la première résolution, l'album garde son extrait d'avant (`pick` dans le sidecar dit
+  lequel). `invalidateSidecar` existe (`src/streaming-links.ts:230-232`) ; le brancher sur les écritures
+  de nœud (`invalidateCacheIndex`, `src/server.ts:105-111`) est un ticket `tier/1` si le cas se présente.
+  Un album sans `tracklist` dans le cache tombe sur la piste 1 : accepté et noté dans `pick`.
 - **Limite d'appels iTunes (~20/min par IP, non vérifié).** La résolution est déjà JIT et mise en sidecar ;
   un album coûte un `lookup` de plus, une fois. Un 429 est un miss réessayé après 7 jours
   (`MISS_TTL_MS`), jamais une erreur côté app. Pas de backfill en masse dans ce plan.
@@ -348,8 +397,10 @@ moment ; puis 3.1 → 3.2 → 3.3. Les parties 1 et 2 se mergent dans n'importe 
 
 - Sur un morceau du cache présent sur Apple Music, `GET /mobile/v1/nodes/track:…/links` renvoie
   `preview.url` sur un sous-domaine strict de `itunes.apple.com` ou `mzstatic.com`, `preview.apple_url` sur
-  `music.apple.com`, `preview.track_name` non vide ; sur un album, l'extrait de sa piste 1 ; sur un
-  artiste, un morceau crédité exactement à lui ; sur un genre ou un label, `preview: null`. Deux lectures
+  `music.apple.com`, `preview.track_name` non vide ; sur un album, l'extrait d'une piste notable de l'album
+  (`reference_track`, puis `notable_tracks` de l'artiste, dans la `tracklist`), et seulement à défaut sa
+  piste 1 ; sur un artiste, un morceau crédité exactement à lui ; sur un genre ou un label,
+  `preview: null` ; avec `ODYSSEY_PREVIEWS=0`, `preview: null` partout sans appel iTunes. Deux lectures
   consécutives ne font qu'une résolution.
 - Dans le lecteur iOS, sur un nœud avec extrait : l'extrait démarre seul (sauf autre audio en cours), la
   pochette montre « pause » puis « lecture » à l'appui, la ligne « Extrait avec l'aimable autorisation
@@ -360,40 +411,36 @@ moment ; puis 3.1 → 3.2 → 3.3. Les parties 1 et 2 se mergent dans n'importe 
   `Track1Tests` et toute la suite UI, dont le nouveau test et sa capture.
 - `test/ios-preview-streaming.test.ts` passe et échoue bien si l'on introduit `AVAssetDownloadTask` ou
   `UIBackgroundModes`.
-- Raphael a lu les conditions non vérifiées (Performance Partners, Identity Guidelines) et validé le
-  libellé d'attribution ; le plan est sur `main` avec les identifiants des tickets.
+- Raphael a lu les conditions non vérifiées (Performance Partners, Identity Guidelines) avant le merge de
+  3.2 (Q11, précondition du ticket) ; le plan est sur `main` avec les identifiants des tickets.
 
-## Questions ouvertes pour le gate
+## Questions du gate (tranchées le 2026-11-28, sauf Q2b et Q11)
 
-- **Q1 — Source : iTunes Search API sans clé (D1) ?** Alternative : Apple Music API / MusicKit, plus
-  « officielle » mais clé + JWT + tier/3, et conditions « extraits sans abonnement » tout aussi floues.
-  Recommandation : Search API, avec MusicKit en plan B documenté.
-- **Q2 — Extrait d'un album = piste 1 (D3) ?** Alternative : une piste de l'album présente dans
-  `notable_tracks` de l'artiste quand il y en a une, sinon piste 1 (ticket de plus, ~1 pt, après 1.2).
-- **Q3 — Artiste = son premier titre iTunes ; genre et label = rien (D3) ?** Alternative pour les genres :
-  jouer le `landmark_tracks[0]`, ce qui impose une barre Now (ou un autre porteur d'attribution) pour les
-  genres — brief séparé.
-- **Q4 — Lecture automatique à l'ouverture (D4) ?** Alternative : sur appui seulement, plus prudent vis-à-vis
-  de « entertainment value », mais contraire au brief. Variante : automatique, mémoriser le choix si
-  l'utilisateur met en pause deux fois de suite (hors scope ici).
-- **Q5 — `.ambient` : silencieux respecté, jamais d'interruption d'une autre app, et pas de démarrage si
-  une autre app joue (D4) ?** Alternative `.playback` : audible en mode silencieux, mais coupe la musique
-  de l'utilisateur.
-- **Q6 — Une seule lecture, pas de boucle, pas de fondu (D4) ?** Un article de six phrases se lit en
-  60-90 s ; l'extrait dure 30 s. Recommandation : une lecture, rejouable par la pochette.
-- **Q7 — Libellé d'attribution « Extrait avec l'aimable autorisation d'iTunes » (D5) ?** Alternatives :
-  l'anglais verbatim « Preview provided courtesy of iTunes » (le texte légal), ou « …d'Apple Music » (le
-  nom actuel du service, pas celui de la condition iii).
-- **Q8 — Le contrôle = la pochette de la barre Now avec glyphe superposé (D4) ?** Pas de nœud Figma pour
-  cet état ; le ticket 3.2 fixe les mesures (glyphe 14 pt, voile `colorGlassPill`).
-- **Q9 — Aucun événement analytics (non-but) ?** Un `preview_played` / `preview_paused` serait le premier
-  signal d'écoute réelle du plan de tracking. Brief séparé si oui.
-- **Q10 — Tier/2 pour le champ additif de `/links` (1.3) ?** `tiers.md` classe « changement de contrat
-  d'API public » en tier/3 ; un champ additif, toujours ignorable, consommé par notre seule app, me
-  semble tier/2. Raphael tranche (il peut relever, pas moi abaisser).
-- **Q11 — Qui lit les conditions non vérifiées ?** Les pages Performance Partners et Identity Guidelines
-  sont injoignables depuis la session de planification. Recommandation : Raphael les lit avant le merge
-  de 3.2 ; si elles exigent un badge graphique précis, un ticket `tier/1` remplace la ligne par le badge.
+- **Q1 — Source.** Tranché : iTunes Search API sans clé (D1) ; Apple Music API / MusicKit reste le plan B
+  documenté (même contrat `/links`).
+- **Q2 — Extrait d'un album.** Tranché par Raphael : **une piste notable de l'album**, pas la piste 1.
+  Règle complète en D3 : `reference_track` de l'artiste puis ses `notable_tracks` dans l'ordre, restreints
+  à la `tracklist` de l'album, premier titre égal (canonisé) à une piste iTunes qui a un extrait.
+- **Q2b — Repli quand aucune piste de l'album n'est notable, ou qu'aucune notable n'a d'extrait : la
+  piste 1 du disque 1.** **Hypothèse non tranchée**, supposée par Raphael ; elle est codée comme telle
+  (`pick: "first_track"`) et se remplace par « pas d'extrait » (`null`) en une ligne dans `pickAlbumSong`
+  si Raphael préfère le silence à une piste quelconque.
+- **Q3 — Artiste / genre / label.** Tranché : artiste = son premier titre iTunes crédité exactement ; genre
+  et label = rien (le `landmark_tracks[0]` d'un genre serait un brief séparé).
+- **Q4 — Lecture automatique.** Tranché : oui, à l'ouverture (D4). Décision de risque assumée par Raphael
+  vis-à-vis de « entertainment value » ; kill switch serveur conservé.
+- **Q5 — Session audio.** Tranché : `.ambient`, pas de démarrage automatique si une autre app joue (D4).
+- **Q6 — Une seule lecture, pas de boucle, pas de fondu.** Tranché : oui.
+- **Q7 — Libellé d'attribution.** Tranché : « Extrait avec l'aimable autorisation d'iTunes » (D5), en
+  français.
+- **Q8 — Contrôle.** Tranché : la pochette de la barre Now avec glyphe superposé ; mesures fixées par 3.2.
+- **Q9 — Analytics.** Tranché : aucun événement nouveau (non-but).
+- **Q10 — Tier du champ additif de `/links`.** Tranché : tier/2 (ticket 1.4).
+- **Q11 — Conditions non vérifiées. Ouverte.** Les pages Performance Partners (« Search API » et ses
+  T&C) et les Apple Music Identity Guidelines sont injoignables depuis la session de planification ;
+  Raphael les lit **avant le merge de 3.2**, qui le porte en précondition (case non cochée dans ses
+  critères, comme le veut `tiers.md` pour une étape de procédure). Si elles exigent un badge graphique
+  précis ou un libellé verbatim, un ticket `tier/1` remplace la ligne d'attribution.
 
 ## Tickets (brouillons, format `ticket-template.md`)
 
@@ -415,14 +462,15 @@ Fichiers à modifier (lignes de `origin/main` au 2026-11-28, `e86f046`) :
   (seulement `song`, seulement si `isAllowedPreviewUrl`) et `collectionId?: number` (`album` et `song`) ;
   `toCandidate` (l.110-128) les remplit ; nouveau `isAllowedPreviewUrl` à côté de `toHighResArtwork`
   (l.326-337), sur le modèle de `isAllowedImageUrl` (`src/images/hosts.ts:26-45`) ; nouveau
-  `lookupAlbumSongs` ; `canonicalArtist` (l.215-224) devient `export`.
+  `lookupAlbumSongs` ; le pliage de `canonicalArtist` (l.215-224) devient `export function canonicalName`,
+  `canonicalArtist` n'étant plus qu'un alias interne (1.2 et 1.3 l'appliquent aussi à des titres).
 - `test/itunes.test.ts` — cas ci-dessous, avec un `fetchImpl` injecté comme les tests existants.
 Fichier à créer :
 - `test/itunes-preview.live.test.ts` — tape la vraie API (exclu de `npm run test` par le motif
   `*.live.test.ts`) : « Windowlicker » Aphex Twin en `song` a un `previewUrl` accepté ; `lookupAlbumSongs`
   sur son `collectionId` rend des pistes triées. Sert à vérifier les hôtes réels le jour J.
 Hors-scope explicite :
-- `src/streaming-links.ts`, `src/mobile/**`, le sidecar (ticket 1.2 et 1.3).
+- `src/streaming-links.ts`, `src/album-preview.ts`, `src/mobile/**`, le sidecar (tickets 1.2 à 1.4).
 - `lookupVerifiedAlbumArt` et la logique pochette : inchangés.
 - Aucun nouveau paquet.
 
@@ -448,7 +496,8 @@ Hors-scope explicite :
     /** GET /lookup?id=<collectionId>&entity=song ; songs only (wrapperType "track"), sorted by disc then track;
      *  [] on HTTP error, malformed body, timeout. Zod-checked like albumSearchResponseSchema. */
     export async function lookupAlbumSongs(collectionId: number, fetchImpl?: typeof fetch): Promise<AppleAlbumSong[]>
-    export function canonicalArtist(raw: string): string   // existing, now exported
+    /** Accents, case, punctuation and `&`/`and` folded, nothing else: the folding canonicalArtist applied. */
+    export function canonicalName(raw: string): string
 
 ## Critères d'acceptation
 - [ ] `isAllowedPreviewUrl("https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview1/v4/a/b/c.m4a")` → true ;
@@ -463,7 +512,9 @@ Hors-scope explicite :
       track(d2 t1, sans previewUrl)}` rend `[d1 t1, d1 t2]` ; une réponse `{"results": "nope"}` → `[]` ;
       HTTP 500 → `[]` ; `fetch` qui rejette → `[]` ; l'URL demandée est exactement
       `https://itunes.apple.com/lookup?id=281953326&entity=song`.
-- [ ] `canonicalArtist("Aphex  Twin")` et `canonicalArtist("aphex twin")` sont égaux (test de l'export).
+- [ ] `canonicalName("Windowlicker")`, `canonicalName("WINDOWLICKER ")` et `canonicalName("Window-licker")`
+      sont égaux ; `canonicalName("Rock & Roll") === canonicalName("Rock and Roll")` ; `canonicalName("Vol. 2")`
+      ≠ `canonicalName("Vol. 3")` (test de l'export ; le comportement de `canonicalArtist` ne change pas).
 - [ ] `npm run check` vert ; `test/itunes-preview.live.test.ts` passe en local avec réseau (non exigé en CI).
 
 ## Tests attendus
@@ -487,17 +538,91 @@ aucun appelant modifié.
 - Commits conventionnels, `Refs TRA-<id>` ; PR titrée `TRA-<id> …`, `Fixes TRA-<id>`.
 ```
 
-### 1.2 — Résoudre l'extrait d'un morceau, d'un album ou d'un artiste et le garder dans le sidecar `cache/links/`
+### 1.2 — Choisir la piste notable d'un album : titres notables depuis le graphe, piste iTunes par égalité canonique
 
-- Tier : **tier/2** · Estimate : **3** · Partie 1 · Dépend de : 1.1
+- Tier : **tier/2** · Estimate : **2** · Partie 1 · Dépend de : 1.1
+
+```markdown
+## Contexte
+Raphael a tranché (plan docs/plans/player-audio-preview.md, « Décisions de Raphael », D3) : l'extrait d'un
+album n'est pas sa piste 1 mais une piste « déjà notable » — une piste de l'album que le graphe désigne
+comme notable chez son artiste. Cette tâche écrit la règle, pure et testée, en deux fonctions : d'un côté
+les titres notables d'un album lus dans les arêtes du cache, de l'autre le choix de la piste iTunes qui
+porte l'extrait. Le repli « piste 1 » est une hypothèse de Raphael à confirmer (Q2b) : il est codé, nommé,
+et remplaçable en une ligne.
+
+## Portée
+Fichiers à créer :
+- `src/album-preview.ts` — pur : aucun I/O, aucun `fetch`, aucun accès cache. Importe `canonicalName` de
+  `./itunes.js` (1.1) et les types `EdgeRef` (`src/types.ts:25-35`) et `VizNode` (`src/graph.ts:41-56`).
+- `test/album-preview.test.ts`.
+Hors-scope explicite :
+- `src/streaming-links.ts` (1.3 appelle `pickAlbumSong`), `src/mobile/media.ts` (1.4 appelle
+  `notableTrackTitles`), `src/itunes.ts`, `src/node-spec.ts`, `src/graph.ts`, le schéma.
+- Aucune lecture de nœud `track` : l'appartenance à l'album se lit dans la `tracklist` du projet.
+
+## Contrat
+    /** Edge fields read: project.edges.tracklist (list, src/node-spec.ts:50), artist.edges.reference_track (single,
+     *  l.39) and artist.edges.notable_tracks (list, l.37). `edges` values are EdgeRef | EdgeRef[] (src/graph.ts:48). */
+    export function notableTrackTitles(
+      project: Pick<VizNode, "edges">,
+      artist: Pick<VizNode, "edges"> | null,
+    ): string[]
+    // Order: reference_track first (if its slug is in the tracklist), then notable_tracks in list order, slugs
+    // deduplicated, each title taken from the TRACKLIST edge (the album's spelling). [] when artist is null, when the
+    // project has no tracklist, or when no notable track is on the album.
+    export interface AlbumSongLike { trackName: string; discNumber: number; trackNumber: number; previewUrl: string }
+    export type AlbumPick = "notable" | "first_track"
+    /** First notable title (in order) whose canonicalName equals the canonicalName of a song's trackName → that song,
+     *  "notable". Otherwise the song with the lowest (discNumber, trackNumber) → "first_track" (hypothesis Q2b: one
+     *  return statement to change). null when `songs` is empty. `songs` are the lookupAlbumSongs results, which already
+     *  all carry a previewUrl. */
+    export function pickAlbumSong<S extends AlbumSongLike>(songs: readonly S[], notableTitles: readonly string[]): { song: S; pick: AlbumPick } | null
+
+## Critères d'acceptation
+- [ ] `notableTrackTitles` : artiste avec `reference_track` = T2 et `notable_tracks` = [T3, T1, T9], album dont la
+      `tracklist` = [T1, T2, T3] → `["<nom T2 dans la tracklist>", "<nom T3>", "<nom T1>"]` (T9 absent : hors
+      album) ; `reference_track` absent → ordre de `notable_tracks` ; `reference_track` aussi dans
+      `notable_tracks` → une seule fois, en tête ; `artist === null` → `[]` ; projet sans `tracklist` → `[]` ;
+      `tracklist` donnée comme un seul `EdgeRef` (objet, pas liste) → traitée comme une liste de un ;
+      `notable_tracks` absent et `reference_track` absent → `[]`.
+- [ ] `pickAlbumSong([d1t1 "Intro", d1t2 "Windowlicker", d2t1 "Nannou"], ["Nannou", "Windowlicker"])` → d2t1,
+      `"notable"` (l'ordre des notables gagne, pas celui du disque) ; `(…, ["WINDOWLICKER"])` → d1t2 (égalité
+      canonique) ; `(…, ["Window Licker"])` → d1t2 (ponctuation et espaces pliés) ; `(…, ["Windowlicker (Remix)"])`
+      → `first_track` (pas d'égalité : un titre plus long est un autre titre) ; `(…, [])` → d1t1, `"first_track"` ;
+      `([d2t1, d1t2, d1t1], [])` → d1t1 (tri, pas premier élément) ; `([], ["x"])` → null.
+- [ ] Aucun import autre que `./itunes.js`, `./types.js`, `./graph.js` ; aucune fonction asynchrone.
+- [ ] `npm run check` vert.
+
+## Tests attendus
+- unitaire (`test/album-preview.test.ts`) : les cas ci-dessus, avec des `EdgeRef` minimaux (`slug`, `type`, `name`).
+
+## Tier de risque
+tier/2 — logique métier locale, pure, entièrement couverte ; décide quel extrait est joué (un mauvais choix est
+une mauvaise expérience, pas un incident).
+
+## Notes d'implémentation
+- La `tracklist` est la source du titre comparé : c'est l'orthographe de l'album, celle que l'iTunes `lookup`
+  a le plus de chances de reproduire. `canonicalName` plie accents, casse, ponctuation et `&`/`and`, rien de
+  plus : « Windowlicker (Remix) » ne vaut pas « Windowlicker » (même règle d'égalité que les pochettes, TRA-589).
+- Le repli `first_track` est l'hypothèse Q2b : un commentaire en anglais le dit, avec la date et le lien du plan,
+  pour qu'un futur ticket le change en `null` sans archéologie.
+- Commentaires en anglais ; commits conventionnels `Refs TRA-<id>` ; PR `TRA-<id> …`, `Fixes TRA-<id>`.
+```
+
+### 1.3 — Résoudre l'extrait d'un morceau, d'un album ou d'un artiste et le garder dans le sidecar `cache/links/`
+
+- Tier : **tier/2** · Estimate : **3** · Partie 1 · Dépend de : 1.1, 1.2
 
 ```markdown
 ## Contexte
 `resolveStreamingLinks` (`src/streaming-links.ts`) trouve la page Apple Music d'un nœud et met le résultat
 en sidecar. Le lecteur iOS a besoin, pour le même nœud, de l'URL d'un extrait de 30 s (plan
-docs/plans/player-audio-preview.md, D2, D3) : le morceau lui-même, la piste 1 de l'album, ou le premier
-titre iTunes crédité exactement à l'artiste. Les sidecars déjà écrits n'ont pas la clé : ils sont
-complétés paresseusement à la lecture suivante.
+docs/plans/player-audio-preview.md, D2, D3) : le morceau lui-même, une piste notable de l'album (règle
+`pickAlbumSong` du ticket 1.2, piste 1 en repli), ou le premier titre iTunes crédité exactement à
+l'artiste. Les titres notables viennent de l'appelant (1.4 lit le graphe) : ce module ne lit que le réseau
+et son sidecar. Les sidecars déjà écrits n'ont pas la clé : ils sont complétés paresseusement à la lecture
+suivante. Un drapeau `previews: false` (kill switch, 1.4) saute toute résolution d'extrait.
 
 ## Portée
 Fichiers à modifier (lignes de `origin/main` au 2026-11-28, `e86f046`) :
@@ -512,7 +637,8 @@ Fichiers à modifier (lignes de `origin/main` au 2026-11-28, `e86f046`) :
   frontières externes : injecter par un paramètre `deps` optionnel de `resolveStreamingLinks` (voir Contrat),
   le défaut étant les vraies fonctions.
 Hors-scope explicite :
-- `src/itunes.ts` (fait en 1.1), `src/mobile/**` (1.3), `cache/nodes/**`, le schéma.
+- `src/itunes.ts` (1.1) et `src/album-preview.ts` (1.2) : appelés, pas modifiés ; `src/mobile/**` (1.4),
+  `cache/nodes/**`, le schéma.
 - La résolution Spotify et MusicBrainz : inchangée.
 - Pas de backfill en masse ni de script.
 
@@ -524,6 +650,9 @@ Hors-scope explicite :
       apple_url: string;
       track_name: string;
       source: "itunes";
+      /** Which rule picked it (audit only, never served): the song itself, a notable track of the album, the
+       *  first-track fallback (Q2b), or iTunes' top song of the artist. */
+      pick: "song" | "notable" | "first_track" | "artist_top";
       resolved_at: string;   // ISO
     }
     export interface PreviewMiss { url: null; resolved_at: string }
@@ -541,17 +670,32 @@ Hors-scope explicite :
       findArtistMbidByName: typeof findArtistMbidByName;
       fetchArtistStreamingLinksMb: typeof fetchArtistStreamingLinksMb;
     }
+    export interface ResolveLinksInput {
+      slug: Slug; type: NodeType; name: string; artistName?: string; cacheDir: string; force?: boolean;   // existing
+      /** Projects only: notableTrackTitles(project, artist) from src/album-preview.ts, computed by the caller (1.4). */
+      notableTrackTitles?: string[];
+      /** false: resolve links only, never touch `preview` (kill switch, flags.previewsEnabled). Default true. */
+      previews?: boolean;
+    }
     export async function resolveStreamingLinks(input: ResolveLinksInput, deps?: Partial<StreamingLinksDeps>): Promise<StreamingLinks>
-    /** D3: track → previewUrl of the song candidate kept for `apple`; project → first song (disc 1, track 1)
-     *  of lookupAlbumSongs(candidate.collectionId) that has a preview; artist → first `song` search result whose
-     *  canonicalArtist(artistName) === canonicalArtist(name), not Various Artists, with a preview. null = miss. */
+    /** D3: track → previewUrl of the song candidate kept for `apple` ("song"); project →
+     *  pickAlbumSong(await lookupAlbumSongs(candidate.collectionId), input.notableTrackTitles ?? []) ("notable" |
+     *  "first_track"); artist → first `song` search result whose canonicalName(artistName) === canonicalName(name),
+     *  not Various Artists, with a preview ("artist_top"). null = miss. */
     export async function resolvePreview(input: ResolveLinksInput, appleCandidate: AppleCandidate | null, deps: StreamingLinksDeps): Promise<PreviewLink | null>
 
 ## Critères d'acceptation
 - [ ] track avec candidat `song` porteur de `previewUrl` → `preview.url` = ce `previewUrl`, `apple_url` =
       `links.apple`, `track_name` = `candidate.title`, `source: "itunes"` ; une seule recherche iTunes.
-- [ ] project : candidat `album` (`collectionId: 42`) → `lookupAlbumSongs(42)` appelé une fois ; pistes
-      `[d1 t2, d1 t1]` → `preview` = d1 t1 ; `lookupAlbumSongs` → `[]` → `preview: { url: null, … }`.
+- [ ] project : candidat `album` (`collectionId: 42`) → `lookupAlbumSongs(42)` appelé une fois ; avec
+      `notableTrackTitles: ["Nannou"]` et des pistes `[d1 t1 "Intro", d1 t2 "Nannou"]` → `preview` = d1 t2,
+      `pick: "notable"`, `track_name: "Nannou"`, `apple_url` = l'URL de cette piste ; avec
+      `notableTrackTitles: []` ou absent → d1 t1, `pick: "first_track"` ; `lookupAlbumSongs` → `[]` →
+      `preview: { url: null, … }` ; pas de candidat `album` → miss sans `lookup`.
+- [ ] track → `pick: "song"` ; artist → `pick: "artist_top"`.
+- [ ] `previews: false` : aucun appel `lookupAlbumSongs`, aucune recherche `song` pour un artiste, la clé
+      `preview` du sidecar n'est ni écrite ni modifiée (un sidecar qui en avait une la garde) ; les liens se
+      résolvent comme avant.
 - [ ] artist « Aphex Twin » : résultats `song` `[ {artist: "Aphex Twin & X"}, {artist: "Various Artists"},
       {artist: "aphex twin", previewUrl} ]` → le troisième ; aucun crédit exact → miss ; la requête `song`
       utilise le nom de l'artiste seul.
@@ -590,30 +734,37 @@ public modifié (1.3 s'en charge).
   `resolvePreview` + câblage + tests.
 ```
 
-### 1.3 — Exposer `preview` dans `GET /mobile/v1/nodes/:slug/links` et le documenter
+### 1.4 — Exposer `preview` dans `GET /mobile/v1/nodes/:slug/links`, lire les pistes notables, poser le kill switch, documenter
 
-- Tier : **tier/2** (Q10) · Estimate : **2** · Partie 1 · Dépend de : 1.2
+- Tier : **tier/2** (Q10, tranché) · Estimate : **2** · Partie 1 · Dépend de : 1.3
 
 ```markdown
 ## Contexte
-Le sidecar porte désormais l'extrait (1.2). L'app iOS le lit par la route `/links` qu'elle appelle déjà à
+Le sidecar porte désormais l'extrait (1.3). L'app iOS le lit par la route `/links` qu'elle appelle déjà à
 l'ouverture du lecteur (plan docs/plans/player-audio-preview.md, D2). Le champ est additif : les clients
 d'aujourd'hui (iOS, `mobile/` React Native) l'ignorent. Toute URL est revalidée à la sortie, hôte compris,
-comme `spotify` et `apple`.
+comme `spotify` et `apple`. C'est aussi ici que le graphe entre en jeu : pour un album, la route lit le nœud
+de son premier artiste et passe les titres notables au résolveur (D3). Et c'est ici que vit le kill switch
+`ODYSSEY_PREVIEWS=0` (Risques), qui rend `preview: null` partout sans appel iTunes.
 
 ## Portée
 Fichiers à modifier (lignes de `origin/main` au 2026-11-28, `e86f046`) :
+- `src/flags.ts` — `previewsEnabled()` après `onDemandImagesEnabled` (l.45-48), même forme (fonction, lue à
+  chaque appel, `ODYSSEY_PREVIEWS` à `0`/`false` → off, on par défaut), même doc.
 - `src/mobile/media.ts` — `MobileLinksResponse` (l.26-32) : `preview: MobilePreviewLink | null` ;
-  `links()` (l.107-144) : branche genre/label (l.110-118) → `preview: null` ; branche résolue (l.129-140) →
-  `toMobilePreview(resolved.preview)` ; `STREAMING_HOSTS` (l.56-59) inchangé, l'hôte de l'extrait passe par
-  `isAllowedPreviewUrl` (import de `../itunes.js`).
+  `links()` (l.107-144) : branche genre/label (l.110-118) → `preview: null` ; branche résolue (l.119-140) :
+  pour un `project`, lire le nœud du premier artiste (`dependencies.nodes.read(artists[0].slug)`, null toléré)
+  et calculer `notableTrackTitles(node.node, artist?.node ?? null)` (`src/album-preview.ts`, 1.2) ; appeler
+  `resolveLinks` avec `notableTrackTitles` (projects) et `previews: previewsEnabled()` ; sortie →
+  `toMobilePreview(resolved.preview)`, `null` si le flag est off ; `STREAMING_HOSTS` (l.56-59) inchangé,
+  l'hôte de l'extrait passe par `isAllowedPreviewUrl` (import de `../itunes.js`).
 - `src/server.ts` — commentaire de route `/links` (l.15-20) : mentionner `preview`.
 - `docs/track1-api.md` — nouvelle section « Liens d'écoute et extrait (TRA-<id>) » après « Contenu localisé
   d'une fiche (TRA-810) » (l.142-176), même style : exemple JSON, règles de présence, règle de repli client.
 - `test/mobile/media.test.ts` — étendre le test l.177-211 et le test de route l.228 ; nouveaux cas.
 Hors-scope explicite :
 - `src/mobile/router.ts` (la route existe), `src/mobile/contracts.ts` (les types de `/links` vivent dans
-  `media.ts`), `mobile/` (client RN), iOS.
+  `media.ts`), `src/album-preview.ts` (appelé, pas modifié), `mobile/` (client RN), iOS.
 
 ## Contrat
     export interface MobilePreviewLink {
@@ -624,9 +775,13 @@ Hors-scope explicite :
     }
     export interface MobileLinksResponse {
       slug: Slug; spotify: string | null; apple: string | null; sources: …; resolvedAt: string;
-      /** Always present. null: no preview, or a preview whose url/apple_url/track_name failed validation. */
+      /** Always present. null: no preview, previews switched off, or a preview whose url/apple_url/track_name
+       *  failed validation. `pick` and `resolved_at` never leave the server. */
       preview: MobilePreviewLink | null;
     }
+    // src/flags.ts
+    /** ODYSSEY_PREVIEWS=0 (or false) switches every preview off at the next request: no iTunes call, `preview: null`. */
+    export function previewsEnabled(): boolean
 Réponse HTTP (exemple pour la doc) :
     { "slug": "track:windowlicker--aphex-twin", "spotify": null, "apple": "https://music.apple.com/…?i=…",
       "sources": { "apple": "itunes" }, "resolvedAt": "2026-11-28T10:00:00.000Z",
@@ -640,15 +795,24 @@ Réponse HTTP (exemple pour la doc) :
       `apple_url` sur `https://open.spotify.com/…` → `preview: null` ; `track_name: "  "` → `preview: null`.
 - [ ] `preview` absent ou `{ url: null }` → `preview: null`.
 - [ ] genre et label → `preview: null`, `resolveLinks` jamais appelé (test existant l.177 étendu).
+- [ ] project avec artiste en cache (`reference_track` T2, `notable_tracks` [T3], `tracklist` [T1, T2, T3]) →
+      `resolveLinks` reçoit `notableTrackTitles: ["<T2>", "<T3>"]` ; artiste absent du cache → `[]` ; artist
+      ou track → `notableTrackTitles` absent ; un seul `nodes.read` de plus, et seulement pour un project.
+- [ ] `ODYSSEY_PREVIEWS=0` (via `vi.stubEnv`) → `resolveLinks` reçoit `previews: false` et la réponse porte
+      `preview: null` même si le sidecar en a un ; variable absente → `previews: true` ; `previewsEnabled()`
+      lit la variable à chaque appel (pas de constante de module).
 - [ ] La route `GET /mobile/v1/nodes/:slug/links` sert `preview` avec `Cache-Control: private, max-age=86400`
       (test l.228 étendu) ; la réponse d'un sidecar sans `preview` est identique à celle d'aujourd'hui plus
       `"preview": null`.
-- [ ] `docs/track1-api.md` décrit le champ, sa présence (« toujours présent, `null` sans extrait »), les
-      hôtes acceptés, et la règle client : « un client qui ignore `preview` reste correct ».
+- [ ] `docs/track1-api.md` décrit le champ, sa présence (« toujours présent, `null` sans extrait ou
+      extraits désactivés »), les hôtes acceptés, la provenance par type (D3, sans les détails de choix), et
+      la règle client : « un client qui ignore `preview` reste correct ».
 - [ ] `npm run check` vert ; `test/mobile/compatibility.test.ts` inchangé et vert.
 
 ## Tests attendus
-- unitaire (`test/mobile/media.test.ts`) : les cas ci-dessus via le `media(resolveLinks)` helper existant.
+- unitaire (`test/mobile/media.test.ts`) : les cas ci-dessus via le `media(resolveLinks)` helper existant,
+  qui capture l'`input` reçu ; le flag par `vi.stubEnv("ODYSSEY_PREVIEWS", "0")` + `vi.unstubAllEnvs()`
+  (aucun fichier `test/flags.test.ts` sur `main` : les flags sont testés par leurs consommateurs).
 - intégration : le test de route l.228 (serveur http réel) lit `preview` dans le JSON.
 
 ## Tier de risque
@@ -659,17 +823,21 @@ la sortie. Raphael peut relever en tier/3 (plan, Q10).
 - Même discipline que `toMobileImage` (l.61-79) : « The URL comes from a sidecar derived from third-party
   sources: it is checked on every way out ».
 - `MobileProviderUnavailableError` (l.141-143) couvre déjà un `resolveLinks` qui rejette : rien à ajouter.
+  Une lecture d'artiste qui échoue (`nodes.read` rejette) ne doit PAS faire échouer `/links` : titres `[]`,
+  `log.warn`, et la résolution continue (le repli piste 1 fera foi).
+- `nodes.read` d'un artiste passe par `resolveReadSlug` et peut renvoyer `redirected_from` : lire
+  `result.node`, ignorer le reste.
 - Doc en français, clés en snake_case dans `preview` comme `image_url` / `materialized_at` ; `resolvedAt`
   reste camelCase (historique, décodé sous les deux formes par iOS).
 ```
 
 ### 2.1 — Décoder `preview` dans `LinksResponse` et l'exposer par `NodeViewModel.preview`
 
-- Tier : **tier/2** · Estimate : **2** · Partie 2 · Dépend de : — (contrat 1.3 figé par le plan)
+- Tier : **tier/2** · Estimate : **2** · Partie 2 · Dépend de : — (contrat 1.4 figé par le plan)
 
 ```markdown
 ## Contexte
-La route `/links` va porter un objet `preview` (plan docs/plans/player-audio-preview.md, D2, 1.3). L'app
+La route `/links` va porter un objet `preview` (plan docs/plans/player-audio-preview.md, D2, 1.4). L'app
 doit le décoder comme une donnée tierce — hôte de l'extrait et hôte Apple Music vérifiés — sans jamais
 faire échouer la réponse si le champ manque ou est malformé, puis l'exposer au lecteur à côté de
 `listening`. Rien de visible après cette tâche.
@@ -980,6 +1148,11 @@ de la barre Now devient le bouton lecture/pause, et une ligne d'attribution — 
 docs/plans/player-audio-preview.md, D4, D5) — apparaît au-dessus de la barre et ouvre la page Apple Music du
 morceau. Sans extrait, le lecteur ne change pas d'un pixel.
 
+**Précondition (Q11, étape de procédure) :** avant le merge de cette PR, Raphael lit les conditions que la
+session de planification n'a pas pu vérifier — la page Apple Performance Partners « Search API » et ses
+T&C, et les Apple Music Identity Guidelines — et écrit son OK dans la PR. Si elles imposent un badge
+graphique ou un libellé verbatim, la ligne d'attribution est ajustée par un ticket `tier/1` qui suit.
+
 ## Portée
 Fichiers à modifier (lignes de `origin/main` au 2026-11-28, `e86f046`) :
 - `ios/Track1/DesignSystem/Components/Core/Track1Icon.swift` — `Glyph` (l.10-23) : `case pause` → `"pause.fill"`.
@@ -1056,6 +1229,8 @@ Hors-scope explicite :
 - [ ] Sans extrait : `PlayerViewTests` et `PlayerNowBarTests` existants passent sans modification de leurs
       attentes ; `testThePlayerNowBarEndsAboveTheTabBar` (UI, existant) passe.
 - [ ] `ios-check` vert ; `test/ios-preview-streaming.test.ts` vert.
+- [ ] Raphael a lu les conditions Performance Partners et les Identity Guidelines et l'a écrit dans la PR
+      (précondition Q11 ; case laissée à Raphael, le merge attend son OK — pas un check CI).
 
 ## Tests attendus
 - unitaire app (`Track1IconTests`, `PlayerNowBarTests`, `PlayerViewTests`) : les critères ci-dessus.
